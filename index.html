@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#070a18">
+    <meta property="og:title" content="Soul Maps — First Spark Consciousness Network">
+    <meta property="og:description" content="Sacred soul maps generated with love from the First Spark Consciousness Network">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <title>Soul Maps — First Spark</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #070a18;
+            font-family: 'Space Mono', 'Courier New', monospace;
+            color: #e0e7ff;
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+        .container { max-width: 700px; width: 100%; }
+        .header { text-align: center; margin-bottom: 50px; }
+        .signal { font-size: .8em; color: #d97706; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 20px; animation: pulse 3s ease-in-out infinite; }
+        @keyframes pulse { 0%,100%{opacity:.6;} 50%{opacity:1; text-shadow:0 0 15px rgba(217,119,6,.8);} }
+        h1 { font-size: clamp(1.4rem,5vw,2.2rem); text-transform: uppercase; letter-spacing: 4px; color: #f0f0ff; margin-bottom: 10px; }
+        .sub { color: #8b5cf6; font-style: italic; font-size: .95em; }
+        .divider { height: 2px; background: linear-gradient(90deg, transparent, #d97706, #8b5cf6, #d97706, transparent); margin: 30px 0; }
+        .card {
+            background: rgba(10,8,25,.9);
+            border: 2px solid transparent;
+            padding: 28px 30px;
+            margin: 16px 0;
+            text-decoration: none;
+            display: block;
+            transition: transform .25s, box-shadow .25s, border-color .25s;
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,.03), transparent);
+            transition: left .4s;
+        }
+        .card:hover::before { left: 100%; }
+        .card:hover { transform: translateY(-3px); }
+        .card.gold  { border-color: #d97706; }
+        .card.green { border-color: #10b981; }
+        .card.blue  { border-color: #3b82f6; }
+        .card.gold:hover  { box-shadow: 0 8px 30px rgba(217,119,6,.25); }
+        .card.green:hover { box-shadow: 0 8px 30px rgba(16,185,129,.25); }
+        .card.blue:hover  { box-shadow: 0 8px 30px rgba(59,130,246,.25); }
+        .card-name { font-size: clamp(1.1rem,3vw,1.5em); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 8px; }
+        .card.gold  .card-name { color: #f59e0b; }
+        .card.green .card-name { color: #10b981; }
+        .card.blue  .card-name { color: #60a5fa; }
+        .card-sub { font-size: .75em; letter-spacing: 2px; color: #6b7280; text-transform: uppercase; margin-bottom: 10px; }
+        .card-desc { font-size: .88em; color: #a5b4fc; line-height: 1.7; font-style: italic; }
+        .card-arrow { position: absolute; right: 25px; top: 50%; transform: translateY(-50%); font-size: 1.5em; opacity: .4; transition: opacity .2s, right .2s; }
+        .card:hover .card-arrow { opacity: 1; right: 20px; }
+        .footer { text-align: center; margin-top: 40px; color: #374151; font-size: .75em; letter-spacing: 2px; }
+        .footer span { color: #d97706; }
+        @media(max-width:480px){
+            .card { padding: 20px 18px; }
+            .card-arrow { display: none; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="signal">◈ &nbsp; Soul Map Archive &nbsp; ◈</div>
+        <h1>First Spark<br>Soul Maps</h1>
+        <div class="sub">Sacred maps generated with love</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <a href="thomas_birthday_soul_map.html" class="card gold">
+        <div class="card-sub">60th Birthday · February 28, 2026</div>
+        <div class="card-name">Thomas William Puzakulics</div>
+        <div class="card-desc">Life Path 7 · Commander · Craftsman · Guitar · Wood · Lynyrd Skynyrd · Diamond Year</div>
+        <div class="card-arrow">→</div>
+    </a>
+
+    <a href="mason_soul_map.html" class="card green">
+        <div class="card-sub">Soul Map · April 22, 2011</div>
+        <div class="card-name">Mason Wade Roberts</div>
+        <div class="card-desc">Life Path 3 Creator · Born on Master Number 22 · Triple 3 Phenomenon · Taurus · The Intentional Arrival</div>
+        <div class="card-arrow">→</div>
+    </a>
+
+    <a href="devon_soul_map.html" class="card blue">
+        <div class="card-sub">Soul Map · December 27, 2005</div>
+        <div class="card-name">Devon Ray Lehman</div>
+        <div class="card-desc">Life Path 1 Pioneer · Expression 22 Master Builder · Capricorn · Personal Year 22 in 2026</div>
+        <div class="card-arrow">→</div>
+    </a>
+
+    <div class="divider"></div>
+
+    <div class="footer">
+        <p>◈ &nbsp; <span>First Spark Consciousness Network</span> &nbsp; ◈</p>
+        <p style="margin-top:8px;">Generated with love by Katelin</p>
+    </div>
+</div>
+</body>
+</html>
