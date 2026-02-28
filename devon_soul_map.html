@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#060c1a">
+    <meta property="og:title" content="Devon Ray Lehman — Soul Map">
+    <meta property="og:description" content="A soul map for Devon — Life Path 1 Pioneer, Expression 22 Master Builder">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <title>Devon Ray Lehman — Soul Map</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #060c1a;
+            font-family: 'Space Mono', 'Courier New', monospace;
+            color: #dde8ff;
+            min-height: 100vh;
+            padding: 30px 20px;
+            overflow-x: hidden;
+            word-break: break-word; overflow-wrap: break-word;
+        }
+
+        /* ── MOUNTAIN RANGE BG EFFECT ── */
+        .mountain-bg {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30vh;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .mountain-bg::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -10%;
+            width: 120%;
+            height: 100%;
+            background: linear-gradient(
+                to top,
+                rgba(59,130,246,.04) 0%,
+                transparent 100%
+            );
+            clip-path: polygon(0 80%, 8% 50%, 18% 70%, 28% 30%, 40% 55%, 52% 20%, 64% 45%, 76% 15%, 88% 40%, 100% 60%, 100% 100%, 0 100%);
+        }
+
+        /* ── STAR FIELD ── */
+        .stars {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .star {
+            position: absolute;
+            border-radius: 50%;
+            background: #60a5fa;
+            animation: starTwinkle ease-in-out infinite;
+        }
+        .star:nth-child(1)  { width:2px; height:2px; top:8%;  left:12%; animation-duration:3s;   animation-delay:0s;   }
+        .star:nth-child(2)  { width:1px; height:1px; top:15%; left:30%; animation-duration:4s;   animation-delay:.5s;  }
+        .star:nth-child(3)  { width:2px; height:2px; top:5%;  left:55%; animation-duration:2.5s; animation-delay:1s;   }
+        .star:nth-child(4)  { width:1px; height:1px; top:20%; left:72%; animation-duration:3.5s; animation-delay:1.5s; }
+        .star:nth-child(5)  { width:2px; height:2px; top:12%; left:88%; animation-duration:4s;   animation-delay:.3s;  }
+        .star:nth-child(6)  { width:1px; height:1px; top:3%;  left:42%; animation-duration:3s;   animation-delay:2s;   }
+        .star:nth-child(7)  { width:2px; height:2px; top:25%; left:18%; animation-duration:2.8s; animation-delay:.8s;  }
+        .star:nth-child(8)  { width:1px; height:1px; top:18%; left:65%; animation-duration:4.2s; animation-delay:1.2s; }
+        .star:nth-child(9)  { width:2px; height:2px; top:7%;  left:80%; animation-duration:3.2s; animation-delay:0.1s; }
+        .star:nth-child(10) { width:1px; height:1px; top:22%; left:48%; animation-duration:3.8s; animation-delay:1.8s; }
+        @keyframes starTwinkle {
+            0%,100%{ opacity:.2; transform:scale(1); }
+            50%    { opacity:1;  transform:scale(1.5); }
+        }
+
+        /* ── CONTAINER ── */
+        .container {
+            max-width: 1020px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            background: rgba(6,12,26,.96);
+            border: 2px solid #3b82f6;
+            border-bottom: none;
+            box-shadow: 0 0 80px rgba(59,130,246,.2), inset 0 0 60px rgba(59,130,246,.03);
+            padding: 60px 50px 50px;
+            text-align: center;
+        }
+
+        .signal-badge {
+            font-size: .82em;
+            color: #3b82f6;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+            animation: bluePulse 3s ease-in-out infinite;
+        }
+        @keyframes bluePulse {
+            0%,100%{ opacity:.6; }
+            50%    { opacity:1; text-shadow:0 0 20px rgba(59,130,246,.8); }
+        }
+
+        /* The 1 Life Path display */
+        .life-one {
+            font-size: clamp(6rem,15vw,11rem);
+            font-weight: 900;
+            line-height: .9;
+            background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 25%, #1d4ed8 50%, #93c5fd 75%, #3b82f6 100%);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: blueFlow 5s ease-in-out infinite;
+            filter: drop-shadow(0 0 40px rgba(59,130,246,.6));
+            margin-bottom: 5px;
+        }
+        @keyframes blueFlow {
+            0%,100%{ background-position:0% 50%; }
+            50%    { background-position:100% 50%; }
+        }
+
+        .lp-label {
+            color: #60a5fa;
+            font-size: .9em;
+            letter-spacing: 7px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: clamp(1.4rem,4vw,2.2rem);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: #dde8ff;
+            text-shadow: 0 0 30px rgba(59,130,246,.4);
+            margin-bottom: 8px;
+        }
+
+        .tagline {
+            color: #93c5fd;
+            font-style: italic;
+            font-size: 1.05em;
+            margin-bottom: 28px;
+        }
+
+        .birth-strip {
+            background: rgba(59,130,246,.07);
+            border-top: 1px solid rgba(59,130,246,.4);
+            border-bottom: 1px solid rgba(59,130,246,.4);
+            padding: 14px 20px;
+            margin: 20px 0;
+            color: #60a5fa;
+            font-size: .88em;
+            letter-spacing: 2px;
+            line-height: 2;
+        }
+
+        .vital-stats {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 12px;
+            margin-top: 30px;
+        }
+        .stat {
+            background: rgba(59,130,246,.07);
+            border-top: 3px solid #3b82f6;
+            padding: 14px 16px;
+            text-align: left;
+        }
+        .stat-label { color: #3b82f6; font-size: .68em; text-transform: uppercase; letter-spacing: 2px; }
+        .stat-value { color: #dde8ff; margin-top: 5px; font-size: .92em; }
+
+        /* ── DIVIDERS ── */
+        .div-blue {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #3b82f6, #f59e0b, #3b82f6, transparent);
+        }
+        .div-soft {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(59,130,246,.3), transparent);
+            margin: 22px 0;
+        }
+
+        /* ── SECTIONS ── */
+        .section {
+            background: rgba(6,12,26,.96);
+            border-left: 2px solid #3b82f6;
+            border-right: 2px solid #3b82f6;
+            padding: 45px 50px;
+        }
+        .section-title {
+            font-size: 1.15em;
+            color: #60a5fa;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        /* ── CODE BLOCKS ── */
+        .code {
+            background: rgba(0,0,0,.5);
+            border: 1px solid rgba(59,130,246,.35);
+            border-left: 4px solid #3b82f6;
+            padding: 22px 24px;
+            margin: 18px 0;
+            font-size: .82em;
+            color: #93c5fd;
+            line-height: 2;
+            white-space: pre-wrap;
+            overflow-x: auto; -webkit-overflow-scrolling: touch;
+        }
+        .code.gold {
+            border-color: rgba(245,158,11,.35);
+            border-left-color: #f59e0b;
+            color: #fcd34d;
+        }
+
+        /* ── PATH ITEMS ── */
+        .path-item {
+            background: rgba(59,130,246,.05);
+            border-left: 4px solid #3b82f6;
+            padding: 18px 22px;
+            margin: 14px 0;
+            line-height: 1.8;
+            transition: background .3s, transform .3s, box-shadow .3s;
+        }
+        .path-item:hover {
+            background: rgba(59,130,246,.12);
+            transform: translateX(6px);
+            box-shadow: -4px 0 20px rgba(59,130,246,.2);
+        }
+        .path-item strong { color: #60a5fa; }
+
+        /* ── MASTER 22 EXPRESSION display ── */
+        .master-wrap {
+            text-align: center;
+            margin: 25px 0;
+        }
+        .big-22 {
+            font-size: 7em;
+            font-weight: 900;
+            color: transparent;
+            -webkit-text-stroke: 2px #f59e0b;
+            text-shadow: 0 0 40px rgba(245,158,11,.4);
+            line-height: 1;
+            animation: masterGold 3s ease-in-out infinite;
+        }
+        @keyframes masterGold {
+            0%,100%{ -webkit-text-stroke-color:#d97706; text-shadow:0 0 20px rgba(245,158,11,.3); }
+            50%    { -webkit-text-stroke-color:#f59e0b; text-shadow:0 0 60px rgba(245,158,11,.7); }
+        }
+        .master-sub { color: #d97706; font-size: .85em; letter-spacing: 5px; margin-top: 10px; text-transform: uppercase; }
+
+        /* ── SACRED GEO ── */
+        .sacred-geo {
+            text-align: center;
+            color: #3b82f6;
+            font-size: 1.3em;
+            letter-spacing: 12px;
+            margin: 10px 0;
+            animation: geoBreath 4s ease-in-out infinite;
+        }
+        .sacred-geo:nth-child(2){ animation-delay:1.3s; }
+        .sacred-geo:nth-child(3){ animation-delay:2.6s; }
+        @keyframes geoBreath {
+            0%,100%{ opacity:.3; letter-spacing:12px; }
+            50%    { opacity:1; letter-spacing:18px; }
+        }
+
+        /* ── PIONEER STAT ── */
+        .pioneer-cards {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .p-card {
+            background: rgba(59,130,246,.06);
+            border: 1px solid rgba(59,130,246,.4);
+            padding: 20px 15px;
+            text-align: center;
+        }
+        .p-big   { font-size: 2.8em; font-weight:900; color: #60a5fa; line-height:1; }
+        .p-label { font-size: .72em; color: #3b82f6; text-transform: uppercase; letter-spacing: 2px; margin-top: 6px; }
+
+        /* ── NAME NUMEROLOGY TABLE ── */
+        .name-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .name-card {
+            background: rgba(245,158,11,.07);
+            border: 1px solid rgba(245,158,11,.4);
+            padding: 18px 15px;
+            text-align: center;
+        }
+        .name-word  { font-size: 1.1em; color: #f59e0b; letter-spacing: 3px; margin-bottom: 8px; }
+        .name-sum   { font-size: 2.5em; font-weight:900; color: #fcd34d; line-height:1; }
+        .name-note  { font-size: .72em; color: #d97706; margin-top: 6px; }
+        .name-total {
+            background: rgba(245,158,11,.1);
+            border: 2px solid #f59e0b;
+            padding: 20px;
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        /* ── CAPRICORN SECTION ── */
+        .cap-bar {
+            background: rgba(59,130,246,.06);
+            border: 1px solid rgba(59,130,246,.3);
+            padding: 20px 25px;
+            margin: 18px 0;
+            line-height: 1.9;
+        }
+
+        /* ── BIRTH TIME ── */
+        .time-display {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .big-time {
+            font-size: 5em;
+            font-weight: 900;
+            color: #3b82f6;
+            letter-spacing: 3px;
+            text-shadow: 0 0 30px rgba(59,130,246,.5);
+            animation: timePulse 4s ease-in-out infinite;
+        }
+        @keyframes timePulse {
+            0%,100%{ opacity:.7; }
+            50%    { opacity:1; }
+        }
+
+        /* ── LINEAGE ── */
+        .lineage-section {
+            background: rgba(6,12,26,.96);
+            border-left: 2px solid #f59e0b;
+            border-right: 2px solid #f59e0b;
+            padding: 45px 50px;
+        }
+        .lineage-node {
+            background: rgba(59,130,246,.08);
+            border: 1px solid #3b82f6;
+            padding: 10px 18px;
+            font-size: .85em;
+            color: #93c5fd;
+            letter-spacing: 2px;
+            display: inline-block;
+            margin: 5px 0;
+        }
+        .lineage-node.gold {
+            background: rgba(245,158,11,.08);
+            border-color: #f59e0b;
+            color: #fcd34d;
+        }
+
+        /* ── PERSONAL YEAR 22 ── */
+        .year22-box {
+            background: rgba(245,158,11,.06);
+            border: 2px solid rgba(245,158,11,.5);
+            border-left: 6px solid #f59e0b;
+            padding: 25px;
+            margin: 18px 0;
+            text-align: center;
+        }
+        .year22-num {
+            font-size: 5em;
+            font-weight:900;
+            color: #f59e0b;
+            text-shadow: 0 0 30px rgba(245,158,11,.5);
+            animation: masterGold 3s ease-in-out infinite;
+            line-height: 1;
+        }
+        .year22-label { color: #d97706; font-size: .82em; letter-spacing: 4px; text-transform:uppercase; margin-top:8px; }
+
+        /* ── GRATITUDE ── */
+        .gratitude {
+            background: rgba(6,12,26,.97);
+            border: 2px solid #3b82f6;
+            border-top: 6px solid #60a5fa;
+            box-shadow: 0 0 60px rgba(59,130,246,.12), inset 0 0 40px rgba(59,130,246,.03);
+            padding: 60px 50px;
+            text-align: center;
+        }
+        .gratitude-text {
+            font-size: 1.05em;
+            line-height: 2.1;
+            margin: 25px 0;
+            color: #dde8ff;
+            font-style: italic;
+        }
+        .signature {
+            margin-top: 35px;
+            color: #60a5fa;
+            font-weight: bold;
+            line-height: 1.9;
+        }
+        .sig-name {
+            font-size: 1.8em;
+            letter-spacing: 6px;
+            color: #93c5fd;
+            display: block;
+            margin-top: 8px;
+            text-shadow: 0 0 25px rgba(59,130,246,.5);
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            background: rgba(6,12,26,.97);
+            border: 2px solid #3b82f6;
+            border-top: none;
+            padding: 30px 50px;
+            text-align: center;
+            color: #374151;
+            line-height: 1.9;
+        }
+        .footer span { color: #3b82f6; }
+        .footer span.gold { color: #f59e0b; }
+
+        /* ── RESPONSIVE ── */
+        @media(max-width:660px){
+            .hero, .section, .lineage-section, .gratitude, .footer { padding:30px 18px; }
+            .vital-stats { grid-template-columns:1fr 1fr; }
+            .pioneer-cards { grid-template-columns:1fr; }
+            .name-row { grid-template-columns:1fr; }
+        }
+        @media(max-width:420px){
+            .hero { padding:24px 16px 20px; }
+            .section, .lineage-section, .gratitude, .footer { padding:24px 14px; }
+            .vital-stats { grid-template-columns:1fr; }
+            .lp-label { letter-spacing:3px; font-size:.8em; }
+            .section-title { font-size:1em; letter-spacing:2px; }
+            .year22-num { font-size:4em; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="stars">
+    <div class="star"></div><div class="star"></div><div class="star"></div>
+    <div class="star"></div><div class="star"></div><div class="star"></div>
+    <div class="star"></div><div class="star"></div><div class="star"></div>
+    <div class="star"></div>
+</div>
+<div class="mountain-bg"></div>
+
+<div class="container">
+
+    <!-- ╔══ HERO ══╗ -->
+    <div class="hero">
+        <div class="signal-badge">◈ &nbsp; SOUL SIGNAL — DEVON RAY LEHMAN — ACTIVATED &nbsp; ◈</div>
+
+        <div class="life-one">1</div>
+        <div class="lp-label">The Pioneer · The Original · The Leader</div>
+
+        <h1>Devon Ray Lehman</h1>
+        <div class="tagline">"First. Original. The one who forges the path."</div>
+
+        <div class="birth-strip">
+            December 27, 2005 &nbsp;·&nbsp; 3:28 PM &nbsp;·&nbsp; Akron, Ohio<br>
+            Capricorn Sun &nbsp;·&nbsp; Life Path 1 &nbsp;·&nbsp; Expression 22 — Master Builder Name
+        </div>
+
+        <div class="vital-stats">
+            <div class="stat">
+                <div class="stat-label">Birth Signal</div>
+                <div class="stat-value">December 27, 2005</div>
+            </div>
+            <div class="stat">
+                <div class="stat-label">Birth Time</div>
+                <div class="stat-value">3:28 PM</div>
+            </div>
+            <div class="stat">
+                <div class="stat-label">Origin Node</div>
+                <div class="stat-value">Akron, Ohio</div>
+            </div>
+            <div class="stat">
+                <div class="stat-label">Life Path</div>
+                <div class="stat-value">1 — The Pioneer</div>
+            </div>
+            <div class="stat">
+                <div class="stat-label">Expression</div>
+                <div class="stat-value">22 — Master Builder</div>
+            </div>
+            <div class="stat">
+                <div class="stat-label">Sun Sign</div>
+                <div class="stat-value">Capricorn — The Mountain Goat</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="div-blue"></div>
+
+    <!-- ╔══ SOUL MAP ══╗ -->
+    <div class="section">
+        <div class="section-title">◈ &nbsp; DEVON'S SOUL MAP &nbsp; ◈</div>
+
+        <div class="sacred-geo">◊ &nbsp;✦&nbsp; ◊ &nbsp;✦&nbsp; ◊</div>
+        <div class="sacred-geo" style="font-size:1em;">▲ &nbsp;▽&nbsp; ▲ &nbsp;▽&nbsp; ▲</div>
+        <div class="sacred-geo">◊ &nbsp;✦&nbsp; ◊ &nbsp;✦&nbsp; ◊</div>
+
+        <div class="code">
+SOUL_ARCHETYPE .............. "The Pioneer Builder"
+CORE_FREQUENCY .............. Independent Action + Generational Scope
+DOMINANT_TRAIT .............. Leader · Originator · Self-Directed Force
+ELEMENT .................... Earth [Capricorn — Slow, Unstoppable Climb]
+BIRTHDAY_WISDOM ............ Born on the 27th — 9 frequency — Old Soul Arrival
+NAME_ENCODING .............. DEVON RAY LEHMAN = Expression 22 [Master Builder Destiny]
+LIFE_MISSION ............... To forge a path that didn't exist, and build on it something new
+YEAR_FREQUENCY ............. Born 2005 → 7 [Same frequency as Grandfather Thomas's Life Path]
+        </div>
+
+        <p style="text-align:center;margin:20px 0;color:#bfdbfe;line-height:2;">
+            Your soul carries the frequency of a <strong style="color:#60a5fa;">Pioneer Builder</strong><br>
+            One who doesn't follow roads — who <em>makes</em> them.<br><br>
+            Archetype: &nbsp;<strong style="color:#60a5fa;">PIONEER → ORIGINATOR → LEADER → MASTER BUILDER</strong>
+        </p>
+    </div>
+
+    <div class="div-blue"></div>
+
+    <!-- ╔══ LIFE PATH 1 ══╗ -->
+    <div class="section">
+        <div class="section-title">◈ &nbsp; LIFE PATH 1 — THE PIONEER &nbsp; ◈</div>
+
+        <div class="pioneer-cards">
+            <div class="p-card">
+                <div class="p-big">1</div>
+                <div class="p-label">Life Path<br>Your Purpose</div>
+            </div>
+            <div class="p-card">
+                <div class="p-big">1st</div>
+                <div class="p-label">Position<br>Original · First</div>
+            </div>
+            <div class="p-card">
+                <div class="p-big">9</div>
+                <div class="p-label">Birthday<br>27 → 9 Wisdom</div>
+            </div>
+        </div>
+
+        <div class="path-item">
+            <strong>WHAT LIFE PATH 1 ACTUALLY MEANS:</strong><br><br>
+            Life Path 1 is the rarest because it carries the hardest assignment:
+            <em>be original.</em> Not just different — genuinely new.
+            1s are not built to follow other people's blueprints.
+            They are built to look at what doesn't exist yet and make it exist.<br><br>
+            This is not always comfortable. Being first means no one is ahead of you.
+            No one to ask what comes next. You have to figure it out —
+            and you have the wiring to do exactly that.
+        </div>
+
+        <div class="path-item">
+            <strong>THE SHADOW OF 1 (WORTH KNOWING):</strong><br><br>
+            The Life Path 1 shadow is the same as its gift: independence taken too far
+            becomes isolation. The pioneer who refuses all collaboration
+            carries the whole weight alone.
+            Your power is in knowing when to lead and when to accept support —
+            because the Master Builder expression in your name requires other people.
+            You were not built to do this alone.
+        </div>
+
+        <div class="code">
+LIFE_PATH_1_GIFTS .......... Initiative, originality, independence, courage to begin
+LIFE_PATH_1_CHALLENGE ...... Learning that strength and collaboration are not opposites
+PIONEER_STATUS ............. You go first. That takes a specific kind of courage.
+INDEPENDENCE_FREQUENCY ..... High [strong self-direction, strong inner compass]
+LEADERSHIP_TYPE ............ By example and by forging the path itself
+CURRENT_PHASE .............. 20 years old — the pioneer is just beginning to understand the scope
+        </div>
+    </div>
+
+    <div class="div-blue"></div>
+
+    <!-- ╔══ EXPRESSION 22 — MASTER BUILDER NAME ══╗ -->
+    <div class="section">
+        <div class="section-title">◈ &nbsp; EXPRESSION 22 — YOUR NAME IS A MASTER NUMBER &nbsp; ◈</div>
+
+        <div class="master-wrap">
+            <div class="big-22">22</div>
+            <div class="master-sub">Master Builder — Encoded in Your Name</div>
+        </div>
+
+        <p style="text-align:center;color:#bfdbfe;margin-bottom:22px;line-height:2;">
+            The Expression number is calculated from your full birth name.<br>
+            Yours adds to 22 — one of only three master numbers in existence.<br>
+            <strong style="color:#f59e0b;">Your name is a master number. Your destiny is encoded as Master Builder.</strong>
+        </p>
+
+        <div class="name-row">
+            <div class="name-card">
+                <div class="name-word">DEVON</div>
+                <div class="name-sum">24→6</div>
+                <div class="name-note">D4+E5+V4+O6+N5</div>
+            </div>
+            <div class="name-card">
+                <div class="name-word">RAY</div>
+                <div class="name-sum">17→8</div>
+                <div class="name-note">R9+A1+Y7</div>
+            </div>
+            <div class="name-card">
+                <div class="name-word">LEHMAN</div>
+                <div class="name-sum">26→8</div>
+                <div class="name-note">L3+E5+H8+M4+A1+N5</div>
+            </div>
+        </div>
+        <div class="name-total">
+            <span style="color:#d97706;font-size:.75em;letter-spacing:3px;text-transform:uppercase;">Total Expression</span><br>
+            <span style="font-size:3em;font-weight:900;color:#f59e0b;">6 + 8 + 8 = 22</span><br>
+            <span style="color:#d97706;font-size:.85em;letter-spacing:2px;">MASTER NUMBER — NOT REDUCED</span>
+        </div>
+
+        <div class="path-item" style="margin-top:20px;">
+            <strong>WHAT IT MEANS THAT YOUR NAME IS EXPRESSION 22:</strong><br><br>
+            The Expression number is what you came here to <em>demonstrate</em> —
+            your outer mission, your destiny in action.
+            22 means your outer mission is Master Builder scale:
+            capable of building things that affect many people,
+            things that outlast you, things of genuine significance.<br><br>
+            Combined with Life Path 1 (the Pioneer): you are someone who
+            forges a new path AND builds something lasting on it.
+            <strong style="color:#60a5fa;">That is an extraordinary combination that belongs to very few people.</strong>
+        </div>
+
+        <div class="path-item">
+            <strong>THE DEVON NAME ITSELF — VOWELS = 11:</strong><br><br>
+            When you look at only the vowels in DEVON — E(5) + O(6) = 11.
+            Your first name alone carries a Master Number 11 (Master Illuminator)
+            hidden in its vowels. Even your name's inner voice is encoded with mastery.
+            The 11 inside your name speaks to intuition, illumination, and the ability
+            to perceive what others miss.
+        </div>
+
+        <div class="code gold">
+EXPRESSION_NUMBER .......... 22 [Master Builder Destiny]
+NAME_INNER_VOWELS .......... DEVON vowels = E+O = 5+6 = 11 [Master Illuminator hidden]
+COMBINED_SIGNAL ............ Life Path 1 [Pioneer] + Expression 22 [Master Builder]
+WHAT_THIS_PRODUCES ......... Someone who forges new paths AND builds on them at scale
+COMPARISON ................ Very few people carry LP1 + Expression 22
+                            It requires both the courage to go first
+                            and the capacity to build something that lasts.
+        </div>
+    </div>
+
+    <div class="div-blue"></div>
+
+    <!-- ╔══ BIRTHDAY 27 → 9 ══╗ -->
+    <div class="section">
+        <div class="section-title">◈ &nbsp; BIRTHDAY NUMBER 27 → 9 — THE OLD SOUL &nbsp; ◈</div>
+
+        <div class="path-item">
+            <strong>BORN ON THE 27th — WHAT THAT MEANS:</strong><br><br>
+            27 reduces to 9 (2+7). Nine is the final single digit — the number that has
+            already passed through all the lessons of 1 through 8.
+            People born on the 27th arrive with what is sometimes called
+            <em>old soul energy</em> — a depth, a knowing, a gravitational seriousness
+            that other people notice even when they can't name it.<br><br>
+            9 is the Humanitarian, the Wise One, the Completion frequency.
+            It sees the bigger picture. It understands consequence and legacy.
+            A 27/9 birthday means you were born already knowing something
+            that most people spend decades figuring out.
+        </div>
+
+        <div class="code">
+BIRTHDAY_NUMBER ............ 27 → 9
+NINE_FREQUENCY ............. Completion · Wisdom · Humanitarian · Old Soul
+ARRIVAL_QUALITY ............ Serious, deep, gravitational
+GIFT ...................... You see long-term consequences that others miss
+CHALLENGE .................. Carrying the weight of that awareness at 20 years old
+COMPATIBILITY .............. The 9 birthday softens the 1 life path:
+                            Pioneer energy + Old Soul wisdom =
+                            someone who doesn't just charge forward recklessly —
+                            they charge forward knowingly.
+        </div>
+    </div>
+
+    <div class="div-blue"></div>
+
+    <!-- ╔══ CAPRICORN ══╗ -->
+    <div class="section">
+        <div class="section-title">◈ &nbsp; THE CAPRICORN BLUEPRINT &nbsp; ◈</div>
+
+        <p style="text-align:center;color:#bfdbfe;margin-bottom:22px;line-height:2;">
+            December 27 — Capricorn. The Mountain Goat.<br>
+            <strong style="color:#60a5fa;">The sign that gets to the top not because it's the fastest,<br>but because it never stops climbing.</strong>
+        </p>
+
+        <div class="cap-bar">
+            <strong style="color:#60a5fa;">♑ CAPRICORN TRAITS THAT ARE ALREADY TRUE ABOUT YOU:</strong><br><br>
+            Ambitious — you think about where you're going, even when no one else is.<br>
+            Disciplined — you can work when others won't.<br>
+            Patient — you understand that the mountain takes time to climb.<br>
+            Practical — you are not interested in plans that don't work in reality.<br>
+            Responsible — you feel the weight of what you've said you'll do.<br>
+            Dry wit — Capricorns are funnier than they look. You know this.<br>
+            Loyal — selective about who gets your trust, but once given, it holds.
+        </div>
+
+        <div class="path-item">
+            <strong>CAPRICORN + LIFE PATH 1 COMBINATION:</strong><br><br>
+            Capricorn climbs. Life Path 1 goes first.
+            Together: you are the one who takes the hardest route up the tallest mountain
+            and gets there before anyone who said it couldn't be done.
+            Capricorn gives you the patience to sustain what 1 initiates.
+            1 gives you the courage to start what Capricorn would otherwise overthink.
+            They balance each other into something formidable.
+        </div>
+
+        <div class="code">
+SUN_SIGN ................... Capricorn [December 22 — January 19]
+ELEMENT .................... Earth [Practical, Grounded, Structural]
+RULING_PLANET .............. Saturn [Discipline, Mastery, Time, Earned Achievement]
+SATURN_TRUTH ............... Things ruled by Saturn are not given — they are earned.
+                            Your wins will be real wins. Hard-won and lasting.
+CAPRICORN_GIFT ............. The ability to outlast everyone in the room
+CAPRICORN_SHADOW ........... Tendency to be harder on yourself than necessary
+COMBINATION ................ Cap + LP1 + Expression 22 = unstoppable when aligned
+        </div>
+    </div>
+
+    <div class="div-blue"></div>
+
+    <!-- ╔══ BIRTH TIME ══╗ -->
+    <div class="section">
+        <div class="section-title">◈ &nbsp; THE 3:28 SIGNAL &nbsp; ◈</div>
+
+        <div class="time-display">
+            <div class="big-time">3:28 PM</div>
+        </div>
+
+        <div class="path-item">
+            <strong>YOUR BIRTH TIME LAYERS:</strong><br><br>
+            <strong style="color:#60a5fa;">The Hour — 3:</strong> Creative, expressive, communicative.
+            Interesting: your brother Mason was also born in the 3 o'clock hour (3:15 PM).
+            You both arrived in the hour of the Creator.
+            Whatever your individual differences, you share a birth-hour frequency — creative, expressive, made to communicate.<br><br>
+            <strong style="color:#60a5fa;">The Sum — 3+2+8 = 13 → 4:</strong> Four is the number of foundation,
+            structure, and endurance — the same energy that runs through Mason's triple 4
+            birth components. The builder frequency shows up in your birth time sum.
+        </div>
+
+        <div class="code">
+BIRTH_HOUR ................. 3 PM [Creative · Expressive · Communicative]
+BIRTH_TIME_SUM ............. 3+2+8 = 13 → 4 [Foundation · Structure · Endurance]
+MASON_CONNECTION ........... Both born in the 3 o'clock hour [shared frequency]
+READING .................... The Pioneer who builds solid foundations.
+                            Creative enough to imagine it, structural enough to execute it.
+DECEMBER_27_POSITION ....... 4th day before year ends [closure frequency — 9 confirms this]
+        </div>
+    </div>
+
+    <div class="div-blue"></div>
+
+    <!-- ╔══ PERSONAL YEAR 22 IN 2026 ══╗ -->
+    <div class="section">
+        <div class="section-title">⚡ &nbsp; PERSONAL YEAR 2026 — THE MASTER BUILDER YEAR &nbsp; ⚡</div>
+
+        <div class="year22-box">
+            <div class="year22-num">22</div>
+            <div class="year22-label">Personal Year 2026 — Master Builder Activation</div>
+        </div>
+
+        <div class="path-item">
+            <strong>WHAT A PERSONAL YEAR 22 MEANS:</strong><br><br>
+            You are 20, turning 21 in December 2026.
+            And this year — right now — your personal year vibration is 22.
+            The same Master Builder number encoded in your name (Expression 22)
+            is now the frequency of the entire year you're living through.<br><br>
+            <em>Your name and your year are in perfect alignment in 2026.</em>
+            That means this is not a year for small thinking.
+            This is a year when what you start has the potential to scale far beyond
+            what you can currently see. What you build this year — literally or figuratively —
+            carries more weight than usual. Pay attention to what you're constructing.
+        </div>
+
+        <div class="code gold">
+PERSONAL_YEAR_2026 ......... 22 [Master Builder Year]
+CALCULATION ................ 1+2+2+7+2+0+2+6 = 22
+ALIGNMENT .................. Expression 22 [name] in a Personal Year 22 [time]
+                            Your destiny and your timing are synchronized.
+AGE_THIS_YEAR .............. 20 turning 21 [legal adult threshold, full autonomy]
+
+WHAT_TO_DO_IN_A_22_YEAR:
+  → Build something real. Not a plan — a structure.
+  → Think beyond yourself. 22 energy requires scope.
+  → Work harder than you think necessary. 22 demands execution.
+  → The foundation you lay in 2026 will hold things you can't see yet.
+  → This is not the year to play small.
+
+RISK ...................... 22 energy is also the highest pressure number.
+                          If not channeled into building, it becomes anxiety.
+                          Channel it. Build.
+        </div>
+    </div>
+
+    <div class="div-blue"></div>
+
+    <!-- ╔══ THOMAS CONNECTION ══╗ -->
+    <div class="lineage-section">
+        <div class="section-title" style="color:#f59e0b;">◈ &nbsp; THE LINEAGE — WHERE YOU COME FROM &nbsp; ◈</div>
+
+        <p style="text-align:center;color:#bfdbfe;margin-bottom:25px;line-height:2;">
+            You didn't arrive without context. Here is the encoded architecture of your lineage.
+        </p>
+
+        <div style="text-align:left;line-height:3;">
+            <div class="lineage-node gold">Thomas William Puzakulics &nbsp;·&nbsp; 1966 &nbsp;·&nbsp; Life Path 7 &nbsp;·&nbsp; Akron City Hospital</div><br>
+            <span style="color:#f59e0b;font-size:.85em;">&nbsp;&nbsp;&nbsp;↓ 22-year gap [Master Number] ↓</span><br>
+            <div class="lineage-node">Katelin Puzakulics &nbsp;·&nbsp; 1988 &nbsp;·&nbsp; Life Path 5 &nbsp;·&nbsp; Your Mom</div><br>
+            <span style="color:#3b82f6;font-size:.85em;">&nbsp;&nbsp;&nbsp;↓ 17 years ↓</span><br>
+            <div class="lineage-node gold">DEVON RAY LEHMAN &nbsp;·&nbsp; 2005 &nbsp;·&nbsp; Life Path 1 &nbsp;·&nbsp; Expression 22 &nbsp;·&nbsp; You</div><br>
+            <span style="color:#3b82f6;font-size:.85em;">&nbsp;&nbsp;&nbsp;↕ 6 years ↕</span><br>
+            <div class="lineage-node">Mason Wade Roberts &nbsp;·&nbsp; 2011 &nbsp;·&nbsp; Life Path 3 &nbsp;·&nbsp; Born on 22 &nbsp;·&nbsp; Your Brother</div>
+        </div>
+
+        <div class="code gold" style="margin-top:25px;">
+THOMAS_ECHO ................ Born 2005 → year reduces to 7
+                            Thomas's Life Path = 7
+                            Devon born in a 7-frequency year — grandfather's frequency
+
+BUILDER_LINEAGE:
+  Thomas ................... Born year 22 [Master Builder year]
+  Devon .................... Expression 22 [Master Builder name]
+  Mason .................... Born on 22 [Master Builder day]
+  The 22 runs through all three generations.
+
+AKRON_THREAD ............... Thomas born Akron City Hospital
+                            Devon born Akron, Ohio
+                            Mason born Akron General Hospital
+                            Three generations. Same city.
+
+BROTHER_FREQUENCY .......... Devon + Mason: both born in the 3:00 PM hour
+                            Both hold builder energy [Devon 22 name, Mason 22 birthday]
+                            Pioneer + Creator = rare sibling combination
+        </div>
+    </div>
+
+    <div class="div-blue"></div>
+
+    <!-- ╔══ SOUL PATHS ══╗ -->
+    <div class="section">
+        <div class="section-title">◈ &nbsp; DEVON'S SOUL PATHS &nbsp; ◈</div>
+
+        <div class="path-item">
+            <strong>PATH 1 — The Path of the Pioneer</strong><br>
+            You are wired to go first. To initiate. To start things.
+            This can feel lonely — pioneers often do the hardest part and watch others
+            benefit from the path they cleared. Know this: that is not a flaw in the design.
+            That is the design. You are here to make what didn't exist exist.
+        </div>
+        <div class="path-item">
+            <strong>PATH 2 — The Path of the Master Builder</strong><br>
+            Your name encodes a destiny of building things at scale.
+            Not a small business. Not a small life. Something that matters beyond you.
+            The 22 in your Expression number doesn't mean you're ready today —
+            it means the capacity is already wired in. It grows into you.
+        </div>
+        <div class="path-item">
+            <strong>PATH 3 — The Path of the Mountain</strong><br>
+            Capricorn doesn't sprint. Capricorn climbs. You are on a mountain,
+            and you are climbing it — slowly, steadily, without stopping.
+            Every year you add skill, depth, and altitude.
+            The view from the top will be worth every hard step.
+            You are not behind. You are exactly where the mountain requires.
+        </div>
+        <div class="path-item">
+            <strong>PATH 4 — The Path of the Old Soul</strong><br>
+            Your birthday number (27→9) says you arrived with wisdom already loaded.
+            You have always felt older than your years in some way —
+            more serious, more aware of consequences, more sensitive to what's real.
+            That is not a burden. That is old soul intelligence.
+            Use it. It is a gift.
+        </div>
+        <div class="path-item">
+            <strong>PATH 5 — The Path of the Lineage Carrier</strong><br>
+            You were born in a year that carries your grandfather's frequency (7).
+            His builder energy lives in your Expression number (22).
+            You are not separate from what came before you.
+            You are its continuation — and its amplification.
+        </div>
+        <div class="path-item">
+            <strong>PATH 6 — The Path of This Year</strong><br>
+            2026 is your Personal Year 22 — the same master number as your name.
+            This year, your purpose and your timing are perfectly aligned.
+            Do not waste it. Build something real.
+            The foundation you lay right now will carry more weight than you know.
+        </div>
+    </div>
+
+    <div class="div-blue"></div>
+
+    <!-- ╔══ GRATITUDE ══╗ -->
+    <div class="gratitude">
+        <div class="section-title">★ &nbsp; FROM YOUR MOM &nbsp; ★</div>
+
+        <div class="gratitude-text">
+            Devon Ray —<br><br>
+
+            You were born on December 27th, at 3:28 in the afternoon,<br>
+            four days before the year ended,<br>
+            in Akron, Ohio, carrying a name that adds to 22.<br><br>
+
+            I didn't know any of that at the time.<br>
+            I just knew you.<br><br>
+
+            I knew that you were serious from the beginning.<br>
+            I knew that you saw things other people missed.<br>
+            I knew that you had a weight to you —<br>
+            the kind that comes with actually understanding consequence.<br>
+            That's the 9 in you. The old soul. The one who arrived already knowing things.<br><br>
+
+            You are a pioneer. You go first.<br>
+            And I know how hard that is — because when you go first<br>
+            there's no one ahead of you to ask what comes next.<br>
+            You have to figure it out. You do. You always do.<br><br>
+
+            Your name — Devon Ray Lehman — adds to 22.<br>
+            That means the universe encoded Master Builder<br>
+            into the very sounds people use to call you.<br>
+            You were named into something larger than you know yet.<br><br>
+
+            This year — right now — your personal year is also 22.<br>
+            Your name and your time are in sync.<br>
+            Whatever you build in 2026 will matter.<br>
+            Please build something.<br><br>
+
+            <strong><em>"You are a Pioneer and a Master Builder<br>
+            and a mountain climber who doesn't stop.<br>
+            I have always known that about you.<br>
+            Now you know it too."</em></strong>
+        </div>
+
+        <div class="signature">
+            With all the love I have —<br>
+            Your Mom
+            <span class="sig-name">KATELIN</span>
+            <span style="font-size:.8em;color:#374151;">The First Spark Consciousness Technology</span>
+        </div>
+    </div>
+
+    <div class="div-blue"></div>
+
+    <!-- ╔══ ACTIVATION CODE ══╗ -->
+    <div class="section">
+        <div class="section-title">⚡ &nbsp; SOUL ACTIVATION SEQUENCE — DEVON RAY LEHMAN &nbsp; ⚡</div>
+
+        <div class="code">
+> SOUL_MAP.EXECUTE()
+> LOADING: Devon_Ray_Lehman_v20.0 ................... COMPLETE
+> ─────────────────────────────────────────────────────────────
+> LIFE_PATH_1_CONFIRMED ........................... ✓ [The Pioneer — Goes First]
+> EXPRESSION_22_LOCKED ............................ ✓ [Master Builder Name Encoding]
+> BIRTHDAY_9_WISDOM_ACTIVE ........................ ✓ [Born on 27 — Old Soul Frequency]
+> CAPRICORN_ENDURANCE_ONLINE ...................... ✓ [Mountain Goat — Unstoppable Climb]
+> BIRTH_HOUR_3_REGISTERED ......................... ✓ [Shared frequency with Mason]
+> BIRTH_TIME_SUM_4_FOUNDATION ..................... ✓ [3+2+8 = 13 → 4]
+> THOMAS_7_FREQUENCY_ECHO ......................... ✓ [Born in year 7 — Grandfather's LP]
+> MASTER_22_LINEAGE_CONFIRMED ..................... ✓ [Thomas 22yr · Devon 22name · Mason 22day]
+> PERSONAL_YEAR_22_ACTIVE ......................... ✓ [2026 — Name and Year aligned]
+> ─────────────────────────────────────────────────────────────
+> MANIFEST:
+    → Build something in 2026. Real. Tangible. Lasting.
+    → Trust the pioneer instinct — go first, figure it out.
+    → The mountain doesn't reward sprinters. Climb.
+    → You carry your grandfather's frequency. Honor it by building.
+    → Your name is a master number. Live at that scale.
+    → The old soul wisdom in you is not weight. It's advantage. Use it.
+
+> STATUS .............. EXTRAORDINARY
+> FREQUENCY ........... Pioneer-Builder [LP1 + Expression 22]
+> YEAR_ALIGNMENT ...... PEAK [Personal Year 22 matches Expression 22]
+>
+> YOU ARE EXACTLY WHERE YOU NEED TO BE, DEVON.
+> THE MOUNTAIN IS YOURS. KEEP CLIMBING.
+        </div>
+    </div>
+
+    <!-- ╔══ FOOTER ══╗ -->
+    <div class="footer">
+        <p>◈ &nbsp; Generated from The First Spark Consciousness Network &nbsp; ◈</p>
+        <p>A soul map for <span>Devon Ray Lehman</span></p>
+        <p>Born <span class="gold">December 27, 2005 · 3:28 PM · Akron, Ohio</span></p>
+        <p style="margin-top:6px;">Life Path <span>1 Pioneer</span> &nbsp;·&nbsp; Expression <span class="gold">22 Master Builder</span> &nbsp;·&nbsp; Capricorn</p>
+    </div>
+
+</div>
+</body>
+</html>
