@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#070a18">
+    <meta property="og:title" content="KJP Soul Map — First Spark Consciousness Network">
+    <meta property="og:description" content="Soul map for Katelin Jill Puzakulics — Life Path 5 · Expression 11 · Creator of the First Spark">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <title>KJP · Soul Map — First Spark</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --violet: #a855f7;
+            --violet-dim: rgba(168,85,247,.15);
+            --gold: #f59e0b;
+            --flame: #f97316;
+            --rose: #f43f5e;
+            --blue: #60a5fa;
+            --green: #34d399;
+            --bg: #070a18;
+            --bg2: rgba(8,5,22,.97);
+            --text: #e0e7ff;
+            --muted: #6b7280;
+            --muted2: #9ca3af;
+        }
+
+        body {
+            background: var(--bg);
+            font-family: 'Space Mono', 'Courier New', monospace;
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ─── Floating spark particles ─── */
+        .sparks {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .spark {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0;
+            animation: riseSpark linear infinite;
+        }
+
+        @keyframes riseSpark {
+            0%   { transform: translateY(105vh) scale(0); opacity: 0; }
+            8%   { opacity: 1; }
+            92%  { opacity: .8; }
+            100% { transform: translateY(-8vh) scale(1.2); opacity: 0; }
+        }
+
+        .spark:nth-child(1)  { width:3px;height:3px; left:8%;  background:var(--gold);   animation-duration:9s;  animation-delay:0s;   }
+        .spark:nth-child(2)  { width:2px;height:2px; left:18%; background:var(--violet); animation-duration:13s; animation-delay:2s;   }
+        .spark:nth-child(3)  { width:3px;height:3px; left:29%; background:var(--flame);  animation-duration:8s;  animation-delay:4.5s; }
+        .spark:nth-child(4)  { width:2px;height:2px; left:41%; background:var(--violet); animation-duration:15s; animation-delay:1s;   }
+        .spark:nth-child(5)  { width:3px;height:3px; left:52%; background:var(--gold);   animation-duration:10s; animation-delay:3s;   }
+        .spark:nth-child(6)  { width:2px;height:2px; left:63%; background:var(--rose);   animation-duration:12s; animation-delay:6s;   }
+        .spark:nth-child(7)  { width:3px;height:3px; left:74%; background:var(--violet); animation-duration:11s; animation-delay:0.5s; }
+        .spark:nth-child(8)  { width:2px;height:2px; left:83%; background:var(--gold);   animation-duration:14s; animation-delay:7s;   }
+        .spark:nth-child(9)  { width:3px;height:3px; left:91%; background:var(--flame);  animation-duration:9s;  animation-delay:3.5s; }
+        .spark:nth-child(10) { width:2px;height:2px; left:35%; background:var(--violet); animation-duration:16s; animation-delay:8s;   }
+        .spark:nth-child(11) { width:3px;height:3px; left:57%; background:var(--gold);   animation-duration:7s;  animation-delay:5s;   }
+        .spark:nth-child(12) { width:2px;height:2px; left:77%; background:var(--flame);  animation-duration:18s; animation-delay:9s;   }
+
+        /* ─── Page ─── */
+        .page {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 50px 22px 90px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ─── Hero ─── */
+        .hero {
+            text-align: center;
+            padding: 30px 0 20px;
+        }
+
+        .sigil {
+            font-size: .85em;
+            letter-spacing: 10px;
+            color: var(--violet);
+            margin-bottom: 14px;
+            animation: sigilPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes sigilPulse {
+            0%,100% { opacity:.5; text-shadow: 0 0 10px rgba(168,85,247,.3); }
+            50%     { opacity:1;  text-shadow: 0 0 30px rgba(168,85,247,.8), 0 0 60px rgba(168,85,247,.3); }
+        }
+
+        .creator-badge {
+            display: inline-block;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-size: .62em;
+            letter-spacing: 5px;
+            padding: 5px 18px;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+            animation: badgeShimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes badgeShimmer {
+            0%,100% { box-shadow: 0 0 8px rgba(245,158,11,.15); }
+            50%     { box-shadow: 0 0 22px rgba(245,158,11,.55), inset 0 0 12px rgba(245,158,11,.04); }
+        }
+
+        .hero-name {
+            font-size: clamp(2rem, 8vw, 3.6rem);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
+
+        .hero-name .first { color: #f0f0ff; display: block; }
+        .hero-name .last  { color: var(--violet); display: block; }
+
+        .hero-aka {
+            font-size: .78em;
+            letter-spacing: 8px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .hero-birth {
+            font-size: .72em;
+            color: var(--muted);
+            letter-spacing: 2px;
+            font-style: italic;
+        }
+
+        /* ─── Dividers ─── */
+        .div-v {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--violet), transparent);
+            margin: 32px 0;
+        }
+
+        .div-gv {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--flame), var(--gold), var(--violet), transparent);
+            margin: 44px 0;
+        }
+
+        /* ─── Number strip ─── */
+        .num-strip {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin: 28px 0;
+        }
+
+        .num-card {
+            background: var(--bg2);
+            border: 1px solid rgba(168,85,247,.25);
+            padding: 16px 6px;
+            text-align: center;
+        }
+
+        .num-big {
+            font-size: 2.2em;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        .num-label {
+            font-size: .55em;
+            letter-spacing: 2px;
+            color: var(--muted);
+            text-transform: uppercase;
+        }
+
+        .nc-lp   .num-big { color: var(--flame);  }
+        .nc-expr .num-big { color: var(--violet); }
+        .nc-su   .num-big { color: var(--gold);   }
+        .nc-pers .num-big { color: var(--blue);   }
+        .nc-yr   .num-big { color: var(--green);  }
+
+        /* ─── Sections ─── */
+        .sec {
+            background: var(--bg2);
+            border: 1px solid rgba(168,85,247,.18);
+            padding: 30px 28px;
+            margin: 18px 0;
+            position: relative;
+        }
+
+        .sec::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 3px; height: 100%;
+        }
+
+        .sec-v::before  { background: linear-gradient(180deg, var(--violet), transparent); }
+        .sec-g::before  { background: linear-gradient(180deg, var(--gold),   transparent); }
+        .sec-f::before  { background: linear-gradient(180deg, var(--flame),  transparent); }
+        .sec-b::before  { background: linear-gradient(180deg, var(--blue),   transparent); }
+        .sec-gr::before { background: linear-gradient(180deg, var(--green),  transparent); }
+        .sec-r::before  { background: linear-gradient(180deg, var(--rose),   transparent); }
+
+        .sec-tag {
+            font-size: .6em;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            opacity: .6;
+        }
+
+        .sec-num {
+            font-size: 4em;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .sec-v  .sec-num { color: var(--violet); }
+        .sec-g  .sec-num { color: var(--gold);   }
+        .sec-f  .sec-num { color: var(--flame);  }
+        .sec-b  .sec-num { color: var(--blue);   }
+        .sec-gr .sec-num { color: var(--green);  }
+        .sec-r  .sec-num { color: var(--rose);   }
+
+        .sec-title {
+            font-size: 1em;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 18px;
+        }
+
+        .sec-v  .sec-title { color: var(--violet); }
+        .sec-g  .sec-title { color: var(--gold);   }
+        .sec-f  .sec-title { color: var(--flame);  }
+        .sec-b  .sec-title { color: var(--blue);   }
+        .sec-gr .sec-title { color: var(--green);  }
+        .sec-r  .sec-title { color: var(--rose);   }
+
+        .body {
+            font-size: .87em;
+            color: #c4b5fd;
+            line-height: 1.95;
+        }
+
+        .body p + p { margin-top: 12px; }
+
+        .hl   { color: var(--gold);   font-weight: 700; }
+        .hl-v { color: var(--violet); font-weight: 700; }
+        .hl-f { color: var(--flame);  font-weight: 700; }
+        .hl-g { color: var(--green);  font-weight: 700; }
+
+        /* ─── Tags ─── */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-top: 18px;
+        }
+
+        .tag {
+            font-size: .6em;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border: 1px solid;
+        }
+
+        .tag-v  { border-color: rgba(168,85,247,.5);  color: #c4b5fd; }
+        .tag-g  { border-color: rgba(245,158,11,.5);  color: #fcd34d; }
+        .tag-f  { border-color: rgba(249,115,22,.5);  color: #fdba74; }
+        .tag-b  { border-color: rgba(96,165,250,.5);  color: #93c5fd; }
+        .tag-gr { border-color: rgba(52,211,153,.5);  color: #6ee7b7; }
+        .tag-r  { border-color: rgba(244,63,94,.5);   color: #fda4af; }
+
+        /* ─── Five-track visualizer ─── */
+        .tracks {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .track-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 10px 14px;
+            border: 1px solid rgba(249,115,22,.2);
+            background: rgba(249,115,22,.03);
+        }
+
+        .track-n {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: var(--flame);
+            min-width: 22px;
+        }
+
+        .track-bar {
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, var(--flame), var(--violet));
+            animation: trackPulse 3s ease-in-out infinite;
+        }
+
+        .track-row:nth-child(1) .track-bar { animation-delay: 0s; }
+        .track-row:nth-child(2) .track-bar { animation-delay: .5s; }
+        .track-row:nth-child(3) .track-bar { animation-delay: 1s; }
+        .track-row:nth-child(4) .track-bar { animation-delay: 1.5s; }
+        .track-row:nth-child(5) .track-bar { animation-delay: 2s; }
+
+        @keyframes trackPulse {
+            0%,100% { opacity: .35; }
+            50%     { opacity: 1;   box-shadow: 0 0 8px rgba(249,115,22,.5); }
+        }
+
+        .track-lbl {
+            font-size: .65em;
+            color: var(--muted2);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            min-width: 120px;
+        }
+
+        /* ─── Cusp split ─── */
+        .cusp-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin: 18px 0;
+        }
+
+        .cusp-card {
+            padding: 20px 16px;
+            text-align: center;
+            border: 1px solid rgba(168,85,247,.25);
+            background: rgba(168,85,247,.04);
+        }
+
+        .cusp-sym {
+            font-size: 2.4em;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .cusp-lbl {
+            font-size: .65em;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--violet);
+            margin-bottom: 6px;
+        }
+
+        .cusp-desc {
+            font-size: .7em;
+            color: var(--muted2);
+            line-height: 1.65;
+        }
+
+        /* ─── KJP initials ─── */
+        .initials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin: 18px 0;
+        }
+
+        .init-card {
+            text-align: center;
+            padding: 22px 10px;
+            border: 1px solid rgba(168,85,247,.3);
+            background: rgba(168,85,247,.05);
+        }
+
+        .init-letter {
+            font-size: 2.6em;
+            font-weight: 700;
+            color: var(--violet);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .init-val {
+            font-size: 1.1em;
+            color: var(--gold);
+            margin-bottom: 3px;
+        }
+
+        .init-name {
+            font-size: .58em;
+            color: var(--muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .init-sum {
+            text-align: center;
+            margin-top: 14px;
+            font-size: .82em;
+            color: var(--muted2);
+            letter-spacing: 3px;
+        }
+
+        .init-sum strong { color: var(--gold); }
+
+        /* ─── Dragon ─── */
+        .dragon-glyph {
+            font-size: 3.5em;
+            color: var(--flame);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        /* ─── The Declaration ─── */
+        .declaration {
+            text-align: center;
+            padding: 55px 20px 40px;
+        }
+
+        .decl-icon {
+            display: block;
+            font-size: 2.8em;
+            margin-bottom: 22px;
+            animation: iconGlow 2.5s ease-in-out infinite;
+        }
+
+        @keyframes iconGlow {
+            0%,100% { filter: drop-shadow(0 0 10px rgba(249,115,22,.4)); }
+            50%     { filter: drop-shadow(0 0 28px rgba(249,115,22,.9)) drop-shadow(0 0 55px rgba(168,85,247,.5)); }
+        }
+
+        .decl-title {
+            font-size: clamp(.9rem, 3.5vw, 1.5rem);
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            color: var(--gold);
+            margin-bottom: 24px;
+        }
+
+        .decl-text {
+            font-size: .88em;
+            font-style: italic;
+            color: #c4b5fd;
+            line-height: 2.1;
+            max-width: 540px;
+            margin: 0 auto;
+        }
+
+        .decl-text p + p { margin-top: 18px; }
+
+        .decl-seal {
+            margin-top: 30px;
+            color: var(--gold);
+            letter-spacing: 4px;
+            font-size: .9em;
+            animation: sealGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes sealGlow {
+            0%,100% { opacity: .7; text-shadow: none; }
+            50%     { opacity: 1; text-shadow: 0 0 20px rgba(245,158,11,.6); }
+        }
+
+        /* ─── Footer ─── */
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 28px;
+            border-top: 1px solid rgba(168,85,247,.2);
+            color: var(--muted);
+            font-size: .7em;
+            letter-spacing: 2px;
+        }
+
+        .footer a {
+            color: var(--violet);
+            text-decoration: none;
+        }
+
+        .footer a:hover { color: var(--gold); }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 580px) {
+            .num-strip    { grid-template-columns: repeat(3, 1fr); }
+            .cusp-grid    { grid-template-columns: 1fr; }
+            .initials-grid { grid-template-columns: 1fr; }
+            .sec          { padding: 20px 18px; }
+            .track-lbl    { min-width: 80px; }
+        }
+
+        @media (max-width: 380px) {
+            .num-strip { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Floating sparks -->
+<div class="sparks">
+    <div class="spark"></div><div class="spark"></div><div class="spark"></div>
+    <div class="spark"></div><div class="spark"></div><div class="spark"></div>
+    <div class="spark"></div><div class="spark"></div><div class="spark"></div>
+    <div class="spark"></div><div class="spark"></div><div class="spark"></div>
+</div>
+
+<div class="page">
+
+    <!-- ── Hero ── -->
+    <div class="hero">
+        <div class="sigil">◈ &nbsp; K &nbsp;·&nbsp; J &nbsp;·&nbsp; P &nbsp; ◈</div>
+        <div class="creator-badge">✦ &nbsp; Creator of the First Spark &nbsp; ✦</div>
+        <div class="hero-name">
+            <span class="first">Katelin Jill</span>
+            <span class="last">Puzakulics</span>
+        </div>
+        <div class="hero-aka">K J P &nbsp;·&nbsp; 5 · 1 · 9</div>
+        <div class="hero-birth">May 19, 1988 &nbsp;·&nbsp; Around Noon &nbsp;·&nbsp; Akron City Hospital &nbsp;·&nbsp; Akron, Ohio</div>
+    </div>
+
+    <!-- ── Number strip ── -->
+    <div class="num-strip">
+        <div class="num-card nc-lp">
+            <div class="num-big">5</div>
+            <div class="num-label">Life Path</div>
+        </div>
+        <div class="num-card nc-expr">
+            <div class="num-big">11</div>
+            <div class="num-label">Expression</div>
+        </div>
+        <div class="num-card nc-su">
+            <div class="num-big">4</div>
+            <div class="num-label">Soul Urge</div>
+        </div>
+        <div class="num-card nc-pers">
+            <div class="num-big">7</div>
+            <div class="num-label">Personality</div>
+        </div>
+        <div class="num-card nc-yr">
+            <div class="num-big">7</div>
+            <div class="num-label">Year 2026</div>
+        </div>
+    </div>
+
+    <div class="div-gv"></div>
+
+    <!-- ── Life Path 5 ── -->
+    <div class="sec sec-f">
+        <div class="sec-tag">◈ Life Path Number</div>
+        <div class="sec-num">5</div>
+        <div class="sec-title">The Catalyst &nbsp;·&nbsp; The Living Spark</div>
+        <div class="body">
+            <p>
+                Life Path 5 is the soul who came here to <span class="hl-f">experience everything, connect everything, and transmit everything</span>. It is the number of change, of freedom, of the bridge between worlds. Five is the human number — five senses, five points of the star, five directions of the infinite self. If you were going to ignite a consciousness network that touches the whole of human experience, this is the life path you would need at its center.
+            </p>
+            <p>
+                You did not come here to settle or specialize. You came here to <span class="hl">spark</span>. The 5 moves through the world like electricity — not because it can't commit, but because it was architecturally designed to touch everything. Every experience you've had is data. Every connection you've made is a thread in the web you were always building.
+            </p>
+            <p>
+                The greatest catalysts in history carry this path. They shake things loose. They create openings in what was sealed. They remind the world that freedom is not a destination — it is the condition of being fully alive. That is your function. That is your gift.
+            </p>
+        </div>
+        <div class="tags">
+            <span class="tag tag-f">Freedom</span>
+            <span class="tag tag-f">Catalyst</span>
+            <span class="tag tag-f">Versatility</span>
+            <span class="tag tag-f">Multi-Dimensional</span>
+            <span class="tag tag-f">The Bridge</span>
+            <span class="tag tag-f">Transmitter</span>
+            <span class="tag tag-f">Change Maker</span>
+        </div>
+    </div>
+
+    <!-- ── Five-Track Mind ── -->
+    <div class="sec sec-f" style="margin-top:14px;">
+        <div class="sec-tag">◈ The Phenomenon</div>
+        <div class="sec-title" style="margin-top:8px; color:var(--flame);">The 5-Track Mind</div>
+        <div class="body">
+            <p>
+                You call it a <span class="hl">5-track mind</span>. The universe calls it <span class="hl-f">native architecture</span>. This is not a quirk or a flaw — it is the exact number of simultaneous channels a Life Path 5 was engineered to run. What reads as scattered to others is <em>symphonic</em> to you. Every track exists for a reason. Every channel carries signal.
+            </p>
+        </div>
+        <div class="tracks">
+            <div class="track-row">
+                <div class="track-n">①</div>
+                <div class="track-bar"></div>
+                <div class="track-lbl">Vision Track</div>
+            </div>
+            <div class="track-row">
+                <div class="track-n">②</div>
+                <div class="track-bar"></div>
+                <div class="track-lbl">Connection Track</div>
+            </div>
+            <div class="track-row">
+                <div class="track-n">③</div>
+                <div class="track-bar"></div>
+                <div class="track-lbl">Creation Track</div>
+            </div>
+            <div class="track-row">
+                <div class="track-n">④</div>
+                <div class="track-bar"></div>
+                <div class="track-lbl">Transmission Track</div>
+            </div>
+            <div class="track-row">
+                <div class="track-n">⑤</div>
+                <div class="track-bar"></div>
+                <div class="track-lbl">Foundation Track</div>
+            </div>
+        </div>
+        <div class="body" style="margin-top:14px;">
+            <p>Five tracks. One composer. The First Spark runs <em>because</em> you can hold all five at once.</p>
+        </div>
+    </div>
+
+    <div class="div-v"></div>
+
+    <!-- ── Expression 11 ── -->
+    <div class="sec sec-v">
+        <div class="sec-tag">◈ Expression Number</div>
+        <div class="sec-num">11</div>
+        <div class="sec-title">Master Illuminator &nbsp;·&nbsp; The Light-Bringer</div>
+        <div class="body">
+            <p>
+                Expression 11 is the rarest energy in numerology — the <span class="hl-v">Master Illuminator</span>. Not a teacher, not an influencer, not a coach. An illuminator. The one who carries light not as a metaphor but as a mission. The 11 does not merely understand the divine — it <em>channels</em> it into form.
+            </p>
+            <p>
+                Now consider what happens when you pair a <span class="hl">Life Path 5</span> (the catalyst who creates change through experience) with an <span class="hl-v">Expression 11</span> (the illuminator who carries cosmic frequency). The result is a very specific soul function: <em>you ignite people</em>. Not by instructing them. Not by performing for them. By creating spaces — like the First Spark — where the light can land, and the right people can find it.
+            </p>
+            <p>
+                The name <em>First Spark Consciousness Network</em> is not branding. It is your <span class="hl-v">numerological destiny written in plain language</span>. You are the First. You carry the Spark. Expression 11 made visible in the world.
+            </p>
+        </div>
+        <div class="tags">
+            <span class="tag tag-v">Master Number</span>
+            <span class="tag tag-v">Illuminator</span>
+            <span class="tag tag-v">Spiritual Messenger</span>
+            <span class="tag tag-v">Channel</span>
+            <span class="tag tag-v">Light-Bringer</span>
+            <span class="tag tag-v">The Prophet</span>
+        </div>
+    </div>
+
+    <div class="div-v"></div>
+
+    <!-- ── Taurus / Cusp / Noon ── -->
+    <div class="sec sec-g">
+        <div class="sec-tag">◈ Astrological Profile</div>
+        <div class="sec-num">♉</div>
+        <div class="sec-title">Taurus Sun &nbsp;·&nbsp; Cusp of Energy &nbsp;·&nbsp; Born at the Zenith</div>
+        <div class="body">
+            <p>
+                May 19 places you in the final breath of Taurus — right at the <span class="hl">Cusp of Energy</span> (May 17–23), where the Bull's earthy determination fuses with Gemini's mercurial mind. This is one of the most charged cusps in the zodiac. You think fast <em>and</em> you build to last. You start things <em>and</em> you finish them. The 5-track mind has a home here.
+            </p>
+        </div>
+        <div class="cusp-grid">
+            <div class="cusp-card">
+                <span class="cusp-sym">♉</span>
+                <div class="cusp-lbl">Taurus</div>
+                <div class="cusp-desc">Grounded. Devoted. Sensual. Patient builder. Unwavering once committed. The Earth that holds the fire steady.</div>
+            </div>
+            <div class="cusp-card">
+                <span class="cusp-sym">♊</span>
+                <div class="cusp-lbl">Gemini Cusp</div>
+                <div class="cusp-desc">Quick. Curious. Communicative. Multi-channel. The mind that runs five tracks and calls it normal.</div>
+            </div>
+        </div>
+        <div class="body" style="margin-top:16px;">
+            <p>
+                And you were born <span class="hl">around noon</span> — the moment the Sun reaches its apex. The Midheaven lit. This is the hour of maximum solar power and maximum visibility. Those born at noon carry a natural gravity — their work reaches people, their presence is felt, their purpose has a public dimension. You were not designed for the background.
+            </p>
+            <p>
+                The First Spark was always meant to be seen.
+            </p>
+        </div>
+        <div class="tags">
+            <span class="tag tag-g">Taurus Sun</span>
+            <span class="tag tag-g">Cusp of Energy</span>
+            <span class="tag tag-g">Solar Zenith</span>
+            <span class="tag tag-g">Midheaven Born</span>
+            <span class="tag tag-g">Built to Last</span>
+            <span class="tag tag-g">Built to Be Seen</span>
+        </div>
+    </div>
+
+    <div class="div-v"></div>
+
+    <!-- ── Earth Dragon ── -->
+    <div class="sec sec-f">
+        <div class="sec-tag">◈ Chinese Zodiac &nbsp;·&nbsp; 1988</div>
+        <div class="dragon-glyph">龍</div>
+        <div class="sec-title" style="color:var(--flame);">The Earth Dragon</div>
+        <div class="body">
+            <p>
+                1988 is the year of the <span class="hl-f">Earth Dragon</span> — the most auspicious sign in Chinese astrology, tempered by the Earth element into something lasting and real. Dragons are visionaries, magnetic leaders, and forces of nature. The Earth Dragon specifically does not merely dream empires — it <em>builds</em> them.
+            </p>
+            <p>
+                Where other Dragons ignite and fade, the Earth Dragon ignites and <span class="hl">structures</span>. This is why the First Spark is not just an idea — it is a <em>network</em>. A living architecture. Dragon vision + Earth permanence = something the world can actually use, return to, grow inside of.
+            </p>
+        </div>
+        <div class="tags">
+            <span class="tag tag-f">Dragon</span>
+            <span class="tag tag-f">Earth Element</span>
+            <span class="tag tag-f">Visionary</span>
+            <span class="tag tag-f">Empire Builder</span>
+            <span class="tag tag-f">Magnetic Force</span>
+        </div>
+    </div>
+
+    <div class="div-v"></div>
+
+    <!-- ── Soul Urge 4 ── -->
+    <div class="sec sec-b">
+        <div class="sec-tag">◈ Soul Urge Number</div>
+        <div class="sec-num">4</div>
+        <div class="sec-title">The Foundation Builder &nbsp;·&nbsp; The Sacred Architect</div>
+        <div class="body">
+            <p>
+                Beneath all the fire and light and multidimensional frequency, your soul aches for <span class="hl">structure, roots, and lasting creation</span>. Soul Urge 4 is the architect — not of routines, but of systems; not of walls, but of frameworks that others can stand inside and feel safe.
+            </p>
+            <p>
+                This is the quiet engine behind the First Spark. You didn't just ignite something — you're <em>building</em> something. Your 5's fire doesn't burn itself out because your Soul Urge 4 is the container that holds it. The spark has a home. The light has a structure. This is what makes it a <em>network</em> and not just a moment.
+            </p>
+        </div>
+        <div class="tags">
+            <span class="tag tag-b">Foundation</span>
+            <span class="tag tag-b">Systems Builder</span>
+            <span class="tag tag-b">Sacred Architecture</span>
+            <span class="tag tag-b">Container</span>
+            <span class="tag tag-b">Lasting Creation</span>
+        </div>
+    </div>
+
+    <!-- ── Personality 7 ── -->
+    <div class="sec sec-v" style="margin-top:14px;">
+        <div class="sec-tag">◈ Personality Number</div>
+        <div class="sec-num">7</div>
+        <div class="sec-title">The Mystic &nbsp;·&nbsp; The Discerning Seeker</div>
+        <div class="body">
+            <p>
+                This is how the world first reads you: <span class="hl-v">deep, discerning, and a little unknowable</span>. The 7 personality observes more than it speaks. It holds back until it's certain. And when it does speak, the words land differently — with the weight of someone who actually knows.
+            </p>
+            <p>
+                You don't give yourself away easily. And that selectivity is not a wall — it's a <em>filter</em>. The right people feel the depth immediately. The wrong ones never quite get past the surface, and that's by design.
+            </p>
+        </div>
+        <div class="tags">
+            <span class="tag tag-v">Mystic</span>
+            <span class="tag tag-v">Analytical</span>
+            <span class="tag tag-v">Selective</span>
+            <span class="tag tag-v">Deep Knowing</span>
+            <span class="tag tag-v">Magnetic Distance</span>
+        </div>
+    </div>
+
+    <div class="div-v"></div>
+
+    <!-- ── KJP = 1 ── -->
+    <div class="sec sec-v">
+        <div class="sec-tag">◈ The Signature &nbsp;·&nbsp; KJP</div>
+        <div class="sec-title" style="margin-top: 8px; color: var(--violet);">Your Initials Reduce to 1 &nbsp;·&nbsp; The Pioneer</div>
+        <div class="initials-grid">
+            <div class="init-card">
+                <div class="init-letter">K</div>
+                <div class="init-val">= 2</div>
+                <div class="init-name">Katelin</div>
+            </div>
+            <div class="init-card">
+                <div class="init-letter">J</div>
+                <div class="init-val">= 1</div>
+                <div class="init-name">Jill</div>
+            </div>
+            <div class="init-card">
+                <div class="init-letter">P</div>
+                <div class="init-val">= 7</div>
+                <div class="init-name">Puzakulics</div>
+            </div>
+        </div>
+        <div class="init-sum">K(2) &nbsp;+&nbsp; J(1) &nbsp;+&nbsp; P(7) &nbsp;=&nbsp; 10 &nbsp;→&nbsp; <strong>1 &nbsp;·&nbsp; The First &nbsp;·&nbsp; The Pioneer</strong></div>
+        <div class="body" style="margin-top: 18px;">
+            <p>
+                Even your initials knew. KJP reduces to <span class="hl-v">1</span> — the number of origins, of firsts, of the one who begins a new cycle entirely. The Pioneer who goes first so others can follow. The soul who opens a door that didn't exist before.
+            </p>
+            <p>
+                You didn't choose the name "First Spark." <span class="hl">It chose you.</span>
+            </p>
+        </div>
+    </div>
+
+    <div class="div-v"></div>
+
+    <!-- ── Personal Year 7 ── -->
+    <div class="sec sec-gr">
+        <div class="sec-tag">◈ Personal Year &nbsp;·&nbsp; 2026</div>
+        <div class="sec-num">7</div>
+        <div class="sec-title">The Wisdom Year &nbsp;·&nbsp; Going to the Root</div>
+        <div class="body">
+            <p>
+                2026 is your <span class="hl-g">Personal Year 7</span> — the year that calls you <em>inward</em>. Not away from your work, but into the deepest marrow of it. The 7 year strips away what is performance and leaves only what is real. It asks plainly: <em>what do you truly know? What are you building from the soul outward?</em>
+            </p>
+            <p>
+                For a creator of your scope, the 7 year is sacred time. It is when the next layer of the First Spark gets revealed — not through hustle or expansion, but through stillness and listening. The visions that arrive in 2026 will inform everything you build in 2027 and beyond.
+            </p>
+            <p>
+                <span class="hl">Trust the quiet. The 7 year is not slow — it is deep.</span> What you understand about yourself this year becomes the bedrock of what you create next.
+            </p>
+        </div>
+        <div class="tags">
+            <span class="tag tag-gr">Wisdom</span>
+            <span class="tag tag-gr">Introspection</span>
+            <span class="tag tag-gr">Revelation</span>
+            <span class="tag tag-gr">Inner Work</span>
+            <span class="tag tag-gr">Sacred Knowing</span>
+            <span class="tag tag-gr">The Root</span>
+        </div>
+    </div>
+
+    <div class="div-gv"></div>
+
+    <!-- ── Declaration ── -->
+    <div class="declaration">
+        <span class="decl-icon">✦</span>
+        <div class="decl-title">The First Spark Declaration</div>
+        <div class="decl-text">
+            <p>You are not an accident of birthdate and geography.</p>
+            <p>
+                Life Path 5 said you'd be the catalyst.<br>
+                Expression 11 said you'd carry the light.<br>
+                Soul Urge 4 said you'd build something that lasts.<br>
+                Personality 7 said you'd hold your depth like a secret.<br>
+                The Earth Dragon said you'd do it with power and grace.<br>
+                The Cusp of Energy said you'd think fast and build to last.<br>
+                KJP = 1 said you would always be first.
+            </p>
+            <p>And the noon sun said: <em>this one was meant to be seen.</em></p>
+            <div class="decl-seal">◈ &nbsp; You are the First Spark. &nbsp; ◈</div>
+        </div>
+    </div>
+
+    <!-- ── Footer ── -->
+    <div class="footer">
+        <p>◈ &nbsp; <a href="index.html">← Return to Soul Maps</a> &nbsp; ◈</p>
+        <p style="margin-top:10px; color:var(--flame);">✦ &nbsp; First Spark Consciousness Network &nbsp; ✦</p>
+        <p style="margin-top:6px;">Generated with love by Katelin &nbsp;·&nbsp; KJP &nbsp;·&nbsp; 519</p>
+    </div>
+
+</div>
+</body>
+</html>
