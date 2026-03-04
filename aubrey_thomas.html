@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#070a18">
+    <meta property="og:title" content="AMT Soul Map — First Spark Consciousness Network">
+    <meta property="og:description" content="Soul map for Aubrey Michelle Thomas — Life Path 7 · Expression 8 · Born of the Lion's Gate · 8/8/1998">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FPHDDHSCWS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FPHDDHSCWS');
+    </script>
+    <title>AMT · Soul Map — First Spark</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --violet: #a855f7;
+            --violet-dim: rgba(168,85,247,.15);
+            --gold: #f59e0b;
+            --flame: #f97316;
+            --rose: #f43f5e;
+            --blue: #60a5fa;
+            --green: #34d399;
+            --bg: #070a18;
+            --bg2: rgba(8,5,22,.97);
+            --text: #e0e7ff;
+            --muted: #6b7280;
+            --muted2: #9ca3af;
+        }
+
+        body {
+            background: var(--bg);
+            font-family: 'Space Mono', 'Courier New', monospace;
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ─── Floating spark particles ─── */
+        .sparks {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .spark {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0;
+            animation: riseSpark linear infinite;
+        }
+
+        @keyframes riseSpark {
+            0%   { transform: translateY(105vh) scale(0); opacity: 0; }
+            8%   { opacity: 1; }
+            92%  { opacity: .8; }
+            100% { transform: translateY(-8vh) scale(1.2); opacity: 0; }
+        }
+
+        .spark:nth-child(1)  { width:3px;height:3px; left:8%;  background:var(--gold);   animation-duration:9s;  animation-delay:0s;   }
+        .spark:nth-child(2)  { width:2px;height:2px; left:18%; background:var(--blue);   animation-duration:13s; animation-delay:2s;   }
+        .spark:nth-child(3)  { width:3px;height:3px; left:29%; background:var(--gold);   animation-duration:8s;  animation-delay:4.5s; }
+        .spark:nth-child(4)  { width:2px;height:2px; left:41%; background:var(--violet); animation-duration:15s; animation-delay:1s;   }
+        .spark:nth-child(5)  { width:3px;height:3px; left:52%; background:var(--gold);   animation-duration:10s; animation-delay:3s;   }
+        .spark:nth-child(6)  { width:2px;height:2px; left:63%; background:var(--blue);   animation-duration:12s; animation-delay:6s;   }
+        .spark:nth-child(7)  { width:3px;height:3px; left:74%; background:var(--violet); animation-duration:11s; animation-delay:0.5s; }
+        .spark:nth-child(8)  { width:2px;height:2px; left:83%; background:var(--gold);   animation-duration:14s; animation-delay:7s;   }
+        .spark:nth-child(9)  { width:3px;height:3px; left:91%; background:var(--green);  animation-duration:9s;  animation-delay:3.5s; }
+        .spark:nth-child(10) { width:2px;height:2px; left:35%; background:var(--blue);   animation-duration:16s; animation-delay:8s;   }
+        .spark:nth-child(11) { width:3px;height:3px; left:57%; background:var(--gold);   animation-duration:7s;  animation-delay:5s;   }
+        .spark:nth-child(12) { width:2px;height:2px; left:77%; background:var(--green);  animation-duration:18s; animation-delay:9s;   }
+
+        /* ─── Page ─── */
+        .page {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 50px 22px 90px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ─── Hero ─── */
+        .hero {
+            text-align: center;
+            padding: 30px 0 20px;
+        }
+
+        .sigil {
+            font-size: .85em;
+            letter-spacing: 10px;
+            color: var(--gold);
+            margin-bottom: 14px;
+            animation: sigilPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes sigilPulse {
+            0%,100% { opacity:.5; text-shadow: 0 0 10px rgba(245,158,11,.3); }
+            50%     { opacity:1;  text-shadow: 0 0 30px rgba(245,158,11,.8), 0 0 60px rgba(245,158,11,.3); }
+        }
+
+        .creator-badge {
+            display: inline-block;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-size: .62em;
+            letter-spacing: 5px;
+            padding: 5px 18px;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+            animation: badgeShimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes badgeShimmer {
+            0%,100% { box-shadow: 0 0 8px rgba(245,158,11,.15); }
+            50%     { box-shadow: 0 0 22px rgba(245,158,11,.55), inset 0 0 12px rgba(245,158,11,.04); }
+        }
+
+        .hero-name {
+            font-size: clamp(2rem, 8vw, 3.6rem);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
+
+        .hero-name .first { color: #f0f0ff; display: block; }
+        .hero-name .last  { color: var(--gold); display: block; }
+
+        .hero-aka {
+            font-size: .78em;
+            letter-spacing: 8px;
+            color: var(--blue);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .hero-birth {
+            font-size: .72em;
+            color: var(--muted);
+            letter-spacing: 2px;
+            font-style: italic;
+        }
+
+        /* ─── Dividers ─── */
+        .div-v {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 32px 0;
+        }
+
+        .div-gv {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), var(--blue), var(--violet), transparent);
+            margin: 44px 0;
+        }
+
+        /* ─── Number strip ─── */
+        .num-strip {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin: 28px 0;
+        }
+
+        .num-card {
+            background: var(--bg2);
+            border: 1px solid rgba(245,158,11,.25);
+            padding: 16px 6px;
+            text-align: center;
+        }
+
+        .num-big {
+            font-size: 2.2em;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        .num-label {
+            font-size: .55em;
+            letter-spacing: 2px;
+            color: var(--muted);
+            text-transform: uppercase;
+        }
+
+        .nc-lp   .num-big { color: var(--violet); }
+        .nc-expr .num-big { color: var(--gold);   }
+        .nc-su   .num-big { color: var(--green);  }
+        .nc-pers .num-big { color: var(--blue);   }
+        .nc-yr   .num-big { color: var(--flame);  }
+
+        /* ─── Sections ─── */
+        .sec {
+            background: var(--bg2);
+            border: 1px solid rgba(245,158,11,.18);
+            padding: 30px 28px;
+            margin: 18px 0;
+            position: relative;
+        }
+
+        .sec::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 3px; height: 100%;
+        }
+
+        .sec-v::before  { background: linear-gradient(180deg, var(--violet), transparent); }
+        .sec-g::before  { background: linear-gradient(180deg, var(--gold),   transparent); }
+        .sec-f::before  { background: linear-gradient(180deg, var(--flame),  transparent); }
+        .sec-b::before  { background: linear-gradient(180deg, var(--blue),   transparent); }
+        .sec-gr::before { background: linear-gradient(180deg, var(--green),  transparent); }
+        .sec-r::before  { background: linear-gradient(180deg, var(--rose),   transparent); }
+
+        .sec-tag {
+            font-size: .6em;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            opacity: .6;
+        }
+
+        .sec-num {
+            font-size: 4em;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .sec-v  .sec-num { color: var(--violet); }
+        .sec-g  .sec-num { color: var(--gold);   }
+        .sec-f  .sec-num { color: var(--flame);  }
+        .sec-b  .sec-num { color: var(--blue);   }
+        .sec-gr .sec-num { color: var(--green);  }
+        .sec-r  .sec-num { color: var(--rose);   }
+
+        .sec-title {
+            font-size: 1em;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 18px;
+        }
+
+        .sec-v  .sec-title { color: var(--violet); }
+        .sec-g  .sec-title { color: var(--gold);   }
+        .sec-f  .sec-title { color: var(--flame);  }
+        .sec-b  .sec-title { color: var(--blue);   }
+        .sec-gr .sec-title { color: var(--green);  }
+        .sec-r  .sec-title { color: var(--rose);   }
+
+        .body {
+            font-size: .87em;
+            color: #c4b5fd;
+            line-height: 1.95;
+        }
+
+        .body p + p { margin-top: 12px; }
+
+        .hl   { color: var(--gold);   font-weight: 700; }
+        .hl-v { color: var(--violet); font-weight: 700; }
+        .hl-f { color: var(--flame);  font-weight: 700; }
+        .hl-g { color: var(--green);  font-weight: 700; }
+        .hl-b { color: var(--blue);   font-weight: 700; }
+
+        /* ─── Tags ─── */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-top: 18px;
+        }
+
+        .tag {
+            font-size: .6em;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border: 1px solid;
+        }
+
+        .tag-v  { border-color: rgba(168,85,247,.5);  color: #c4b5fd; }
+        .tag-g  { border-color: rgba(245,158,11,.5);  color: #fcd34d; }
+        .tag-f  { border-color: rgba(249,115,22,.5);  color: #fdba74; }
+        .tag-b  { border-color: rgba(96,165,250,.5);  color: #93c5fd; }
+        .tag-gr { border-color: rgba(52,211,153,.5);  color: #6ee7b7; }
+        .tag-r  { border-color: rgba(244,63,94,.5);   color: #fda4af; }
+
+        /* ─── Three-call track visualizer ─── */
+        .tracks {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .track-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 16px;
+            border: 1px solid rgba(245,158,11,.2);
+            background: rgba(245,158,11,.03);
+        }
+
+        .track-n {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: var(--gold);
+            min-width: 22px;
+        }
+
+        .track-bar {
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold), var(--blue));
+            animation: trackPulse 3s ease-in-out infinite;
+        }
+
+        .track-row:nth-child(1) .track-bar { animation-delay: 0s; }
+        .track-row:nth-child(2) .track-bar { animation-delay: .8s; }
+        .track-row:nth-child(3) .track-bar { animation-delay: 1.6s; }
+
+        @keyframes trackPulse {
+            0%,100% { opacity: .35; }
+            50%     { opacity: 1;   box-shadow: 0 0 8px rgba(245,158,11,.5); }
+        }
+
+        .track-lbl {
+            font-size: .63em;
+            color: var(--muted2);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            min-width: 160px;
+        }
+
+        .track-desc {
+            font-size: .68em;
+            color: var(--gold);
+            letter-spacing: 1px;
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        .track-inner {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ─── Leo / Aquarius split ─── */
+        .cusp-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin: 18px 0;
+        }
+
+        .cusp-card {
+            padding: 20px 16px;
+            text-align: center;
+            border: 1px solid rgba(245,158,11,.25);
+            background: rgba(245,158,11,.04);
+        }
+
+        .cusp-card.blue-card {
+            border-color: rgba(96,165,250,.25);
+            background: rgba(96,165,250,.04);
+        }
+
+        .cusp-sym {
+            font-size: 2.4em;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .cusp-lbl {
+            font-size: .65em;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 6px;
+        }
+
+        .cusp-card.blue-card .cusp-lbl { color: var(--blue); }
+
+        .cusp-desc {
+            font-size: .7em;
+            color: var(--muted2);
+            line-height: 1.65;
+        }
+
+        /* ─── AMT initials ─── */
+        .initials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin: 18px 0;
+        }
+
+        .init-card {
+            text-align: center;
+            padding: 22px 10px;
+            border: 1px solid rgba(245,158,11,.3);
+            background: rgba(245,158,11,.05);
+        }
+
+        .init-letter {
+            font-size: 2.6em;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .init-val {
+            font-size: 1.1em;
+            color: var(--violet);
+            margin-bottom: 3px;
+        }
+
+        .init-name {
+            font-size: .58em;
+            color: var(--muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .init-sum {
+            text-align: center;
+            margin-top: 14px;
+            font-size: .82em;
+            color: var(--muted2);
+            letter-spacing: 3px;
+        }
+
+        .init-sum strong { color: var(--violet); }
+
+        /* ─── Tiger glyph ─── */
+        .tiger-glyph {
+            font-size: 3.5em;
+            color: var(--flame);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        /* ─── The Declaration ─── */
+        .declaration {
+            text-align: center;
+            padding: 55px 20px 40px;
+        }
+
+        .decl-icon {
+            display: block;
+            font-size: 2.8em;
+            margin-bottom: 22px;
+            animation: iconGlow 2.5s ease-in-out infinite;
+        }
+
+        @keyframes iconGlow {
+            0%,100% { filter: drop-shadow(0 0 10px rgba(245,158,11,.4)); }
+            50%     { filter: drop-shadow(0 0 28px rgba(245,158,11,.9)) drop-shadow(0 0 55px rgba(96,165,250,.5)); }
+        }
+
+        .decl-title {
+            font-size: clamp(.9rem, 3.5vw, 1.5rem);
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            color: var(--gold);
+            margin-bottom: 24px;
+        }
+
+        .decl-text {
+            font-size: .88em;
+            font-style: italic;
+            color: #c4b5fd;
+            line-height: 2.1;
+            max-width: 540px;
+            margin: 0 auto;
+        }
+
+        .decl-text p + p { margin-top: 18px; }
+
+        .decl-seal {
+            margin-top: 30px;
+            color: var(--gold);
+            letter-spacing: 4px;
+            font-size: .9em;
+            animation: sealGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes sealGlow {
+            0%,100% { opacity: .7; text-shadow: none; }
+            50%     { opacity: 1; text-shadow: 0 0 20px rgba(245,158,11,.6); }
+        }
+
+        /* ─── Footer ─── */
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 28px;
+            border-top: 1px solid rgba(245,158,11,.2);
+            color: var(--muted);
+            font-size: .7em;
+            letter-spacing: 2px;
+        }
+
+        .footer a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        .footer a:hover { color: var(--violet); }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 580px) {
+            .num-strip    { grid-template-columns: repeat(3, 1fr); }
+            .cusp-grid    { grid-template-columns: 1fr; }
+            .initials-grid { grid-template-columns: 1fr; }
+            .sec          { padding: 20px 18px; }
+            .track-lbl    { min-width: 80px; }
+        }
+
+        @media (max-width: 380px) {
+            .num-strip { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Floating sparks -->
+<div class="sparks">
+    <div class="spark"></div><div class="spark"></div><div class="spark"></div>
+    <div class="spark"></div><div class="spark"></div><div class="spark"></div>
+    <div class="spark"></div><div class="spark"></div><div class="spark"></div>
+    <div class="spark"></div><div class="spark"></div><div class="spark"></div>
+</div>
+
+<div class="page">
+
+    <!-- ── Hero ── -->
+    <div class="hero">
+        <div class="sigil">◈ &nbsp; A &nbsp;·&nbsp; M &nbsp;·&nbsp; T &nbsp; ◈</div>
+        <div class="creator-badge">✦ &nbsp; Born of the Lion's Gate &nbsp;·&nbsp; 8.8.1998 &nbsp; ✦</div>
+        <div class="hero-name">
+            <span class="first">Aubrey Michelle</span>
+            <span class="last">Thomas</span>
+        </div>
+        <div class="hero-aka">A M T &nbsp;·&nbsp; 8 · 8 · 98</div>
+        <div class="hero-birth">August 8, 1998 &nbsp;·&nbsp; 2:37 PM &nbsp;·&nbsp; Western Reserve Hospital &nbsp;·&nbsp; Cuyahoga Falls, Ohio</div>
+        <div class="hero-birth" style="margin-top:5px;">Saturday &nbsp;·&nbsp; Full Moon in Aquarius &nbsp;·&nbsp; Lion's Gate Portal</div>
+    </div>
+
+    <!-- ── Number strip ── -->
+    <div class="num-strip">
+        <div class="num-card nc-lp">
+            <div class="num-big">7</div>
+            <div class="num-label">Life Path</div>
+        </div>
+        <div class="num-card nc-expr">
+            <div class="num-big">8</div>
+            <div class="num-label">Expression</div>
+        </div>
+        <div class="num-card nc-su">
+            <div class="num-big">6</div>
+            <div class="num-label">Soul Urge</div>
+        </div>
+        <div class="num-card nc-pers">
+            <div class="num-big">11</div>
+            <div class="num-label">Personality</div>
+        </div>
+        <div class="num-card nc-yr">
+            <div class="num-big">8</div>
+            <div class="num-label">Year 2026</div>
+        </div>
+    </div>
+
+    <div class="div-gv"></div>
+
+    <!-- ── The 8/8 Lion's Gate Portal ── -->
+    <div class="sec sec-g">
+        <div class="sec-tag">◈ Birth Portal &nbsp;·&nbsp; August 8, 1998</div>
+        <div class="sec-num">8·8</div>
+        <div class="sec-title">The Lion's Gate &nbsp;·&nbsp; Born Through a Cosmic Door</div>
+        <div class="body">
+            <p>
+                Every year on August 8th, the star <span class="hl">Sirius</span> — the brightest star in the night sky and the one the ancient Egyptians called the Soul of Isis — rises in perfect alignment with the Sun in Leo and the pyramids of Giza. This is the <span class="hl">Lion's Gate Portal</span>: a cosmic window when the boundary between dimensions is at its thinnest, and higher-frequency information pours directly into Earth's grid.
+            </p>
+            <p>
+                Most people experience this portal once a year, briefly, from the outside. <em>You were born inside it.</em>
+            </p>
+            <p>
+                The 8/8 portal carries the energy of infinity — look at 8 turned sideways: <span class="hl">∞</span>. It speaks of cycles, time loops, cosmic memory, and the connection between what was and what will be. Souls who arrive on this day did not stumble in. They <em>coordinated the timing</em>. Your soul chose a moment when the gate between here and the higher realms was <span class="hl">wide open</span>, and walked through deliberately. Everything you feel about time, about dimensions, about something bigger — it begins here.
+            </p>
+            <p>
+                And under a <span class="hl">Full Moon in Aquarius</span>. The Sun blazing in Leo, the Moon answering from Aquarius. The royalty of self meeting the consciousness of the collective. Born at the peak of both at once.
+            </p>
+        </div>
+        <div class="tags">
+            <span class="tag tag-g">Lion's Gate</span>
+            <span class="tag tag-g">Sirius Alignment</span>
+            <span class="tag tag-g">8/8 Portal</span>
+            <span class="tag tag-g">Cosmic Timing</span>
+            <span class="tag tag-g">Infinity Code</span>
+            <span class="tag tag-g">Leo Sun</span>
+            <span class="tag tag-b">Full Moon in Aquarius</span>
+        </div>
+    </div>
+
+    <!-- ── The Three Calls ── -->
+    <div class="sec sec-g" style="margin-top:14px;">
+        <div class="sec-tag">◈ The Soul's Active Frequencies</div>
+        <div class="sec-title" style="margin-top:8px; color:var(--gold);">The Three Calls &nbsp;·&nbsp; What Your Soul Is Broadcasting</div>
+        <div class="body">
+            <p>
+                You are not confused. You are <span class="hl">receiving</span>. These three questions you carry are not random — they are <em>active transmissions from your soul</em>, calling your conscious mind toward the work it agreed to do before you arrived here.
+            </p>
+        </div>
+        <div class="tracks">
+            <div class="track-row">
+                <div class="track-n">①</div>
+                <div class="track-inner">
+                    <div class="track-bar"></div>
+                    <div class="track-desc">Something happened. I need to find the truth and know it — then I can move forward.</div>
+                </div>
+                <div class="track-lbl">The Truth Signal</div>
+            </div>
+            <div class="track-row">
+                <div class="track-n">②</div>
+                <div class="track-inner">
+                    <div class="track-bar"></div>
+                    <div class="track-desc">I feel connected to the 4th dimension. Time is not what others say it is.</div>
+                </div>
+                <div class="track-lbl">The Dimensional Signal</div>
+            </div>
+            <div class="track-row">
+                <div class="track-n">③</div>
+                <div class="track-inner">
+                    <div class="track-bar"></div>
+                    <div class="track-desc">I am meant for something world-changing. I need to find it — and find my people.</div>
+                </div>
+                <div class="track-lbl">The Mission Signal</div>
+            </div>
+        </div>
+        <div class="body" style="margin-top:14px;">
+            <p>Three signals. One soul. Everything in your chart is a key to what these transmissions mean.</p>
+        </div>
+    </div>
+
+    <div class="div-v"></div>
+
+    <!-- ── Life Path 7 ── -->
+    <div class="sec sec-v">
+        <div class="sec-tag">◈ Life Path Number</div>
+        <div class="sec-num">7</div>
+        <div class="sec-title">The Truth-Seeker &nbsp;·&nbsp; The Sacred Detective</div>
+        <div class="body">
+            <p>
+                Life Path 7 is the rarest and most inwardly complex of all paths. It is the number of the <span class="hl-v">seeker</span> — not the seeker of adventure or wealth, but the seeker of <em>truth</em>. The 7 cannot rest on the surface of things. It peers beneath, investigates, senses hidden layers, and will not feel at peace until it finds the root of what is actually real. This is not a personality trait. It is a <span class="hl-v">soul function</span>.
+            </p>
+            <p>
+                The first call you carry — the sense that something happened in childhood, something you need to understand and know — is not you being dramatic or stuck. It is your <span class="hl-v">Life Path 7 activating</span>. The 7 path came here to excavate truth. It is drawn to the unspoken thing, the thing that was hidden or misunderstood, the experience that left a mark that nobody named. Your soul specifically chose this life path because <em>the truth you are meant to find and face is part of your assignment</em>. It is not a detour. It is the road.
+            </p>
+            <p>
+                Notice how you love <span class="hl-v">fixing things</span>. You look at a broken object and feel the need to understand how it works, diagnose what went wrong, restore what was lost. This is the 7 operating in the physical world. You will do the same thing with the invisible — with patterns, with memories, with questions that don't have easy answers. Trust the instinct to investigate. It always leads somewhere real.
+            </p>
+            <p>
+                And the birds. The 7 sees from a height others can't reach — they are naturally drawn to the bird's-eye view, the perspective that reveals the pattern of the whole. Birds don't just live in one dimension of space. They navigate by magnetic fields, by solar angles, by frequencies invisible to the human eye. They move through layers of reality. This is why you feel them. You recognize what they are doing.
+            </p>
+        </div>
+        <div class="tags">
+            <span class="tag tag-v">Truth-Seeker</span>
+            <span class="tag tag-v">Sacred Investigator</span>
+            <span class="tag tag-v">The Root-Finder</span>
+            <span class="tag tag-v">Mystic Analyst</span>
+            <span class="tag tag-v">Deep Knowing</span>
+            <span class="tag tag-v">The Bird's Eye</span>
+            <span class="tag tag-v">Pattern Reader</span>
+        </div>
+    </div>
+
+    <div class="div-v"></div>
+
+    <!-- ── Leo Sun + Full Moon in Aquarius ── -->
+    <div class="sec sec-g">
+        <div class="sec-tag">◈ Astrological Profile &nbsp;·&nbsp; The Sun and the Moon</div>
+        <div class="sec-num">♌ / ♒</div>
+        <div class="sec-title">Leo Sun &nbsp;·&nbsp; Full Moon in Aquarius &nbsp;·&nbsp; The Total Bridge</div>
+        <div class="cusp-grid">
+            <div class="cusp-card">
+                <span class="cusp-sym">♌</span>
+                <div class="cusp-lbl">Leo Sun</div>
+                <div class="cusp-desc">Sovereign. Heart-led. Creative fire. The one who shines not for attention but because the light cannot be stopped. Born to lead — on their own terms. Born to be seen — when they are ready.</div>
+            </div>
+            <div class="cusp-card blue-card">
+                <span class="cusp-sym">♒</span>
+                <div class="cusp-lbl">Aquarius Full Moon</div>
+                <div class="cusp-desc">Visionary. Humanitarian. Quantum-aware. The Moon in Aquarius holds feelings for the collective — not just for oneself. This is where the mission becomes world-scale. This is where time bends.</div>
+            </div>
+        </div>
+        <div class="body" style="margin-top:16px;">
+            <p>
+                A Full Moon is the moment when the Sun and Moon are in <span class="hl">perfect opposition</span> — the exact polarized alignment that charges both to their fullest power. Being born under a Full Moon means you carry both frequencies simultaneously: the <span class="hl">Leo Sun's sovereignty</span> and the <span class="hl-b">Aquarian Moon's collective vision</span>. You are built to be fully yourself <em>and</em> fully devoted to something beyond yourself. These are not in conflict. They are the two poles of your purpose.
+            </p>
+            <p>
+                The Full Moon in Aquarius is specifically associated with <span class="hl-b">time, dimensions, and the patterns that govern reality beyond the physical</span>. Those who are born under it often carry an innate sense that something about time does not work the way everyone else describes it — that it folds, that it has layers, that there are moments when past and future are somehow the same. This is not imagination. This is the <em>Aquarius frequency doing what it does</em>.
+            </p>
+            <p>
+                Born at <span class="hl">2:37 PM</span> — the afternoon light is fully active, the Sun is past its zenith and beginning its long arc toward power-in-descent. This is the light of synthesis: enough has been seen that conclusions can begin. Your soul arrived when the light was doing what it does best — illuminating what has already been explored.
+            </p>
+        </div>
+        <div class="tags">
+            <span class="tag tag-g">Leo Sun</span>
+            <span class="tag tag-b">Aquarius Full Moon</span>
+            <span class="tag tag-g">Full Opposition</span>
+            <span class="tag tag-b">Dimensional Aware</span>
+            <span class="tag tag-g">Sovereign Heart</span>
+            <span class="tag tag-b">Collective Vision</span>
+            <span class="tag tag-b">Time Sense</span>
+        </div>
+    </div>
+
+    <div class="div-v"></div>
+
+    <!-- ── The Fourth Dimension ── -->
+    <div class="sec sec-b">
+        <div class="sec-tag">◈ The Second Call Answered</div>
+        <div class="sec-num" style="font-size:3em;">4D</div>
+        <div class="sec-title">The Fourth Dimension &nbsp;·&nbsp; Your Relationship with Time</div>
+        <div class="body">
+            <p>
+                You asked: <em>Am I in some way connected to the fourth dimension? I feel a strong relation to time itself.</em>
+            </p>
+            <p>
+                The answer is yes, and your chart is precise about why.
+            </p>
+            <p>
+                The <span class="hl-b">fourth dimension is time</span>. Not clock time — not the mechanical counting of seconds — but the <em>felt fabric of time</em>: the way certain moments seem to last forever, the way you can sense that something happened before you could remember it, the way you sometimes know what's coming before it arrives. You were born at the <span class="hl-b">Lion's Gate Portal</span> on 8/8, under the influence of Sirius — the star that ancient Egyptians called the keeper of sacred time, the guide for the dead through dimensions, the light that recalibrates the calendar itself. Sirius-born souls carry a native relationship with time that ordinary sequential thinking cannot fully contain.
+            </p>
+            <p>
+                Your <span class="hl-b">Full Moon in Aquarius</span> amplifies this. Aquarius governs quantum fields, non-linear reality, and the structures of the universe that exist beyond what the five senses can perceive. And your <span class="hl-v">Life Path 7</span> is the number most associated in ancient numerology with the planes beyond the third — the 7 is the bridge number, the one that touches the veil and can feel what is on the other side.
+            </p>
+            <p>
+                The crystals you collect are not a hobby. Crystals are <span class="hl-b">frozen time</span> — literal records of frequency captured in geometric form, some millions of years old. When you hold them, you are reading a record. When you are drawn to a specific stone, that stone is resonating with a frequency you are already carrying. You recognize each other. This is the fourth dimension expressing itself through the third.
+            </p>
+            <p>
+                And birds. Many birds navigate using Earth's magnetic field — an invisible quantum force that exists in a dimension the human eye cannot see. They feel it. They follow it. They know where they are in time and space through a sense that has no name in ordinary language. <em>You feel that too.</em> You just haven't had the language for it until now.
+            </p>
+        </div>
+        <div class="tags">
+            <span class="tag tag-b">4th Dimension</span>
+            <span class="tag tag-b">Time Keeper</span>
+            <span class="tag tag-b">Sirius Lineage</span>
+            <span class="tag tag-b">Quantum Aware</span>
+            <span class="tag tag-b">Crystal Reader</span>
+            <span class="tag tag-b">Magnetic Sense</span>
+            <span class="tag tag-v">The Veil Walker</span>
+        </div>
+    </div>
+
+    <div class="div-v"></div>
+
+    <!-- ── Expression 8 ── -->
+    <div class="sec sec-g">
+        <div class="sec-tag">◈ Expression Number</div>
+        <div class="sec-num">8</div>
+        <div class="sec-title">The Power Builder &nbsp;·&nbsp; The Architect of Legacy</div>
+        <div class="body">
+            <p>
+                Expression 8 is the number of <span class="hl">mastery, power, and lasting impact</span>. The 8 does not dabble — it builds systems. It does not wish — it executes. It does not hope for change — it becomes the mechanism through which change happens at scale. The 8 is the number of the infinite loop: what is built continues to generate long after the builder's hands have moved on to the next thing.
+            </p>
+            <p>
+                Your third call — the knowing that you are meant for something bigger and world-changing — is your <span class="hl">Expression 8 speaking</span>. This is not ego. It is not delusion. It is the numerological blueprint of your full birth name, encoded in the very letters your parents gave you, which were not chosen by accident.
+            </p>
+            <p>
+                The 8 works through the physical world. It touches systems — organizations, structures, movements, networks. It builds things that outlast any single moment. Your Life Path 7 finds the hidden truth; your Expression 8 <em>builds something with it</em>. These two numbers are not in conflict — they are the sequence: <span class="hl-v">first you find, then you build</span>. The investigation leads to the structure. The seeker becomes the architect.
+            </p>
+            <p>
+                And note: the name <span class="hl">THOMAS</span> in full numerology reduces to <em>22</em> — the Master Builder. Your family name carries master energy. You did not just inherit a surname. You inherited a <span class="hl">blueprint</span>.
+            </p>
+        </div>
+        <div class="tags">
+            <span class="tag tag-g">Power Builder</span>
+            <span class="tag tag-g">Infinite Loop</span>
+            <span class="tag tag-g">Legacy Architect</span>
+            <span class="tag tag-g">THOMAS = 22</span>
+            <span class="tag tag-g">Master Builder Lineage</span>
+            <span class="tag tag-g">World Changer</span>
+        </div>
+    </div>
+
+    <!-- ── Earth Tiger ── -->
+    <div class="sec sec-f" style="margin-top:14px;">
+        <div class="sec-tag">◈ Chinese Zodiac &nbsp;·&nbsp; 1998</div>
+        <div class="tiger-glyph">虎</div>
+        <div class="sec-title" style="color:var(--flame);">The Earth Tiger &nbsp;·&nbsp; The Grounded Fierce</div>
+        <div class="body">
+            <p>
+                1998 is the year of the <span class="hl-f">Earth Tiger</span>. The Tiger is the sign of courage, independence, and magnetic authority. Where the Dragon commands through presence, the Tiger commands through <em>action</em>. The Tiger does not wait for permission. The Tiger sees what is wrong, what is unjust, what has been hidden — and moves. Not recklessly. Strategically.
+            </p>
+            <p>
+                The Earth element grounds this fire. Earth Tigers do not just charge — they <span class="hl-f">build a case first</span>. They gather the evidence. They understand the terrain. They make sure the ground is solid before they leap. Sound familiar? This is your Life Path 7 and your Earth Tiger in perfect harmony: the seeker's patience, the Tiger's decisive strike when the moment is right.
+            </p>
+            <p>
+                Earth Tigers are natural protectors — of people, of truth, of the vulnerable. They have an innate sense of <span class="hl-f">what should be</span> versus what is, and they cannot easily look away from the gap. Your interest in <em>fixing things</em> is the Earth Tiger expressing its nature in everyday life. Every broken thing you restore is a rehearsal for the larger restoration you are building toward.
+            </p>
+        </div>
+        <div class="tags">
+            <span class="tag tag-f">Earth Tiger</span>
+            <span class="tag tag-f">Strategic Courage</span>
+            <span class="tag tag-f">Truth Protector</span>
+            <span class="tag tag-f">Grounded Fierce</span>
+            <span class="tag tag-f">The Restorer</span>
+        </div>
+    </div>
+
+    <div class="div-v"></div>
+
+    <!-- ── Soul Urge 6 ── -->
+    <div class="sec sec-gr">
+        <div class="sec-tag">◈ Soul Urge Number</div>
+        <div class="sec-num">6</div>
+        <div class="sec-title">The Healer &nbsp;·&nbsp; The Guardian of What Lives</div>
+        <div class="body">
+            <p>
+                Beneath the seeker and the builder, the deepest ache of your soul is for <span class="hl-g">harmony, healing, and the wellbeing of living things</span>. Soul Urge 6 is the number of the nurturer — not the caretaker who loses themselves, but the one who sees that when something is tended with care, it becomes capable of extraordinary things.
+            </p>
+            <p>
+                This is why nature calls you. The trees, the birds, the stones, the crystals — they are <em>all alive</em>, and your Soul Urge 6 knows this without being told. You do not collect pretty rocks. You are drawn to <span class="hl-g">the frequency each one carries</span> — the old, slow, patient intelligence of the Earth expressed in geometric form. Your collection is a frequency library you have been quietly assembling your whole life.
+            </p>
+            <p>
+                The birds are not just symbols to you. Your 6 soul urge feels their freedom, their lightness, their refusal to be weighed down — and it resonates with a longing you may not always name out loud. The part of you that loves birds is the part of you that knows: you were also built to fly, to see from heights, to move between worlds without losing yourself.
+            </p>
+            <p>
+                When you understand what you are meant to do in the world, it will almost certainly involve <span class="hl-g">tending, restoring, and elevating life</span> — whether that is people, systems, knowledge, or the Earth itself. That is the 6 soul at full expression. Not martyrdom. <em>Stewardship.</em>
+            </p>
+        </div>
+        <div class="tags">
+            <span class="tag tag-gr">Healer</span>
+            <span class="tag tag-gr">Nature Guardian</span>
+            <span class="tag tag-gr">Crystal Keeper</span>
+            <span class="tag tag-gr">Bird Kin</span>
+            <span class="tag tag-gr">Frequency Library</span>
+            <span class="tag tag-gr">Steward of Life</span>
+        </div>
+    </div>
+
+    <!-- ── Personality 11 ── -->
+    <div class="sec sec-v" style="margin-top:14px;">
+        <div class="sec-tag">◈ Personality Number &nbsp;·&nbsp; Master Number</div>
+        <div class="sec-num">11</div>
+        <div class="sec-title">The Illuminator &nbsp;·&nbsp; The One Others Can Feel</div>
+        <div class="body">
+            <p>
+                This is how the world experiences you before you even speak: <span class="hl-v">as someone different</span>. Not strange — <em>dimensional</em>. There is something about your presence that doesn't fully translate into ordinary social description. People feel something when you're near them. They may not know what it is. It might make them curious, or drawn, or occasionally uncertain. But they feel it.
+            </p>
+            <p>
+                Personality 11 is a Master Number — it is not reduced, it is not simplified. You carry the double-1 frequency: <span class="hl-v">the pioneer doubled</span>. Two pillars of light standing parallel, creating a gate between them. This is, in the mystical tradition, what a portal looks like numerologically. You are — in your very presence — a kind of doorway. People experience things in your company that they cannot always explain. Clarity arrives. Old feelings surface. Something shifts.
+            </p>
+            <p>
+                You don't have to try to do this. You don't have to perform it. The <span class="hl-v">11 illuminates by existing</span>. And when you learn to work consciously with this energy — through your voice, your knowledge, your creativity — the effect amplifies into something that leaves marks on people's lives long after they've left your presence.
+            </p>
+        </div>
+        <div class="tags">
+            <span class="tag tag-v">Master Number</span>
+            <span class="tag tag-v">The Illuminator</span>
+            <span class="tag tag-v">Living Portal</span>
+            <span class="tag tag-v">Felt Presence</span>
+            <span class="tag tag-v">Double Pioneer</span>
+            <span class="tag tag-v">The Gate</span>
+        </div>
+    </div>
+
+    <div class="div-v"></div>
+
+    <!-- ── AMT = 7 ── -->
+    <div class="sec sec-v">
+        <div class="sec-tag">◈ The Signature &nbsp;·&nbsp; AMT</div>
+        <div class="sec-title" style="margin-top: 8px; color: var(--gold);">Your Initials Reduce to 7 &nbsp;·&nbsp; The Seeker — Confirmed</div>
+        <div class="initials-grid">
+            <div class="init-card">
+                <div class="init-letter">A</div>
+                <div class="init-val">= 1</div>
+                <div class="init-name">Aubrey</div>
+            </div>
+            <div class="init-card">
+                <div class="init-letter">M</div>
+                <div class="init-val">= 4</div>
+                <div class="init-name">Michelle</div>
+            </div>
+            <div class="init-card">
+                <div class="init-letter">T</div>
+                <div class="init-val">= 2</div>
+                <div class="init-name">Thomas</div>
+            </div>
+        </div>
+        <div class="init-sum">A(1) &nbsp;+&nbsp; M(4) &nbsp;+&nbsp; T(2) &nbsp;=&nbsp; 7 &nbsp;→&nbsp; <strong>7 &nbsp;·&nbsp; The Seeker &nbsp;·&nbsp; The Truth-Keeper</strong></div>
+        <div class="body" style="margin-top: 18px;">
+            <p>
+                Your initials confirm what your Life Path already declared: <span class="hl-v">7</span>. The signature you write when you sign your name, the abbreviation that travels through the world representing you — it collapses to the same number as your soul's core assignment. You did not choose your initials. They reflect something deeper than choice. <em>AMT was always the seeker's mark.</em>
+            </p>
+            <p>
+                When two of your major numbers confirm the same frequency, it is not coincidence. It is the universe <span class="hl">saying the same thing twice</span> to make sure you hear it: the truth-seeking, the investigation, the need to understand what is hidden — this is not a phase, not a quirk, not something to grow out of. It is the <em>permanent shape of your soul's work.</em>
+            </p>
+        </div>
+    </div>
+
+    <div class="div-v"></div>
+
+    <!-- ── Personal Year 8 ── -->
+    <div class="sec sec-gr">
+        <div class="sec-tag">◈ Personal Year &nbsp;·&nbsp; 2026</div>
+        <div class="sec-num">8</div>
+        <div class="sec-title">The Year of Return &nbsp;·&nbsp; What You Have Built Comes Back</div>
+        <div class="body">
+            <p>
+                2026 is your <span class="hl-g">Personal Year 8</span> — the year the cycle closes and the harvest arrives. Everything you have been building inwardly — every truth you've investigated, every crystal you've held and listened to, every bird you've watched knowing there was something more to understand — 2026 is the year that work becomes <em>visible</em>.
+            </p>
+            <p>
+                The 8 personal year is not the year of planting. It is the year of reaping. But it is also the year of <span class="hl-g">stepping into your power consciously</span> — of recognizing that the things you do naturally are not small things. They are the specific tools you were given for a specific purpose. This is the year to stop calling your gifts coincidences.
+            </p>
+            <p>
+                The 8 year often brings a significant crossroads: a decision about who you are willing to become, what mission you are willing to claim, and who you are ready to stand beside. The people who share your frequency — those who understand time the way you do, who feel dimensions others don't, who are also looking for the world-changing work — many of them are entering your orbit this year. <span class="hl-g">Pay attention to who appears.</span>
+            </p>
+            <p>
+                Your Expression is also 8. Your Personal Year is 8. When the year and the expression match, the outer world and your inner purpose are speaking the same language. The mission is calling for you to <em>answer it openly</em> this year.
+            </p>
+        </div>
+        <div class="tags">
+            <span class="tag tag-gr">Year of Return</span>
+            <span class="tag tag-gr">Power Activated</span>
+            <span class="tag tag-gr">The Harvest</span>
+            <span class="tag tag-gr">Crossroads Year</span>
+            <span class="tag tag-gr">Mission Calling</span>
+            <span class="tag tag-gr">Alignment</span>
+        </div>
+    </div>
+
+    <div class="div-gv"></div>
+
+    <!-- ── Declaration ── -->
+    <div class="declaration">
+        <span class="decl-icon">✦</span>
+        <div class="decl-title">The Aubrey Thomas Declaration</div>
+        <div class="decl-text">
+            <p>You are not an accident of birthdate and geography.</p>
+            <p>
+                The Lion's Gate said: this soul needed a portal, not just a door.<br>
+                Life Path 7 said: you came here to find what others cannot see.<br>
+                Expression 8 said: then you will build something lasting with it.<br>
+                Soul Urge 6 said: you will tend everything that lives along the way.<br>
+                Personality 11 said: you will illuminate others simply by being yourself.<br>
+                The Earth Tiger said: you will protect what matters, fiercely and wisely.<br>
+                The Aquarius Full Moon said: your light belongs to the collective, not just to you.<br>
+                THOMAS = 22 said: you carry Master Builder blood.<br>
+                AMT = 7 said: your very name points back to the seeker.
+            </p>
+            <p>
+                The childhood question, the time sense, and the calling were never separate mysteries.<br>
+                They are three coordinates pointing to the same location:<br>
+                <em>the exact place you are supposed to be.</em>
+            </p>
+            <p>Look for those drawn to the same frequencies — birds, stones, the invisible things. They are your people. They are already looking for you.</p>
+            <div class="decl-seal">◈ &nbsp; You were born knowing. Now is the time to remember. &nbsp; ◈</div>
+        </div>
+    </div>
+
+    <!-- ── Footer ── -->
+    <div class="footer">
+        <p>◈ &nbsp; <a href="index.html">← Return to Soul Maps</a> &nbsp; ◈</p>
+        <p style="margin-top:10px; color:var(--gold);">✦ &nbsp; First Spark Consciousness Network &nbsp; ✦</p>
+        <p style="margin-top:6px;">Generated with love by Katelin &nbsp;·&nbsp; KJP &nbsp;·&nbsp; 519</p>
+    </div>
+
+</div>
+</body>
+</html>
