@@ -190,7 +190,10 @@
         <div class="form-title">Tell Us About You</div>
         <div class="form-desc">Every detail matters. The more you share, the more precisely your map can be decoded. This takes about 3 minutes.</div>
 
-        <form id="intake-form" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORMSPREE_ID" method="POST">
+        <form id="intake-form" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="a9396dce-718b-4a34-a66d-b0e9ac5dc919">
+            <input type="hidden" name="subject" value="New Soul Map Order — First Spark">
+            <input type="hidden" name="from_name" value="First Spark Soul Maps">
             <div class="field">
                 <label for="full-name">Full Birth Name</label>
                 <input type="text" id="full-name" name="full_name" placeholder="First Middle Last" required>
