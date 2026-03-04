@@ -77,6 +77,15 @@
         .card-desc { font-size: .88em; color: #a5b4fc; line-height: 1.7; font-style: italic; }
         .card-arrow { position: absolute; right: 25px; top: 50%; transform: translateY(-50%); font-size: 1.5em; opacity: .4; transition: opacity .2s, right .2s; }
         .card:hover .card-arrow { opacity: 1; right: 20px; }
+        .cta-wrap { text-align:center; padding:36px 24px 40px; border:1px solid rgba(217,119,6,.4); background:rgba(217,119,6,.03); margin:10px 0 30px; }
+        .cta-lbl { font-size:.6em; letter-spacing:4px; text-transform:uppercase; color:#d97706; opacity:.7; margin-bottom:12px; }
+        .cta-price-big { font-size:clamp(2.4rem,10vw,4.5rem); font-weight:700; color:#f59e0b; margin-bottom:6px; text-shadow:0 0 30px rgba(245,158,11,.4); }
+        .cta-heading { font-size:clamp(.85rem,3vw,1.1rem); text-transform:uppercase; letter-spacing:5px; color:#f0f0ff; margin-bottom:16px; }
+        .cta-copy { font-size:.78em; color:#9ca3af; line-height:1.85; max-width:440px; margin:0 auto 26px; font-style:italic; }
+        .cta-pay-btn { background:transparent; border:1px solid #f59e0b; color:#f59e0b; font-family:'Space Mono','Courier New',monospace; font-size:.8em; letter-spacing:4px; text-transform:uppercase; padding:15px 36px; cursor:pointer; transition:background .2s,color .2s; }
+        .cta-pay-btn:hover { background:#f59e0b; color:#070a18; }
+        .cta-pay-btn:disabled { opacity:.5; cursor:not-allowed; }
+        .cta-fine { margin-top:14px; font-size:.6em; letter-spacing:2px; color:#6b7280; text-transform:uppercase; }
         .footer { text-align: center; margin-top: 40px; color: #374151; font-size: .75em; letter-spacing: 2px; }
         .footer span { color: #d97706; }
         @media(max-width:480px){
@@ -132,10 +141,42 @@
 
     <div class="divider"></div>
 
+    <!-- ── Get Your Soul Map CTA ── -->
+    <div class="cta-wrap">
+        <div class="cta-lbl">◈ Ready for yours?</div>
+        <div class="cta-price-big">$22</div>
+        <div class="cta-heading">Get Your Personal Soul Map</div>
+        <p class="cta-copy">Your full numerological blueprint — Life Path, Expression, Soul Urge, Personality, and Personal Year — decoded alongside your astrology, Chinese zodiac, and the specific soul questions you carry.</p>
+        <button type="button" id="index-soul-map-btn" class="cta-pay-btn">✦ &nbsp; Claim Your Soul Map &nbsp; ✦</button>
+        <div class="cta-fine">One-time payment &nbsp;·&nbsp; Secure checkout via Stripe</div>
+    </div>
+
     <div class="footer">
         <p>◈ &nbsp; <span>First Spark Consciousness Network</span> &nbsp; ◈</p>
         <p style="margin-top:8px;">Generated with love by Katelin</p>
     </div>
 </div>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    const stripe = Stripe('pk_live_51Sn0uHRtKwZqPK6C0t8A53x1iu4gSAllwzSSu0YLLiSc9LF2y5yMTBUxMRk4ROn5jSH7FSwPxIF7YCM726OBZLRl00NHmeGDe5');
+    const btn = document.getElementById('index-soul-map-btn');
+    btn.addEventListener('click', function () {
+        btn.disabled = true;
+        btn.textContent = '⟳  Opening secure checkout…';
+        stripe.redirectToCheckout({
+            lineItems: [{ price: 'price_1T78SfRtKwZqPK6C0jqyZ2pd', quantity: 1 }],
+            mode: 'payment',
+            successUrl: 'https://thefirstspark.github.io/soul-maps/success.html',
+            cancelUrl: 'https://thefirstspark.github.io/soul-maps/'
+        }).then(function (result) {
+            if (result.error) {
+                btn.disabled = false;
+                btn.textContent = '✦  Claim Your Soul Map  ✦';
+                alert(result.error.message);
+            }
+        });
+    });
+</script>
 </body>
 </html>

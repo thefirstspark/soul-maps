@@ -504,6 +504,106 @@
             50%     { opacity: 1; text-shadow: 0 0 20px rgba(245,158,11,.6); }
         }
 
+        /* ─── CTA Section ─── */
+        .cta-section {
+            text-align: center;
+            padding: 50px 28px 46px;
+            border: 1px solid rgba(245,158,11,.4);
+            background: rgba(245,158,11,.03);
+            position: relative;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 0%, rgba(245,158,11,.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cta-tag {
+            font-size: .6em;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            opacity: .7;
+            margin-bottom: 16px;
+        }
+
+        .cta-price {
+            font-size: clamp(3rem, 12vw, 5.5rem);
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 6px;
+            animation: priceGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes priceGlow {
+            0%,100% { text-shadow: 0 0 20px rgba(245,158,11,.3); }
+            50%     { text-shadow: 0 0 50px rgba(245,158,11,.7), 0 0 100px rgba(245,158,11,.2); }
+        }
+
+        .cta-title {
+            font-size: clamp(.9rem, 3vw, 1.3rem);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: #f0f0ff;
+            margin-bottom: 20px;
+        }
+
+        .cta-body {
+            font-size: .82em;
+            color: var(--muted2);
+            line-height: 1.85;
+            max-width: 480px;
+            margin: 0 auto 28px;
+            font-style: italic;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-family: 'Space Mono', 'Courier New', monospace;
+            font-size: .85em;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            padding: 16px 40px;
+            cursor: pointer;
+            transition: background .25s, color .25s, box-shadow .25s;
+            animation: btnPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes btnPulse {
+            0%,100% { box-shadow: 0 0 12px rgba(245,158,11,.2); }
+            50%     { box-shadow: 0 0 30px rgba(245,158,11,.55), 0 0 60px rgba(245,158,11,.15); }
+        }
+
+        .cta-btn:hover {
+            background: var(--gold);
+            color: var(--bg);
+            box-shadow: 0 0 40px rgba(245,158,11,.6);
+            animation: none;
+        }
+
+        .cta-btn:disabled {
+            opacity: .5;
+            cursor: not-allowed;
+            animation: none;
+        }
+
+        .cta-note {
+            margin-top: 16px;
+            font-size: .6em;
+            letter-spacing: 2px;
+            color: var(--muted);
+            text-transform: uppercase;
+        }
+
         /* ─── Footer ─── */
         .footer {
             text-align: center;
@@ -975,6 +1075,18 @@
         </div>
     </div>
 
+    <!-- ── Get Your Soul Map CTA ── -->
+    <div class="cta-section">
+        <div class="cta-tag">◈ Ready to Know Your Map?</div>
+        <div class="cta-price">$22</div>
+        <div class="cta-title">Get Your Personal Soul Map</div>
+        <div class="cta-body">
+            <p>Your full numerological blueprint decoded alongside your astrology, Chinese zodiac, and the specific soul questions you carry. Hand-crafted with precision. Delivered digitally.</p>
+        </div>
+        <button id="soul-map-btn" type="button" class="cta-btn">✦ &nbsp; Claim Your Soul Map &nbsp; ✦</button>
+        <div class="cta-note">One-time payment &nbsp;·&nbsp; Secure checkout via Stripe</div>
+    </div>
+
     <!-- ── Footer ── -->
     <div class="footer">
         <p>◈ &nbsp; <a href="index.html">← Return to Soul Maps</a> &nbsp; ◈</p>
@@ -983,5 +1095,27 @@
     </div>
 
 </div>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    const stripe = Stripe('pk_live_51Sn0uHRtKwZqPK6C0t8A53x1iu4gSAllwzSSu0YLLiSc9LF2y5yMTBUxMRk4ROn5jSH7FSwPxIF7YCM726OBZLRl00NHmeGDe5');
+    const btn = document.getElementById('soul-map-btn');
+    btn.addEventListener('click', function () {
+        btn.disabled = true;
+        btn.textContent = '⟳  Opening secure checkout…';
+        stripe.redirectToCheckout({
+            lineItems: [{ price: 'price_1T78SfRtKwZqPK6C0jqyZ2pd', quantity: 1 }],
+            mode: 'payment',
+            successUrl: 'https://thefirstspark.github.io/soul-maps/success.html',
+            cancelUrl: 'https://thefirstspark.github.io/soul-maps/aubrey_thomas.html'
+        }).then(function (result) {
+            if (result.error) {
+                btn.disabled = false;
+                btn.textContent = '✦  Claim Your Soul Map  ✦';
+                alert(result.error.message);
+            }
+        });
+    });
+</script>
 </body>
 </html>
