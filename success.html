@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#070a18">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FPHDDHSCWS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FPHDDHSCWS');
+    </script>
+    <title>Payment Successful · Soul Map — First Spark</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --gold: #f59e0b;
+            --violet: #a855f7;
+            --green: #34d399;
+            --bg: #070a18;
+            --bg2: rgba(8,5,22,.97);
+            --text: #e0e7ff;
+            --muted: #6b7280;
+            --muted2: #9ca3af;
+        }
+        body {
+            background: var(--bg);
+            font-family: 'Space Mono', 'Courier New', monospace;
+            color: var(--text);
+            min-height: 100vh;
+            padding: 50px 20px 80px;
+        }
+        .page { max-width: 640px; margin: 0 auto; }
+
+        .hero {
+            text-align: center;
+            padding: 30px 0 40px;
+        }
+        .check {
+            font-size: 3.5em;
+            display: block;
+            margin-bottom: 20px;
+            animation: glow 2.5s ease-in-out infinite;
+        }
+        @keyframes glow {
+            0%,100% { filter: drop-shadow(0 0 10px rgba(52,211,153,.4)); }
+            50%     { filter: drop-shadow(0 0 30px rgba(52,211,153,.9)); }
+        }
+        h1 {
+            font-size: clamp(1.2rem, 5vw, 2rem);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--green);
+            margin-bottom: 12px;
+        }
+        .sub {
+            font-size: .8em;
+            color: var(--muted2);
+            letter-spacing: 2px;
+            font-style: italic;
+            line-height: 1.8;
+        }
+        .div-g {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 36px 0;
+        }
+
+        /* ── Form ── */
+        .form-wrap {
+            background: var(--bg2);
+            border: 1px solid rgba(245,158,11,.25);
+            padding: 34px 30px;
+        }
+        .form-tag {
+            font-size: .6em;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            opacity: .7;
+            margin-bottom: 8px;
+        }
+        .form-title {
+            font-size: 1em;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--gold);
+            margin-bottom: 6px;
+        }
+        .form-desc {
+            font-size: .78em;
+            color: var(--muted2);
+            line-height: 1.75;
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+        .field { margin-bottom: 18px; }
+        label {
+            display: block;
+            font-size: .6em;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--muted2);
+            margin-bottom: 6px;
+        }
+        input, textarea {
+            width: 100%;
+            background: rgba(255,255,255,.04);
+            border: 1px solid rgba(245,158,11,.2);
+            color: var(--text);
+            font-family: 'Space Mono', 'Courier New', monospace;
+            font-size: .82em;
+            padding: 12px 14px;
+            outline: none;
+            transition: border-color .2s;
+        }
+        input:focus, textarea:focus {
+            border-color: var(--gold);
+        }
+        textarea { resize: vertical; min-height: 90px; }
+        .field-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+        .submit-btn {
+            width: 100%;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-family: 'Space Mono', 'Courier New', monospace;
+            font-size: .82em;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            padding: 16px;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: background .2s, color .2s;
+        }
+        .submit-btn:hover { background: var(--gold); color: var(--bg); }
+        .submit-btn:disabled { opacity: .5; cursor: not-allowed; }
+
+        .sent-msg {
+            display: none;
+            text-align: center;
+            padding: 30px 0 10px;
+            font-size: .85em;
+            color: var(--green);
+            letter-spacing: 2px;
+            line-height: 1.9;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            color: var(--muted);
+            font-size: .7em;
+            letter-spacing: 2px;
+        }
+        .footer a { color: var(--gold); text-decoration: none; }
+        .footer a:hover { color: var(--violet); }
+
+        @media (max-width: 520px) {
+            .field-row { grid-template-columns: 1fr; }
+            .form-wrap { padding: 24px 18px; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <div class="hero">
+        <span class="check">✦</span>
+        <h1>Payment Received</h1>
+        <p class="sub">
+            Your soul map is on its way.<br>
+            Please fill out the form below so we can craft yours with full precision.
+        </p>
+    </div>
+
+    <div class="div-g"></div>
+
+    <div class="form-wrap">
+        <div class="form-tag">◈ Soul Map Intake</div>
+        <div class="form-title">Tell Us About You</div>
+        <div class="form-desc">Every detail matters. The more you share, the more precisely your map can be decoded. This takes about 3 minutes.</div>
+
+        <form id="intake-form" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORMSPREE_ID" method="POST">
+            <div class="field">
+                <label for="full-name">Full Birth Name</label>
+                <input type="text" id="full-name" name="full_name" placeholder="First Middle Last" required>
+            </div>
+            <div class="field">
+                <label for="email">Your Email</label>
+                <input type="email" id="email" name="email" placeholder="your@email.com" required>
+            </div>
+            <div class="field-row">
+                <div class="field">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" id="dob" name="date_of_birth" required>
+                </div>
+                <div class="field">
+                    <label for="tob">Time of Birth (if known)</label>
+                    <input type="time" id="tob" name="time_of_birth">
+                </div>
+            </div>
+            <div class="field">
+                <label for="city">City &amp; State / Country of Birth</label>
+                <input type="text" id="city" name="birth_location" placeholder="e.g. Cuyahoga Falls, Ohio" required>
+            </div>
+            <div class="field">
+                <label for="hospital">Hospital or Location Name (optional)</label>
+                <input type="text" id="hospital" name="birth_hospital" placeholder="e.g. Western Reserve Hospital">
+            </div>
+            <div class="field">
+                <label for="questions">Your Soul Questions</label>
+                <textarea id="questions" name="soul_questions" placeholder="What are you seeking to understand? What questions does your soul keep asking? Share as much or as little as you'd like."></textarea>
+            </div>
+            <div class="field">
+                <label for="interests">Your Interests &amp; Passions</label>
+                <textarea id="interests" name="interests" placeholder="What do you love? What pulls you? (e.g. nature, music, crystals, animals, building things...)"></textarea>
+            </div>
+            <button type="submit" class="submit-btn" id="submit-btn">✦ &nbsp; Submit My Soul Map Info &nbsp; ✦</button>
+        </form>
+
+        <div class="sent-msg" id="sent-msg">
+            ◈ &nbsp; Received. &nbsp; ◈<br><br>
+            Your information has been sent to the First Spark.<br>
+            Your soul map will be delivered to your email within 3–5 days.<br><br>
+            <span style="color:var(--gold);">✦ &nbsp; Thank you for trusting us with your map. &nbsp; ✦</span>
+        </div>
+    </div>
+
+    <div class="footer" style="margin-top:40px;">
+        <p>◈ &nbsp; <a href="index.html">← Return to Soul Maps</a> &nbsp; ◈</p>
+        <p style="margin-top:10px; color:var(--gold);">✦ &nbsp; First Spark Consciousness Network &nbsp; ✦</p>
+    </div>
+
+</div>
+
+<script>
+    const form = document.getElementById('intake-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const sentMsg = document.getElementById('sent-msg');
+
+    form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        submitBtn.disabled = true;
+        submitBtn.textContent = '⟳  Sending…';
+
+        const data = new FormData(form);
+        try {
+            const res = await fetch(form.action, {
+                method: 'POST',
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            });
+            if (res.ok) {
+                form.style.display = 'none';
+                sentMsg.style.display = 'block';
+            } else {
+                submitBtn.disabled = false;
+                submitBtn.textContent = '✦  Submit My Soul Map Info  ✦';
+                alert('Something went wrong. Please email kjpthefirstspark@gmail.com with your info.');
+            }
+        } catch {
+            submitBtn.disabled = false;
+            submitBtn.textContent = '✦  Submit My Soul Map Info  ✦';
+            alert('Something went wrong. Please email kjpthefirstspark@gmail.com with your info.');
+        }
+    });
+</script>
+</body>
+</html>
