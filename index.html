@@ -9,7 +9,7 @@
     <meta property="og:type" content="website">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FPHDDHSCWS"></script>
     <script>
@@ -21,29 +21,91 @@
     <title>Soul Maps — First Spark</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
             background: #070a18;
             font-family: 'Space Mono', 'Courier New', monospace;
             color: #e0e7ff;
             min-height: 100vh;
-            padding: 40px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 50px 20px 60px;
             overflow-x: hidden;
         }
-        .container { max-width: 700px; width: 100%; }
-        .header { text-align: center; margin-bottom: 50px; }
-        .signal { font-size: .8em; color: #d97706; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 20px; animation: pulse 3s ease-in-out infinite; }
-        @keyframes pulse { 0%,100%{opacity:.6;} 50%{opacity:1; text-shadow:0 0 15px rgba(217,119,6,.8);} }
-        h1 { font-size: clamp(1.4rem,5vw,2.2rem); text-transform: uppercase; letter-spacing: 4px; color: #f0f0ff; margin-bottom: 10px; }
-        .sub { color: #8b5cf6; font-style: italic; font-size: .95em; }
-        .divider { height: 2px; background: linear-gradient(90deg, transparent, #d97706, #8b5cf6, #d97706, transparent); margin: 30px 0; }
+
+        .container { max-width: 700px; margin: 0 auto; width: 100%; }
+
+        /* ── HEADER ── */
+        .header { text-align: center; margin-bottom: 44px; }
+        .signal {
+            font-size: .75em;
+            color: #d97706;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+            animation: pulse 3s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%,100% { opacity:.6; }
+            50% { opacity:1; text-shadow:0 0 15px rgba(217,119,6,.8); }
+        }
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.4rem, 5vw, 2.2rem);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #f0f0ff;
+            margin-bottom: 10px;
+        }
+        .sub { color: #8b5cf6; font-style: italic; font-size: .9em; }
+
+        /* ── SEARCH ── */
+        .search-wrap {
+            position: relative;
+            margin: 32px 0 8px;
+        }
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: .9em;
+            opacity: .35;
+            pointer-events: none;
+        }
+        #search {
+            width: 100%;
+            background: rgba(10,8,25,.9);
+            border: 1px solid rgba(139,92,246,.3);
+            color: #e0e7ff;
+            font-family: 'Space Mono', monospace;
+            font-size: .82em;
+            letter-spacing: .05em;
+            padding: 14px 16px 14px 42px;
+            outline: none;
+            transition: border-color .25s, box-shadow .25s;
+        }
+        #search::placeholder { color: rgba(224,231,255,.25); }
+        #search:focus {
+            border-color: rgba(139,92,246,.7);
+            box-shadow: 0 0 20px rgba(139,92,246,.12);
+        }
+        .search-count {
+            text-align: right;
+            font-size: .6em;
+            letter-spacing: .15em;
+            color: rgba(224,231,255,.2);
+            margin-bottom: 4px;
+            min-height: 1.2em;
+        }
+
+        /* ── DIVIDER ── */
+        .divider { height: 2px; background: linear-gradient(90deg, transparent, #d97706, #8b5cf6, #d97706, transparent); margin: 24px 0; }
+
+        /* ── CARDS ── */
         .card {
             background: rgba(10,8,25,.9);
             border: 2px solid transparent;
             padding: 28px 30px;
-            margin: 16px 0;
+            margin: 14px 0;
             text-decoration: none;
             display: block;
             transition: transform .25s, box-shadow .25s, border-color .25s;
@@ -60,34 +122,79 @@
         }
         .card:hover::before { left: 100%; }
         .card:hover { transform: translateY(-3px); }
+
         .card.gold   { border-color: #d97706; }
         .card.green  { border-color: #10b981; }
         .card.blue   { border-color: #3b82f6; }
         .card.violet { border-color: #a855f7; }
+
         .card.gold:hover   { box-shadow: 0 8px 30px rgba(217,119,6,.25); }
         .card.green:hover  { box-shadow: 0 8px 30px rgba(16,185,129,.25); }
         .card.blue:hover   { box-shadow: 0 8px 30px rgba(59,130,246,.25); }
         .card.violet:hover { box-shadow: 0 8px 30px rgba(168,85,247,.28); }
-        .card-name { font-size: clamp(1.1rem,3vw,1.5em); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 8px; }
+
+        .card-name {
+            font-size: clamp(1.1rem,3vw,1.5em);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+        }
         .card.gold   .card-name { color: #f59e0b; }
         .card.green  .card-name { color: #10b981; }
         .card.blue   .card-name { color: #60a5fa; }
         .card.violet .card-name { color: #c084fc; }
+
         .card-sub { font-size: .75em; letter-spacing: 2px; color: #6b7280; text-transform: uppercase; margin-bottom: 10px; }
-        .card-desc { font-size: .88em; color: #a5b4fc; line-height: 1.7; font-style: italic; }
+        .card-desc { font-size: .85em; color: #a5b4fc; line-height: 1.75; font-style: italic; }
         .card-arrow { position: absolute; right: 25px; top: 50%; transform: translateY(-50%); font-size: 1.5em; opacity: .4; transition: opacity .2s, right .2s; }
         .card:hover .card-arrow { opacity: 1; right: 20px; }
-        .cta-wrap { text-align:center; padding:36px 24px 40px; border:1px solid rgba(217,119,6,.4); background:rgba(217,119,6,.03); margin:10px 0 30px; }
+
+        /* ── NO RESULTS ── */
+        .no-results {
+            display: none;
+            text-align: center;
+            padding: 48px 0;
+            font-size: .78em;
+            color: rgba(224,231,255,.2);
+            letter-spacing: .1em;
+            font-style: italic;
+        }
+
+        /* ── CTA ── */
+        .cta-wrap {
+            text-align:center;
+            padding:36px 24px 40px;
+            border:1px solid rgba(217,119,6,.4);
+            background:rgba(217,119,6,.03);
+            margin:10px 0 30px;
+        }
         .cta-lbl { font-size:.6em; letter-spacing:4px; text-transform:uppercase; color:#d97706; opacity:.7; margin-bottom:12px; }
         .cta-price-big { font-size:clamp(2.4rem,10vw,4.5rem); font-weight:700; color:#f59e0b; margin-bottom:6px; text-shadow:0 0 30px rgba(245,158,11,.4); }
         .cta-heading { font-size:clamp(.85rem,3vw,1.1rem); text-transform:uppercase; letter-spacing:5px; color:#f0f0ff; margin-bottom:16px; }
         .cta-copy { font-size:.78em; color:#9ca3af; line-height:1.85; max-width:440px; margin:0 auto 26px; font-style:italic; }
-        .cta-pay-btn { background:transparent; border:1px solid #f59e0b; color:#f59e0b; font-family:'Space Mono','Courier New',monospace; font-size:.8em; letter-spacing:4px; text-transform:uppercase; padding:15px 36px; cursor:pointer; transition:background .2s,color .2s; }
+        .cta-pay-btn {
+            background:transparent;
+            border:1px solid #f59e0b;
+            color:#f59e0b;
+            font-family:'Space Mono','Courier New',monospace;
+            font-size:.8em;
+            letter-spacing:4px;
+            text-transform:uppercase;
+            padding:15px 36px;
+            cursor:pointer;
+            transition:background .2s,color .2s;
+            text-decoration: none;
+            display: inline-block;
+        }
         .cta-pay-btn:hover { background:#f59e0b; color:#070a18; }
-        .cta-pay-btn:disabled { opacity:.5; cursor:not-allowed; }
         .cta-fine { margin-top:14px; font-size:.6em; letter-spacing:2px; color:#6b7280; text-transform:uppercase; }
-        .footer { text-align: center; margin-top: 40px; color: #374151; font-size: .75em; letter-spacing: 2px; }
+
+        /* ── FOOTER ── */
+        .footer { text-align: center; margin-top: 50px; color: #374151; font-size: .75em; letter-spacing: 2px; }
         .footer span { color: #d97706; }
+        .footer a { color: #6b7280; text-decoration: none; transition: color .2s; }
+        .footer a:hover { color: #d97706; }
+
         @media(max-width:480px){
             .card { padding: 20px 18px; }
             .card-arrow { display: none; }
@@ -96,48 +203,19 @@
 </head>
 <body>
 <div class="container">
+
     <div class="header">
         <div class="signal">◈ &nbsp; Soul Map Archive &nbsp; ◈</div>
         <h1>First Spark<br>Soul Maps</h1>
         <div class="sub">Sacred maps generated with love</div>
     </div>
 
-    <div class="divider"></div>
-
-    <a href="kjp519.html" class="card violet">
-        <div class="card-sub">Soul Map · May 19, 1988 · Creator</div>
-        <div class="card-name">Katelin Jill Puzakulics</div>
-        <div class="card-desc">Life Path 5 Catalyst · Expression 11 Master Illuminator · 5-Track Mind · Earth Dragon · Cusp of Energy · KJP = 1 · Creator of the First Spark</div>
-        <div class="card-arrow">→</div>
-    </a>
-
-    <a href="thomas_birthday_soul_map.html" class="card gold">
-        <div class="card-sub">60th Birthday · February 28, 2026</div>
-        <div class="card-name">Thomas William Puzakulics</div>
-        <div class="card-desc">Life Path 7 · Commander · Craftsman · Guitar · Wood · Lynyrd Skynyrd · Diamond Year</div>
-        <div class="card-arrow">→</div>
-    </a>
-
-    <a href="mason_soul_map.html" class="card green">
-        <div class="card-sub">Soul Map · April 22, 2011</div>
-        <div class="card-name">Mason Wade Roberts</div>
-        <div class="card-desc">Life Path 3 Creator · Born on Master Number 22 · Triple 3 Phenomenon · Taurus · The Intentional Arrival</div>
-        <div class="card-arrow">→</div>
-    </a>
-
-    <a href="devon_soul_map.html" class="card blue">
-        <div class="card-sub">Soul Map · December 27, 2005</div>
-        <div class="card-name">Devon Ray Lehman</div>
-        <div class="card-desc">Life Path 1 Pioneer · Expression 22 Master Builder · Capricorn · Personal Year 22 in 2026</div>
-        <div class="card-arrow">→</div>
-    </a>
-
-    <a href="aubrey_thomas.html" class="card gold">
-        <div class="card-sub">Soul Map · August 8, 1998 · Lion's Gate</div>
-        <div class="card-name">Aubrey Michelle Thomas</div>
-        <div class="card-desc">Life Path 7 Truth-Seeker · Expression 8 Power Builder · Personality 11 Master Illuminator · Leo Sun · Full Moon in Aquarius · Born of the 8/8 Portal · Earth Tiger · THOMAS = 22</div>
-        <div class="card-arrow">→</div>
-    </a>
+    <!-- ── SEARCH ── -->
+    <div class="search-wrap">
+        <span class="search-icon">✦</span>
+        <input type="text" id="search" placeholder="Search by name, life path, sign, keyword…" autocomplete="off" spellcheck="false">
+    </div>
+    <div class="search-count" id="search-count"></div>
 
     <div class="divider"></div>
 
@@ -147,35 +225,89 @@
         <div class="cta-price-big">$22</div>
         <div class="cta-heading">Get Your Personal Soul Map</div>
         <p class="cta-copy">Your full numerological blueprint — Life Path, Expression, Soul Urge, Personality, and Personal Year — decoded alongside your astrology, Chinese zodiac, and the specific soul questions you carry.</p>
-        <button type="button" id="index-soul-map-btn" class="cta-pay-btn">✦ &nbsp; Claim Your Soul Map &nbsp; ✦</button>
+        <a id="index-soul-map-btn" href="PAYMENT_LINK_PLACEHOLDER" class="cta-pay-btn">✦ &nbsp; Claim Your Soul Map &nbsp; ✦</a>
         <div class="cta-fine">One-time payment &nbsp;·&nbsp; Secure checkout via Stripe</div>
     </div>
 
+    <div class="divider"></div>
+
+    <!-- ── SOUL MAP CARDS ── -->
+    <div id="cards-list">
+
+        <a href="kjp519.html" class="card violet" data-search="katelin jill puzakulics kjp life path 5 catalyst expression 11 master illuminator 5-track mind earth dragon cusp of energy creator first spark taurus gemini">
+            <div class="card-sub">Soul Map · May 19, 1988 · Creator</div>
+            <div class="card-name">Katelin Jill Puzakulics</div>
+            <div class="card-desc">Life Path 5 Catalyst · Expression 11 Master Illuminator · 5-Track Mind · Earth Dragon · Cusp of Energy · KJP = 1 · Creator of the First Spark</div>
+            <div class="card-arrow">→</div>
+        </a>
+
+        <a href="thomas_birthday_soul_map.html" class="card gold" data-search="thomas william puzakulics life path 7 commander craftsman guitar wood lynyrd skynyrd diamond year 60th birthday february 28 2026 pisces">
+            <div class="card-sub">60th Birthday · February 28, 2026</div>
+            <div class="card-name">Thomas William Puzakulics</div>
+            <div class="card-desc">Life Path 7 · Commander · Craftsman · Guitar · Wood · Lynyrd Skynyrd · Diamond Year</div>
+            <div class="card-arrow">→</div>
+        </a>
+
+        <a href="mason_soul_map.html" class="card green" data-search="mason wade roberts life path 3 creator born master number 22 triple 3 phenomenon taurus intentional arrival april 22 2011">
+            <div class="card-sub">Soul Map · April 22, 2011</div>
+            <div class="card-name">Mason Wade Roberts</div>
+            <div class="card-desc">Life Path 3 Creator · Born on Master Number 22 · Triple 3 Phenomenon · Taurus · The Intentional Arrival</div>
+            <div class="card-arrow">→</div>
+        </a>
+
+        <a href="devon_soul_map.html" class="card blue" data-search="devon ray lehman life path 1 pioneer expression 22 master builder capricorn personal year 22 2026 december 27 2005">
+            <div class="card-sub">Soul Map · December 27, 2005</div>
+            <div class="card-name">Devon Ray Lehman</div>
+            <div class="card-desc">Life Path 1 Pioneer · Expression 22 Master Builder · Capricorn · Personal Year 22 in 2026</div>
+            <div class="card-arrow">→</div>
+        </a>
+
+        <a href="aubrey_thomas.html" class="card gold" data-search="aubrey michelle thomas life path 7 truth-seeker expression 8 power builder personality 11 master illuminator leo full moon aquarius 8/8 portal lions gate earth tiger august 8 1998">
+            <div class="card-sub">Soul Map · August 8, 1998 · Lion's Gate</div>
+            <div class="card-name">Aubrey Michelle Thomas</div>
+            <div class="card-desc">Life Path 7 Truth-Seeker · Expression 8 Power Builder · Personality 11 Master Illuminator · Leo Sun · Full Moon in Aquarius · Born of the 8/8 Portal · Earth Tiger · THOMAS = 22</div>
+            <div class="card-arrow">→</div>
+        </a>
+
+    </div>
+
+    <div class="no-results" id="no-results">No soul maps match that search.<br><span style="opacity:.5">Try a name, life path number, or zodiac sign.</span></div>
+
     <div class="footer">
         <p>◈ &nbsp; <span>First Spark Consciousness Network</span> &nbsp; ◈</p>
-        <p style="margin-top:8px;">Generated with love by Katelin</p>
+        <p style="margin-top:8px;">Generated with love by Katelin &nbsp;·&nbsp; <a href="https://thefirstspark.shop">thefirstspark.shop</a></p>
     </div>
+
 </div>
 
-<script src="https://js.stripe.com/v3/"></script>
 <script>
-    const stripe = Stripe('pk_live_51Sn0uHRtKwZqPK6C0t8A53x1iu4gSAllwzSSu0YLLiSc9LF2y5yMTBUxMRk4ROn5jSH7FSwPxIF7YCM726OBZLRl00NHmeGDe5');
-    const btn = document.getElementById('index-soul-map-btn');
-    btn.addEventListener('click', function () {
-        btn.disabled = true;
-        btn.textContent = '⟳  Opening secure checkout…';
-        stripe.redirectToCheckout({
-            lineItems: [{ price: 'price_1T78SfRtKwZqPK6C0jqyZ2pd', quantity: 1 }],
-            mode: 'payment',
-            successUrl: 'https://thefirstspark.github.io/soul-maps/success.html',
-            cancelUrl: 'https://thefirstspark.github.io/soul-maps/'
-        }).then(function (result) {
-            if (result.error) {
-                btn.disabled = false;
-                btn.textContent = '✦  Claim Your Soul Map  ✦';
-                alert(result.error.message);
-            }
+    const input   = document.getElementById('search');
+    const cards   = document.querySelectorAll('#cards-list .card');
+    const noRes   = document.getElementById('no-results');
+    const counter = document.getElementById('search-count');
+
+    input.addEventListener('input', function(){
+        const q = this.value.trim().toLowerCase();
+        let visible = 0;
+
+        cards.forEach(card => {
+            const hay = (card.dataset.search + ' ' + card.textContent).toLowerCase();
+            const match = !q || hay.includes(q);
+            card.style.display = match ? 'block' : 'none';
+            if(match) visible++;
         });
+
+        noRes.style.display = (q && visible === 0) ? 'block' : 'none';
+        counter.textContent = q ? `${visible} map${visible !== 1 ? 's' : ''} found` : '';
+    });
+
+    // Clear on Escape
+    input.addEventListener('keydown', e => {
+        if(e.key === 'Escape'){
+            input.value = '';
+            input.dispatchEvent(new Event('input'));
+            input.blur();
+        }
     });
 </script>
 </body>
