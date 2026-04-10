@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soul Map — Joshua David Bokoski</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0f;
+    --deep: #0d0d1a;
+    --gold: #d4af37;
+    --gold-dim: #a8882a;
+    --gold-glow: rgba(212,175,55,0.15);
+    --cyan: #22d3ee;
+    --cyan-dim: rgba(34,211,238,0.2);
+    --purple: #8b5cf6;
+    --purple-dim: rgba(139,92,246,0.15);
+    --white: #f0ede6;
+    --muted: #7a7a8c;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Cormorant Garamond', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* STARFIELD */
+  #starfield {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(ellipse at 20% 20%, rgba(139,92,246,0.04) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 80%, rgba(34,211,238,0.04) 0%, transparent 60%),
+      radial-gradient(ellipse at 50% 50%, rgba(212,175,55,0.02) 0%, transparent 70%);
+  }
+
+  .star {
+    position: absolute; background: white; border-radius: 50%;
+    animation: twinkle var(--dur, 3s) ease-in-out infinite alternate;
+  }
+
+  @keyframes twinkle { from { opacity: 0.1; } to { opacity: 0.9; } }
+
+  /* LAYOUT */
+  .page { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 60px 32px; }
+
+  /* HEADER */
+  .header {
+    text-align: center;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(212,175,55,0.2);
+    margin-bottom: 56px;
+  }
+
+  .brand {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .subject-name {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    line-height: 1.1;
+    text-shadow: 0 0 40px rgba(212,175,55,0.3);
+    margin-bottom: 12px;
+  }
+
+  .birth-data {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.25em;
+    margin-bottom: 20px;
+  }
+
+  .cusp-badge {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: var(--cyan);
+    border: 1px solid rgba(34,211,238,0.3);
+    padding: 4px 14px;
+    margin-bottom: 28px;
+    text-transform: uppercase;
+  }
+
+  .tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: rgba(240,237,230,0.6);
+    letter-spacing: 0.04em;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* MASTER NUMBER HERO */
+  .master-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 56px;
+    padding: 40px 32px;
+    background: linear-gradient(135deg, rgba(212,175,55,0.06), rgba(139,92,246,0.06));
+    border: 1px solid rgba(212,175,55,0.25);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .master-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      0deg, transparent, transparent 40px,
+      rgba(212,175,55,0.02) 40px, rgba(212,175,55,0.02) 41px
+    ),
+    repeating-linear-gradient(
+      90deg, transparent, transparent 40px,
+      rgba(212,175,55,0.02) 40px, rgba(212,175,55,0.02) 41px
+    );
+    pointer-events: none;
+  }
+
+  .master-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.5em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .master-22 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(72px, 15vw, 120px);
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 0.9;
+    text-shadow: 0 0 60px rgba(212,175,55,0.4), 0 0 120px rgba(212,175,55,0.15);
+    letter-spacing: -0.02em;
+  }
+
+  .master-title {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    letter-spacing: 0.5em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-top: 12px;
+    margin-bottom: 20px;
+  }
+
+  .master-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: rgba(240,237,230,0.7);
+    text-align: center;
+    max-width: 560px;
+    line-height: 1.7;
+  }
+
+  /* CORE NUMBERS GRID */
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.5em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .numbers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+    margin-bottom: 56px;
+  }
+
+  .number-card {
+    background: rgba(13,13,26,0.8);
+    border: 1px solid rgba(212,175,55,0.12);
+    padding: 24px 20px;
+    text-align: center;
+    transition: border-color 0.3s, transform 0.3s;
+    position: relative;
+  }
+
+  .number-card:hover {
+    border-color: rgba(212,175,55,0.35);
+    transform: translateY(-2px);
+  }
+
+  .number-card.master-card {
+    border-color: rgba(212,175,55,0.35);
+    background: linear-gradient(135deg, rgba(212,175,55,0.05), rgba(13,13,26,0.8));
+  }
+
+  .number-card.cyan-card {
+    border-color: rgba(34,211,238,0.2);
+  }
+
+  .number-card.purple-card {
+    border-color: rgba(139,92,246,0.2);
+  }
+
+  .card-num {
+    font-family: 'Cinzel', serif;
+    font-size: 42px;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .gold-num { color: var(--gold); text-shadow: 0 0 20px rgba(212,175,55,0.3); }
+  .cyan-num { color: var(--cyan); text-shadow: 0 0 20px rgba(34,211,238,0.3); }
+  .purple-num { color: var(--purple); text-shadow: 0 0 20px rgba(139,92,246,0.3); }
+
+  .card-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.35em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .card-keyword {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: rgba(240,237,230,0.8);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .card-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: rgba(240,237,230,0.5);
+    line-height: 1.5;
+  }
+
+  /* DEEP READ SECTIONS */
+  .deep-section {
+    margin-bottom: 56px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .section-icon {
+    font-size: 22px;
+    line-height: 1;
+  }
+
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, rgba(212,175,55,0.3), transparent);
+  }
+
+  .read-block {
+    background: rgba(13,13,26,0.6);
+    border-left: 2px solid var(--gold-dim);
+    padding: 24px 28px;
+    margin-bottom: 16px;
+  }
+
+  .read-block.cyan-border { border-left-color: var(--cyan); }
+  .read-block.purple-border { border-left-color: var(--purple); }
+
+  .read-block h4 {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .read-block.cyan-border h4 { color: var(--cyan); opacity: 0.7; }
+  .read-block.purple-border h4 { color: var(--purple); opacity: 0.8; }
+
+  .read-block p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    line-height: 1.8;
+    color: rgba(240,237,230,0.82);
+  }
+
+  .read-block p em {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  /* ARCHETYPE PANEL */
+  .archetype-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 56px;
+  }
+
+  @media (max-width: 600px) { .archetype-panel { grid-template-columns: 1fr; } }
+
+  .arch-card {
+    background: rgba(13,13,26,0.8);
+    border: 1px solid rgba(139,92,246,0.2);
+    padding: 28px 24px;
+  }
+
+  .arch-icon { font-size: 28px; margin-bottom: 12px; display: block; }
+
+  .arch-title {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    color: var(--purple);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+
+  .arch-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: rgba(240,237,230,0.65);
+    line-height: 1.6;
+  }
+
+  /* CURRENT CYCLES */
+  .cycles-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 56px;
+  }
+
+  @media (max-width: 500px) { .cycles-row { grid-template-columns: 1fr; } }
+
+  .cycle-card {
+    padding: 24px;
+    border: 1px solid rgba(34,211,238,0.2);
+    background: rgba(34,211,238,0.03);
+    position: relative;
+  }
+
+  .cycle-year {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    color: var(--cyan);
+    opacity: 0.7;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+
+  .cycle-num {
+    font-family: 'Cinzel', serif;
+    font-size: 40px;
+    font-weight: 900;
+    color: var(--cyan);
+    text-shadow: 0 0 20px rgba(34,211,238,0.3);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .cycle-name {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: rgba(240,237,230,0.7);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .cycle-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: rgba(240,237,230,0.55);
+    line-height: 1.6;
+  }
+
+  /* NIGHT BIRTH NOTE */
+  .night-birth {
+    background: linear-gradient(135deg, rgba(139,92,246,0.08), rgba(13,13,26,0.8));
+    border: 1px solid rgba(139,92,246,0.25);
+    padding: 32px;
+    margin-bottom: 56px;
+    text-align: center;
+  }
+
+  .night-birth .nb-icon { font-size: 32px; display: block; margin-bottom: 16px; }
+
+  .night-birth h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 16px;
+    letter-spacing: 0.3em;
+    color: var(--purple);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .night-birth p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: rgba(240,237,230,0.72);
+    line-height: 1.8;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  /* SHADOW + GIFT TABLE */
+  .sg-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 56px;
+  }
+
+  .sg-table th {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    padding: 14px 20px;
+    text-align: left;
+    border-bottom: 1px solid rgba(212,175,55,0.2);
+  }
+
+  .sg-table th:first-child { color: var(--cyan); }
+  .sg-table th:last-child { color: var(--gold); }
+
+  .sg-table td {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    padding: 14px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+
+  .sg-table tr:nth-child(odd) td { background: rgba(255,255,255,0.01); }
+
+  .sg-table td:first-child {
+    color: rgba(34,211,238,0.8);
+    font-style: italic;
+    width: 50%;
+  }
+
+  .sg-table td:last-child {
+    color: rgba(212,175,55,0.85);
+  }
+
+  /* ACTIVATION CODE */
+  .activation {
+    background: var(--black);
+    border: 1px solid rgba(212,175,55,0.3);
+    padding: 40px;
+    text-align: center;
+    margin-bottom: 56px;
+    position: relative;
+  }
+
+  .activation::before {
+    content: '✦';
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    font-size: 20px; color: var(--gold);
+    background: var(--black);
+    padding: 0 12px;
+  }
+
+  .activation-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.5em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .activation-code {
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(18px, 4vw, 28px);
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    margin-bottom: 20px;
+    text-shadow: 0 0 30px rgba(212,175,55,0.4);
+  }
+
+  .activation-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: rgba(240,237,230,0.6);
+    line-height: 1.7;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding-top: 40px;
+    border-top: 1px solid rgba(212,175,55,0.1);
+  }
+
+  .footer-brand {
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    margin-bottom: 8px;
+  }
+
+  .footer-sub {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(212,175,55,0.25), transparent);
+    margin: 48px 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .numbers-grid { grid-template-columns: repeat(2, 1fr); }
+    .page { padding: 40px 20px; }
+    .read-block { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="starfield"></div>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="brand">The First Spark · Soul Map · Akron, Ohio</div>
+    <h1 class="subject-name">Joshua David Bokoski</h1>
+    <div class="birth-data">07 · 22 · 1981 &nbsp;|&nbsp; Night Birth &nbsp;|&nbsp; Akron, Ohio</div>
+    <div class="cusp-badge">✦ Cancer / Leo Cusp · Oscillation</div>
+    <p class="tagline">You weren't born to build something ordinary.<br>You were built to build something that changes how people understand what's possible.</p>
+  </div>
+
+  <!-- MASTER NUMBER 22 HERO -->
+  <div class="master-hero">
+    <div class="master-label">// Birthday Number · Master Frequency</div>
+    <div class="master-22">22</div>
+    <div class="master-title">The Master Builder</div>
+    <p class="master-desc">
+      The 22 doesn't dream small. It sees the cathedral before the first stone is laid —
+      then actually lays the stones. This is the rarest of the master numbers:
+      <em>vision made structural</em>. You carry it in your bones, in your birthday.
+      The question was never whether you could build. It was whether you'd let yourself.
+    </p>
+  </div>
+
+  <!-- CORE NUMBERS GRID -->
+  <div class="deep-section">
+    <div class="section-label">// Core Architecture</div>
+    <div class="numbers-grid">
+
+      <div class="number-card">
+        <div class="card-num gold-num">3</div>
+        <div class="card-title">Life Path</div>
+        <div class="card-keyword">The Communicator</div>
+        <div class="card-desc">Creative expression, connection, the bridge between worlds.</div>
+      </div>
+
+      <div class="number-card master-card">
+        <div class="card-num gold-num">22</div>
+        <div class="card-title">Birthday</div>
+        <div class="card-keyword">Master Builder</div>
+        <div class="card-desc">The rarest gift: a vision that materializes under your hands.</div>
+      </div>
+
+      <div class="number-card cyan-card">
+        <div class="card-num cyan-num">7</div>
+        <div class="card-title">Expression</div>
+        <div class="card-keyword">The Seeker</div>
+        <div class="card-desc">Truth-hunting is not a hobby. It is your operating system.</div>
+      </div>
+
+      <div class="number-card">
+        <div class="card-num gold-num">5</div>
+        <div class="card-title">Soul Urge</div>
+        <div class="card-keyword">Freedom Engine</div>
+        <div class="card-desc">Your inner compass doesn't follow roads. It makes them.</div>
+      </div>
+
+      <div class="number-card purple-card">
+        <div class="card-num purple-num">11</div>
+        <div class="card-title">Personality</div>
+        <div class="card-keyword">Master Intuitive</div>
+        <div class="card-desc">People feel something when they're around you — even before you speak.</div>
+      </div>
+
+      <div class="number-card cyan-card">
+        <div class="card-num cyan-num">1</div>
+        <div class="card-title">Maturity</div>
+        <div class="card-keyword">The Pioneer</div>
+        <div class="card-desc">Your second half of life becomes a masterclass in original authority.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DEEP READS -->
+  <div class="deep-section">
+    <div class="section-header">
+      <div class="section-icon">✦</div>
+      <div class="section-title">Life Path 3 · The Communicator</div>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="read-block">
+      <h4>// Core Signal</h4>
+      <p>
+        A Life Path 3 is <em>language as architecture</em>. Not just talking — translating complex inner experience
+        into something others can finally feel. You were built to communicate what most people only ever
+        half-understand in themselves. The 3 is the artist, the storyteller, the comedian who makes you cry.
+        It's also the one who, without discipline, scatters into a thousand half-finished projects because
+        everything is interesting and the energy is <em>enormous</em>.
+      </p>
+    </div>
+
+    <div class="read-block">
+      <h4>// The Tension</h4>
+      <p>
+        Life Path 3 with a 22 Birthday creates a specific kind of friction: the 3 wants to play in
+        all directions, the 22 wants to build something permanent. This isn't a contradiction —
+        it's a <em>feature</em>. You're the rare person who can make something visionary
+        actually accessible. The art is learning when to scatter and when to anchor.
+      </p>
+    </div>
+  </div>
+
+  <div class="deep-section">
+    <div class="section-header">
+      <div class="section-icon">✦</div>
+      <div class="section-title">Expression 7 · The Seeker</div>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="read-block cyan-border">
+      <h4>// How You Move Through the World</h4>
+      <p>
+        Your name — the code your parents chose — runs as a <em>7</em>. The Seeker. The Analyst.
+        The one who cannot be satisfied with surface explanations and will quietly research something
+        for three years before speaking on it. Combined with a 3 life path, your gift is this:
+        you dive into the deep end on subjects others find intimidating,
+        then resurface with stories that make them feel like they dove too.
+      </p>
+    </div>
+
+    <div class="read-block cyan-border">
+      <h4>// The Shadow Pattern</h4>
+      <p>
+        The 7 can become <em>isolation dressed as wisdom</em>. It prefers the library to the party,
+        the late-night question to the morning meeting. When stressed, it retreats into its own architecture
+        and calls it research. Watch for the moment depth becomes distance. The 3 in your Life Path
+        is the antidote — it pulls you back into connection.
+      </p>
+    </div>
+  </div>
+
+  <div class="deep-section">
+    <div class="section-header">
+      <div class="section-icon">✦</div>
+      <div class="section-title">Soul Urge 5 · The Freedom Engine</div>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="read-block">
+      <h4>// What Your Soul Wants</h4>
+      <p>
+        Strip away the roles, the obligations, the expectations — and what your soul is actually
+        asking for is <em>freedom to move</em>. The 5 Soul Urge is the most restless of all core numbers.
+        It wants variety, experience, sensory truth, the next horizon.
+        This doesn't mean you can't commit. It means you need your commitments to feel alive —
+        not like cages with better furniture.
+      </p>
+    </div>
+  </div>
+
+  <div class="deep-section">
+    <div class="section-header">
+      <div class="section-icon">✦</div>
+      <div class="section-title">Personality 11 · Master Intuitive</div>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="read-block purple-border">
+      <h4>// How Others Perceive You</h4>
+      <p>
+        The 11 Personality is a <em>frequency, not just a face</em>. People pick something up from you
+        before the conversation starts — a sense of depth, of someone who operates with more information
+        than they're letting on. This can read as charismatic or intimidating depending on the room.
+        You carry a natural authority that has nothing to do with rank. It's radiative.
+        The challenge: learning to trust that signal rather than editing it down to make others comfortable.
+      </p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- NIGHT BIRTH -->
+  <div class="night-birth">
+    <span class="nb-icon">🌙</span>
+    <h3>Night Birth · Yin Polarity</h3>
+    <p>
+      Those born under the night sky come in quieter — but they run deeper.
+      Night birth in traditional soul cartography marks a <em>reflective, internally-oriented</em> processing style.
+      You absorb before you output. You see in the dark. The world tends to meet you in its unguarded hours,
+      and that's not coincidence — it's configuration.
+      Your most important work is likely done in silence, in the margins, after others have gone to bed.
+    </p>
+  </div>
+
+  <!-- CHINESE ZODIAC -->
+  <div class="deep-section">
+    <div class="section-header">
+      <div class="section-icon">✦</div>
+      <div class="section-title">Metal Rooster · 1981</div>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="read-block purple-border">
+      <h4>// Chinese Zodiac Layer</h4>
+      <p>
+        The <em>Metal Rooster</em> is perhaps the most decisive archetype in the Chinese zodiac.
+        Where other Roosters deliberate, the Metal Rooster acts — and acts with structural conviction.
+        Metal sharpens: the Rooster's already analytical mind becomes a precision instrument.
+        You notice what others miss. You have opinions that are actually frameworks.
+        The Rooster's known shadow is perfectionism that becomes paralysis —
+        but Metal gives this placement the backbone to execute even when conditions aren't ideal.
+      </p>
+    </div>
+  </div>
+
+  <!-- CANCER/LEO CUSP -->
+  <div class="deep-section">
+    <div class="section-header">
+      <div class="section-icon">✦</div>
+      <div class="section-title">Cancer / Leo Cusp · Oscillation</div>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="read-block">
+      <h4>// The Oscillation Point</h4>
+      <p>
+        July 22 is the Cusp of Oscillation — the hinge between two fundamental forces.
+        <em>Cancer</em> runs deep: it feels everything, protects everything, builds home wherever it goes.
+        <em>Leo</em> burns outward: it commands attention, creates, leads from the front.
+        You carry both. On any given day you might be the most emotionally attuned person in the room —
+        or the most boldly unignorable. The gift is range. The work is integration:
+        learning that vulnerability and radiance aren't opposites. They're the same circuit.
+      </p>
+    </div>
+  </div>
+
+  <!-- ARCHETYPES -->
+  <div class="deep-section">
+    <div class="section-label">// Active Archetypes</div>
+    <div class="archetype-panel">
+
+      <div class="arch-card">
+        <span class="arch-icon">🏛</span>
+        <div class="arch-title">The Architect</div>
+        <div class="arch-desc">22 Birthday + 7 Expression — sees structural truth where others see chaos. Builds systems that outlast the builder.</div>
+      </div>
+
+      <div class="arch-card">
+        <span class="arch-icon">🦋</span>
+        <div class="arch-title">The Lamplighter</div>
+        <div class="arch-desc">11 Personality + 3 Life Path — carries light not for oneself but because wherever you go, others can suddenly see.</div>
+      </div>
+
+      <div class="arch-card">
+        <span class="arch-icon">🌊</span>
+        <div class="arch-title">The Depth Diver</div>
+        <div class="arch-desc">7 Expression + Night Birth — most at home in questions without easy answers. Goes where others turn back.</div>
+      </div>
+
+      <div class="arch-card">
+        <span class="arch-icon">⚡</span>
+        <div class="arch-title">The Voltage</div>
+        <div class="arch-desc">Metal Rooster + Cancer/Leo Cusp — oscillates between calm and electric. Rooms change when you enter them.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SHADOW / GIFT TABLE -->
+  <div class="deep-section">
+    <div class="section-label">// Shadow → Gift Interface</div>
+    <table class="sg-table">
+      <thead>
+        <tr>
+          <th>Shadow Pattern</th>
+          <th>Gift Encoded Within</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Scatters energy across too many visions (3 Life Path)</td>
+          <td>The ability to synthesize and cross-pollinate ideas at a level most can't access</td>
+        </tr>
+        <tr>
+          <td>Retreats into isolation when overwhelmed (7 Expression)</td>
+          <td>A depth of inner processing that returns insights worth sharing</td>
+        </tr>
+        <tr>
+          <td>Feels pressure of the Master Builder's unrealized potential (22)</td>
+          <td>The actual capacity to construct something that changes the architecture of a field</td>
+        </tr>
+        <tr>
+          <td>Craves freedom in ways that resist commitment (5 Soul Urge)</td>
+          <td>A built-in sensor for when a situation has become a cage — protects from wrong paths</td>
+        </tr>
+        <tr>
+          <td>Oscillates between emotional depth and performative boldness (Cancer/Leo Cusp)</td>
+          <td>Unmatched emotional range that can reach any audience, in any register</td>
+        </tr>
+        <tr>
+          <td>Perfectionism that delays execution (Metal Rooster)</td>
+          <td>A precision standard that, when released at the right moment, produces exceptional output</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- CURRENT CYCLES -->
+  <div class="deep-section">
+    <div class="section-label">// Current Cycles</div>
+    <div class="cycles-row">
+      <div class="cycle-card">
+        <div class="cycle-year">Personal Year · 2025</div>
+        <div class="cycle-num">11</div>
+        <div class="cycle-name">Master Illumination</div>
+        <div class="cycle-desc">
+          2025 ran as an 11 year — a Master number year of revelation, spiritual acceleration,
+          and sudden clarity about what is actually real in your life. Not a building year. An awakening year.
+          The kind that rewires you.
+        </div>
+      </div>
+      <div class="cycle-card">
+        <div class="cycle-year">Personal Year · 2026</div>
+        <div class="cycle-num">3</div>
+        <div class="cycle-name">Expression Unlocked</div>
+        <div class="cycle-desc">
+          2026 is your year to speak, create, connect, and be <em>seen</em>.
+          After the deep internal work of an 11 year, the 3 arrives like a door swinging open.
+          Say the things. Build the things. Let people in.
+          This is your most creatively charged year in a decade.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- MATURITY -->
+  <div class="deep-section">
+    <div class="section-header">
+      <div class="section-icon">✦</div>
+      <div class="section-title">Maturity Number 1 · The Pioneer</div>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="read-block">
+      <h4>// Second Half Trajectory</h4>
+      <p>
+        The Maturity Number is activated around age 45–50, when the life begins to align with its
+        deepest intention. Yours is the <em>1</em> — the Pioneer, the Original, the one who goes first.
+        This means: regardless of how collaborative, communal, or self-effacing the early chapters have been,
+        your second half is about <em>sovereign originality</em>. Your name on your work.
+        Your vision, uncensored. Leadership that comes from having lived enough to know exactly
+        what you are and what you're here to do.
+      </p>
+    </div>
+  </div>
+
+  <!-- ACTIVATION CODE -->
+  <div class="activation">
+    <div class="activation-label">// Soul Activation Code</div>
+    <div class="activation-code">3 · 22 · 7 · 5 · 11 · 1</div>
+    <p class="activation-desc">
+      Creative communicator with master builder gifts, a seeker's mind, a freedom engine in the chest,
+      and a presence that lights up rooms before you open your mouth.
+      The blueprint was never the question. The question was always: <em>will you trust it?</em>
+    </p>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-brand">The First Spark</div>
+    <div class="footer-sub">thefirstspark.shop &nbsp;·&nbsp; Reality is programmable. Consciousness is the code.</div>
+  </div>
+
+</div>
+
+<script>
+  // Starfield
+  const sf = document.getElementById('starfield');
+  for (let i = 0; i < 180; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = Math.random() * 2.5 + 0.5;
+    s.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}%; top:${Math.random()*100}%;
+      --dur:${(Math.random()*4+2).toFixed(1)}s;
+      opacity:${Math.random()*0.5+0.1};
+      animation-delay:${(Math.random()*5).toFixed(1)}s;
+    `;
+    sf.appendChild(s);
+  }
+</script>
+</body>
+</html>
