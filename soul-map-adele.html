@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soul Map — Adele</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0f;
+    --deep: #0d0d1a;
+    --gold: #d4af37;
+    --gold-dim: #a8882a;
+    --gold-glow: rgba(212,175,55,0.15);
+    --cyan: #22d3ee;
+    --cyan-dim: rgba(34,211,238,0.2);
+    --purple: #8b5cf6;
+    --purple-dim: rgba(139,92,246,0.15);
+    --white: #f0ede6;
+    --muted: #7a7a8c;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--black); color: var(--white); font-family: 'Cormorant Garamond', serif; min-height: 100vh; overflow-x: hidden; }
+  #starfield { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; background: radial-gradient(ellipse at 20% 20%, rgba(139,92,246,0.04) 0%, transparent 60%), radial-gradient(ellipse at 80% 80%, rgba(34,211,238,0.04) 0%, transparent 60%), radial-gradient(ellipse at 50% 50%, rgba(212,175,55,0.02) 0%, transparent 70%); }
+  .star { position: absolute; background: white; border-radius: 50%; animation: twinkle var(--dur, 3s) ease-in-out infinite alternate; }
+  @keyframes twinkle { from { opacity: 0.1; } to { opacity: 0.9; } }
+  .page { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 60px 32px; }
+  .header { text-align: center; padding-bottom: 48px; border-bottom: 1px solid rgba(212,175,55,0.2); margin-bottom: 56px; }
+  .brand { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.4em; color: var(--muted); text-transform: uppercase; margin-bottom: 24px; }
+  .subject-name { font-family: 'Cinzel', serif; font-size: clamp(28px, 5vw, 52px); font-weight: 600; color: var(--gold); letter-spacing: 0.08em; line-height: 1.1; text-shadow: 0 0 40px rgba(212,175,55,0.3); margin-bottom: 12px; }
+  .birth-data { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.25em; margin-bottom: 20px; }
+  .cusp-badge { display: inline-block; font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.3em; color: var(--cyan); border: 1px solid rgba(34,211,238,0.3); padding: 4px 14px; margin-bottom: 28px; text-transform: uppercase; }
+  .tagline { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; color: rgba(240,237,230,0.6); letter-spacing: 0.04em; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+  .master-hero { display: flex; flex-direction: column; align-items: center; margin-bottom: 56px; padding: 40px 32px; background: linear-gradient(135deg, rgba(212,175,55,0.06), rgba(139,92,246,0.06)); border: 1px solid rgba(212,175,55,0.25); position: relative; overflow: hidden; }
+  .master-hero::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(212,175,55,0.02) 40px, rgba(212,175,55,0.02) 41px), repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(212,175,55,0.02) 40px, rgba(212,175,55,0.02) 41px); pointer-events: none; }
+  .master-label { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.5em; color: var(--gold-dim); text-transform: uppercase; margin-bottom: 16px; }
+  .master-num { font-family: 'Cinzel', serif; font-size: clamp(72px, 15vw, 120px); font-weight: 900; color: var(--gold); line-height: 0.9; text-shadow: 0 0 60px rgba(212,175,55,0.4), 0 0 120px rgba(212,175,55,0.15); letter-spacing: -0.02em; }
+  .master-title { font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: 0.5em; color: var(--gold-dim); text-transform: uppercase; margin-top: 12px; margin-bottom: 20px; }
+  .master-desc { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; color: rgba(240,237,230,0.7); text-align: center; max-width: 560px; line-height: 1.7; }
+  .section-label { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.5em; color: var(--muted); text-transform: uppercase; margin-bottom: 24px; }
+  .numbers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-bottom: 56px; }
+  .number-card { background: rgba(13,13,26,0.8); border: 1px solid rgba(212,175,55,0.12); padding: 24px 20px; text-align: center; transition: border-color 0.3s, transform 0.3s; }
+  .number-card:hover { border-color: rgba(212,175,55,0.35); transform: translateY(-2px); }
+  .number-card.master-card { border-color: rgba(212,175,55,0.35); background: linear-gradient(135deg, rgba(212,175,55,0.05), rgba(13,13,26,0.8)); }
+  .number-card.cyan-card { border-color: rgba(34,211,238,0.2); }
+  .number-card.purple-card { border-color: rgba(139,92,246,0.2); }
+  .card-num { font-family: 'Cinzel', serif; font-size: 42px; font-weight: 900; line-height: 1; margin-bottom: 8px; }
+  .gold-num { color: var(--gold); text-shadow: 0 0 20px rgba(212,175,55,0.3); }
+  .cyan-num { color: var(--cyan); text-shadow: 0 0 20px rgba(34,211,238,0.3); }
+  .purple-num { color: var(--purple); text-shadow: 0 0 20px rgba(139,92,246,0.3); }
+  .card-title { font-family: 'Space Mono', monospace; font-size: 8px; letter-spacing: 0.35em; color: var(--muted); text-transform: uppercase; margin-bottom: 12px; }
+  .card-keyword { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.2em; color: rgba(240,237,230,0.8); text-transform: uppercase; margin-bottom: 10px; }
+  .card-desc { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; color: rgba(240,237,230,0.5); line-height: 1.5; }
+  .deep-section { margin-bottom: 56px; }
+  .section-header { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
+  .section-icon { font-size: 22px; line-height: 1; }
+  .section-title { font-family: 'Cinzel', serif; font-size: 18px; font-weight: 600; letter-spacing: 0.15em; color: var(--gold); }
+  .section-line { flex: 1; height: 1px; background: linear-gradient(to right, rgba(212,175,55,0.3), transparent); }
+  .read-block { background: rgba(13,13,26,0.6); border-left: 2px solid var(--gold-dim); padding: 24px 28px; margin-bottom: 16px; }
+  .read-block.cyan-border { border-left-color: var(--cyan); }
+  .read-block.purple-border { border-left-color: var(--purple); }
+  .read-block h4 { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.35em; color: var(--gold-dim); text-transform: uppercase; margin-bottom: 12px; }
+  .read-block.cyan-border h4 { color: var(--cyan); opacity: 0.7; }
+  .read-block.purple-border h4 { color: var(--purple); opacity: 0.8; }
+  .read-block p { font-family: 'Cormorant Garamond', serif; font-size: 17px; line-height: 1.8; color: rgba(240,237,230,0.82); }
+  .read-block p em { color: var(--gold); font-style: italic; }
+  .archetype-panel { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 56px; }
+  @media (max-width: 600px) { .archetype-panel { grid-template-columns: 1fr; } }
+  .arch-card { background: rgba(13,13,26,0.8); border: 1px solid rgba(139,92,246,0.2); padding: 28px 24px; }
+  .arch-icon { font-size: 28px; margin-bottom: 12px; display: block; }
+  .arch-title { font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: 0.2em; color: var(--purple); margin-bottom: 10px; text-transform: uppercase; }
+  .arch-desc { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; color: rgba(240,237,230,0.65); line-height: 1.6; }
+  .cycles-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 56px; }
+  @media (max-width: 500px) { .cycles-row { grid-template-columns: 1fr; } }
+  .cycle-card { padding: 24px; border: 1px solid rgba(34,211,238,0.2); background: rgba(34,211,238,0.03); }
+  .cycle-year { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.4em; color: var(--cyan); opacity: 0.7; margin-bottom: 8px; text-transform: uppercase; }
+  .cycle-num { font-family: 'Cinzel', serif; font-size: 40px; font-weight: 900; color: var(--cyan); text-shadow: 0 0 20px rgba(34,211,238,0.3); line-height: 1; margin-bottom: 8px; }
+  .cycle-name { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.25em; color: rgba(240,237,230,0.7); text-transform: uppercase; margin-bottom: 12px; }
+  .cycle-desc { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px; color: rgba(240,237,230,0.55); line-height: 1.6; }
+  .sg-table { width: 100%; border-collapse: collapse; margin-bottom: 56px; }
+  .sg-table th { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase; padding: 14px 20px; text-align: left; border-bottom: 1px solid rgba(212,175,55,0.2); }
+  .sg-table th:first-child { color: var(--cyan); }
+  .sg-table th:last-child { color: var(--gold); }
+  .sg-table td { font-family: 'Cormorant Garamond', serif; font-size: 16px; padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: top; line-height: 1.6; }
+  .sg-table tr:nth-child(odd) td { background: rgba(255,255,255,0.01); }
+  .sg-table td:first-child { color: rgba(34,211,238,0.8); font-style: italic; width: 50%; }
+  .sg-table td:last-child { color: rgba(212,175,55,0.85); }
+  .activation { background: var(--black); border: 1px solid rgba(212,175,55,0.3); padding: 40px; text-align: center; margin-bottom: 56px; position: relative; }
+  .activation::before { content: '✦'; position: absolute; top: -14px; left: 50%; transform: translateX(-50%); font-size: 20px; color: var(--gold); background: var(--black); padding: 0 12px; }
+  .activation-label { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.5em; color: var(--muted); text-transform: uppercase; margin-bottom: 20px; }
+  .activation-code { font-family: 'Space Mono', monospace; font-size: clamp(18px, 4vw, 28px); color: var(--gold); letter-spacing: 0.12em; margin-bottom: 20px; text-shadow: 0 0 30px rgba(212,175,55,0.4); }
+  .activation-desc { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; color: rgba(240,237,230,0.6); line-height: 1.7; max-width: 560px; margin: 0 auto; }
+  .footer { text-align: center; padding-top: 40px; border-top: 1px solid rgba(212,175,55,0.1); }
+  .footer-brand { font-family: 'Cinzel', serif; font-size: 18px; font-weight: 600; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 8px; }
+  .footer-sub { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.4em; color: var(--muted); text-transform: uppercase; }
+  .divider { width: 100%; height: 1px; background: linear-gradient(to right, transparent, rgba(212,175,55,0.25), transparent); margin: 48px 0; }
+  @media (max-width: 600px) { .numbers-grid { grid-template-columns: repeat(2, 1fr); } .page { padding: 40px 20px; } .read-block { padding: 20px; } }
+</style>
+</head>
+<body>
+<div id="starfield"></div>
+<div class="page">
+
+  <div class="header">
+    <div class="brand">The First Spark · Soul Map · Tottenham, London</div>
+    <h1 class="subject-name">Adele</h1>
+    <div class="birth-data">05 · 05 · 1988 &nbsp;|&nbsp; Taurus &nbsp;|&nbsp; Tottenham, London</div>
+    <div class="cusp-badge">✦ Taurus · The Voice of What Lasts</div>
+    <p class="tagline">She doesn't sing about heartbreak.<br>She sings your heartbreak back to you — and in hearing it, you finally know you're not alone in it.</p>
+  </div>
+
+  <div class="master-hero">
+    <div class="master-label">// Life Path · Universal Frequency</div>
+    <div class="master-num">9</div>
+    <div class="master-title">The Humanitarian</div>
+    <p class="master-desc">
+      The Life Path 9 is not here for a niche — it's here for <em>everyone</em>.
+      The 9 carries the full emotional spectrum of human experience and transforms it into something universal.
+      This is why strangers sob at Adele concerts. This is why a song written about one specific person
+      becomes the anthem of a million different heartbreaks.
+      The 9 doesn't sing its story. It sings <em>yours</em>.
+    </p>
+  </div>
+
+  <div class="deep-section">
+    <div class="section-label">// Core Architecture</div>
+    <div class="numbers-grid">
+      <div class="number-card master-card">
+        <div class="card-num gold-num">9</div>
+        <div class="card-title">Life Path</div>
+        <div class="card-keyword">The Humanitarian</div>
+        <div class="card-desc">Born to carry the collective emotional truth and return it as art.</div>
+      </div>
+      <div class="number-card cyan-card">
+        <div class="card-num cyan-num">5</div>
+        <div class="card-title">Birthday</div>
+        <div class="card-keyword">The Experiencer</div>
+        <div class="card-desc">Depth of lived experience is the raw material of the work.</div>
+      </div>
+      <div class="number-card purple-card">
+        <div class="card-num purple-num">11</div>
+        <div class="card-title">Expression</div>
+        <div class="card-keyword">Master Intuitive</div>
+        <div class="card-desc">Feels what you feel before you feel it — and names it in melody.</div>
+      </div>
+      <div class="number-card">
+        <div class="card-num gold-num">2</div>
+        <div class="card-title">Soul Urge</div>
+        <div class="card-keyword">The Harmonizer</div>
+        <div class="card-desc">The soul's deep need: to bridge, to unite, to make people feel less alone.</div>
+      </div>
+      <div class="number-card cyan-card">
+        <div class="card-num cyan-num">3</div>
+        <div class="card-title">Personality</div>
+        <div class="card-keyword">The Voice</div>
+        <div class="card-desc">Warm, disarming, impossible to ignore — and completely unafraid to be seen.</div>
+      </div>
+      <div class="number-card purple-card">
+        <div class="card-num purple-num">11</div>
+        <div class="card-title">Maturity</div>
+        <div class="card-keyword">The Conduit</div>
+        <div class="card-desc">As she deepens, the signal she carries grows stronger, clearer, more precise.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="deep-section">
+    <div class="section-header">
+      <div class="section-icon">✦</div>
+      <div class="section-title">Life Path 9 · The Humanitarian</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="read-block">
+      <h4>// The Universal Frequency</h4>
+      <p>
+        The 9 Life Path exists at the end of the numerological cycle — it has absorbed
+        everything the numbers 1 through 8 learned and carries it all.
+        This is why Adele's voice doesn't feel personal — it feels <em>collective</em>.
+        Her specific heartbreak becomes a container for everyone's heartbreak.
+        Her specific joy becomes the shape of joy itself.
+        The 9 doesn't belong to itself. It belongs to everyone who needs it.
+      </p>
+    </div>
+    <div class="read-block">
+      <h4>// The Cost and the Gift</h4>
+      <p>
+        The 9's gift is universal resonance. The cost is that the 9 must <em>live through</em>
+        what it sings about — it cannot perform emotions it hasn't inhabited.
+        This is why Adele's albums arrive in years of personal upheaval.
+        The dissolution is the data. The heartbreak is the material.
+        And she turns it, every time, into something that heals the very wound it comes from.
+      </p>
+    </div>
+  </div>
+
+  <div class="deep-section">
+    <div class="section-header">
+      <div class="section-icon">✦</div>
+      <div class="section-title">Expression 11 · The Master Intuitive</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="read-block cyan-border">
+      <h4>// She Feels It First</h4>
+      <p>
+        The 11 Expression is an <em>emotional antenna</em> of uncommon sensitivity.
+        It doesn't process feelings after they happen — it perceives them as they form,
+        sometimes before the person feeling them has words.
+        This is the technical explanation for why Adele's lyrics feel so specific
+        to experiences she's never had: the 11 doesn't gather data — it receives it.
+        The Maturity Number is also 11 — the signal only deepens.
+      </p>
+    </div>
+  </div>
+
+  <div class="deep-section">
+    <div class="section-header">
+      <div class="section-icon">✦</div>
+      <div class="section-title">Taurus · The Voice of What Lasts</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="read-block purple-border">
+      <h4>// Built for Permanence</h4>
+      <p>
+        Taurus is the sign of permanence, of things built to endure.
+        It is the earth itself — reliable, sensual, immovable when it has decided on something.
+        This is why Adele's voice has weight. Why her ballads feel <em>architectural</em>.
+        Taurus doesn't make music to trend — it makes music to outlast the decade.
+        A Taurus with a 9 Life Path and 11 Expression doesn't create for the moment.
+        It creates for the permanent record of what it means to be human and to love.
+      </p>
+    </div>
+  </div>
+
+  <div class="deep-section">
+    <div class="section-header">
+      <div class="section-icon">✦</div>
+      <div class="section-title">Earth Dragon · 1988</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="read-block">
+      <h4>// Chinese Zodiac Layer</h4>
+      <p>
+        The <em>Earth Dragon</em> is commanding, grounded, and elemental.
+        Where fire Dragons burn spectacularly, the Earth Dragon builds —
+        patiently, powerfully, and with roots that go deep.
+        This placement carries a charisma that doesn't demand the room — it simply has it.
+        The Earth Dragon knows its worth. It doesn't chase relevance.
+        It creates gravity and allows relevance to orbit it.
+        The shadow: Earth Dragon must guard against the weight of its own expectations.
+      </p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="deep-section">
+    <div class="section-label">// Active Archetypes</div>
+    <div class="archetype-panel">
+      <div class="arch-card">
+        <span class="arch-icon">💔</span>
+        <div class="arch-title">The Emotional Architect</div>
+        <div class="arch-desc">9 Life Path + 11 Expression — builds structures out of feeling that strangers walk into and find their own lives waiting inside.</div>
+      </div>
+      <div class="arch-card">
+        <span class="arch-icon">🌍</span>
+        <div class="arch-title">The Universal Mirror</div>
+        <div class="arch-desc">Soul Urge 2 + Life Path 9 — holds the emotional truth of a generation and reflects it back in a voice that cannot be argued with.</div>
+      </div>
+      <div class="arch-card">
+        <span class="arch-icon">🐉</span>
+        <div class="arch-title">The Earth Dragon</div>
+        <div class="arch-desc">1988 Earth Dragon — doesn't arrive asking for the room. Arrives, and the room reorganizes itself. Commanding without commanding.</div>
+      </div>
+      <div class="arch-card">
+        <span class="arch-icon">🌱</span>
+        <div class="arch-title">The Deepening Signal</div>
+        <div class="arch-desc">Maturity 11 — her most powerful transmission is still ahead. The older the vessel, the clearer the frequency it carries.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="deep-section">
+    <div class="section-label">// Shadow → Gift Interface</div>
+    <table class="sg-table">
+      <thead>
+        <tr><th>Shadow Pattern</th><th>Gift Encoded Within</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>9 Life Path must live through dissolution to create from it</td>
+          <td>An authenticity that cannot be faked — the wound is the work, and the work is the healing</td>
+        </tr>
+        <tr>
+          <td>11 Expression absorbs others' emotions to the point of overwhelm</td>
+          <td>The most precise emotional vocabulary in contemporary music — she names what no one else can</td>
+        </tr>
+        <tr>
+          <td>Soul Urge 2 needs deep harmony in relationships and suffers without it</td>
+          <td>Songs that make listeners feel less alone in their most private failures — built from real need</td>
+        </tr>
+        <tr>
+          <td>Birthday 5 restlessness can make stability feel like stagnation</td>
+          <td>A hunger for depth of experience that keeps the art alive across decades and life changes</td>
+        </tr>
+        <tr>
+          <td>Earth Dragon can become too rooted in a particular version of itself</td>
+          <td>Each album is a complete shedding — she returns always changed, always bigger than before</td>
+        </tr>
+        <tr>
+          <td>Taurus can resist change past the point of wisdom</td>
+          <td>A commitment to artistic standards that refuses to release anything that isn't ready — and it always is</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="deep-section">
+    <div class="section-label">// Peak Frequencies</div>
+    <div class="cycles-row">
+      <div class="cycle-card">
+        <div class="cycle-year">Peak Year · 2011</div>
+        <div class="cycle-num">4</div>
+        <div class="cycle-name">The Foundation</div>
+        <div class="cycle-desc">
+          <em>21</em> arrived in a Personal Year 4 — the year of foundation, of building something permanent.
+          It became one of the best-selling albums in history.
+          A 9 Life Path in a 4 year: turning raw loss into structural legacy.
+        </div>
+      </div>
+      <div class="cycle-card">
+        <div class="cycle-year">Next Phase · 2026</div>
+        <div class="cycle-num">11</div>
+        <div class="cycle-name">The Illumination</div>
+        <div class="cycle-desc">
+          2026 runs as a Master 11 Personal Year for Adele — a year of revelation, heightened intuition,
+          and sudden clarity about what is actually real.
+          The signal is sharpening. Whatever comes next will carry the full frequency.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="deep-section">
+    <div class="section-header">
+      <div class="section-icon">✦</div>
+      <div class="section-title">Maturity 11 · The Deepening Channel</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="read-block">
+      <h4>// The Best Is Still Coming</h4>
+      <p>
+        The Maturity Number is activated around age 45–50, when the life begins to align
+        with its deepest intention. For Adele, it's the <em>11</em> — the Master Intuitive.
+        This means: the older she gets, the clearer the signal becomes.
+        She is not at her peak. She is still building toward it.
+        The emotional instrument is deepening with every life chapter —
+        and every life chapter becomes an album that belongs to everyone.
+      </p>
+    </div>
+  </div>
+
+  <div class="activation">
+    <div class="activation-label">// Soul Activation Code</div>
+    <div class="activation-code">9 · 5 · 11 · 2 · 3 · 11</div>
+    <p class="activation-desc">
+      A humanitarian who arrived with the full emotional vocabulary of the human race,
+      an intuitive signal that deepens with age, and a voice built not for the moment
+      but for the permanent record — of heartbreak, of survival, and of what it means to love
+      <em>completely and without apology.</em>
+    </p>
+  </div>
+
+  <div class="footer">
+    <div class="footer-brand">The First Spark</div>
+    <div class="footer-sub">thefirstspark.shop &nbsp;·&nbsp; Reality is programmable. Consciousness is the code.</div>
+  </div>
+
+</div>
+<script>
+  const sf = document.getElementById('starfield');
+  for (let i = 0; i < 180; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = Math.random() * 2.5 + 0.5;
+    s.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${(Math.random()*4+2).toFixed(1)}s;opacity:${Math.random()*0.5+0.1};animation-delay:${(Math.random()*5).toFixed(1)}s;`;
+    sf.appendChild(s);
+  }
+</script>
+</body>
+</html>

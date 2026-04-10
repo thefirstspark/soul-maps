@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soul Map — David Bowie</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0f;
+    --deep: #0d0d1a;
+    --gold: #d4af37;
+    --gold-dim: #a8882a;
+    --gold-glow: rgba(212,175,55,0.15);
+    --cyan: #22d3ee;
+    --cyan-dim: rgba(34,211,238,0.2);
+    --purple: #8b5cf6;
+    --purple-dim: rgba(139,92,246,0.15);
+    --white: #f0ede6;
+    --muted: #7a7a8c;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--black); color: var(--white); font-family: 'Cormorant Garamond', serif; min-height: 100vh; overflow-x: hidden; }
+  #starfield { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; background: radial-gradient(ellipse at 20% 20%, rgba(139,92,246,0.04) 0%, transparent 60%), radial-gradient(ellipse at 80% 80%, rgba(34,211,238,0.04) 0%, transparent 60%), radial-gradient(ellipse at 50% 50%, rgba(212,175,55,0.02) 0%, transparent 70%); }
+  .star { position: absolute; background: white; border-radius: 50%; animation: twinkle var(--dur, 3s) ease-in-out infinite alternate; }
+  @keyframes twinkle { from { opacity: 0.1; } to { opacity: 0.9; } }
+  .page { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 60px 32px; }
+  .header { text-align: center; padding-bottom: 48px; border-bottom: 1px solid rgba(212,175,55,0.2); margin-bottom: 56px; }
+  .brand { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.4em; color: var(--muted); text-transform: uppercase; margin-bottom: 24px; }
+  .subject-name { font-family: 'Cinzel', serif; font-size: clamp(28px, 5vw, 52px); font-weight: 600; color: var(--gold); letter-spacing: 0.08em; line-height: 1.1; text-shadow: 0 0 40px rgba(212,175,55,0.3); margin-bottom: 12px; }
+  .birth-data { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.25em; margin-bottom: 20px; }
+  .cusp-badge { display: inline-block; font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.3em; color: var(--cyan); border: 1px solid rgba(34,211,238,0.3); padding: 4px 14px; margin-bottom: 28px; text-transform: uppercase; }
+  .tagline { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; color: rgba(240,237,230,0.6); letter-spacing: 0.04em; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+  .master-hero { display: flex; flex-direction: column; align-items: center; margin-bottom: 56px; padding: 40px 32px; background: linear-gradient(135deg, rgba(212,175,55,0.06), rgba(139,92,246,0.06)); border: 1px solid rgba(212,175,55,0.25); position: relative; overflow: hidden; }
+  .master-hero::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(212,175,55,0.02) 40px, rgba(212,175,55,0.02) 41px), repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(212,175,55,0.02) 40px, rgba(212,175,55,0.02) 41px); pointer-events: none; }
+  .master-label { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.5em; color: var(--gold-dim); text-transform: uppercase; margin-bottom: 16px; }
+  .master-num { font-family: 'Cinzel', serif; font-size: clamp(72px, 15vw, 120px); font-weight: 900; color: var(--gold); line-height: 0.9; text-shadow: 0 0 60px rgba(212,175,55,0.4), 0 0 120px rgba(212,175,55,0.15); letter-spacing: -0.02em; }
+  .master-title { font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: 0.5em; color: var(--gold-dim); text-transform: uppercase; margin-top: 12px; margin-bottom: 20px; }
+  .master-desc { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; color: rgba(240,237,230,0.7); text-align: center; max-width: 560px; line-height: 1.7; }
+  .section-label { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.5em; color: var(--muted); text-transform: uppercase; margin-bottom: 24px; }
+  .numbers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-bottom: 56px; }
+  .number-card { background: rgba(13,13,26,0.8); border: 1px solid rgba(212,175,55,0.12); padding: 24px 20px; text-align: center; transition: border-color 0.3s, transform 0.3s; }
+  .number-card:hover { border-color: rgba(212,175,55,0.35); transform: translateY(-2px); }
+  .number-card.master-card { border-color: rgba(212,175,55,0.35); background: linear-gradient(135deg, rgba(212,175,55,0.05), rgba(13,13,26,0.8)); }
+  .number-card.cyan-card { border-color: rgba(34,211,238,0.2); }
+  .number-card.purple-card { border-color: rgba(139,92,246,0.2); }
+  .card-num { font-family: 'Cinzel', serif; font-size: 42px; font-weight: 900; line-height: 1; margin-bottom: 8px; }
+  .gold-num { color: var(--gold); text-shadow: 0 0 20px rgba(212,175,55,0.3); }
+  .cyan-num { color: var(--cyan); text-shadow: 0 0 20px rgba(34,211,238,0.3); }
+  .purple-num { color: var(--purple); text-shadow: 0 0 20px rgba(139,92,246,0.3); }
+  .card-title { font-family: 'Space Mono', monospace; font-size: 8px; letter-spacing: 0.35em; color: var(--muted); text-transform: uppercase; margin-bottom: 12px; }
+  .card-keyword { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.2em; color: rgba(240,237,230,0.8); text-transform: uppercase; margin-bottom: 10px; }
+  .card-desc { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; color: rgba(240,237,230,0.5); line-height: 1.5; }
+  .deep-section { margin-bottom: 56px; }
+  .section-header { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
+  .section-icon { font-size: 22px; line-height: 1; }
+  .section-title { font-family: 'Cinzel', serif; font-size: 18px; font-weight: 600; letter-spacing: 0.15em; color: var(--gold); }
+  .section-line { flex: 1; height: 1px; background: linear-gradient(to right, rgba(212,175,55,0.3), transparent); }
+  .read-block { background: rgba(13,13,26,0.6); border-left: 2px solid var(--gold-dim); padding: 24px 28px; margin-bottom: 16px; }
+  .read-block.cyan-border { border-left-color: var(--cyan); }
+  .read-block.purple-border { border-left-color: var(--purple); }
+  .read-block h4 { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.35em; color: var(--gold-dim); text-transform: uppercase; margin-bottom: 12px; }
+  .read-block.cyan-border h4 { color: var(--cyan); opacity: 0.7; }
+  .read-block.purple-border h4 { color: var(--purple); opacity: 0.8; }
+  .read-block p { font-family: 'Cormorant Garamond', serif; font-size: 17px; line-height: 1.8; color: rgba(240,237,230,0.82); }
+  .read-block p em { color: var(--gold); font-style: italic; }
+  .archetype-panel { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 56px; }
+  @media (max-width: 600px) { .archetype-panel { grid-template-columns: 1fr; } }
+  .arch-card { background: rgba(13,13,26,0.8); border: 1px solid rgba(139,92,246,0.2); padding: 28px 24px; }
+  .arch-icon { font-size: 28px; margin-bottom: 12px; display: block; }
+  .arch-title { font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: 0.2em; color: var(--purple); margin-bottom: 10px; text-transform: uppercase; }
+  .arch-desc { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; color: rgba(240,237,230,0.65); line-height: 1.6; }
+  .cycles-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 56px; }
+  @media (max-width: 500px) { .cycles-row { grid-template-columns: 1fr; } }
+  .cycle-card { padding: 24px; border: 1px solid rgba(34,211,238,0.2); background: rgba(34,211,238,0.03); }
+  .cycle-year { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.4em; color: var(--cyan); opacity: 0.7; margin-bottom: 8px; text-transform: uppercase; }
+  .cycle-num { font-family: 'Cinzel', serif; font-size: 40px; font-weight: 900; color: var(--cyan); text-shadow: 0 0 20px rgba(34,211,238,0.3); line-height: 1; margin-bottom: 8px; }
+  .cycle-name { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.25em; color: rgba(240,237,230,0.7); text-transform: uppercase; margin-bottom: 12px; }
+  .cycle-desc { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px; color: rgba(240,237,230,0.55); line-height: 1.6; }
+  .sg-table { width: 100%; border-collapse: collapse; margin-bottom: 56px; }
+  .sg-table th { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase; padding: 14px 20px; text-align: left; border-bottom: 1px solid rgba(212,175,55,0.2); }
+  .sg-table th:first-child { color: var(--cyan); }
+  .sg-table th:last-child { color: var(--gold); }
+  .sg-table td { font-family: 'Cormorant Garamond', serif; font-size: 16px; padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: top; line-height: 1.6; }
+  .sg-table tr:nth-child(odd) td { background: rgba(255,255,255,0.01); }
+  .sg-table td:first-child { color: rgba(34,211,238,0.8); font-style: italic; width: 50%; }
+  .sg-table td:last-child { color: rgba(212,175,55,0.85); }
+  .activation { background: var(--black); border: 1px solid rgba(212,175,55,0.3); padding: 40px; text-align: center; margin-bottom: 56px; position: relative; }
+  .activation::before { content: '✦'; position: absolute; top: -14px; left: 50%; transform: translateX(-50%); font-size: 20px; color: var(--gold); background: var(--black); padding: 0 12px; }
+  .activation-label { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.5em; color: var(--muted); text-transform: uppercase; margin-bottom: 20px; }
+  .activation-code { font-family: 'Space Mono', monospace; font-size: clamp(18px, 4vw, 28px); color: var(--gold); letter-spacing: 0.12em; margin-bottom: 20px; text-shadow: 0 0 30px rgba(212,175,55,0.4); }
+  .activation-desc { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; color: rgba(240,237,230,0.6); line-height: 1.7; max-width: 560px; margin: 0 auto; }
+  .footer { text-align: center; padding-top: 40px; border-top: 1px solid rgba(212,175,55,0.1); }
+  .footer-brand { font-family: 'Cinzel', serif; font-size: 18px; font-weight: 600; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 8px; }
+  .footer-sub { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.4em; color: var(--muted); text-transform: uppercase; }
+  .divider { width: 100%; height: 1px; background: linear-gradient(to right, transparent, rgba(212,175,55,0.25), transparent); margin: 48px 0; }
+  @media (max-width: 600px) { .numbers-grid { grid-template-columns: repeat(2, 1fr); } .page { padding: 40px 20px; } .read-block { padding: 20px; } }
+</style>
+</head>
+<body>
+<div id="starfield"></div>
+<div class="page">
+
+  <div class="header">
+    <div class="brand">The First Spark · Soul Map · Brixton, London</div>
+    <h1 class="subject-name">David Bowie</h1>
+    <div class="birth-data">01 · 08 · 1947 &nbsp;|&nbsp; Capricorn &nbsp;|&nbsp; Brixton, London</div>
+    <div class="cusp-badge">✦ Capricorn · The Alchemist of Form</div>
+    <p class="tagline">He didn't perform different characters.<br>He proved that identity itself is a living, breathing art form — and everyone else is just afraid to pick up the brush.</p>
+  </div>
+
+  <div class="master-hero">
+    <div class="master-label">// Life Path · The Creative Current</div>
+    <div class="master-num">3</div>
+    <div class="master-title">The Alchemist of Form</div>
+    <p class="master-desc">
+      The Life Path 3 is <em>creative expression as a way of being</em> — not a career, not a style,
+      but the operating system itself. Bowie's 3 didn't just make art.
+      It made art that made people question what they were allowed to be.
+      At its highest, the 3 doesn't communicate — it <em>transmits</em>.
+      Something from somewhere else, arriving through a body that learned to get out of the way.
+    </p>
+  </div>
+
+  <div class="deep-section">
+    <div class="section-label">// Core Architecture</div>
+    <div class="numbers-grid">
+      <div class="number-card master-card">
+        <div class="card-num gold-num">3</div>
+        <div class="card-title">Life Path</div>
+        <div class="card-keyword">The Creative</div>
+        <div class="card-desc">Born to express, transmit, and make the invisible visible.</div>
+      </div>
+      <div class="number-card cyan-card">
+        <div class="card-num cyan-num">8</div>
+        <div class="card-title">Birthday</div>
+        <div class="card-keyword">The Powerhouse</div>
+        <div class="card-desc">Commanded every room, every era, every medium he entered.</div>
+      </div>
+      <div class="number-card purple-card">
+        <div class="card-num purple-num">11</div>
+        <div class="card-title">Expression</div>
+        <div class="card-keyword">The Channel</div>
+        <div class="card-desc">His name carried the Master Intuitive signal — received from elsewhere.</div>
+      </div>
+      <div class="number-card cyan-card">
+        <div class="card-num cyan-num">5</div>
+        <div class="card-title">Soul Urge</div>
+        <div class="card-keyword">The Shape-Shifter</div>
+        <div class="card-desc">The soul demanded constant transformation — cages were not an option.</div>
+      </div>
+      <div class="number-card">
+        <div class="card-num gold-num">5</div>
+        <div class="card-title">Personality</div>
+        <div class="card-keyword">The Chameleon</div>
+        <div class="card-desc">The world met someone new every time — and it was always, unmistakably, him.</div>
+      </div>
+      <div class="number-card cyan-card">
+        <div class="card-num cyan-num">5</div>
+        <div class="card-title">Maturity</div>
+        <div class="card-keyword">The Eternal</div>
+        <div class="card-desc">Even at the end: still moving, still becoming, still transmitting.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="deep-section">
+    <div class="section-header">
+      <div class="section-icon">✦</div>
+      <div class="section-title">Life Path 3 · The Alchemist</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="read-block">
+      <h4>// Creative Expression as Operating System</h4>
+      <p>
+        A Life Path 3 in its highest form doesn't create for an audience — it creates because
+        creation is the only honest response to being alive. Bowie's 3 was disciplined where most 3s scatter:
+        he treated reinvention not as whim but as <em>obligation</em>.
+        Each era wasn't a costume. It was a new answer to the question:
+        what does consciousness look like when it refuses to settle?
+      </p>
+    </div>
+    <div class="read-block">
+      <h4>// The Triple 5 Signature</h4>
+      <p>
+        Soul Urge, Personality, and Maturity all resolve to 5 — the number of freedom, transformation,
+        and motion. This is extraordinarily rare. It means that at every layer —
+        what he wanted, how the world saw him, where he was headed —
+        the answer was always the same: <em>never stop moving, never let yourself be fixed</em>.
+        The triple 5 is not restlessness. It is a vow.
+      </p>
+    </div>
+  </div>
+
+  <div class="deep-section">
+    <div class="section-header">
+      <div class="section-icon">✦</div>
+      <div class="section-title">Expression 11 · The Channel</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="read-block cyan-border">
+      <h4>// Receiving From Elsewhere</h4>
+      <p>
+        The 11 Expression means the name carries a <em>master intuitive frequency</em>.
+        People with 11 Expressions don't just communicate — they transmit.
+        Something moves through them that they themselves don't always have language for.
+        This is why people who met Bowie described the experience as uncanny.
+        It wasn't charisma in the ordinary sense.
+        It was the feeling of being in the presence of a signal from somewhere you couldn't name.
+      </p>
+    </div>
+  </div>
+
+  <div class="deep-section">
+    <div class="section-header">
+      <div class="section-icon">✦</div>
+      <div class="section-title">Capricorn · The Mountain Redrawn</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="read-block purple-border">
+      <h4>// The Achiever Who Redrew the Summit</h4>
+      <p>
+        Capricorn climbs. It is methodical, strategic, and enduring.
+        Most Capricorns climb the established mountain.
+        Bowie's Capricorn — fused with a triple 5 and an 11 Expression —
+        looked at the mountain, found it insufficient, and built a different one.
+        Then climbed that. Then built another.
+        <em>Capricorn at this frequency doesn't conquer what exists — it creates what should exist and then masters it.</em>
+      </p>
+    </div>
+  </div>
+
+  <div class="deep-section">
+    <div class="section-header">
+      <div class="section-icon">✦</div>
+      <div class="section-title">Fire Pig · 1947</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="read-block">
+      <h4>// Chinese Zodiac Layer</h4>
+      <p>
+        The <em>Fire Pig</em> is one of the most magnetic archetypes in the Chinese zodiac.
+        Fire amplifies the Pig's already generous, pleasure-seeking nature into something that burns —
+        passionately, visibly, and on its own terms.
+        The Fire Pig is not here to be modest. It arrives fully, commits completely,
+        and tends to set everything around it ablaze with enthusiasm.
+        The gift: infectious creative energy that makes everyone around them more alive.
+        The shadow: a fire this bright can exhaust the vessel that carries it.
+      </p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="deep-section">
+    <div class="section-label">// Active Archetypes</div>
+    <div class="archetype-panel">
+      <div class="arch-card">
+        <span class="arch-icon">🌌</span>
+        <div class="arch-title">The Transmitter</div>
+        <div class="arch-desc">11 Expression + Life Path 3 — received signals from somewhere beyond and translated them into something humans could feel in their bones.</div>
+      </div>
+      <div class="arch-card">
+        <span class="arch-icon">🎭</span>
+        <div class="arch-title">The Shape-Shifter</div>
+        <div class="arch-desc">Triple 5 — refused every fixed identity as an insult to the infinite. Each era was not a persona but an honest answer to who he was becoming.</div>
+      </div>
+      <div class="arch-card">
+        <span class="arch-icon">🏔️</span>
+        <div class="arch-title">The Pioneer</div>
+        <div class="arch-desc">Capricorn + 8 Birthday — built new territories in culture and then mastered them before anyone else understood what he'd done.</div>
+      </div>
+      <div class="arch-card">
+        <span class="arch-icon">⭐</span>
+        <div class="arch-title">The Last Transmission</div>
+        <div class="arch-desc">Fire Pig + Maturity 5 — Blackstar, released 2 days before his death, was not a farewell. It was a final signal, designed to arrive after he left.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="deep-section">
+    <div class="section-label">// Shadow → Gift Interface</div>
+    <table class="sg-table">
+      <thead>
+        <tr><th>Shadow Pattern</th><th>Gift Encoded Within</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Triple 5 makes sustained stillness feel like suffocation</td>
+          <td>A body of work spanning five decades that never calcified — always alive, always evolving</td>
+        </tr>
+        <tr>
+          <td>11 Expression can feel alien in ordinary social contexts</td>
+          <td>An otherworldly presence that made people feel they were witnessing something rare and unrepeatable</td>
+        </tr>
+        <tr>
+          <td>Life Path 3 scatters without discipline</td>
+          <td>Bowie's discipline was total — he channeled the 3's vastness into precision, era after era</td>
+        </tr>
+        <tr>
+          <td>8 Birthday carries the weight of command and legacy</td>
+          <td>A gravitational authority that bent entire genres toward him without effort</td>
+        </tr>
+        <tr>
+          <td>Fire Pig burns intensely enough to consume the self</td>
+          <td>Creative generosity that left audiences feeling more alive than when they arrived</td>
+        </tr>
+        <tr>
+          <td>Capricorn can mistake the climb for the destination</td>
+          <td>The understanding, accumulated over 69 years, that the summit is not the point — the ascent is</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="deep-section">
+    <div class="section-label">// Defining Frequencies</div>
+    <div class="cycles-row">
+      <div class="cycle-card">
+        <div class="cycle-year">Peak Year · 1972</div>
+        <div class="cycle-num">3</div>
+        <div class="cycle-name">The Emergence</div>
+        <div class="cycle-desc">
+          A Personal Year 3 — the year of creative emergence. Ziggy Stardust arrived and
+          nothing in culture was the same after. Not a debut. A <em>declaration</em>:
+          this is what it looks like when someone decides to be entirely themselves.
+        </div>
+      </div>
+      <div class="cycle-card">
+        <div class="cycle-year">Final Year · 2016</div>
+        <div class="cycle-num">8</div>
+        <div class="cycle-name">The Last Signal</div>
+        <div class="cycle-desc">
+          A Personal Year 8 — the year of legacy and completion.
+          <em>Blackstar</em> was released January 8th, 2016. He died January 10th.
+          The signal was sent before the vessel departed. That is not coincidence.
+          That is a master of his craft completing the work.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="deep-section">
+    <div class="section-header">
+      <div class="section-icon">✦</div>
+      <div class="section-title">Maturity 5 · The Eternal Motion</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="read-block">
+      <h4>// He Never Stopped</h4>
+      <p>
+        The Maturity Number activates around 45–50 and reveals the life's deepest intention.
+        For Bowie, it was the 5 — <em>eternal motion, eternal becoming</em>.
+        This is why his later work — Outside, Hours, Reality, Blackstar — was not nostalgic.
+        It was not a greatest-hits version of himself. It kept moving.
+        The Maturity 5 doesn't arrive at a destination. It confirms that moving was always the destination.
+        And Bowie confirmed it until the very last note.
+      </p>
+    </div>
+  </div>
+
+  <div class="activation">
+    <div class="activation-label">// Soul Activation Code</div>
+    <div class="activation-code">3 · 8 · 11 · 5 · 5 · 5</div>
+    <p class="activation-desc">
+      A channel for something that arrives from elsewhere, wearing the face of a Capricorn who climbed mountains
+      he built himself, and refused — at every turn, across every decade — to be anything less than
+      <em>completely, dangerously, beautifully in motion.</em>
+    </p>
+  </div>
+
+  <div class="footer">
+    <div class="footer-brand">The First Spark</div>
+    <div class="footer-sub">thefirstspark.shop &nbsp;·&nbsp; Reality is programmable. Consciousness is the code.</div>
+  </div>
+
+</div>
+<script>
+  const sf = document.getElementById('starfield');
+  for (let i = 0; i < 180; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = Math.random() * 2.5 + 0.5;
+    s.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${(Math.random()*4+2).toFixed(1)}s;opacity:${Math.random()*0.5+0.1};animation-delay:${(Math.random()*5).toFixed(1)}s;`;
+    sf.appendChild(s);
+  }
+</script>
+</body>
+</html>
