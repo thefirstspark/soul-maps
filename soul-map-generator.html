@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soul Map Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 50%, #16213e 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 40px;
+            background: linear-gradient(135deg, #ffc857 0%, #ffb744 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+        }
+
+        .form-section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 200, 87, 0.3);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .form-section h2 {
+            color: #ffc857;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            color: #ffc857;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        input, select {
+            padding: 12px;
+            border: 1px solid rgba(255, 200, 87, 0.5);
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            font-size: 14px;
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #ffc857;
+            box-shadow: 0 0 10px rgba(255, 200, 87, 0.3);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+        }
+
+        .btn-generate {
+            background: #ffc857;
+            color: #1a1a2e;
+            flex: 1;
+        }
+
+        .btn-generate:hover {
+            background: #ffb744;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 200, 87, 0.3);
+        }
+
+        .btn-generate:active {
+            transform: translateY(0);
+        }
+
+        .btn-reset {
+            background: transparent;
+            color: #ffc857;
+            border: 2px solid #ffc857;
+        }
+
+        .btn-reset:hover {
+            background: rgba(255, 200, 87, 0.1);
+        }
+
+        .results {
+            display: none;
+        }
+
+        .results.show {
+            display: block;
+        }
+
+        .soul-map {
+            background: linear-gradient(135deg, rgba(255, 200, 87, 0.15) 0%, rgba(255, 200, 87, 0.05) 100%);
+            border: 2px solid rgba(255, 200, 87, 0.5);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 20px;
+        }
+
+        .soul-map h2 {
+            color: #ffc857;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 28px;
+        }
+
+        .map-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .map-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 200, 87, 0.4);
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .map-card h3 {
+            color: #ffc857;
+            margin-bottom: 15px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .map-card p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        .map-value {
+            color: #ffc857;
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .zodiac-sign {
+            display: inline-block;
+            background: rgba(255, 200, 87, 0.2);
+            border: 1px solid #ffc857;
+            padding: 6px 12px;
+            border-radius: 20px;
+            color: #ffc857;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .interpretation {
+            background: rgba(255, 200, 87, 0.08);
+            border-left: 4px solid #ffc857;
+            padding: 15px;
+            border-radius: 4px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .loading {
+            text-align: center;
+            color: #ffc857;
+            font-size: 18px;
+            padding: 20px;
+        }
+
+        .spinner {
+            border: 3px solid rgba(255, 200, 87, 0.2);
+            border-top: 3px solid #ffc857;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .download-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .btn-download {
+            background: #ffc857;
+            color: #1a1a2e;
+            padding: 12px 30px;
+        }
+
+        .btn-download:hover {
+            background: #ffb744;
+        }
+
+        .error-message {
+            background: rgba(255, 107, 107, 0.2);
+            border: 2px solid #ff6b6b;
+            color: #ff9999;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 28px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🗺️ Your Soul Map</h1>
+            <p>Discover your cosmic blueprint through astrology, numerology, and sacred geometry</p>
+        </div>
+
+        <!-- Form Section -->
+        <div class="form-section">
+            <h2>Create Your Soul Map</h2>
+            <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 20px;">Enter your birth information to generate your personalized spiritual profile.</p>
+
+            <div id="error-container"></div>
+
+            <form id="soul-map-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="birth-date">Birth Date *</label>
+                        <input type="date" id="birth-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="birth-time">Birth Time (if known)</label>
+                        <input type="time" id="birth-time">
+                    </div>
+                    <div class="form-group">
+                        <label for="birth-city">Birth City/Country *</label>
+                        <input type="text" id="birth-city" placeholder="e.g., New York, USA" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Your Name (optional)</label>
+                        <input type="text" id="name" placeholder="What's your name?">
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="btn-generate">Generate My Soul Map ✨</button>
+                    <button type="reset" class="btn-reset">Clear</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Results Section -->
+        <div id="results" class="results">
+            <div class="soul-map">
+                <h2>Your Cosmic Blueprint</h2>
+
+                <div class="map-grid">
+                    <!-- Sun Sign -->
+                    <div class="map-card">
+                        <h3>☀️ Your Sun Sign</h3>
+                        <div class="map-value" id="sun-sign">Calculating...</div>
+                        <div class="interpretation">
+                            Your core identity and life purpose. This is your essential self and how you shine in the world.
+                        </div>
+                    </div>
+
+                    <!-- Moon Sign -->
+                    <div class="map-card">
+                        <h3>🌙 Your Moon Sign</h3>
+                        <div class="map-value" id="moon-sign">Calculating...</div>
+                        <div class="interpretation">
+                            Your emotional nature and inner world. How you feel, process emotions, and seek comfort.
+                        </div>
+                    </div>
+
+                    <!-- Rising Sign -->
+                    <div class="map-card">
+                        <h3>🌅 Your Rising Sign</h3>
+                        <div class="map-value" id="rising-sign">Calculating...</div>
+                        <div class="interpretation">
+                            Your outward appearance and first impression. How others perceive you at first glance.
+                        </div>
+                    </div>
+
+                    <!-- Life Path Number -->
+                    <div class="map-card">
+                        <h3>🔢 Life Path Number</h3>
+                        <div class="map-value" id="life-path">Calculating...</div>
+                        <div class="interpretation" id="life-path-meaning">
+                            Your core numerological destiny and life lessons.
+                        </div>
+                    </div>
+
+                    <!-- Expression Number -->
+                    <div class="map-card">
+                        <h3>💬 Expression Number</h3>
+                        <div class="map-value" id="expression">Calculating...</div>
+                        <div class="interpretation">
+                            How you naturally express yourself and communicate with the world.
+                        </div>
+                    </div>
+
+                    <!-- Soul Urge -->
+                    <div class="map-card">
+                        <h3>✨ Soul Urge Number</h3>
+                        <div class="map-value" id="soul-urge">Calculating...</div>
+                        <div class="interpretation">
+                            Your deepest desires and what your soul truly craves in this lifetime.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Summary Section -->
+                <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 200, 87, 0.3); border-radius: 8px; padding: 20px; margin-top: 20px;">
+                    <h3 style="color: #ffc857; margin-bottom: 15px;">Your Spiritual Profile</h3>
+                    <p id="spiritual-summary" style="color: rgba(255, 255, 255, 0.85); line-height: 1.8;">
+                        Loading your unique spiritual signature...
+                    </p>
+                </div>
+
+                <div class="download-section">
+                    <button type="button" class="btn-download" onclick="downloadSoulMap()">📥 Download Your Soul Map</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const ZODIAC_SIGNS = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
+
+        const LIFE_PATH_MEANINGS = {
+            1: 'The Leader - Independent, ambitious, pioneering. You\'re meant to blaze new trails.',
+            2: 'The Peacemaker - Diplomatic, sensitive, cooperative. Your gift is bringing harmony.',
+            3: 'The Creator - Expressive, communicative, artistic. You\'re here to inspire.',
+            4: 'The Builder - Practical, reliable, grounded. You create solid foundations.',
+            5: 'The Adventurer - Curious, dynamic, versatile. Freedom and change are your teachers.',
+            6: 'The Nurturer - Caring, responsible, family-oriented. Love is your greatest strength.',
+            7: 'The Seeker - Spiritual, analytical, introspective. Truth is your quest.',
+            8: 'The Visionary - Ambitious, powerful, materially aware. Manifestation is your gift.',
+            9: 'The Humanitarian - Compassionate, universal, transformative. Service to humanity.',
+            11: 'The Illuminator - Intuitive, inspiring, visionary. You bring light to the world.',
+            22: 'The Master Builder - Visionary planner with practical power. Create lasting legacy.',
+            33: 'The Master Teacher - Unconditional love, spiritual mastery. Guide humanity.'
+        };
+
+        document.getElementById('soul-map-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const birthDate = document.getElementById('birth-date').value;
+            const birthTime = document.getElementById('birth-time').value;
+            const birthCity = document.getElementById('birth-city').value;
+            const name = document.getElementById('name').value || 'Dear Soul';
+
+            if (!birthDate || !birthCity) {
+                showError('Please fill in birth date and city.');
+                return;
+            }
+
+            // Show loading
+            document.getElementById('results').classList.add('show');
+            document.getElementById('results').innerHTML = '<div class="loading"><div class="spinner"></div>Generating your cosmic blueprint...</div>';
+
+            // Simulate processing
+            setTimeout(() => {
+                generateSoulMap(birthDate, birthTime, birthCity, name);
+            }, 1500);
+        });
+
+        function generateSoulMap(birthDate, birthTime, birthCity, name) {
+            const date = new Date(birthDate);
+            const month = date.getMonth();
+            const day = date.getDate();
+
+            // Sun Sign calculation (simplified)
+            const sunSign = calculateZodiacSign(month, day);
+
+            // Moon Sign (random for demo - in production use accurate calculations)
+            const moonSignIndex = (Math.floor(Math.random() * 12) + (month + 3)) % 12;
+            const moonSign = ZODIAC_SIGNS[moonSignIndex];
+
+            // Rising Sign (random for demo)
+            const risingSignIndex = (Math.floor(Math.random() * 12) + (month + 6)) % 12;
+            const risingSign = ZODIAC_SIGNS[risingSignIndex];
+
+            // Life Path Number
+            const lifePath = calculateLifePath(birthDate);
+
+            // Expression Number (from name)
+            const expression = name ? calculateExpressionNumber(name) : calculateLifePath(birthDate);
+
+            // Soul Urge Number
+            const soulUrge = (lifePath + expression - 1) % 9 + 1;
+
+            // Update results
+            document.getElementById('sun-sign').textContent = sunSign;
+            document.getElementById('moon-sign').textContent = moonSign;
+            document.getElementById('rising-sign').textContent = risingSign;
+            document.getElementById('life-path').textContent = lifePath;
+            document.getElementById('expression').textContent = expression;
+            document.getElementById('soul-urge').textContent = soulUrge;
+
+            // Update life path meaning
+            document.getElementById('life-path-meaning').innerHTML = LIFE_PATH_MEANINGS[lifePath] || `Life Path ${lifePath} brings unique gifts and lessons.`;
+
+            // Generate summary
+            const summary = `
+                <strong>${name}</strong>, your cosmic blueprint reveals:<br><br>
+                ✨ You embody the ${sunSign} spirit - your core essence and purpose<br>
+                🌙 With ${moonSign} sensitivity - your emotional and intuitive nature<br>
+                🌅 Presenting as ${risingSign} - how the world first perceives you<br><br>
+                Your numerological essence is Life Path ${lifePath}, meaning ${LIFE_PATH_MEANINGS[lifePath].split(' - ')[0]}. Your expression number of ${expression} reveals how you naturally communicate and share your gifts with the world. Your soul urge of ${soulUrge} shows what your deeper self truly craves.<br><br>
+                This unique combination makes you a powerful force for ${calculatePurpose(lifePath)}.
+            `;
+            document.getElementById('spiritual-summary').innerHTML = summary;
+        }
+
+        function calculateZodiacSign(month, day) {
+            if ((month === 2 && day >= 20) || (month === 3 && day <= 20)) return 'Aries';
+            if ((month === 3 && day >= 21) || (month === 4 && day <= 19)) return 'Taurus';
+            if ((month === 4 && day >= 20) || (month === 5 && day <= 20)) return 'Gemini';
+            if ((month === 5 && day >= 21) || (month === 6 && day <= 20)) return 'Cancer';
+            if ((month === 6 && day >= 21) || (month === 7 && day <= 22)) return 'Leo';
+            if ((month === 7 && day >= 23) || (month === 8 && day <= 22)) return 'Virgo';
+            if ((month === 8 && day >= 23) || (month === 9 && day <= 22)) return 'Libra';
+            if ((month === 9 && day >= 23) || (month === 10 && day <= 22)) return 'Scorpio';
+            if ((month === 10 && day >= 23) || (month === 11 && day <= 21)) return 'Sagittarius';
+            if ((month === 11 && day >= 22) || (month === 0 && day <= 19)) return 'Capricorn';
+            if ((month === 0 && day >= 20) || (month === 1 && day <= 18)) return 'Aquarius';
+            return 'Pisces';
+        }
+
+        function calculateLifePath(birthDate) {
+            const date = new Date(birthDate);
+            const year = date.getFullYear();
+            const month = date.getMonth() + 1;
+            const day = date.getDate();
+
+            let sum = year + month + day;
+            while (sum > 9 && sum !== 11 && sum !== 22 && sum !== 33) {
+                sum = Math.floor(sum / 10) + (sum % 10);
+            }
+            return sum;
+        }
+
+        function calculateExpressionNumber(name) {
+            const values = { a: 1, b: 2, c: 3, d: 4, e: 5, f: 6, g: 7, h: 8, i: 9, j: 1, k: 2, l: 3, m: 4, n: 5, o: 6, p: 7, q: 8, r: 9, s: 1, t: 2, u: 3, v: 4, w: 5, x: 6, y: 7, z: 8 };
+            let sum = 0;
+            name.toLowerCase().split('').forEach(letter => {
+                if (values[letter]) sum += values[letter];
+            });
+            while (sum > 9) {
+                sum = Math.floor(sum / 10) + (sum % 10);
+            }
+            return sum || 1;
+        }
+
+        function calculatePurpose(lifePath) {
+            const purposes = {
+                1: 'leadership and independence',
+                2: 'balance and cooperation',
+                3: 'creative expression',
+                4: 'building solid foundations',
+                5: 'dynamic transformation',
+                6: 'healing and nurturing',
+                7: 'spiritual evolution',
+                8: 'material manifestation',
+                9: 'universal compassion'
+            };
+            return purposes[lifePath] || 'spiritual growth';
+        }
+
+        function downloadSoulMap() {
+            const sunSign = document.getElementById('sun-sign').textContent;
+            const moonSign = document.getElementById('moon-sign').textContent;
+            const risingSign = document.getElementById('rising-sign').textContent;
+            const lifePath = document.getElementById('life-path').textContent;
+            const summary = document.getElementById('spiritual-summary').textContent;
+
+            const content = `
+YOUR SOUL MAP 🗺️
+================
+
+Sun Sign: ${sunSign}
+Moon Sign: ${moonSign}
+Rising Sign: ${risingSign}
+Life Path: ${lifePath}
+
+${summary}
+
+Generated with love at The First Spark ✨
+www.thefirstspark.shop
+            `;
+
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
+            element.setAttribute('download', 'my-soul-map.txt');
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+
+        function showError(message) {
+            const errorContainer = document.getElementById('error-container');
+            errorContainer.innerHTML = `<div class="error-message">${message}</div>`;
+            setTimeout(() => {
+                errorContainer.innerHTML = '';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

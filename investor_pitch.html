@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>First Spark — Investor One-Pager</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    @page {
+      size: letter portrait;
+      margin: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: #1a1a2e;
+      width: 8.5in;
+      min-height: 11in;
+      padding: .45in .5in .4in;
+      font-size: 9.5pt;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 3px solid #1a1a2e;
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+    }
+    .brand h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26pt;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      line-height: 1;
+      color: #1a1a2e;
+    }
+    .brand .tagline {
+      font-size: 9pt;
+      color: #7c3aed;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 4px;
+      font-weight: 600;
+    }
+    .header-right {
+      text-align: right;
+      font-size: 8pt;
+      color: #666;
+      line-height: 1.7;
+    }
+    .header-right strong {
+      color: #1a1a2e;
+      font-size: 9pt;
+    }
+
+    /* ── HOOK ── */
+    .hook {
+      background: #1a1a2e;
+      color: #fff;
+      padding: 14px 20px;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+    .hook p {
+      font-family: 'Playfair Display', serif;
+      font-size: 13pt;
+      font-style: italic;
+      line-height: 1.5;
+      color: #f5d060;
+    }
+    .hook span {
+      font-size: 8.5pt;
+      color: #aaa;
+      font-family: 'Inter', sans-serif;
+      font-style: normal;
+      letter-spacing: 1px;
+    }
+
+    /* ── 3-COLUMN GRID ── */
+    .grid3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .card {
+      border: 1.5px solid #e5e7eb;
+      padding: 13px 14px;
+    }
+    .card .card-label {
+      font-size: 7pt;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #7c3aed;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .card .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 11pt;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 6px;
+    }
+    .card p {
+      font-size: 8.5pt;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    /* ── NUMBERS ROW ── */
+    .numbers {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .num-box {
+      border: 1.5px solid #1a1a2e;
+      text-align: center;
+      padding: 10px 6px;
+    }
+    .num-box .big {
+      font-family: 'Playfair Display', serif;
+      font-size: 18pt;
+      font-weight: 900;
+      color: #7c3aed;
+      line-height: 1;
+    }
+    .num-box .lbl {
+      font-size: 7pt;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #666;
+      margin-top: 3px;
+    }
+
+    /* ── TWO-COLUMN LOWER ── */
+    .grid2 {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .section-label {
+      font-size: 7pt;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #7c3aed;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .use-list {
+      list-style: none;
+      padding: 0;
+    }
+    .use-list li {
+      font-size: 8.5pt;
+      color: #333;
+      line-height: 1.6;
+      padding-left: 14px;
+      position: relative;
+    }
+    .use-list li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: #7c3aed;
+    }
+
+    .deal-box {
+      background: #f5f3ff;
+      border: 2px solid #7c3aed;
+      padding: 14px 16px;
+    }
+    .deal-box .deal-amt {
+      font-family: 'Playfair Display', serif;
+      font-size: 22pt;
+      font-weight: 900;
+      color: #1a1a2e;
+      line-height: 1;
+    }
+    .deal-box .deal-sub {
+      font-size: 8pt;
+      color: #555;
+      margin-top: 4px;
+      line-height: 1.6;
+    }
+    .deal-box .min-check {
+      margin-top: 10px;
+      font-size: 9pt;
+      font-weight: 600;
+      color: #7c3aed;
+    }
+
+    /* ── TESTIMONIAL ── */
+    .testimonial {
+      border-left: 4px solid #f5d060;
+      padding: 10px 14px;
+      background: #fffbeb;
+      margin-bottom: 16px;
+    }
+    .testimonial p {
+      font-style: italic;
+      font-size: 8.5pt;
+      color: #555;
+      line-height: 1.65;
+    }
+    .testimonial .attr {
+      font-size: 7.5pt;
+      font-weight: 600;
+      color: #1a1a2e;
+      margin-top: 5px;
+      font-style: normal;
+    }
+
+    /* ── MARKET ── */
+    .market-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .mkt {
+      text-align: center;
+      border-top: 3px solid #1a1a2e;
+      padding-top: 8px;
+    }
+    .mkt .big {
+      font-family: 'Playfair Display', serif;
+      font-size: 16pt;
+      font-weight: 900;
+      color: #1a1a2e;
+    }
+    .mkt p {
+      font-size: 7.5pt;
+      color: #555;
+      line-height: 1.5;
+      margin-top: 2px;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      border-top: 1.5px solid #e5e7eb;
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer .cta {
+      font-size: 9pt;
+      font-weight: 600;
+      color: #7c3aed;
+    }
+    .footer .contact {
+      font-size: 8pt;
+      color: #555;
+      text-align: right;
+      line-height: 1.7;
+    }
+    .footer .contact strong {
+      color: #1a1a2e;
+    }
+
+    /* ── PRINT ── */
+    @media print {
+      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="brand">
+      <h1>First Spark</h1>
+      <div class="tagline">Consciousness Network · Soul Maps</div>
+    </div>
+    <div class="header-right">
+      <strong>Early Investor Round — 2025</strong><br>
+      Personalized Digital Wellness<br>
+      firstsparknetwork.com
+    </div>
+  </div>
+
+  <!-- HOOK -->
+  <div class="hook">
+    <p>"Every person on earth wants to know why they're here.<br>We hand them the answer — beautifully wrapped — for $33."</p>
+    <span>zero inventory · zero shipping · infinite scale</span>
+  </div>
+
+  <!-- OPPORTUNITY / PRODUCT / EDGE -->
+  <div class="grid3">
+    <div class="card">
+      <div class="card-label">The Problem</div>
+      <div class="card-title">People Are Lost & Hungry for Meaning</div>
+      <p>65% of Americans say they feel disconnected from their life's purpose. The therapy waitlist is 6 months long. The self-help section is 10,000 books long. Nobody is giving them a <em>personal</em> answer.</p>
+    </div>
+    <div class="card">
+      <div class="card-label">The Product</div>
+      <div class="card-title">Soul Maps — Your Numbers, Your Story</div>
+      <p>A stunning, personalized digital report combining numerology, astrology, and life-path analysis — delivered in under 48 hours. Each map is handcrafted for one person and one person only. Clients share them like trophies.</p>
+    </div>
+    <div class="card">
+      <div class="card-label">The Edge</div>
+      <div class="card-title">Digital Product. Near-Zero Cost of Goods.</div>
+      <p>$33 retail · ~$2 in tools/delivery costs. That's a <strong>94% gross margin</strong>. No warehouse. No returns. No expiration date. One sale = one happy customer who tells three friends.</p>
+    </div>
+  </div>
+
+  <!-- NUMBERS -->
+  <div class="numbers">
+    <div class="num-box">
+      <div class="big">$5.6T</div>
+      <div class="lbl">Global Wellness Market</div>
+    </div>
+    <div class="num-box">
+      <div class="big">42%</div>
+      <div class="lbl">Spiritual Wellness Growth (5yr)</div>
+    </div>
+    <div class="num-box">
+      <div class="big">94%</div>
+      <div class="lbl">Gross Margin Per Map</div>
+    </div>
+    <div class="num-box">
+      <div class="big">$33</div>
+      <div class="lbl">Price Per Soul Map</div>
+    </div>
+    <div class="num-box">
+      <div class="big">[X]</div>
+      <div class="lbl">Maps Delivered to Date</div>
+    </div>
+  </div>
+
+  <!-- USE OF FUNDS + DEAL -->
+  <div class="grid2">
+    <div>
+      <div class="section-label">Where Your Investment Goes</div>
+      <ul class="use-list">
+        <li><strong>Paid Advertising</strong> — Facebook/Instagram campaigns targeting the 35–65 wellness audience (highest spend, highest conversion)</li>
+        <li><strong>Automation & Scale</strong> — Semi-automate map generation so one operator can fulfill 10× current volume</li>
+        <li><strong>Gift & Bundle Offers</strong> — "Birthday gift" and "couples reading" packages at $55–$99 to raise average order value</li>
+        <li><strong>Affiliate Program</strong> — Recruit 50 wellness influencers on 20% commission — zero cost until they convert</li>
+        <li><strong>Platform Polish</strong> — Online ordering, instant delivery, review capture to build social proof flywheel</li>
+      </ul>
+    </div>
+    <div>
+      <div class="section-label">The Deal</div>
+      <div class="deal-box">
+        <div class="deal-amt">$200,000</div>
+        <div class="deal-sub">Total raise · Early investor round<br>Terms: <strong>[revenue share / equity — TBD]</strong></div>
+        <div class="min-check">Minimum check: $[_____]</div>
+        <div style="margin-top:12px; font-size:8pt; color:#555; line-height:1.65;">
+          Funds deployed within 30 days of close.<br>
+          Monthly reporting provided to all investors.<br>
+          <strong>Target payback: 18–24 months.</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TESTIMONIAL -->
+  <div class="testimonial">
+    <p>"I've never had something describe me so accurately. I sent it to my mom and she cried. I've already recommended it to four people."</p>
+    <div class="attr">— Recent Soul Map client, Age 26</div>
+  </div>
+
+  <!-- MARKET STATS -->
+  <div class="market-strip">
+    <div class="mkt">
+      <div class="big">2.9B</div>
+      <p>People who actively seek spiritual content online every month (Google/Meta data)</p>
+    </div>
+    <div class="mkt">
+      <div class="big">1 in 4</div>
+      <p>Americans say they've paid for a psychic, astrology, or numerology reading in the past year</p>
+    </div>
+    <div class="mkt">
+      <div class="big">Co-Star</div>
+      <p>Astrology app raised $15M and hit 20M users. We deliver what they can't: a reading made <em>for you</em>.</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="cta">Ready to be in before the world finds out? Let's talk today.</div>
+    <div class="contact">
+      <strong>[Your Name]</strong><br>
+      Founder, First Spark Consciousness Network<br>
+      [phone] · [email]
+    </div>
+  </div>
+
+</body>
+</html>
