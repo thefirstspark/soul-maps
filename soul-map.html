@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Soul Map — Find Your Way Home</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --deep: #0a0612;
+      --midnight: #110d1e;
+      --plum: #1e1035;
+      --violet: #6b3fa0;
+      --lavender: #a87fd4;
+      --gold: #e8c97e;
+      --gold-light: #f5e3b0;
+      --cream: #fdf6ee;
+      --muted: #c2b8d0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: var(--deep);
+      color: var(--cream);
+      overflow-x: hidden;
+    }
+
+    /* ── Stars canvas ── */
+    #stars {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 5vw;
+      backdrop-filter: blur(12px);
+      background: rgba(10, 6, 18, 0.7);
+      border-bottom: 1px solid rgba(168, 127, 212, 0.15);
+    }
+
+    .logo {
+      font-size: 1.15rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2.2rem;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.25s;
+    }
+
+    nav a:hover { color: var(--gold-light); }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 5vw 5rem;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.4rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      line-height: 1.12;
+      font-weight: 400;
+      margin-bottom: 1.6rem;
+      background: linear-gradient(135deg, #f5e3b0 0%, #e8c97e 40%, #c9a0dc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      max-width: 560px;
+      line-height: 1.75;
+      color: var(--muted);
+      font-size: 1.08rem;
+      margin-bottom: 2.8rem;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 0.9rem 2.4rem;
+      background: linear-gradient(135deg, var(--violet), #9b59c8);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 60px;
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 28px rgba(107, 63, 160, 0.45);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 40px rgba(107, 63, 160, 0.7);
+    }
+
+    .btn-ghost {
+      display: inline-block;
+      padding: 0.9rem 2.4rem;
+      border: 1px solid rgba(168, 127, 212, 0.5);
+      color: var(--lavender);
+      text-decoration: none;
+      border-radius: 60px;
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-left: 1rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--lavender);
+      color: var(--cream);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(168, 127, 212, 0.5);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      animation: float 2.8s ease-in-out infinite;
+    }
+
+    .scroll-hint svg { opacity: 0.6; }
+
+    @keyframes float {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ── Section base ── */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 6rem 5vw;
+    }
+
+    .section-label {
+      display: block;
+      text-align: center;
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 400;
+      line-height: 1.25;
+      color: var(--cream);
+      margin-bottom: 1.2rem;
+    }
+
+    .section-sub {
+      text-align: center;
+      max-width: 520px;
+      margin: 0 auto 4rem;
+      line-height: 1.75;
+      color: var(--muted);
+    }
+
+    /* ── Divider ── */
+    .divider {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 0 auto 1.5rem;
+    }
+
+    /* ── What is section ── */
+    .what-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      max-width: 900px;
+      margin: 0 auto;
+      align-items: center;
+    }
+
+    .what-image {
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle at 40% 40%, #3a1a6e 0%, #1a0a35 60%, #0a0612 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 80px rgba(107, 63, 160, 0.3);
+      border: 1px solid rgba(168, 127, 212, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mandala {
+      width: 75%;
+      opacity: 0.55;
+      animation: spin 60s linear infinite;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .what-text p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 1.2rem;
+    }
+
+    /* ── Offerings ── */
+    .offerings { background: linear-gradient(180deg, var(--deep) 0%, var(--midnight) 50%, var(--deep) 100%); }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.6rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: rgba(30, 16, 53, 0.6);
+      border: 1px solid rgba(168, 127, 212, 0.18);
+      border-radius: 1.5rem;
+      padding: 2.4rem 2rem;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(107, 63, 160, 0.25);
+      border-color: rgba(168, 127, 212, 0.4);
+    }
+
+    .card-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--gold-light);
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.05em;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin-bottom: 1.6rem;
+    }
+
+    .card-price {
+      font-size: 1.5rem;
+      color: var(--gold);
+      font-weight: 400;
+      margin-bottom: 1.4rem;
+    }
+
+    .card-price span {
+      font-size: 0.8rem;
+      color: var(--muted);
+      vertical-align: middle;
+      margin-left: 0.3rem;
+    }
+
+    .btn-card {
+      display: inline-block;
+      padding: 0.65rem 1.8rem;
+      border: 1px solid var(--violet);
+      color: var(--lavender);
+      text-decoration: none;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-card:hover {
+      background: var(--violet);
+      color: #fff;
+    }
+
+    .card.featured {
+      background: linear-gradient(135deg, rgba(107, 63, 160, 0.35), rgba(30, 16, 53, 0.8));
+      border-color: rgba(232, 201, 126, 0.4);
+      position: relative;
+    }
+
+    .badge {
+      position: absolute;
+      top: -0.7rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, var(--violet), #9b59c8);
+      color: #fff;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.3rem 1rem;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    /* ── Coming Soon overlay ── */
+    .card {
+      position: relative;
+    }
+
+    .coming-soon-overlay {
+      position: absolute;
+      inset: 0;
+      border-radius: 1.5rem;
+      background: rgba(10, 6, 18, 0.72);
+      backdrop-filter: blur(3px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      z-index: 2;
+    }
+
+    .coming-soon-overlay span {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(232, 201, 126, 0.4);
+      padding: 0.35rem 1.1rem;
+      border-radius: 20px;
+    }
+
+    .coming-soon-overlay p {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* ── Process ── */
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .step {
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .step-number {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 1px solid rgba(232, 201, 126, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.2rem;
+      font-size: 1.1rem;
+      color: var(--gold);
+    }
+
+    .step h3 {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.05em;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.7;
+    }
+
+    /* ── Testimonials ── */
+    .testimonials { background: linear-gradient(180deg, var(--deep) 0%, var(--midnight) 100%); }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.6rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .testimonial {
+      background: rgba(17, 13, 30, 0.8);
+      border: 1px solid rgba(168, 127, 212, 0.15);
+      border-radius: 1.2rem;
+      padding: 2rem;
+    }
+
+    .stars {
+      color: var(--gold);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      letter-spacing: 0.1em;
+    }
+
+    .testimonial blockquote {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.75;
+      margin-bottom: 1.4rem;
+      font-style: italic;
+    }
+
+    .testimonial cite {
+      font-size: 0.82rem;
+      color: var(--lavender);
+      font-style: normal;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── FAQ ── */
+    .faq-list {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    details {
+      border-bottom: 1px solid rgba(168, 127, 212, 0.15);
+      padding: 1.4rem 0;
+    }
+
+    summary {
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--cream);
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+
+    summary::after {
+      content: '+';
+      color: var(--gold);
+      font-size: 1.4rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-left: 1rem;
+      transition: transform 0.2s;
+    }
+
+    details[open] summary::after {
+      transform: rotate(45deg);
+    }
+
+    details p {
+      color: var(--muted);
+      line-height: 1.75;
+      margin-top: 1rem;
+      font-size: 0.92rem;
+    }
+
+    /* ── CTA ── */
+    .cta {
+      text-align: center;
+      background: radial-gradient(ellipse at center, rgba(107, 63, 160, 0.2) 0%, transparent 70%);
+    }
+
+    .cta h2 { margin-bottom: 1rem; }
+
+    .cta p {
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    /* ── Waitlist form ── */
+    .waitlist-form {
+      display: flex;
+      gap: 0.8rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+
+    .waitlist-form input {
+      padding: 0.9rem 1.6rem;
+      border-radius: 60px;
+      border: 1px solid rgba(168, 127, 212, 0.4);
+      background: rgba(30, 16, 53, 0.6);
+      color: var(--cream);
+      font-size: 0.9rem;
+      font-family: 'Georgia', serif;
+      outline: none;
+      width: 280px;
+      transition: border-color 0.2s;
+    }
+
+    .waitlist-form input::placeholder { color: var(--muted); }
+    .waitlist-form input:focus { border-color: var(--lavender); }
+
+    /* ── Footer ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid rgba(168, 127, 212, 0.12);
+      padding: 2.5rem 5vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    footer p {
+      color: rgba(168, 127, 212, 0.4);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+    }
+
+    footer nav ul {
+      gap: 1.6rem;
+    }
+
+    footer nav a {
+      font-size: 0.78rem;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 700px) {
+      .what-grid { grid-template-columns: 1fr; }
+      .what-image { max-width: 280px; margin: 0 auto; }
+      nav ul { display: none; }
+      .hero { padding-top: 7rem; }
+      .btn-ghost { margin-left: 0; margin-top: 0.8rem; }
+      .hero .ctas { display: flex; flex-direction: column; align-items: center; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+
+<!-- Nav -->
+<nav>
+  <a href="#" class="logo">Soul Map</a>
+  <ul>
+    <li><a href="#what">About</a></li>
+    <li><a href="#offerings">Offerings</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#testimonials">Stories</a></li>
+    <li><a href="#book">Book</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <p class="hero-eyebrow">Spiritual Cartography &amp; Sacred Guidance</p>
+  <h1>Your Soul Holds<br>A Map Home</h1>
+  <p>A deeply personalised reading that decodes your birth chart, human design, and numerology into one luminous guide — revealing your gifts, patterns, and purpose.</p>
+  <div class="ctas">
+    <a href="#offerings" class="btn-primary">Explore Readings</a>
+    <a href="#what" class="btn-ghost">Learn More</a>
+  </div>
+  <div class="scroll-hint">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <path d="M8 3v10M4 9l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Scroll
+  </div>
+</section>
+
+<!-- What is a Soul Map -->
+<section id="what">
+  <span class="section-label">What is a Soul Map?</span>
+  <div class="what-grid">
+    <div class="what-image">
+      <!-- SVG Mandala placeholder -->
+      <svg class="mandala" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="100" cy="100" r="90" stroke="#a87fd4" stroke-opacity="0.4" stroke-width="0.5"/>
+        <circle cx="100" cy="100" r="72" stroke="#e8c97e" stroke-opacity="0.3" stroke-width="0.5"/>
+        <circle cx="100" cy="100" r="54" stroke="#a87fd4" stroke-opacity="0.4" stroke-width="0.5"/>
+        <circle cx="100" cy="100" r="36" stroke="#e8c97e" stroke-opacity="0.3" stroke-width="0.5"/>
+        <circle cx="100" cy="100" r="18" stroke="#a87fd4" stroke-opacity="0.4" stroke-width="0.5"/>
+        <line x1="10" y1="100" x2="190" y2="100" stroke="#a87fd4" stroke-opacity="0.2" stroke-width="0.5"/>
+        <line x1="100" y1="10" x2="100" y2="190" stroke="#a87fd4" stroke-opacity="0.2" stroke-width="0.5"/>
+        <line x1="27" y1="27" x2="173" y2="173" stroke="#e8c97e" stroke-opacity="0.15" stroke-width="0.5"/>
+        <line x1="173" y1="27" x2="27" y2="173" stroke="#e8c97e" stroke-opacity="0.15" stroke-width="0.5"/>
+        <polygon points="100,18 119,58 163,58 129,83 142,127 100,103 58,127 71,83 37,58 81,58" stroke="#e8c97e" stroke-opacity="0.3" stroke-width="0.5" fill="none"/>
+        <circle cx="100" cy="100" r="6" fill="#e8c97e" fill-opacity="0.5"/>
+        <circle cx="100" cy="28" r="3" fill="#a87fd4" fill-opacity="0.6"/>
+        <circle cx="100" cy="172" r="3" fill="#a87fd4" fill-opacity="0.6"/>
+        <circle cx="28" cy="100" r="3" fill="#a87fd4" fill-opacity="0.6"/>
+        <circle cx="172" cy="100" r="3" fill="#a87fd4" fill-opacity="0.6"/>
+      </svg>
+    </div>
+    <div class="what-text">
+      <h2 style="text-align:left; margin-bottom:1rem;">Written in the Stars<br>Before You Were Born</h2>
+      <div class="divider" style="margin:0 0 1.5rem;"></div>
+      <p>A Soul Map is a bespoke spiritual document that weaves together your astrology birth chart, Human Design bodygraph, and numerology life path into a single, coherent narrative.</p>
+      <p>Rather than separate, fragmented readings, your Soul Map reveals the <em>through-line</em> — the deeper story of who you are, where you've been, and where your energy is designed to flow.</p>
+      <p>Think of it as a letter from the universe, written in your native language.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Offerings -->
+<section id="offerings" class="offerings">
+  <span class="section-label">Choose Your Reading</span>
+  <h2>Soul Map Offerings</h2>
+  <p class="section-sub">Every reading is crafted with care, delivered as a beautifully formatted PDF and accompanied by a personalised voice recording.</p>
+  <div class="cards">
+
+    <div class="card">
+      <div class="coming-soon-overlay">
+        <span>Coming Soon</span>
+        <p>Join the waitlist below</p>
+      </div>
+      <span class="card-icon">✦</span>
+      <h3>The Spark</h3>
+      <p>A focused snapshot of your core soul essence — sun sign, life path number, and Human Design type. Perfect if you're new to this work.</p>
+      <div class="card-price">$97 <span>one-time</span></div>
+      <a href="#book" class="btn-card">Join Waitlist</a>
+    </div>
+
+    <div class="card featured">
+      <div class="coming-soon-overlay">
+        <span>Coming Soon</span>
+        <p>Join the waitlist below</p>
+      </div>
+      <span class="badge">Most Popular</span>
+      <span class="card-icon">✧</span>
+      <h3>The Full Map</h3>
+      <p>A comprehensive 30+ page deep dive weaving together your complete birth chart, full Human Design, and master numerology report with a 45-min live integration call.</p>
+      <div class="card-price">$297 <span>one-time</span></div>
+      <a href="#book" class="btn-card">Join Waitlist</a>
+    </div>
+
+    <div class="card">
+      <div class="coming-soon-overlay">
+        <span>Coming Soon</span>
+        <p>Join the waitlist below</p>
+      </div>
+      <span class="card-icon">✦</span>
+      <h3>The Journey</h3>
+      <p>Three monthly Soul Map sessions that track your evolution, integrate insights, and guide you through upcoming transits and Human Design cycles.</p>
+      <div class="card-price">$197 <span>/ month</span></div>
+      <a href="#book" class="btn-card">Join Waitlist</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- Process -->
+<section id="process">
+  <span class="section-label">How It Works</span>
+  <h2>Your Journey in Four Steps</h2>
+  <p class="section-sub">A gentle, supportive process designed to honour you and your timing.</p>
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-number">01</div>
+      <h3>Book &amp; Share</h3>
+      <p>Choose your reading, complete a short intake form, and share your birth details — date, time, and place.</p>
+    </div>
+    <div class="step">
+      <div class="step-number">02</div>
+      <h3>The Weaving</h3>
+      <p>Your charts are cast and studied. Over 3–5 days, your personalised Soul Map document is crafted by hand.</p>
+    </div>
+    <div class="step">
+      <div class="step-number">03</div>
+      <h3>Delivery</h3>
+      <p>Receive your beautifully formatted PDF alongside a personal voice note walking through key themes.</p>
+    </div>
+    <div class="step">
+      <div class="step-number">04</div>
+      <h3>Integration</h3>
+      <p>Full Map clients receive a 45-min live Zoom session to ask questions and begin living your design.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section id="testimonials" class="testimonials">
+  <span class="section-label">Client Stories</span>
+  <h2>Lives Quietly Changed</h2>
+  <div class="divider"></div>
+  <div class="testimonials-grid">
+
+    <div class="testimonial">
+      <div class="stars">★★★★★</div>
+      <blockquote>"I've had birth chart readings before, but nothing like this. It felt like someone finally saw me — all of me — and handed me the manual I never had. I've read it three times."</blockquote>
+      <cite>— Maya R., Full Map client</cite>
+    </div>
+
+    <div class="testimonial">
+      <div class="stars">★★★★★</div>
+      <blockquote>"The Soul Map confirmed what I'd always sensed about myself but couldn't articulate. I left my corporate job two months later. Best decision of my life."</blockquote>
+      <cite>— James T., Journey client</cite>
+    </div>
+
+    <div class="testimonial">
+      <div class="stars">★★★★★</div>
+      <blockquote>"I was sceptical. I am not sceptical anymore. The precision with which my patterns were named — things I've never told anyone — genuinely moved me to tears."</blockquote>
+      <cite>— Sophia K., Full Map client</cite>
+    </div>
+
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <span class="section-label">Questions</span>
+  <h2>Frequently Asked</h2>
+  <div class="divider"></div>
+  <div class="faq-list">
+    <details>
+      <summary>Do I need to know my exact birth time?</summary>
+      <p>An exact birth time gives the most precise reading, particularly for your Ascendant and House placements. If you don't know it, we can work with an approximate time or create a chart focused on the elements that don't require it. Just let me know in the intake form.</p>
+    </details>
+    <details>
+      <summary>How long does delivery take?</summary>
+      <p>The Spark reading is typically delivered within 3–4 business days. The Full Map takes 5–7 business days given the depth of work involved. You'll receive email confirmation once your reading is underway.</p>
+    </details>
+    <details>
+      <summary>Is this a real, personalised reading?</summary>
+      <p>Absolutely. Every Soul Map is written personally for you — not generated by software. Your charts inform the framework, and the narrative is crafted specifically around your unique configuration.</p>
+    </details>
+    <details>
+      <summary>What if I've already had a birth chart reading?</summary>
+      <p>A Soul Map goes much further. Rather than interpreting one system in isolation, it synthesises astrology, Human Design, and numerology into a unified picture — often revealing layers that single-system readings miss entirely.</p>
+    </details>
+    <details>
+      <summary>Can I gift a Soul Map?</summary>
+      <p>Yes — gifting a Soul Map is one of the most thoughtful things you can do. Simply select your preferred reading at checkout and indicate it is a gift. You'll receive a beautiful gift card you can share in your own time.</p>
+    </details>
+  </div>
+</section>
+
+<!-- CTA / Waitlist -->
+<section id="book" class="cta">
+  <span class="section-label">Coming Soon</span>
+  <h2>Be the First to Know<br>When Spots Open</h2>
+  <div class="divider"></div>
+  <p>Personal readings aren't available just yet — but they're coming. Join the waitlist and you'll be the first to hear when booking opens, along with early-access pricing.</p>
+  <form class="waitlist-form" onsubmit="handleWaitlist(event)">
+    <input type="email" placeholder="Your email address" required />
+    <button type="submit" class="btn-primary">Join the Waitlist</button>
+  </form>
+  <p id="waitlist-thanks" style="display:none; color: var(--gold); margin-top:1.2rem; font-size:0.95rem;">You're on the list. ✦ We'll be in touch.</p>
+</section>
+
+<!-- Footer -->
+<footer>
+  <a href="#" class="logo" style="font-size:0.95rem;">Soul Map</a>
+  <p>© 2026 Soul Map. All rights reserved. For entertainment &amp; reflective purposes.</p>
+  <nav>
+    <ul>
+      <li><a href="#">Privacy</a></li>
+      <li><a href="#">Terms</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+</footer>
+
+<script>
+  // Starfield
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  function init() {
+    resize();
+    stars = Array.from({ length: 220 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.2 + 0.2,
+      alpha: Math.random() * 0.7 + 0.1,
+      speed: Math.random() * 0.0004 + 0.0001,
+      phase: Math.random() * Math.PI * 2
+    }));
+  }
+
+  function draw(t) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    stars.forEach(s => {
+      const a = s.alpha * (0.6 + 0.4 * Math.sin(t * s.speed * 1000 + s.phase));
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,245,230,${a})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+
+  init();
+  window.addEventListener('resize', init);
+  requestAnimationFrame(draw);
+
+  // Waitlist form
+  function handleWaitlist(e) {
+    e.preventDefault();
+    e.target.style.display = 'none';
+    document.getElementById('waitlist-thanks').style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
