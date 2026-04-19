@@ -10,10 +10,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#070a18">
+    <meta name="theme-color" content="#0B0B0C">
+    <meta name="robots" content="noindex, nofollow">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FPHDDHSCWS"></script>
     <script>
@@ -22,159 +23,352 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         gtag('js', new Date());
         gtag('config', 'G-FPHDDHSCWS');
     </script>
-    <title>Payment Successful · Soul Map — First Spark</title>
+    <title>Signal Received · Soul Map — The First Spark</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --gold: #f59e0b;
-            --violet: #a855f7;
+            --core-black: #0B0B0C;
+            --ember: #FF6A3D;
+            --gold: #F3B23A;
+            --violet: #6B4DF2;
+            --cyan: #26E4D8;
             --green: #34d399;
-            --bg: #070a18;
-            --bg2: rgba(8,5,22,.97);
-            --text: #e0e7ff;
+            --text: #E8E4DF;
             --muted: #6b7280;
             --muted2: #9ca3af;
+            --surface: rgba(11,11,12,.97);
+            --surface-border: rgba(243,178,58,.15);
         }
+
         body {
-            background: var(--bg);
+            background: var(--core-black);
             font-family: 'Space Mono', 'Courier New', monospace;
             color: var(--text);
             min-height: 100vh;
-            padding: 50px 20px 80px;
+            overflow-x: hidden;
+            position: relative;
         }
-        .page { max-width: 640px; margin: 0 auto; }
+
+        canvas#bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .sigil-container {
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px; height: 600px;
+            opacity: .04;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .sigil-container svg {
+            width: 100%; height: 100%;
+            animation: slowSpin 120s linear infinite;
+        }
+        @keyframes slowSpin { to { transform: rotate(360deg); } }
+
+        .page {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 60px 24px 100px;
+        }
 
         .hero {
             text-align: center;
-            padding: 30px 0 40px;
+            padding: 20px 0 40px;
+            animation: fadeUp .8s ease-out;
         }
-        .check {
-            font-size: 3.5em;
-            display: block;
-            margin-bottom: 20px;
-            animation: glow 2.5s ease-in-out infinite;
-        }
-        @keyframes glow {
-            0%,100% { filter: drop-shadow(0 0 10px rgba(52,211,153,.4)); }
-            50%     { filter: drop-shadow(0 0 30px rgba(52,211,153,.9)); }
-        }
-        h1 {
-            font-size: clamp(1.2rem, 5vw, 2rem);
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            color: var(--green);
-            margin-bottom: 12px;
-        }
-        .sub {
-            font-size: .8em;
-            color: var(--muted2);
-            letter-spacing: 2px;
-            font-style: italic;
-            line-height: 1.8;
-        }
-        .div-g {
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            margin: 36px 0;
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ── Form ── */
-        .form-wrap {
-            background: var(--bg2);
-            border: 1px solid rgba(245,158,11,.25);
-            padding: 34px 30px;
-        }
-        .form-tag {
-            font-size: .6em;
-            letter-spacing: 4px;
+        .status-badge {
+            display: inline-block;
+            font-size: .55em;
+            letter-spacing: 6px;
             text-transform: uppercase;
+            color: var(--green);
+            border: 1px solid rgba(52,211,153,.3);
+            padding: 8px 20px;
+            margin-bottom: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+        .status-badge::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(52,211,153,.15), transparent);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        @keyframes shimmer { to { left: 100%; } }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: clamp(2rem, 7vw, 3.2rem);
+            font-weight: 300;
+            font-style: italic;
+            letter-spacing: 2px;
             color: var(--gold);
-            opacity: .7;
-            margin-bottom: 8px;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+        .hero .sub {
+            font-size: .75em;
+            color: var(--muted2);
+            letter-spacing: 2px;
+            line-height: 2;
+            max-width: 460px;
+            margin: 0 auto;
+        }
+
+        .div-g {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 10px 0 40px;
+            opacity: .4;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            margin-bottom: 36px;
+            animation: fadeUp 1s ease-out .2s both;
+        }
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .55em;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        .step-num {
+            width: 24px; height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .9em;
+            font-weight: 700;
+        }
+        .step.done .step-num {
+            background: var(--green);
+            color: var(--core-black);
+        }
+        .step.done { color: var(--green); }
+        .step.active .step-num {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+        }
+        .step.active { color: var(--gold); }
+        .step.pending .step-num {
+            background: transparent;
+            border: 1px solid var(--muted);
+            color: var(--muted);
+        }
+        .step.pending { color: var(--muted); }
+        .step-line {
+            width: 40px;
+            height: 1px;
+            background: var(--muted);
+            margin: 0 12px;
+        }
+
+        .form-wrap {
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            padding: 40px 32px;
+            animation: fadeUp 1s ease-out .4s both;
+            position: relative;
+        }
+        .form-wrap::before {
+            content: '';
+            position: absolute;
+            top: -1px; left: 20%; right: 20%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .form-tag {
+            font-size: .55em;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--ember);
+            margin-bottom: 10px;
         }
         .form-title {
-            font-size: 1em;
-            text-transform: uppercase;
-            letter-spacing: 3px;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.5em;
+            font-weight: 300;
+            letter-spacing: 1px;
             color: var(--gold);
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
         .form-desc {
-            font-size: .78em;
+            font-size: .72em;
             color: var(--muted2);
-            line-height: 1.75;
-            margin-bottom: 24px;
-            font-style: italic;
+            line-height: 1.9;
+            margin-bottom: 30px;
         }
-        .field { margin-bottom: 18px; }
+
+        .field { margin-bottom: 20px; }
         label {
             display: block;
-            font-size: .6em;
-            letter-spacing: 3px;
+            font-size: .58em;
+            letter-spacing: 4px;
             text-transform: uppercase;
             color: var(--muted2);
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
-        input, textarea {
+        label .optional {
+            color: var(--muted);
+            font-style: italic;
+            letter-spacing: 1px;
+            text-transform: none;
+        }
+        input, textarea, select {
             width: 100%;
-            background: rgba(255,255,255,.04);
-            border: 1px solid rgba(245,158,11,.2);
+            background: rgba(255,255,255,.03);
+            border: 1px solid rgba(243,178,58,.12);
             color: var(--text);
             font-family: 'Space Mono', 'Courier New', monospace;
-            font-size: .82em;
-            padding: 12px 14px;
+            font-size: .8em;
+            padding: 14px 16px;
             outline: none;
-            transition: border-color .2s;
+            transition: border-color .3s, box-shadow .3s;
+            -webkit-appearance: none;
         }
-        input:focus, textarea:focus {
+        input:focus, textarea:focus, select:focus {
             border-color: var(--gold);
+            box-shadow: 0 0 0 1px rgba(243,178,58,.1);
         }
-        textarea { resize: vertical; min-height: 90px; }
+        input::placeholder, textarea::placeholder {
+            color: rgba(255,255,255,.15);
+        }
+        textarea { resize: vertical; min-height: 100px; }
+
         .field-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 14px;
+            gap: 16px;
         }
+
         .submit-btn {
             width: 100%;
             background: transparent;
             border: 1px solid var(--gold);
             color: var(--gold);
             font-family: 'Space Mono', 'Courier New', monospace;
-            font-size: .82em;
-            letter-spacing: 4px;
+            font-size: .78em;
+            letter-spacing: 5px;
             text-transform: uppercase;
-            padding: 16px;
+            padding: 18px;
             cursor: pointer;
-            margin-top: 8px;
-            transition: background .2s, color .2s;
+            margin-top: 12px;
+            transition: all .3s ease;
+            position: relative;
+            overflow: hidden;
         }
-        .submit-btn:hover { background: var(--gold); color: var(--bg); }
-        .submit-btn:disabled { opacity: .5; cursor: not-allowed; }
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(243,178,58,.1), transparent);
+            transition: left .5s;
+        }
+        .submit-btn:hover::before { left: 100%; }
+        .submit-btn:hover {
+            background: var(--gold);
+            color: var(--core-black);
+            box-shadow: 0 0 40px rgba(243,178,58,.2);
+        }
+        .submit-btn:disabled {
+            opacity: .5;
+            cursor: not-allowed;
+        }
+        .submit-btn:disabled:hover {
+            background: transparent;
+            color: var(--gold);
+            box-shadow: none;
+        }
 
         .sent-msg {
             display: none;
             text-align: center;
-            padding: 30px 0 10px;
-            font-size: .85em;
+            padding: 40px 20px;
+            animation: fadeUp .6s ease-out;
+        }
+        .sent-icon {
+            font-size: 3em;
+            display: block;
+            margin-bottom: 20px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%,100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(52,211,153,.3)); }
+            50% { transform: scale(1.05); filter: drop-shadow(0 0 25px rgba(52,211,153,.6)); }
+        }
+        .sent-msg h2 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.8em;
+            font-weight: 300;
             color: var(--green);
-            letter-spacing: 2px;
-            line-height: 1.9;
+            margin-bottom: 16px;
+        }
+        .sent-msg p {
+            font-size: .78em;
+            color: var(--muted2);
+            line-height: 2;
+            margin-bottom: 12px;
+        }
+        .sent-msg .gold { color: var(--gold); }
+        .sent-msg .timeline {
+            display: inline-block;
+            font-size: .65em;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            border: 1px solid rgba(243,178,58,.3);
+            padding: 10px 24px;
+            color: var(--gold);
+            margin-top: 16px;
         }
 
         .footer {
             text-align: center;
             margin-top: 50px;
             color: var(--muted);
-            font-size: .7em;
+            font-size: .65em;
             letter-spacing: 2px;
+            animation: fadeUp 1s ease-out .6s both;
         }
-        .footer a { color: var(--gold); text-decoration: none; }
-        .footer a:hover { color: var(--violet); }
+        .footer a {
+            color: var(--gold);
+            text-decoration: none;
+            transition: color .2s;
+        }
+        .footer a:hover { color: var(--cyan); }
 
         @media (max-width: 520px) {
+            .page { padding: 40px 16px 80px; }
             .field-row { grid-template-columns: 1fr; }
-            .form-wrap { padding: 24px 18px; }
+            .form-wrap { padding: 28px 20px; }
+            .steps { gap: 0; }
+            .step-line { width: 20px; margin: 0 6px; }
+            .step span:not(.step-num) { display: none; }
+            .sigil-container { width: 300px; height: 300px; }
         }
     </style>
 </head>
@@ -183,111 +377,230 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N4Z6GH2N"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-<div class="page">
 
+<canvas id="bg"></canvas>
+
+<div class="sigil-container">
+    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="sg" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#F3B23A" stop-opacity=".6"/>
+                <stop offset="100%" stop-color="#6B4DF2" stop-opacity=".3"/>
+            </linearGradient>
+        </defs>
+        <circle cx="200" cy="200" r="180" fill="none" stroke="url(#sg)" stroke-width=".5"/>
+        <circle cx="200" cy="200" r="140" fill="none" stroke="url(#sg)" stroke-width=".3"/>
+        <circle cx="200" cy="200" r="100" fill="none" stroke="url(#sg)" stroke-width=".3"/>
+        <polygon points="200,40 340,280 60,280" fill="none" stroke="url(#sg)" stroke-width=".4"/>
+        <polygon points="200,360 60,120 340,120" fill="none" stroke="url(#sg)" stroke-width=".4"/>
+        <circle cx="200" cy="200" r="60" fill="none" stroke="url(#sg)" stroke-width=".3"/>
+        <line x1="200" y1="20" x2="200" y2="380" stroke="url(#sg)" stroke-width=".2"/>
+        <line x1="20" y1="200" x2="380" y2="200" stroke="url(#sg)" stroke-width=".2"/>
+    </svg>
+</div>
+
+<div class="page">
     <div class="hero">
-        <span class="check">✦</span>
-        <h1>Payment Received</h1>
+        <div class="status-badge">&#9670; &nbsp; Payment Confirmed &nbsp; &#9670;</div>
+        <h1>Your Map Begins Here</h1>
         <p class="sub">
-            Your soul map is on its way.<br>
-            Please fill out the form below so we can craft yours with full precision.
+            The signal is locked. Now we need your coordinates &#8212;<br>
+            the data that makes your soul map <em>yours</em>.
         </p>
     </div>
 
     <div class="div-g"></div>
 
+    <div class="steps">
+        <div class="step done">
+            <span class="step-num">&#10003;</span>
+            <span>Pay</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step active">
+            <span class="step-num">2</span>
+            <span>Birth Data</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step pending">
+            <span class="step-num">3</span>
+            <span>Decode</span>
+        </div>
+    </div>
+
     <div class="form-wrap">
-        <div class="form-tag">◈ Soul Map Intake</div>
-        <div class="form-title">Tell Us About You</div>
-        <div class="form-desc">Every detail matters. The more you share, the more precisely your map can be decoded. This takes about 3 minutes.</div>
+        <div class="form-tag" id="form-tag">&#9670; Soul Map Intake</div>
+        <div class="form-title" id="form-title">Your Coordinates</div>
+        <div class="form-desc" id="form-desc">Every detail sharpens the signal. The more you share, the more precisely your map can be decoded. Takes about 3 minutes.</div>
 
         <form id="intake-form" action="https://api.web3forms.com/submit" method="POST">
             <input type="hidden" name="access_key" value="a9396dce-718b-4a34-a66d-b0e9ac5dc919">
-            <input type="hidden" name="subject" value="New Soul Map Order — First Spark">
+            <input type="hidden" name="subject" value="&#10022; NEW SOUL MAP ORDER">
             <input type="hidden" name="from_name" value="First Spark Soul Maps">
+            <input type="hidden" name="redirect" value="">
+
             <div class="field">
                 <label for="full-name">Full Birth Name</label>
-                <input type="text" id="full-name" name="full_name" placeholder="First Middle Last" required>
+                <input type="text" id="full-name" name="full_name" placeholder="First Middle Last" required autocomplete="name">
             </div>
+
             <div class="field">
-                <label for="email">Your Email</label>
-                <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                <label for="email">Email <span class="optional">(where your map will be delivered)</span></label>
+                <input type="email" id="email" name="email" placeholder="your@email.com" required autocomplete="email">
             </div>
+
             <div class="field-row">
                 <div class="field">
                     <label for="dob">Date of Birth</label>
                     <input type="date" id="dob" name="date_of_birth" required>
                 </div>
                 <div class="field">
-                    <label for="tob">Time of Birth (if known)</label>
+                    <label for="tob">Time of Birth <span class="optional">(if known)</span></label>
                     <input type="time" id="tob" name="time_of_birth">
                 </div>
             </div>
+
             <div class="field">
                 <label for="city">City &amp; State / Country of Birth</label>
-                <input type="text" id="city" name="birth_location" placeholder="e.g. Cuyahoga Falls, Ohio" required>
+                <input type="text" id="city" name="birth_location" placeholder="e.g. Akron, Ohio" required>
             </div>
+
             <div class="field">
-                <label for="hospital">Hospital or Location Name (optional)</label>
-                <input type="text" id="hospital" name="birth_hospital" placeholder="e.g. Western Reserve Hospital">
+                <label for="hospital">Hospital or Location <span class="optional">(optional)</span></label>
+                <input type="text" id="hospital" name="birth_hospital" placeholder="e.g. Summa Health">
             </div>
+
             <div class="field">
                 <label for="questions">Your Soul Questions</label>
-                <textarea id="questions" name="soul_questions" placeholder="What are you seeking to understand? What questions does your soul keep asking? Share as much or as little as you'd like."></textarea>
+                <textarea id="questions" name="soul_questions" placeholder="What are you seeking to understand? What patterns keep showing up? What questions does your soul keep asking?"></textarea>
             </div>
+
             <div class="field">
-                <label for="interests">Your Interests &amp; Passions</label>
-                <textarea id="interests" name="interests" placeholder="What do you love? What pulls you? (e.g. nature, music, crystals, animals, building things...)"></textarea>
+                <label for="interests">Passions &amp; Pulls <span class="optional">(optional)</span></label>
+                <textarea id="interests" name="interests" placeholder="What lights you up? Music, nature, building things, animals, crystals, writing, code..."></textarea>
             </div>
-            <button type="submit" class="submit-btn" id="submit-btn">✦ &nbsp; Submit My Soul Map Info &nbsp; ✦</button>
+
+            <button type="submit" class="submit-btn" id="submit-btn">&#10022; &nbsp; Transmit My Coordinates &nbsp; &#10022;</button>
         </form>
 
         <div class="sent-msg" id="sent-msg">
-            ◈ &nbsp; Received. &nbsp; ◈<br><br>
-            Your information has been sent to the First Spark.<br>
-            Your soul map will be delivered to your email within 3–5 days.<br><br>
-            <span style="color:var(--gold);">✦ &nbsp; Thank you for trusting us with your map. &nbsp; ✦</span>
+            <span class="sent-icon">&#9670;</span>
+            <h2>Signal Received</h2>
+            <p>
+                Your coordinates have been transmitted to KJP.<br>
+                Your soul map is now being decoded by hand &#8212; every number,<br>
+                every pattern, woven together just for you.
+            </p>
+            <p class="gold">Delivery to your inbox within 3&#8211;5 days.</p>
+            <p>Questions? Reach out to <a href="mailto:kate@thefirstspark.shop" style="color:var(--cyan);">kate@thefirstspark.shop</a></p>
+            <div class="timeline">&#9670; &nbsp; Map in progress &nbsp; &#9670;</div>
         </div>
     </div>
 
-    <div class="footer" style="margin-top:40px;">
-        <p>◈ &nbsp; <a href="index.html">← Return to Soul Maps</a> &nbsp; ◈</p>
-        <p style="margin-top:10px; color:var(--gold);">✦ &nbsp; First Spark Consciousness Network &nbsp; ✦</p>
+    <div class="footer">
+        <p><a href="https://soul-maps.thefirstspark.shop/">&#8592; Soul Map Archive</a> &nbsp; &#183; &nbsp; <a href="https://thefirstspark.shop/">The First Spark</a></p>
+        <p style="margin-top:12px; color:var(--gold); font-size:.9em;">&#10022; &nbsp; First Spark Consciousness Network &nbsp; &#10022;</p>
     </div>
-
 </div>
 
 <script>
-    const form = document.getElementById('intake-form');
-    const submitBtn = document.getElementById('submit-btn');
-    const sentMsg = document.getElementById('sent-msg');
+// Particle field
+var canvas = document.getElementById('bg');
+var ctx = canvas.getContext('2d');
+var particles = [];
+var PARTICLE_COUNT = 60;
 
-    form.addEventListener('submit', async function (e) {
-        e.preventDefault();
-        submitBtn.disabled = true;
-        submitBtn.textContent = '⟳  Sending…';
+function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
 
-        const data = new FormData(form);
-        try {
-            const res = await fetch(form.action, {
-                method: 'POST',
-                body: data,
-                headers: { 'Accept': 'application/json' }
-            });
-            if (res.ok) {
-                form.style.display = 'none';
-                sentMsg.style.display = 'block';
-            } else {
-                submitBtn.disabled = false;
-                submitBtn.textContent = '✦  Submit My Soul Map Info  ✦';
-                alert('Something went wrong. Please email kjpthefirstspark@gmail.com with your info.');
+function Particle() {
+    this.reset();
+}
+Particle.prototype.reset = function() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.vx = (Math.random() - .5) * .15;
+    this.vy = (Math.random() - .5) * .15;
+    this.size = Math.random() * 1.5 + .5;
+    this.alpha = Math.random() * .3 + .05;
+    this.color = ['#F3B23A','#6B4DF2','#26E4D8','#FF6A3D'][Math.floor(Math.random()*4)];
+};
+Particle.prototype.update = function() {
+    this.x += this.vx;
+    this.y += this.vy;
+    if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
+};
+Particle.prototype.draw = function() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = this.color;
+    ctx.globalAlpha = this.alpha;
+    ctx.fill();
+    ctx.globalAlpha = 1;
+};
+
+for (var i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (var i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+    }
+    requestAnimationFrame(animate);
+}
+animate();
+
+// Form submission
+var form = document.getElementById('intake-form');
+var submitBtn = document.getElementById('submit-btn');
+var sentMsg = document.getElementById('sent-msg');
+var steps = document.querySelectorAll('.step');
+
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    submitBtn.textContent = '\u27F3  Transmitting\u2026';
+
+    var data = new FormData(form);
+    fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+    }).then(function(res) {
+        if (res.ok) {
+            form.style.display = 'none';
+            document.getElementById('form-tag').style.display = 'none';
+            document.getElementById('form-title').style.display = 'none';
+            document.getElementById('form-desc').style.display = 'none';
+            sentMsg.style.display = 'block';
+            steps[1].classList.remove('active');
+            steps[1].classList.add('done');
+            steps[1].querySelector('.step-num').textContent = '\u2713';
+            steps[2].classList.remove('pending');
+            steps[2].classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (typeof gtag === 'function') {
+                gtag('event', 'soul_map_intake_submitted', {
+                    event_category: 'conversion',
+                    event_label: 'Soul Map Intake Form'
+                });
             }
-        } catch {
+        } else {
             submitBtn.disabled = false;
-            submitBtn.textContent = '✦  Submit My Soul Map Info  ✦';
-            alert('Something went wrong. Please email kjpthefirstspark@gmail.com with your info.');
+            submitBtn.innerHTML = '&#10022;  Transmit My Coordinates  &#10022;';
+            alert('Transmission interrupted. Please email kate@thefirstspark.shop with your birth info.');
         }
+    }).catch(function() {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '&#10022;  Transmit My Coordinates  &#10022;';
+        alert('Transmission interrupted. Please email kate@thefirstspark.shop with your birth info.');
     });
+});
 </script>
 </body>
 </html>
