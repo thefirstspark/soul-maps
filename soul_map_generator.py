@@ -884,7 +884,7 @@ def generate_monthly_update(full_name, birth_date, current_year=None, current_mo
       Within your Personal Year ${py}, this month's energy is: <span class="highlight">${current_month} + ${py} context = ${pm}</span>
     </div>
 
-    <a href="soul-map-${map_slug}.html" class="back-link">← Return to Full Soul Map</a>
+    <a href="${map_slug}.html" class="back-link">← Return to Full Soul Map</a>
   </section>
 
   <footer class="footer">
@@ -926,7 +926,7 @@ def generate_monthly_update(full_name, birth_date, current_year=None, current_mo
         next_month_name=next_month_name,
         next_month_meaning_title=PERSONAL_YEAR_MEANINGS.get(pm_next, 'Cycle').split('.')[0],
         next_month_meaning=PERSONAL_YEAR_MEANINGS.get(pm_next, 'Frequency unmapped.'),
-        map_slug=full_name.lower().replace(' ', '-'),
+        map_slug=base_filename,
     )
 
     # Filename: {INITIALS}{BIRTHMONTH}{BIRTHYEAR}-{YYYYMM}.html
@@ -1201,9 +1201,8 @@ def main():
         for key, val in summary.items():
             print(f"  {key:>16}: {val}")
 
-        # Filename
-        slug = args.name.lower().replace(' ', '-')
-        filename = f"soul-map-{slug}.html"
+        # Filename — use shortened format: {INITIALS}{MONTH}{YEAR}.html
+        filename = f"{get_base_filename(args.name, birth_date)}.html"
 
     # Save locally if requested
     if args.output:
