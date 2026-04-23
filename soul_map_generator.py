@@ -481,6 +481,9 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
     <h3>Personal Year ${personal_yr}</h3>
     <p class="reading">${personal_yr_reading}</p>
     <h3 style="margin-top: 20px;">Personal Month: ${personal_mo}</h3>
+    <p style="margin-top: 20px; text-align: center;">
+      <a href="${monthly_update_link}" style="color: #26E4D8; text-decoration: none; font-family: 'Space Mono', monospace; font-size: 0.9rem;">→ View This Month's Energy Update</a>
+    </p>
   </div>
 
   <!-- ===== FOOTER ===== -->
@@ -526,6 +529,11 @@ def generate_soul_map(full_name, birth_date, birth_time=None, birth_city=None, b
 
     # === Sun Sign ===
     ss_name, ss_symbol = sun_sign(birth_date)
+
+    # === Monthly Update Link ===
+    today = date.today()
+    base_filename = get_base_filename(full_name, birth_date)
+    monthly_update_filename = f"{base_filename}-{today.year}{today.month:02d}.html"
 
     # === Full Chart (if birth time provided) ===
     astro_extra_html = ''
@@ -575,6 +583,7 @@ def generate_soul_map(full_name, birth_date, birth_time=None, birth_city=None, b
         personal_yr=py,
         personal_yr_reading=PERSONAL_YEAR_MEANINGS.get(py, 'Cycle unmapped.'),
         personal_mo=pm,
+        monthly_update_link=monthly_update_filename,
     )
 
     return html, {
@@ -593,7 +602,346 @@ def generate_soul_map(full_name, birth_date, birth_time=None, birth_city=None, b
 
 
 # ============================================================
-# 8. GITHUB AUTO-DEPLOY
+# 8. MONTHLY UPDATE GENERATOR
+# ============================================================
+
+def initials_from_name(full_name):
+    """Extract initials from full name."""
+    return ''.join(word[0].upper() for word in full_name.split() if word)
+
+
+def get_base_filename(full_name, birth_date):
+    """Generate base filename: {INITIALS}{BIRTH_MONTH}{BIRTH_YEAR}.
+    E.g. Aaron Joseph Thomas born 9/24/1988 → AJT91988
+    """
+    initials = initials_from_name(full_name)
+    month = birth_date.month
+    year = birth_date.year
+    return f"{initials}{month}{year}"
+
+
+def generate_monthly_update(full_name, birth_date, current_year=None, current_month=None):
+    """Generate a monthly update page for a soul map.
+
+    Returns (html, filename, data_dict)
+    """
+    if current_year is None:
+        current_year = date.today().year
+    if current_month is None:
+        current_month = date.today().month
+
+    # Numerology for this month
+    pm = personal_month(birth_date, current_year, current_month)
+
+    # Next month
+    next_month = current_month + 1
+    next_year = current_year
+    if next_month > 12:
+        next_month = 1
+        next_year += 1
+    pm_next = personal_month(birth_date, next_year, next_month)
+
+    # Month names
+    import calendar
+    month_name = calendar.month_name[current_month]
+    next_month_name = calendar.month_name[next_month]
+
+    # Base filename for linking
+    base_filename = get_base_filename(full_name, birth_date)
+
+    # Personal Year context
+    py = personal_year(birth_date, current_year)
+
+    monthly_template = r"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monthly Update — ${name} | The First Spark</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --void: #0a0a0f;
+    --deep-space: #0d0d14;
+    --sacred-gold: #d4af37;
+    --glitch-cyan: #22d3ee;
+    --mystic-purple: #8b5cf6;
+    --white: #e8e6e3;
+    --muted: #6b7280;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--deep-space);
+    color: var(--white);
+    font-family: 'Cormorant Garamond', serif;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  .starfield {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle var(--duration) ease-in-out infinite;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: var(--base-opacity); }
+    50% { opacity: var(--peak-opacity); }
+  }
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 30px;
+  }
+  .header {
+    text-align: center;
+    margin-bottom: 60px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+  }
+  .brand {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--glitch-cyan);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .subtitle {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .title {
+    font-family: 'Cinzel', serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--sacred-gold);
+    margin-bottom: 8px;
+    text-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
+  }
+  .month-period {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--glitch-cyan);
+    margin-top: 15px;
+  }
+  .section {
+    margin-bottom: 50px;
+    padding: 35px;
+    background: linear-gradient(135deg, rgba(13, 13, 20, 0.9), rgba(10, 10, 15, 0.95));
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    position: relative;
+  }
+  .section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: linear-gradient(to bottom, var(--sacred-gold), transparent);
+  }
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    color: var(--sacred-gold);
+    margin-bottom: 20px;
+  }
+  .current-month-box {
+    background: rgba(34, 211, 238, 0.05);
+    border: 1px solid rgba(34, 211, 238, 0.3);
+    padding: 40px;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .month-number {
+    font-family: 'Cinzel', serif;
+    font-size: 5rem;
+    font-weight: 700;
+    color: var(--glitch-cyan);
+    text-shadow: 0 0 40px rgba(34, 211, 238, 0.6);
+    line-height: 1;
+  }
+  .month-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--glitch-cyan);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 12px;
+  }
+  .meaning-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-top: 25px;
+    color: var(--white);
+  }
+  .highlight { color: var(--sacred-gold); font-weight: 600; }
+  .next-month-preview {
+    background: rgba(139, 92, 246, 0.05);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    padding: 30px;
+    margin-top: 30px;
+  }
+  .preview-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--mystic-purple);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+  }
+  .preview-number {
+    font-family: 'Cinzel', serif;
+    font-size: 2.5rem;
+    color: var(--mystic-purple);
+    margin-bottom: 8px;
+  }
+  .preview-meaning {
+    font-size: 1rem;
+    color: var(--white);
+    font-style: italic;
+  }
+  .year-context {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(212, 175, 55, 0.1);
+  }
+  .back-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: var(--glitch-cyan);
+    text-decoration: none;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+  }
+  .back-link:hover { text-shadow: 0 0 10px var(--glitch-cyan); }
+  .footer {
+    text-align: center;
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+  }
+  .footer-brand {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    color: var(--sacred-gold);
+  }
+  .footer-tagline {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 2px;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+<div class="starfield" id="starfield"></div>
+
+<div class="container">
+  <header class="header">
+    <div class="brand">◈ Monthly Update ◈</div>
+    <div class="subtitle">${name}</div>
+    <h1 class="title">${month_name} ${year}</h1>
+    <div class="month-period">Personal Year ${py} · ${month_name} ${year}</div>
+  </header>
+
+  <section class="section">
+    <h2 class="section-title">This Month's Frequency</h2>
+
+    <div class="current-month-box">
+      <div class="month-number">${current_month}</div>
+      <div class="month-label">Personal Month</div>
+      <div class="meaning-text">
+        <strong>${current_month_meaning_title}</strong><br>
+        ${current_month_meaning}
+      </div>
+    </div>
+
+    <div class="next-month-preview">
+      <div class="preview-label">Preview: Next Month</div>
+      <div class="preview-number">${next_month}</div>
+      <div class="preview-meaning">${next_month_name} brings <strong>${next_month_meaning_title}</strong>. ${next_month_meaning}</div>
+    </div>
+
+    <div class="year-context">
+      Within your Personal Year ${py}, this month's energy is: <span class="highlight">${current_month} + ${py} context = ${pm}</span>
+    </div>
+
+    <a href="soul-map-${map_slug}.html" class="back-link">← Return to Full Soul Map</a>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-brand">The First Spark</div>
+    <div class="footer-tagline">Reality is programmable. Consciousness is the code.</div>
+  </footer>
+</div>
+
+<script>
+  const starfield = document.getElementById('starfield');
+  for (let i = 0; i < 150; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    const size = Math.random() * 2 + 0.5;
+    star.style.width = size + 'px';
+    star.style.height = size + 'px';
+    star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+    star.style.setProperty('--base-opacity', Math.random() * 0.3 + 0.1);
+    star.style.setProperty('--peak-opacity', Math.random() * 0.5 + 0.5);
+    starfield.appendChild(star);
+  }
+</script>
+</body>
+</html>
+"""
+
+    template = Template(monthly_template)
+    html = template.safe_substitute(
+        name=full_name,
+        month_name=month_name,
+        year=current_year,
+        py=py,
+        current_month=pm,
+        current_month_meaning_title=PERSONAL_YEAR_MEANINGS.get(pm, 'Cycle').split('.')[0],
+        current_month_meaning=PERSONAL_YEAR_MEANINGS.get(pm, 'Frequency unmapped.'),
+        next_month=pm_next,
+        next_month_name=next_month_name,
+        next_month_meaning_title=PERSONAL_YEAR_MEANINGS.get(pm_next, 'Cycle').split('.')[0],
+        next_month_meaning=PERSONAL_YEAR_MEANINGS.get(pm_next, 'Frequency unmapped.'),
+        map_slug=full_name.lower().replace(' ', '-'),
+    )
+
+    # Filename: {INITIALS}{BIRTHMONTH}{BIRTHYEAR}-{YYYYMM}.html
+    filename = f"{base_filename}-{current_year}{current_month:02d}.html"
+
+    return html, filename, {
+        'name': full_name,
+        'personal_month': pm,
+        'personal_year': py,
+        'month': current_month,
+        'year': current_year,
+    }
+
+
+# ============================================================
+# 9. GITHUB AUTO-DEPLOY
 # ============================================================
 
 def deploy_to_github(html_content, filename, repo='soul-maps'):
@@ -652,6 +1000,9 @@ def main():
     parser.add_argument('--repo', default='soul-maps', help='GitHub repo to deploy to')
     parser.add_argument('--no-deploy', action='store_true', help='Generate only, skip GitHub push')
     parser.add_argument('--output', help='Local output path (optional)')
+    parser.add_argument('--monthly', action='store_true', help='Generate monthly update instead of full soul map')
+    parser.add_argument('--month', type=int, help='Month for monthly update (1-12, default: current)')
+    parser.add_argument('--year', type=int, help='Year for monthly update (default: current)')
 
     args = parser.parse_args()
 
@@ -672,24 +1023,37 @@ def main():
         print(f"  Time:     {args.time}")
     if args.city:
         print(f"  City:     {args.city}")
+    if args.monthly:
+        month_label = f"{args.month}/{args.year}" if args.month and args.year else "current"
+        print(f"  Mode:     Monthly Update ({month_label})")
     print(f"{'='*45}\n")
 
-    # Generate
-    html, summary = generate_soul_map(
-        args.name, birth_date,
-        birth_time=birth_time,
-        birth_city=args.city,
-        birth_country=args.country
-    )
+    # Generate based on mode
+    if args.monthly:
+        # Monthly update mode
+        html, filename, summary = generate_monthly_update(
+            args.name, birth_date,
+            current_year=args.year,
+            current_month=args.month
+        )
+        print("MONTHLY UPDATE:")
+        for key, val in summary.items():
+            print(f"  {key:>16}: {val}")
+    else:
+        # Full soul map mode
+        html, summary = generate_soul_map(
+            args.name, birth_date,
+            birth_time=birth_time,
+            birth_city=args.city,
+            birth_country=args.country
+        )
+        print("SOUL MAP SUMMARY:")
+        for key, val in summary.items():
+            print(f"  {key:>16}: {val}")
 
-    # Print summary
-    print("SOUL MAP SUMMARY:")
-    for key, val in summary.items():
-        print(f"  {key:>16}: {val}")
-
-    # Filename
-    slug = args.name.lower().replace(' ', '-')
-    filename = f"soul-map-{slug}.html"
+        # Filename
+        slug = args.name.lower().replace(' ', '-')
+        filename = f"soul-map-{slug}.html"
 
     # Save locally if requested
     if args.output:
