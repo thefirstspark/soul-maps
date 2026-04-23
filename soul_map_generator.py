@@ -16,6 +16,7 @@ import os
 import sys
 import subprocess
 import argparse
+import csv
 from datetime import datetime, date
 from pathlib import Path
 from string import Template
@@ -941,7 +942,139 @@ def generate_monthly_update(full_name, birth_date, current_year=None, current_mo
 
 
 # ============================================================
-# 9. GITHUB AUTO-DEPLOY
+# 9. BATCH GENERATOR
+# ============================================================
+
+def load_batch_csv(filepath):
+    """Load batch generation data from CSV.
+
+    Expected columns: Name, Date (YYYY-MM-DD), Time (HH:MM, optional), City (optional), Country (optional)
+    Returns list of dicts: [{'name': ..., 'date': ..., 'time': ..., 'city': ..., 'country': ...}, ...]
+    """
+    records = []
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                # Skip empty rows
+                if not row.get('Name', '').strip():
+                    continue
+
+                records.append({
+                    'name': row.get('Name', '').strip(),
+                    'date': row.get('Date', '').strip(),
+                    'time': row.get('Time', '').strip() or None,
+                    'city': row.get('City', '').strip() or None,
+                    'country': row.get('Country', 'US').strip() or 'US',
+                })
+    except Exception as e:
+        print(f"Error reading CSV: {e}", file=sys.stderr)
+        return []
+
+    return records
+
+
+def generate_batch(csv_filepath, mode='both', no_deploy=False, output_dir=None):
+    """Generate soul maps for multiple people from CSV.
+
+    Args:
+        csv_filepath: Path to CSV file
+        mode: 'soul-map', 'monthly', or 'both'
+        no_deploy: Skip GitHub deployment
+        output_dir: Optional output directory (default: current)
+
+    Returns: (success_count, total_count, results_list)
+    """
+    records = load_batch_csv(csv_filepath)
+    if not records:
+        print("No valid records found in CSV.", file=sys.stderr)
+        return 0, 0, []
+
+    results = []
+    success_count = 0
+
+    print(f"\n⚡ BATCH SOUL MAP GENERATOR — The First Spark")
+    print(f"{'='*60}")
+    print(f"  Mode:     {mode}")
+    print(f"  Records:  {len(records)}")
+    print(f"  Deploy:   {'Yes' if not no_deploy else 'No (local only)'}")
+    print(f"{'='*60}\n")
+
+    for i, record in enumerate(records, 1):
+        name = record['name']
+        try:
+            birth_date = datetime.strptime(record['date'], '%Y-%m-%d').date()
+        except ValueError:
+            print(f"  [{i}/{len(records)}] ✗ {name:30s} — Invalid date format")
+            results.append({'name': name, 'success': False, 'reason': 'Invalid date'})
+            continue
+
+        # Parse optional time
+        birth_time = None
+        if record['time']:
+            try:
+                t = datetime.strptime(record['time'], '%H:%M')
+                birth_time = (t.hour, t.minute)
+            except ValueError:
+                print(f"  [{i}/{len(records)}] ⚠ {name:30s} — Invalid time, skipping")
+
+        # Determine output directory
+        out_dir = Path(output_dir) if output_dir else Path('.')
+        out_dir.mkdir(parents=True, exist_ok=True)
+
+        try:
+            # Generate soul map if requested
+            if mode in ('soul-map', 'both'):
+                html_map, summary_map = generate_soul_map(
+                    name, birth_date,
+                    birth_time=birth_time,
+                    birth_city=record['city'],
+                    birth_country=record['country']
+                )
+
+                slug = name.lower().replace(' ', '-')
+                map_filename = f"soul-map-{slug}.html"
+                map_path = out_dir / map_filename
+                map_path.write_text(html_map, encoding='utf-8')
+
+                if not no_deploy:
+                    success, result = deploy_to_github(html_map, map_filename)
+                    if not success:
+                        print(f"  [{i}/{len(records)}] ⚠ {name:30s} — Soul map generated but deploy failed")
+                        results.append({'name': name, 'success': False, 'reason': 'Deploy failed'})
+                        continue
+
+            # Generate monthly update if requested
+            if mode in ('monthly', 'both'):
+                html_monthly, filename_monthly, summary_monthly = generate_monthly_update(name, birth_date)
+                monthly_path = out_dir / filename_monthly
+                monthly_path.write_text(html_monthly, encoding='utf-8')
+
+                if not no_deploy:
+                    success, result = deploy_to_github(html_monthly, filename_monthly)
+                    if not success:
+                        print(f"  [{i}/{len(records)}] ⚠ {name:30s} — Monthly update generated but deploy failed")
+                        results.append({'name': name, 'success': False, 'reason': 'Deploy failed'})
+                        continue
+
+            print(f"  [{i}/{len(records)}] ✓ {name:30s} — {record['date']}")
+            results.append({'name': name, 'success': True})
+            success_count += 1
+
+        except Exception as e:
+            print(f"  [{i}/{len(records)}] ✗ {name:30s} — {str(e)}")
+            results.append({'name': name, 'success': False, 'reason': str(e)})
+
+    # Summary
+    print(f"\n{'='*60}")
+    print(f"  Completed: {success_count}/{len(records)} ✓")
+    print(f"{'='*60}\n")
+
+    return success_count, len(records), results
+
+
+# ============================================================
+# 10. GITHUB AUTO-DEPLOY
 # ============================================================
 
 def deploy_to_github(html_content, filename, repo='soul-maps'):
@@ -992,8 +1125,8 @@ def deploy_to_github(html_content, filename, repo='soul-maps'):
 
 def main():
     parser = argparse.ArgumentParser(description='Soul Map Generator \u2014 The First Spark')
-    parser.add_argument('--name', required=True, help='Full name')
-    parser.add_argument('--date', required=True, help='Birth date (YYYY-MM-DD)')
+    parser.add_argument('--name', required=False, help='Full name (or use --batch for multiple)')
+    parser.add_argument('--date', required=False, help='Birth date (YYYY-MM-DD)')
     parser.add_argument('--time', help='Birth time (HH:MM, 24hr format)')
     parser.add_argument('--city', help='Birth city')
     parser.add_argument('--country', default='US', help='Birth country code (default: US)')
@@ -1003,8 +1136,25 @@ def main():
     parser.add_argument('--monthly', action='store_true', help='Generate monthly update instead of full soul map')
     parser.add_argument('--month', type=int, help='Month for monthly update (1-12, default: current)')
     parser.add_argument('--year', type=int, help='Year for monthly update (default: current)')
+    parser.add_argument('--batch', help='CSV file for batch generation (columns: Name, Date, Time, City, Country)')
+    parser.add_argument('--batch-mode', choices=['soul-map', 'monthly', 'both'], default='both', help='What to generate in batch mode (default: both)')
+    parser.add_argument('--batch-output', help='Output directory for batch files (default: current)')
 
     args = parser.parse_args()
+
+    # Batch mode
+    if args.batch:
+        success_count, total_count, results = generate_batch(
+            args.batch,
+            mode=args.batch_mode,
+            no_deploy=args.no_deploy,
+            output_dir=args.batch_output
+        )
+        return
+
+    # Single mode — require name and date
+    if not args.name or not args.date:
+        parser.error("--name and --date required for single mode (or use --batch for multiple)")
 
     # Parse date
     birth_date = datetime.strptime(args.date, '%Y-%m-%d').date()
