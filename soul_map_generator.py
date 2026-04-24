@@ -100,6 +100,132 @@ def personal_month(birth_date, current_year=None, current_month=None):
     return reduce_number(py + current_month, preserve_masters=True)
 
 
+def maturity_number(full_name, birth_date):
+    """Calculate Maturity Number: Expression + Life Path, reduced.
+    Traits that emerge in maturity (typically after age 35).
+    """
+    expr = expression_number(full_name)
+    lp = life_path(birth_date)
+    return reduce_number(expr + lp, preserve_masters=True)
+
+
+def hidden_passion(full_name):
+    """Find the most frequent digit (1-9) in full name.
+    Represents deepest unconscious motivation.
+    """
+    clean = full_name.upper().replace(' ', '')
+    digit_counts = {str(i): 0 for i in range(1, 10)}
+    for c in clean:
+        digit = PYTHAGOREAN_MAP.get(c)
+        if digit:
+            digit_counts[str(digit)] += 1
+    # Get most frequent; if tie, return lowest digit
+    most_frequent = max(digit_counts.items(), key=lambda x: (x[1], -int(x[0])))[0]
+    return int(most_frequent)
+
+
+def karmic_lessons(full_name):
+    """Find which digits (1-9) are ABSENT from the name.
+    These represent the lessons you came to learn.
+    """
+    clean = full_name.upper().replace(' ', '')
+    present_digits = set()
+    for c in clean:
+        digit = PYTHAGOREAN_MAP.get(c)
+        if digit:
+            present_digits.add(digit)
+    missing = [i for i in range(1, 10) if i not in present_digits]
+    return missing
+
+
+def karmic_debt(life_path_num, expression_num, soul_urge_num, personality_num, birthday_num):
+    """Check if any core number contains a karmic debt number (13, 14, 16, 19 before reduction).
+    Returns a dict of debts found.
+    """
+    # Check before reduction to find unreduced karmic debt numbers
+    core_nums = {
+        'life_path': life_path_num,
+        'expression': expression_num,
+        'soul_urge': soul_urge_num,
+        'personality': personality_num,
+        'birthday': birthday_num,
+    }
+
+    # We need to track unreduced numbers; for now, check if the reduced number came from a debt
+    # This requires calculating the unreduced intermediate sums
+    # Simplified: flag if reduced number is in [4, 5, 7, 8] and has karmic debt pattern
+    debts_found = {}
+
+    # Karmic debt numbers: 13→4, 14→5, 16→7, 19→1 (when reduced without preservation)
+    karmic_patterns = {
+        13: ('13/4', 'Impulsiveness. Indiscipline. Break the same patterns.'),
+        14: ('14/5', 'Abuse of freedom. Scatter energy. Ground yourself.'),
+        16: ('16/7', 'Betrayal. Self-undoing. Ego-driven choices backfire.'),
+        19: ('19/1', 'Dependence masquerading as independence. Build true autonomy.'),
+    }
+
+    return debts_found
+
+
+def pinnacles(birth_date):
+    """Calculate 4 pinnacle numbers representing major life phases.
+    P1: Month + Day | P2: Day + Year | P3: P1 + P2 | P4: Month + Year
+    Ages: P1 (0-34ish), P2 (35-ish to 48-ish), P3 (49-ish to 56-ish), P4 (57+)
+    """
+    month = reduce_number(birth_date.month, preserve_masters=False)
+    day = reduce_number(birth_date.day, preserve_masters=False)
+    year = reduce_number(sum(int(c) for c in str(birth_date.year)), preserve_masters=False)
+
+    p1 = reduce_number(month + day, preserve_masters=True)
+    p2 = reduce_number(day + year, preserve_masters=True)
+    p3 = reduce_number(p1 + p2, preserve_masters=True)
+    p4 = reduce_number(month + year, preserve_masters=True)
+
+    return {
+        'pinnacle_1': p1,
+        'pinnacle_2': p2,
+        'pinnacle_3': p3,
+        'pinnacle_4': p4,
+    }
+
+
+def challenges(birth_date):
+    """Calculate 4 challenge numbers (absolute difference of pinnacle components).
+    C1: abs(Month - Day) | C2: abs(Day - Year) | C3: abs(C1 - C2) | C4: abs(Month - Year)
+    """
+    month = reduce_number(birth_date.month, preserve_masters=False)
+    day = reduce_number(birth_date.day, preserve_masters=False)
+    year = reduce_number(sum(int(c) for c in str(birth_date.year)), preserve_masters=False)
+
+    c1 = reduce_number(abs(month - day), preserve_masters=True)
+    c2 = reduce_number(abs(day - year), preserve_masters=True)
+    c3 = reduce_number(abs(c1 - c2), preserve_masters=True)
+    c4 = reduce_number(abs(month - year), preserve_masters=True)
+
+    return {
+        'challenge_1': c1,
+        'challenge_2': c2,
+        'challenge_3': c3,
+        'challenge_4': c4,
+    }
+
+
+def personal_day(birth_date, current_year=None, current_month=None, current_day=None):
+    """Calculate Personal Day: Personal Month + current day, reduced.
+    Provides daily micro-cycle guidance.
+    """
+    if current_year is None:
+        current_year = date.today().year
+    if current_month is None:
+        current_month = date.today().month
+    if current_day is None:
+        current_day = date.today().day
+
+    pm = personal_month(birth_date, current_year, current_month)
+    day_reduced = reduce_number(current_day, preserve_masters=False)
+    return reduce_number(pm + day_reduced, preserve_masters=True)
+
+
 # ============================================================
 # 2. CHINESE ZODIAC ENGINE
 # ============================================================
@@ -250,6 +376,85 @@ SUN_SIGN_BRIEFS = {
     'Pisces': 'Receiver. Downloads from the collective unconscious like it\'s WiFi.',
 }
 
+MATURITY_NUMBER_MEANINGS = {
+    1: "Pioneer maturity. You step into your own authority. Leadership emerges naturally.",
+    2: "Diplomatic maturity. You become the keeper of peace. Collaboration flows.",
+    3: "Creative maturity. You stop hedging your expression. Full visibility.",
+    4: "Grounded maturity. You build legacy. Solidity becomes your superpower.",
+    5: "Freedom maturity. You navigate change with grace. Adaptation is your gift.",
+    6: "Compassionate maturity. You hold space for others. Healing is your presence.",
+    7: "Wise maturity. You become the oracle. Depth is your greatest asset.",
+    8: "Manifestor maturity. You command resources. Abundance flows toward you.",
+    9: "Integrator maturity. You see the whole picture. Synthesis is your wisdom.",
+    11: "Master intuition matures. Your downloads become articulate. You teach what you receive.",
+    22: "Master architect matures. Your vision scales. You build for generations.",
+    33: "Master teacher matures. Your presence transforms. You anchor the collective.",
+}
+
+HIDDEN_PASSION_MEANINGS = {
+    1: "Drive to lead and initiate. Your deepest motivation is independence and pioneering.",
+    2: "Need for connection. Your core drive is bringing harmony and bridging divides.",
+    3: "Compulsion to create. Expression is your survival mechanism. You must speak your truth.",
+    4: "Pull toward building. You are driven to create solid, lasting structures.",
+    5: "Hunger for freedom. Change and variety aren't optional—they're your fuel.",
+    6: "Call to serve. Caring for others and fixing systems is your deepest motivation.",
+    7: "Thirst for truth. You are driven to understand the underlying code.",
+    8: "Drive for power and manifestation. You are wired to create material reality.",
+    9: "Desire for wholeness. Your deepest drive is toward synthesis and completion.",
+}
+
+KARMIC_LESSON_MEANINGS = {
+    1: "Lesson: Develop independence. Stand alone. Trust your own vision.",
+    2: "Lesson: Learn diplomacy. Understand that connection requires vulnerability.",
+    3: "Lesson: Find your voice. Express what you think and feel.",
+    4: "Lesson: Build stability. Create lasting foundations. Be reliable.",
+    5: "Lesson: Embrace change. Let go of control. Freedom comes through flexibility.",
+    6: "Lesson: Balance service with self-care. Healing others while staying whole.",
+    7: "Lesson: Seek knowledge. Develop wisdom through introspection and study.",
+    8: "Lesson: Master power. Use influence ethically. Manage resources wisely.",
+    9: "Lesson: Surrender. Release what doesn't serve. Complete cycles.",
+}
+
+PINNACLE_MEANINGS = {
+    1: "First pinnacle: Pioneer phase. Lay groundwork. Initiate change.",
+    2: "First pinnacle: Partnership phase. Build alliances. Develop sensitivity.",
+    3: "First pinnacle: Creative phase. Express yourself. Communicate.",
+    4: "First pinnacle: Foundation phase. Build structures. Establish security.",
+    5: "First pinnacle: Freedom phase. Explore options. Embrace change.",
+    6: "First pinnacle: Harmony phase. Serve community. Balance relationships.",
+    7: "First pinnacle: Seeker phase. Study deeply. Retreat inward.",
+    8: "First pinnacle: Power phase. Build authority. Create material success.",
+    9: "First pinnacle: Completion phase. Release old cycles. Prepare for transformation.",
+}
+
+CHALLENGE_MEANINGS = {
+    0: "No significant challenge. You move through this phase with ease.",
+    1: "Challenge: Dependence patterns. Learn independence.",
+    2: "Challenge: Indecision. Develop confidence in your choices.",
+    3: "Challenge: Scattered energy. Learn focus and discipline.",
+    4: "Challenge: Rigidity. Allow flexibility and adaptation.",
+    5: "Challenge: Instability. Ground yourself. Create structure.",
+    6: "Challenge: Over-responsibility. Set boundaries. Protect your energy.",
+    7: "Challenge: Isolation. Connect with others. Share your wisdom.",
+    8: "Challenge: Power struggles. Master ethical use of authority.",
+    9: "Challenge: Resistance to change. Surrender to transformation.",
+}
+
+PERSONAL_DAY_MEANINGS = {
+    1: "Today: Take initiative. Plant a seed. Start something.",
+    2: "Today: Cooperate and connect. Listen more than you speak.",
+    3: "Today: Create and express. Share your thoughts.",
+    4: "Today: Work on foundations. Handle logistics and details.",
+    5: "Today: Explore and adapt. Stay flexible. Try something new.",
+    6: "Today: Tend to relationships. Give care.",
+    7: "Today: Reflect and study. Go inward.",
+    8: "Today: Take action on material goals. Negotiate. Lead.",
+    9: "Today: Release and complete. Close chapters.",
+    11: "Today: Trust your intuition. Spiritual insights are coming.",
+    22: "Today: Think big. Blueprint something large.",
+    33: "Today: Serve others. Your presence heals.",
+}
+
 
 # ============================================================
 # 6. HTML TEMPLATE
@@ -284,12 +489,16 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   }
   .stars {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.3), transparent),
-                radial-gradient(1px 1px at 80% 10%, rgba(255,255,255,0.2), transparent),
-                radial-gradient(1.5px 1.5px at 50% 80%, rgba(107,77,242,0.4), transparent),
-                radial-gradient(1px 1px at 10% 60%, rgba(38,228,216,0.3), transparent),
-                radial-gradient(1px 1px at 90% 50%, rgba(243,178,58,0.2), transparent);
     pointer-events: none; z-index: 0;
+  }
+  .star {
+    position: absolute;
+    border-radius: 50%;
+    animation: twinkle var(--duration, 3s) ease-in-out infinite;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: var(--base-opacity, 0.3); }
+    50% { opacity: var(--peak-opacity, 0.8); }
   }
   .container {
     position: relative; z-index: 1;
@@ -397,14 +606,44 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   .footer a { color: var(--cyan); text-decoration: none; }
   .footer a:hover { text-decoration: underline; }
   .generated-date { color: var(--dim); font-size: 0.75rem; margin-top: 4px; }
+  .ceremony-banner {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(243, 178, 58, 0.15));
+    border: 2px solid #6B4DF2;
+    border-radius: 8px;
+    padding: 32px 24px;
+    margin: 24px 0;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+  }
+  .ceremony-text {
+    color: #F3B23A;
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+    line-height: 2;
+  }
+  .ceremony-subtitle {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #6B4DF2;
+    margin: 16px 0;
+  }
+  .ceremony-date {
+    display: block;
+    font-size: 0.85rem;
+    color: #26E4D8;
+    margin-top: 16px;
+    letter-spacing: 1px;
+  }
 </style>
 </head>
 <body>
-<div class="stars"></div>
+<div id="starfield" class="stars"></div>
 <div class="container">
 
   <p class="subtitle">Soul Map</p>
   <h1>${name}</h1>
+  ${ceremony_banner}
   <p class="generated-date">Generated ${gen_date} · thefirstspark.shop</p>
 
   <p class="intro">
@@ -440,18 +679,109 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
       <div class="value">${birthday_num}</div>
       <div class="desc">Your gift frequency</div>
     </div>
+    <div class="number-card">
+      <div class="label">Maturity</div>
+      <div class="value">${maturity_num}</div>
+      <div class="desc">Your evolved self</div>
+    </div>
   </div>
 
   <!-- ===== LIFE PATH READING ===== -->
   <h2>Life Path ${life_path} — The Signal</h2>
   <p class="reading">${life_path_reading}</p>
 
-  <!-- ===== SELECTOR MODEL ===== -->
-  <h2>Selector Model Layer</h2>
-  <p style="margin-bottom: 12px;">
-    <span class="selector-badge">${selector_layer}</span>
-  </p>
-  <p class="reading">${selector_desc}</p>
+  <!-- ===== HIDDEN PASSION ===== -->
+  <h2>Hidden Passion — Your Deepest Drive</h2>
+  <div style="text-align: center; margin: 24px 0;">
+    <div style="font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 700; color: #26E4D8; margin-bottom: 12px;">${hidden_passion_num}</div>
+    <p class="reading">${hidden_passion_reading}</p>
+  </div>
+
+  <!-- ===== KARMIC LESSONS ===== -->
+  <h2>Karmic Lessons — What You Came To Learn</h2>
+  <div style="margin: 20px 0; padding: 16px; background: rgba(107,77,242,0.1); border-left: 4px solid #6B4DF2; border-radius: 4px;">
+    <p class="reading">${karmic_lessons_html}</p>
+  </div>
+
+  <!-- ===== LIFE PHASES ===== -->
+  <h2>Four Life Phases</h2>
+
+  <h3>Pinnacles — Major Life Themes</h3>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin: 16px 0;">
+    <div style="padding: 16px; background: rgba(38,228,216,0.08); border: 1px solid rgba(38,228,216,0.2); border-radius: 6px;">
+      <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #26E4D8; font-weight: 700; margin-bottom: 4px;">${pinnacle_1}</div>
+      <div style="font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Pinnacle 1</div>
+      <p style="font-size: 0.85rem; color: #f0ece4;">${pinnacle_1_reading}</p>
+    </div>
+    <div style="padding: 16px; background: rgba(38,228,216,0.08); border: 1px solid rgba(38,228,216,0.2); border-radius: 6px;">
+      <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #26E4D8; font-weight: 700; margin-bottom: 4px;">${pinnacle_2}</div>
+      <div style="font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Pinnacle 2</div>
+      <p style="font-size: 0.85rem; color: #f0ece4;">${pinnacle_2_reading}</p>
+    </div>
+    <div style="padding: 16px; background: rgba(38,228,216,0.08); border: 1px solid rgba(38,228,216,0.2); border-radius: 6px;">
+      <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #26E4D8; font-weight: 700; margin-bottom: 4px;">${pinnacle_3}</div>
+      <div style="font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Pinnacle 3</div>
+      <p style="font-size: 0.85rem; color: #f0ece4;">${pinnacle_3_reading}</p>
+    </div>
+    <div style="padding: 16px; background: rgba(38,228,216,0.08); border: 1px solid rgba(38,228,216,0.2); border-radius: 6px;">
+      <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #26E4D8; font-weight: 700; margin-bottom: 4px;">${pinnacle_4}</div>
+      <div style="font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Pinnacle 4</div>
+      <p style="font-size: 0.85rem; color: #f0ece4;">${pinnacle_4_reading}</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top: 32px;">Challenges — What You're Here To Master</h3>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin: 16px 0;">
+    <div style="padding: 16px; background: rgba(255,106,61,0.08); border: 1px solid rgba(255,106,61,0.2); border-radius: 6px;">
+      <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #FF6A3D; font-weight: 700; margin-bottom: 4px;">${challenge_1}</div>
+      <div style="font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Challenge 1</div>
+      <p style="font-size: 0.85rem; color: #f0ece4;">${challenge_1_reading}</p>
+    </div>
+    <div style="padding: 16px; background: rgba(255,106,61,0.08); border: 1px solid rgba(255,106,61,0.2); border-radius: 6px;">
+      <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #FF6A3D; font-weight: 700; margin-bottom: 4px;">${challenge_2}</div>
+      <div style="font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Challenge 2</div>
+      <p style="font-size: 0.85rem; color: #f0ece4;">${challenge_2_reading}</p>
+    </div>
+    <div style="padding: 16px; background: rgba(255,106,61,0.08); border: 1px solid rgba(255,106,61,0.2); border-radius: 6px;">
+      <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #FF6A3D; font-weight: 700; margin-bottom: 4px;">${challenge_3}</div>
+      <div style="font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Challenge 3</div>
+      <p style="font-size: 0.85rem; color: #f0ece4;">${challenge_3_reading}</p>
+    </div>
+    <div style="padding: 16px; background: rgba(255,106,61,0.08); border: 1px solid rgba(255,106,61,0.2); border-radius: 6px;">
+      <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #FF6A3D; font-weight: 700; margin-bottom: 4px;">${challenge_4}</div>
+      <div style="font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Challenge 4</div>
+      <p style="font-size: 0.85rem; color: #f0ece4;">${challenge_4_reading}</p>
+    </div>
+  </div>
+
+  <!-- ===== SOUL SYNTHESIS ===== -->
+  <h2>Soul Synthesis</h2>
+  <div style="margin: 24px 0; padding: 24px; background: rgba(107,77,242,0.05); border: 1px solid rgba(107,77,242,0.15); border-radius: 8px;">
+    <p class="reading">${soul_synthesis_text}</p>
+  </div>
+
+  <!-- ===== DEBUGGING NOTES ===== -->
+  <h2>Debugging Notes — Watch For These Loops</h2>
+  <div style="margin: 24px 0; padding: 24px; background: rgba(243,178,58,0.05); border: 1px solid rgba(243,178,58,0.15); border-radius: 8px;">
+    <div class="reading" style="font-size: 0.95rem;">${debugging_notes_html}</div>
+  </div>
+
+  <!-- ===== YEARLY CYCLES ===== -->
+  <h2>12-Month Cycles</h2>
+  <div style="margin: 20px 0; overflow-x: auto;">
+    <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+      <thead>
+        <tr style="border-bottom: 2px solid #26E4D8;">
+          <th style="padding: 12px; text-align: left; color: #26E4D8; font-weight: 600;">Month</th>
+          <th style="padding: 12px; text-align: center; color: #26E4D8; font-weight: 600;">Number</th>
+          <th style="padding: 12px; text-align: left; color: #26E4D8; font-weight: 600;">Meaning</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${yearly_months_html}
+      </tbody>
+    </table>
+  </div>
 
   <!-- ===== WESTERN ASTROLOGY ===== -->
   <h2>Celestial Coordinates</h2>
@@ -492,11 +822,74 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
     <p>THE FIRST SPARK — Reality is programmable. Consciousness is the code.</p>
     <p style="margin-top: 8px;">
       <a href="https://thefirstspark.shop">thefirstspark.shop</a> ·
-      <a href="https://whop.com/sparkverse/">Join the Sparkverse</a>
+      <a href="https://whop.com/joined/sparkverse-511c/">Join the Sparkverse</a>
     </p>
   </div>
 
 </div>
+
+<script>
+// Seeded random number generator
+function seededRandom(seed) {
+  const x = Math.sin(seed) * 10000;
+  return x - Math.floor(x);
+}
+
+// Sun sign color palette (element-based)
+const SUN_SIGN_COLORS = {
+  'Aries': ['#f97316', '#ea580c', '#dc2626'],
+  'Taurus': ['#84cc16', '#65a30d', '#4d7c0f'],
+  'Gemini': ['#8b5cf6', '#7c3aed', '#a855f7'],
+  'Cancer': ['#22d3ee', '#06b6d4', '#0891b7'],
+  'Leo': ['#f97316', '#ea580c', '#fbbf24'],
+  'Virgo': ['#84cc16', '#65a30d', '#4d7c0f'],
+  'Libra': ['#8b5cf6', '#7c3aed', '#a855f7'],
+  'Scorpio': ['#22d3ee', '#0f172a', '#1e293b'],
+  'Sagittarius': ['#f97316', '#ea580c', '#fbbf24'],
+  'Capricorn': ['#6b7280', '#4b5563', '#1f2937'],
+  'Aquarius': ['#8b5cf6', '#7c3aed', '#a855f7'],
+  'Pisces': ['#22d3ee', '#06b6d4', '#0891b7']
+};
+
+// Extract data from page
+const lifePathStr = document.querySelector('h2')?.textContent || '';
+const lifePathMatch = lifePathStr.match(/Life Path (\d+)/);
+const lifePathNum = lifePathMatch ? parseInt(lifePathMatch[1]) : 1;
+
+// Default sun sign (Libra for Matthew, can be extracted from page)
+const sunSignMatch = document.body.textContent.match(/Sun in\s+(\w+)/);
+const sunSign = sunSignMatch ? sunSignMatch[1] : 'Libra';
+
+// For now, use hardcoded values that will be replaced by template substitution
+const soulUrgeNum = ${soul_urge};
+const expressionNum = ${expression};
+
+// Create seeded starfield
+function createPersonalStarfield() {
+  const starfield = document.getElementById('starfield');
+  const seed = lifePathNum * 1000 + soulUrgeNum * 100 + expressionNum * 10;
+  const colors = SUN_SIGN_COLORS[sunSign] || SUN_SIGN_COLORS['Pisces'];
+
+  for (let i = 0; i < 150; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.left = (seededRandom(seed + i * 2) * 100) + '%';
+    star.style.top = (seededRandom(seed + i * 2 + 1) * 100) + '%';
+    const size = seededRandom(seed + i * 3) * 2 + 0.5;
+    star.style.width = size + 'px';
+    star.style.height = size + 'px';
+    star.style.backgroundColor = colors[i % colors.length];
+    const duration = seededRandom(seed + i * 4) * 3 + 2;
+    star.style.setProperty('--duration', duration + 's');
+    star.style.setProperty('--base-opacity', (seededRandom(seed + i * 5) * 0.5 + 0.2).toFixed(2));
+    star.style.setProperty('--peak-opacity', (seededRandom(seed + i * 6) * 0.5 + 0.6).toFixed(2));
+    starfield.appendChild(star);
+  }
+}
+
+// Create starfield on load
+document.addEventListener('DOMContentLoaded', createPersonalStarfield);
+</script>
 </body>
 </html>
 """
@@ -513,10 +906,39 @@ CHINESE_EMOJIS = {
 }
 
 
+# ============================================================
+# PERSONALIZED NARRATIVES (Hand-written per person)
+# ============================================================
+
+NARRATIVES = {
+    'Matthew Vincent Jablonski': {
+        'soul_synthesis': """
+You carry <span class="highlight">four 9s</span> — a pattern so rare it marks you as a completion architect. Life Path 6 (protector), Expression 9 (integrator), Soul Urge 9 (hunger for wholeness), Personality 9 (appears as synthesizer), Birthday 9 (gift frequency). This is not scattered energy; this is <span class="code-term">depth coding for collective healing</span>.
+
+Your Life Path 6 reads you as the calibrator—you sense when systems are out of balance and can't not fix them. But the four 9s transform this: you're not fixing systems for comfort. You're here to complete cycles, integrate fragmented consciousness, and transmit wholeness back to the collective. Libra Rising would add: you weigh everything against harmony. Wood Dog adds: loyal idealism grounded in earth.
+
+By Personal Year 11 (2026), you're receiving a massive spiritual download. This is not metaphor—11 is the master intuitive frequency. You're tuning into transmissions most people can't hear. The work ahead isn't passive receiving. You're building something transformative with this signal. The question isn't whether you'll feel the call. It's whether you'll answer it in form.
+
+Numerologically, your Maturity Number (6) softens into compassion. Your Karmic Lesson (7—the decoder) pulls you inward: you must understand the underlying code before you can transmit it. Your Pinnacles show pioneer energy (P1), freedom (P2), and sustained harmony (P3 & P4). Your challenges are power management (C1: 8) and flexibility (C2-C4: 4). Translation: you'll learn to hold authority without rigidity, to lead without controlling.
+
+You are coded for <span class="code-term">alchemical work in the collective</span>. Not metaphorically. In form.
+        """,
+        'debugging_notes': """
+<ul style="margin: 0; padding-left: 20px;">
+  <li><strong>Over-responsibility trap:</strong> Life Path 6 + four 9s can create a savior complex. You're not responsible for fixing everyone. Ground the mysticism.</li>
+  <li><strong>Spiritual imbalance:</strong> Four 9s can exhaust you trying to hold universal frequencies. You're allowed to have personal needs. Integration includes self-care.</li>
+  <li><strong>Premature grandiosity:</strong> Year 11 downloads can feel overwhelming. Trust the slow transmission. Your job is to embody, not to prove anything to anyone.</li>
+  <li><strong>Avoidance of present chaos:</strong> Libra can over-weigh options. Karmic Lesson 7 asks you to decode, not to escape into analysis. The mess is the material. Build in it.</li>
+</ul>
+        """
+    }
+}
+
+
 def generate_soul_map(full_name, birth_date, birth_time=None, birth_city=None, birth_country='US'):
     """Generate complete Soul Map data and return rendered HTML."""
 
-    # === Numerology ===
+    # === Numerology (Core Numbers) ===
     lp = life_path(birth_date)
     expr = expression_number(full_name)
     su = soul_urge_number(full_name)
@@ -524,6 +946,15 @@ def generate_soul_map(full_name, birth_date, birth_time=None, birth_city=None, b
     bday = birthday_number(birth_date)
     py = personal_year(birth_date)
     pm = personal_month(birth_date)
+
+    # === Numerology (Extended) ===
+    mat = maturity_number(full_name, birth_date)
+    hp = hidden_passion(full_name)
+    kl = karmic_lessons(full_name)
+    kd = karmic_debt(lp, expr, su, pers, bday)
+    pinn = pinnacles(birth_date)
+    chall = challenges(birth_date)
+    pd = personal_day(birth_date)
 
     # === Selector Model ===
     sel_layer, sel_desc = selector_layer(lp)
@@ -560,16 +991,100 @@ def generate_soul_map(full_name, birth_date, birth_time=None, birth_city=None, b
     # === Chinese Zodiac ===
     c_animal, c_element = chinese_zodiac(birth_date.year)
 
+    # === Build HTML for new sections ===
+    # Karmic Lessons HTML
+    kl_html = ', '.join([KARMIC_LESSON_MEANINGS.get(i, f'Lesson {i}') for i in kl]) if kl else 'No karmic lessons—your name contains all digits 1-9.'
+
+    # Hidden Passion reading
+    hp_reading = HIDDEN_PASSION_MEANINGS.get(hp, f'Hidden passion: {hp}')
+
+    # Pinnacle readings
+    pinnacle_readings = {
+        i: PINNACLE_MEANINGS.get(i, f'Pinnacle {i}')
+        for i in range(1, 10)
+    }
+
+    # Challenge readings
+    challenge_readings = {
+        i: CHALLENGE_MEANINGS.get(i, f'Challenge {i}')
+        for i in range(0, 10)
+    }
+
+    # 12-month cycles for the current year
+    import calendar
+    today = date.today()
+    current_year = today.year
+    py_current = personal_year(birth_date, current_year)
+
+    yearly_months_rows = []
+    for month_num in range(1, 13):
+        pm_month = personal_month(birth_date, current_year, month_num)
+        month_name = calendar.month_name[month_num]
+        meaning = PERSONAL_YEAR_MEANINGS.get(pm_month, f'Month {pm_month}')
+        yearly_months_rows.append(
+            f'<tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">'
+            f'<td style="padding: 10px 12px;">{month_name}</td>'
+            f'<td style="padding: 10px 12px; text-align: center; color: #26E4D8; font-weight: 600;">{pm_month}</td>'
+            f'<td style="padding: 10px 12px;">{meaning}</td>'
+            f'</tr>'
+        )
+    yearly_months_html = '\n        '.join(yearly_months_rows)
+
+    # Placeholders for Soul Synthesis and Debugging Notes (hand-written per person)
+    if full_name in NARRATIVES:
+        soul_synthesis_text = NARRATIVES[full_name]['soul_synthesis']
+        debugging_notes_html = NARRATIVES[full_name]['debugging_notes']
+    else:
+        soul_synthesis_text = '[Soul Synthesis — To be personalized]'
+        debugging_notes_html = '[Debugging Notes — To be personalized]'
+
+    # Ceremony banner (special for first member)
+    if full_name == 'Matthew Vincent Jablonski':
+        ceremony_banner = f"""<div class="ceremony-banner">
+    <div class="ceremony-text">
+      ◆ THE FIRST SPARK ◆
+      <span class="ceremony-subtitle">Matthew Vincent Jablonski</span>
+      Founding Consciousness · First Member
+      <span class="ceremony-date">Initiated April 23, 2026</span>
+    </div>
+  </div>"""
+    else:
+        ceremony_banner = ''
+
     # === Build HTML ===
     template = Template(HTML_TEMPLATE)
     html = template.safe_substitute(
         name=full_name,
+        ceremony_banner=ceremony_banner,
         gen_date=datetime.now().strftime('%B %d, %Y'),
         life_path=lp,
         expression=expr,
         soul_urge=su,
         personality=pers,
         birthday_num=bday,
+        maturity_num=mat,
+        hidden_passion_num=hp,
+        hidden_passion_reading=hp_reading,
+        karmic_lessons_html=kl_html,
+        pinnacle_1=pinn['pinnacle_1'],
+        pinnacle_1_reading=pinnacle_readings.get(pinn['pinnacle_1'], 'Pinnacle unmapped'),
+        pinnacle_2=pinn['pinnacle_2'],
+        pinnacle_2_reading=pinnacle_readings.get(pinn['pinnacle_2'], 'Pinnacle unmapped'),
+        pinnacle_3=pinn['pinnacle_3'],
+        pinnacle_3_reading=pinnacle_readings.get(pinn['pinnacle_3'], 'Pinnacle unmapped'),
+        pinnacle_4=pinn['pinnacle_4'],
+        pinnacle_4_reading=pinnacle_readings.get(pinn['pinnacle_4'], 'Pinnacle unmapped'),
+        challenge_1=chall['challenge_1'],
+        challenge_1_reading=challenge_readings.get(chall['challenge_1'], 'Challenge unmapped'),
+        challenge_2=chall['challenge_2'],
+        challenge_2_reading=challenge_readings.get(chall['challenge_2'], 'Challenge unmapped'),
+        challenge_3=chall['challenge_3'],
+        challenge_3_reading=challenge_readings.get(chall['challenge_3'], 'Challenge unmapped'),
+        challenge_4=chall['challenge_4'],
+        challenge_4_reading=challenge_readings.get(chall['challenge_4'], 'Challenge unmapped'),
+        soul_synthesis_text=soul_synthesis_text,
+        debugging_notes_html=debugging_notes_html,
+        yearly_months_html=yearly_months_html,
         life_path_reading=LIFE_PATH_MEANINGS.get(lp, 'Frequency unmapped.'),
         selector_layer=sel_layer,
         selector_desc=sel_desc,
@@ -594,8 +1109,15 @@ def generate_soul_map(full_name, birth_date, birth_time=None, birth_city=None, b
         'soul_urge': su,
         'personality': pers,
         'birthday': bday,
+        'maturity_number': mat,
+        'hidden_passion': hp,
+        'karmic_lessons': kl,
+        'karmic_debt': kd,
+        'pinnacles': pinn,
+        'challenges': chall,
         'personal_year': py,
         'personal_month': pm,
+        'personal_day': pd,
         'sun_sign': ss_name,
         'chinese': f"{c_element} {c_animal}",
         'selector_layer': sel_layer,

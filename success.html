@@ -433,11 +433,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="form-title" id="form-title">Your Coordinates</div>
         <div class="form-desc" id="form-desc">Every detail sharpens the signal. The more you share, the more precisely your map can be decoded. Takes about 3 minutes.</div>
 
-        <form id="intake-form" action="https://api.web3forms.com/submit" method="POST">
-            <input type="hidden" name="access_key" value="a9396dce-718b-4a34-a66d-b0e9ac5dc919">
-            <input type="hidden" name="subject" value="&#10022; NEW SOUL MAP ORDER">
-            <input type="hidden" name="from_name" value="First Spark Soul Maps">
-            <input type="hidden" name="redirect" value="">
+        <form id="intake-form" action="https://snazzy-melba-b4f488.netlify.app/purchase-webhook" method="POST">
 
             <div class="field">
                 <label for="full-name">Full Birth Name</label>
@@ -452,17 +448,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="field-row">
                 <div class="field">
                     <label for="dob">Date of Birth</label>
-                    <input type="date" id="dob" name="date_of_birth" required>
+                    <input type="date" id="dob" name="birth_date" required>
                 </div>
                 <div class="field">
                     <label for="tob">Time of Birth <span class="optional">(if known)</span></label>
-                    <input type="time" id="tob" name="time_of_birth">
+                    <input type="time" id="tob" name="birth_time">
                 </div>
             </div>
 
             <div class="field">
                 <label for="city">City &amp; State / Country of Birth</label>
-                <input type="text" id="city" name="birth_location" placeholder="e.g. Akron, Ohio" required>
+                <input type="text" id="city" name="birth_place" placeholder="e.g. Akron, Ohio" required>
             </div>
 
             <div class="field">
@@ -487,13 +483,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="sent-icon">&#9670;</span>
             <h2>Signal Received</h2>
             <p>
-                Your coordinates have been transmitted to KJP.<br>
-                Your soul map is now being decoded by hand &#8212; every number,<br>
-                every pattern, woven together just for you.
+                Your coordinates have been transmitted and decoded.<br>
+                Your soul map has been generated and is now live.
             </p>
-            <p class="gold">Delivery to your inbox within 3&#8211;5 days.</p>
+            <p class="gold">Check your inbox for your map link instantly.</p>
             <p>Questions? Reach out to <a href="mailto:kate@thefirstspark.shop" style="color:var(--cyan);">kate@thefirstspark.shop</a></p>
-            <div class="timeline">&#9670; &nbsp; Map in progress &nbsp; &#9670;</div>
+            <div class="timeline">&#9670; &nbsp; Map Complete &nbsp; &#9670;</div>
         </div>
     </div>
 
