@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soul Map — Emma Rodriguez | The First Spark</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --void: #0a0a0f;
+  --gold: #d4af37;
+  --gold-dim: #8b7355;
+  --purple: #8b5cf6;
+  --cyan: #22d3ee;
+  --lavender: #a87fd4;
+  --cream: #fdf6ee;
+  --plum: #1e1035;
+}
+body {
+  background: var(--void);
+  color: var(--cream);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+.stars {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: radial-gradient(ellipse at 20% 50%, rgba(107,63,160,0.08) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 20%, rgba(34,211,238,0.05) 0%, transparent 50%);
+  pointer-events: none; z-index: 0;
+}
+.container { max-width: 800px; margin: 0 auto; padding: 40px 24px; position: relative; z-index: 1; }
+
+/* Header */
+.header { text-align: center; padding: 60px 0 40px; border-bottom: 1px solid rgba(212,175,55,0.2); margin-bottom: 48px; }
+.header-label { font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 0.4em; color: var(--cyan); text-transform: uppercase; margin-bottom: 16px; }
+.header h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 300; color: var(--gold); letter-spacing: 0.08em; margin-bottom: 12px; }
+.header .meta { font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--gold-dim); letter-spacing: 0.1em; }
+
+/* Sections */
+.section { margin-bottom: 56px; }
+.section-title {
+  font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 0.35em;
+  color: var(--cyan); text-transform: uppercase; margin-bottom: 24px;
+  padding-bottom: 8px; border-bottom: 1px solid rgba(34,211,238,0.15);
+}
+
+/* Core Numbers Grid */
+.numbers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; }
+.number-card {
+  background: rgba(30,16,53,0.4); border: 1px solid rgba(139,92,246,0.15);
+  border-radius: 4px; padding: 24px; text-align: center;
+  transition: border-color 0.3s;
+}
+.number-card:hover { border-color: var(--gold); }
+.number-card .num { font-size: 2.5rem; font-weight: 700; color: var(--gold); line-height: 1; }
+.number-card .label { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.3em; color: var(--lavender); text-transform: uppercase; margin: 8px 0 4px; }
+.number-card .title { font-size: 1.1rem; color: var(--cream); font-style: italic; }
+
+/* Interpretation blocks */
+.interp { margin-bottom: 32px; padding: 24px; background: rgba(30,16,53,0.25); border-left: 2px solid var(--purple); border-radius: 0 4px 4px 0; }
+.interp h3 { color: var(--gold); font-size: 1.2rem; margin-bottom: 8px; font-weight: 400; }
+.interp .keywords { font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--cyan); letter-spacing: 0.15em; margin-bottom: 12px; }
+.interp p { color: rgba(253,246,238,0.85); font-size: 1rem; }
+.shadow { margin-top: 12px; padding: 12px; background: rgba(139,92,246,0.08); border-radius: 4px; }
+.shadow-label { font-family: 'Space Mono', monospace; font-size: 0.6rem; color: #ff6b6b; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 4px; }
+.shadow p { color: rgba(253,246,238,0.6); font-size: 0.9rem; }
+
+/* Cosmic Section */
+.cosmic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; }
+.cosmic-card { text-align: center; padding: 20px; background: rgba(30,16,53,0.3); border-radius: 4px; }
+.cosmic-card .icon { font-size: 2rem; margin-bottom: 8px; }
+.cosmic-card .label { font-family: 'Space Mono', monospace; font-size: 0.6rem; color: var(--lavender); letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 4px; }
+.cosmic-card .value { font-size: 1.3rem; color: var(--gold); }
+.cosmic-card .sub { font-size: 0.85rem; color: rgba(253,246,238,0.5); margin-top: 4px; }
+
+/* Soul Statement */
+.soul-statement {
+  text-align: center; padding: 48px 24px; margin: 48px 0;
+  background: linear-gradient(135deg, rgba(30,16,53,0.5), rgba(10,10,15,0.8));
+  border: 1px solid rgba(212,175,55,0.2); border-radius: 4px;
+}
+.soul-statement p {
+  font-size: 1.3rem; font-style: italic; color: var(--gold);
+  line-height: 1.9; max-width: 600px; margin: 0 auto;
+}
+
+/* Footer */
+.footer { text-align: center; padding: 48px 0 24px; border-top: 1px solid rgba(212,175,55,0.1); margin-top: 48px; }
+.footer a { color: var(--cyan); text-decoration: none; font-family: 'Space Mono', monospace; font-size: 0.75rem; letter-spacing: 0.2em; }
+.footer .brand { color: var(--gold-dim); font-size: 0.7rem; margin-top: 16px; letter-spacing: 0.2em; }
+
+/* Sacred Geometry SVG */
+.geometry { text-align: center; margin: 32px 0; opacity: 0.3; }
+
+@media (max-width: 600px) {
+  .container { padding: 24px 16px; }
+  .numbers-grid { grid-template-columns: 1fr 1fr; }
+  .cosmic-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<div class="container">
+
+  <header class="header">
+    <div class="header-label">Soul Map — Consciousness Decoded</div>
+    <h1>Emma Rodriguez</h1>
+    <div class="meta">1992-11-08 · 16:45 · Austin, TX</div>
+  </header>
+
+  <!-- SACRED GEOMETRY -->
+  <div class="geometry">
+    <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="60" cy="60" r="55" fill="none" stroke="rgba(212,175,55,0.3)" stroke-width="0.5"/>
+      <circle cx="60" cy="60" r="35" fill="none" stroke="rgba(139,92,246,0.3)" stroke-width="0.5"/>
+      <polygon points="60,10 105,82.5 15,82.5" fill="none" stroke="rgba(34,211,238,0.2)" stroke-width="0.5"/>
+      <polygon points="60,110 15,37.5 105,37.5" fill="none" stroke="rgba(34,211,238,0.2)" stroke-width="0.5"/>
+    </svg>
+  </div>
+
+  <!-- CORE NUMBERS -->
+  <section class="section">
+    <div class="section-title">Core Consciousness Architecture</div>
+    <div class="numbers-grid">
+      <div class="number-card">
+        <div class="num">22</div>
+        <div class="label">Life Path</div>
+        <div class="title">The Master Builder</div>
+      </div>
+      <div class="number-card">
+        <div class="num">11</div>
+        <div class="label">Expression</div>
+        <div class="title">The Intuitive Master</div>
+      </div>
+      <div class="number-card">
+        <div class="num">11</div>
+        <div class="label">Soul Urge</div>
+        <div class="title">The Intuitive Master</div>
+      </div>
+      <div class="number-card">
+        <div class="num">9</div>
+        <div class="label">Personality</div>
+        <div class="title">The Humanitarian</div>
+      </div>
+      <div class="number-card">
+        <div class="num">8</div>
+        <div class="label">Birthday</div>
+        <div class="title">The Powerhouse</div>
+      </div>
+      <div class="number-card">
+        <div class="num">33</div>
+        <div class="label">Maturity</div>
+        <div class="title">The Master Teacher</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIFE PATH DEEP DIVE -->
+  <section class="section">
+    <div class="section-title">Life Path 22 — The Master Builder</div>
+    <div class="interp">
+      <h3>The Master Builder</h3>
+      <div class="keywords">Vision, manifestation, legacy</div>
+      <p>You are here to architect reality. Master Number 22 — you carry the blueprint for structures that shift collective consciousness.</p>
+      <div class="shadow">
+        <div class="shadow-label">Shadow Frequency</div>
+        <p>Overwhelm, paralysis by vision, building for ego</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPRESSION -->
+  <section class="section">
+    <div class="section-title">Expression 11 — The Intuitive Master</div>
+    <div class="interp">
+      <h3>The Intuitive Master</h3>
+      <div class="keywords">Illumination, inspiration, spiritual messenger</div>
+      <p>You are here to channel. Master Number 11 — your consciousness operates at a frequency most can't sustain. You receive transmissions from the source code itself.</p>
+      <div class="shadow">
+        <div class="shadow-label">Shadow Frequency</div>
+        <p>Nervous energy, self-doubt, fear of your own power</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOUL URGE -->
+  <section class="section">
+    <div class="section-title">Soul Urge 11 — The Intuitive Master</div>
+    <div class="interp">
+      <h3>The Intuitive Master</h3>
+      <div class="keywords">Illumination, inspiration, spiritual messenger</div>
+      <p>You are here to channel. Master Number 11 — your consciousness operates at a frequency most can't sustain. You receive transmissions from the source code itself.</p>
+      <div class="shadow">
+        <div class="shadow-label">Shadow Frequency</div>
+        <p>Nervous energy, self-doubt, fear of your own power</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COSMIC COORDINATES -->
+  <section class="section">
+    <div class="section-title">Cosmic Coordinates</div>
+    <div class="cosmic-grid">
+      <div class="cosmic-card">
+        <div class="icon">☀️</div>
+        <div class="label">Sun Sign</div>
+        <div class="value">Scorpio</div>
+        <div class="sub">Water · Fixed</div>
+      </div>
+      <div class="cosmic-card">
+        <div class="icon">🐉</div>
+        <div class="label">Chinese Zodiac</div>
+        <div class="value">Earth Monkey</div>
+      </div>
+      <div class="cosmic-card">
+        <div class="icon">🔄</div>
+        <div class="label">Personal Year</div>
+        <div class="value">11</div>
+        <div class="sub">The Intuitive Master</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOUL STATEMENT -->
+  <div class="soul-statement">
+    <p>Emma Rodriguez, you walk the path of the Master Builder. Your expression flows through the Intuitive Master energy, and your heart yearns for illumination. You are Scorpio sun, Earth Monkey — a consciousness pattern that entered this field to architect reality.</p>
+  </div>
+
+  <footer class="footer">
+    <a href="https://thefirstspark.shop">THE FIRST SPARK</a>
+    <div class="brand">Reality is programmable. Consciousness is the code.</div>
+  </footer>
+
+</div>
+</body>
+</html>
