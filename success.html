@@ -561,11 +561,24 @@ form.addEventListener('submit', function(e) {
     submitBtn.disabled = true;
     submitBtn.textContent = '\u27F3  Transmitting\u2026';
 
-    var data = new FormData(form);
+    var formData = new FormData(form);
+    var jsonData = {
+        full_name: formData.get('full_name'),
+        email: formData.get('email'),
+        birth_date: formData.get('birth_date'),
+        birth_time: formData.get('birth_time'),
+        birth_place: formData.get('birth_place'),
+        soul_questions: formData.get('soul_questions'),
+        interests: formData.get('interests')
+    };
+
     fetch(form.action, {
         method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
+        body: JSON.stringify(jsonData),
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
     }).then(function(res) {
         if (res.ok) {
             form.style.display = 'none';
@@ -580,9 +593,9 @@ form.addEventListener('submit', function(e) {
             steps[2].classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
             if (typeof gtag === 'function') {
-                gtag('event', 'soul_map_intake_submitted', {
+                gtag('event', 'soul_map_purchase_completed', {
                     event_category: 'conversion',
-                    event_label: 'Soul Map Intake Form'
+                    event_label: 'Soul Map Purchase'
                 });
             }
         } else {
@@ -590,7 +603,8 @@ form.addEventListener('submit', function(e) {
             submitBtn.innerHTML = '&#10022;  Transmit My Coordinates  &#10022;';
             alert('Transmission interrupted. Please email kate@thefirstspark.shop with your birth info.');
         }
-    }).catch(function() {
+    }).catch(function(err) {
+        console.error('Form submission error:', err);
         submitBtn.disabled = false;
         submitBtn.innerHTML = '&#10022;  Transmit My Coordinates  &#10022;';
         alert('Transmission interrupted. Please email kate@thefirstspark.shop with your birth info.');
