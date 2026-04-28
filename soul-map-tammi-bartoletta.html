@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soul Map — Tammi Kristine Bartoletta | The First Spark</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0B0B0C;
+    --deep-space: #0a0a0f;
+    --ember: #FF6A3D;
+    --gold: #F3B23A;
+    --violet: #6B4DF2;
+    --cyan: #26E4D8;
+    --white: #f0ece4;
+    --dim: #888;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--deep-space);
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+  .stars {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 0;
+  }
+  .star {
+    position: absolute;
+    border-radius: 50%;
+    animation: twinkle var(--duration, 3s) ease-in-out infinite;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: var(--base-opacity, 0.3); }
+    50% { opacity: var(--peak-opacity, 0.8); }
+  }
+  .container {
+    position: relative; z-index: 1;
+    max-width: 800px; margin: 0 auto; padding: 60px 24px;
+  }
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--gold), var(--ember));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+  }
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; font-weight: 600;
+    color: var(--cyan);
+    border-bottom: 1px solid rgba(38,228,216,0.2);
+    padding-bottom: 8px; margin: 48px 0 20px;
+  }
+  h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; color: var(--gold);
+    margin: 24px 0 8px;
+  }
+  .subtitle {
+    font-size: 0.85rem; color: var(--dim);
+    letter-spacing: 3px; text-transform: uppercase;
+  }
+  .generated-date {
+    font-size: 0.8rem; color: var(--dim);
+    margin-top: 4px; letter-spacing: 1px;
+  }
+  .intro {
+    margin: 32px 0; font-style: italic;
+    color: var(--dim); font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+  }
+  .reading { margin: 12px 0; font-size: 0.95rem; }
+  .numbers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px; margin: 24px 0;
+  }
+  .number-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(38,228,216,0.15);
+    border-radius: 8px;
+    padding: 20px; text-align: center;
+    transition: transform 0.3s ease;
+  }
+  .number-card:hover { transform: translateY(-2px); }
+  .number-card .label {
+    font-size: 0.7rem; color: var(--dim);
+    text-transform: uppercase; letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+  .number-card .value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; font-weight: 700;
+    color: var(--gold);
+    line-height: 1; margin-bottom: 8px;
+  }
+  .number-card .desc {
+    font-size: 0.75rem; color: var(--white);
+    opacity: 0.7;
+  }
+  .ceremony {
+    margin: 56px 0;
+    padding: 32px 24px;
+    background: linear-gradient(135deg, rgba(243,178,58,0.06), rgba(107,77,242,0.06));
+    border: 1px solid rgba(243,178,58,0.2);
+    border-radius: 12px;
+    text-align: center;
+  }
+  .ceremony-text {
+    color: var(--gold);
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+    line-height: 2;
+  }
+  .ceremony-subtitle {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--violet);
+    font-family: 'Cormorant Garamond', serif;
+    margin: 16px 0;
+  }
+  .ceremony-date {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--cyan);
+    margin-top: 16px;
+    letter-spacing: 1px;
+  }
+  .signature {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    text-align: center;
+    color: var(--dim);
+    font-size: 0.8rem;
+  }
+  .signature a { color: var(--cyan); text-decoration: none; }
+</style>
+</head>
+<body>
+<div id="starfield" class="stars"></div>
+<div class="container">
+
+  <p class="subtitle">Soul Map</p>
+  <h1>Tammi Kristine Bartoletta</h1>
+
+  <p class="generated-date">Generated April 27, 2026 · thefirstspark.shop</p>
+
+  <p class="intro">
+    This isn't a personality test. It's a coordinate system — a map of the patterns
+    encoded in your existence. Numbers, planets, elements. Not metaphors. Syntax.
+  </p>
+
+  <!-- ===== CEREMONY ===== -->
+  <div class="ceremony">
+    <div class="ceremony-text">⚡ &nbsp; THE SIGNAL THAT ARRIVED &nbsp; ⚡</div>
+    <span class="ceremony-subtitle">12:33 AM · April 8, 1973</span>
+    <div class="ceremony-text">St. Thomas Hospital · Akron, Ohio</div>
+    <span class="ceremony-date">A fire signal arriving in the deepest hour of night</span>
+  </div>
+
+  <!-- ===== CORE NUMBERS ===== -->
+  <h2>Core Numbers</h2>
+  <div class="numbers-grid">
+    <div class="number-card">
+      <div class="label">Life Path</div>
+      <div class="value">5</div>
+      <div class="desc">Your primary frequency</div>
+    </div>
+    <div class="number-card">
+      <div class="label">Expression</div>
+      <div class="value">5</div>
+      <div class="desc">How you transmit</div>
+    </div>
+    <div class="number-card">
+      <div class="label">Soul Urge</div>
+      <div class="value">1</div>
+      <div class="desc">What drives you beneath</div>
+    </div>
+    <div class="number-card">
+      <div class="label">Personality</div>
+      <div class="value">4</div>
+      <div class="desc">What others receive</div>
+    </div>
+    <div class="number-card">
+      <div class="label">Birthday</div>
+      <div class="value">8</div>
+      <div class="desc">Your gift frequency</div>
+    </div>
+    <div class="number-card">
+      <div class="label">Maturity</div>
+      <div class="value">1</div>
+      <div class="desc">Your evolved self</div>
+    </div>
+  </div>
+
+  <!-- ===== LIFE PATH READING ===== -->
+  <h2>Life Path 5 — The Signal</h2>
+  <p class="reading">The Freedom Frequency. You came in coded for movement, change, sensory experience, and reinvention. A 5 isn't built to live one life — they're built to live many inside one body. Routine for its own sake feels like a cage. Variety isn't a luxury for you, it's oxygen.</p>
+  <p class="reading">Here's the part most numerology readings won't say out loud: a Life Path 5 living a constrained life — bound by circumstance, obligation, family system, financial pressure — will register that constraint as <em>punishment</em>. It isn't punishment. It's friction. The wrong-shape life pressing against the right-shape soul.</p>
+
+  <!-- ===== DOUBLE 5 PATTERN ===== -->
+  <h2>The Double 5 Stack</h2>
+  <p class="reading">Life Path 5 + Expression 5 = a doubled freedom signal. Your inner blueprint and your outer mission match. You're not crazy for craving change. You're not flighty. You're not "running from" anything. You're <em>built</em> for movement, and your name carries the same encoding as the date you arrived. The universe wasn't subtle about this one.</p>
+
+  <!-- ===== INTERIOR vs EXTERIOR ===== -->
+  <h2>The Inner / Outer Gap</h2>
+  <p class="reading"><strong>Inside</strong> (Soul Urge 1): You're an originator. A leader. The 1 is the pioneer frequency — solo, self-directed, here to start something nobody asked you to start. You've been waiting for permission you were never going to get from outside.</p>
+  <p class="reading"><strong>Outside</strong> (Personality 4): The world reads you as the dependable one. The worker. The one who shows up, holds it together, gets the thing done. Stable. Reliable. Foundation-builder.</p>
+  <p class="reading"><strong>The gap is the loop.</strong> A 5/5/1 inside, wearing a 4 outside, will feel mismatched with her own life — like she's playing a role that drains the very thing that makes her her. The "punishment" feeling lives in this gap. It dissolves the moment you stop performing the 4 for people who only loved the 4 you gave them.</p>
+
+  <!-- ===== BIRTHDAY 8 ===== -->
+  <h2>Birthday 8 — The Power Gift</h2>
+  <p class="reading">Born on the 8th. The 8 is the abundance number, the executive number, the karmic balance number. It's the figure-eight of give/receive, action/consequence. Your gift frequency is power — material, financial, organizational. People with an 8 birthday are coded to handle resources, but they often spend the first half of life either deflecting that power (too much responsibility too young) or chasing it the wrong way. The 8 is asking you: what would it look like to let yourself <em>have</em> instead of always <em>holding</em>?</p>
+
+  <!-- ===== MATURITY 1 ===== -->
+  <h2>Maturity 1 — The Evolved Self</h2>
+  <p class="reading">Maturity number is who you become in the second half of life — the version of you the early decades were preparing. Yours is 1. The pioneer. The independent one. The starter. By the back half of this life, you're meant to be unmistakably <em>yours</em> — not someone's wife, mother, daughter, employee, or caretaker first. <em>Yours.</em> First. And then everything else.</p>
+
+  <!-- ===== HIDDEN PASSION ===== -->
+  <h2>Hidden Passion — Your Deepest Drive</h2>
+  <div style="text-align: center; margin: 24px 0;">
+    <div style="font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 700; color: #26E4D8; margin-bottom: 12px;">2</div>
+    <p class="reading">The 2 appears seven times in your name — the most frequent letter-value by far. Beneath the freedom-seeking 5 and the pioneering 1 lives a deep, quiet drive toward <em>partnership, peace, and being met</em>. You don't actually want to do it all alone. You want a true other. The 2 hidden passion explains why solo independence alone never feels like enough — your soul wants the right alliance, not just sovereignty.</p>
+  </div>
+
+  <!-- ===== KARMIC LESSONS ===== -->
+  <h2>Karmic Lessons — What You Came To Learn</h2>
+  <div style="margin: 20px 0; padding: 16px; background: rgba(107,77,242,0.1); border-left: 4px solid #6B4DF2; border-radius: 4px;">
+    <p class="reading"><strong>Missing 7:</strong> Solitude as sanctuary. Inner work as a discipline. The 5 wants to keep moving outward — the 7 lesson is learning that some answers only show up when you stop and go in. Stillness as strategy.</p>
+    <p class="reading"><strong>Missing 8:</strong> Owning your power. Managing money, authority, and resources without flinching. The lesson isn't to <em>get</em> abundance — it's to stop deflecting the abundance that's already trying to land. Receive it. Steward it. Don't apologize for it.</p>
+  </div>
+
+  <!-- ===== ASTROLOGY LAYER ===== -->
+  <h2>Astrology Layer</h2>
+  <h3>☉ Sun in Aries</h3>
+  <p class="reading">Cardinal fire. Pioneer. First sign of the zodiac — coded for initiation, action, moving before everyone else does. Aries doesn't ask permission. Aries is the spark that <em>becomes</em> the fire.</p>
+  <h3>🌙 Born at 12:33 AM</h3>
+  <p class="reading">A fire signal arriving in the deepest hour of the night. Born <em>after</em> the day technically begins but before the world wakes — a private arrival. You came in quiet. The world didn't see you coming. Most people with this birth time live a long time being underestimated, then become unstoppable when they stop caring whether they're seen.</p>
+  <h3>🐂 Water Ox · 1973</h3>
+  <p class="reading">The Water Ox is the most patient, most enduring of the Ox years. Steady. Stubborn in the best way. Knows how to outlast. Water makes the Ox more emotionally attuned, less rigid. The Water Ox doesn't break under pressure — she <em>absorbs</em> it and keeps walking.</p>
+
+  <!-- ===== THE PUNISHMENT REFRAME ===== -->
+  <h2>The Reframe — Why It's Felt Like Punishment</h2>
+  <div style="margin: 24px 0; padding: 24px; background: rgba(255,106,61,0.06); border: 1px solid rgba(255,106,61,0.2); border-radius: 8px;">
+    <p class="reading">A Life Path 5 with double-5 expression and a 1 soul urge living inside a 4 personality, raised in or married to systems that demanded the 4 — that's not a curse. That's a <strong>miscast</strong>. You weren't punished. You were assigned the wrong role and stayed in it because the script said you had to.</p>
+    <p class="reading">Every Life Path 5 hits a moment — usually somewhere between 38 and 52 — where the soul refuses to keep paying the cost of pretending. That refusal looks like crisis from the outside. From the inside, it's the system finally rebooting in your real frequency.</p>
+    <p class="reading"><strong>You haven't been punished. You've been pressurized.</strong> And pressure on a 5 is a generator, not a sentence.</p>
+  </div>
+
+  <!-- ===== WHAT TO DO ===== -->
+  <h2>What She Can Do — The Debug</h2>
+  <p class="reading">Not a manifesto. Not ten rules. Three concrete moves that match her actual code:</p>
+  <p class="reading"><strong>1. Reclaim one freedom this week.</strong> Not a big one. A small, concrete autonomy — a route you take alone, a meal you eat the way <em>you</em> want, a "no" you say without explaining. The 5 needs movement. Starve it and the punishment feeling grows. Feed it small, real choices and the loop loosens.</p>
+  <p class="reading"><strong>2. Stop performing the 4 for people who never loved the 5.</strong> The Personality 4 you wear is real — it's a gift, actually — but if you've been the dependable one for people who only show up <em>because</em> you're dependable, that's not love, that's utility. The reframe: be a 4 by choice, not by survival.</p>
+  <p class="reading"><strong>3. Honor the 8 birthday.</strong> Stop deflecting abundance. When something good lands — money, a compliment, an offer, a kindness — don't immediately offset it with a "but" or a "yes-but-here's-what's-wrong." The 8 wants you to <em>receive</em>. Practice it like a muscle.</p>
+
+  <!-- ===== PERSONAL YEAR ===== -->
+  <h2>Personal Year 2026 · The 4 Year</h2>
+  <p class="reading">2026 is a 4 year for you. Foundation. Structure. The unsexy build. The universe is asking you to lay groundwork — for the next version of your life, the one that runs on <em>your</em> code, not someone else's. 4 years feel slow. They are. They're also the years that make everything after possible. Don't skip the foundation. This is the one you actually pour for yourself.</p>
+
+  <!-- ===== CLOSE ===== -->
+  <div class="signature">
+    Generated with care by Kate · The First Spark<br>
+    <a href="https://thefirstspark.shop">thefirstspark.shop</a> · @therealfirstspark
+  </div>
+
+</div>
+
+<script>
+  // Starfield
+  (function() {
+    const sf = document.getElementById('starfield');
+    for (let i = 0; i < 80; i++) {
+      const s = document.createElement('div');
+      s.className = 'star';
+      const size = Math.random() * 2 + 1;
+      s.style.width = size + 'px';
+      s.style.height = size + 'px';
+      s.style.background = ['#f0ece4','#26E4D8','#F3B23A'][Math.floor(Math.random()*3)];
+      s.style.top = Math.random() * 100 + '%';
+      s.style.left = Math.random() * 100 + '%';
+      s.style.setProperty('--duration', (Math.random() * 4 + 2) + 's');
+      s.style.setProperty('--base-opacity', Math.random() * 0.3 + 0.1);
+      s.style.setProperty('--peak-opacity', Math.random() * 0.5 + 0.4);
+      sf.appendChild(s);
+    }
+  })();
+</script>
+</body>
+</html>
