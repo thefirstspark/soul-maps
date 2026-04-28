@@ -433,11 +433,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="form-title" id="form-title">Your Coordinates</div>
         <div class="form-desc" id="form-desc">Every detail sharpens the signal. The more you share, the more precisely your map can be decoded. Takes about 3 minutes.</div>
 
-        <form id="intake-form" action="https://snazzy-melba-b4f488.netlify.app/purchase-webhook" method="POST">
+        <form id="intake-form" action="https://soul-map-server.up.railway.app/generate" method="POST">
 
             <div class="field">
                 <label for="full-name">Full Birth Name</label>
-                <input type="text" id="full-name" name="full_name" placeholder="First Middle Last" required autocomplete="name">
+                <input type="text" id="full-name" name="name" placeholder="First Middle Last" required autocomplete="name">
             </div>
 
             <div class="field">
@@ -448,17 +448,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="field-row">
                 <div class="field">
                     <label for="dob">Date of Birth</label>
-                    <input type="date" id="dob" name="birth_date" required>
+                    <input type="date" id="dob" name="dob" required>
                 </div>
                 <div class="field">
                     <label for="tob">Time of Birth <span class="optional">(if known)</span></label>
-                    <input type="time" id="tob" name="birth_time">
+                    <input type="time" id="tob" name="time">
                 </div>
             </div>
 
             <div class="field">
                 <label for="city">City &amp; State / Country of Birth</label>
-                <input type="text" id="city" name="birth_place" placeholder="e.g. Akron, Ohio" required>
+                <input type="text" id="city" name="city" placeholder="e.g. Akron, Ohio" required>
             </div>
 
             <div class="field">
@@ -563,16 +563,21 @@ form.addEventListener('submit', function(e) {
 
     var formData = new FormData(form);
     var jsonData = {
-        full_name: formData.get('full_name'),
+        name: formData.get('name'),
         email: formData.get('email'),
-        birth_date: formData.get('birth_date'),
-        birth_time: formData.get('birth_time'),
-        birth_place: formData.get('birth_place'),
-        soul_questions: formData.get('soul_questions'),
-        interests: formData.get('interests')
+        dob: formData.get('dob'),
+        time: formData.get('time') || null,
+        city: formData.get('city'),
+        country: formData.get('country') || 'US'
     };
 
-    fetch(form.action, {
+    // Use relative URL (will work with local server or deployed version)
+    var webhookUrl = form.action;
+    if (!webhookUrl.startsWith('http')) {
+        webhookUrl = '/api/generate-soul-map';
+    }
+
+    fetch(webhookUrl, {
         method: 'POST',
         body: JSON.stringify(jsonData),
         headers: {
@@ -580,24 +585,38 @@ form.addEventListener('submit', function(e) {
             'Accept': 'application/json'
         }
     }).then(function(res) {
-        if (res.ok) {
-            form.style.display = 'none';
-            document.getElementById('form-tag').style.display = 'none';
-            document.getElementById('form-title').style.display = 'none';
-            document.getElementById('form-desc').style.display = 'none';
-            sentMsg.style.display = 'block';
-            steps[1].classList.remove('active');
-            steps[1].classList.add('done');
-            steps[1].querySelector('.step-num').textContent = '\u2713';
-            steps[2].classList.remove('pending');
-            steps[2].classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            if (typeof gtag === 'function') {
-                gtag('event', 'soul_map_purchase_completed', {
-                    event_category: 'conversion',
-                    event_label: 'Soul Map Purchase'
-                });
-            }
+        if (res.ok || res.status === 200) {
+            return res.json().then(function(data) {
+                form.style.display = 'none';
+                document.getElementById('form-tag').style.display = 'none';
+                document.getElementById('form-title').style.display = 'none';
+                document.getElementById('form-desc').style.display = 'none';
+                sentMsg.style.display = 'block';
+                sentMsg.innerHTML = `
+                    <span class="sent-icon">&#9670;</span>
+                    <h2>Signal Received</h2>
+                    <p>
+                        Your coordinates have been transmitted and decoded.<br>
+                        Your soul map is being generated and will be live shortly.
+                    </p>
+                    <p class="gold">Check your inbox for your map link within 1-2 minutes.</p>
+                    <p>Soul Map: <a href="${data.url}" style="color:var(--cyan);" target="_blank">${data.name}</a></p>
+                    <p>Questions? Reach out to <a href="mailto:kate@thefirstspark.shop" style="color:var(--cyan);">kate@thefirstspark.shop</a></p>
+                    <div class="timeline">&#9670; &nbsp; Map Generating &nbsp; &#9670;</div>
+                `;
+                steps[1].classList.remove('active');
+                steps[1].classList.add('done');
+                steps[1].querySelector('.step-num').textContent = '\u2713';
+                steps[2].classList.remove('pending');
+                steps[2].classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                if (typeof gtag === 'function') {
+                    gtag('event', 'soul_map_purchase_completed', {
+                        event_category: 'conversion',
+                        event_label: 'Soul Map Purchase'
+                    });
+                }
+            });
         } else {
             submitBtn.disabled = false;
             submitBtn.innerHTML = '&#10022;  Transmit My Coordinates  &#10022;';
