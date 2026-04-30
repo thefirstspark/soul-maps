@@ -592,53 +592,51 @@ form.addEventListener('submit', function(e) {
         webhookUrl = '/api/generate-soul-map';
     }
 
+    var controller = new AbortController();
+    var fetchTimeout = setTimeout(function() { controller.abort(); }, 150000);
+
     fetch(webhookUrl, {
         method: 'POST',
         body: JSON.stringify(jsonData),
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
-        }
+        },
+        signal: controller.signal
     }).then(function(res) {
+        clearTimeout(fetchTimeout);
         if (res.ok || res.status === 200) {
             return res.json().then(function(data) {
                 clearTimeout(progressTimer);
-                progressMsg.style.display = 'none';
-                form.style.display = 'none';
-                document.getElementById('form-tag').style.display = 'none';
-                document.getElementById('form-title').style.display = 'none';
-                document.getElementById('form-desc').style.display = 'none';
-                sentMsg.style.display = 'block';
-                sentMsg.innerHTML = `
-                    <span class="sent-icon">&#9670;</span>
-                    <h2>Signal Received</h2>
-                    <p>
-                        Your coordinates have been transmitted and decoded.<br>
-                        Your soul map is being generated and will be live shortly.
-                    </p>
-                    <p class="gold">Check your inbox for your map link within 1-2 minutes.</p>
-                    <p>Soul Map: <a href="${data.url}" style="color:var(--cyan);" target="_blank">${data.name}</a></p>
-                    <div class="timeline">&#9670; &nbsp; Map Generating &nbsp; &#9670;</div>
-                `;
-                steps[1].classList.remove('active');
-                steps[1].classList.add('done');
-                steps[1].querySelector('.step-num').textContent = '\u2713';
-                steps[2].classList.remove('pending');
-                steps[2].classList.add('active');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                if (progressMsg) progressMsg.style.display = 'none';
+
+                // Persist submission context for thank-you.html to render personalized confirmation
+                try {
+                    sessionStorage.setItem('soulMapSubmission', JSON.stringify({
+                        name: jsonData.name,
+                        email: jsonData.email,
+                        url: data && data.url ? data.url : null,
+                        mapName: data && data.name ? data.name : null,
+                        ts: new Date().toISOString()
+                    }));
+                } catch (e) { /* storage may be unavailable; thank-you.html falls back to generic copy */ }
+
                 if (typeof gtag === 'function') {
                     gtag('event', 'soul_map_purchase_completed', {
                         event_category: 'conversion',
                         event_label: 'Soul Map Purchase'
                     });
                 }
+
+                // Redirect to dedicated confirmation page so the page change itself signals "submitted"
+                window.location.href = 'thank-you.html';
             });
         } else {
             submitBtn.disabled = false;
             submitBtn.innerHTML = '&#10022;  Transmit My Coordinates  &#10022;';
-            submitBtn.innerHTML = '&#10022;  Transmit My Coordinates  &#10022;';
             clearTimeout(progressTimer);
-            progressMsg.style.display = 'none';
+            clearTimeout(fetchTimeout);
+            if (progressMsg) progressMsg.style.display = 'none';
             document.getElementById('form-error').style.display = 'block';
         }
     }).catch(function(err) {
@@ -646,7 +644,8 @@ form.addEventListener('submit', function(e) {
         submitBtn.disabled = false;
         submitBtn.innerHTML = '&#10022;  Transmit My Coordinates  &#10022;';
         clearTimeout(progressTimer);
-        progressMsg.style.display = 'none';
+        clearTimeout(fetchTimeout);
+        if (progressMsg) progressMsg.style.display = 'none';
         document.getElementById('form-error').style.display = 'block';
     });
 });

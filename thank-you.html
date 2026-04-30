@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4Z6GH2N');</script>
+<!-- End Google Tag Manager -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0B0B0C">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FPHDDHSCWS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FPHDDHSCWS');
+    </script>
+    <title>Signal Received · Your Soul Map Is Decoding — The First Spark</title>
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --core-black: #0B0B0C;
+            --ember: #FF6A3D;
+            --gold: #F3B23A;
+            --violet: #6B4DF2;
+            --cyan: #26E4D8;
+            --green: #34d399;
+            --text: #E8E4DF;
+            --muted: #6b7280;
+            --muted2: #9ca3af;
+            --surface: rgba(11,11,12,.97);
+            --surface-border: rgba(243,178,58,.15);
+        }
+
+        body {
+            background: var(--core-black);
+            font-family: 'Space Mono', 'Courier New', monospace;
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        canvas#bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .sigil-container {
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px; height: 600px;
+            opacity: .04;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .sigil-container svg {
+            width: 100%; height: 100%;
+            animation: slowSpin 120s linear infinite;
+        }
+        @keyframes slowSpin { to { transform: rotate(360deg); } }
+
+        .page {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 60px 24px 100px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 20px 0 40px;
+            animation: fadeUp .8s ease-out;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .status-badge {
+            display: inline-block;
+            font-size: .55em;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--green);
+            border: 1px solid rgba(52,211,153,.3);
+            padding: 8px 20px;
+            margin-bottom: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+        .status-badge::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(52,211,153,.15), transparent);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        @keyframes shimmer { to { left: 100%; } }
+
+        .checkmark {
+            font-size: 3.5em;
+            display: block;
+            margin-bottom: 16px;
+            animation: pulseGreen 2.4s ease-in-out infinite;
+            color: var(--green);
+        }
+        @keyframes pulseGreen {
+            0%,100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(52,211,153,.3)); }
+            50%     { transform: scale(1.06); filter: drop-shadow(0 0 28px rgba(52,211,153,.65)); }
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: clamp(2rem, 7vw, 3.2rem);
+            font-weight: 300;
+            font-style: italic;
+            letter-spacing: 2px;
+            color: var(--gold);
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+        .hero .greeting {
+            font-size: .82em;
+            color: var(--text);
+            letter-spacing: 1px;
+            line-height: 1.8;
+            max-width: 480px;
+            margin: 0 auto 12px;
+        }
+        .hero .greeting .name {
+            color: var(--gold);
+            font-style: italic;
+        }
+        .hero .sub {
+            font-size: .72em;
+            color: var(--muted2);
+            letter-spacing: 2px;
+            line-height: 2;
+            max-width: 460px;
+            margin: 0 auto;
+        }
+
+        .div-g {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 10px 0 40px;
+            opacity: .4;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            margin-bottom: 36px;
+            animation: fadeUp 1s ease-out .2s both;
+        }
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .55em;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        .step-num {
+            width: 24px; height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .9em;
+            font-weight: 700;
+        }
+        .step.done .step-num {
+            background: var(--green);
+            color: var(--core-black);
+        }
+        .step.done { color: var(--green); }
+        .step.active .step-num {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            animation: spin 1.6s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .step.active { color: var(--gold); }
+        .step.pending .step-num {
+            background: transparent;
+            border: 1px solid var(--muted);
+            color: var(--muted);
+        }
+        .step.pending { color: var(--muted); }
+        .step-line {
+            width: 40px;
+            height: 1px;
+            background: var(--muted);
+            margin: 0 12px;
+        }
+        .step-line.done { background: var(--green); }
+
+        .panel {
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            padding: 36px 32px;
+            animation: fadeUp 1s ease-out .4s both;
+            position: relative;
+            margin-bottom: 24px;
+        }
+        .panel::before {
+            content: '';
+            position: absolute;
+            top: -1px; left: 20%; right: 20%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .panel-tag {
+            font-size: .55em;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--ember);
+            margin-bottom: 10px;
+        }
+        .panel-title {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.4em;
+            font-weight: 300;
+            letter-spacing: 1px;
+            color: var(--gold);
+            margin-bottom: 14px;
+        }
+        .panel p {
+            font-size: .76em;
+            color: var(--muted2);
+            line-height: 1.95;
+            margin-bottom: 14px;
+        }
+        .panel p strong { color: var(--text); font-weight: 700; }
+        .panel p .gold { color: var(--gold); }
+        .panel p .cyan { color: var(--cyan); }
+
+        .map-link-box {
+            margin-top: 18px;
+            padding: 18px 20px;
+            border: 1px dashed rgba(243,178,58,.35);
+            background: rgba(243,178,58,.04);
+        }
+        .map-link-box .label {
+            font-size: .55em;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--muted2);
+            margin-bottom: 8px;
+        }
+        .map-link-box a {
+            color: var(--cyan);
+            text-decoration: none;
+            font-size: .85em;
+            word-break: break-all;
+            transition: color .2s;
+        }
+        .map-link-box a:hover { color: var(--gold); }
+
+        .timeline {
+            display: inline-block;
+            font-size: .65em;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            border: 1px solid rgba(243,178,58,.3);
+            padding: 10px 24px;
+            color: var(--gold);
+            margin-top: 8px;
+        }
+
+        .next-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-top: 20px;
+        }
+        .next-card {
+            background: rgba(255,255,255,.02);
+            border: 1px solid rgba(255,255,255,.06);
+            padding: 22px 20px;
+            text-decoration: none;
+            color: var(--text);
+            transition: border-color .25s, background .25s, transform .25s;
+        }
+        .next-card:hover {
+            border-color: var(--gold);
+            background: rgba(243,178,58,.04);
+            transform: translateY(-2px);
+        }
+        .next-card .icon {
+            font-size: 1.4em;
+            color: var(--gold);
+            margin-bottom: 10px;
+            display: block;
+        }
+        .next-card .ttl {
+            font-size: .68em;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 6px;
+        }
+        .next-card .desc {
+            font-size: .72em;
+            color: var(--muted2);
+            line-height: 1.7;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            color: var(--muted);
+            font-size: .65em;
+            letter-spacing: 2px;
+            animation: fadeUp 1s ease-out .6s both;
+        }
+        .footer a {
+            color: var(--gold);
+            text-decoration: none;
+            transition: color .2s;
+        }
+        .footer a:hover { color: var(--cyan); }
+
+        @media (max-width: 520px) {
+            .page { padding: 40px 16px 80px; }
+            .panel { padding: 28px 20px; }
+            .next-row { grid-template-columns: 1fr; }
+            .steps { gap: 0; }
+            .step-line { width: 20px; margin: 0 6px; }
+            .step span:not(.step-num) { display: none; }
+            .sigil-container { width: 300px; height: 300px; }
+        }
+    </style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N4Z6GH2N"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<canvas id="bg"></canvas>
+
+<div class="sigil-container">
+    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="sg" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#F3B23A" stop-opacity=".6"/>
+                <stop offset="100%" stop-color="#6B4DF2" stop-opacity=".3"/>
+            </linearGradient>
+        </defs>
+        <polygon points="200,40 360,280 40,280" fill="none" stroke="url(#sg)" stroke-width=".4"/>
+        <polygon points="200,360 60,120 340,120" fill="none" stroke="url(#sg)" stroke-width=".4"/>
+        <circle cx="200" cy="200" r="60" fill="none" stroke="url(#sg)" stroke-width=".3"/>
+        <line x1="200" y1="20" x2="200" y2="380" stroke="url(#sg)" stroke-width=".2"/>
+        <line x1="20" y1="200" x2="380" y2="200" stroke="url(#sg)" stroke-width=".2"/>
+    </svg>
+</div>
+
+<div class="page">
+    <div class="hero">
+        <span class="checkmark">&#10003;</span>
+        <div class="status-badge">&#9670; &nbsp; Signal Received &nbsp; &#9670;</div>
+        <h1>Your Coordinates Are Locked</h1>
+        <p class="greeting" id="greeting">
+            Your soul map is being decoded right now.
+        </p>
+        <p class="sub">
+            Check your email in <strong style="color:var(--gold);">1&ndash;5 minutes</strong>. Your map will arrive with a direct link.
+        </p>
+    </div>
+
+    <div class="div-g"></div>
+
+    <div class="steps">
+        <div class="step done">
+            <span class="step-num">&#10003;</span>
+            <span>Pay</span>
+        </div>
+        <div class="step-line done"></div>
+        <div class="step done">
+            <span class="step-num">&#10003;</span>
+            <span>Birth Data</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step active">
+            <span class="step-num">3</span>
+            <span>Decoding</span>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel-tag">&#9670; What happens next</div>
+        <div class="panel-title">Your Soul Map is being generated</div>
+        <p>
+            Your full numerological blueprint is being decoded alongside your Western astrology and Chinese zodiac. This takes <strong>1&ndash;5 minutes</strong>.
+        </p>
+        <p>
+            When it's ready, you'll get an <span class="gold">email with a direct link</span> to your personal soul map page. <strong>Check your inbox</strong> &mdash; and your spam folder, just in case. The email comes from <span class="cyan">kate@thefirstspark.shop</span>.
+        </p>
+
+        <div class="map-link-box" id="map-link-box" style="display:none;">
+            <div class="label">Your Soul Map URL (live in 1&ndash;5 min)</div>
+            <a id="map-link" href="#" target="_blank" rel="noopener">&mdash;</a>
+        </div>
+
+        <p style="margin-top: 18px;">
+            <em>Plus:</em> for the next <strong>12 months</strong>, you'll receive monthly energy updates layered into your map as your selector evolves. One purchase, a year of unfolding.
+        </p>
+
+        <div style="text-align:center; margin-top: 8px;">
+            <span class="timeline">&#9670; &nbsp; Map Generating &nbsp; &#9670;</span>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel-tag">&#9670; While you wait</div>
+        <div class="panel-title">Wander the archive</div>
+        <p>
+            Other soul maps already decoded. See how the language reads, what the format feels like, and what awaits you when yours arrives.
+        </p>
+
+        <div class="next-row">
+            <a href="https://soul-maps.thefirstspark.shop/" class="next-card">
+                <span class="icon">&#9670;</span>
+                <div class="ttl">Soul Map Archive</div>
+                <div class="desc">Browse maps already in the archive while yours decodes.</div>
+            </a>
+            <a href="https://thefirstspark.shop/" class="next-card">
+                <span class="icon">&#10022;</span>
+                <div class="ttl">The First Spark</div>
+                <div class="desc">The full consciousness-tech ecosystem &mdash; tools, story, community.</div>
+            </a>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel-tag">&#9670; Didn't get an email?</div>
+        <div class="panel-title">We'll make it right</div>
+        <p>
+            If 10 minutes pass and your map hasn't arrived, check spam first. Still nothing? Email <a href="mailto:kate@thefirstspark.shop?subject=Soul%20Map%20Not%20Received" style="color:var(--cyan);">kate@thefirstspark.shop</a> with your full birth name and we'll resend by hand.
+        </p>
+    </div>
+
+    <div class="footer">
+        <p><a href="https://soul-maps.thefirstspark.shop/">&#8592; Soul Map Archive</a> &nbsp; &#183; &nbsp; <a href="https://thefirstspark.shop/">The First Spark</a></p>
+        <p style="margin-top:12px; color:var(--gold); font-size:.9em;">&#10022; &nbsp; First Spark Consciousness Network &nbsp; &#10022;</p>
+    </div>
+</div>
+
+<script>
+// ── Particle field (matches success.html aesthetic) ──
+var canvas = document.getElementById('bg');
+var ctx = canvas.getContext('2d');
+var particles = [];
+var PARTICLE_COUNT = 60;
+
+function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+for (var i = 0; i < PARTICLE_COUNT; i++) {
+    particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.4 + 0.2,
+        vx: (Math.random() - 0.5) * 0.15,
+        vy: (Math.random() - 0.5) * 0.15,
+        a: Math.random() * 0.5 + 0.2
+    });
+}
+
+function tick() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0) p.x = canvas.width; if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height; if (p.y > canvas.height) p.y = 0;
+        ctx.fillStyle = 'rgba(243,178,58,' + p.a * 0.6 + ')';
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+    }
+    requestAnimationFrame(tick);
+}
+tick();
+
+// ── Hydrate from sessionStorage (passed from success.html on submit) ──
+(function hydrate() {
+    try {
+        var raw = sessionStorage.getItem('soulMapSubmission');
+        if (!raw) return;
+        var data = JSON.parse(raw);
+
+        if (data.name) {
+            var firstName = data.name.split(' ')[0];
+            var greeting = document.getElementById('greeting');
+            if (greeting && firstName) {
+                greeting.innerHTML = '<span class="name">' + firstName + '</span> &mdash; your soul map is being decoded right now.';
+            }
+        }
+
+        if (data.url) {
+            var box = document.getElementById('map-link-box');
+            var link = document.getElementById('map-link');
+            if (box && link) {
+                link.href = data.url;
+                link.textContent = data.url;
+                box.style.display = 'block';
+            }
+        }
+
+        // Fire conversion event with stored context (in case success.html redirected before gtag fired cleanly)
+        if (typeof gtag === 'function' && !data._tracked) {
+            gtag('event', 'soul_map_purchase_completed', {
+                event_category: 'conversion',
+                event_label: 'Soul Map Purchase'
+            });
+            data._tracked = true;
+            sessionStorage.setItem('soulMapSubmission', JSON.stringify(data));
+        }
+    } catch (e) {
+        // Silently fail — generic page still works without sessionStorage
+    }
+})();
+</script>
+</body>
+</html>
