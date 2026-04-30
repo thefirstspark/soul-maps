@@ -13,6 +13,7 @@ Minimal (no birth time = no Rising sign):
 """
 
 import os
+import re
 import sys
 import subprocess
 import argparse
@@ -1599,8 +1600,103 @@ def generate_batch(csv_filepath, mode='both', no_deploy=False, output_dir=None):
 # 10. GITHUB AUTO-DEPLOY
 # ============================================================
 
-def deploy_to_github(html_content, filename, repo='soul-maps'):
-    """Push generated Soul Map HTML to GitHub Pages repo."""
+CARD_COLORS = ['gold', 'violet', 'green', 'blue', 'ember', 'cyan']
+
+LP_SHORT_LABELS = {
+    1: 'Pioneer', 2: 'Diplomat', 3: 'Communicator', 4: 'Architect',
+    5: 'Catalyst', 6: 'Protector', 7: 'Seeker', 8: 'Materializer',
+    9: 'Integrator', 11: 'Master Illuminator', 22: 'Master Builder',
+    33: 'Master Teacher',
+}
+
+
+def _build_card_html(filename, summary, birth_date, birth_city=None):
+    """Build an index card HTML block for a newly generated soul map."""
+    name = summary['name']
+    lp = summary['life_path']
+    ss = summary['sun_sign']
+    chinese = summary['chinese']
+    expr = summary.get('expression', '')
+    su = summary.get('soul_urge', '')
+    py = summary.get('personal_year', '')
+
+    lp_label = LP_SHORT_LABELS.get(lp, str(lp))
+    # Windows strftime doesn't support %-d, use a fallback
+    try:
+        date_str = birth_date.strftime('%B %-d, %Y')
+    except ValueError:
+        date_str = birth_date.strftime('%B %d, %Y').replace(' 0', ' ')
+
+    city_part = f' \u00b7 {birth_city}' if birth_city else ''
+
+    # Build search keywords
+    search_parts = [
+        name.lower(),
+        f'life path {lp} {lp_label.lower()}',
+        ss.lower() if ss else '',
+        chinese.lower() if chinese else '',
+    ]
+    if expr:
+        search_parts.append(f'expression {expr}')
+    if su:
+        search_parts.append(f'soul urge {su}')
+    search_str = ' '.join(p for p in search_parts if p)
+
+    # Build description
+    desc_parts = [f'Life Path {lp} {lp_label}']
+    if expr:
+        expr_label = LP_SHORT_LABELS.get(expr, str(expr))
+        desc_parts.append(f'Expression {expr} {expr_label}')
+    if ss:
+        desc_parts.append(f'{ss} Sun')
+    if chinese:
+        desc_parts.append(chinese)
+    desc_str = ' \u00b7 '.join(desc_parts)
+
+    # Pick color based on hash of name for consistency
+    color = CARD_COLORS[sum(ord(c) for c in name) % len(CARD_COLORS)]
+
+    return f'''        <a href="{filename}" class="card {color}" data-search="{search_str}">
+            <div class="card-sub">Soul Map \u00b7 {date_str}{city_part}</div>
+            <div class="card-name">{name}</div>
+            <div class="card-desc">{desc_str}</div>
+            <div class="card-arrow">\u2192</div>
+        </a>'''
+
+
+def update_index_html(work_dir, filename, summary, birth_date, birth_city=None):
+    """Insert a new card into index.html if one doesn't already exist for this file."""
+    index_path = work_dir / 'index.html'
+    if not index_path.exists():
+        print(f"  [INDEX] index.html not found in {work_dir}, skipping index update")
+        return False
+
+    html = index_path.read_text(encoding='utf-8')
+
+    # Skip if this filename already has a card
+    if f'href="{filename}"' in html:
+        print(f"  [INDEX] Card for {filename} already exists, skipping")
+        return False
+
+    # Build the new card
+    card = _build_card_html(filename, summary, birth_date, birth_city)
+
+    # Insert right after the <div id="cards-list"> opening
+    marker = '<div id="cards-list">'
+    if marker in html:
+        insert_pos = html.index(marker) + len(marker)
+        html = html[:insert_pos] + '\n' + card + '\n' + html[insert_pos:]
+    else:
+        print(f"  [INDEX] Could not find insertion point in index.html")
+        return False
+
+    index_path.write_text(html, encoding='utf-8')
+    print(f"  [INDEX] Added card for {summary['name']} to index.html")
+    return True
+
+
+def deploy_to_github(html_content, filename, repo='soul-maps', summary=None, birth_date=None, birth_city=None):
+    """Push generated Soul Map HTML to GitHub Pages repo. If summary is provided, also updates index.html."""
     token = os.environ.get('GITHUB_PAT')
     if not token:
         return False, "GITHUB_PAT environment variable not set. Export it first: set GITHUB_PAT=ghp_yourtoken"
@@ -1620,16 +1716,26 @@ def deploy_to_github(html_content, filename, repo='soul-maps'):
         filepath = work_dir / filename
         filepath.write_text(html_content, encoding='utf-8')
 
+        files_to_add = [filename]
+
+        # Update index.html if summary data is provided (full soul maps only, not monthly updates)
+        if summary and birth_date and repo == 'soul-maps':
+            if update_index_html(work_dir, filename, summary, birth_date, birth_city):
+                files_to_add.append('index.html')
+
         # Git config + commit + push
         subprocess.run(['git', '-C', str(work_dir), 'config', 'user.email', 'kate@thefirstspark.shop'], check=True)
         subprocess.run(['git', '-C', str(work_dir), 'config', 'user.name', 'The First Spark'], check=True)
-        subprocess.run(['git', '-C', str(work_dir), 'add', filename], check=True)
+        for f in files_to_add:
+            subprocess.run(['git', '-C', str(work_dir), 'add', f], check=True)
         subprocess.run(['git', '-C', str(work_dir), 'commit', '-m', f'Soul Map: {filename}'], check=True, capture_output=True)
         subprocess.run(['git', '-C', str(work_dir), 'push'], check=True, capture_output=True)
 
         # Construct live URL
         if repo == 'thefirstspark.github.io':
             live_url = f"https://thefirstspark.shop/{filename}"
+        elif repo == 'soul-maps':
+            live_url = f"https://soul-maps.thefirstspark.shop/{filename}"
         else:
             live_url = f"https://thefirstspark.github.io/{repo}/{filename}"
 
@@ -1736,7 +1842,12 @@ def main():
     # Deploy
     if not args.no_deploy:
         print(f"\n  Deploying to GitHub ({args.repo})...")
-        success, result = deploy_to_github(html, filename, repo=args.repo)
+        deploy_summary = summary if not args.monthly else None
+        deploy_birth_date = birth_date if not args.monthly else None
+        deploy_city = args.city if not args.monthly else None
+        success, result = deploy_to_github(html, filename, repo=args.repo,
+                                           summary=deploy_summary, birth_date=deploy_birth_date,
+                                           birth_city=deploy_city)
         if success:
             print(f"  LIVE: {result}")
         else:

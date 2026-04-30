@@ -36,8 +36,8 @@ from soul_map_generator import generate_monthly_update, deploy_to_github
 # ============================================================
 
 SUBSCRIBERS_FILE = Path(__file__).parent / 'subscribers.json'
-SMTP_SERVER = "smtp.gmail.com"
-SMTP_PORT = 587
+SMTP_SERVER = os.getenv("SMTP_SERVER", "smtp.zoho.com")
+SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
 SMTP_EMAIL = os.getenv("SMTP_EMAIL")
 SMTP_PASSWORD = os.getenv("SMTP_PASSWORD")
 
