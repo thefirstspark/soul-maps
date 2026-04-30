@@ -1,0 +1,41 @@
+name: Monthly Soul Map Updates
+
+on:
+  # Run on the 1st of every month at 00:00 UTC
+  schedule:
+    - cron: '0 0 1 * *'
+  # Allow manual trigger from Actions tab
+  workflow_dispatch:
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run monthly regeneration
+        env:
+          GITHUB_PAT: ${{ secrets.GITHUB_PAT }}
+          SMTP_EMAIL: ${{ secrets.SMTP_EMAIL }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+        run: |
+          python monthly_regenerate.py
+
+      - name: Commit and push updates
+        run: |
+          git config --global user.email "automation@thefirstspark.shop"
+          git config --global user.name "The First Spark Bot"
+          git add *.html subscribers.json
+          # Only commit if there are changes
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Monthly Soul Map Updates - $(date +%Y-%m-%d)" && git push)

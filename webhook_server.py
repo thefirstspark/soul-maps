@@ -30,6 +30,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from dotenv import load_dotenv
 
 # Load environment variables
@@ -43,6 +44,7 @@ from soul_map_generator import generate_soul_map, generate_monthly_update, deplo
 SUBSCRIBERS_FILE = Path(__file__).parent / 'subscribers.json'
 
 app = Flask(__name__)
+CORS(app, origins=["https://soul-maps.thefirstspark.shop", "https://thefirstspark.shop"])
 
 # ============================================================
 # EMAIL CONFIGURATION
