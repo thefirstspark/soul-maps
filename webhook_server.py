@@ -77,7 +77,7 @@ def save_subscribers(subscribers):
         json.dump(subscribers, f, indent=2, ensure_ascii=False)
 
 
-def add_subscriber(name, dob, email):
+def add_subscriber(name, dob, email, extra=None):
     """
     Add a new subscriber to the database.
     Automatically calculates 12-month expiry.
@@ -102,6 +102,11 @@ def add_subscriber(name, dob, email):
         'expiry_date': expiry.isoformat(),
         'active': True
     }
+
+    if extra:
+        for key in ('birth_hospital', 'soul_questions', 'interests', 'city'):
+            if extra.get(key):
+                subscriber[key] = extra[key]
 
     subscribers.append(subscriber)
     save_subscribers(subscribers)
@@ -357,7 +362,12 @@ def generate_soul_map_webhook():
 
         # Add to subscriber database (for monthly regeneration)
         print(f"  [SUBSCRIBER] Enrolling in monthly updates...")
-        add_subscriber(name, dob_str, email)
+        add_subscriber(name, dob_str, email, extra={
+            'birth_hospital': data.get('birth_hospital'),
+            'soul_questions': data.get('soul_questions'),
+            'interests': data.get('interests'),
+            'city': city
+        })
 
         # Send confirmation email
         if email:
