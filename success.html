@@ -568,7 +568,10 @@ form.addEventListener('submit', function(e) {
         dob: formData.get('dob'),
         time: formData.get('time') || null,
         city: formData.get('city'),
-        country: formData.get('country') || 'US'
+        country: formData.get('country') || 'US',
+        birth_hospital: formData.get('birth_hospital') || null,
+        soul_questions: formData.get('soul_questions') || null,
+        interests: formData.get('interests') || null
     };
 
     // Use relative URL (will work with local server or deployed version)
