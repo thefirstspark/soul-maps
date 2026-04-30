@@ -557,21 +557,16 @@ function animate() {
 }
 animate();
 
-// Form submission
+// Form submission \u2014 redirect to thank-you.html as soon as the request is in flight,
+// don't make the user stare at a disabled button for 1\u20135 minutes while the map generates.
 var form = document.getElementById('intake-form');
 var submitBtn = document.getElementById('submit-btn');
-var sentMsg = document.getElementById('sent-msg');
-var steps = document.querySelectorAll('.step');
 
 form.addEventListener('submit', function(e) {
     e.preventDefault();
     submitBtn.disabled = true;
     submitBtn.textContent = '\u27F3  Transmitting\u2026';
     document.getElementById('form-error').style.display = 'none';
-    var progressMsg = document.getElementById('form-progress');
-    var progressTimer = setTimeout(function() {
-        progressMsg.style.display = 'block';
-    }, 5000);
 
     var formData = new FormData(form);
     var jsonData = {
@@ -586,15 +581,39 @@ form.addEventListener('submit', function(e) {
         interests: formData.get('interests') || null
     };
 
-    // Use relative URL (will work with local server or deployed version)
     var webhookUrl = form.action;
     if (!webhookUrl.startsWith('http')) {
         webhookUrl = '/api/generate-soul-map';
     }
 
-    var controller = new AbortController();
-    var fetchTimeout = setTimeout(function() { controller.abort(); }, 150000);
+    // Single-fire redirect. Whichever path resolves first (response < 3s, or 3s timeout) navigates.
+    var redirected = false;
+    function go(extra) {
+        if (redirected) return;
+        redirected = true;
+        try {
+            sessionStorage.setItem('soulMapSubmission', JSON.stringify({
+                name: jsonData.name,
+                email: jsonData.email,
+                url: (extra && extra.url) || null,
+                mapName: (extra && extra.mapName) || null,
+                ts: new Date().toISOString()
+            }));
+        } catch (_) { /* storage may be unavailable; thank-you.html falls back to generic copy */ }
 
+        if (typeof gtag === 'function') {
+            gtag('event', 'soul_map_purchase_completed', {
+                event_category: 'conversion',
+                event_label: 'Soul Map Purchase'
+            });
+        }
+        window.location.href = 'thank-you.html';
+    }
+
+    // Hard cap \u2014 redirect after 3s no matter what so the user never stares at a frozen button
+    var maxWait = setTimeout(function () { go(); }, 3000);
+
+    // Fire the request. keepalive lets it finish server-side even after we navigate away.
     fetch(webhookUrl, {
         method: 'POST',
         body: JSON.stringify(jsonData),
@@ -602,51 +621,23 @@ form.addEventListener('submit', function(e) {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         },
-        signal: controller.signal
-    }).then(function(res) {
-        clearTimeout(fetchTimeout);
-        if (res.ok || res.status === 200) {
-            return res.json().then(function(data) {
-                clearTimeout(progressTimer);
-                if (progressMsg) progressMsg.style.display = 'none';
-
-                // Persist submission context for thank-you.html to render personalized confirmation
-                try {
-                    sessionStorage.setItem('soulMapSubmission', JSON.stringify({
-                        name: jsonData.name,
-                        email: jsonData.email,
-                        url: data && data.url ? data.url : null,
-                        mapName: data && data.name ? data.name : null,
-                        ts: new Date().toISOString()
-                    }));
-                } catch (e) { /* storage may be unavailable; thank-you.html falls back to generic copy */ }
-
-                if (typeof gtag === 'function') {
-                    gtag('event', 'soul_map_purchase_completed', {
-                        event_category: 'conversion',
-                        event_label: 'Soul Map Purchase'
-                    });
-                }
-
-                // Redirect to dedicated confirmation page so the page change itself signals "submitted"
-                window.location.href = 'thank-you.html';
-            });
-        } else {
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = '&#10022;  Transmit My Coordinates  &#10022;';
-            clearTimeout(progressTimer);
-            clearTimeout(fetchTimeout);
-            if (progressMsg) progressMsg.style.display = 'none';
-            document.getElementById('form-error').style.display = 'block';
-        }
-    }).catch(function(err) {
-        console.error('Form submission error:', err);
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '&#10022;  Transmit My Coordinates  &#10022;';
-        clearTimeout(progressTimer);
-        clearTimeout(fetchTimeout);
-        if (progressMsg) progressMsg.style.display = 'none';
-        document.getElementById('form-error').style.display = 'block';
+        keepalive: true
+    }).then(function (res) {
+        if (!res.ok && res.status !== 200) throw new Error('Backend returned ' + res.status);
+        return res.json();
+    }).then(function (data) {
+        clearTimeout(maxWait);
+        go({
+            url: data && data.url ? data.url : null,
+            mapName: data && data.name ? data.name : null
+        });
+    }).catch(function (err) {
+        // If the request fails before the 3s timeout, still redirect \u2014 backend may have processed
+        // the request despite a network glitch, and the thank-you page surfaces the support email
+        // for cases where the email never arrives.
+        console.error('Form submission error (proceeding to thank-you):', err);
+        clearTimeout(maxWait);
+        go();
     });
 });
 </script>
