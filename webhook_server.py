@@ -290,10 +290,10 @@ def generate_soul_map_webhook():
 
         name = data['name'].strip()
         dob_str = data['dob'].strip()  # YYYY-MM-DD
-        email = data.get('email', '').strip()
-        time_str = data.get('time', '').strip() or None  # HH:MM
-        city = data.get('city', '').strip() or None
-        country = data.get('country', 'US').strip()
+        email = (data.get('email') or '').strip()
+        time_str = (data.get('time') or '').strip() or None  # HH:MM
+        city = (data.get('city') or '').strip() or None
+        country = (data.get('country') or 'US').strip()
 
         print(f"\n[WEBHOOK] Generating soul map for {name}...")
 
