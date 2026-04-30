@@ -476,6 +476,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <textarea id="interests" name="interests" placeholder="What lights you up? Music, nature, building things, animals, crystals, writing, code..."></textarea>
             </div>
 
+            <div id="form-error" style="display:none; color:var(--ember); font-size:.72em; letter-spacing:2px; text-align:center; margin-bottom:16px;">
+                Transmission interrupted — please try again or refresh the page.
+            </div>
+
             <button type="submit" class="submit-btn" id="submit-btn">&#10022; &nbsp; Transmit My Coordinates &nbsp; &#10022;</button>
         </form>
 
@@ -560,6 +564,7 @@ form.addEventListener('submit', function(e) {
     e.preventDefault();
     submitBtn.disabled = true;
     submitBtn.textContent = '\u27F3  Transmitting\u2026';
+    document.getElementById('form-error').style.display = 'none';
 
     var formData = new FormData(form);
     var jsonData = {
@@ -604,7 +609,6 @@ form.addEventListener('submit', function(e) {
                     </p>
                     <p class="gold">Check your inbox for your map link within 1-2 minutes.</p>
                     <p>Soul Map: <a href="${data.url}" style="color:var(--cyan);" target="_blank">${data.name}</a></p>
-                    <p>Questions? Reach out to <a href="mailto:kate@thefirstspark.shop" style="color:var(--cyan);">kate@thefirstspark.shop</a></p>
                     <div class="timeline">&#9670; &nbsp; Map Generating &nbsp; &#9670;</div>
                 `;
                 steps[1].classList.remove('active');
@@ -623,13 +627,14 @@ form.addEventListener('submit', function(e) {
         } else {
             submitBtn.disabled = false;
             submitBtn.innerHTML = '&#10022;  Transmit My Coordinates  &#10022;';
-            alert('Transmission interrupted. Please email kate@thefirstspark.shop with your birth info.');
+            submitBtn.innerHTML = '&#10022;  Transmit My Coordinates  &#10022;';
+            document.getElementById('form-error').style.display = 'block';
         }
     }).catch(function(err) {
         console.error('Form submission error:', err);
         submitBtn.disabled = false;
         submitBtn.innerHTML = '&#10022;  Transmit My Coordinates  &#10022;';
-        alert('Transmission interrupted. Please email kate@thefirstspark.shop with your birth info.');
+        document.getElementById('form-error').style.display = 'block';
     });
 });
 </script>
