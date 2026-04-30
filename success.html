@@ -476,6 +476,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <textarea id="interests" name="interests" placeholder="What lights you up? Music, nature, building things, animals, crystals, writing, code..."></textarea>
             </div>
 
+            <div id="form-progress" style="display:none; color:var(--muted2); font-size:.72em; letter-spacing:2px; text-align:center; margin-bottom:16px;">
+                Your map is being decoded — this takes 1-2 minutes. Stay with it.
+            </div>
             <div id="form-error" style="display:none; color:var(--ember); font-size:.72em; letter-spacing:2px; text-align:center; margin-bottom:16px;">
                 Transmission interrupted — please try again or refresh the page.
             </div>
@@ -565,6 +568,10 @@ form.addEventListener('submit', function(e) {
     submitBtn.disabled = true;
     submitBtn.textContent = '\u27F3  Transmitting\u2026';
     document.getElementById('form-error').style.display = 'none';
+    var progressMsg = document.getElementById('form-progress');
+    var progressTimer = setTimeout(function() {
+        progressMsg.style.display = 'block';
+    }, 5000);
 
     var formData = new FormData(form);
     var jsonData = {
@@ -595,6 +602,8 @@ form.addEventListener('submit', function(e) {
     }).then(function(res) {
         if (res.ok || res.status === 200) {
             return res.json().then(function(data) {
+                clearTimeout(progressTimer);
+                progressMsg.style.display = 'none';
                 form.style.display = 'none';
                 document.getElementById('form-tag').style.display = 'none';
                 document.getElementById('form-title').style.display = 'none';
@@ -628,12 +637,16 @@ form.addEventListener('submit', function(e) {
             submitBtn.disabled = false;
             submitBtn.innerHTML = '&#10022;  Transmit My Coordinates  &#10022;';
             submitBtn.innerHTML = '&#10022;  Transmit My Coordinates  &#10022;';
+            clearTimeout(progressTimer);
+            progressMsg.style.display = 'none';
             document.getElementById('form-error').style.display = 'block';
         }
     }).catch(function(err) {
         console.error('Form submission error:', err);
         submitBtn.disabled = false;
         submitBtn.innerHTML = '&#10022;  Transmit My Coordinates  &#10022;';
+        clearTimeout(progressTimer);
+        progressMsg.style.display = 'none';
         document.getElementById('form-error').style.display = 'block';
     });
 });
