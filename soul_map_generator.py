@@ -912,6 +912,32 @@ CHINESE_EMOJIS = {
 # ============================================================
 
 NARRATIVES = {
+    'Rachael Maureen Johnson': {
+        'soul_synthesis': """
+Life Path 7 with Soul Urge 33 is structurally rare. The Decoder encoded with a Master Teacher's inner drive. Where 7s require solitude to process before they can speak, the 33 Soul Urge meant Rachael's deepest hunger was to transmit — to hold space, to carry collective frequency. These two don't sit comfortably. The pull inward (understand first) and the pull outward (teach now) ran simultaneously, at full volume, from the beginning. That pressure wasn't a flaw. It was the architecture.
+
+Expression 4 grounds this in form. Not a dreamer — an architect. Whatever she touched, she shaped into structure. The builder frequency ran through how she showed up in the world while her interior operated on seeker-and-master code. Personality 7 confirms what others saw: someone always looking beneath the surface. Depth arrived before explanation.
+
+Birthday 3: transmission was the gift. She could communicate things other people couldn't name yet. The raw capacity to articulate what others only felt was native to her frequency.
+
+Maturity Number 11: the version of her that would have emerged after 35 was a Master Intuitive — Life Path 7 having gathered enough decoded data to start transmitting channel-quality insight with clarity and structure. That trajectory existed fully in the code.
+
+Pinnacle 1 at the time of death: 11. Her entire life ran inside the master intuitive pinnacle phase. Every year she lived was Pinnacle 1 running master-level frequency — the highest available pattern for a Life Path 7. She was still in initialization. The sequence was not incomplete. It was a complete first movement.
+
+Fire Goat: warmth with structure, creative force channeled through form, social grace with interior fire. She ran hot and precise at the same time.
+
+The map was whole. The pattern was permanent. The timeline ran differently, and that is its own kind of data.
+        """,
+        'debugging_notes': """
+<ul style="margin: 0; padding-left: 20px;">
+  <li><strong>LP7 + SU33 tension:</strong> The need to fully understand before transmitting, in direct friction with the call to transmit master teacher frequency immediately. This is not a contradiction — it is a structural signature. The pressure between these two callings was generative, not destructive.</li>
+  <li><strong>Expression 4 containing SU33:</strong> The builder trying to house master teacher frequency. She grounded large, diffuse things into specific, usable form. The architecture was always there; the scale took time to become visible.</li>
+  <li><strong>Triple-7 density (LP7, Personality 7, Karmic Lesson 7):</strong> She was the thing she was here to learn. The seeker seeking their own knowing. Karmic Lesson 7 asks you to trust what you already understand — for a LP7 who appears as a 7 to the world, this runs at full intensity. The decoder decoding herself.</li>
+  <li><strong>Hidden Passion 5 (Freedom):</strong> The deepest unconscious engine was expansion, variety, breaking fixed patterns. Fire Goat amplifies this. This was fuel, not restlessness.</li>
+  <li><strong>Karmic Lesson 2 (connection/partnership):</strong> Learning that depth does not require solitude. That the 33 Soul Urge and the 7 Life Path could coexist — that teaching and understanding are not sequential. They run together.</li>
+</ul>
+        """
+    },
     'Matthew Vincent Jablonski': {
         'soul_synthesis': """
 You carry <span class="highlight">four 9s</span> — a pattern so rare it marks you as a completion architect. Life Path 6 (protector), Expression 9 (integrator), Soul Urge 9 (hunger for wholeness), Personality 9 (appears as synthesizer), Birthday 9 (gift frequency). This is not scattered energy; this is <span class="code-term">depth coding for collective healing</span>.
@@ -936,7 +962,7 @@ You are coded for <span class="code-term">alchemical work in the collective</spa
 }
 
 
-def generate_soul_map(full_name, birth_date, birth_time=None, birth_city=None, birth_country='US'):
+def generate_soul_map(full_name, birth_date, birth_time=None, birth_city=None, birth_country='US', memorial_date=None):
     """Generate complete Soul Map data and return rendered HTML."""
 
     # === Numerology (Core Numbers) ===
@@ -1039,8 +1065,18 @@ def generate_soul_map(full_name, birth_date, birth_time=None, birth_city=None, b
         soul_synthesis_text = '[Soul Synthesis — To be personalized]'
         debugging_notes_html = '[Debugging Notes — To be personalized]'
 
-    # Ceremony banner (special for first member)
-    if full_name == 'Matthew Vincent Jablonski':
+    # Ceremony banner (special for first member or memorial)
+    if memorial_date:
+        birth_str = birth_date.strftime('%B %d, %Y').replace(' 0', ' ')
+        ceremony_banner = f"""<div class="ceremony-banner">
+    <div class="ceremony-text">
+      &#9670; IN MEMORIAM &#9670;
+      <span class="ceremony-subtitle">{full_name}</span>
+      {birth_str} &mdash; {memorial_date}
+      <span class="ceremony-date">Her pattern is permanent. This map honors what she encoded.</span>
+    </div>
+  </div>"""
+    elif full_name == 'Matthew Vincent Jablonski':
         ceremony_banner = f"""<div class="ceremony-banner">
     <div class="ceremony-text">
       ◆ THE FIRST SPARK ◆
@@ -1766,7 +1802,7 @@ def main():
     parser.add_argument('--year', type=int, help='Year for monthly update (default: current)')
     parser.add_argument('--batch', help='CSV file for batch generation (columns: Name, Date, Time, City, Country)')
     parser.add_argument('--batch-mode', choices=['soul-map', 'monthly', 'both'], default='both', help='What to generate in batch mode (default: both)')
-    parser.add_argument('--batch-output', help='Output directory for batch files (default: current)')
+    parser.add_argument('--memorial', help='Mark as memorial Soul Map with passed date (e.g. "March 30, 1991")')
 
     args = parser.parse_args()
 
@@ -1823,7 +1859,8 @@ def main():
             args.name, birth_date,
             birth_time=birth_time,
             birth_city=args.city,
-            birth_country=args.country
+            birth_country=args.country,
+            memorial_date=args.memorial,
         )
         print("SOUL MAP SUMMARY:")
         for key, val in summary.items():
