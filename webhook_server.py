@@ -368,6 +368,31 @@ def health():
     return jsonify({'status': 'ok', 'timestamp': datetime.now().isoformat()}), 200
 
 
+@app.route('/email-test', methods=['GET'])
+def email_test():
+    """Debug: show SMTP config and attempt a test send."""
+    smtp_email = os.getenv('SMTP_EMAIL')
+    smtp_pass = os.getenv('SMTP_PASSWORD')
+    smtp_server = os.getenv('SMTP_SERVER', 'smtp.zoho.com')
+    smtp_port = os.getenv('SMTP_PORT', '587')
+
+    if not smtp_email or not smtp_pass:
+        return jsonify({
+            'configured': False,
+            'smtp_email': smtp_email or 'NOT SET',
+            'smtp_password': 'NOT SET' if not smtp_pass else 'SET',
+        }), 200
+
+    try:
+        import smtplib
+        with smtplib.SMTP(smtp_server, int(smtp_port)) as s:
+            s.starttls()
+            s.login(smtp_email, smtp_pass)
+        return jsonify({'configured': True, 'smtp_email': smtp_email, 'status': 'login OK'}), 200
+    except Exception as e:
+        return jsonify({'configured': True, 'smtp_email': smtp_email, 'error': str(e)}), 200
+
+
 @app.route('/deploy-test', methods=['GET'])
 def deploy_test():
     """Debug: test GitHub deploy synchronously and return result."""
