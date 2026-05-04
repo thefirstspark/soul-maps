@@ -168,7 +168,7 @@ def send_confirmation_email(recipient_email, recipient_name, soul_map_url):
 </html>"""
 
     payload = _json.dumps({
-        'from': 'The First Spark <kate@thefirstspark.shop>',
+        'from': 'The First Spark <hello@soul-maps.thefirstspark.shop>',
         'to': [recipient_email],
         'subject': f'✨ Your Soul Map is Ready — {recipient_name}',
         'html': html_body,
