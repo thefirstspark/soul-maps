@@ -23,6 +23,7 @@ POST http://localhost:5000/generate to trigger.
 import os
 import sys
 import json
+import threading
 from datetime import datetime, timedelta
 from pathlib import Path
 import smtplib
@@ -255,72 +256,11 @@ thefirstspark.shop
 # WEBHOOK ENDPOINT
 # ============================================================
 
-@app.route('/generate', methods=['POST'])
-def generate_soul_map_webhook():
-    """
-    POST endpoint that receives intake form data and generates soul map.
-
-    Expected JSON:
-    {
-      "name": "John Doe",
-      "dob": "1990-05-15",
-      "time": "14:30",  # optional, HH:MM format
-      "city": "New York",  # optional
-      "country": "US",  # optional, default: US
-      "email": "john@example.com"  # for confirmation
-    }
-
-    Returns:
-    {
-      "success": true,
-      "name": "John Doe",
-      "url": "https://soul-maps.thefirstspark.shop/JD51990.html",
-      "message": "Soul Map generated and committed to GitHub"
-    }
-    """
+def _run_generation(name, dob_str, birth_date, birth_time, city, country, email, extra):
+    """Background worker — runs after the HTTP response is already sent."""
     try:
-        data = request.get_json()
+        print(f"\n[BG] Starting generation for {name}...")
 
-        # Validate required fields
-        if not data.get('name') or not data.get('dob'):
-            return jsonify({
-                'success': False,
-                'error': 'Missing required fields: name, dob'
-            }), 400
-
-        name = data['name'].strip()
-        dob_str = data['dob'].strip()  # YYYY-MM-DD
-        email = (data.get('email') or '').strip()
-        time_str = (data.get('time') or '').strip() or None  # HH:MM
-        city = (data.get('city') or '').strip() or None
-        country = (data.get('country') or 'US').strip()
-
-        print(f"\n[WEBHOOK] Generating soul map for {name}...")
-
-        # Parse DOB
-        try:
-            from datetime import datetime as dt
-            birth_date = dt.strptime(dob_str, '%Y-%m-%d').date()
-        except ValueError:
-            return jsonify({
-                'success': False,
-                'error': 'Invalid DOB format. Use YYYY-MM-DD'
-            }), 400
-
-        # Parse time (optional)
-        birth_time = None
-        if time_str:
-            try:
-                t = dt.strptime(time_str, '%H:%M')
-                birth_time = (t.hour, t.minute)
-            except ValueError:
-                return jsonify({
-                    'success': False,
-                    'error': 'Invalid time format. Use HH:MM (24-hour)'
-                }), 400
-
-        # Generate soul map
-        print(f"  [GEN] Numerology + Astrology...")
         html_soul_map, summary = generate_soul_map(
             name, birth_date,
             birth_time=birth_time,
@@ -328,71 +268,95 @@ def generate_soul_map_webhook():
             birth_country=country
         )
 
-        # Generate filename
         base_filename = get_base_filename(name, birth_date)
         filename = f"{base_filename}.html"
 
-        # Deploy to GitHub
-        print(f"  [GIT] Committing to GitHub...")
-        github_token = os.getenv('GITHUB_PAT')
-        if not github_token:
-            # Fall back to local-only
-            print(f"  [WARN] GITHUB_PAT not set. Saving locally only.")
-            local_path = Path(filename)
-            local_path.write_text(html_soul_map, encoding='utf-8')
-            live_url = f"file://{local_path.absolute()}"
+        print(f"  [GIT] Committing soul map...")
+        success, result = deploy_to_github(html_soul_map, filename, summary=summary,
+                                           birth_date=birth_date, birth_city=city)
+        if success:
+            live_url = result
+            print(f"  [GIT] ✓ {live_url}")
         else:
-            os.environ['GITHUB_PAT'] = github_token
-            success, result = deploy_to_github(html_soul_map, filename)
-            if success:
-                live_url = result
-                print(f"  [GIT] ✓ Committed: {live_url}")
-            else:
-                print(f"  [WARN] GitHub deploy failed: {result}. Saving locally.")
-                local_path = Path(filename)
-                local_path.write_text(html_soul_map, encoding='utf-8')
-                live_url = f"file://{local_path.absolute()}"
+            print(f"  [WARN] Deploy failed: {result}")
+            live_url = None
 
-        # Generate monthly update (optional)
-        print(f"  [MONTHLY] Generating first monthly update...")
+        print(f"  [MONTHLY] Generating monthly update...")
         html_monthly, filename_monthly, _ = generate_monthly_update(name, birth_date)
-        success_monthly, _ = deploy_to_github(html_monthly, filename_monthly)
-        if success_monthly:
-            print(f"  [MONTHLY] ✓ Committed")
+        deploy_to_github(html_monthly, filename_monthly)
+        print(f"  [MONTHLY] ✓ Committed")
 
-        # Add to subscriber database (for monthly regeneration)
-        print(f"  [SUBSCRIBER] Enrolling in monthly updates...")
-        add_subscriber(name, dob_str, email, extra={
+        add_subscriber(name, dob_str, email, extra=extra)
+
+        if email and live_url:
+            print(f"  [EMAIL] Sending confirmation to {email}...")
+            send_confirmation_email(email, name, live_url)
+
+        print(f"  [BG] Done for {name} → {live_url}")
+
+    except Exception as e:
+        import traceback
+        print(f"[BG ERROR] {name}: {e}", file=sys.stderr)
+        traceback.print_exc()
+
+
+@app.route('/generate', methods=['POST'])
+def generate_soul_map_webhook():
+    try:
+        data = request.get_json()
+
+        if not data.get('name') or not data.get('dob'):
+            return jsonify({'success': False, 'error': 'Missing required fields: name, dob'}), 400
+
+        name = data['name'].strip()
+        dob_str = data['dob'].strip()
+        email = (data.get('email') or '').strip()
+        time_str = (data.get('time') or '').strip() or None
+        city = (data.get('city') or '').strip() or None
+        country = (data.get('country') or 'US').strip()
+
+        try:
+            from datetime import datetime as dt
+            birth_date = dt.strptime(dob_str, '%Y-%m-%d').date()
+        except ValueError:
+            return jsonify({'success': False, 'error': 'Invalid DOB format. Use YYYY-MM-DD'}), 400
+
+        birth_time = None
+        if time_str:
+            try:
+                t = dt.strptime(time_str, '%H:%M')
+                birth_time = (t.hour, t.minute)
+            except ValueError:
+                return jsonify({'success': False, 'error': 'Invalid time format. Use HH:MM (24-hour)'}), 400
+
+        extra = {
             'birth_hospital': data.get('birth_hospital'),
             'soul_questions': data.get('soul_questions'),
             'interests': data.get('interests'),
             'city': city
-        })
+        }
 
-        # Send confirmation email
-        if email:
-            print(f"  [EMAIL] Sending confirmation to {email}...")
-            send_confirmation_email(email, name, live_url)
+        # Fire and forget — return immediately so Railway doesn't timeout
+        t = threading.Thread(
+            target=_run_generation,
+            args=(name, dob_str, birth_date, birth_time, city, country, email, extra),
+            daemon=True
+        )
+        t.start()
 
-        print(f"  [DONE] Soul map ready for {name}")
+        print(f"[WEBHOOK] Accepted {name} — generation running in background")
 
         return jsonify({
             'success': True,
             'name': name,
-            'url': live_url,
-            'monthly_update': filename_monthly,
-            'message': f'Soul Map generated for {name} · 12 monthly updates included',
-            'summary': summary
+            'message': f'Soul Map queued for {name} — check your email in 2-3 minutes'
         }), 200
 
     except Exception as e:
         print(f"[ERROR] {str(e)}", file=sys.stderr)
         import traceback
         traceback.print_exc()
-        return jsonify({
-            'success': False,
-            'error': str(e)
-        }), 500
+        return jsonify({'success': False, 'error': str(e)}), 500
 
 
 # ============================================================
