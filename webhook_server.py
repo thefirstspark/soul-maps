@@ -365,8 +365,19 @@ def generate_soul_map_webhook():
 
 @app.route('/health', methods=['GET'])
 def health():
-    """Health check endpoint."""
     return jsonify({'status': 'ok', 'timestamp': datetime.now().isoformat()}), 200
+
+
+@app.route('/deploy-test', methods=['GET'])
+def deploy_test():
+    """Debug: test GitHub deploy synchronously and return result."""
+    from soul_map_generator import deploy_to_github
+    token = os.getenv('GITHUB_PAT')
+    if not token:
+        return jsonify({'error': 'GITHUB_PAT not set'}), 500
+    test_html = '<html><body>deploy test</body></html>'
+    success, result = deploy_to_github(test_html, '_deploy_test.html')
+    return jsonify({'success': success, 'result': result, 'token_prefix': token[:8]}), 200
 
 
 # ============================================================
