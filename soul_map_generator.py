@@ -1731,54 +1731,101 @@ def update_index_html(work_dir, filename, summary, birth_date, birth_city=None):
     return True
 
 
+def _github_api(method, path, token, json_body=None):
+    """Minimal GitHub API helper — no git binary required."""
+    import urllib.request, urllib.error, json as _json
+    url = f"https://api.github.com{path}"
+    headers = {
+        'Authorization': f'token {token}',
+        'Accept': 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json',
+        'User-Agent': 'soul-map-generator',
+    }
+    data = _json.dumps(json_body).encode() if json_body else None
+    req = urllib.request.Request(url, data=data, headers=headers, method=method)
+    try:
+        with urllib.request.urlopen(req) as r:
+            return _json.loads(r.read()), r.status
+    except urllib.error.HTTPError as e:
+        body = e.read().decode()
+        raise Exception(f"GitHub API {e.code}: {body}")
+
+
+def _api_put_file(token, repo, filepath, content_str, message):
+    """Create or update a single file via GitHub API."""
+    import base64
+    encoded = base64.b64encode(content_str.encode('utf-8')).decode()
+    path = f"/repos/thefirstspark/{repo}/contents/{filepath}"
+    try:
+        existing, _ = _github_api('GET', path, token)
+        sha = existing.get('sha')
+    except Exception:
+        sha = None
+    body = {'message': message, 'content': encoded}
+    if sha:
+        body['sha'] = sha
+    _github_api('PUT', path, token, body)
+
+
+def _api_update_index(token, repo, filename, summary, birth_date, birth_city=None):
+    """Fetch index.html from GitHub, insert card, push back — no local clone needed."""
+    import base64
+    path = f"/repos/thefirstspark/{repo}/contents/index.html"
+    try:
+        existing, _ = _github_api('GET', path, token)
+        html = base64.b64decode(existing['content']).decode('utf-8')
+        sha = existing['sha']
+    except Exception as e:
+        print(f"  [INDEX] Could not fetch index.html: {e}")
+        return False
+
+    if f'href="{filename}"' in html:
+        print(f"  [INDEX] Card for {filename} already exists")
+        return False
+
+    card = _build_card_html(filename, summary, birth_date, birth_city)
+    marker = '<div id="cards-list">'
+    if marker not in html:
+        print(f"  [INDEX] Insertion point not found")
+        return False
+
+    insert_pos = html.index(marker) + len(marker)
+    html = html[:insert_pos] + '\n' + card + '\n' + html[insert_pos:]
+
+    import base64 as b64
+    encoded = b64.b64encode(html.encode('utf-8')).decode()
+    _github_api('PUT', path, token, {
+        'message': f'Index: add card for {summary["name"]}',
+        'content': encoded,
+        'sha': sha,
+    })
+    print(f"  [INDEX] Added card for {summary['name']}")
+    return True
+
+
 def deploy_to_github(html_content, filename, repo='soul-maps', summary=None, birth_date=None, birth_city=None):
-    """Push generated Soul Map HTML to GitHub Pages repo. If summary is provided, also updates index.html."""
+    """Push generated Soul Map HTML to GitHub via API (no git binary needed)."""
     token = os.environ.get('GITHUB_PAT')
     if not token:
-        return False, "GITHUB_PAT environment variable not set. Export it first: set GITHUB_PAT=ghp_yourtoken"
-
-    repo_url = f"https://thefirstspark:{token}@github.com/thefirstspark/{repo}.git"
-    work_dir = Path(os.path.expanduser('~')) / '.soul-map-deploy' / repo
+        return False, "GITHUB_PAT environment variable not set."
 
     try:
-        # Clone or pull
-        if work_dir.exists():
-            subprocess.run(['git', '-C', str(work_dir), 'pull'], check=True, capture_output=True)
-        else:
-            work_dir.parent.mkdir(parents=True, exist_ok=True)
-            subprocess.run(['git', 'clone', repo_url, str(work_dir)], check=True, capture_output=True)
+        # Upload the soul map file
+        _api_put_file(token, repo, filename, html_content, f'Soul Map: {filename}')
 
-        # Write file
-        filepath = work_dir / filename
-        filepath.write_text(html_content, encoding='utf-8')
-
-        files_to_add = [filename]
-
-        # Update index.html if summary data is provided (full soul maps only, not monthly updates)
+        # Update index.html if summary provided
         if summary and birth_date and repo == 'soul-maps':
-            if update_index_html(work_dir, filename, summary, birth_date, birth_city):
-                files_to_add.append('index.html')
+            _api_update_index(token, repo, filename, summary, birth_date, birth_city)
 
-        # Git config + commit + push
-        subprocess.run(['git', '-C', str(work_dir), 'config', 'user.email', 'kate@thefirstspark.shop'], check=True)
-        subprocess.run(['git', '-C', str(work_dir), 'config', 'user.name', 'The First Spark'], check=True)
-        for f in files_to_add:
-            subprocess.run(['git', '-C', str(work_dir), 'add', f], check=True)
-        subprocess.run(['git', '-C', str(work_dir), 'commit', '-m', f'Soul Map: {filename}'], check=True, capture_output=True)
-        subprocess.run(['git', '-C', str(work_dir), 'push'], check=True, capture_output=True)
-
-        # Construct live URL
-        if repo == 'thefirstspark.github.io':
-            live_url = f"https://thefirstspark.shop/{filename}"
-        elif repo == 'soul-maps':
+        if repo == 'soul-maps':
             live_url = f"https://soul-maps.thefirstspark.shop/{filename}"
+        elif repo == 'thefirstspark.github.io':
+            live_url = f"https://thefirstspark.shop/{filename}"
         else:
             live_url = f"https://thefirstspark.github.io/{repo}/{filename}"
 
         return True, live_url
 
-    except subprocess.CalledProcessError as e:
-        return False, f"Git error: {e.stderr.decode() if e.stderr else str(e)}"
     except Exception as e:
         return False, str(e)
 
