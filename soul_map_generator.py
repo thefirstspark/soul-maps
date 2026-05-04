@@ -1756,7 +1756,6 @@ def _api_put_file(token, repo, filepath, content_str, message):
     import base64
     encoded = base64.b64encode(content_str.encode('utf-8')).decode()
     path = f"/repos/thefirstspark/{repo}/contents/{filepath}"
-    # Check if file exists to get its SHA (required for updates)
     try:
         existing, _ = _github_api('GET', path, token)
         sha = existing.get('sha')
@@ -1766,6 +1765,42 @@ def _api_put_file(token, repo, filepath, content_str, message):
     if sha:
         body['sha'] = sha
     _github_api('PUT', path, token, body)
+
+
+def _api_update_index(token, repo, filename, summary, birth_date, birth_city=None):
+    """Fetch index.html from GitHub, insert card, push back — no local clone needed."""
+    import base64
+    path = f"/repos/thefirstspark/{repo}/contents/index.html"
+    try:
+        existing, _ = _github_api('GET', path, token)
+        html = base64.b64decode(existing['content']).decode('utf-8')
+        sha = existing['sha']
+    except Exception as e:
+        print(f"  [INDEX] Could not fetch index.html: {e}")
+        return False
+
+    if f'href="{filename}"' in html:
+        print(f"  [INDEX] Card for {filename} already exists")
+        return False
+
+    card = _build_card_html(filename, summary, birth_date, birth_city)
+    marker = '<div id="cards-list">'
+    if marker not in html:
+        print(f"  [INDEX] Insertion point not found")
+        return False
+
+    insert_pos = html.index(marker) + len(marker)
+    html = html[:insert_pos] + '\n' + card + '\n' + html[insert_pos:]
+
+    import base64 as b64
+    encoded = b64.b64encode(html.encode('utf-8')).decode()
+    _github_api('PUT', path, token, {
+        'message': f'Index: add card for {summary["name"]}',
+        'content': encoded,
+        'sha': sha,
+    })
+    print(f"  [INDEX] Added card for {summary['name']}")
+    return True
 
 
 def deploy_to_github(html_content, filename, repo='soul-maps', summary=None, birth_date=None, birth_city=None):
@@ -1780,11 +1815,7 @@ def deploy_to_github(html_content, filename, repo='soul-maps', summary=None, bir
 
         # Update index.html if summary provided
         if summary and birth_date and repo == 'soul-maps':
-            work_dir = Path(os.path.expanduser('~')) / '.soul-map-deploy' / repo
-            if work_dir.exists():
-                if update_index_html(work_dir, filename, summary, birth_date, birth_city):
-                    index_content = (work_dir / 'index.html').read_text(encoding='utf-8')
-                    _api_put_file(token, repo, 'index.html', index_content, f'Index: add card for {filename}')
+            _api_update_index(token, repo, filename, summary, birth_date, birth_city)
 
         if repo == 'soul-maps':
             live_url = f"https://soul-maps.thefirstspark.shop/{filename}"
