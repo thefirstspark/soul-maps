@@ -128,6 +128,7 @@ def send_monthly_update_email(recipient_email, recipient_name, month_name, updat
         headers={
             'Authorization': f'Bearer {RESEND_API_KEY}',
             'Content-Type': 'application/json',
+            'User-Agent': 'TheFirstSpark-SoulMap/1.0',
         },
         method='POST'
     )

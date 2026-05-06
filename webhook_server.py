@@ -179,6 +179,7 @@ def send_confirmation_email(recipient_email, recipient_name, soul_map_url):
         headers={
             'Authorization': f'Bearer {api_key}',
             'Content-Type': 'application/json',
+            'User-Agent': 'TheFirstSpark-SoulMap/1.0',
         },
         method='POST'
     )
