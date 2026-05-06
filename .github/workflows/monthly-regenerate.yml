@@ -26,16 +26,7 @@ jobs:
 
       - name: Run monthly regeneration
         env:
-          GITHUB_PAT: ${{ secrets.GITHUB_PAT }}
-          SMTP_EMAIL: ${{ secrets.SMTP_EMAIL }}
-          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          GITHUB_PAT: ${{ secrets.GH_PAT }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
         run: |
           python monthly_regenerate.py
-
-      - name: Commit and push updates
-        run: |
-          git config --global user.email "automation@thefirstspark.shop"
-          git config --global user.name "The First Spark Bot"
-          git add *.html subscribers.json
-          # Only commit if there are changes
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Monthly Soul Map Updates - $(date +%Y-%m-%d)" && git push)
