@@ -818,6 +818,48 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
     </p>
   </div>
 
+  <!-- ===== ADVANCED FEATURES ===== -->
+  <h2>Advanced Analysis</h2>
+  
+  ${resonance_frequency_section}
+  
+  ${rarity_section}
+  
+  <h3 style="margin-top: 32px;">Karmic Remediation Pathways</h3>
+  ${karmic_remedies_section}
+  
+  <h3 style="margin-top: 32px;">Power Timing</h3>
+  ${power_hour_section}
+  
+  <h3 style="margin-top: 32px;">Evolutionary Trajectory</h3>
+  ${evolutionary_trajectory_section}
+  
+  <h3 style="margin-top: 32px;">Oracle Trinity</h3>
+  ${oracle_section}
+  
+  <h3 style="margin-top: 32px;">Next 90 Days — Optimal Windows</h3>
+  <div style="margin: 24px 0; padding: 20px; background: rgba(107,77,242,0.05); border: 1px solid rgba(107,77,242,0.15); border-radius: 8px;">
+    ${predictive_windows_section}
+  </div>
+  
+  <!-- ===== ULTIMATE FEATURES ===== -->
+  <h2 style="margin-top: 60px; border-top: 2px solid rgba(243,178,58,0.2); padding-top: 40px;">The Impossible Code</h2>
+  
+  <h3 style="margin-top: 32px;">Quantum Signature</h3>
+  ${quantum_signature_section}
+  
+  <h3 style="margin-top: 32px;">Vibrational Blueprint</h3>
+  ${vibrational_blueprint_section}
+  
+  <h3 style="margin-top: 32px;">Your Activation Sequence</h3>
+  ${activation_code_section}
+  
+  <h3 style="margin-top: 32px;">Shadow Integration Path</h3>
+  ${shadow_integration_section}
+  
+  <h3 style="margin-top: 32px;">Destiny Checkpoints</h3>
+  ${destiny_checkpoints_section}
+
   <!-- ===== FOOTER ===== -->
   <div class="footer">
     <p>THE FIRST SPARK — Reality is programmable. Consciousness is the code.</p>
@@ -962,8 +1004,382 @@ You are coded for <span class="code-term">alchemical work in the collective</spa
 }
 
 
+# ============================================================
+# 8. ADVANCED FEATURES ENGINE
+# ============================================================
+
+def soul_resonance_frequency(life_path, expression, soul_urge, personality, birthday):
+    """
+    Convert soul map numbers into a harmonic frequency (Hz).
+    Uses Pythagorean harmonic relationships.
+    Base frequency: 432 Hz (universal healing frequency).
+    Each number acts as a harmonic multiplier.
+    """
+    base_hz = 432.0  # A note, earth frequency
+    # Harmonic ratios for each number
+    harmonics = {
+        1: 1.0,      # Fundamental
+        2: 1.5,      # Perfect fifth
+        3: 1.25,     # Major third
+        4: 2.0,      # Octave
+        5: 1.667,    # Just major sixth
+        6: 1.2,      # Minor sixth
+        7: 1.875,    # Major seventh
+        8: 2.667,    # Third octave
+        9: 1.111,    # Major second
+        11: 3.0,     # Two octaves (master)
+        22: 4.0,     # Four octaves (master)
+        33: 5.333,   # Five octaves + third (master)
+    }
+    
+    # Calculate weighted harmonic
+    numbers = [life_path, expression, soul_urge, personality, birthday]
+    weighted_harmonic = sum(harmonics.get(n, 1.0) for n in numbers) / len(numbers)
+    
+    # Final resonance frequency
+    resonance_hz = base_hz * weighted_harmonic
+    return round(resonance_hz, 2)
+
+
+def karmic_debt_remediation(life_path, expression, soul_urge, personality, birthday, full_name):
+    """
+    Detect karmic debt and provide remediation pathways.
+    Returns list of (debt_type, remediation) tuples.
+    """
+    remediation = []
+    
+    # Karmic debt mapping: unreduced intermediate values
+    # 13→4, 14→5, 16→7, 19→1
+    
+    if life_path == 4:
+        remediation.append(("13/4 Potential", "Impulsiveness remedy: Build daily discipline rituals. Karmic lesson is creating lasting structure from chaos."))
+    if life_path == 5:
+        remediation.append(("14/5 Potential", "Freedom abuse remedy: Channel restlessness into exploration with commitment. The 5 learns boundaries through experimentation."))
+    if life_path == 7:
+        remediation.append(("16/7 Potential", "Self-undoing remedy: Trust others' wisdom alongside your own research. The decoder learns humility through vulnerability."))
+    if life_path == 1:
+        remediation.append(("19/1 Potential", "False independence remedy: Ask for help without losing autonomy. The 1 learns true power through interdependence."))
+    
+    # Check expression number
+    if expression == 4 and hidden_passion(full_name) not in [1, 4, 7]:
+        remediation.append(("Expression 4 dissonance", "Ground abstract ideas into form. Build one thing completely before starting another."))
+    
+    if expression == 8 and soul_urge_number(full_name) < 5:
+        remediation.append(("Power-empathy mismatch", "Use your material power to create safety. Influence is only sustainable through compassion."))
+    
+    return remediation
+
+
+def predictive_windows(birth_date, current_year=None, num_days=90):
+    """
+    Calculate optimal 90-day windows for action.
+    Identifies personal month transitions, power dates, and shift points.
+    Returns list of (date, event_type, significance) tuples.
+    """
+    if current_year is None:
+        current_year = date.today().year
+    
+    windows = []
+    today = date.today()
+    
+    # Track personal month transitions in the next 90 days
+    for offset in range(num_days):
+        check_date = today + __import__('datetime').timedelta(days=offset)
+        
+        # Personal month changes on birthday each month
+        if check_date.day == birth_date.day:
+            pm = personal_month(birth_date, check_date.year, check_date.month)
+            windows.append({
+                'date': check_date,
+                'type': 'Personal Month Shift',
+                'number': pm,
+                'meaning': PERSONAL_YEAR_MEANINGS.get(pm, f'Month {pm}')
+            })
+        
+        # Every 11th or 22nd is a power day
+        if check_date.day in [11, 22]:
+            pd = personal_day(birth_date, check_date.year, check_date.month, check_date.day)
+            if pd in [11, 22, 33]:
+                windows.append({
+                    'date': check_date,
+                    'type': 'Master Number Day',
+                    'number': pd,
+                    'meaning': 'Master frequency alignment — optimal for major decisions'
+                })
+    
+    # Personal year transition (birthday next year)
+    next_bday = date(current_year + 1, birth_date.month, birth_date.day)
+    if next_bday <= today + __import__('datetime').timedelta(days=num_days):
+        next_py = personal_year(birth_date, current_year + 1)
+        windows.append({
+            'date': next_bday,
+            'type': 'Personal Year Transition',
+            'number': next_py,
+            'meaning': PERSONAL_YEAR_MEANINGS.get(next_py, f'Year {next_py}')
+        })
+    
+    return sorted(windows, key=lambda x: x['date'])
+
+
+def rarity_detection(life_path, expression, soul_urge, personality, birthday, maturity, karmic_lessons):
+    """
+    Identify rare number configurations and flag them.
+    Returns dict with rarity score and notable patterns.
+    """
+    rarity = {
+        'score': 0,  # 0-100 scale
+        'patterns': [],
+        'master_count': 0
+    }
+    
+    # Master numbers boost rarity
+    master_numbers = {11, 22, 33}
+    all_nums = [life_path, expression, soul_urge, personality, birthday, maturity]
+    master_count = sum(1 for n in all_nums if n in master_numbers)
+    
+    rarity['master_count'] = master_count
+    rarity['score'] += master_count * 25
+    
+    # Rare patterns
+    if master_count >= 3:
+        rarity['patterns'].append("Master cluster: 3+ master numbers indicate advanced soul architecture")
+    
+    if life_path == 9 and expression == 9 and soul_urge == 9:
+        rarity['patterns'].append("Triple-9: Rare completion/integration coding. Collective healer frequency.")
+    
+    if all(n in [1, 8] for n in [life_path, expression, personality]):
+        rarity['patterns'].append("Power axis: All manifestation numbers. This soul manifests reality at scale.")
+    
+    if personality == life_path:
+        rarity['patterns'].append("Transparent signal: What you feel is what people perceive. No filter between inner and outer.")
+    
+    # All karmic lessons covered (1-9 present in name)
+    if len(karmic_lessons) == 0:
+        rarity['patterns'].append("Karmic completeness: This name covers all 9 digits. No missing lessons — all mastered simultaneously.")
+        rarity['score'] += 20
+    
+    rarity['score'] = min(100, rarity['score'])
+    return rarity
+
+
+def power_hour_calculation(birth_date, personal_day_num):
+    """
+    Calculate the most powerful hour in the current personal day.
+    Combines personal day with birth hour (if available).
+    Returns dict with power hour, minute, and significance.
+    """
+    # Personal day maps to optimal time blocks
+    hour_mapping = {
+        1: (5, 6),    # Early morning, initiation
+        2: (14, 15),  # Afternoon, partnerships
+        3: (10, 11),  # Mid-morning, creativity
+        4: (8, 9),    # Early, foundation work
+        5: (15, 16),  # Late afternoon, exploration
+        6: (19, 20),  # Evening, relationships
+        7: (20, 21),  # Night, reflection
+        8: (12, 13),  # Noon, power
+        9: (18, 19),  # Early evening, completion
+        11: (11, 12), # Master intuitive
+        22: (22, 23), # Master builder
+        33: (3, 4),   # Master teacher
+    }
+    
+    optimal_hour, optimal_minute = hour_mapping.get(personal_day_num, (9, 0))
+    
+    return {
+        'hour': optimal_hour,
+        'minute': optimal_minute,
+        'time_str': f"{optimal_hour:02d}:{optimal_minute:02d}",
+        'significance': 'Maximum resonance window for today\'s frequency'
+    }
+
+
+def evolutionary_trajectory(life_path, personal_year, birth_date):
+    """
+    Map the person's evolutionary arc across their current 9-year cycle.
+    Shows where they are and where they're headed numerologically.
+    """
+    current_year = date.today().year
+    trajectory = {
+        'current_py': personal_year,
+        'cycle_start': current_year - (personal_year - 1),
+        'cycle_end': current_year + (10 - personal_year),
+        'years_remaining_in_cycle': 10 - personal_year,
+        'arc': []
+    }
+    
+    # Build arc for the 9-year cycle
+    cycle_start_py = personal_year - ((current_year - trajectory['cycle_start']) % 9)
+    if cycle_start_py <= 0:
+        cycle_start_py += 9
+    
+    for year_offset in range(10):
+        py = cycle_start_py + year_offset
+        if py > 9 and py not in [11, 22, 33]:
+            py = ((py - 1) % 9) + 1
+        trajectory['arc'].append({
+            'year': trajectory['cycle_start'] + year_offset,
+            'personal_year': py,
+            'meaning': PERSONAL_YEAR_MEANINGS.get(py, f'Year {py}')
+        })
+    
+    return trajectory
+
+
+def oracle_mapping(life_path, expression, soul_urge):
+    """
+    Map soul signature to tarot major arcana for oracle integration.
+    Each number maps to an archetypal card.
+    """
+    tarot_map = {
+        1: ('The Magician', 'Will. Mastery. Making it happen.'),
+        2: ('The Priestess', 'Intuition. Deep knowing. The invisible realm.'),
+        3: ('The Empress', 'Creation. Abundance. Expression in form.'),
+        4: ('The Emperor', 'Structure. Authority. Building the system.'),
+        5: ('The Hierophant', 'Wisdom. Teaching. The established path.'),
+        6: ('The Lovers', 'Choice. Integration. Alignment.'),
+        7: ('The Chariot', 'Control. Will. Moving forward.'),
+        8: ('Strength', 'Power. Mastery. Inner strength.'),
+        9: ('The Hermit', 'Wisdom. Seeking. Going inward.'),
+        11: ('Justice', 'Balance. Truth. Karmic law.'),
+        22: ('The Fool', 'The beginning. Infinite potential.'),
+        33: ('The World', 'Completion. Wholeness. Integration.'),
+    }
+    
+    cards = [
+        tarot_map.get(life_path, ('Unknown', '')),
+        tarot_map.get(expression, ('Unknown', '')),
+        tarot_map.get(soul_urge, ('Unknown', ''))
+    ]
+    
+    return {
+        'spread': 'Life Path — Expression — Soul Urge',
+        'cards': cards,
+        'interpretation': f"Your oracle trinity: {cards[0][0]} (your journey), {cards[1][0]} (how you show), {cards[2][0]} (what drives you beneath). These three arcana are woven through every choice."
+    }
+
+
+def quantum_signature(life_path, expression, soul_urge, personality, birthday):
+    """
+    Generate a unique quantum identifier from core numbers.
+    This is your soul's fingerprint in the system.
+    Returns a base-32 encoded signature.
+    """
+    import hashlib
+    core_string = f"{life_path}{expression}{soul_urge}{personality}{birthday}"
+    hash_obj = hashlib.sha256(core_string.encode())
+    signature = hash_obj.hexdigest()[:12].upper()
+    return signature
+
+
+def vibrational_blueprint(life_path, expression, resonance_hz):
+    """
+    Create an ASCII visualization of the soul's vibrational pattern.
+    Uses the numbers to create a unique wave pattern.
+    """
+    # Map numbers to ASCII heights
+    bars = []
+    for num in [life_path, expression]:
+        bar_height = (num % 8) + 1
+        bar = '█' * bar_height
+        bars.append(bar)
+    
+    # Frequency visualization
+    freq_normalized = min(100, int((resonance_hz - 400) / 3))  # Scale to ~100
+    wave_chars = ['▁', '▂', '▃', '▄', '▅', '▆', '▇', '█']
+    wave = ''.join(wave_chars[min(7, (i * freq_normalized) // 100)] for i in range(8))
+    
+    return '  '.join(bars), wave
+
+
+def destiny_checkpoints(birth_date, life_path):
+    """
+    Calculate major life transition points based on numerological cycles.
+    Returns list of (age, cycle_number, meaning) tuples.
+    """
+    checkpoints = []
+    
+    # First peak: 9-year cycle transitions at 9, 18, 27, 36, 45, 54, 63, 72, 81
+    for age in range(9, 82, 9):
+        cycle_num = ((age - 1) % 9) + 1
+        checkpoints.append({
+            'age': age,
+            'year': birth_date.year + age,
+            'cycle': cycle_num,
+            'meaning': PERSONAL_YEAR_MEANINGS.get(cycle_num, f'Cycle {cycle_num}')
+        })
+    
+    # Add 7-year spiritual cycles (Saturn returns at 29-30, 58-60, 87-90)
+    for age in [29, 58, 87]:
+        checkpoints.append({
+            'age': age,
+            'year': birth_date.year + age,
+            'cycle': 'Saturn Return',
+            'meaning': 'Major restructuring. Reality testing. Authority emerges.'
+        })
+    
+    return checkpoints[:12]  # Return first 12 checkpoints
+
+
+def shadow_integration_path(karmic_lessons, challenges_dict, life_path):
+    """
+    Create a compassionate integration path for working with karmic challenges.
+    Transforms challenges into growth opportunities.
+    """
+    integration = {
+        'overview': 'Your shadows are not enemies. They are untranslated parts of your code. Here is how to integrate them:',
+        'pathways': []
+    }
+    
+    # Transform karmic lessons into integration practices
+    for lesson_num in karmic_lessons[:3]:  # Focus on top 3
+        lesson_text = KARMIC_LESSON_MEANINGS.get(lesson_num, '')
+        
+        # Generate integration practice
+        practices = {
+            1: 'Practice: Take one independent decision daily. Trust your own vision.',
+            2: 'Practice: Initiate one conversation that requires vulnerability. Connection deepens trust.',
+            3: 'Practice: Share one creation. Expression clears the path.',
+            4: 'Practice: Build one small structure. Order creates freedom.',
+            5: 'Practice: Explore one new direction. Movement dissolves rigidity.',
+            6: 'Practice: Set one boundary. Self-care enables service.',
+            7: 'Practice: Ask one deep question and sit with the answer.',
+            8: 'Practice: Make one resourceful choice. Empowerment is ethical.',
+            9: 'Practice: Release one attachment. Completion clears space.',
+        }
+        
+        integration['pathways'].append({
+            'lesson': lesson_num,
+            'challenge': lesson_text,
+            'practice': practices.get(lesson_num, f'Integrate lesson {lesson_num}.')
+        })
+    
+    return integration
+
+
+def activation_code(full_name, birth_date, life_path):
+    """
+    Generate a unique activation code that resonates with their frequency.
+    This is the trigger sequence for their highest potential.
+    """
+    import hashlib
+    code_string = f"{full_name.upper()}{birth_date.day:02d}{birth_date.month:02d}{life_path}"
+    hash_val = hashlib.md5(code_string.encode()).hexdigest()
+    
+    # Extract unique 8-char code
+    code = hash_val[:8].upper()
+    
+    # Add life path frequency hint
+    frequency_hint = f"[LP{life_path}]"
+    
+    return f"{code}{frequency_hint}"
+
+
 def generate_soul_map(full_name, birth_date, birth_time=None, birth_city=None, birth_country='US', memorial_date=None):
     """Generate complete Soul Map data and return rendered HTML."""
+    
+    # Define current_year early for use in advanced calculations
+    current_year = date.today().year
 
     # === Numerology (Core Numbers) ===
     lp = life_path(birth_date)
@@ -1018,6 +1434,44 @@ def generate_soul_map(full_name, birth_date, birth_time=None, birth_city=None, b
     # === Chinese Zodiac ===
     c_animal, c_element = chinese_zodiac(birth_date.year)
 
+    # === ADVANCED FEATURES ===
+    # Soul Resonance Frequency
+    resonance_hz = soul_resonance_frequency(lp, expr, su, pers, bday)
+    
+    # Karmic Debt Remediation
+    karmic_remedies = karmic_debt_remediation(lp, expr, su, pers, bday, full_name)
+    
+    # Predictive Windows (90-day forecast)
+    predictive_windows_data = predictive_windows(birth_date, current_year=current_year)
+    
+    # Rarity Detection
+    rarity_data = rarity_detection(lp, expr, su, pers, bday, mat, kl)
+    
+    # Power Hour for Today
+    power_hour_data = power_hour_calculation(birth_date, pd)
+    
+    # Evolutionary Trajectory
+    evolutionary_data = evolutionary_trajectory(lp, py, birth_date)
+    
+    # Oracle Mapping
+    oracle_data = oracle_mapping(lp, expr, su)
+    
+    # === NEW ADVANCED FEATURES ===
+    # Quantum Signature (Soul Fingerprint)
+    quantum_sig = quantum_signature(lp, expr, su, pers, bday)
+    
+    # Vibrational Blueprint
+    vibration_bars, vibration_wave = vibrational_blueprint(lp, expr, resonance_hz)
+    
+    # Destiny Checkpoints
+    destiny_points = destiny_checkpoints(birth_date, lp)
+    
+    # Shadow Integration Path
+    shadow_path = shadow_integration_path(kl, chall, lp)
+    
+    # Activation Code
+    activation_code_val = activation_code(full_name, birth_date, lp)
+
     # === Build HTML for new sections ===
     # Karmic Lessons HTML
     kl_html = ', '.join([KARMIC_LESSON_MEANINGS.get(i, f'Lesson {i}') for i in kl]) if kl else 'No karmic lessons—your name contains all digits 1-9.'
@@ -1040,7 +1494,6 @@ def generate_soul_map(full_name, birth_date, birth_time=None, birth_city=None, b
     # 12-month cycles for the current year
     import calendar
     today = date.today()
-    current_year = today.year
     py_current = personal_year(birth_date, current_year)
 
     yearly_months_rows = []
@@ -1087,6 +1540,188 @@ def generate_soul_map(full_name, birth_date, birth_time=None, birth_city=None, b
   </div>"""
     else:
         ceremony_banner = ''
+
+    # === Build HTML for advanced features ===
+    # Soul Resonance Frequency HTML with visualization
+    resonance_html = f"""
+  <div style="text-align: center; margin: 32px 0; padding: 32px; background: linear-gradient(135deg, rgba(107,77,242,0.1), rgba(38,228,216,0.1)); border-radius: 12px;">
+    <div style="font-size: 0.85rem; color: #26E4D8; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px;">Soul Resonance Frequency</div>
+    <div style="font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 700; color: #F3B23A; margin: 16px 0;">{resonance_hz} Hz</div>
+    <div style="width: 100%; height: 3px; background: linear-gradient(to right, #6B4DF2, #26E4D8, #F3B23A); margin: 20px 0; border-radius: 2px;"></div>
+    <div style="font-size: 0.9rem; color: #f0ece4; line-height: 1.6;">
+      Your core numbers translate to a harmonic frequency in the Schumann range. This is your vibrational signature — the frequency your energy naturally aligns with. 432 Hz is the baseline; your unique pattern modulates from there.
+    </div>
+  </div>
+    """
+    
+    # Rarity Score HTML
+    rarity_html = f"""
+  <div style="margin: 24px 0; padding: 20px; background: rgba(243,178,58,0.08); border: 2px solid #F3B23A; border-radius: 8px;">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+      <div style="font-size: 0.85rem; color: #F3B23A; text-transform: uppercase; letter-spacing: 2px; font-weight: 700;">Rarity Score</div>
+      <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: #F3B23A; font-weight: 700;">{rarity_data['score']}</div>
+    </div>
+    <div style="font-size: 0.9rem; color: #f0ece4;">
+      Master numbers present: <span style="color: #26E4D8; font-weight: 600;">{rarity_data['master_count']}</span>
+    </div>"""
+    
+    if rarity_data['patterns']:
+        rarity_html += "<div style='margin-top: 12px;'>"
+        for pattern in rarity_data['patterns']:
+            rarity_html += f"<div style='margin: 8px 0; padding: 8px; background: rgba(38,228,216,0.1); border-left: 3px solid #26E4D8; color: #26E4D8; font-size: 0.85rem;'>{pattern}</div>"
+        rarity_html += "</div>"
+    
+    rarity_html += "  </div>"
+    
+    # Power Hour HTML
+    power_hour_html = f"""
+  <div style="margin: 24px 0; padding: 20px; background: rgba(255,106,61,0.08); border: 1px solid #FF6A3D; border-radius: 8px;">
+    <div style="font-size: 0.85rem; color: #FF6A3D; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 12px;">Power Hour Today</div>
+    <div style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: #FF6A3D; font-weight: 700; margin: 8px 0;">{power_hour_data['time_str']}</div>
+    <div style="font-size: 0.85rem; color: #f0ece4;">{power_hour_data['significance']}</div>
+  </div>
+    """
+    
+    # Karmic Remedies HTML
+    remedies_html = ""
+    if karmic_remedies:
+        remedies_html = '<div style="margin: 12px 0;">'
+        for remedy_type, remedy_text in karmic_remedies:
+            remedies_html += f"""
+    <div style="margin: 12px 0; padding: 12px; background: rgba(107,77,242,0.08); border-left: 3px solid #6B4DF2; border-radius: 4px;">
+      <div style="font-weight: 600; color: #6B4DF2; font-size: 0.9rem; margin-bottom: 6px;">{remedy_type}</div>
+      <div style="font-size: 0.85rem; color: #f0ece4; line-height: 1.6;">{remedy_text}</div>
+    </div>
+            """
+        remedies_html += '</div>'
+    
+    # Predictive Windows HTML
+    windows_html = ""
+    if predictive_windows_data:
+        windows_html = '<table style="width: 100%; margin: 12px 0; font-size: 0.85rem; border-collapse: collapse;">'
+        for window in predictive_windows_data[:10]:  # Show next 10 windows
+            windows_html += f"""
+      <tr style="border-bottom: 1px solid rgba(38,228,216,0.15);">
+        <td style="padding: 10px 8px; color: #26E4D8;">{window['date'].strftime('%b %d')}</td>
+        <td style="padding: 10px 8px; text-align: center; color: #F3B23A; font-weight: 600;">{window['type']}</td>
+        <td style="padding: 10px 8px; color: #f0ece4; text-align: right;">{window['meaning'][:40]}...</td>
+      </tr>
+        """
+        windows_html += '</table>'
+    
+    # Evolutionary Trajectory HTML
+    trajectory_html = f"""
+  <div style="margin: 24px 0; padding: 20px; background: rgba(38,228,216,0.08); border: 1px solid #26E4D8; border-radius: 8px;">
+    <div style="font-size: 0.85rem; color: #26E4D8; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 12px;">Current Cycle Position</div>
+    <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: #26E4D8; font-weight: 700; margin: 8px 0;">
+      Year {evolutionary_data['years_remaining_in_cycle']} of 9
+    </div>
+    <div style="font-size: 0.85rem; color: #f0ece4;">
+      Next transition: {(birth_date + __import__('datetime').timedelta(days=365 - (date.today() - birth_date.replace(year=date.today().year)).days % 365)).strftime('%B %d, %Y')}
+    </div>
+  </div>
+    """
+    
+    # Oracle Trinity HTML
+    oracle_html = f"""
+  <div style="margin: 24px 0; padding: 24px; background: linear-gradient(135deg, rgba(107,77,242,0.12), rgba(243,178,58,0.12)); border: 2px solid #6B4DF2; border-radius: 8px;">
+    <div style="font-size: 0.85rem; color: #6B4DF2; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 16px; text-align: center;">Oracle Trinity</div>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 16px 0;">
+      <div style="text-align: center; padding: 16px; background: rgba(255,255,255,0.03); border-radius: 8px;">
+        <div style="font-weight: 600; color: #F3B23A; font-size: 1rem; margin-bottom: 4px;">{oracle_data['cards'][0][0]}</div>
+        <div style="font-size: 0.7rem; color: #26E4D8; text-transform: uppercase;">Life Path</div>
+      </div>
+      <div style="text-align: center; padding: 16px; background: rgba(255,255,255,0.03); border-radius: 8px;">
+        <div style="font-weight: 600; color: #F3B23A; font-size: 1rem; margin-bottom: 4px;">{oracle_data['cards'][1][0]}</div>
+        <div style="font-size: 0.7rem; color: #26E4D8; text-transform: uppercase;">Expression</div>
+      </div>
+      <div style="text-align: center; padding: 16px; background: rgba(255,255,255,0.03); border-radius: 8px;">
+        <div style="font-weight: 600; color: #F3B23A; font-size: 1rem; margin-bottom: 4px;">{oracle_data['cards'][2][0]}</div>
+        <div style="font-size: 0.7rem; color: #26E4D8; text-transform: uppercase;">Soul Urge</div>
+      </div>
+    </div>
+    <div style="margin-top: 16px; padding: 12px; background: rgba(107,77,242,0.1); border-left: 3px solid #6B4DF2; color: #f0ece4; font-size: 0.85rem; line-height: 1.6;">
+      {oracle_data['interpretation']}
+    </div>
+  </div>
+    """
+    
+    # === NEW FEATURE HTML SECTIONS ===
+    
+    # Quantum Signature HTML
+    quantum_html = f"""
+  <div style="margin: 24px 0; padding: 24px; background: linear-gradient(135deg, rgba(255,106,61,0.1), rgba(38,228,216,0.1)); border: 2px solid #FF6A3D; border-radius: 8px;">
+    <div style="font-size: 0.85rem; color: #FF6A3D; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 16px;">Quantum Signature</div>
+    <div style="font-family: 'Courier New', monospace; font-size: 1.4rem; letter-spacing: 3px; color: #26E4D8; font-weight: 700; margin: 16px 0; text-align: center; padding: 16px; background: rgba(26,26,46,0.8); border-radius: 6px;">{quantum_sig}</div>
+    <div style="font-size: 0.9rem; color: #f0ece4; line-height: 1.6;">
+      Your unique soul fingerprint. This signature encodes the essence of your core numbers. It's the vibrational ID you carry through all timelines.
+    </div>
+  </div>
+    """
+    
+    # Vibrational Blueprint HTML
+    vibration_html = f"""
+  <div style="margin: 24px 0; padding: 24px; background: rgba(107,77,242,0.08); border: 1px solid #6B4DF2; border-radius: 8px;">
+    <div style="font-size: 0.85rem; color: #6B4DF2; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 16px;">Vibrational Blueprint</div>
+    <div style="font-family: 'Courier New', monospace; font-size: 1.2rem; color: #26E4D8; line-height: 1.8; margin: 16px 0; padding: 12px; background: rgba(26,26,46,0.8); border-radius: 4px;">
+      {vibration_bars}<br/>
+      {vibration_wave}
+    </div>
+    <div style="font-size: 0.85rem; color: #f0ece4;">Visual representation of your frequency signature. The bars show your life path intensity; the wave shows your harmonic resonance.</div>
+  </div>
+    """
+    
+    # Shadow Integration HTML
+    shadow_html = f"""
+  <div style="margin: 24px 0; padding: 24px; background: linear-gradient(135deg, rgba(243,178,58,0.08), rgba(139,92,246,0.08)); border: 2px solid #F3B23A; border-radius: 8px;">
+    <div style="font-size: 0.85rem; color: #F3B23A; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 16px;">Shadow Integration Pathway</div>
+    <div style="font-size: 0.9rem; color: #f0ece4; margin-bottom: 16px; font-style: italic;">{shadow_path['overview']}</div>
+    <div style="margin-top: 12px;">
+"""
+    
+    for pathway in shadow_path['pathways']:
+        shadow_html += f"""
+      <div style="margin: 12px 0; padding: 12px; background: rgba(255,255,255,0.03); border-left: 3px solid #F3B23A; border-radius: 4px;">
+        <div style="color: #F3B23A; font-weight: 600; margin-bottom: 6px;">Lesson {pathway['lesson']}: {pathway['challenge'].split(': ')[1]}</div>
+        <div style="font-size: 0.85rem; color: #f0ece4;">{pathway['practice']}</div>
+      </div>
+"""
+    
+    shadow_html += "    </div>\n  </div>"
+    
+    # Activation Code HTML
+    activation_html = f"""
+  <div style="margin: 24px 0; padding: 24px; background: linear-gradient(135deg, rgba(38,228,216,0.12), rgba(243,178,58,0.12)); border: 2px solid #26E4D8; border-radius: 8px; text-align: center;">
+    <div style="font-size: 0.75rem; color: #26E4D8; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 12px; font-weight: 700;">Your Activation Sequence</div>
+    <div style="font-family: 'Courier New', monospace; font-size: 1.8rem; letter-spacing: 2px; color: #F3B23A; font-weight: 700; margin: 16px 0; padding: 16px; background: rgba(26,26,46,0.8); border-radius: 6px; border: 1px dashed #26E4D8;">{activation_code_val}</div>
+    <div style="font-size: 0.9rem; color: #f0ece4; margin-top: 12px;">
+      This is your personal frequency trigger. When you speak, write, or think this code, you align with your highest potential. It's your soul's call sign.
+    </div>
+  </div>
+    """
+    
+    # Destiny Checkpoints HTML
+    destiny_html = """
+  <div style="margin: 24px 0; padding: 24px; background: rgba(255,106,61,0.08); border: 1px solid #FF6A3D; border-radius: 8px;">
+    <div style="font-size: 0.85rem; color: #FF6A3D; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 16px;">Major Life Transition Points</div>
+    <table style="width: 100%; font-size: 0.85rem; border-collapse: collapse;">
+"""
+    
+    for checkpoint in destiny_points[:8]:
+        if checkpoint['cycle'] == 'Saturn Return':
+            cycle_display = '<span style="color: #FF6A3D; font-weight: 700;">★ Saturn Return</span>'
+        else:
+            cycle_display = f"Personal Year {checkpoint['cycle']}"
+        
+        destiny_html += f"""
+      <tr style="border-bottom: 1px solid rgba(255,106,61,0.15);">
+        <td style="padding: 10px 8px; color: #26E4D8; font-weight: 600;">Age {checkpoint['age']}</td>
+        <td style="padding: 10px 8px;">{cycle_display}</td>
+        <td style="padding: 10px 8px; text-align: right; color: #f0ece4;">{checkpoint['meaning'][:40]}</td>
+      </tr>
+"""
+    
+    destiny_html += "    </table>\n  </div>"
 
     # === Build HTML ===
     template = Template(HTML_TEMPLATE)
@@ -1137,6 +1772,18 @@ def generate_soul_map(full_name, birth_date, birth_time=None, birth_city=None, b
         personal_yr_reading=PERSONAL_YEAR_MEANINGS.get(py, 'Cycle unmapped.'),
         personal_mo=pm,
         monthly_update_link=monthly_update_filename,
+        resonance_frequency_section=resonance_html,
+        rarity_section=rarity_html,
+        power_hour_section=power_hour_html,
+        karmic_remedies_section=remedies_html,
+        predictive_windows_section=windows_html,
+        evolutionary_trajectory_section=trajectory_html,
+        oracle_section=oracle_html,
+        quantum_signature_section=quantum_html,
+        vibrational_blueprint_section=vibration_html,
+        shadow_integration_section=shadow_html,
+        activation_code_section=activation_html,
+        destiny_checkpoints_section=destiny_html,
     )
 
     return html, {
