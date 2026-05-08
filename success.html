@@ -370,6 +370,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             .step span:not(.step-num) { display: none; }
             .sigil-container { width: 300px; height: 300px; }
         }
+
+        #dob-month, #dob-day, #dob-year {
+            flex: 1;
+        }
     </style>
 </head>
 <body>
@@ -448,7 +452,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="field-row">
                 <div class="field">
                     <label for="dob">Date of Birth</label>
-                    <input type="date" id="dob" name="dob" required>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;">
+                        <select id="dob-month" required>
+                            <option value="">Month</option>
+                            <option value="01">January</option>
+                            <option value="02">February</option>
+                            <option value="03">March</option>
+                            <option value="04">April</option>
+                            <option value="05">May</option>
+                            <option value="06">June</option>
+                            <option value="07">July</option>
+                            <option value="08">August</option>
+                            <option value="09">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                        <select id="dob-day" required>
+                            <option value="">Day</option>
+                        </select>
+                        <select id="dob-year" required>
+                            <option value="">Year</option>
+                        </select>
+                    </div>
+                    <input type="hidden" id="dob" name="dob">
                 </div>
                 <div class="field">
                     <label for="tob">Time of Birth <span class="optional">(if known)</span></label>
@@ -562,8 +589,76 @@ animate();
 var form = document.getElementById('intake-form');
 var submitBtn = document.getElementById('submit-btn');
 
+// Date picker logic
+var dobMonth = document.getElementById('dob-month');
+var dobDay = document.getElementById('dob-day');
+var dobYear = document.getElementById('dob-year');
+var dobHidden = document.getElementById('dob');
+
+function getDaysInMonth(month, year) {
+    return new Date(year, month, 0).getDate();
+}
+
+function populateDays() {
+    var month = parseInt(dobMonth.value);
+    var year = parseInt(dobYear.value);
+    var selectedDay = dobDay.value;
+
+    dobDay.innerHTML = '<option value="">Day</option>';
+
+    if (month && year) {
+        var daysInMonth = getDaysInMonth(month, year);
+        for (var i = 1; i <= daysInMonth; i++) {
+            var option = document.createElement('option');
+            option.value = String(i).padStart(2, '0');
+            option.textContent = i;
+            dobDay.appendChild(option);
+        }
+        dobDay.value = selectedDay;
+    }
+    updateDobHidden();
+}
+
+function populateYears() {
+    var currentYear = new Date().getFullYear();
+    var selectedYear = dobYear.value;
+
+    dobYear.innerHTML = '<option value="">Year</option>';
+    for (var i = currentYear; i >= currentYear - 120; i--) {
+        var option = document.createElement('option');
+        option.value = i;
+        option.textContent = i;
+        dobYear.appendChild(option);
+    }
+    dobYear.value = selectedYear;
+}
+
+function updateDobHidden() {
+    var month = dobMonth.value;
+    var day = dobDay.value;
+    var year = dobYear.value;
+
+    if (month && day && year) {
+        dobHidden.value = year + '-' + month + '-' + day;
+    } else {
+        dobHidden.value = '';
+    }
+}
+
+dobMonth.addEventListener('change', populateDays);
+dobDay.addEventListener('change', updateDobHidden);
+dobYear.addEventListener('change', populateDays);
+
+populateYears();
+
 form.addEventListener('submit', function(e) {
     e.preventDefault();
+
+    if (!dobHidden.value) {
+        alert('Please select your complete date of birth');
+        return;
+    }
+
     submitBtn.disabled = true;
     submitBtn.textContent = '\u27F3  Transmitting\u2026';
     document.getElementById('form-error').style.display = 'none';
