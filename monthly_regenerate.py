@@ -21,11 +21,10 @@ Or run via cron:
 import os
 import sys
 import json
+import urllib.request
+import urllib.error
 from datetime import datetime, date
 from pathlib import Path
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
 
 # Import generator functions
 sys.path.insert(0, str(Path(__file__).parent))
@@ -36,10 +35,8 @@ from soul_map_generator import generate_monthly_update, deploy_to_github
 # ============================================================
 
 SUBSCRIBERS_FILE = Path(__file__).parent / 'subscribers.json'
-SMTP_SERVER = os.getenv("SMTP_SERVER", "smtp.zoho.com")
-SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
-SMTP_EMAIL = os.getenv("SMTP_EMAIL")
-SMTP_PASSWORD = os.getenv("SMTP_PASSWORD")
+RESEND_API_KEY = os.getenv("RESEND_API_KEY")
+RESEND_FROM = os.getenv("RESEND_FROM", "The First Spark <hello@thefirstspark.shop>")
 
 
 # ============================================================
@@ -81,34 +78,12 @@ def get_active_subscribers(as_of=None):
 # ============================================================
 
 def send_monthly_update_email(recipient_email, recipient_name, month_name, update_url):
-    """Send notification that this month's update is ready."""
-    if not SMTP_EMAIL or not SMTP_PASSWORD:
-        print(f"[WARN] Email not configured. Would send to: {recipient_email}")
+    """Send notification that this month's update is ready via Resend API."""
+    if not RESEND_API_KEY:
+        print(f"[WARN] RESEND_API_KEY not set. Would send to: {recipient_email}")
         return False
 
-    try:
-        msg = MIMEMultipart("alternative")
-        msg["Subject"] = f"✨ Your {month_name} Soul Map Energy Update Is Ready"
-        msg["From"] = SMTP_EMAIL
-        msg["To"] = recipient_email
-
-        # Plain text
-        text = f"""\
-Hello {recipient_name},
-
-Your {month_name} energy update is ready.
-
-VIEW YOUR UPDATE:
-{update_url}
-
-This month's reading reveals the frequency you're operating within and what to focus on.
-
-The First Spark
-thefirstspark.shop
-"""
-
-        # HTML
-        html = f"""\
+    html = f"""\
 <html>
   <body style="font-family: 'Cormorant Garamond', Georgia, serif; background: #0B0B0C; color: #e0e7ff; padding: 40px 20px;">
     <div style="max-width: 700px; margin: 0 auto; border: 1px solid #6B4DF2; border-radius: 8px; padding: 40px; background: #0d0d14;">
@@ -140,19 +115,30 @@ thefirstspark.shop
 </html>
 """
 
-        part1 = MIMEText(text, "plain")
-        part2 = MIMEText(html, "html")
-        msg.attach(part1)
-        msg.attach(part2)
+    payload = json.dumps({
+        'from': RESEND_FROM,
+        'to': [recipient_email],
+        'subject': f'✨ Your {month_name} Soul Map Energy Update Is Ready',
+        'html': html,
+    }).encode()
 
-        with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
-            server.starttls()
-            server.login(SMTP_EMAIL, SMTP_PASSWORD)
-            server.sendmail(SMTP_EMAIL, recipient_email, msg.as_string())
-
-        print(f"  [EMAIL] ✓ {recipient_name} ({recipient_email})")
-        return True
-
+    req = urllib.request.Request(
+        'https://api.resend.com/emails',
+        data=payload,
+        headers={
+            'Authorization': f'Bearer {RESEND_API_KEY}',
+            'Content-Type': 'application/json',
+            'User-Agent': 'TheFirstSpark-SoulMap/1.0',
+        },
+        method='POST'
+    )
+    try:
+        with urllib.request.urlopen(req) as r:
+            print(f"  [EMAIL] ✓ {recipient_name} ({recipient_email}) — {r.status}")
+            return True
+    except urllib.error.HTTPError as e:
+        print(f"  [EMAIL] ✗ Resend {e.code} for {recipient_email}: {e.read().decode()}")
+        return False
     except Exception as e:
         print(f"  [EMAIL] ✗ Failed for {recipient_email}: {e}")
         return False
@@ -271,8 +257,8 @@ if __name__ == '__main__':
         print("  Export it: export GITHUB_PAT=ghp_...")
         sys.exit(1)
 
-    if not os.getenv('SMTP_EMAIL') or not os.getenv('SMTP_PASSWORD'):
-        print("\n[WARN] Email not configured (SMTP_EMAIL / SMTP_PASSWORD).")
+    if not os.getenv('RESEND_API_KEY'):
+        print("\n[WARN] Email not configured (RESEND_API_KEY).")
         print("  Monthly regeneration will work, but subscribers won't get email notifications.\n")
 
     # Run regeneration

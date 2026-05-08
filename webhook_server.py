@@ -10,8 +10,7 @@ Setup:
 
 Environment variables (set in .env or export):
   GITHUB_PAT=ghp_your_personal_access_token
-  SMTP_EMAIL=your_gmail@gmail.com
-  SMTP_PASSWORD=your_app_password (Gmail: create at myaccount.google.com/apppasswords)
+  RESEND_API_KEY=re_your_resend_api_key
 
 Run:
   python webhook_server.py
@@ -180,6 +179,7 @@ def send_confirmation_email(recipient_email, recipient_name, soul_map_url):
         headers={
             'Authorization': f'Bearer {api_key}',
             'Content-Type': 'application/json',
+            'User-Agent': 'TheFirstSpark-SoulMap/1.0',
         },
         method='POST'
     )
@@ -313,27 +313,22 @@ def health():
 
 @app.route('/email-test', methods=['GET'])
 def email_test():
-    """Debug: show SMTP config and attempt a test send."""
-    smtp_email = os.getenv('SMTP_EMAIL')
-    smtp_pass = os.getenv('SMTP_PASSWORD')
-    smtp_server = os.getenv('SMTP_SERVER', 'smtp.zoho.com')
-    smtp_port = os.getenv('SMTP_PORT', '587')
+    """Debug: report Resend config; if ?to= is supplied, send a test email to that address."""
+    api_key = os.getenv('RESEND_API_KEY')
+    if not api_key:
+        return jsonify({'configured': False, 'resend_api_key': 'NOT SET'}), 200
 
-    if not smtp_email or not smtp_pass:
+    to = (request.args.get('to') or '').strip()
+    if not to:
         return jsonify({
-            'configured': False,
-            'smtp_email': smtp_email or 'NOT SET',
-            'smtp_password': 'NOT SET' if not smtp_pass else 'SET',
+            'configured': True,
+            'resend_api_key': f'{api_key[:6]}…',
+            'hint': 'add ?to=you@example.com to actually send a test email',
         }), 200
 
-    try:
-        import smtplib
-        with smtplib.SMTP(smtp_server, int(smtp_port)) as s:
-            s.starttls()
-            s.login(smtp_email, smtp_pass)
-        return jsonify({'configured': True, 'smtp_email': smtp_email, 'status': 'login OK'}), 200
-    except Exception as e:
-        return jsonify({'configured': True, 'smtp_email': smtp_email, 'error': str(e)}), 200
+    sent = send_confirmation_email(to, 'Test Recipient',
+                                   'https://soul-maps.thefirstspark.shop/')
+    return jsonify({'configured': True, 'sent': bool(sent), 'to': to}), 200
 
 
 @app.route('/deploy-test', methods=['GET'])
@@ -375,10 +370,9 @@ if __name__ == '__main__':
         print("\n[WARN] GITHUB_PAT not set. Local generation only (no GitHub commits).")
         print("  To enable GitHub deployment, set: export GITHUB_PAT=ghp_...")
 
-    if not os.getenv('SMTP_EMAIL') or not os.getenv('SMTP_PASSWORD'):
-        print("\n[WARN] Email not configured (SMTP_EMAIL / SMTP_PASSWORD).")
-        print("  Webhook will still work, but confirmation emails won't send.")
-        print("  To enable: export SMTP_EMAIL=... SMTP_PASSWORD=...")
+    if not os.getenv('RESEND_API_KEY'):
+        print("\n[WARN] RESEND_API_KEY not set. Confirmation emails won't send.")
+        print("  To enable: export RESEND_API_KEY=re_...")
 
     # Get port from environment (Railway sets this), default to 5000 for local
     port = int(os.getenv('PORT', 5000))
