@@ -29,6 +29,7 @@ from pathlib import Path
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from dotenv import load_dotenv
+import requests
 
 # Load environment variables
 load_dotenv()
@@ -42,6 +43,101 @@ SUBSCRIBERS_FILE = Path(__file__).parent / 'subscribers.json'
 
 app = Flask(__name__)
 CORS(app, origins=["https://soul-maps.thefirstspark.shop", "https://thefirstspark.shop"])
+
+
+# ============================================================
+# ZOHO CRM INTEGRATION
+# ============================================================
+
+_zoho_token_cache = {
+    'access_token': None,
+    'expires_at': None,
+}
+
+
+def _zoho_credentials_configured():
+    return all([
+        os.getenv('ZOHO_CLIENT_ID'),
+        os.getenv('ZOHO_CLIENT_SECRET'),
+        os.getenv('ZOHO_REFRESH_TOKEN'),
+    ])
+
+
+def _get_zoho_access_token():
+    """Return a valid Zoho access token, refreshing as needed."""
+    now = datetime.utcnow()
+    if _zoho_token_cache['access_token'] and _zoho_token_cache['expires_at']:
+        if now < _zoho_token_cache['expires_at']:
+            return _zoho_token_cache['access_token']
+
+    token_url = "https://accounts.zoho.com/oauth/v2/token"
+    payload = {
+        'client_id': os.getenv('ZOHO_CLIENT_ID'),
+        'client_secret': os.getenv('ZOHO_CLIENT_SECRET'),
+        'refresh_token': os.getenv('ZOHO_REFRESH_TOKEN'),
+        'grant_type': 'refresh_token',
+    }
+
+    response = requests.post(token_url, data=payload, timeout=20)
+    if response.status_code != 200:
+        raise RuntimeError(f"Zoho token refresh failed: {response.status_code} {response.text}")
+
+    token_data = response.json()
+    access_token = token_data.get('access_token')
+    expires_in = int(token_data.get('expires_in', 3600))
+    if not access_token:
+        raise RuntimeError(f"Zoho token response missing access_token: {token_data}")
+
+    # Refresh 2 minutes early.
+    _zoho_token_cache['access_token'] = access_token
+    _zoho_token_cache['expires_at'] = now + timedelta(seconds=max(expires_in - 120, 60))
+    return access_token
+
+
+def _upsert_zoho_lead(email, name, source, metadata=None):
+    """Create or update lead in Zoho CRM by email."""
+    if metadata is None:
+        metadata = {}
+
+    access_token = _get_zoho_access_token()
+    org_id = os.getenv('ZOHO_ORG_ID')
+    lead_source_map = {
+        'soul-map': 'Soul Map Interested',
+        'players': 'Players Lounge Interested',
+        'og': 'OG Spark Interested',
+        'newsletter': 'Newsletter Subscriber',
+    }
+
+    name_parts = (name or '').strip().split()
+    first_name = name_parts[0] if name_parts else ''
+    last_name = ' '.join(name_parts[1:]) if len(name_parts) > 1 else (name_parts[0] if name_parts else 'Subscriber')
+
+    lead_payload = {
+        'First_Name': first_name,
+        'Last_Name': last_name,
+        'Email': email,
+        'Lead_Source': lead_source_map.get(source, 'Website'),
+        'Description': f"Email Hub signup ({source}) from {metadata.get('page', 'unknown page')}",
+    }
+
+    url = "https://www.zohoapis.com/crm/v3/Leads/upsert"
+    headers = {
+        'Authorization': f'Zoho-oauthtoken {access_token}',
+        'Content-Type': 'application/json',
+    }
+    if org_id:
+        headers['X-ORGID'] = org_id
+
+    body = {
+        'data': [lead_payload],
+        'duplicate_check_fields': ['Email'],
+    }
+
+    response = requests.post(url, headers=headers, json=body, timeout=20)
+    if response.status_code not in (200, 201):
+        raise RuntimeError(f"Zoho upsert failed: {response.status_code} {response.text}")
+
+    return response.json()
 
 
 # ============================================================
@@ -309,6 +405,59 @@ def generate_soul_map_webhook():
 @app.route('/health', methods=['GET'])
 def health():
     return jsonify({'status': 'ok', 'timestamp': datetime.now().isoformat()}), 200
+
+
+@app.route('/email-hub/subscribe', methods=['POST'])
+def email_hub_subscribe():
+    """Capture email-hub signup and sync to Zoho CRM."""
+    try:
+        data = request.get_json(silent=True) or {}
+        email = (data.get('email') or '').strip().lower()
+        name = (data.get('name') or '').strip()
+        source = (data.get('source') or '').strip() or 'newsletter'
+        page = (data.get('page') or '').strip()
+
+        if not email or '@' not in email:
+            return jsonify({'success': False, 'error': 'Valid email is required'}), 400
+        if not name:
+            return jsonify({'success': False, 'error': 'Name is required'}), 400
+
+        if not _zoho_credentials_configured():
+            return jsonify({
+                'success': False,
+                'error': 'Zoho credentials are not configured on server',
+                'missing': [
+                    key for key in ['ZOHO_CLIENT_ID', 'ZOHO_CLIENT_SECRET', 'ZOHO_REFRESH_TOKEN']
+                    if not os.getenv(key)
+                ]
+            }), 503
+
+        zoho_result = _upsert_zoho_lead(
+            email=email,
+            name=name,
+            source=source,
+            metadata={'page': page}
+        )
+
+        return jsonify({
+            'success': True,
+            'email': email,
+            'source': source,
+            'zoho': zoho_result,
+        }), 200
+
+    except Exception as e:
+        print(f"[ZOHO ERROR] {e}", file=sys.stderr)
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+
+@app.route('/email-hub/health', methods=['GET'])
+def email_hub_health():
+    return jsonify({
+        'status': 'ok',
+        'zoho_configured': _zoho_credentials_configured(),
+        'timestamp': datetime.now().isoformat(),
+    }), 200
 
 
 @app.route('/email-test', methods=['GET'])

@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#070a18">
+<title>Soul Map Compare — The First Spark</title>
+<meta name="description" content="Compare soul map player cards side by side. See how your numerology stacks up.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Space+Mono:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:#070a18;
+  color:#e0e7ff;
+  font-family:'Space Mono','Courier New',monospace;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ── STARFIELD ── */
+#starfield{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.star{position:absolute;border-radius:50%;animation:twinkle var(--dur,3s) ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:var(--lo,0.15)}50%{opacity:var(--hi,0.6)}}
+
+/* ── LAYOUT ── */
+.wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:40px 20px 60px}
+.header{text-align:center;margin-bottom:36px}
+.header h1{
+  font-family:'Orbitron',sans-serif;
+  font-size:clamp(1.2rem,3.5vw,1.8rem);
+  letter-spacing:6px;text-transform:uppercase;
+  background:linear-gradient(135deg,#f59e0b,#FF6A3D,#8b5cf6);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  margin-bottom:6px;
+}
+.header .sub{font-size:.6rem;letter-spacing:4px;color:rgba(224,231,255,.3);text-transform:uppercase}
+.back{
+  display:inline-block;margin-bottom:20px;
+  font-size:.6rem;letter-spacing:2px;text-transform:uppercase;
+  color:#6b7280;text-decoration:none;transition:color .2s;
+}
+.back:hover{color:#f59e0b}
+
+/* ── SELECTORS ── */
+.selectors{
+  display:flex;gap:20px;justify-content:center;align-items:center;
+  flex-wrap:wrap;margin-bottom:40px;
+}
+.sel-group{flex:1;min-width:200px;max-width:350px}
+.sel-group label{
+  display:block;font-size:.55rem;letter-spacing:3px;
+  text-transform:uppercase;color:#6b7280;margin-bottom:6px;text-align:center;
+}
+.sel-group select{
+  width:100%;padding:12px 14px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(139,92,246,.2);
+  color:#e0e7ff;font-family:'Space Mono',monospace;
+  font-size:.75rem;cursor:pointer;
+  transition:border-color .2s;appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%236b7280'%3E%3Cpath d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 12px center;
+}
+.sel-group select:hover{border-color:rgba(139,92,246,.5)}
+.sel-group select:focus{outline:none;border-color:#8b5cf6;box-shadow:0 0 20px rgba(139,92,246,.15)}
+.vs-badge{
+  font-family:'Orbitron',sans-serif;font-size:1.4rem;font-weight:900;
+  color:#FF6A3D;text-shadow:0 0 30px rgba(255,106,61,.4);
+  flex-shrink:0;margin-top:18px;
+}
+
+/* ── CARDS ARENA ── */
+.arena{display:flex;gap:24px;justify-content:center;align-items:flex-start;flex-wrap:wrap}
+
+/* ── PLAYER CARD ── */
+.player-card{
+  flex:1;min-width:280px;max-width:420px;
+  background:linear-gradient(145deg,rgba(15,15,25,.95),rgba(10,10,20,.98));
+  border:1px solid rgba(139,92,246,.15);
+  padding:0;overflow:hidden;
+  transition:border-color .3s,box-shadow .3s;
+}
+.player-card:hover{border-color:rgba(139,92,246,.4);box-shadow:0 0 40px rgba(139,92,246,.1)}
+.player-card.empty{
+  display:flex;align-items:center;justify-content:center;
+  min-height:500px;color:#374151;font-style:italic;
+  font-family:'Cormorant Garamond',serif;font-size:1.1rem;
+}
+
+/* Card header */
+.card-head{
+  padding:24px 24px 18px;text-align:center;
+  border-bottom:1px solid rgba(139,92,246,.1);
+  position:relative;overflow:hidden;
+}
+.card-head::before{
+  content:'';position:absolute;top:0;left:0;width:100%;height:100%;
+  background:var(--card-glow,linear-gradient(135deg,rgba(139,92,246,.08),rgba(245,158,11,.05)));
+  pointer-events:none;
+}
+.card-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.5rem;font-weight:700;
+  color:var(--card-accent,#f59e0b);
+  position:relative;
+}
+.card-archetype{
+  font-size:.55rem;letter-spacing:4px;text-transform:uppercase;
+  color:rgba(224,231,255,.35);margin-top:4px;position:relative;
+}
+.card-signs{
+  display:flex;gap:12px;justify-content:center;
+  margin-top:12px;position:relative;
+}
+.sign-badge{
+  font-size:.55rem;letter-spacing:1px;
+  padding:4px 10px;
+  border:1px solid rgba(255,255,255,.08);
+  color:rgba(224,231,255,.5);
+}
+
+/* Stats grid */
+.stats-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:rgba(139,92,246,.06);
+}
+.stat-cell{
+  background:rgba(10,10,20,.95);
+  padding:16px 12px;text-align:center;
+  transition:background .2s;
+}
+.stat-cell:hover{background:rgba(139,92,246,.06)}
+.stat-label{
+  font-size:.45rem;letter-spacing:2px;text-transform:uppercase;
+  color:#6b7280;margin-bottom:4px;
+}
+.stat-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2rem;font-weight:700;
+  color:var(--card-accent,#f59e0b);
+}
+.stat-num.master{
+  color:#c084fc;
+  text-shadow:0 0 15px rgba(139,92,246,.5);
+}
+.stat-desc{
+  font-size:.4rem;letter-spacing:1px;text-transform:uppercase;
+  color:rgba(224,231,255,.25);margin-top:2px;
+}
+
+/* Hidden passion row */
+.hp-row{
+  padding:14px 24px;
+  border-top:1px solid rgba(139,92,246,.06);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.hp-label{font-size:.45rem;letter-spacing:2px;text-transform:uppercase;color:#6b7280}
+.hp-val{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:#26E4D8}
+
+/* Radar / bar chart */
+.bar-chart{padding:20px 24px;border-top:1px solid rgba(139,92,246,.06)}
+.bar-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.bar-lbl{font-size:.4rem;letter-spacing:1px;text-transform:uppercase;color:#6b7280;width:55px;text-align:right;flex-shrink:0}
+.bar-track{flex:1;height:6px;background:rgba(255,255,255,.04);overflow:hidden;position:relative}
+.bar-fill{
+  height:100%;
+  background:linear-gradient(90deg,var(--card-accent,#f59e0b),var(--card-accent2,#FF6A3D));
+  transition:width .8s ease-out;
+  box-shadow:0 0 8px var(--card-accent,rgba(245,158,11,.3));
+}
+.bar-val{font-size:.5rem;color:rgba(224,231,255,.4);width:20px;flex-shrink:0}
+
+/* Card footer */
+.card-foot{
+  padding:14px 24px;text-align:center;
+  border-top:1px solid rgba(139,92,246,.06);
+}
+.card-foot a{
+  font-size:.5rem;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(224,231,255,.25);text-decoration:none;transition:color .2s;
+}
+.card-foot a:hover{color:#26E4D8}
+
+/* ── VS COMPARE SECTION ── */
+.compare-section{
+  margin-top:36px;
+  background:rgba(15,15,25,.8);
+  border:1px solid rgba(139,92,246,.1);
+  padding:24px;
+}
+.compare-title{
+  font-family:'Orbitron',sans-serif;
+  font-size:.6rem;letter-spacing:4px;text-transform:uppercase;
+  color:#FF6A3D;text-align:center;margin-bottom:20px;
+}
+.compare-row{
+  display:flex;align-items:center;gap:8px;
+  padding:8px 0;border-bottom:1px solid rgba(255,255,255,.03);
+}
+.compare-row:last-child{border:none}
+.cmp-label{
+  flex:1;text-align:center;
+  font-size:.5rem;letter-spacing:2px;text-transform:uppercase;color:#6b7280;
+}
+.cmp-val{
+  width:60px;text-align:center;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.3rem;font-weight:700;
+}
+.cmp-val.left{color:#f59e0b}
+.cmp-val.right{color:#26E4D8}
+.cmp-val.winner{text-shadow:0 0 12px currentColor}
+.cmp-val.match{color:#c084fc;text-shadow:0 0 12px rgba(192,132,252,.4)}
+.match-tag{
+  font-size:.4rem;letter-spacing:2px;color:#c084fc;
+  text-align:center;margin-top:2px;
+}
+
+/* ── CTA ── */
+.cta-block{
+  text-align:center;margin-top:40px;
+  padding:30px 20px;
+  border:1px solid rgba(245,158,11,.15);
+  background:rgba(245,158,11,.03);
+}
+.cta-block p{font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;color:rgba(224,231,255,.4);margin-bottom:14px}
+.cta-block a{
+  display:inline-block;
+  font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:3px;text-transform:uppercase;
+  color:#f59e0b;text-decoration:none;
+  border:1px solid rgba(245,158,11,.3);padding:12px 24px;
+  transition:all .25s;
+}
+.cta-block a:hover{background:rgba(245,158,11,.1);box-shadow:0 0 25px rgba(245,158,11,.15)}
+
+/* ── FOOTER ── */
+.footer{text-align:center;margin-top:40px;color:#374151;font-size:.6rem;letter-spacing:2px}
+.footer a{color:#6b7280;text-decoration:none}
+.footer a:hover{color:#d97706}
+
+@media(max-width:700px){
+  .arena{flex-direction:column;align-items:center}
+  .player-card{max-width:100%;min-width:0;width:100%}
+  .selectors{flex-direction:column;align-items:center}
+  .vs-badge{margin:0}
+  .sel-group{max-width:100%;width:100%}
+}
+</style>
+</head>
+<body>
+<div id="starfield"></div>
+
+<div class="wrap">
+  <a href="index.html" class="back">&larr; Soul Map Archive</a>
+
+  <div class="header">
+    <h1>Player Card Compare</h1>
+    <div class="sub">Soul Map &nbsp;vs&nbsp; Soul Map</div>
+  </div>
+
+  <div class="selectors">
+    <div class="sel-group">
+      <label>Player 1</label>
+      <select id="sel1"><option value="">Select a soul map...</option></select>
+    </div>
+    <div class="vs-badge">VS</div>
+    <div class="sel-group">
+      <label>Player 2</label>
+      <select id="sel2"><option value="">Select a soul map...</option></select>
+    </div>
+  </div>
+
+  <div class="arena" id="arena">
+    <div class="player-card empty" id="card1">Select Player 1</div>
+    <div class="player-card empty" id="card2">Select Player 2</div>
+  </div>
+
+  <div class="compare-section" id="compareSection" style="display:none"></div>
+
+  <div class="cta-block">
+    <p>Want your own player card in the arena?</p>
+    <a href="https://whop.com/checkout/plan_MLIU7T0dxn3Q4" target="_blank">Get Your Soul Map</a>
+  </div>
+
+  <div class="footer">
+    <p>THE FIRST SPARK &mdash; <a href="https://thefirstspark.shop">thefirstspark.shop</a></p>
+  </div>
+</div>
+
+<script>
+// ════════════════════════════════════════════
+// SOUL MAP ROSTER DATA
+// ════════════════════════════════════════════
+
+const ROSTER = [
+  {name:"Aaron Joseph Thomas",file:"soul-map-aaron-joseph-thomas.html",lp:5,expr:9,su:8,pers:1,bday:6,mat:5,hp:1,sun:"Libra",chinese:"Earth Dragon"},
+  {name:"Adele",file:"soul-map-adele.html",lp:9,expr:9,su:11,pers:7,bday:5,mat:9,hp:5,sun:"Taurus",chinese:"Earth Dragon"},
+  {name:"Albert Einstein",file:"soul-map-albert-einstein.html",lp:6,expr:9,su:7,pers:11,bday:5,mat:6,hp:5,sun:"Pisces",chinese:"Earth Rabbit"},
+  {name:"Alexandria Kaye Muster",file:"AKM121993.html",lp:4,expr:11,su:4,pers:7,bday:6,mat:6,hp:1,sun:"Sagittarius",chinese:"Water Rooster"},
+  {name:"Charlie",file:"soul-map-charlie.html",lp:6,expr:11,su:6,pers:5,bday:6,mat:8,hp:3,sun:"Leo",chinese:"Metal Horse"},
+  {name:"David Bowie",file:"soul-map-david-bowie.html",lp:3,expr:4,su:3,pers:1,bday:8,mat:7,hp:4,sun:"Capricorn",chinese:"Fire Pig"},
+  {name:"David Ray Lehman",file:"DRL61984.html",lp:5,expr:11,su:8,pers:3,bday:22,mat:7,hp:4,sun:"Cancer",chinese:"Wood Rat"},
+  {name:"Devon",file:"soul-map-devon.html",lp:1,expr:6,su:11,pers:4,bday:22,mat:7,hp:4,sun:"Aries",chinese:"Water Monkey"},
+  {name:"Elvis Presley",file:"soul-map-elvis-presley.html",lp:9,expr:5,su:6,pers:8,bday:8,mat:5,hp:5,sun:"Capricorn",chinese:"Wood Pig"},
+  {name:"James Edward Slinkard",file:"JES121993.html",lp:8,expr:11,su:22,pers:7,bday:1,mat:1,hp:1,sun:"Sagittarius",chinese:"Water Rooster"},
+  {name:"Jesus of Nazareth",file:"soul-map-jesus-of-nazareth.html",lp:9,expr:8,su:3,pers:5,bday:8,mat:8,hp:1,sun:"Aries",chinese:"Wood Rabbit"},
+  {name:"Joshua Bokoski",file:"soul-map-joshua-bokoski.html",lp:7,expr:3,su:4,pers:8,bday:8,mat:1,hp:1,sun:"Scorpio",chinese:"Wood Pig"},
+  {name:"Katelin Puzakulics",file:"KP102000.html",lp:4,expr:4,su:4,pers:9,bday:1,mat:8,hp:3,sun:"Libra",chinese:"Metal Dragon"},
+  {name:"Kevin Andrew Tippel",file:"soul-map-kevin-andrew-tippel.html",lp:6,expr:6,su:7,pers:8,bday:5,mat:3,hp:5,sun:"Aries",chinese:"Fire Rabbit"},
+  {name:"Mason",file:"soul-map-mason.html",lp:7,expr:8,su:7,pers:1,bday:1,mat:6,hp:1,sun:"Gemini",chinese:"Earth Snake"},
+  {name:"Matthew Vincent Jablonski",file:"MVJ101994.html",lp:7,expr:9,su:9,pers:9,bday:1,mat:7,hp:5,sun:"Libra",chinese:"Wood Dog"},
+  {name:"Nikola Tesla",file:"soul-map-nikola-tesla.html",lp:1,expr:11,su:22,pers:7,bday:1,mat:3,hp:1,sun:"Cancer",chinese:"Fire Dragon"},
+  {name:"Patrick Allen Roberts",file:"PAR31980.html",lp:7,expr:3,su:9,pers:3,bday:4,mat:1,hp:2,sun:"Pisces",chinese:"Metal Monkey"},
+  {name:"Rachael Maureen Johnson",file:"RMJ81967.html",lp:7,expr:4,su:33,pers:7,bday:3,mat:11,hp:5,sun:"Virgo",chinese:"Fire Goat"},
+  {name:"Tammi Kristine Bartoletta",file:"TKB41973.html",lp:5,expr:5,su:1,pers:4,bday:8,mat:1,hp:2,sun:"Aries",chinese:"Water Ox"},
+  {name:"Taylor Swift",file:"TS121989.html",lp:7,expr:6,su:7,pers:8,bday:4,mat:4,hp:1,sun:"Sagittarius",chinese:"Earth Snake"},
+  {name:"Thomas",file:"soul-map-thomas.html",lp:3,expr:22,su:7,pers:6,bday:1,mat:7,hp:1,sun:"Sagittarius",chinese:"Earth Dragon"},
+  {name:"Tupac Amaru Shakur",file:"soul-map-tupac-amaru-shakur.html",lp:22,expr:4,su:4,pers:9,bday:7,mat:8,hp:1,sun:"Gemini",chinese:"Metal Pig"},
+];
+
+const LP_LABELS = {
+  1:'Pioneer',2:'Diplomat',3:'Communicator',4:'Architect',5:'Catalyst',
+  6:'Protector',7:'Seeker',8:'Materializer',9:'Integrator',
+  11:'Master Illuminator',22:'Master Builder',33:'Master Teacher',
+};
+
+const ELEMENT_COLORS = {
+  Aries:['#FF6A3D','#ff4500'],Leo:['#FF6A3D','#fbbf24'],Sagittarius:['#FF6A3D','#f59e0b'],
+  Taurus:['#69C27D','#4d7c0f'],Virgo:['#69C27D','#65a30d'],Capricorn:['#6b7280','#4b5563'],
+  Gemini:['#8b5cf6','#a855f7'],Libra:['#8b5cf6','#c084fc'],Aquarius:['#8b5cf6','#7c3aed'],
+  Cancer:['#26E4D8','#06b6d4'],Scorpio:['#26E4D8','#0f172a'],Pisces:['#26E4D8','#22d3ee'],
+};
+
+function isMaster(n) { return n === 11 || n === 22 || n === 33; }
+
+function buildCard(p, side) {
+  const colors = ELEMENT_COLORS[p.sun] || ['#f59e0b','#FF6A3D'];
+  const accent = colors[0];
+  const accent2 = colors[1];
+  const lpLabel = LP_LABELS[p.lp] || p.lp;
+
+  // Bar percentages (master numbers get boosted)
+  const maxVal = 33;
+  const barPct = v => Math.min((v / maxVal) * 100, 100);
+
+  return `
+    <div class="player-card" style="--card-accent:${accent};--card-accent2:${accent2};--card-glow:linear-gradient(135deg,${accent}11,${accent2}08)">
+      <div class="card-head">
+        <div class="card-name">${p.name}</div>
+        <div class="card-archetype">Life Path ${p.lp} &mdash; ${lpLabel}</div>
+        <div class="card-signs">
+          <span class="sign-badge">${p.sun}</span>
+          <span class="sign-badge">${p.chinese}</span>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-cell">
+          <div class="stat-label">Life Path</div>
+          <div class="stat-num ${isMaster(p.lp)?'master':''}">${p.lp}</div>
+          <div class="stat-desc">${lpLabel}</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-label">Expression</div>
+          <div class="stat-num ${isMaster(p.expr)?'master':''}">${p.expr}</div>
+          <div class="stat-desc">${LP_LABELS[p.expr]||p.expr}</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-label">Soul Urge</div>
+          <div class="stat-num ${isMaster(p.su)?'master':''}">${p.su}</div>
+          <div class="stat-desc">${LP_LABELS[p.su]||p.su}</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-label">Personality</div>
+          <div class="stat-num ${isMaster(p.pers)?'master':''}">${p.pers}</div>
+          <div class="stat-desc">${LP_LABELS[p.pers]||p.pers}</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-label">Birthday</div>
+          <div class="stat-num ${isMaster(p.bday)?'master':''}">${p.bday}</div>
+          <div class="stat-desc">${LP_LABELS[p.bday]||p.bday}</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-label">Maturity</div>
+          <div class="stat-num ${isMaster(p.mat)?'master':''}">${p.mat}</div>
+          <div class="stat-desc">${LP_LABELS[p.mat]||p.mat}</div>
+        </div>
+      </div>
+
+      <div class="hp-row">
+        <span class="hp-label">Hidden Passion</span>
+        <span class="hp-val">${p.hp}</span>
+      </div>
+
+      <div class="bar-chart">
+        <div class="bar-row"><span class="bar-lbl">LP</span><div class="bar-track"><div class="bar-fill" style="width:${barPct(p.lp)}%"></div></div><span class="bar-val">${p.lp}</span></div>
+        <div class="bar-row"><span class="bar-lbl">Expr</span><div class="bar-track"><div class="bar-fill" style="width:${barPct(p.expr)}%"></div></div><span class="bar-val">${p.expr}</span></div>
+        <div class="bar-row"><span class="bar-lbl">Soul</span><div class="bar-track"><div class="bar-fill" style="width:${barPct(p.su)}%"></div></div><span class="bar-val">${p.su}</span></div>
+        <div class="bar-row"><span class="bar-lbl">Pers</span><div class="bar-track"><div class="bar-fill" style="width:${barPct(p.pers)}%"></div></div><span class="bar-val">${p.pers}</span></div>
+        <div class="bar-row"><span class="bar-lbl">Bday</span><div class="bar-track"><div class="bar-fill" style="width:${barPct(p.bday)}%"></div></div><span class="bar-val">${p.bday}</span></div>
+        <div class="bar-row"><span class="bar-lbl">Matur</span><div class="bar-track"><div class="bar-fill" style="width:${barPct(p.mat)}%"></div></div><span class="bar-val">${p.mat}</span></div>
+      </div>
+
+      <div class="card-foot">
+        <a href="${p.file}">View Full Soul Map &rarr;</a>
+      </div>
+    </div>
+  `;
+}
+
+function buildCompare(p1, p2) {
+  const fields = [
+    {key:'lp',label:'Life Path'},
+    {key:'expr',label:'Expression'},
+    {key:'su',label:'Soul Urge'},
+    {key:'pers',label:'Personality'},
+    {key:'bday',label:'Birthday'},
+    {key:'mat',label:'Maturity'},
+    {key:'hp',label:'Hidden Passion'},
+  ];
+
+  let matches = 0;
+  let masterCount1 = 0, masterCount2 = 0;
+
+  let rows = fields.map(f => {
+    const v1 = p1[f.key], v2 = p2[f.key];
+    const isMatch = v1 === v2;
+    if (isMatch) matches++;
+    if (isMaster(v1)) masterCount1++;
+    if (isMaster(v2)) masterCount2++;
+
+    const w1 = !isMatch && v1 > v2 ? ' winner' : '';
+    const w2 = !isMatch && v2 > v1 ? ' winner' : '';
+    const m = isMatch ? ' match' : '';
+
+    return `
+      <div class="compare-row">
+        <div class="cmp-val left${w1}${m}">${v1}</div>
+        <div class="cmp-label">${f.label}${isMatch ? '<div class="match-tag">MATCH</div>' : ''}</div>
+        <div class="cmp-val right${w2}${m}">${v2}</div>
+      </div>
+    `;
+  }).join('');
+
+  // Summary
+  const total1 = p1.lp+p1.expr+p1.su+p1.pers+p1.bday+p1.mat;
+  const total2 = p2.lp+p2.expr+p2.su+p2.pers+p2.bday+p2.mat;
+
+  let summary = `
+    <div class="compare-row" style="border-top:1px solid rgba(139,92,246,.15);padding-top:14px;margin-top:8px">
+      <div class="cmp-val left">${total1}</div>
+      <div class="cmp-label">Total Frequency</div>
+      <div class="cmp-val right">${total2}</div>
+    </div>
+    <div class="compare-row">
+      <div class="cmp-val left" style="font-size:1rem">${masterCount1}</div>
+      <div class="cmp-label">Master Numbers</div>
+      <div class="cmp-val right" style="font-size:1rem">${masterCount2}</div>
+    </div>
+  `;
+
+  const matchLine = matches > 0
+    ? `<div style="text-align:center;margin-top:16px;font-family:'Cormorant Garamond',serif;font-style:italic;color:#c084fc;font-size:.9rem">${matches} number${matches>1?'s':''} in common &mdash; ${matches >= 3 ? 'deep resonance detected' : matches >= 2 ? 'frequency overlap' : 'slight alignment'}</div>`
+    : `<div style="text-align:center;margin-top:16px;font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(224,231,255,.25);font-size:.9rem">No matching numbers &mdash; complementary frequencies</div>`;
+
+  return `
+    <div class="compare-title">Head to Head</div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:12px">
+      <div style="font-size:.5rem;letter-spacing:2px;text-transform:uppercase;color:#f59e0b">${p1.name}</div>
+      <div style="font-size:.5rem;letter-spacing:2px;text-transform:uppercase;color:#26E4D8">${p2.name}</div>
+    </div>
+    ${rows}
+    ${summary}
+    ${matchLine}
+  `;
+}
+
+// ── POPULATE SELECTS ──
+const sel1 = document.getElementById('sel1');
+const sel2 = document.getElementById('sel2');
+
+ROSTER.forEach((p, i) => {
+  const o1 = document.createElement('option');
+  o1.value = i; o1.textContent = p.name;
+  sel1.appendChild(o1);
+  const o2 = document.createElement('option');
+  o2.value = i; o2.textContent = p.name;
+  sel2.appendChild(o2);
+});
+
+function update() {
+  const i1 = sel1.value;
+  const i2 = sel2.value;
+  const card1 = document.getElementById('card1');
+  const card2 = document.getElementById('card2');
+  const cmpSection = document.getElementById('compareSection');
+
+  if (i1 !== '') {
+    const p = ROSTER[parseInt(i1)];
+    card1.outerHTML = buildCard(p, 'left');
+  } else {
+    card1.innerHTML = 'Select Player 1';
+    card1.className = 'player-card empty';
+  }
+
+  if (i2 !== '') {
+    const p = ROSTER[parseInt(i2)];
+    card2.outerHTML = buildCard(p, 'right');
+  } else {
+    card2.innerHTML = 'Select Player 2';
+    card2.className = 'player-card empty';
+  }
+
+  // Ensure IDs persist
+  const cards = document.querySelectorAll('.player-card');
+  if (cards[0]) cards[0].id = 'card1';
+  if (cards[1]) cards[1].id = 'card2';
+
+  // Compare
+  if (i1 !== '' && i2 !== '') {
+    const p1 = ROSTER[parseInt(i1)];
+    const p2 = ROSTER[parseInt(i2)];
+    cmpSection.innerHTML = buildCompare(p1, p2);
+    cmpSection.style.display = 'block';
+  } else {
+    cmpSection.style.display = 'none';
+  }
+}
+
+sel1.addEventListener('change', update);
+sel2.addEventListener('change', update);
+
+// ── STARFIELD ──
+(function(){
+  const field = document.getElementById('starfield');
+  const colors = ['#8b5cf6','#a855f7','#d97706','#f59e0b','#e0e7ff','#26E4D8'];
+  for(let i=0;i<120;i++){
+    const s=document.createElement('div');
+    s.className='star';
+    const size=Math.random()*2+0.3;
+    s.style.width=size+'px';s.style.height=size+'px';
+    s.style.left=Math.random()*100+'%';
+    s.style.top=Math.random()*100+'%';
+    s.style.backgroundColor=colors[Math.floor(Math.random()*colors.length)];
+    s.style.setProperty('--dur',(Math.random()*4+2)+'s');
+    s.style.setProperty('--lo',(Math.random()*0.1+0.05).toFixed(2));
+    s.style.setProperty('--hi',(Math.random()*0.4+0.3).toFixed(2));
+    s.style.animationDelay=(Math.random()*5)+'s';
+    field.appendChild(s);
+  }
+})();
+</script>
+</body>
+</html>
