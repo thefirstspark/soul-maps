@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Soul Map — Adele | The First Spark</title>
+<title>Soul Map — Adele Laurie Blue Adkins | The First Spark</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -136,6 +136,256 @@
     font-family: 'Cormorant Garamond', serif;
     font-size: 3rem; font-weight: 700; color: var(--violet);
   }
+
+  /* ===== IMPOSSIBLE CODE SECTION ===== */
+  .impossible-code {
+    margin: 60px 0 40px;
+    padding: 32px;
+    background: linear-gradient(135deg, rgba(13, 7, 40, 0.6) 0%, rgba(3, 1, 13, 0.8) 100%);
+    border: 1px solid rgba(243, 178, 58, 0.3);
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .impossible-code::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(243, 178, 58, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .ic-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    text-align: center;
+    color: var(--gold);
+    margin-bottom: 6px;
+    position: relative; z-index: 1;
+  }
+  .ic-subtitle {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--cyan);
+    margin-bottom: 28px;
+    position: relative; z-index: 1;
+  }
+  .ic-quantum-block {
+    text-align: center;
+    padding: 20px;
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(38, 228, 216, 0.25);
+    border-radius: 10px;
+    margin-bottom: 24px;
+    position: relative; z-index: 1;
+  }
+  .ic-quantum-label {
+    font-size: 0.65rem;
+    letter-spacing: 4px;
+    color: var(--cyan);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .ic-quantum-value {
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    background: linear-gradient(90deg, var(--cyan), var(--gold), var(--ember));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 6px 0;
+  }
+  .ic-quantum-note {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--dim);
+  }
+  .ic-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 24px;
+    position: relative; z-index: 1;
+  }
+  @media (max-width: 600px) { .ic-grid { grid-template-columns: 1fr; } }
+  .ic-cell {
+    background: rgba(0,0,0,0.4);
+    padding: 16px 18px;
+    border-radius: 8px;
+    border-left: 3px solid var(--cyan);
+  }
+  .ic-cell-label {
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    color: var(--dim);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .ic-cell-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .ic-cell-note {
+    font-size: 0.7rem;
+    color: var(--dim);
+    margin-top: 3px;
+  }
+  .ic-rarity-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    margin-top: 6px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    border-radius: 3px;
+    color: var(--black);
+  }
+  .ic-rarity-MYTHIC { background: linear-gradient(90deg, #ff00ff, #ffd700); }
+  .ic-rarity-LEGENDARY { background: linear-gradient(90deg, #ffd700, #ff8800); }
+  .ic-rarity-EPIC { background: linear-gradient(90deg, var(--violet), var(--ember)); }
+  .ic-rarity-RARE { background: linear-gradient(90deg, var(--cyan), var(--violet)); }
+  .ic-rarity-COMMON { background: linear-gradient(90deg, #888, #aaa); }
+  .ic-section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    text-align: center;
+    margin: 24px 0 14px;
+    position: relative; z-index: 1;
+  }
+  .ic-oracle {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    position: relative; z-index: 1;
+  }
+  @media (max-width: 600px) { .ic-oracle { grid-template-columns: 1fr; } }
+  .ic-arcana {
+    background: rgba(107, 77, 242, 0.08);
+    border: 1px solid rgba(107, 77, 242, 0.25);
+    padding: 14px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  .ic-arcana-source {
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    color: var(--cyan);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .ic-arcana-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .ic-arcana-meaning {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.8rem;
+    color: var(--dim);
+    line-height: 1.4;
+  }
+  .ic-blueprint {
+    margin: 24px 0;
+    padding: 16px 20px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 8px;
+    position: relative; z-index: 1;
+  }
+  .ic-bp-line {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+    margin: 4px 0;
+    color: var(--cyan);
+  }
+  .ic-bp-label {
+    display: inline-block;
+    width: 30px;
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .ic-bp-wave {
+    text-align: center;
+    font-size: 1.3rem;
+    color: var(--gold);
+    margin-top: 8px;
+    letter-spacing: 0.15em;
+  }
+  .ic-activation {
+    text-align: center;
+    padding: 20px;
+    background: rgba(0,0,0,0.5);
+    border: 1px solid rgba(255, 106, 61, 0.3);
+    border-radius: 10px;
+    margin: 24px 0;
+    position: relative; z-index: 1;
+  }
+  .ic-act-code {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--ember);
+    letter-spacing: 0.12em;
+    margin: 8px 0;
+  }
+  .ic-act-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--dim);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  .ic-shadow {
+    margin: 16px 0;
+    padding: 14px 18px;
+    background: rgba(255, 106, 61, 0.05);
+    border-left: 3px solid var(--ember);
+    border-radius: 0 8px 8px 0;
+    position: relative; z-index: 1;
+  }
+  .ic-shadow-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    color: var(--ember);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .ic-shadow-text {
+    color: var(--white);
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+  }
+  .ic-shadow-practice {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--dim);
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+  .ic-shadow-practice::before {
+    content: 'Practice: ';
+    color: var(--cyan);
+    font-style: normal;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
   .footer {
     margin-top: 80px; padding-top: 24px;
     border-top: 1px solid rgba(255,255,255,0.05);
@@ -180,9 +430,9 @@
 <div class="container">
 
   <p class="subtitle">Soul Map</p>
-  <h1>Adele</h1>
+  <h1>Adele Laurie Blue Adkins</h1>
   
-  <p class="generated-date">Generated April 23, 2026 · thefirstspark.shop</p>
+  <p class="generated-date">Generated May 10, 2026 · thefirstspark.shop</p>
 
   <p class="intro">
     This isn't a personality test. It's a coordinate system — a map of the patterns
@@ -199,7 +449,7 @@
     </div>
     <div class="number-card">
       <div class="label">Expression</div>
-      <div class="value">9</div>
+      <div class="value">11</div>
       <div class="desc">How you transmit</div>
     </div>
     <div class="number-card">
@@ -209,7 +459,7 @@
     </div>
     <div class="number-card">
       <div class="label">Personality</div>
-      <div class="value">7</div>
+      <div class="value">9</div>
       <div class="desc">What others receive</div>
     </div>
     <div class="number-card">
@@ -219,7 +469,7 @@
     </div>
     <div class="number-card">
       <div class="label">Maturity</div>
-      <div class="value">9</div>
+      <div class="value">2</div>
       <div class="desc">Your evolved self</div>
     </div>
   </div>
@@ -231,14 +481,14 @@
   <!-- ===== HIDDEN PASSION ===== -->
   <h2>Hidden Passion — Your Deepest Drive</h2>
   <div style="text-align: center; margin: 24px 0;">
-    <div style="font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 700; color: #26E4D8; margin-bottom: 12px;">5</div>
-    <p class="reading">Hunger for freedom. Change and variety aren't optional—they're your fuel.</p>
+    <div style="font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 700; color: #26E4D8; margin-bottom: 12px;">3</div>
+    <p class="reading">Compulsion to create. Expression is your survival mechanism. You must speak your truth.</p>
   </div>
 
   <!-- ===== KARMIC LESSONS ===== -->
   <h2>Karmic Lessons — What You Came To Learn</h2>
   <div style="margin: 20px 0; padding: 16px; background: rgba(107,77,242,0.1); border-left: 4px solid #6B4DF2; border-radius: 4px;">
-    <p class="reading">Lesson: Learn diplomacy. Understand that connection requires vulnerability., Lesson: Balance service with self-care. Healing others while staying whole., Lesson: Seek knowledge. Develop wisdom through introspection and study., Lesson: Master power. Use influence ethically. Manage resources wisely., Lesson: Surrender. Release what doesn't serve. Complete cycles.</p>
+    <p class="reading">Lesson: Balance service with self-care. Healing others while staying whole., Lesson: Seek knowledge. Develop wisdom through introspection and study., Lesson: Master power. Use influence ethically. Manage resources wisely.</p>
   </div>
 
   <!-- ===== LIFE PHASES ===== -->
@@ -360,9 +610,92 @@
     <div class="cycle-number">11</div>
     <h3>Personal Year 11</h3>
     <p class="reading">Illumination year. Downloads are incoming. Trust what you can’t yet prove.</p>
-    <h3 style="margin-top: 20px;">Personal Month: 6</h3>
+    <h3 style="margin-top: 20px;">Personal Month: 7</h3>
     <p style="margin-top: 20px; text-align: center;">
-      <a href="A51988-202604.html" style="color: #26E4D8; text-decoration: none; font-family: 'Space Mono', monospace; font-size: 0.9rem;">→ View This Month's Energy Update</a>
+      <a href="ALBA51988-202605.html" style="color: #26E4D8; text-decoration: none; font-family: 'Space Mono', monospace; font-size: 0.9rem;">→ View This Month's Energy Update</a>
+    </p>
+  </div>
+
+  <!-- ===== IMPOSSIBLE CODE ===== -->
+  <div class="impossible-code">
+    <h2 style="border: none; padding: 0; margin: 0; text-align: center; font-size: 1.8rem; color: var(--gold);">◈ The Impossible Code ◈</h2>
+    <div class="ic-subtitle">Your Soul's Permanent Signature</div>
+
+    <div class="ic-quantum-block">
+      <div class="ic-quantum-label">⟁ Quantum Signature ⟁</div>
+      <div class="ic-quantum-value">B469·1296·AB2D</div>
+      <div class="ic-quantum-note">Your soul's permanent UUID across all timelines</div>
+    </div>
+
+    <div class="ic-grid">
+      <div class="ic-cell">
+        <div class="ic-cell-label">Soul Resonance</div>
+        <div class="ic-cell-value">1817.0 Hz</div>
+        <div class="ic-cell-note">Your harmonic baseline</div>
+      </div>
+      <div class="ic-cell">
+        <div class="ic-cell-label">Rarity Score</div>
+        <div class="ic-cell-value">100 / 100</div>
+        <div class="ic-rarity-tag ic-rarity-MYTHIC">MYTHIC</div>
+        <div class="ic-cell-note" style="margin-top: 6px;">Master numbers present: Expression 11, Soul Urge 11, Personal Year 11</div>
+      </div>
+    </div>
+
+    <div class="ic-section-title">◈ Oracle Trinity ◈</div>
+    <div class="ic-oracle">
+      <div class="ic-arcana">
+        <div class="ic-arcana-source">Life Path</div>
+        <div class="ic-arcana-name">The Hermit</div>
+        <div class="ic-arcana-meaning">inner light, solo path, illumination</div>
+      </div>
+      <div class="ic-arcana">
+        <div class="ic-arcana-source">Expression</div>
+        <div class="ic-arcana-name">Justice</div>
+        <div class="ic-arcana-meaning">balance, truth, accountability</div>
+      </div>
+      <div class="ic-arcana">
+        <div class="ic-arcana-source">Soul Urge</div>
+        <div class="ic-arcana-name">Justice</div>
+        <div class="ic-arcana-meaning">balance, truth, accountability</div>
+      </div>
+    </div>
+
+    <div class="ic-section-title">◈ Vibrational Blueprint ◈</div>
+    <div class="ic-blueprint">
+      <div class="ic-bp-line"><span class="ic-bp-label">LP</span> ████████░░</div>
+      <div class="ic-bp-line"><span class="ic-bp-label">EX</span> ██████████</div>
+      <div class="ic-bp-line"><span class="ic-bp-label">SU</span> ██████████</div>
+      <div class="ic-bp-line"><span class="ic-bp-label">PE</span> ████████░░</div>
+      <div class="ic-bp-wave">▁▂▁▂</div>
+    </div>
+
+    <div class="ic-section-title" style="color: var(--ember);">⚡ Activation Sequence ⚡</div>
+    <div class="ic-activation">
+      <div class="ic-act-code">3F17E666[LP9]</div>
+      <p class="ic-act-desc">When you speak, write, or think this code, you align with your highest potential. It's your soul's call sign.</p>
+    </div>
+
+    <div class="ic-section-title">◈ Shadow Integration Pathway ◈</div>
+    <p style="text-align: center; font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--dim); margin-bottom: 16px;">Your shadows are not enemies. They are untranslated parts of your code.</p>
+
+    <div class="ic-shadow">
+      <div class="ic-shadow-label">LP9 Shadow</div>
+      <div class="ic-shadow-text">Holding everyone's pain as your own.</div>
+      <div class="ic-shadow-practice">Ritual release at week's end. You are a transmitter, not a vessel.</div>
+    </div>
+    <div class="ic-shadow">
+      <div class="ic-shadow-label">Expression 11 Shadow</div>
+      <div class="ic-shadow-text">Carrying more light than your body can hold.</div>
+      <div class="ic-shadow-practice">Ground daily. The channel needs a container. Earth is that container.</div>
+    </div>
+    <div class="ic-shadow">
+      <div class="ic-shadow-label">SU11 Shadow</div>
+      <div class="ic-shadow-text">Carrying more light than your body can hold.</div>
+      <div class="ic-shadow-practice">Ground daily. The channel needs a container. Earth is that container.</div>
+    </div>
+
+    <p style="text-align: center; margin-top: 28px; font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--dim); font-size: 0.9rem;">
+      Compare your frequency with another soul at <a href="https://frequency.thefirstspark.shop" style="color: var(--cyan); text-decoration: none;">frequency.thefirstspark.shop</a>
     </p>
   </div>
 
@@ -411,7 +744,7 @@ const sunSign = sunSignMatch ? sunSignMatch[1] : 'Libra';
 
 // For now, use hardcoded values that will be replaced by template substitution
 const soulUrgeNum = 11;
-const expressionNum = 9;
+const expressionNum = 11;
 
 // Create seeded starfield
 function createPersonalStarfield() {
