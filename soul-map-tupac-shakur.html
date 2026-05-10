@@ -1,396 +1,776 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-N4Z6GH2N');</script>
-<!-- End Google Tag Manager -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Soul Map — Tupac Amaru Shakur</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<title>Soul Map — Tupac Amaru Shakur | The First Spark</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --black: #0a0a0f;
-    --deep: #0d0d1a;
-    --gold: #d4af37;
-    --gold-dim: #a8882a;
-    --gold-glow: rgba(212,175,55,0.15);
-    --cyan: #22d3ee;
-    --cyan-dim: rgba(34,211,238,0.2);
-    --purple: #8b5cf6;
-    --purple-dim: rgba(139,92,246,0.15);
-    --white: #f0ede6;
-    --muted: #7a7a8c;
+    --black: #0B0B0C;
+    --deep-space: #0a0a0f;
+    --ember: #FF6A3D;
+    --gold: #F3B23A;
+    --violet: #6B4DF2;
+    --cyan: #26E4D8;
+    --white: #f0ece4;
+    --dim: #888;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: var(--black); color: var(--white); font-family: 'Cormorant Garamond', serif; min-height: 100vh; overflow-x: hidden; }
-  #starfield { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; background: radial-gradient(ellipse at 20% 20%, rgba(139,92,246,0.04) 0%, transparent 60%), radial-gradient(ellipse at 80% 80%, rgba(34,211,238,0.04) 0%, transparent 60%), radial-gradient(ellipse at 50% 50%, rgba(212,175,55,0.02) 0%, transparent 70%); }
-  .star { position: absolute; background: white; border-radius: 50%; animation: twinkle var(--dur, 3s) ease-in-out infinite alternate; }
-  @keyframes twinkle { from { opacity: 0.1; } to { opacity: 0.9; } }
-  .page { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 60px 32px; }
-  .header { text-align: center; padding-bottom: 48px; border-bottom: 1px solid rgba(212,175,55,0.2); margin-bottom: 56px; }
-  .brand { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.4em; color: var(--muted); text-transform: uppercase; margin-bottom: 24px; }
-  .subject-name { font-family: 'Cinzel', serif; font-size: clamp(28px, 5vw, 52px); font-weight: 600; color: var(--gold); letter-spacing: 0.08em; line-height: 1.1; text-shadow: 0 0 40px rgba(212,175,55,0.3); margin-bottom: 12px; }
-  .birth-data { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.25em; margin-bottom: 20px; }
-  .cusp-badge { display: inline-block; font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.3em; color: var(--cyan); border: 1px solid rgba(34,211,238,0.3); padding: 4px 14px; margin-bottom: 28px; text-transform: uppercase; }
-  .tagline { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; color: rgba(240,237,230,0.6); letter-spacing: 0.04em; max-width: 600px; margin: 0 auto; line-height: 1.6; }
-  .master-hero { display: flex; flex-direction: column; align-items: center; margin-bottom: 56px; padding: 40px 32px; background: linear-gradient(135deg, rgba(212,175,55,0.06), rgba(139,92,246,0.06)); border: 1px solid rgba(212,175,55,0.25); position: relative; overflow: hidden; }
-  .master-hero::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(212,175,55,0.02) 40px, rgba(212,175,55,0.02) 41px), repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(212,175,55,0.02) 40px, rgba(212,175,55,0.02) 41px); pointer-events: none; }
-  .master-label { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.5em; color: var(--gold-dim); text-transform: uppercase; margin-bottom: 16px; }
-  .master-num { font-family: 'Cinzel', serif; font-size: clamp(72px, 15vw, 120px); font-weight: 900; color: var(--gold); line-height: 0.9; text-shadow: 0 0 60px rgba(212,175,55,0.4), 0 0 120px rgba(212,175,55,0.15); letter-spacing: -0.02em; }
-  .master-title { font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: 0.5em; color: var(--gold-dim); text-transform: uppercase; margin-top: 12px; margin-bottom: 20px; }
-  .master-desc { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; color: rgba(240,237,230,0.7); text-align: center; max-width: 560px; line-height: 1.7; }
-  .section-label { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.5em; color: var(--muted); text-transform: uppercase; margin-bottom: 24px; }
-  .numbers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-bottom: 56px; }
-  .number-card { background: rgba(13,13,26,0.8); border: 1px solid rgba(212,175,55,0.12); padding: 24px 20px; text-align: center; transition: border-color 0.3s, transform 0.3s; }
-  .number-card:hover { border-color: rgba(212,175,55,0.35); transform: translateY(-2px); }
-  .number-card.master-card { border-color: rgba(212,175,55,0.35); background: linear-gradient(135deg, rgba(212,175,55,0.05), rgba(13,13,26,0.8)); }
-  .number-card.cyan-card { border-color: rgba(34,211,238,0.2); }
-  .number-card.purple-card { border-color: rgba(139,92,246,0.2); }
-  .card-num { font-family: 'Cinzel', serif; font-size: 42px; font-weight: 900; line-height: 1; margin-bottom: 8px; }
-  .gold-num { color: var(--gold); text-shadow: 0 0 20px rgba(212,175,55,0.3); }
-  .cyan-num { color: var(--cyan); text-shadow: 0 0 20px rgba(34,211,238,0.3); }
-  .purple-num { color: var(--purple); text-shadow: 0 0 20px rgba(139,92,246,0.3); }
-  .card-title { font-family: 'Space Mono', monospace; font-size: 8px; letter-spacing: 0.35em; color: var(--muted); text-transform: uppercase; margin-bottom: 12px; }
-  .card-keyword { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.2em; color: rgba(240,237,230,0.8); text-transform: uppercase; margin-bottom: 10px; }
-  .card-desc { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; color: rgba(240,237,230,0.5); line-height: 1.5; }
-  .deep-section { margin-bottom: 56px; }
-  .section-header { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
-  .section-icon { font-size: 22px; line-height: 1; }
-  .section-title { font-family: 'Cinzel', serif; font-size: 18px; font-weight: 600; letter-spacing: 0.15em; color: var(--gold); }
-  .section-line { flex: 1; height: 1px; background: linear-gradient(to right, rgba(212,175,55,0.3), transparent); }
-  .read-block { background: rgba(13,13,26,0.6); border-left: 2px solid var(--gold-dim); padding: 24px 28px; margin-bottom: 16px; }
-  .read-block.cyan-border { border-left-color: var(--cyan); }
-  .read-block.purple-border { border-left-color: var(--purple); }
-  .read-block h4 { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.35em; color: var(--gold-dim); text-transform: uppercase; margin-bottom: 12px; }
-  .read-block.cyan-border h4 { color: var(--cyan); opacity: 0.7; }
-  .read-block.purple-border h4 { color: var(--purple); opacity: 0.8; }
-  .read-block p { font-family: 'Cormorant Garamond', serif; font-size: 17px; line-height: 1.8; color: rgba(240,237,230,0.82); }
-  .read-block p em { color: var(--gold); font-style: italic; }
-  .archetype-panel { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 56px; }
-  @media (max-width: 600px) { .archetype-panel { grid-template-columns: 1fr; } }
-  .arch-card { background: rgba(13,13,26,0.8); border: 1px solid rgba(139,92,246,0.2); padding: 28px 24px; }
-  .arch-icon { font-size: 28px; margin-bottom: 12px; display: block; }
-  .arch-title { font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: 0.2em; color: var(--purple); margin-bottom: 10px; text-transform: uppercase; }
-  .arch-desc { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; color: rgba(240,237,230,0.65); line-height: 1.6; }
-  .cycles-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 56px; }
-  @media (max-width: 500px) { .cycles-row { grid-template-columns: 1fr; } }
-  .cycle-card { padding: 24px; border: 1px solid rgba(34,211,238,0.2); background: rgba(34,211,238,0.03); }
-  .cycle-year { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.4em; color: var(--cyan); opacity: 0.7; margin-bottom: 8px; text-transform: uppercase; }
-  .cycle-num { font-family: 'Cinzel', serif; font-size: 40px; font-weight: 900; color: var(--cyan); text-shadow: 0 0 20px rgba(34,211,238,0.3); line-height: 1; margin-bottom: 8px; }
-  .cycle-name { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.25em; color: rgba(240,237,230,0.7); text-transform: uppercase; margin-bottom: 12px; }
-  .cycle-desc { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px; color: rgba(240,237,230,0.55); line-height: 1.6; }
-  .sg-table { width: 100%; border-collapse: collapse; margin-bottom: 56px; }
-  .sg-table th { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase; padding: 14px 20px; text-align: left; border-bottom: 1px solid rgba(212,175,55,0.2); }
-  .sg-table th:first-child { color: var(--cyan); }
-  .sg-table th:last-child { color: var(--gold); }
-  .sg-table td { font-family: 'Cormorant Garamond', serif; font-size: 16px; padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: top; line-height: 1.6; }
-  .sg-table tr:nth-child(odd) td { background: rgba(255,255,255,0.01); }
-  .sg-table td:first-child { color: rgba(34,211,238,0.8); font-style: italic; width: 50%; }
-  .sg-table td:last-child { color: rgba(212,175,55,0.85); }
-  .activation { background: var(--black); border: 1px solid rgba(212,175,55,0.3); padding: 40px; text-align: center; margin-bottom: 56px; position: relative; }
-  .activation::before { content: '✦'; position: absolute; top: -14px; left: 50%; transform: translateX(-50%); font-size: 20px; color: var(--gold); background: var(--black); padding: 0 12px; }
-  .activation-label { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.5em; color: var(--muted); text-transform: uppercase; margin-bottom: 20px; }
-  .activation-code { font-family: 'Space Mono', monospace; font-size: clamp(18px, 4vw, 28px); color: var(--gold); letter-spacing: 0.12em; margin-bottom: 20px; text-shadow: 0 0 30px rgba(212,175,55,0.4); }
-  .activation-desc { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; color: rgba(240,237,230,0.6); line-height: 1.7; max-width: 560px; margin: 0 auto; }
-  .footer { text-align: center; padding-top: 40px; border-top: 1px solid rgba(212,175,55,0.1); }
-  .footer-brand { font-family: 'Cinzel', serif; font-size: 18px; font-weight: 600; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 8px; }
-  .footer-sub { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.4em; color: var(--muted); text-transform: uppercase; }
-  .divider { width: 100%; height: 1px; background: linear-gradient(to right, transparent, rgba(212,175,55,0.25), transparent); margin: 48px 0; }
-  @media (max-width: 600px) { .numbers-grid { grid-template-columns: repeat(2, 1fr); } .page { padding: 40px 20px; } .read-block { padding: 20px; } }
+  body {
+    background: var(--deep-space);
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+  .stars {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 0;
+  }
+  .star {
+    position: absolute;
+    border-radius: 50%;
+    animation: twinkle var(--duration, 3s) ease-in-out infinite;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: var(--base-opacity, 0.3); }
+    50% { opacity: var(--peak-opacity, 0.8); }
+  }
+  .container {
+    position: relative; z-index: 1;
+    max-width: 800px; margin: 0 auto; padding: 60px 24px;
+  }
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--gold), var(--ember));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+  }
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; font-weight: 600;
+    color: var(--cyan);
+    border-bottom: 1px solid rgba(38,228,216,0.2);
+    padding-bottom: 8px; margin: 48px 0 20px;
+  }
+  h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; color: var(--gold);
+    margin: 24px 0 8px;
+  }
+  .subtitle {
+    font-size: 0.85rem; color: var(--dim);
+    letter-spacing: 3px; text-transform: uppercase;
+  }
+  .intro {
+    margin: 32px 0; font-style: italic;
+    color: var(--dim); font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+  }
+  .numbers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px; margin: 24px 0;
+  }
+  .number-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(107,77,242,0.2);
+    border-radius: 8px; padding: 20px; text-align: center;
+    transition: border-color 0.3s;
+  }
+  .number-card:hover { border-color: var(--cyan); }
+  .number-card .label {
+    font-size: 0.7rem; color: var(--dim);
+    text-transform: uppercase; letter-spacing: 2px;
+  }
+  .number-card .value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem; font-weight: 700;
+    color: var(--gold); margin: 4px 0;
+  }
+  .number-card .desc {
+    font-size: 0.75rem; color: var(--cyan);
+  }
+  .selector-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--violet), var(--cyan));
+    color: var(--black); font-weight: 700;
+    padding: 6px 16px; border-radius: 20px;
+    font-size: 0.8rem; letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .astro-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px; margin: 20px 0;
+  }
+  .astro-item {
+    background: rgba(255,255,255,0.02);
+    border-left: 3px solid var(--violet);
+    padding: 12px 16px;
+  }
+  .astro-item .planet { color: var(--dim); font-size: 0.75rem; text-transform: uppercase; }
+  .astro-item .sign { color: var(--white); font-size: 1rem; }
+  .reading { color: var(--white); line-height: 1.8; margin: 12px 0; }
+  .zodiac-badge {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: rgba(243,178,58,0.08);
+    border: 1px solid rgba(243,178,58,0.2);
+    border-radius: 8px; padding: 16px 24px; margin: 16px 0;
+  }
+  .zodiac-badge .animal { font-size: 2rem; }
+  .zodiac-badge .info { font-size: 0.9rem; }
+  .zodiac-badge .element-tag {
+    color: var(--ember); font-size: 0.75rem;
+    text-transform: uppercase; letter-spacing: 2px;
+  }
+  .cycle-box {
+    background: rgba(107,77,242,0.06);
+    border: 1px solid rgba(107,77,242,0.15);
+    border-radius: 8px; padding: 24px; margin: 20px 0;
+  }
+  .cycle-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; font-weight: 700; color: var(--violet);
+  }
+
+  /* ===== IMPOSSIBLE CODE SECTION ===== */
+  .impossible-code {
+    margin: 60px 0 40px;
+    padding: 32px;
+    background: linear-gradient(135deg, rgba(13, 7, 40, 0.6) 0%, rgba(3, 1, 13, 0.8) 100%);
+    border: 1px solid rgba(243, 178, 58, 0.3);
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .impossible-code::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(243, 178, 58, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .ic-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    text-align: center;
+    color: var(--gold);
+    margin-bottom: 6px;
+    position: relative; z-index: 1;
+  }
+  .ic-subtitle {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--cyan);
+    margin-bottom: 28px;
+    position: relative; z-index: 1;
+  }
+  .ic-quantum-block {
+    text-align: center;
+    padding: 20px;
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(38, 228, 216, 0.25);
+    border-radius: 10px;
+    margin-bottom: 24px;
+    position: relative; z-index: 1;
+  }
+  .ic-quantum-label {
+    font-size: 0.65rem;
+    letter-spacing: 4px;
+    color: var(--cyan);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .ic-quantum-value {
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    background: linear-gradient(90deg, var(--cyan), var(--gold), var(--ember));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 6px 0;
+  }
+  .ic-quantum-note {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--dim);
+  }
+  .ic-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 24px;
+    position: relative; z-index: 1;
+  }
+  @media (max-width: 600px) { .ic-grid { grid-template-columns: 1fr; } }
+  .ic-cell {
+    background: rgba(0,0,0,0.4);
+    padding: 16px 18px;
+    border-radius: 8px;
+    border-left: 3px solid var(--cyan);
+  }
+  .ic-cell-label {
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    color: var(--dim);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .ic-cell-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .ic-cell-note {
+    font-size: 0.7rem;
+    color: var(--dim);
+    margin-top: 3px;
+  }
+  .ic-rarity-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    margin-top: 6px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    border-radius: 3px;
+    color: var(--black);
+  }
+  .ic-rarity-MYTHIC { background: linear-gradient(90deg, #ff00ff, #ffd700); }
+  .ic-rarity-LEGENDARY { background: linear-gradient(90deg, #ffd700, #ff8800); }
+  .ic-rarity-EPIC { background: linear-gradient(90deg, var(--violet), var(--ember)); }
+  .ic-rarity-RARE { background: linear-gradient(90deg, var(--cyan), var(--violet)); }
+  .ic-rarity-COMMON { background: linear-gradient(90deg, #888, #aaa); }
+  .ic-section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    text-align: center;
+    margin: 24px 0 14px;
+    position: relative; z-index: 1;
+  }
+  .ic-oracle {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    position: relative; z-index: 1;
+  }
+  @media (max-width: 600px) { .ic-oracle { grid-template-columns: 1fr; } }
+  .ic-arcana {
+    background: rgba(107, 77, 242, 0.08);
+    border: 1px solid rgba(107, 77, 242, 0.25);
+    padding: 14px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  .ic-arcana-source {
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    color: var(--cyan);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .ic-arcana-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .ic-arcana-meaning {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.8rem;
+    color: var(--dim);
+    line-height: 1.4;
+  }
+  .ic-blueprint {
+    margin: 24px 0;
+    padding: 16px 20px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 8px;
+    position: relative; z-index: 1;
+  }
+  .ic-bp-line {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+    margin: 4px 0;
+    color: var(--cyan);
+  }
+  .ic-bp-label {
+    display: inline-block;
+    width: 30px;
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .ic-bp-wave {
+    text-align: center;
+    font-size: 1.3rem;
+    color: var(--gold);
+    margin-top: 8px;
+    letter-spacing: 0.15em;
+  }
+  .ic-activation {
+    text-align: center;
+    padding: 20px;
+    background: rgba(0,0,0,0.5);
+    border: 1px solid rgba(255, 106, 61, 0.3);
+    border-radius: 10px;
+    margin: 24px 0;
+    position: relative; z-index: 1;
+  }
+  .ic-act-code {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--ember);
+    letter-spacing: 0.12em;
+    margin: 8px 0;
+  }
+  .ic-act-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--dim);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  .ic-shadow {
+    margin: 16px 0;
+    padding: 14px 18px;
+    background: rgba(255, 106, 61, 0.05);
+    border-left: 3px solid var(--ember);
+    border-radius: 0 8px 8px 0;
+    position: relative; z-index: 1;
+  }
+  .ic-shadow-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    color: var(--ember);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .ic-shadow-text {
+    color: var(--white);
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+  }
+  .ic-shadow-practice {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--dim);
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+  .ic-shadow-practice::before {
+    content: 'Practice: ';
+    color: var(--cyan);
+    font-style: normal;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .footer {
+    margin-top: 80px; padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    text-align: center; font-size: 0.7rem; color: var(--dim);
+  }
+  .footer a { color: var(--cyan); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+  .generated-date { color: var(--dim); font-size: 0.75rem; margin-top: 4px; }
+  .ceremony-banner {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(243, 178, 58, 0.15));
+    border: 2px solid #6B4DF2;
+    border-radius: 8px;
+    padding: 32px 24px;
+    margin: 24px 0;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+  }
+  .ceremony-text {
+    color: #F3B23A;
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+    line-height: 2;
+  }
+  .ceremony-subtitle {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #6B4DF2;
+    margin: 16px 0;
+  }
+  .ceremony-date {
+    display: block;
+    font-size: 0.85rem;
+    color: #26E4D8;
+    margin-top: 16px;
+    letter-spacing: 1px;
+  }
 </style>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N4Z6GH2N"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-<div id="starfield"></div>
-<div class="page">
+<div id="starfield" class="stars"></div>
+<div class="container">
 
-  <div class="header">
-    <div class="brand">The First Spark · Soul Map · East Harlem, New York</div>
-    <h1 class="subject-name">Tupac Amaru Shakur</h1>
-    <div class="birth-data">06 · 16 · 1971 &nbsp;|&nbsp; Gemini &nbsp;|&nbsp; East Harlem, New York</div>
-    <div class="cusp-badge">✦ Gemini · The Twin Flame</div>
-    <p class="tagline">He didn't come to rhyme. He came to testify —<br>and make the whole world feel what it refused to look at.</p>
-  </div>
+  <p class="subtitle">Soul Map</p>
+  <h1>Tupac Amaru Shakur</h1>
+  
+  <p class="generated-date">Generated May 10, 2026 · thefirstspark.shop</p>
 
-  <div class="master-hero">
-    <div class="master-label">// Life Path · Master Frequency · Double 22</div>
-    <div class="master-num">22</div>
-    <div class="master-title">The Master Builder</div>
-    <p class="master-desc">
-      The 22 is the rarest of the master numbers — and Tupac carried it twice.
-      His Life Path and his name both reduce to 22. That is not coincidence.
-      That is <em>configuration</em>. He wasn't here to add a verse to the culture.
-      He was here to build something the culture would still be standing on long after he was gone.
-    </p>
-  </div>
+  <p class="intro">
+    This isn't a personality test. It's a coordinate system — a map of the patterns
+    encoded in your existence. Numbers, planets, elements. Not metaphors. Syntax.
+  </p>
 
-  <div class="deep-section">
-    <div class="section-label">// Core Architecture</div>
-    <div class="numbers-grid">
-      <div class="number-card master-card">
-        <div class="card-num gold-num">22</div>
-        <div class="card-title">Life Path</div>
-        <div class="card-keyword">Master Builder</div>
-        <div class="card-desc">Born to construct something that outlasts the builder.</div>
-      </div>
-      <div class="number-card cyan-card">
-        <div class="card-num cyan-num">7</div>
-        <div class="card-title">Birthday</div>
-        <div class="card-keyword">The Seeker</div>
-        <div class="card-desc">Encoded at birth to seek truth beneath every surface.</div>
-      </div>
-      <div class="number-card master-card">
-        <div class="card-num gold-num">22</div>
-        <div class="card-title">Expression</div>
-        <div class="card-keyword">Double Signal</div>
-        <div class="card-desc">Name and birth path aligned — the blueprint was intentional.</div>
-      </div>
-      <div class="number-card">
-        <div class="card-num gold-num">4</div>
-        <div class="card-title">Soul Urge</div>
-        <div class="card-keyword">The Foundation</div>
-        <div class="card-desc">At the core: a drive to build something real, something that holds.</div>
-      </div>
-      <div class="number-card purple-card">
-        <div class="card-num purple-num">9</div>
-        <div class="card-title">Personality</div>
-        <div class="card-keyword">The Humanitarian</div>
-        <div class="card-desc">How the world received him: as a voice for everyone the world forgot.</div>
-      </div>
-      <div class="number-card cyan-card">
-        <div class="card-num cyan-num">8</div>
-        <div class="card-title">Legacy</div>
-        <div class="card-keyword">Power / Authority</div>
-        <div class="card-desc">The frequency his work carries forward: sovereign and permanent.</div>
-      </div>
+  <!-- ===== CORE NUMBERS ===== -->
+  <h2>Core Numbers</h2>
+  <div class="numbers-grid">
+    <div class="number-card">
+      <div class="label">Life Path</div>
+      <div class="value">22</div>
+      <div class="desc">Your primary frequency</div>
+    </div>
+    <div class="number-card">
+      <div class="label">Expression</div>
+      <div class="value">4</div>
+      <div class="desc">How you transmit</div>
+    </div>
+    <div class="number-card">
+      <div class="label">Soul Urge</div>
+      <div class="value">4</div>
+      <div class="desc">What drives you beneath</div>
+    </div>
+    <div class="number-card">
+      <div class="label">Personality</div>
+      <div class="value">9</div>
+      <div class="desc">What others receive</div>
+    </div>
+    <div class="number-card">
+      <div class="label">Birthday</div>
+      <div class="value">7</div>
+      <div class="desc">Your gift frequency</div>
+    </div>
+    <div class="number-card">
+      <div class="label">Maturity</div>
+      <div class="value">8</div>
+      <div class="desc">Your evolved self</div>
     </div>
   </div>
 
-  <div class="deep-section">
-    <div class="section-header">
-      <div class="section-icon">✦</div>
-      <div class="section-title">Life Path 22 · The Master Builder</div>
-      <div class="section-line"></div>
+  <!-- ===== LIFE PATH READING ===== -->
+  <h2>Life Path 22 — The Signal</h2>
+  <p class="reading">Master Builder. You don’t just dream — you architect realities that others can inhabit. Your vision operates on a scale that can feel isolating until you find your crew.</p>
+
+  <!-- ===== HIDDEN PASSION ===== -->
+  <h2>Hidden Passion — Your Deepest Drive</h2>
+  <div style="text-align: center; margin: 24px 0;">
+    <div style="font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 700; color: #26E4D8; margin-bottom: 12px;">1</div>
+    <p class="reading">Drive to lead and initiate. Your deepest motivation is independence and pioneering.</p>
+  </div>
+
+  <!-- ===== KARMIC LESSONS ===== -->
+  <h2>Karmic Lessons — What You Came To Learn</h2>
+  <div style="margin: 20px 0; padding: 16px; background: rgba(107,77,242,0.1); border-left: 4px solid #6B4DF2; border-radius: 4px;">
+    <p class="reading">Lesson: Embrace change. Let go of control. Freedom comes through flexibility., Lesson: Balance service with self-care. Healing others while staying whole.</p>
+  </div>
+
+  <!-- ===== LIFE PHASES ===== -->
+  <h2>Four Life Phases</h2>
+
+  <h3>Pinnacles — Major Life Themes</h3>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin: 16px 0;">
+    <div style="padding: 16px; background: rgba(38,228,216,0.08); border: 1px solid rgba(38,228,216,0.2); border-radius: 6px;">
+      <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #26E4D8; font-weight: 700; margin-bottom: 4px;">4</div>
+      <div style="font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Pinnacle 1</div>
+      <p style="font-size: 0.85rem; color: #f0ece4;">First pinnacle: Foundation phase. Build structures. Establish security.</p>
     </div>
-    <div class="read-block">
-      <h4>// The Double Encoding</h4>
-      <p>
-        When a Life Path and an Expression both reduce to the same master number, the numerological term is
-        <em>double encoding</em>. Tupac's birth date reduces to 22. His name — Tupac Amaru Shakur —
-        also reduces to 22. This means his mission and his identity were the same frequency.
-        He wasn't playing a character. He was the blueprint.
-      </p>
+    <div style="padding: 16px; background: rgba(38,228,216,0.08); border: 1px solid rgba(38,228,216,0.2); border-radius: 6px;">
+      <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #26E4D8; font-weight: 700; margin-bottom: 4px;">7</div>
+      <div style="font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Pinnacle 2</div>
+      <p style="font-size: 0.85rem; color: #f0ece4;">First pinnacle: Seeker phase. Study deeply. Retreat inward.</p>
     </div>
-    <div class="read-block">
-      <h4>// The Weight</h4>
-      <p>
-        The 22 carries a specific burden: it sees what could be built while living in what is.
-        That gap — between vision and reality — is the source of the rage, the poetry, the urgency.
-        The 22 Master Builder doesn't create art for art's sake.
-        It creates <em>monuments</em>. It builds things designed to last centuries.
-        Every verse was a brick. Every album, a wing of the cathedral.
-      </p>
+    <div style="padding: 16px; background: rgba(38,228,216,0.08); border: 1px solid rgba(38,228,216,0.2); border-radius: 6px;">
+      <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #26E4D8; font-weight: 700; margin-bottom: 4px;">11</div>
+      <div style="font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Pinnacle 3</div>
+      <p style="font-size: 0.85rem; color: #f0ece4;">Pinnacle unmapped</p>
+    </div>
+    <div style="padding: 16px; background: rgba(38,228,216,0.08); border: 1px solid rgba(38,228,216,0.2); border-radius: 6px;">
+      <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #26E4D8; font-weight: 700; margin-bottom: 4px;">6</div>
+      <div style="font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Pinnacle 4</div>
+      <p style="font-size: 0.85rem; color: #f0ece4;">First pinnacle: Harmony phase. Serve community. Balance relationships.</p>
     </div>
   </div>
 
-  <div class="deep-section">
-    <div class="section-header">
-      <div class="section-icon">✦</div>
-      <div class="section-title">Birthday 7 · The Truth Seeker</div>
-      <div class="section-line"></div>
+  <h3 style="margin-top: 32px;">Challenges — What You're Here To Master</h3>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin: 16px 0;">
+    <div style="padding: 16px; background: rgba(255,106,61,0.08); border: 1px solid rgba(255,106,61,0.2); border-radius: 6px;">
+      <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #FF6A3D; font-weight: 700; margin-bottom: 4px;">1</div>
+      <div style="font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Challenge 1</div>
+      <p style="font-size: 0.85rem; color: #f0ece4;">Challenge: Dependence patterns. Learn independence.</p>
     </div>
-    <div class="read-block cyan-border">
-      <h4>// Encoded at Birth</h4>
-      <p>
-        The 16th reduces to 7 — the number of the seeker, the analyst, the one who cannot rest
-        until they have found what is real beneath what is performed.
-        The 7 Birthday means his natural frequency was <em>interrogation of surface truth</em>.
-        This is why his lyrics felt like testimony. For him, they were.
-        He wasn't observing the world. He was cross-examining it.
-      </p>
+    <div style="padding: 16px; background: rgba(255,106,61,0.08); border: 1px solid rgba(255,106,61,0.2); border-radius: 6px;">
+      <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #FF6A3D; font-weight: 700; margin-bottom: 4px;">2</div>
+      <div style="font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Challenge 2</div>
+      <p style="font-size: 0.85rem; color: #f0ece4;">Challenge: Indecision. Develop confidence in your choices.</p>
     </div>
-  </div>
-
-  <div class="deep-section">
-    <div class="section-header">
-      <div class="section-icon">✦</div>
-      <div class="section-title">Gemini · The Twin Flame</div>
-      <div class="section-line"></div>
+    <div style="padding: 16px; background: rgba(255,106,61,0.08); border: 1px solid rgba(255,106,61,0.2); border-radius: 6px;">
+      <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #FF6A3D; font-weight: 700; margin-bottom: 4px;">1</div>
+      <div style="font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Challenge 3</div>
+      <p style="font-size: 0.85rem; color: #f0ece4;">Challenge: Dependence patterns. Learn independence.</p>
     </div>
-    <div class="read-block purple-border">
-      <h4>// The Duality Was the Point</h4>
-      <p>
-        Born under the sign of the twins, Tupac carried both within himself in plain sight:
-        the activist and the outlaw, the poet and the warrior, the saint and the sinner —
-        not as contradiction, but as <em>wholeness</em>.
-        The world wanted to choose one. It wanted to call him one thing.
-        He refused to be reduced. Gemini at its highest is not split — it's <em>range</em>.
-        He could reach the penthouse and the pavement in the same verse because he belonged to both.
-      </p>
+    <div style="padding: 16px; background: rgba(255,106,61,0.08); border: 1px solid rgba(255,106,61,0.2); border-radius: 6px;">
+      <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #FF6A3D; font-weight: 700; margin-bottom: 4px;">3</div>
+      <div style="font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Challenge 4</div>
+      <p style="font-size: 0.85rem; color: #f0ece4;">Challenge: Scattered energy. Learn focus and discipline.</p>
     </div>
   </div>
 
-  <div class="deep-section">
-    <div class="section-header">
-      <div class="section-icon">✦</div>
-      <div class="section-title">Metal Pig · 1971</div>
-      <div class="section-line"></div>
-    </div>
-    <div class="read-block">
-      <h4>// Chinese Zodiac Layer</h4>
-      <p>
-        The <em>Metal Pig</em> is disciplined, loyal, and carries a fierce, unyielding sense of justice.
-        Metal sharpens the Pig's already powerful convictions into something approaching a creed.
-        This placement fights for its people. It does not retreat. It does not compromise
-        on what it has decided matters. The Metal Pig's shadow is this:
-        it loves so hard it becomes a target — and it would rather be a target than leave its people undefended.
-      </p>
-    </div>
+  <!-- ===== SOUL SYNTHESIS ===== -->
+  <h2>Soul Synthesis</h2>
+  <div style="margin: 24px 0; padding: 24px; background: rgba(107,77,242,0.05); border: 1px solid rgba(107,77,242,0.15); border-radius: 8px;">
+    <p class="reading">[Soul Synthesis — To be personalized]</p>
   </div>
 
-  <div class="divider"></div>
-
-  <div class="deep-section">
-    <div class="section-label">// Active Archetypes</div>
-    <div class="archetype-panel">
-      <div class="arch-card">
-        <span class="arch-icon">🔥</span>
-        <div class="arch-title">The Prophet</div>
-        <div class="arch-desc">22 Life Path + 7 Birthday — saw the structural truth of a society and spoke it before the evidence was in. People are still catching up.</div>
-      </div>
-      <div class="arch-card">
-        <span class="arch-icon">⚔️</span>
-        <div class="arch-title">The Poet-Warrior</div>
-        <div class="arch-desc">Gemini + 22 Expression — held the pen and the principles simultaneously. Made the world understand these were never opposites.</div>
-      </div>
-      <div class="arch-card">
-        <span class="arch-icon">🌊</span>
-        <div class="arch-title">The Revolutionary</div>
-        <div class="arch-desc">9 Personality + Metal Pig — absorbed the pain of the collective and returned it as a battle cry. Spoke for generations who had no microphone.</div>
-      </div>
-      <div class="arch-card">
-        <span class="arch-icon">♊</span>
-        <div class="arch-title">The Twin</div>
-        <div class="arch-desc">Gemini duality made visible — carried the whole spectrum of human experience and refused to perform only the parts people were comfortable with.</div>
-      </div>
-    </div>
+  <!-- ===== DEBUGGING NOTES ===== -->
+  <h2>Debugging Notes — Watch For These Loops</h2>
+  <div style="margin: 24px 0; padding: 24px; background: rgba(243,178,58,0.05); border: 1px solid rgba(243,178,58,0.15); border-radius: 8px;">
+    <div class="reading" style="font-size: 0.95rem;">[Debugging Notes — To be personalized]</div>
   </div>
 
-  <div class="deep-section">
-    <div class="section-label">// Shadow → Gift Interface</div>
-    <table class="sg-table">
+  <!-- ===== YEARLY CYCLES ===== -->
+  <h2>12-Month Cycles</h2>
+  <div style="margin: 20px 0; overflow-x: auto;">
+    <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
       <thead>
-        <tr><th>Shadow Pattern</th><th>Gift Encoded Within</th></tr>
+        <tr style="border-bottom: 2px solid #26E4D8;">
+          <th style="padding: 12px; text-align: left; color: #26E4D8; font-weight: 600;">Month</th>
+          <th style="padding: 12px; text-align: center; color: #26E4D8; font-weight: 600;">Number</th>
+          <th style="padding: 12px; text-align: left; color: #26E4D8; font-weight: 600;">Meaning</th>
+        </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>The 22 under pressure scatters across too many fronts simultaneously</td>
-          <td>The capacity to hold multiple movements — music, activism, film, legacy — and make each one real</td>
-        </tr>
-        <tr>
-          <td>Gemini duality reads as contradiction or instability</td>
-          <td>A range that could reach the streets and the library in the same breath, the same verse</td>
-        </tr>
-        <tr>
-          <td>7 Birthday becomes paranoia disguised as discernment</td>
-          <td>The deepest political and social insight of his generation — he was right about most of it</td>
-        </tr>
-        <tr>
-          <td>4 Soul Urge craves stability in conditions designed to deny it</td>
-          <td>A foundation-level commitment to community that made his work feel like home to millions</td>
-        </tr>
-        <tr>
-          <td>9 Personality absorbs the collective pain as its own</td>
-          <td>Songs that became eulogies for an entire generation's grief — felt by people who never met him</td>
-        </tr>
-        <tr>
-          <td>Metal Pig loyalty becomes a target in hostile environments</td>
-          <td>A code of honor so legible it outlasted his life and still shapes how entire generations move</td>
-        </tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">January</td><td style="padding: 10px 12px; text-align: center; color: #26E4D8; font-weight: 600;">6</td><td style="padding: 10px 12px;">Responsibility year. Home. Family. Recalibrate what ‘balance’ means.</td></tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">February</td><td style="padding: 10px 12px; text-align: center; color: #26E4D8; font-weight: 600;">7</td><td style="padding: 10px 12px;">Inner work year. Go deep. Study. Rest. The answers are inside the code.</td></tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">March</td><td style="padding: 10px 12px; text-align: center; color: #26E4D8; font-weight: 600;">8</td><td style="padding: 10px 12px;">Power year. Harvest. Manifest. Step into the version you’ve been compiling.</td></tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">April</td><td style="padding: 10px 12px; text-align: center; color: #26E4D8; font-weight: 600;">9</td><td style="padding: 10px 12px;">Completion year. Release. Grieve if needed. Clear the cache for what’s next.</td></tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">May</td><td style="padding: 10px 12px; text-align: center; color: #26E4D8; font-weight: 600;">1</td><td style="padding: 10px 12px;">New Cycle. Plant seeds. Start the thing you’ve been circling.</td></tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">June</td><td style="padding: 10px 12px; text-align: center; color: #26E4D8; font-weight: 600;">11</td><td style="padding: 10px 12px;">Illumination year. Downloads are incoming. Trust what you can’t yet prove.</td></tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">July</td><td style="padding: 10px 12px; text-align: center; color: #26E4D8; font-weight: 600;">3</td><td style="padding: 10px 12px;">Expression year. Create. Be visible. Share what’s been brewing.</td></tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">August</td><td style="padding: 10px 12px; text-align: center; color: #26E4D8; font-weight: 600;">4</td><td style="padding: 10px 12px;">Build year. Foundations. Systems. Do the unsexy work.</td></tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">September</td><td style="padding: 10px 12px; text-align: center; color: #26E4D8; font-weight: 600;">5</td><td style="padding: 10px 12px;">Change year. Something shifts — let it. Don’t grip the old timeline.</td></tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">October</td><td style="padding: 10px 12px; text-align: center; color: #26E4D8; font-weight: 600;">6</td><td style="padding: 10px 12px;">Responsibility year. Home. Family. Recalibrate what ‘balance’ means.</td></tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">November</td><td style="padding: 10px 12px; text-align: center; color: #26E4D8; font-weight: 600;">7</td><td style="padding: 10px 12px;">Inner work year. Go deep. Study. Rest. The answers are inside the code.</td></tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">December</td><td style="padding: 10px 12px; text-align: center; color: #26E4D8; font-weight: 600;">8</td><td style="padding: 10px 12px;">Power year. Harvest. Manifest. Step into the version you’ve been compiling.</td></tr>
       </tbody>
     </table>
   </div>
 
-  <div class="deep-section">
-    <div class="section-label">// Defining Frequencies</div>
-    <div class="cycles-row">
-      <div class="cycle-card">
-        <div class="cycle-year">Peak Year · 1993</div>
-        <div class="cycle-num">6</div>
-        <div class="cycle-name">The Commitment</div>
-        <div class="cycle-desc">
-          A Personal Year 6 — the year of service, responsibility, and sacred obligation.
-          This was when the work stopped being music and became <em>mission</em>.
-          The artist became the voice. The voice became the movement.
-        </div>
-      </div>
-      <div class="cycle-card">
-        <div class="cycle-year">Peak Year · 1996</div>
-        <div class="cycle-num">9</div>
-        <div class="cycle-name">The Completion</div>
-        <div class="cycle-desc">
-          A Personal Year 9 — the close of a cycle. <em>All Eyez on Me</em> arrived as
-          the fullest expression of the vision. The 9 year is always both summit and threshold.
-          He left at the moment of total completion — the blueprint finished.
-        </div>
-      </div>
+  <!-- ===== WESTERN ASTROLOGY ===== -->
+  <h2>Celestial Coordinates</h2>
+  <div class="astro-grid">
+    <div class="astro-item">
+      <div class="planet">☉ Sun</div>
+      <div class="sign">Gemini ♊</div>
+    </div>
+    <div class="astro-item"><div class="planet">☽ Moon / ↑ Rising</div><div class="sign">Birth time needed for full chart</div></div>
+  </div>
+  <h3>Sun in Gemini</h3>
+  <p class="reading">Signal splitter. Processes reality through language and connection.</p>
+
+  <!-- ===== CHINESE ZODIAC ===== -->
+  <h2>Eastern Coordinates</h2>
+  <div class="zodiac-badge">
+    <div class="animal">🐷</div>
+    <div>
+      <div class="info">Metal Pig</div>
+      <div class="element-tag">Metal element · 1971</div>
     </div>
   </div>
 
-  <div class="divider"></div>
-
-  <div class="deep-section">
-    <div class="section-header">
-      <div class="section-icon">✦</div>
-      <div class="section-title">Legacy Number 8 · Power Without End</div>
-      <div class="section-line"></div>
-    </div>
-    <div class="read-block">
-      <h4>// What He Left</h4>
-      <p>
-        The 8 is the number of authority, of structural power, of legacy that compounds over time.
-        The 8 is also the symbol of infinity — the number that has no terminus.
-        Thirty years after his death, his catalog still moves. His words still circulate.
-        His image still carries weight in rooms he never entered.
-        That is not nostalgia. That is a <em>22 doing what 22s do</em>:
-        building something that keeps holding weight long after the builder has gone.
-      </p>
-    </div>
-  </div>
-
-  <div class="activation">
-    <div class="activation-label">// Soul Activation Code</div>
-    <div class="activation-code">22 · 7 · 22 · 4 · 9 · 8</div>
-    <p class="activation-desc">
-      A Master Builder who arrived twice encoded — in his birth and in his name —
-      with a mission to construct something the culture would still stand on long after he was gone.
-      The blueprint was always complete. The question was only: <em>would the world be ready to read it?</em>
+  <!-- ===== CURRENT CYCLE ===== -->
+  <h2>Current Cycle</h2>
+  <div class="cycle-box">
+    <div class="cycle-number">5</div>
+    <h3>Personal Year 5</h3>
+    <p class="reading">Change year. Something shifts — let it. Don’t grip the old timeline.</p>
+    <h3 style="margin-top: 20px;">Personal Month: 1</h3>
+    <p style="margin-top: 20px; text-align: center;">
+      <a href="TAS61971-202605.html" style="color: #26E4D8; text-decoration: none; font-family: 'Space Mono', monospace; font-size: 0.9rem;">→ View This Month's Energy Update</a>
     </p>
   </div>
 
+  <!-- ===== IMPOSSIBLE CODE ===== -->
+  <div class="impossible-code">
+    <h2 style="border: none; padding: 0; margin: 0; text-align: center; font-size: 1.8rem; color: var(--gold);">◈ The Impossible Code ◈</h2>
+    <div class="ic-subtitle">Your Soul's Permanent Signature</div>
+
+    <div class="ic-quantum-block">
+      <div class="ic-quantum-label">⟁ Quantum Signature ⟁</div>
+      <div class="ic-quantum-value">10CE·9CA3·FE92</div>
+      <div class="ic-quantum-note">Your soul's permanent UUID across all timelines</div>
+    </div>
+
+    <div class="ic-grid">
+      <div class="ic-cell">
+        <div class="ic-cell-label">Soul Resonance</div>
+        <div class="ic-cell-value">2837.0 Hz</div>
+        <div class="ic-cell-note">Your harmonic baseline</div>
+      </div>
+      <div class="ic-cell">
+        <div class="ic-cell-label">Rarity Score</div>
+        <div class="ic-cell-value">55 / 100</div>
+        <div class="ic-rarity-tag ic-rarity-EPIC">EPIC</div>
+        <div class="ic-cell-note" style="margin-top: 6px;">Master numbers present: Life Path 22</div>
+      </div>
+    </div>
+
+    <div class="ic-section-title">◈ Oracle Trinity ◈</div>
+    <div class="ic-oracle">
+      <div class="ic-arcana">
+        <div class="ic-arcana-source">Life Path</div>
+        <div class="ic-arcana-name">The Fool (Master)</div>
+        <div class="ic-arcana-meaning">master beginner, cosmic spiral</div>
+      </div>
+      <div class="ic-arcana">
+        <div class="ic-arcana-source">Expression</div>
+        <div class="ic-arcana-name">The Emperor</div>
+        <div class="ic-arcana-meaning">structure, sovereignty, empire</div>
+      </div>
+      <div class="ic-arcana">
+        <div class="ic-arcana-source">Soul Urge</div>
+        <div class="ic-arcana-name">The Emperor</div>
+        <div class="ic-arcana-meaning">structure, sovereignty, empire</div>
+      </div>
+    </div>
+
+    <div class="ic-section-title">◈ Vibrational Blueprint ◈</div>
+    <div class="ic-blueprint">
+      <div class="ic-bp-line"><span class="ic-bp-label">LP</span> ████████████████████</div>
+      <div class="ic-bp-line"><span class="ic-bp-label">EX</span> ████░░░░░░</div>
+      <div class="ic-bp-line"><span class="ic-bp-label">SU</span> ████░░░░░░</div>
+      <div class="ic-bp-line"><span class="ic-bp-label">PE</span> ████████░░</div>
+      <div class="ic-bp-wave">▁▂▃▄▁▂▃▄▁</div>
+    </div>
+
+    <div class="ic-section-title" style="color: var(--ember);">⚡ Activation Sequence ⚡</div>
+    <div class="ic-activation">
+      <div class="ic-act-code">831B2708[LP22]</div>
+      <p class="ic-act-desc">When you speak, write, or think this code, you align with your highest potential. It's your soul's call sign.</p>
+    </div>
+
+    <div class="ic-section-title">◈ Shadow Integration Pathway ◈</div>
+    <p style="text-align: center; font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--dim); margin-bottom: 16px;">Your shadows are not enemies. They are untranslated parts of your code.</p>
+
+    <div class="ic-shadow">
+      <div class="ic-shadow-label">LP22 Shadow</div>
+      <div class="ic-shadow-text">Building empires while neglecting the kingdom of your own body.</div>
+      <div class="ic-shadow-practice">Schedule rest before scheduling output. Master Builders break under their own weight.</div>
+    </div>
+    <div class="ic-shadow">
+      <div class="ic-shadow-label">Expression 4 Shadow</div>
+      <div class="ic-shadow-text">Building for everyone else before building for yourself.</div>
+      <div class="ic-shadow-practice">The architect must live inside the structure. Build your own room first.</div>
+    </div>
+    <div class="ic-shadow">
+      <div class="ic-shadow-label">SU4 Shadow</div>
+      <div class="ic-shadow-text">Building for everyone else before building for yourself.</div>
+      <div class="ic-shadow-practice">The architect must live inside the structure. Build your own room first.</div>
+    </div>
+
+    <p style="text-align: center; margin-top: 28px; font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--dim); font-size: 0.9rem;">
+      Compare your frequency with another soul at <a href="https://frequency.thefirstspark.shop" style="color: var(--cyan); text-decoration: none;">frequency.thefirstspark.shop</a>
+    </p>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
   <div class="footer">
-    <div class="footer-brand">The First Spark</div>
-    <div class="footer-sub">thefirstspark.shop &nbsp;·&nbsp; Reality is programmable. Consciousness is the code.</div>
+    <p>THE FIRST SPARK — Reality is programmable. Consciousness is the code.</p>
+    <p style="margin-top: 8px;">
+      <a href="https://thefirstspark.shop">thefirstspark.shop</a> ·
+      <a href="https://whop.com/joined/sparkverse-511c/">Join the Sparkverse</a>
+    </p>
   </div>
 
 </div>
+
 <script>
-  const sf = document.getElementById('starfield');
-  for (let i = 0; i < 180; i++) {
-    const s = document.createElement('div');
-    s.className = 'star';
-    const size = Math.random() * 2.5 + 0.5;
-    s.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${(Math.random()*4+2).toFixed(1)}s;opacity:${Math.random()*0.5+0.1};animation-delay:${(Math.random()*5).toFixed(1)}s;`;
-    sf.appendChild(s);
+// Seeded random number generator
+function seededRandom(seed) {
+  const x = Math.sin(seed) * 10000;
+  return x - Math.floor(x);
+}
+
+// Sun sign color palette (element-based)
+const SUN_SIGN_COLORS = {
+  'Aries': ['#f97316', '#ea580c', '#dc2626'],
+  'Taurus': ['#84cc16', '#65a30d', '#4d7c0f'],
+  'Gemini': ['#8b5cf6', '#7c3aed', '#a855f7'],
+  'Cancer': ['#22d3ee', '#06b6d4', '#0891b7'],
+  'Leo': ['#f97316', '#ea580c', '#fbbf24'],
+  'Virgo': ['#84cc16', '#65a30d', '#4d7c0f'],
+  'Libra': ['#8b5cf6', '#7c3aed', '#a855f7'],
+  'Scorpio': ['#22d3ee', '#0f172a', '#1e293b'],
+  'Sagittarius': ['#f97316', '#ea580c', '#fbbf24'],
+  'Capricorn': ['#6b7280', '#4b5563', '#1f2937'],
+  'Aquarius': ['#8b5cf6', '#7c3aed', '#a855f7'],
+  'Pisces': ['#22d3ee', '#06b6d4', '#0891b7']
+};
+
+// Extract data from page
+const lifePathStr = document.querySelector('h2')?.textContent || '';
+const lifePathMatch = lifePathStr.match(/Life Path (\d+)/);
+const lifePathNum = lifePathMatch ? parseInt(lifePathMatch[1]) : 1;
+
+// Default sun sign (Libra for Matthew, can be extracted from page)
+const sunSignMatch = document.body.textContent.match(/Sun in\s+(\w+)/);
+const sunSign = sunSignMatch ? sunSignMatch[1] : 'Libra';
+
+// For now, use hardcoded values that will be replaced by template substitution
+const soulUrgeNum = 4;
+const expressionNum = 4;
+
+// Create seeded starfield
+function createPersonalStarfield() {
+  const starfield = document.getElementById('starfield');
+  const seed = lifePathNum * 1000 + soulUrgeNum * 100 + expressionNum * 10;
+  const colors = SUN_SIGN_COLORS[sunSign] || SUN_SIGN_COLORS['Pisces'];
+
+  for (let i = 0; i < 150; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.left = (seededRandom(seed + i * 2) * 100) + '%';
+    star.style.top = (seededRandom(seed + i * 2 + 1) * 100) + '%';
+    const size = seededRandom(seed + i * 3) * 2 + 0.5;
+    star.style.width = size + 'px';
+    star.style.height = size + 'px';
+    star.style.backgroundColor = colors[i % colors.length];
+    const duration = seededRandom(seed + i * 4) * 3 + 2;
+    star.style.setProperty('--duration', duration + 's');
+    star.style.setProperty('--base-opacity', (seededRandom(seed + i * 5) * 0.5 + 0.2).toFixed(2));
+    star.style.setProperty('--peak-opacity', (seededRandom(seed + i * 6) * 0.5 + 0.6).toFixed(2));
+    starfield.appendChild(star);
   }
+}
+
+// Create starfield on load
+document.addEventListener('DOMContentLoaded', createPersonalStarfield);
 </script>
 </body>
 </html>
