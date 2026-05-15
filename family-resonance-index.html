@@ -625,6 +625,11 @@ async function loadConstellation() {
 }
 
 function renderConstellation(centerSoul, centerSig, bonds) {
+  // Stats use all bonds; SVG only renders top 20 by resonance
+  const constellationBonds = [...bonds].sort((a, b) => b.resonance - a.resonance).slice(0, 20);
+}
+
+function renderConstellation(centerSoul, centerSig, bonds) {
   const initials = centerSoul.alias
     ? centerSoul.alias.substring(0,2).toUpperCase()
     : centerSoul.name.split(' ').map(s => s[0]).slice(0,2).join('');
@@ -663,7 +668,7 @@ function renderConstellation(centerSoul, centerSig, bonds) {
     document.getElementById('rarestBond').textContent = '—';
   }
 
-  drawConstellation(centerSoul, centerSig, bonds);
+  drawConstellation(centerSoul, centerSig, constellationBonds);
   renderBondList(centerSig, bonds);
 }
 
