@@ -362,6 +362,11 @@ PERSONAL_YEAR_MEANINGS = {
     33: "Service year. Your presence is the offering. Show up fully.",
 }
 
+PERSONAL_MONTH_MEANINGS = {
+    k: v.replace(' year.', ' month.').replace(' year ', ' month ')
+    for k, v in PERSONAL_YEAR_MEANINGS.items()
+}
+
 SUN_SIGN_BRIEFS = {
     'Aries': 'Fire starter. Direct. Runs toward what others run from.',
     'Taurus': 'Rooted power. Builds what lasts. Senses everything.',
@@ -758,7 +763,7 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   <!-- ===== SOUL SYNTHESIS ===== -->
   <h2>Soul Synthesis</h2>
   <div style="margin: 24px 0; padding: 24px; background: rgba(107,77,242,0.05); border: 1px solid rgba(107,77,242,0.15); border-radius: 8px;">
-    <p class="reading">${soul_synthesis_text}</p>
+    <div class="reading">${soul_synthesis_text}</div>
   </div>
 
   <!-- ===== DEBUGGING NOTES ===== -->
@@ -950,6 +955,152 @@ CHINESE_EMOJIS = {
 
 
 # ============================================================
+# AUTO-GENERATED NARRATIVES (fallback when no hand-written exists)
+# ============================================================
+
+def _wrap_paragraphs(text):
+    """Convert plain text with blank-line separators into <p> tags."""
+    paragraphs = [p.strip() for p in text.strip().split('\n\n') if p.strip()]
+    return '\n    '.join(f'<p class="reading" style="margin-bottom: 16px;">{p}</p>' for p in paragraphs)
+
+
+def auto_soul_synthesis(life_path, expression, soul_urge, personality, birthday,
+                        maturity, hidden_passion, karmic_lessons, sun_sign,
+                        chinese_animal, chinese_element, personal_year):
+    """Generate a 5-6 paragraph Soul Synthesis from numerology + astrology.
+
+    Returns HTML wrapped in <p> tags.
+    """
+    lp_brief = LIFE_PATH_MEANINGS.get(life_path, '').split('.')[0].replace('The ', '').strip()
+    expr_brief = LIFE_PATH_MEANINGS.get(expression, '').split('.')[0].replace('The ', '').strip()
+    su_brief = LIFE_PATH_MEANINGS.get(soul_urge, '').split('.')[0].replace('The ', '').strip()
+    pers_brief = LIFE_PATH_MEANINGS.get(personality, '').split('.')[0].replace('The ', '').strip()
+    sun_brief = SUN_SIGN_BRIEFS.get(sun_sign, '')
+    maturity_brief = MATURITY_NUMBER_MEANINGS.get(maturity, '')
+    hp_brief = HIDDEN_PASSION_MEANINGS.get(hidden_passion, '')
+    py_brief = PERSONAL_YEAR_MEANINGS.get(personal_year, '')
+
+    paragraphs = []
+
+    paragraphs.append(
+        f"You run on Life Path {life_path} — <em>{lp_brief}</em>. "
+        f"Expression {expression} ({expr_brief}) is how you transmit. "
+        f"Soul Urge {soul_urge} ({su_brief}) is what fuels you underneath. "
+        f"That triangle is the core engine."
+    )
+
+    masters = [n for n in [life_path, expression, soul_urge, personality, maturity] if n in (11, 22, 33)]
+    if masters:
+        master_list = ', '.join(str(m) for m in masters)
+        paragraphs.append(
+            f"You carry master number{'s' if len(masters) > 1 else ''} <strong>{master_list}</strong> — "
+            f"frequencies most people only brush against. Master-level signal isn't a gift you can chase; "
+            f"it's a current you have to learn to operate inside without burning out. The volume runs high by default. "
+            f"Your system needs more downtime, more grounding, and more permission to be intense than most will think makes sense. "
+            f"That isn't fragility. It's structural."
+        )
+
+    triple_check = [life_path, expression, soul_urge, personality, birthday, maturity]
+    repeated = {n: triple_check.count(n) for n in set(triple_check) if triple_check.count(n) >= 3}
+    if repeated:
+        repeated_num = max(repeated, key=repeated.get)
+        repeated_count = repeated[repeated_num]
+        archetype = LIFE_PATH_MEANINGS.get(repeated_num, '').split('.')[0].replace('The ', '').strip()
+        paragraphs.append(
+            f"<strong>{repeated_count}×{repeated_num} density</strong> in your chart: the {archetype} pattern compounds itself. "
+            f"You don't just have this frequency — you <em>are</em> this frequency, and you appear as it, and you came here to learn it. "
+            f"It runs at full intensity. The thing you're here to become is also the thing you came in already being."
+        )
+
+    paragraphs.append(
+        f"Personality {personality} ({pers_brief}): what others receive from you first. "
+        f"Birthday {birthday}: your innate gift — the frequency that was online before you had words for any of this."
+    )
+
+    paragraphs.append(
+        f"Maturity Number {maturity}: by your mid-30s a new layer comes online. {maturity_brief} "
+        f"This is the long arc. The early years build the database; maturity is when transmission gets clean."
+    )
+
+    if karmic_lessons:
+        lessons_text = ' '.join(KARMIC_LESSON_MEANINGS.get(k, '') for k in karmic_lessons)
+        paragraphs.append(
+            f"Hidden Passion {hidden_passion} is the unconscious engine: <em>{hp_brief}</em> "
+            f"Your karmic lessons ({', '.join(str(k) for k in karmic_lessons)}) point to the threads you came here to weave: {lessons_text}"
+        )
+    else:
+        paragraphs.append(
+            f"Hidden Passion {hidden_passion}: <em>{hp_brief}</em> "
+            f"With no karmic lessons in your chart, you're not here to repair gaps — you're here to extend what you already know."
+        )
+
+    paragraphs.append(
+        f"<strong>{sun_sign} Sun</strong> grounds the transmission: {sun_brief} "
+        f"<strong>{chinese_element} {chinese_animal}</strong> adds the layered animal signature underneath. "
+        f"Right now you're in Personal Year {personal_year}: <em>{py_brief}</em> "
+        f"This is the season the rest of the map gets expressed through."
+    )
+
+    return '\n    '.join(f'<p class="reading" style="margin-bottom: 16px;">{p}</p>' for p in paragraphs)
+
+
+def auto_debugging_notes(life_path, expression, soul_urge, personality, birthday,
+                         maturity, hidden_passion, karmic_lessons, personal_year):
+    """Generate watch-list bullets based on chart tensions.
+
+    Returns HTML <ul> with <li> items.
+    """
+    bullets = []
+
+    masters = [n for n in [life_path, expression, soul_urge, personality, maturity] if n in (11, 22, 33)]
+    if masters:
+        bullets.append(
+            f"<strong>Master number overload:</strong> You hold {len(masters)} master frequency placement{'s' if len(masters) > 1 else ''} "
+            f"({', '.join(str(m) for m in masters)}). The high voltage burns out anything that isn't grounded. "
+            f"Rest is not optional — it's part of the architecture. Treat downtime as load-bearing."
+        )
+
+    triple_check = [life_path, expression, soul_urge, personality, birthday, maturity]
+    for num in set(triple_check):
+        count = triple_check.count(num)
+        if count >= 3:
+            archetype = LIFE_PATH_MEANINGS.get(num, '').split('.')[0].replace('The ', '').strip()
+            bullets.append(
+                f"<strong>{count}×{num} density ({archetype}):</strong> When a single frequency repeats this often, "
+                f"its shadow side amplifies as much as its gift. Watch for the version of {archetype} that becomes a loop "
+                f"instead of a path. The way out is through, not around."
+            )
+            break
+
+    for k in karmic_lessons[:3]:
+        lesson = KARMIC_LESSON_MEANINGS.get(k, '').replace('Lesson: ', '')
+        bullets.append(
+            f"<strong>Karmic Lesson {k}:</strong> {lesson} Don't avoid the assignment — it's the upgrade."
+        )
+
+    if hidden_passion:
+        hp_text = HIDDEN_PASSION_MEANINGS.get(hidden_passion, '')
+        bullets.append(
+            f"<strong>Hidden Passion {hidden_passion}:</strong> {hp_text} When this engine isn't honored, "
+            f"it leaks out sideways — usually as restlessness, sabotage, or a sudden need to blow things up. Channel it on purpose."
+        )
+
+    if personal_year in (11, 22, 33):
+        py_text = PERSONAL_YEAR_MEANINGS.get(personal_year, '')
+        bullets.append(
+            f"<strong>Master Personal Year {personal_year} this cycle:</strong> {py_text} "
+            f"Master years run intense. Don't try to power through them — calibrate to them."
+        )
+    elif personal_year == 9:
+        bullets.append(
+            f"<strong>Year 9 — Completion phase:</strong> If you're trying to start something new right now, the timing is off. "
+            f"This year is for releasing, completing, and clearing. The new thing wants Year 1, not Year 9."
+        )
+
+    return '<ul style="margin: 0; padding-left: 20px;">\n  ' + '\n  '.join(f'<li style="margin-bottom: 12px;">{b}</li>' for b in bullets) + '\n</ul>'
+
+
+# ============================================================
 # PERSONALIZED NARRATIVES (Hand-written per person)
 # ============================================================
 
@@ -1093,7 +1244,7 @@ def predictive_windows(birth_date, current_year=None, num_days=90):
                 'date': check_date,
                 'type': 'Personal Month Shift',
                 'number': pm,
-                'meaning': PERSONAL_YEAR_MEANINGS.get(pm, f'Month {pm}')
+                'meaning': PERSONAL_MONTH_MEANINGS.get(pm, f'Month {pm}')
             })
         
         # Every 11th or 22nd is a power day
@@ -1294,31 +1445,65 @@ def vibrational_blueprint(life_path, expression, resonance_hz):
 
 def destiny_checkpoints(birth_date, life_path):
     """
-    Calculate major life transition points based on numerological cycles.
-    Returns list of (age, cycle_number, meaning) tuples.
+    Major life transitions: 4 pinnacle phases + upcoming master Personal Years + Saturn returns.
+    Returns ordered list of dicts ready for table render.
     """
     checkpoints = []
-    
-    # First peak: 9-year cycle transitions at 9, 18, 27, 36, 45, 54, 63, 72, 81
-    for age in range(9, 82, 9):
-        cycle_num = ((age - 1) % 9) + 1
+
+    # === 4 Pinnacle phases ===
+    # P1 ends at age (36 - reduced life path). P2 + P3 each last 9 years. P4 runs to end.
+    lp_reduced = life_path if life_path < 10 else reduce_number(life_path, preserve_masters=False)
+    p1_end = 36 - lp_reduced
+    p2_end = p1_end + 9
+    p3_end = p2_end + 9
+    pinn = pinnacles(birth_date)
+    phases = [
+        ('Pinnacle 1', 0, p1_end, pinn['pinnacle_1']),
+        ('Pinnacle 2', p1_end + 1, p2_end, pinn['pinnacle_2']),
+        ('Pinnacle 3', p2_end + 1, p3_end, pinn['pinnacle_3']),
+        ('Pinnacle 4', p3_end + 1, None, pinn['pinnacle_4']),
+    ]
+    for label, start_age, end_age, num in phases:
+        age_range = f"Age {start_age}-{end_age}" if end_age else f"Age {start_age}+"
+        # Pinnacle meaning — strip "First pinnacle:" prefix since we label the phase ourselves
+        meaning = PINNACLE_MEANINGS.get(num, f'Phase {num}').split(': ', 1)[-1]
         checkpoints.append({
-            'age': age,
-            'year': birth_date.year + age,
-            'cycle': cycle_num,
-            'meaning': PERSONAL_YEAR_MEANINGS.get(cycle_num, f'Cycle {cycle_num}')
+            'type': 'pinnacle',
+            'age_range': age_range,
+            'label': f"{label} · Number {num}",
+            'meaning': meaning,
         })
-    
-    # Add 7-year spiritual cycles (Saturn returns at 29-30, 58-60, 87-90)
-    for age in [29, 58, 87]:
-        checkpoints.append({
-            'age': age,
-            'year': birth_date.year + age,
-            'cycle': 'Saturn Return',
-            'meaning': 'Major restructuring. Reality testing. Authority emerges.'
-        })
-    
-    return checkpoints[:12]  # Return first 12 checkpoints
+
+    # === Upcoming master Personal Years (next 30 years) ===
+    today = date.today()
+    current_age = today.year - birth_date.year
+    master_years_ahead = []
+    for offset in range(0, 30):
+        check_year = today.year + offset
+        py = personal_year(birth_date, check_year)
+        if py in (11, 22, 33):
+            age_at_year = check_year - birth_date.year
+            master_years_ahead.append({
+                'type': 'master_year',
+                'age_range': f"Age {age_at_year}",
+                'label': f"{check_year} · Personal Year {py}",
+                'meaning': PERSONAL_YEAR_MEANINGS.get(py, '').replace(' year.', '.', 1),
+            })
+            if len(master_years_ahead) >= 4:
+                break
+    checkpoints.extend(master_years_ahead)
+
+    # === Saturn returns ===
+    for ret_age, label in [(29, 'First Saturn Return'), (58, 'Second Saturn Return')]:
+        if ret_age >= current_age - 2:  # only future or very recent
+            checkpoints.append({
+                'type': 'saturn',
+                'age_range': f"Age {ret_age}-30" if ret_age == 29 else f"Age {ret_age}-60",
+                'label': f"★ {label}",
+                'meaning': 'Major restructuring. Reality tests every structure you built. Authentic authority emerges.',
+            })
+
+    return checkpoints
 
 
 def shadow_integration_path(karmic_lessons, challenges_dict, life_path):
@@ -1500,7 +1685,7 @@ def generate_soul_map(full_name, birth_date, birth_time=None, birth_city=None, b
     for month_num in range(1, 13):
         pm_month = personal_month(birth_date, current_year, month_num)
         month_name = calendar.month_name[month_num]
-        meaning = PERSONAL_YEAR_MEANINGS.get(pm_month, f'Month {pm_month}')
+        meaning = PERSONAL_MONTH_MEANINGS.get(pm_month, f'Month {pm_month}')
         yearly_months_rows.append(
             f'<tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">'
             f'<td style="padding: 10px 12px;">{month_name}</td>'
@@ -1510,13 +1695,23 @@ def generate_soul_map(full_name, birth_date, birth_time=None, birth_city=None, b
         )
     yearly_months_html = '\n        '.join(yearly_months_rows)
 
-    # Placeholders for Soul Synthesis and Debugging Notes (hand-written per person)
+    # Soul Synthesis + Debugging Notes — hand-written when available, auto-generated otherwise
     if full_name in NARRATIVES:
-        soul_synthesis_text = NARRATIVES[full_name]['soul_synthesis']
+        soul_synthesis_text = _wrap_paragraphs(NARRATIVES[full_name]['soul_synthesis'])
         debugging_notes_html = NARRATIVES[full_name]['debugging_notes']
     else:
-        soul_synthesis_text = '[Soul Synthesis — To be personalized]'
-        debugging_notes_html = '[Debugging Notes — To be personalized]'
+        soul_synthesis_text = auto_soul_synthesis(
+            life_path=lp, expression=expr, soul_urge=su, personality=pers,
+            birthday=bday, maturity=mat, hidden_passion=hp,
+            karmic_lessons=kl, sun_sign=ss_name,
+            chinese_animal=c_animal, chinese_element=c_element,
+            personal_year=py,
+        )
+        debugging_notes_html = auto_debugging_notes(
+            life_path=lp, expression=expr, soul_urge=su, personality=pers,
+            birthday=bday, maturity=mat, hidden_passion=hp,
+            karmic_lessons=kl, personal_year=py,
+        )
 
     # Ceremony banner (special for first member or memorial)
     if memorial_date:
@@ -1700,27 +1895,33 @@ def generate_soul_map(full_name, birth_date, birth_time=None, birth_city=None, b
   </div>
     """
     
-    # Destiny Checkpoints HTML
+    # Destiny Checkpoints HTML — pinnacle phases, upcoming master years, Saturn returns
     destiny_html = """
   <div style="margin: 24px 0; padding: 24px; background: rgba(255,106,61,0.08); border: 1px solid #FF6A3D; border-radius: 8px;">
     <div style="font-size: 0.85rem; color: #FF6A3D; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 16px;">Major Life Transition Points</div>
     <table style="width: 100%; font-size: 0.85rem; border-collapse: collapse;">
 """
-    
-    for checkpoint in destiny_points[:8]:
-        if checkpoint['cycle'] == 'Saturn Return':
-            cycle_display = '<span style="color: #FF6A3D; font-weight: 700;">★ Saturn Return</span>'
-        else:
-            cycle_display = f"Personal Year {checkpoint['cycle']}"
-        
+
+    last_section = None
+    section_labels = {
+        'pinnacle': 'Pinnacle Phases (Life Arc)',
+        'master_year': 'Master Personal Years Ahead',
+        'saturn': 'Saturn Returns',
+    }
+    for checkpoint in destiny_points:
+        if checkpoint['type'] != last_section:
+            destiny_html += f"""
+      <tr><td colspan="3" style="padding: 14px 8px 6px; color: #F3B23A; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 700;">{section_labels[checkpoint['type']]}</td></tr>
+"""
+            last_section = checkpoint['type']
         destiny_html += f"""
       <tr style="border-bottom: 1px solid rgba(255,106,61,0.15);">
-        <td style="padding: 10px 8px; color: #26E4D8; font-weight: 600;">Age {checkpoint['age']}</td>
-        <td style="padding: 10px 8px;">{cycle_display}</td>
-        <td style="padding: 10px 8px; text-align: right; color: #f0ece4;">{checkpoint['meaning'][:40]}</td>
+        <td style="padding: 10px 8px; color: #26E4D8; font-weight: 600; white-space: nowrap;">{checkpoint['age_range']}</td>
+        <td style="padding: 10px 8px; color: #f0ece4; white-space: nowrap;">{checkpoint['label']}</td>
+        <td style="padding: 10px 8px; color: #f0ece4;">{checkpoint['meaning']}</td>
       </tr>
 """
-    
+
     destiny_html += "    </table>\n  </div>"
 
     # === Build HTML ===
@@ -2126,12 +2327,12 @@ def generate_monthly_update(full_name, birth_date, current_year=None, current_mo
         year=current_year,
         py=py,
         current_month=pm,
-        current_month_meaning_title=PERSONAL_YEAR_MEANINGS.get(pm, 'Cycle').split('.')[0],
-        current_month_meaning=PERSONAL_YEAR_MEANINGS.get(pm, 'Frequency unmapped.'),
+        current_month_meaning_title=PERSONAL_MONTH_MEANINGS.get(pm, 'Cycle').split('.')[0],
+        current_month_meaning=PERSONAL_MONTH_MEANINGS.get(pm, 'Frequency unmapped.'),
         next_month=pm_next,
         next_month_name=next_month_name,
-        next_month_meaning_title=PERSONAL_YEAR_MEANINGS.get(pm_next, 'Cycle').split('.')[0],
-        next_month_meaning=PERSONAL_YEAR_MEANINGS.get(pm_next, 'Frequency unmapped.'),
+        next_month_meaning_title=PERSONAL_MONTH_MEANINGS.get(pm_next, 'Cycle').split('.')[0],
+        next_month_meaning=PERSONAL_MONTH_MEANINGS.get(pm_next, 'Frequency unmapped.'),
         map_slug=base_filename,
     )
 
