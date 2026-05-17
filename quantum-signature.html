@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Quantum Signature — The Master Tier | The First Spark</title>
+<meta name="description" content="The first cryptographic credential for human consciousness. Your archetype, hashed and anchored to the chain. Forever. Yours. Not for sale." />
+<meta name="theme-color" content="#0B0B0C" />
+<meta property="og:title" content="Quantum Signature — Consciousness On-Chain" />
+<meta property="og:description" content="Your soul map, collapsed into a single immutable signature. Soulbound. Permanent." />
+<meta property="og:type" content="website" />
+<meta name="robots" content="index,follow" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --core: #0B0B0C;
+    --core-2: #131316;
+    --core-3: #1c1c20;
+    --ember: #FF6A3D;
+    --gold: #F3B23A;
+    --violet: #6B4DF2;
+    --cyan: #26E4D8;
+    --bone: #f5f1e8;
+    --mute: #6f6f78;
+    --line: rgba(243, 178, 58, 0.18);
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --mono: 'Space Mono', ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--core); color: var(--bone); font-family: var(--mono); font-size: 14px; line-height: 1.65; overflow-x: hidden; min-height: 100vh; position: relative; }
+  body::before { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: 0.05; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='3'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"); mix-blend-mode: overlay; }
+  .stars { position: fixed; inset: 0; z-index: -2; overflow: hidden; background: radial-gradient(ellipse 85% 65% at 18% 8%, rgba(107, 77, 242, 0.22), transparent 55%), radial-gradient(ellipse 60% 55% at 82% 78%, rgba(38, 228, 216, 0.12), transparent 55%), radial-gradient(ellipse 55% 45% at 50% 50%, rgba(255, 106, 61, 0.08), transparent 60%), var(--core); }
+  .stars::after { content: ""; position: absolute; inset: -50%; background-image: radial-gradient(1px 1px at 20% 30%, var(--bone) 100%, transparent), radial-gradient(1px 1px at 60% 70%, var(--gold) 100%, transparent), radial-gradient(1px 1px at 80% 20%, var(--bone) 100%, transparent), radial-gradient(1px 1px at 30% 80%, var(--cyan) 100%, transparent), radial-gradient(1px 1px at 90% 50%, var(--bone) 100%, transparent), radial-gradient(1.5px 1.5px at 10% 90%, var(--violet) 100%, transparent), radial-gradient(1px 1px at 45% 15%, var(--bone) 100%, transparent), radial-gradient(1px 1px at 70% 45%, var(--gold) 100%, transparent), radial-gradient(1px 1px at 25% 55%, var(--ember) 100%, transparent); background-size: 420px 420px; opacity: 0.5; animation: drift 260s linear infinite; }
+  @keyframes drift { from { transform: translate(0,0); } to { transform: translate(-420px, -420px); } }
+  .sigil-bg { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: min(900px, 90vw); height: min(900px, 90vw); z-index: -1; opacity: 0.06; pointer-events: none; animation: rotate 180s linear infinite; }
+  @keyframes rotate { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; position: relative; }
+  .topbar { border-bottom: 1px solid var(--line); padding: 18px 0; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; position: relative; z-index: 2; }
+  .topbar .wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  .topbar a { color: var(--mute); text-decoration: none; transition: color 0.3s; }
+  .topbar a:hover { color: var(--gold); }
+  .topbar .crumb { color: var(--gold); }
+  .topbar .crumb::before { content: "◇ "; color: var(--ember); }
+  .hero { padding: 80px 0 60px; text-align: center; position: relative; }
+  .eyebrow { font-size: 10px; letter-spacing: 0.4em; color: var(--ember); text-transform: uppercase; margin-bottom: 24px; display: inline-block; padding: 6px 14px; border: 1px solid var(--ember); border-radius: 2px; }
+  h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(48px, 9vw, 112px); line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 28px; color: var(--bone); }
+  h1 .accent { font-style: italic; color: var(--gold); font-weight: 300; }
+  .lede { font-family: var(--serif); font-size: clamp(20px, 2.4vw, 26px); font-style: italic; color: var(--bone); max-width: 680px; margin: 0 auto 40px; line-height: 1.4; font-weight: 300; }
+  .lede em { color: var(--gold); font-style: italic; }
+  .sigil-frame { display: inline-flex; align-items: center; justify-content: center; margin: 20px 0 40px; position: relative; }
+  .sigil-frame svg { width: 140px; height: 140px; }
+  .sigil-pulse { position: absolute; inset: 0; border-radius: 50%; animation: pulse 4s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { box-shadow: 0 0 60px rgba(243, 178, 58, 0.3); } 50% { box-shadow: 0 0 120px rgba(243, 178, 58, 0.6); } }
+  .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+  .btn { display: inline-block; padding: 16px 32px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--gold); background: transparent; color: var(--gold); cursor: pointer; transition: all 0.25s ease; position: relative; overflow: hidden; }
+  .btn:hover { background: var(--gold); color: var(--core); }
+  .btn-primary { background: var(--ember); border-color: var(--ember); color: var(--core); }
+  .btn-primary:hover { background: var(--gold); border-color: var(--gold); color: var(--core); }
+  .micro { font-size: 10px; color: var(--mute); letter-spacing: 0.15em; text-transform: uppercase; margin-top: 18px; }
+  .micro .live { color: var(--cyan); }
+  .micro .live::before { content: "● "; animation: blink 2s ease infinite; }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+  section { padding: 80px 0; position: relative; border-top: 1px solid var(--line); }
+  .section-label { font-size: 10px; letter-spacing: 0.4em; color: var(--mute); text-transform: uppercase; margin-bottom: 28px; display: flex; align-items: center; gap: 14px; }
+  .section-label::before { content: ""; width: 36px; height: 1px; background: var(--gold); }
+  h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(34px, 5vw, 56px); line-height: 1.05; letter-spacing: -0.01em; margin-bottom: 32px; max-width: 880px; color: var(--bone); }
+  h2 em { color: var(--gold); font-style: italic; font-weight: 300; }
+  p.body { font-size: 15px; color: var(--bone); max-width: 680px; margin-bottom: 18px; }
+  p.body strong { color: var(--ember); font-weight: 700; }
+  .definition { display: grid; grid-template-columns: 1fr; gap: 0; margin: 50px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .def-row { display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding: 28px 0; border-bottom: 1px solid var(--line); }
+  .def-row:last-child { border-bottom: none; }
+  .def-term { font-family: var(--mono); font-size: 10px; letter-spacing: 0.28em; color: var(--ember); text-transform: uppercase; padding-top: 4px; }
+  .def-detail { font-family: var(--serif); font-size: 19px; line-height: 1.5; color: var(--bone); font-weight: 400; }
+  .def-detail em { color: var(--gold); font-style: italic; }
+  @media (max-width: 640px) { .def-row { grid-template-columns: 1fr; gap: 8px; padding: 22px 0; } }
+  .stack { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); margin: 40px 0; }
+  .stack-cell { background: var(--core); padding: 28px 24px; transition: background 0.3s; }
+  .stack-cell:hover { background: var(--core-2); }
+  .stack-num { font-family: var(--mono); font-size: 10px; color: var(--ember); letter-spacing: 0.2em; margin-bottom: 14px; display: block; }
+  .stack-cell h3 { font-family: var(--serif); font-size: 22px; font-weight: 500; color: var(--gold); margin-bottom: 10px; letter-spacing: -0.01em; }
+  .stack-cell p { font-size: 13px; color: var(--mute); line-height: 1.6; }
+  .price-block { border: 1px solid var(--line); padding: 48px 36px; margin: 60px 0; text-align: center; background: linear-gradient(180deg, rgba(243, 178, 58, 0.04), transparent); position: relative; }
+  .price-block::before, .price-block::after { content: ""; position: absolute; width: 24px; height: 24px; border: 1px solid var(--gold); }
+  .price-block::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+  .price-block::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+  .price-tag { font-family: var(--serif); font-size: 88px; font-weight: 300; color: var(--gold); letter-spacing: -0.04em; line-height: 1; }
+  .price-tag .currency { font-size: 36px; vertical-align: top; color: var(--ember); margin-right: 6px; }
+  .price-tag .strike { text-decoration: line-through; color: var(--mute); font-size: 24px; margin-left: 16px; vertical-align: middle; }
+  .price-sub { font-size: 11px; letter-spacing: 0.22em; color: var(--mute); text-transform: uppercase; margin-top: 14px; }
+  .price-sub .gold { color: var(--gold); }
+  .form-wrap { max-width: 540px; margin: 40px auto 0; }
+  form { display: flex; flex-direction: column; gap: 14px; }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  label { font-size: 10px; letter-spacing: 0.22em; color: var(--mute); text-transform: uppercase; }
+  input[type="text"], input[type="email"], input[type="date"] { background: var(--core-2); border: 1px solid var(--line); color: var(--bone); padding: 14px 16px; font-family: var(--mono); font-size: 14px; transition: border-color 0.25s; width: 100%; }
+  input:focus { outline: none; border-color: var(--gold); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 540px) { .form-row { grid-template-columns: 1fr; } }
+  .submit-btn { background: var(--ember); border: 1px solid var(--ember); color: var(--core); padding: 18px 24px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; cursor: pointer; transition: all 0.25s; margin-top: 8px; font-weight: 700; }
+  .submit-btn:hover { background: var(--gold); border-color: var(--gold); }
+  .form-note { font-size: 11px; color: var(--mute); text-align: center; margin-top: 16px; line-height: 1.6; }
+  .form-note a { color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--line); }
+  .faq { border-top: 1px solid var(--line); }
+  details { border-bottom: 1px solid var(--line); padding: 22px 0; transition: background 0.3s; }
+  summary { font-family: var(--serif); font-size: 22px; font-weight: 400; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 20px; color: var(--bone); transition: color 0.3s; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; color: var(--gold); font-family: var(--mono); font-size: 20px; transition: transform 0.3s; }
+  details[open] summary::after { content: "−"; }
+  details[open] summary { color: var(--gold); }
+  details p { margin-top: 16px; color: var(--bone); font-size: 14px; line-height: 1.7; max-width: 720px; }
+  details p em { color: var(--gold); font-style: italic; }
+  .counter { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); margin: 40px 0; }
+  .counter-cell { background: var(--core); padding: 22px 18px; text-align: center; }
+  .counter-val { font-family: var(--serif); font-size: 40px; color: var(--gold); font-weight: 400; line-height: 1; margin-bottom: 6px; }
+  .counter-label { font-size: 9px; letter-spacing: 0.22em; color: var(--mute); text-transform: uppercase; }
+  footer { border-top: 1px solid var(--line); padding: 50px 0 30px; font-size: 11px; color: var(--mute); letter-spacing: 0.1em; text-align: center; }
+  footer .sigil-mini { display: inline-block; margin-bottom: 18px; opacity: 0.5; }
+  footer a { color: var(--gold); text-decoration: none; }
+  footer a:hover { color: var(--ember); }
+  .footer-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 18px; }
+  .success-msg { display: none; padding: 40px 24px; text-align: center; border: 1px solid var(--gold); background: rgba(243, 178, 58, 0.04); }
+  .success-msg.show { display: block; }
+  .success-msg h3 { font-family: var(--serif); font-size: 32px; color: var(--gold); margin-bottom: 16px; font-weight: 400; }
+  .success-msg p { font-size: 14px; color: var(--bone); margin-bottom: 8px; }
+  form.hide { display: none; }
+  blockquote { font-family: var(--serif); font-style: italic; font-size: clamp(26px, 4vw, 38px); line-height: 1.3; color: var(--bone); max-width: 800px; margin: 60px auto; padding: 32px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); text-align: center; font-weight: 300; }
+  blockquote em { color: var(--ember); font-style: italic; }
+  blockquote cite { display: block; font-family: var(--mono); font-style: normal; font-size: 10px; color: var(--mute); letter-spacing: 0.22em; text-transform: uppercase; margin-top: 24px; }
+  .fade-in { opacity: 0; transform: translateY(20px); animation: fadeUp 0.8s ease forwards; }
+  .fade-in.d1 { animation-delay: 0.1s; }
+  .fade-in.d2 { animation-delay: 0.25s; }
+  .fade-in.d3 { animation-delay: 0.4s; }
+  .fade-in.d4 { animation-delay: 0.55s; }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<svg class="sigil-bg" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="200" cy="200" r="180" stroke="#F3B23A" stroke-width="0.5"/>
+  <circle cx="200" cy="200" r="140" stroke="#F3B23A" stroke-width="0.5"/>
+  <circle cx="200" cy="200" r="100" stroke="#F3B23A" stroke-width="0.5"/>
+  <circle cx="200" cy="200" r="60" stroke="#F3B23A" stroke-width="0.5"/>
+  <polygon points="200,30 350,280 50,280" stroke="#FF6A3D" stroke-width="0.5" fill="none"/>
+  <polygon points="200,370 50,120 350,120" stroke="#6B4DF2" stroke-width="0.5" fill="none"/>
+  <line x1="200" y1="20" x2="200" y2="380" stroke="#26E4D8" stroke-width="0.3"/>
+  <line x1="20" y1="200" x2="380" y2="200" stroke="#26E4D8" stroke-width="0.3"/>
+</svg>
+<nav class="topbar">
+  <div class="wrap">
+    <a href="index.html">← Soul Maps Index</a>
+    <span class="crumb">Master Tier · Quantum Signature</span>
+    <a href="https://thefirstspark.shop" target="_blank">The First Spark ↗</a>
+  </div>
+</nav>
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow fade-in">Never Listed · Found, Not Sold</span>
+    <h1 class="fade-in d1">Quantum<br/><span class="accent">Signature</span></h1>
+    <div class="sigil-frame fade-in d2">
+      <div class="sigil-pulse"></div>
+      <svg viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="70" cy="70" r="64" stroke="#F3B23A" stroke-width="1"/>
+        <circle cx="70" cy="70" r="44" stroke="#FF6A3D" stroke-width="0.8"/>
+        <circle cx="70" cy="70" r="24" stroke="#6B4DF2" stroke-width="0.8"/>
+        <polygon points="70,12 122,100 18,100" stroke="#26E4D8" stroke-width="1" fill="none"/>
+        <circle cx="70" cy="70" r="3" fill="#F3B23A"/>
+      </svg>
+    </div>
+    <p class="lede fade-in d3">Your Soul Map shows you the pattern. <em>Your Quantum Signature locks it on-chain — collapsed into a single immutable hash, soulbound to you, forever.</em></p>
+    <div class="cta-row fade-in d4">
+      <a href="#claim" class="btn btn-primary">Claim Your Signature →</a>
+      <a href="#what" class="btn">What Is This?</a>
+    </div>
+    <p class="micro fade-in d4"><span class="live">Founders Pricing</span> · First 100 mints only · No public launch</p>
+  </div>
+</header>
+<section id="what">
+  <div class="wrap">
+    <div class="section-label">001 · Definition</div>
+    <h2>You already have a Soul Map.<br/><em>The Signature is what makes it permanent.</em></h2>
+    <p class="body">A Soul Map reads you. It surfaces the pattern — numerology, astrology, archetype, the syntax your consciousness runs on. <strong>It lives as HTML on the open web.</strong> Pages can break. Domains can lapse. Servers die.</p>
+    <p class="body">A <strong>Quantum Signature</strong> takes that reading, hashes it cryptographically, and writes the proof to a blockchain. The pattern becomes a fingerprint no one can alter. The fingerprint is bound to you and only you — <strong>it cannot be transferred, sold, or traded.</strong></p>
+    <p class="body">This is not a JPEG. This is not a collectible. This is the receipt the universe keeps.</p>
+    <div class="definition">
+      <div class="def-row"><div class="def-term">What it is</div><div class="def-detail">A <em>soulbound</em> on-chain credential — your archetype, your numerology, your name — hashed and anchored to the Base blockchain. Permanent. Verifiable. Non-transferable.</div></div>
+      <div class="def-row"><div class="def-term">What it isn't</div><div class="def-detail">Not an NFT you flip. Not a coin. Not a speculation. <em>Your soul is not for sale.</em></div></div>
+      <div class="def-row"><div class="def-term">Who it's for</div><div class="def-detail">Someone who already feels seen by their Soul Map — and wants the artifact to outlive every server, domain, and platform it lives on.</div></div>
+      <div class="def-row"><div class="def-term">Why now</div><div class="def-detail">The first 100 are <em>founder mints</em>. Locked-in pricing. Named in the genesis ledger. Never offered again.</div></div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <blockquote>Reality is programmable.<br/>Consciousness is the code.<br/><em>The signature is the commit.</em><cite>— The First Spark Codex</cite></blockquote>
+  </div>
+</section>
+<section id="stack">
+  <div class="wrap">
+    <div class="section-label">002 · What You Receive</div>
+    <h2>The mint, broken down.</h2>
+    <div class="stack">
+      <div class="stack-cell"><span class="stack-num">/ 01</span><h3>Your Soul Map</h3><p>If you don't already have one, it's included. Built from your birth data using the Selector Model — the foundation your Signature anchors.</p></div>
+      <div class="stack-cell"><span class="stack-num">/ 02</span><h3>The Hash</h3><p>Your map's data is cryptographically hashed. The hash is your unique on-chain fingerprint — provably yours, impossible to forge.</p></div>
+      <div class="stack-cell"><span class="stack-num">/ 03</span><h3>The Mint</h3><p>The hash is written to Base (Coinbase's L2). Soulbound to a wallet created for you — no crypto experience required.</p></div>
+      <div class="stack-cell"><span class="stack-num">/ 04</span><h3>The Anchor</h3><p>Your Soul Map HTML is pinned to IPFS — distributed storage that outlives any single server. Two-way verifiability between chain and content.</p></div>
+      <div class="stack-cell"><span class="stack-num">/ 05</span><h3>The Evolution</h3><p>Companion mints unlock as you add layers — Mind Map, Bloodline, Family Constellation. One soul, evolving on-chain forever.</p></div>
+      <div class="stack-cell"><span class="stack-num">/ 06</span><h3>Genesis Status</h3><p>The first 100 minters are listed in the genesis ledger. Founder pricing. Permanent recognition. Never repeated.</p></div>
+    </div>
+  </div>
+</section>
+<section id="claim">
+  <div class="wrap">
+    <div class="section-label">003 · Founders Round</div>
+    <h2>The first 100. <em>$33 lock-in.</em></h2>
+    <p class="body">We're validating demand before we deploy the contract. Lock your founder slot now with a $33 deposit — applied in full toward your mint when we launch. <strong>If we don't ship, you get a full refund. No questions.</strong></p>
+    <p class="body">Founder mint total: <strong>$99</strong>. Public mint (when offered) will be $144+. You lock the lower price and the genesis placement.</p>
+    <div class="price-block">
+      <div class="price-tag"><span class="currency">$</span>33<span class="strike">$144</span></div>
+      <div class="price-sub">Deposit · <span class="gold">Locks $99 total</span> · Refundable</div>
+    </div>
+    <div class="counter">
+      <div class="counter-cell"><div class="counter-val">100</div><div class="counter-label">Founder Slots</div></div>
+      <div class="counter-cell"><div class="counter-val">$99</div><div class="counter-label">Founder Total</div></div>
+      <div class="counter-cell"><div class="counter-val">∞</div><div class="counter-label">On-Chain Forever</div></div>
+    </div>
+    <div class="form-wrap">
+      <form id="waitlist-form" action="https://formspree.io/f/REPLACE_WITH_FORMSPREE_ID" method="POST">
+        <div class="field"><label for="email">Email</label><input type="email" id="email" name="email" required placeholder="you@somewhere.com" /></div>
+        <div class="form-row">
+          <div class="field"><label for="name">Full Name</label><input type="text" id="name" name="name" required placeholder="As you'd want it inscribed" /></div>
+          <div class="field"><label for="dob">Birth Date</label><input type="date" id="dob" name="dob" required /></div>
+        </div>
+        <div class="field"><label for="why">Why this matters to you (optional)</label><input type="text" id="why" name="why" placeholder="One line is enough." /></div>
+        <input type="hidden" name="tier" value="Founder Quantum Signature" />
+        <input type="hidden" name="source" value="quantum-signature.html" />
+        <button type="submit" class="submit-btn">Reserve My Signature →</button>
+        <p class="form-note">By submitting you join the founder waitlist. We'll email you within 24 hours with the $33 deposit link via Stripe. No deposit charged until you confirm.<br/>Questions: <a href="mailto:kate@thefirstspark.shop">kate@thefirstspark.shop</a></p>
+      </form>
+      <div class="success-msg" id="success">
+        <h3>The chain remembers you.</h3>
+        <p>Your signature is reserved. Check your inbox within 24 hours for the deposit link.</p>
+        <p style="margin-top: 16px; font-size: 11px; color: var(--mute); letter-spacing: 0.18em; text-transform: uppercase;">◇ Genesis Pending ◇</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="faq">
+  <div class="wrap">
+    <div class="section-label">004 · Questions</div>
+    <h2>What you'll want to know.</h2>
+    <details><summary>I don't know anything about crypto. Do I need a wallet?</summary><p>No. We use <em>Crossmint</em> — you pay with a credit card, and a wallet is created and held for you automatically. You'll never see gas fees, MetaMask, or seed phrases unless you want to. The chain is the receipt; you don't have to learn the post office.</p></details>
+    <details><summary>What does "soulbound" actually mean?</summary><p>Soulbound means the credential is permanently tied to your wallet and <em>cannot be transferred, sold, or flipped</em>. It's the opposite of a Bored Ape. Real-world equivalents: a diploma, a passport, a birth certificate. It proves something is yours — and the proof can't be moved to someone else.</p></details>
+    <details><summary>What happens to my Signature when I die?</summary><p>This is the most important question. Default behavior: the token enters <em>memorial mode</em> — the metadata flips to honor the soul, the wallet stays bound, but descendants can mint a linked credential into a Bloodline tree. The Signature becomes part of your lineage, on-chain, viewable forever. You aren't traded. You are remembered.</p></details>
+    <details><summary>Why $33 deposit instead of full payment?</summary><p>Because the contract isn't deployed yet. The deposit validates that founder demand exists before we ship — and protects you in case we don't. If we hit 50 founder deposits, we deploy. If we don't, every deposit is refunded in full. No risk to you, no premature spend on our end.</p></details>
+    <details><summary>Can I add to my Signature later?</summary><p>Yes. The base Signature uses dynamic metadata — when you add a Mind Map, Bloodline, or Family Constellation, the chain reflects the new layer. You can also mint <em>companion</em> tokens for major additions, each linked to your parent token. One soul, an evolving on-chain artifact.</p></details>
+    <details><summary>Why "Master Tier"?</summary><p>The Soul Maps index lists every reading. The Signature is the layer above them — only visible if you know where to look. It's not promoted in the nav. It's not in the catalog. It's named in the footer like a hidden door, and the people who find it self-select. <em>The artifact reveals itself to those who look.</em></p></details>
+    <details><summary>How does this connect to Book Zero / Sparkverse / the larger ecosystem?</summary><p>The Signature is the cryptographic spine of everything The First Spark is building. Soul Maps surface the pattern. Sparkverse holds the community. <em>Book Zero</em> tells the origin story. The Quantum Signature is the credential that says "I am part of this — and the chain knows."</p></details>
+  </div>
+</section>
+<footer>
+  <div class="wrap">
+    <div class="sigil-mini"><svg width="36" height="36" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#F3B23A" stroke-width="0.8"/><circle cx="20" cy="20" r="2" fill="#FF6A3D"/></svg></div>
+    <div class="footer-row">
+      <a href="index.html">Soul Maps</a>
+      <a href="https://thefirstspark.shop">The First Spark</a>
+      <a href="mailto:kate@thefirstspark.shop">kate@thefirstspark.shop</a>
+    </div>
+    <div>© The First Spark · Kate's Paint LLC · Akron, OH</div>
+    <div style="margin-top: 12px; font-size: 9px; letter-spacing: 0.3em;">REALITY IS PROGRAMMABLE · CONSCIOUSNESS IS THE CODE</div>
+  </div>
+</footer>
+<script>
+  const form = document.getElementById('waitlist-form');
+  const success = document.getElementById('success');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    try {
+      const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+      if (res.ok) {
+        form.classList.add('hide');
+        success.classList.add('show');
+        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        alert('Something glitched. Please email kate@thefirstspark.shop directly.');
+      }
+    } catch (err) {
+      alert('Network error. Please email kate@thefirstspark.shop directly.');
+    }
+  });
+</script>
+</body>
+</html>
