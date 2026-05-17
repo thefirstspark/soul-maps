@@ -1560,7 +1560,7 @@ def activation_code(full_name, birth_date, life_path):
     return f"{code}{frequency_hint}"
 
 
-def generate_soul_map(full_name, birth_date, birth_time=None, birth_city=None, birth_country='US', memorial_date=None):
+def generate_soul_map(full_name, birth_date, birth_time=None, birth_city=None, birth_country='US', memorial_date=None, birthday_from=None):
     """Generate complete Soul Map data and return rendered HTML."""
     
     # Define current_year early for use in advanced calculations
@@ -1731,6 +1731,17 @@ def generate_soul_map(full_name, birth_date, birth_time=None, birth_city=None, b
       <span class="ceremony-subtitle">Matthew Vincent Jablonski</span>
       Founding Consciousness · First Member
       <span class="ceremony-date">Initiated April 23, 2026</span>
+    </div>
+  </div>"""
+    elif birthday_from:
+        birth_str = birth_date.strftime('%B %d').replace(' 0', ' ')
+        age = date.today().year - birth_date.year
+        ceremony_banner = f"""<div class="ceremony-banner">
+    <div class="ceremony-text">
+      ◆ A BIRTHDAY GIFT ◆
+      <span class="ceremony-subtitle">For {full_name}</span>
+      {birth_str} &middot; {age} trips around the sun &middot; from {birthday_from}
+      <span class="ceremony-date">This is the architecture you came in with. Every number is yours. Every cycle is on time. Happy birthday, friend.</span>
     </div>
   </div>"""
     else:
@@ -2698,6 +2709,7 @@ def main():
     parser.add_argument('--batch', help='CSV file for batch generation (columns: Name, Date, Time, City, Country)')
     parser.add_argument('--batch-mode', choices=['soul-map', 'monthly', 'both'], default='both', help='What to generate in batch mode (default: both)')
     parser.add_argument('--memorial', help='Mark as memorial Soul Map with passed date (e.g. "March 30, 1991")')
+    parser.add_argument('--birthday-from', help='Frame this map as a birthday gift from this person (e.g. "Katelin")')
 
     args = parser.parse_args()
 
@@ -2756,6 +2768,7 @@ def main():
             birth_city=args.city,
             birth_country=args.country,
             memorial_date=args.memorial,
+            birthday_from=args.birthday_from,
         )
         print("SOUL MAP SUMMARY:")
         for key, val in summary.items():
