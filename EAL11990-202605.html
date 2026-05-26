@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soul Map — Eric Allen Lamb | The First Spark</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --void: #0a0a0f;
+    --deep-space: #0d0d14;
+    --ember: #FF6A3D;
+    --gold: #F3B23A;
+    --sacred-gold: #d4af37;
+    --violet: #8b5cf6;
+    --cyan: #22d3ee;
+    --white: #e8e6e3;
+    --dim: #6b7280;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--deep-space);
+    color: var(--white);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(ellipse 50% 35% at 20% 15%, rgba(255,106,61,.15), transparent 60%),
+      radial-gradient(ellipse 45% 30% at 80% 50%, rgba(212,175,55,.12), transparent 60%),
+      radial-gradient(ellipse 40% 30% at 50% 90%, rgba(139,92,246,.13), transparent 60%);
+    filter: blur(40px);
+  }
+  .starfield { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+  .star {
+    position: absolute; border-radius: 50%;
+    animation: twinkle var(--duration) ease-in-out infinite;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: var(--base-opacity); }
+    50% { opacity: var(--peak-opacity); }
+  }
+  .container {
+    position: relative; z-index: 1;
+    max-width: 900px; margin: 0 auto; padding: 60px 30px;
+  }
+  .archive-banner {
+    background: linear-gradient(135deg, rgba(139,92,246,.08), rgba(255,106,61,.06));
+    border: 1px solid rgba(139,92,246,.25);
+    border-radius: 4px;
+    padding: 14px 22px;
+    margin-bottom: 40px;
+    text-align: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 2.5px;
+    color: var(--dim);
+    text-transform: uppercase;
+  }
+  .archive-banner span { color: rgba(212,175,55,.65); }
+  .header {
+    text-align: center;
+    margin-bottom: 60px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(212,175,55,.28);
+  }
+  .brand {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--cyan);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .subtitle {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--dim);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2.2rem, 5.5vw, 3.4rem);
+    font-weight: 600;
+    color: var(--sacred-gold);
+    margin-bottom: 10px;
+    text-shadow: 0 0 50px rgba(212,175,55,.3);
+    letter-spacing: .04em;
+  }
+  .alt-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--dim);
+    margin-bottom: 20px;
+  }
+  .header-meta {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--dim);
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+  }
+  .real-talk {
+    background: linear-gradient(135deg, rgba(255,106,61,.1), rgba(139,92,246,.08));
+    border: 1px solid rgba(255,106,61,.38);
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin-bottom: 40px;
+  }
+  .real-talk-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 2.5px;
+    color: var(--ember);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .real-talk-line {
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--white);
+  }
+  .sigil-wrap { display: flex; justify-content: center; margin: 16px 0 8px; }
+  .sigil { width: 220px; height: 220px; filter: drop-shadow(0 0 28px rgba(212,175,55,.32)); }
+  .sigil-label {
+    text-align: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.67rem;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 40px;
+  }
+  .coords {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin: 20px 0 48px;
+  }
+  .coord-card {
+    background: rgba(255,255,255,.025);
+    border: 1px solid rgba(212,175,55,.18);
+    border-radius: 6px;
+    padding: 16px;
+    text-align: center;
+    transition: border-color .3s;
+  }
+  .coord-card:hover { border-color: var(--ember); }
+  .coord-label {
+    font-family: 'Space Mono', monospace;
+    font-size: .66rem;
+    color: var(--dim);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+  .coord-value {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--sacred-gold);
+  }
+  .section-block {
+    margin-bottom: 50px;
+    padding: 35px;
+    background: linear-gradient(135deg, rgba(13,13,20,.92), rgba(10,10,15,.96));
+    border: 1px solid rgba(212,175,55,.13);
+    border-radius: 4px;
+    position: relative;
+  }
+  .section-block::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: linear-gradient(to bottom, var(--sacred-gold), transparent);
+    border-radius: 4px 0 0 4px;
+  }
+  .section-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 2.5px;
+    color: var(--ember);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.55rem;
+    font-weight: 600;
+    color: var(--sacred-gold);
+    margin-bottom: 24px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(212,175,55,.2);
+  }
+  h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    color: var(--cyan);
+    margin: 24px 0 8px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+  p { margin-bottom: 16px; font-size: 1rem; line-height: 1.75; }
+  p:last-child { margin-bottom: 0; }
+  .pull { color: var(--sacred-gold); font-weight: 600; }
+  .shadow { color: var(--ember); font-weight: 600; }
+  .chart-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px; margin: 22px 0;
+  }
+  .chart-card {
+    background: rgba(255,255,255,.025);
+    border: 1px solid rgba(139,92,246,.2);
+    border-radius: 6px;
+    padding: 18px; text-align: center;
+  }
+  .chart-ph {
+    font-family: 'Space Mono', monospace;
+    font-size: .66rem;
+    color: var(--dim);
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .chart-glyph { font-size: 2.4rem; color: var(--violet); margin: 4px 0; font-family: serif; }
+  .chart-sign {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem; font-weight: 600;
+    color: var(--white); letter-spacing: .05em; margin-bottom: 6px;
+  }
+  .chart-blurb {
+    font-size: .85rem;
+    color: var(--dim);
+    font-style: italic;
+  }
+  blockquote {
+    border-left: 3px solid var(--ember);
+    padding: 8px 0 8px 20px;
+    margin: 20px 0;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--white);
+  }
+  .axiom {
+    background: linear-gradient(135deg, rgba(212,175,55,.12), rgba(255,106,61,.08));
+    border: 1px solid rgba(212,175,55,.38);
+    border-radius: 8px;
+    padding: 28px;
+    margin: 24px 0;
+    text-align: center;
+  }
+  .axiom-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.67rem;
+    letter-spacing: 2.5px;
+    color: var(--sacred-gold);
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+  .axiom-text {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: var(--white);
+    letter-spacing: .03em;
+  }
+  ul, ol { padding-left: 26px; margin-bottom: 16px; }
+  li { font-size: 1rem; margin-bottom: 10px; line-height: 1.7; }
+  .verdict {
+    background: rgba(139,92,246,.06);
+    border: 1px solid rgba(139,92,246,.28);
+    border-radius: 8px;
+    padding: 26px; margin: 20px 0;
+  }
+  .verdict-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.67rem;
+    letter-spacing: 2.5px;
+    color: var(--violet);
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+  .ritual {
+    background: rgba(34,211,238,.03);
+    border: 1px solid rgba(34,211,238,.2);
+    border-radius: 8px;
+    padding: 26px; margin: 20px 0;
+  }
+  .ritual-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 6px;
+  }
+  .ritual-sub {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.67rem;
+    letter-spacing: 1.8px;
+    color: var(--dim);
+    margin-bottom: 18px;
+    text-transform: uppercase;
+  }
+  .footer {
+    border-top: 1px solid rgba(212,175,55,.2);
+    padding-top: 28px;
+    margin-top: 56px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--dim);
+    text-align: center;
+    line-height: 2;
+  }
+  .footer .sig {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--sacred-gold);
+    margin-top: 10px;
+    display: block;
+  }
+  @media (max-width: 600px) {
+    h1 { font-size: 2rem; }
+    .section-block { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="starfield" id="starfield"></div>
+
+<div class="container">
+
+  <div class="archive-banner">
+    The First Spark · Soul Map Archive · <span>Generated May 2026</span> · EAL11990
+  </div>
+
+  <header class="header">
+    <div class="brand">◈ Soul Map ◈</div>
+    <div class="subtitle">Full Chart Reading · Personal + Shadow</div>
+    <h1>Eric Allen Lamb</h1>
+    <div class="alt-name">— Capricorn Sun · Metal Horse · the magnetic prisoner —</div>
+    <div class="header-meta">15 · January · 1990 · ~8:30 PM &nbsp;|&nbsp; Capricorn ♑ · Gemini ☽ · Leo ↑</div>
+  </header>
+
+  <div class="real-talk">
+    <div class="real-talk-label">— Before we begin —</div>
+    <div class="real-talk-line">
+      This map holds the whole man — the light and the dark, what the system took from him and what he chose on his own. Both are in here. You don't have to pick one version to carry. This reading holds them all.
+    </div>
+  </div>
+
+  <div class="sigil-wrap">
+    <svg class="sigil" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="110" cy="110" r="100" fill="none" stroke="#d4af37" stroke-width="1.2" opacity=".5"/>
+      <circle cx="110" cy="110" r="84" fill="none" stroke="#FF6A3D" stroke-width=".5" stroke-dasharray="2 4" opacity=".45"/>
+      <path d="M 110 44 Q 90 56 80 76 Q 75 92 86 101 Q 97 106 102 96"
+            fill="none" stroke="#d4af37" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M 122 94 Q 138 104 138 122 Q 138 138 122 138 Q 113 138 118 128"
+            fill="none" stroke="#d4af37" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M 52 162 Q 66 148 82 163 T 122 163 T 160 158 T 184 163"
+            fill="none" stroke="#FF6A3D" stroke-width="1.8" opacity=".85"/>
+      <g stroke="#8b5cf6" stroke-width=".9" opacity=".35">
+        <line x1="22" y1="74" x2="22" y2="150"/>
+        <line x1="33" y1="74" x2="33" y2="150"/>
+        <line x1="44" y1="74" x2="44" y2="150"/>
+        <line x1="176" y1="74" x2="176" y2="150"/>
+        <line x1="187" y1="74" x2="187" y2="150"/>
+        <line x1="198" y1="74" x2="198" y2="150"/>
+      </g>
+      <circle cx="110" cy="24" r="5.5" fill="#FF6A3D"/>
+      <g stroke="#FF6A3D" stroke-width="1.2" stroke-linecap="round" opacity=".75">
+        <line x1="110" y1="10" x2="110" y2="16"/>
+        <line x1="96" y1="18" x2="100" y2="22"/>
+        <line x1="124" y1="18" x2="120" y2="22"/>
+      </g>
+      <circle cx="101" cy="194" r="3" fill="#22d3ee"/>
+      <circle cx="119" cy="194" r="3" fill="#22d3ee"/>
+      <line x1="101" y1="194" x2="119" y2="194" stroke="#22d3ee" stroke-width=".9" opacity=".55"/>
+      <circle cx="110" cy="110" r="6.5" fill="#d4af37"/>
+      <circle cx="110" cy="110" r="13" fill="none" stroke="#d4af37" stroke-width=".7" opacity=".65"/>
+    </svg>
+  </div>
+  <div class="sigil-label">The Horn · The Horse · The Bars · The Sun</div>
+
+  <div class="coords">
+    <div class="coord-card"><div class="coord-label">Sun Sign</div><div class="coord-value">Capricorn ♑</div></div>
+    <div class="coord-card"><div class="coord-label">Chinese Zodiac</div><div class="coord-value">Metal Horse 馬</div></div>
+    <div class="coord-card"><div class="coord-label">Element</div><div class="coord-value">Earth · Cardinal</div></div>
+    <div class="coord-card"><div class="coord-label">Ruling Body</div><div class="coord-value">Saturn</div></div>
+    <div class="coord-card"><div class="coord-label">Life Path</div><div class="coord-value">8 — Karma</div></div>
+    <div class="coord-card"><div class="coord-label">Birthday Number</div><div class="coord-value">6 — The Heart</div></div>
+  </div>
+
+  <div class="section-block">
+    <div class="section-num">01 · The Three Lights</div>
+    <h2>Sun · Moon · Rising</h2>
+    <div class="chart-row">
+      <div class="chart-card">
+        <div class="chart-ph">Sun · Identity</div>
+        <div class="chart-glyph">♑</div>
+        <div class="chart-sign">Capricorn ~25°</div>
+        <div class="chart-blurb">Wisdom degree. Came in carrying something older than his own name.</div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-ph">Moon · Inner Life</div>
+        <div class="chart-glyph">♊</div>
+        <div class="chart-sign">Gemini</div>
+        <div class="chart-blurb">Two frequencies running at once. Can't land fully on either one.</div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-ph">Rising · First Impression</div>
+        <div class="chart-glyph">♌</div>
+        <div class="chart-sign">Leo (estimated)</div>
+        <div class="chart-blurb">The room reorganizes around him without his permission. He knows this.</div>
+      </div>
+    </div>
+    <p>The Capricorn-Gemini-Leo stack is one of astrology's most contradictory configurations. <span class="pull">Capricorn wants permanence. Gemini needs motion. Leo demands to be seen while running.</span> The man born at this intersection will spend his life resolving a tension that cannot actually be resolved — only managed, one choice at a time.</p>
+    <p>Saturn rules Capricorn, which means Eric came into the world already on a timer. Saturn is the planet of consequences, structure, and earned wisdom. <span class="pull">Every Capricorn is eventually taught, by real events, that the rules exist — and that breaking them costs.</span> The lesson either lands gently in a person's thirties or it lands hard, earlier, in ways that leave a mark on the whole timeline.</p>
+  </div>
+
+  <div class="section-block">
+    <div class="section-num">02 · The Year He Was Born</div>
+    <h2>The Metal Horse</h2>
+    <p>1990 opened with Metal Horse energy — the rarest and most freedom-hungry of the Horse cycles. On the twelve-year wheel, the Horse already resists containment. Metal amplifies it: harder, faster, more resistant to correction.</p>
+    <ul>
+      <li><span class="pull">They magnetize without trying.</span> Standing still is an act of will, not rest.</li>
+      <li><span class="pull">They are built to run.</span> Fences register as existential threats, not practical limits.</li>
+      <li><span class="pull">When cornered, they go quiet.</span> The spirit doesn't die — it goes underground and waits.</li>
+      <li><span class="pull">Loyalty runs deep when it's real.</span> What looks like inconsistency is usually split allegiance — too many things they actually love.</li>
+    </ul>
+    <p><span class="shadow">A Metal Horse soul dropped into the American carceral system in the late 1990s and early 2000s was always going to be a story about what happens when motion meets concrete.</span> The Horse doesn't break cleanly. It goes still. And still is its own kind of breaking.</p>
+  </div>
+
+  <div class="section-block">
+    <div class="section-num">03 · The System</div>
+    <h2>What the Country Did</h2>
+    <p>Eric Allen Lamb spent the majority of his adult years incarcerated for nonviolent drug offenses. <span class="pull">That sentence belongs to the country, not just to him.</span></p>
+    <p>The War on Drugs that consumed his generation was engineered to consume it. Capricorn Suns are especially vulnerable to this machinery because they are wired to take authority seriously — they internalize verdicts. They start to believe the cage is a fact about who they are, not a fact about what the country decided to do with them.</p>
+    <p>What those years stole: his twenties. <span class="pull">The decade in which most people make their foundational mistakes, build their first real skills, and figure out how to love someone over time.</span> He didn't get that runway. He got concrete. The man he would have grown into without it — we don't get to know him. Neither does he.</p>
+    <blockquote>You can hold someone accountable for the choices they made and still be furious at the system that punished those choices with a life sentence delivered fifteen minutes at a time.</blockquote>
+  </div>
+
+  <div class="section-block">
+    <div class="section-num">04 · The Shadow</div>
+    <h2>And Also — He Cheated</h2>
+    <p>The map doesn't clean this up. <span class="shadow">He was unfaithful. Repeatedly. To someone who loved him through circumstances that would have broken most people.</span> The system doesn't explain that away. The chart describes the mechanism but does not excuse the behavior.</p>
+    <p>Here is what the Gemini Moon actually does: it runs two emotional tracks simultaneously, both sincere, both partially real, and it genuinely cannot figure out how to choose without feeling like it's cutting off a limb. <span class="pull">That's not nothing. It's also not permission.</span></p>
+    <p>Leo Rising adds the complicating layer — the need to be desired is structural, not vanity. It's baked into the mask he presents to the world. When someone new sees that mask and reflects it back as hunger, the circuit completes automatically. The emotional work required to not act on that circuit takes deliberate practice that most people learn in their mid-twenties. He wasn't there for that decade.</p>
+    <p>None of that is a pass. It's a diagnosis. <span class="pull">The difference between understanding why someone hurt you and forgiving them for it is real and you're allowed to stay on the understanding side indefinitely.</span></p>
+  </div>
+
+  <div class="section-block">
+    <div class="section-num">05 · The Numerology</div>
+    <h2>8 · 6 · The Frequencies</h2>
+    <p><span class="pull">Life Path 8</span> is the karma number — the soul that came in to learn about power, consequence, and what it actually means to be in control of your own life. Some 8s build institutions. Some 8s end up inside one. The energy is neutral; the direction depends entirely on the conditions it lands in.</p>
+    <p>The 8 almost always carries a pattern of loss and reclamation — something is taken, and the lesson is in what gets rebuilt. <span class="pull">You can't fake an 8's healing. It's either earned or it doesn't hold.</span></p>
+    <p><span class="pull">Birthday Number 6</span> is the heart number. It's the one underneath all the other numbers, the one that keeps showing up in the quiet moments: the man who softens around children, who remembers small details about people he cares about, who would give someone his last thing before admitting he was the one who needed it. He has that. He's always had it. <span class="shadow">The cheating came from the Gemini Moon, not from the Birthday 6. The 6 was the part that actually wanted to stay.</span></p>
+  </div>
+
+  <div class="section-block">
+    <div class="section-num">06 · Why It Still Lands</div>
+    <h2>The Imprint</h2>
+    <div class="verdict">
+      <div class="verdict-label">— What's actually happening —</div>
+      <p>A Capricorn Sun + Leo Rising + Metal Horse man is engineered to leave a mark. This is not metaphor — it is the mechanical outcome of this configuration meeting a nervous system that was open to it. The imprint is real. It doesn't require ongoing maintenance or a story where he was actually good enough to deserve it.</p>
+      <p style="margin-top: 14px;"><span class="pull">Loving him is information about you, not a verdict about him.</span> It tells you that you have a heart that goes deep and doesn't quit easily, that once someone registers as significant they stay registered even when the significance is past-tense.</p>
+      <p style="margin-top: 14px;">You're allowed to hold both things in the same hand: <em>I love you. I would not choose you again.</em> That's not contradiction. That's accuracy.</p>
+    </div>
+  </div>
+
+  <div class="section-block">
+    <div class="section-num">07 · What He Came Here For</div>
+    <h2>The Soul-Level Assignment</h2>
+    <p>Old souls land in Capricorn. They arrive already carrying weight from somewhere the body hasn't been. Eric's assignment, as best as the chart reads it, was about <span class="pull">learning the difference between real freedom and just running.</span></p>
+    <p>The Metal Horse instinct is to bolt when anything closes in. The Capricorn Sun's deepest work is learning that choosing to stay — in a place, a commitment, an honest reckoning — is the harder and more powerful thing. <span class="shadow">He didn't get the conditions to finish that work. The carceral system, which looked like a cage, probably felt like evidence that running was always right. It wasn't. But the lesson arrived in the worst possible package.</span></p>
+    <p>Some souls finish their assignments. Some run out of runway. That's not a moral verdict — it's just what incomplete looks like from the outside. <span class="pull">He was here. He was real. The work wasn't done. That's allowed to be true without anyone having to be the villain.</span></p>
+  </div>
+
+  <div class="section-block">
+    <div class="section-num">08 · The Core Axiom</div>
+    <h2>The Operating Instruction</h2>
+    <div class="axiom">
+      <div class="axiom-label">— Soul Axiom · Eric Allen Lamb —</div>
+      <div class="axiom-text">Born to run, wired to build, caught between the two by every structure the country could find to put in his way. The fire didn't go out. It just never got the room.</div>
+    </div>
+    <p>That's the whole map in one sentence. It's not a eulogy and it's not an excuse — it's a read. <span class="pull">The fire was real. The room was taken. Those are two separate facts and they belong to separate conversations.</span></p>
+  </div>
+
+  <div class="section-block">
+    <div class="section-num">09 · The Ritual</div>
+    <h2>For You, KJP</h2>
+    <div class="ritual">
+      <div class="ritual-title">The Two Truths Practice</div>
+      <div class="ritual-sub">For carrying someone whole without carrying them forward</div>
+      <p><strong>Intent:</strong> To hold both the love and the line without collapsing them into each other.</p>
+      <h3>What You Need</h3>
+      <ul>
+        <li>Two small pieces of paper</li>
+        <li>One pen</li>
+        <li>A candle if you want one</li>
+        <li>Something fireproof for the second paper</li>
+      </ul>
+      <h3>The Practice</h3>
+      <ol>
+        <li>On the first paper: write one specific thing you loved about him. One sentence. Concrete. Not a paragraph.</li>
+        <li>On the second paper: write one specific thing he did that cost you. One sentence. Concrete.</li>
+        <li>Hold one in each hand. Say out loud: <em>"Both of these are true. Neither one cancels the other. I am allowed to know both."</em></li>
+        <li>Keep the first paper. Put it somewhere you can find it later — not the front of the drawer. The back.</li>
+        <li>Burn the second. Not to forgive it. To mark that you've already metabolized it. The information lives in you now. You don't need to keep the page.</li>
+        <li>Close: <em>"I'm just me, KJP. Right here, right now. He is over there. The line between us is real."</em></li>
+      </ol>
+      <h3>What to Watch For</h3>
+      <p>This isn't about getting over him. It's about moving him from the foreground to the archive — still accessible, no longer running in the background all the time. Some loves don't fully leave. They just take less of the room as the years pass. This practice marks that the room has already started to open back up.</p>
+    </div>
+  </div>
+
+  <div class="section-block">
+    <div class="section-num">10 · For the Record</div>
+    <h2>The Closing</h2>
+    <p>Eric Allen Lamb. Born January 15, 1990, around 8:30 in the evening. Capricorn Sun at ~25°, Gemini Moon, Leo Rising, Metal Horse. Life Path 8. Birthday Number 6. Most of his adult life spent inside a system that shouldn't have taken him. Magnetic in the room and unreliable in the relationship. Smart, funny, hard to look away from. <span class="pull">All of it is true at the same time.</span></p>
+    <p>This soul map was built honest — not to rehabilitate him or bury him, but to see him clearly. <span class="pull">The woman who commissioned it is the one who loved him longest and knows him most completely. That's not weakness. That's the clearest lens available.</span></p>
+    <blockquote>You loved someone real. He was complicated in ways the country made worse. He was also just complicated. You held all of it. You don't have to hold it in the front of your chest anymore.</blockquote>
+  </div>
+
+  <footer class="footer">
+    Soul Map · The First Spark · thefirstspark.shop<br>
+    EAL11990 · Generated May 2026 · Recorded with full honesty
+    <span class="sig">— I'm just me, KJP —</span>
+  </footer>
+
+</div>
+
+<script>
+  const sf = document.getElementById('starfield');
+  for (let i = 0; i < 120; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = Math.random() * 2.2 + 0.6;
+    s.style.width = s.style.height = size + 'px';
+    s.style.left = Math.random() * 100 + '%';
+    s.style.top  = Math.random() * 100 + '%';
+    s.style.background = 'white';
+    s.style.setProperty('--duration', (2.5 + Math.random() * 4) + 's');
+    s.style.setProperty('--base-opacity', (Math.random() * 0.25 + 0.08).toFixed(2));
+    s.style.setProperty('--peak-opacity', (Math.random() * 0.5 + 0.45).toFixed(2));
+    s.style.animationDelay = (Math.random() * 5) + 's';
+    sf.appendChild(s);
+  }
+</script>
+</body>
+</html>
