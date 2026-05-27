@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Color Codex — Soul Map Tiers | The First Spark</title>
+<meta name="description" content="The Color Codex: the full consciousness spectrum of soul-map tiers. Each color is a frequency, a role, a way of holding the field.">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Color Codex | The First Spark">
+<meta property="og:description" content="The full consciousness spectrum of soul-map tiers. Each color is a frequency.">
+<meta property="og:url" content="https://soul-maps.thefirstspark.shop/color-codex.html">
+<meta property="og:image" content="https://soul-maps.thefirstspark.shop/og-codex.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#0a0a0f;
+    --bg-soft:#10101a;
+    --ink:#e8e8ee;
+    --ink-dim:#9a9aa8;
+
+    /* Tier colors — full spectrum */
+    --red:#e24b4a;
+    --ember:#ff6a3d;
+    --yellow:#f5c842;
+    --green:#10b981;
+    --cyan:#22d3ee;
+    --blue:#3b82f6;
+    --purple:#8b5cf6;
+    --gold:#d4af37;
+    --white:#f0f0ff;
+    /* structural */
+    --rose:#f43f5e;
+    --silver:#c4c8d4;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--ink);
+    font-family:'Space Mono',monospace;line-height:1.7;overflow-x:hidden;
+  }
+  .stars{position:fixed;inset:0;z-index:0;pointer-events:none}
+  .stars span{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;opacity:.5;animation:tw 4s infinite ease-in-out}
+  @keyframes tw{0%,100%{opacity:.15}50%{opacity:.7}}
+
+  .wrap{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:0 24px}
+
+  .topbar{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:22px 0;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:54px;
+    font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  }
+  .topbar a{color:var(--ink-dim);text-decoration:none;transition:color .2s}
+  .topbar a:hover{color:var(--ink)}
+  .topbar .brand{color:var(--ink);font-weight:700}
+
+  .hero{padding:30px 0 56px;text-align:center}
+  .kicker{
+    display:inline-block;font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--ink-dim);border:1px solid rgba(255,255,255,.16);border-radius:2px;
+    padding:7px 16px;margin-bottom:30px;
+  }
+  h1{
+    font-family:'Cormorant Garamond',serif;font-weight:600;
+    font-size:clamp(2.6rem,7vw,4.6rem);line-height:1.04;margin-bottom:22px;
+  }
+  .hero p{font-size:1rem;color:var(--ink-dim);max-width:600px;margin:0 auto}
+
+  /* spectrum bar */
+  .spectrum-bar{display:flex;height:8px;border-radius:4px;overflow:hidden;margin:34px auto 0;max-width:560px}
+  .spectrum-bar span{flex:1}
+
+  /* legend / how to read */
+  .legend{
+    background:var(--bg-soft);border:1px solid rgba(255,255,255,.1);border-radius:4px;
+    padding:26px 30px;margin-bottom:48px;
+  }
+  .legend .k{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:12px}
+  .legend p{font-size:.92rem;color:var(--ink);margin:0 0 10px}
+  .legend p:last-child{margin-bottom:0}
+  .legend .reserved{color:var(--yellow);font-weight:700}
+  .legend .born{color:var(--cyan);font-weight:700}
+
+  /* tier card */
+  .tier{
+    display:grid;grid-template-columns:120px 1fr;gap:0;
+    border:1px solid rgba(255,255,255,.1);border-radius:4px;
+    margin-bottom:20px;overflow:hidden;
+    transition:border-color .25s,transform .25s;
+  }
+  .tier:hover{transform:translateY(-2px)}
+
+  .tier .swatch{
+    position:relative;min-height:170px;
+    display:flex;flex-direction:column;justify-content:space-between;
+    padding:18px 16px;
+  }
+  .tier .swatch .hex{font-size:.66rem;letter-spacing:.08em;color:rgba(0,0,0,.55);font-weight:700}
+  .tier .swatch .glyph{font-family:'Cormorant Garamond',serif;font-size:2.4rem;color:rgba(0,0,0,.7);line-height:1}
+
+  .tier .body{padding:24px 28px}
+  .tier .body .role{font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;margin-bottom:8px}
+  .tier .body h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:2rem;line-height:1.05;margin-bottom:6px}
+  .tier .body .name{font-size:.78rem;color:var(--ink-dim);margin-bottom:14px}
+  .tier .body .creed{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;margin-bottom:14px}
+  .tier .body .desc{font-size:.9rem;color:var(--ink);margin-bottom:18px}
+
+  .specs{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px}
+  .spec{border-top:1px solid rgba(255,255,255,.1);padding-top:10px}
+  .spec .lbl{font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:4px}
+  .spec .val{font-size:.84rem;color:var(--ink)}
+
+  .tier .body .link{
+    display:inline-block;margin-top:18px;font-size:.7rem;letter-spacing:.16em;
+    text-transform:uppercase;text-decoration:none;
+  }
+  .tier .body .link.reserved{color:var(--ink-dim);opacity:.75;font-style:italic}
+
+  /* color-specific accents */
+  .t-red{border-left:3px solid var(--red)} .t-red .swatch{background:var(--red)} .t-red .role{color:var(--red)} .t-red .creed{color:var(--red)} .t-red .link{color:var(--red)}
+  .t-ember{border-left:3px solid var(--ember)} .t-ember .swatch{background:var(--ember)} .t-ember .role{color:var(--ember)} .t-ember .creed{color:var(--ember)} .t-ember .link{color:var(--ember)}
+  .t-yellow{border-left:3px solid var(--yellow)} .t-yellow .swatch{background:var(--yellow)} .t-yellow .role{color:#caa019} .t-yellow .creed{color:#caa019} .t-yellow .link{color:#caa019}
+  .t-green{border-left:3px solid var(--green)} .t-green .swatch{background:var(--green)} .t-green .role{color:var(--green)} .t-green .creed{color:var(--green)} .t-green .link{color:var(--green)}
+  .t-cyan{border-left:3px solid var(--cyan)} .t-cyan .swatch{background:var(--cyan)} .t-cyan .role{color:var(--cyan)} .t-cyan .creed{color:var(--cyan)} .t-cyan .link{color:var(--cyan)}
+  .t-blue{border-left:3px solid var(--blue)} .t-blue .swatch{background:var(--blue)} .t-blue .role{color:var(--blue)} .t-blue .creed{color:var(--blue)} .t-blue .link{color:var(--blue)}
+  .t-purple{border-left:3px solid var(--purple)} .t-purple .swatch{background:var(--purple)} .t-purple .role{color:var(--purple)} .t-purple .creed{color:var(--purple)} .t-purple .link{color:var(--purple)}
+  .t-gold{border-left:3px solid var(--gold)} .t-gold .swatch{background:var(--gold)} .t-gold .role{color:var(--gold)} .t-gold .creed{color:var(--gold)} .t-gold .link{color:var(--gold)}
+  .t-white{border-left:3px solid var(--white)} .t-white .swatch{background:var(--white)} .t-white .role{color:#7a7a90} .t-white .creed{color:#7a7a90} .t-white .link{color:#b8b8d0}
+  .t-rose{border-left:3px solid var(--rose)} .t-rose .swatch{background:var(--rose)} .t-rose .role{color:var(--rose)} .t-rose .creed{color:var(--rose)} .t-rose .link{color:var(--rose)}
+  .t-silver{border-left:3px solid var(--silver)} .t-silver .swatch{background:var(--silver)} .t-silver .role{color:#6b6f7a} .t-silver .creed{color:#6b6f7a} .t-silver .link{color:var(--silver)}
+
+  /* status pill */
+  .pill{
+    position:absolute;top:14px;right:14px;font-size:.58rem;letter-spacing:.14em;
+    text-transform:uppercase;padding:3px 8px;border-radius:2px;font-weight:700;
+    background:rgba(0,0,0,.35);color:rgba(255,255,255,.9);
+  }
+  .pill.reserved{background:rgba(0,0,0,.4);color:#fff}
+
+  .section-head{
+    font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--ink-dim);
+    margin:44px 0 8px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.1);
+    letter-spacing:.02em;
+  }
+  .section-sub{font-size:.8rem;color:var(--ink-dim);margin:0 0 24px}
+
+  footer{padding:48px 0;border-top:1px solid rgba(255,255,255,.1);text-align:center;font-size:.74rem;color:var(--ink-dim);margin-top:40px}
+  footer a{color:var(--ink);text-decoration:none}
+
+  @media(max-width:600px){
+    .tier{grid-template-columns:1fr}
+    .tier .swatch{min-height:90px;flex-direction:row;align-items:center}
+    .topbar{flex-direction:column;gap:10px;text-align:center}
+  }
+</style>
+</head>
+<body>
+
+<div class="stars" id="stars"></div>
+
+<div class="wrap">
+
+  <div class="topbar">
+    <a href="/" class="brand">◇ THE FIRST SPARK</a>
+    <a href="/">← All Soul Maps</a>
+  </div>
+
+  <header class="hero">
+    <span class="kicker">The Color Codex</span>
+    <h1>Every color is a frequency.</h1>
+    <p>Soul maps aren't sorted by personality. They're sorted by the frequency a soul vibrates at — the color it was born. The codex is the key to the whole spectrum.</p>
+    <div class="spectrum-bar">
+      <span style="background:var(--red)"></span>
+      <span style="background:var(--ember)"></span>
+      <span style="background:var(--yellow)"></span>
+      <span style="background:var(--green)"></span>
+      <span style="background:var(--cyan)"></span>
+      <span style="background:var(--blue)"></span>
+      <span style="background:var(--purple)"></span>
+      <span style="background:var(--gold)"></span>
+      <span style="background:var(--white)"></span>
+    </div>
+  </header>
+
+  <div class="legend">
+    <div class="k">// How to read this</div>
+    <p>The color on a soul map is the frequency you were <strong>born</strong> — your core color, drawn from your birth numerology. It does not change. The arc of how you shift across a lifetime — current, transition, shadow — lives inside each individual map.</p>
+    <p>Nine colors form the <strong>light spectrum</strong>, from Red at the root to White at the crown. Two more — Rose and Silver — are <strong>structural frequencies</strong>: they map to layers of the Selector Model rather than to visible light.</p>
+    <p>Tiers marked <span class="born">live</span> already hold mapped souls. Tiers marked <span class="reserved">reserved</span> are real frequencies awaiting their first soul — the spectrum is complete even where the archive is still filling.</p>
+  </div>
+
+  <!-- ============ THE SPECTRUM ============ -->
+  <div class="section-head">// The Spectrum — nine frequencies of light</div>
+  <p class="section-sub">From the root drive to the frequency that contains them all.</p>
+
+  <!-- RED -->
+  <div class="tier t-red">
+    <div class="swatch">
+      <span class="pill reserved">Reserved</span>
+      <span class="glyph">▼</span>
+      <span class="hex">#E24B4A</span>
+    </div>
+    <div class="body">
+      <div class="role">// The Will</div>
+      <h2>Red</h2>
+      <div class="name">the root drive · the engine</div>
+      <p class="creed">"Reds move."</p>
+      <p class="desc">Will and power in its rawest form. The force that acts before it reflects, the heat at the base of every fire. Reds don't ask permission — they generate the momentum the whole spectrum runs on.</p>
+      <div class="specs">
+        <div class="spec"><div class="lbl">Role</div><div class="val">Drive · power</div></div>
+        <div class="spec"><div class="lbl">Frequency</div><div class="val">Force · momentum</div></div>
+        <div class="spec"><div class="lbl">Numerology</div><div class="val">1 · 8</div></div>
+        <div class="spec"><div class="lbl">Element</div><div class="val">Fire (root)</div></div>
+      </div>
+      <span class="link reserved">awaiting the first Red soul</span>
+    </div>
+  </div>
+
+  <!-- EMBER -->
+  <div class="tier t-ember">
+    <div class="swatch">
+      <span class="pill">Live</span>
+      <span class="glyph">▲</span>
+      <span class="hex">#FF6A3D</span>
+    </div>
+    <div class="body">
+      <div class="role">// The Ignition</div>
+      <h2>Ember</h2>
+      <div class="name">Ember Orange · the catalysts</div>
+      <p class="creed">"Embers begin."</p>
+      <p class="desc">The first movers. The spark before the structure. Embers are the founders and originators — the ones who light the fire others tend. Action over reflection, beginning over maintaining.</p>
+      <div class="specs">
+        <div class="spec"><div class="lbl">Role</div><div class="val">Catalyst · ignite</div></div>
+        <div class="spec"><div class="lbl">Frequency</div><div class="val">Heat · activation</div></div>
+        <div class="spec"><div class="lbl">Numerology</div><div class="val">1 · 5</div></div>
+        <div class="spec"><div class="lbl">Element</div><div class="val">Fire</div></div>
+      </div>
+      <span class="link reserved">page coming · 8 souls mapped</span>
+    </div>
+  </div>
+
+  <!-- YELLOW -->
+  <div class="tier t-yellow">
+    <div class="swatch">
+      <span class="pill reserved">Reserved</span>
+      <span class="glyph">☀</span>
+      <span class="hex">#F5C842</span>
+    </div>
+    <div class="body">
+      <div class="role">// The Joy</div>
+      <h2>Yellow</h2>
+      <div class="name">the radiant ones · pure joy</div>
+      <p class="creed">"Yellows shine."</p>
+      <p class="desc">Pure joy as a frequency. The souls who lift a room without trying, who carry play and warmth and lightness as their native code. Rare to lead with — most carry joy as a secondary color. The first Yellow will be unmistakable.</p>
+      <div class="specs">
+        <div class="spec"><div class="lbl">Role</div><div class="val">Radiance · play</div></div>
+        <div class="spec"><div class="lbl">Frequency</div><div class="val">Lightness · joy</div></div>
+        <div class="spec"><div class="lbl">Numerology</div><div class="val">3</div></div>
+        <div class="spec"><div class="lbl">Element</div><div class="val">Fire / Air</div></div>
+      </div>
+      <span class="link reserved">awaiting the first Yellow soul</span>
+    </div>
+  </div>
+
+  <!-- GREEN -->
+  <div class="tier t-green">
+    <div class="swatch">
+      <span class="pill">Live</span>
+      <span class="glyph">❖</span>
+      <span class="hex">#10B981</span>
+    </div>
+    <div class="body">
+      <div class="role">// The Field</div>
+      <h2>Green</h2>
+      <div class="name">Field Green · the newest souls</div>
+      <p class="creed">"Fields hold."</p>
+      <p class="desc">The stabilizers. Without the one who keeps the container intact, nothing the others build will last. The youngest, the load-bearing, the souls whose code is still warm from source — and the carriers of master numbers come to ground.</p>
+      <div class="specs">
+        <div class="spec"><div class="lbl">Role</div><div class="val">Hold · stabilize</div></div>
+        <div class="spec"><div class="lbl">Frequency</div><div class="val">Steadiness · ground</div></div>
+        <div class="spec"><div class="lbl">Numerology</div><div class="val">master-carriers</div></div>
+        <div class="spec"><div class="lbl">Element</div><div class="val">Earth</div></div>
+      </div>
+      <a class="link" href="/the-field-path.html">Enter the Field →</a>
+    </div>
+  </div>
+
+  <!-- CYAN -->
+  <div class="tier t-cyan">
+    <div class="swatch">
+      <span class="pill">Live</span>
+      <span class="glyph">◈</span>
+      <span class="hex">#22D3EE</span>
+    </div>
+    <div class="body">
+      <div class="role">// The Signal</div>
+      <h2>Cyan</h2>
+      <div class="name">Glitch Cyan · the connectors</div>
+      <p class="creed">"Signals connect."</p>
+      <p class="desc">The interface. Cyans move information, light up the network, translate between worlds. The conductors of contact — souls whose gift is transmission, linking one node to the next so the whole field can talk to itself.</p>
+      <div class="specs">
+        <div class="spec"><div class="lbl">Role</div><div class="val">Interface · connect</div></div>
+        <div class="spec"><div class="lbl">Frequency</div><div class="val">Transmission · contact</div></div>
+        <div class="spec"><div class="lbl">Numerology</div><div class="val">3 · 5</div></div>
+        <div class="spec"><div class="lbl">Element</div><div class="val">Water / Air</div></div>
+      </div>
+      <span class="link reserved">page coming · 4 souls mapped</span>
+    </div>
+  </div>
+
+  <!-- BLUE -->
+  <div class="tier t-blue">
+    <div class="swatch">
+      <span class="pill">Live</span>
+      <span class="glyph">◆</span>
+      <span class="hex">#3B82F6</span>
+    </div>
+    <div class="body">
+      <div class="role">// The Mind</div>
+      <h2>Blue</h2>
+      <div class="name">the still observers · thought</div>
+      <p class="creed">"Minds witness."</p>
+      <p class="desc">Thought, clarity, the still point. Blues see the whole board before they move a piece — the architects, the strategists, the ones who observe without disturbing what they watch. Stillness as power.</p>
+      <div class="specs">
+        <div class="spec"><div class="lbl">Role</div><div class="val">Thought · observe</div></div>
+        <div class="spec"><div class="lbl">Frequency</div><div class="val">Stillness · clarity</div></div>
+        <div class="spec"><div class="lbl">Numerology</div><div class="val">4 · 7</div></div>
+        <div class="spec"><div class="lbl">Element</div><div class="val">Air</div></div>
+      </div>
+      <span class="link reserved">page coming · 8 souls mapped</span>
+    </div>
+  </div>
+
+  <!-- PURPLE -->
+  <div class="tier t-purple">
+    <div class="swatch">
+      <span class="pill">Live</span>
+      <span class="glyph">◆</span>
+      <span class="hex">#8B5CF6</span>
+    </div>
+    <div class="body">
+      <div class="role">// The Transformer</div>
+      <h2>Purple</h2>
+      <div class="name">Mystic Violet · the ones who change form</div>
+      <p class="creed">"Purples transform."</p>
+      <p class="desc">The alchemists. Purples take what is and turn it into what could be. Elders, lineage-holders, the souls who carry the deepest pattern memory — and the ability to transmute one state into another.</p>
+      <div class="specs">
+        <div class="spec"><div class="lbl">Role</div><div class="val">Transform · transmute</div></div>
+        <div class="spec"><div class="lbl">Frequency</div><div class="val">Vision · alchemy</div></div>
+        <div class="spec"><div class="lbl">Numerology</div><div class="val">11 (secondary)</div></div>
+        <div class="spec"><div class="lbl">Element</div><div class="val">Spirit</div></div>
+      </div>
+      <a class="link" href="/purple-soul-journey.html">Enter the Purple Journey →</a>
+    </div>
+  </div>
+
+  <!-- GOLD -->
+  <div class="tier t-gold">
+    <div class="swatch">
+      <span class="pill">Live</span>
+      <span class="glyph">✦</span>
+      <span class="hex">#D4AF37</span>
+    </div>
+    <div class="body">
+      <div class="role">// The Orchestrator</div>
+      <h2>Gold</h2>
+      <div class="name">Signal Gold · the master tier</div>
+      <p class="creed">"Masters orchestrate."</p>
+      <p class="desc">Mastery and coherence. Golds don't do the work alone — they conduct it, holding the whole composition in view. The rarest carriers: master numbers, the ones who coordinate the entire field into a single signal.</p>
+      <div class="specs">
+        <div class="spec"><div class="lbl">Role</div><div class="val">Mastery · orchestrate</div></div>
+        <div class="spec"><div class="lbl">Frequency</div><div class="val">Coherence · command</div></div>
+        <div class="spec"><div class="lbl">Numerology</div><div class="val">11 · 22 · 33</div></div>
+        <div class="spec"><div class="lbl">Element</div><div class="val">Light</div></div>
+      </div>
+      <a class="link" href="/master-tier.html">Enter the Master Tier →</a>
+    </div>
+  </div>
+
+  <!-- WHITE -->
+  <div class="tier t-white">
+    <div class="swatch">
+      <span class="pill reserved">Reserved</span>
+      <span class="glyph">○</span>
+      <span class="hex">#F0F0FF</span>
+    </div>
+    <div class="body">
+      <div class="role">// The All</div>
+      <h2>White</h2>
+      <div class="name">the frequency that contains everything</div>
+      <p class="creed">"White holds it all."</p>
+      <p class="desc">The arc's endpoint. White is not the absence of color but the presence of all of them at once — every frequency integrated into a single still light. The fully realized soul, the one the whole spectrum was moving toward.</p>
+      <div class="specs">
+        <div class="spec"><div class="lbl">Role</div><div class="val">Integration · the All</div></div>
+        <div class="spec"><div class="lbl">Frequency</div><div class="val">Wholeness · unity</div></div>
+        <div class="spec"><div class="lbl">Numerology</div><div class="val">—</div></div>
+        <div class="spec"><div class="lbl">Element</div><div class="val">Aether</div></div>
+      </div>
+      <span class="link reserved">awaiting the first White soul</span>
+    </div>
+  </div>
+
+  <!-- ============ STRUCTURAL ============ -->
+  <div class="section-head">// Structural Frequencies — beside the spectrum</div>
+  <p class="section-sub">Two colors that map to layers of the Selector Model rather than to visible light.</p>
+
+  <!-- ROSE -->
+  <div class="tier t-rose">
+    <div class="swatch">
+      <span class="pill reserved">Reserved</span>
+      <span class="glyph">♥</span>
+      <span class="hex">#F43F5E</span>
+    </div>
+    <div class="body">
+      <div class="role">// The Bond</div>
+      <h2>Rose</h2>
+      <div class="name">the relational ones</div>
+      <p class="creed">"Bonds connect."</p>
+      <p class="desc">The connectors of hearts. Rose souls do their work through relationship — devotion, loyalty, the weaving of people into belonging. The Relational layer of the Selector Model made flesh.</p>
+      <div class="specs">
+        <div class="spec"><div class="lbl">Role</div><div class="val">Relate · bind</div></div>
+        <div class="spec"><div class="lbl">Frequency</div><div class="val">Devotion · belonging</div></div>
+        <div class="spec"><div class="lbl">Numerology</div><div class="val">2 · 6</div></div>
+        <div class="spec"><div class="lbl">Layer</div><div class="val">Relational</div></div>
+      </div>
+      <span class="link reserved">awaiting the first Rose soul</span>
+    </div>
+  </div>
+
+  <!-- SILVER -->
+  <div class="tier t-silver">
+    <div class="swatch">
+      <span class="pill reserved">Reserved</span>
+      <span class="glyph">◐</span>
+      <span class="hex">#C4C8D4</span>
+    </div>
+    <div class="body">
+      <div class="role">// The Mirror</div>
+      <h2>Silver</h2>
+      <div class="name">the witnesses</div>
+      <p class="creed">"Mirrors reflect."</p>
+      <p class="desc">The observers. Silver souls reflect rather than act, hold space without filling it. The Witness from the KJP Core Code — neutral, lunar, reflective. They show you yourself by refusing to distort the image.</p>
+      <div class="specs">
+        <div class="spec"><div class="lbl">Role</div><div class="val">Witness · reflect</div></div>
+        <div class="spec"><div class="lbl">Frequency</div><div class="val">Neutrality · reflection</div></div>
+        <div class="spec"><div class="lbl">Numerology</div><div class="val">7 · 9</div></div>
+        <div class="spec"><div class="lbl">Layer</div><div class="val">Witness (Core Code)</div></div>
+      </div>
+      <span class="link reserved">awaiting the first Silver soul</span>
+    </div>
+  </div>
+
+  <footer>
+    <p>The First Spark · Reality is programmable. Consciousness is the code.<br>
+    <a href="/">soul-maps.thefirstspark.shop</a></p>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    const c=document.getElementById('stars');let h='';
+    for(let i=0;i<90;i++){h+='<span style="left:'+(Math.random()*100)+'%;top:'+(Math.random()*100)+'%;animation-delay:'+(Math.random()*4).toFixed(2)+'s"></span>';}
+    c.innerHTML=h;
+  })();
+</script>
+
+</body>
+</html>
