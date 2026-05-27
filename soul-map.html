@@ -1,884 +1,766 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-N4Z6GH2N');</script>
-<!-- End Google Tag Manager -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Soul Map — Find Your Way Home</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0a0f">
+  <title>The Threshold • First Spark</title>
+  <meta name="description" content="This is not a product. It is a remembering. Cross the threshold.">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --deep: #0a0612;
-      --midnight: #110d1e;
-      --plum: #1e1035;
-      --violet: #6b3fa0;
-      --lavender: #a87fd4;
-      --gold: #e8c97e;
-      --gold-light: #f5e3b0;
-      --cream: #fdf6ee;
-      --muted: #c2b8d0;
+      --void: #0a0a0f;
+      --deep: #0d0d14;
+      --gold: #d4af37;
+      --cyan: #22d3ee;
+      --purple: #8b5cf6;
+      --ember: #f97316;
+      --white: #e8e6e3;
+      --muted: #6b7280;
     }
 
-    html { scroll-behavior: smooth; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'Georgia', serif;
-      background: var(--deep);
-      color: var(--cream);
+      background: var(--void);
+      color: var(--white);
+      font-family: 'Cormorant Garamond', serif;
       overflow-x: hidden;
+      line-height: 1.65;
     }
 
-    /* ── Stars canvas ── */
-    #stars {
+    .veil {
       position: fixed;
       inset: 0;
       z-index: 0;
+      background: radial-gradient(circle at 50% 30%, rgba(107,77,242,0.08) 0%, transparent 60%);
       pointer-events: none;
     }
 
-    /* ── Nav ── */
-    nav {
+    canvas#cosmos {
       position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.2rem 5vw;
-      backdrop-filter: blur(12px);
-      background: rgba(10, 6, 18, 0.7);
-      border-bottom: 1px solid rgba(168, 127, 212, 0.15);
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      mix-blend-mode: screen;
     }
 
-    .logo {
-      font-size: 1.15rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold);
-      text-decoration: none;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 2.2rem;
-    }
-
-    nav a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.85rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      transition: color 0.25s;
-    }
-
-    nav a:hover { color: var(--gold-light); }
-
-    /* ── Hero ── */
-    .hero {
+    .container {
       position: relative;
-      z-index: 1;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 8rem 5vw 5rem;
-    }
-
-    .hero-eyebrow {
-      font-size: 0.75rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.4rem;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.8rem, 7vw, 5.5rem);
-      line-height: 1.12;
-      font-weight: 400;
-      margin-bottom: 1.6rem;
-      background: linear-gradient(135deg, #f5e3b0 0%, #e8c97e 40%, #c9a0dc 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero p {
-      max-width: 560px;
-      line-height: 1.75;
-      color: var(--muted);
-      font-size: 1.08rem;
-      margin-bottom: 2.8rem;
-    }
-
-    .btn-primary {
-      display: inline-block;
-      padding: 0.9rem 2.4rem;
-      background: linear-gradient(135deg, var(--violet), #9b59c8);
-      color: #fff;
-      text-decoration: none;
-      border-radius: 60px;
-      font-size: 0.9rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 0 28px rgba(107, 63, 160, 0.45);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 40px rgba(107, 63, 160, 0.7);
-    }
-
-    .btn-ghost {
-      display: inline-block;
-      padding: 0.9rem 2.4rem;
-      border: 1px solid rgba(168, 127, 212, 0.5);
-      color: var(--lavender);
-      text-decoration: none;
-      border-radius: 60px;
-      font-size: 0.9rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-left: 1rem;
-      transition: border-color 0.2s, color 0.2s;
-    }
-
-    .btn-ghost:hover {
-      border-color: var(--lavender);
-      color: var(--cream);
-    }
-
-    .scroll-hint {
-      position: absolute;
-      bottom: 2.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      color: rgba(168, 127, 212, 0.5);
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      animation: float 2.8s ease-in-out infinite;
-    }
-
-    .scroll-hint svg { opacity: 0.6; }
-
-    @keyframes float {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(6px); }
-    }
-
-    /* ── Section base ── */
-    section {
-      position: relative;
-      z-index: 1;
-      padding: 6rem 5vw;
-    }
-
-    .section-label {
-      display: block;
-      text-align: center;
-      font-size: 0.72rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1rem;
-    }
-
-    h2 {
-      text-align: center;
-      font-size: clamp(1.8rem, 4vw, 3rem);
-      font-weight: 400;
-      line-height: 1.25;
-      color: var(--cream);
-      margin-bottom: 1.2rem;
-    }
-
-    .section-sub {
-      text-align: center;
-      max-width: 520px;
-      margin: 0 auto 4rem;
-      line-height: 1.75;
-      color: var(--muted);
-    }
-
-    /* ── Divider ── */
-    .divider {
-      width: 60px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      margin: 0 auto 1.5rem;
-    }
-
-    /* ── What is section ── */
-    .what-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      max-width: 900px;
-      margin: 0 auto;
-      align-items: center;
-    }
-
-    .what-image {
-      aspect-ratio: 1;
-      border-radius: 50%;
-      background: radial-gradient(circle at 40% 40%, #3a1a6e 0%, #1a0a35 60%, #0a0612 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 80px rgba(107, 63, 160, 0.3);
-      border: 1px solid rgba(168, 127, 212, 0.2);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .mandala {
-      width: 75%;
-      opacity: 0.55;
-      animation: spin 60s linear infinite;
-    }
-
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    .what-text p {
-      color: var(--muted);
-      line-height: 1.8;
-      margin-bottom: 1.2rem;
-    }
-
-    /* ── Offerings ── */
-    .offerings { background: linear-gradient(180deg, var(--deep) 0%, var(--midnight) 50%, var(--deep) 100%); }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.6rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .card {
-      background: rgba(30, 16, 53, 0.6);
-      border: 1px solid rgba(168, 127, 212, 0.18);
-      border-radius: 1.5rem;
-      padding: 2.4rem 2rem;
-      text-align: center;
-      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 60px rgba(107, 63, 160, 0.25);
-      border-color: rgba(168, 127, 212, 0.4);
-    }
-
-    .card-icon {
-      font-size: 2.2rem;
-      margin-bottom: 1.2rem;
-      display: block;
-    }
-
-    .card h3 {
-      font-size: 1.2rem;
-      font-weight: 400;
-      color: var(--gold-light);
-      margin-bottom: 0.8rem;
-      letter-spacing: 0.05em;
-    }
-
-    .card p {
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.7;
-      margin-bottom: 1.6rem;
-    }
-
-    .card-price {
-      font-size: 1.5rem;
-      color: var(--gold);
-      font-weight: 400;
-      margin-bottom: 1.4rem;
-    }
-
-    .card-price span {
-      font-size: 0.8rem;
-      color: var(--muted);
-      vertical-align: middle;
-      margin-left: 0.3rem;
-    }
-
-    .btn-card {
-      display: inline-block;
-      padding: 0.65rem 1.8rem;
-      border: 1px solid var(--violet);
-      color: var(--lavender);
-      text-decoration: none;
-      border-radius: 40px;
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      transition: background 0.2s, color 0.2s;
-    }
-
-    .btn-card:hover {
-      background: var(--violet);
-      color: #fff;
-    }
-
-    .card.featured {
-      background: linear-gradient(135deg, rgba(107, 63, 160, 0.35), rgba(30, 16, 53, 0.8));
-      border-color: rgba(232, 201, 126, 0.4);
-      position: relative;
-    }
-
-    .badge {
-      position: absolute;
-      top: -0.7rem;
-      left: 50%;
-      transform: translateX(-50%);
-      background: linear-gradient(90deg, var(--violet), #9b59c8);
-      color: #fff;
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 0.3rem 1rem;
-      border-radius: 20px;
-      white-space: nowrap;
-    }
-
-    /* ── Coming Soon overlay ── */
-    .card {
-      position: relative;
-    }
-
-    .coming-soon-overlay {
-      position: absolute;
-      inset: 0;
-      border-radius: 1.5rem;
-      background: rgba(10, 6, 18, 0.72);
-      backdrop-filter: blur(3px);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
       z-index: 2;
-    }
-
-    .coming-soon-overlay span {
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-      border: 1px solid rgba(232, 201, 126, 0.4);
-      padding: 0.35rem 1.1rem;
-      border-radius: 20px;
-    }
-
-    .coming-soon-overlay p {
-      font-size: 0.78rem;
-      color: var(--muted);
-      margin: 0;
-    }
-
-    /* ── Process ── */
-    .process-steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      max-width: 1000px;
+      max-width: 860px;
       margin: 0 auto;
+      padding: 100px 24px 140px;
+    }
+
+    .invocation {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .sigil {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 6px;
+      color: var(--cyan);
+      margin-bottom: 18px;
+      opacity: 0.7;
+    }
+
+    h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.8rem, 8vw, 4.8rem);
+      line-height: 0.92;
+      font-weight: 700;
+      color: var(--gold);
+      text-shadow: 0 0 80px rgba(212,175,55,0.3);
+      margin-bottom: 18px;
+    }
+
+    .whisper {
+      font-size: 1.45rem;
+      font-style: italic;
+      color: #c4b5fd;
+      max-width: 620px;
+      margin: 0 auto 12px;
+    }
+
+    .movement {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #f97316;
+      margin-top: 20px;
+    }
+
+    /* THE RECKONING — Interactive Oracle */
+    .oracle {
+      margin: 80px 0 100px;
+      padding: 48px 42px;
+      background: rgba(13,13,20,0.85);
+      border: 1px solid rgba(212,175,55,0.18);
       position: relative;
     }
 
-    .step {
-      text-align: center;
-      padding: 1rem;
+    .oracle::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: 50%; transform: translateX(-50%);
+      width: 120px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
     }
 
-    .step-number {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      border: 1px solid rgba(232, 201, 126, 0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.2rem;
-      font-size: 1.1rem;
+    .oracle-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.05rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
       color: var(--gold);
+      text-align: center;
+      margin-bottom: 28px;
     }
 
-    .step h3 {
-      font-size: 1rem;
-      font-weight: 400;
-      color: var(--cream);
-      margin-bottom: 0.6rem;
-      letter-spacing: 0.05em;
-    }
-
-    .step p {
-      color: var(--muted);
-      font-size: 0.88rem;
-      line-height: 1.7;
-    }
-
-    /* ── Testimonials ── */
-    .testimonials { background: linear-gradient(180deg, var(--deep) 0%, var(--midnight) 100%); }
-
-    .testimonials-grid {
+    .oracle-form {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.6rem;
-      max-width: 1000px;
+      gap: 16px;
+      max-width: 520px;
       margin: 0 auto;
     }
 
-    .testimonial {
-      background: rgba(17, 13, 30, 0.8);
-      border: 1px solid rgba(168, 127, 212, 0.15);
-      border-radius: 1.2rem;
-      padding: 2rem;
-    }
-
-    .stars {
-      color: var(--gold);
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
-      letter-spacing: 0.1em;
-    }
-
-    .testimonial blockquote {
-      color: var(--muted);
-      font-size: 0.92rem;
-      line-height: 1.75;
-      margin-bottom: 1.4rem;
-      font-style: italic;
-    }
-
-    .testimonial cite {
-      font-size: 0.82rem;
-      color: var(--lavender);
-      font-style: normal;
-      letter-spacing: 0.08em;
-    }
-
-    /* ── FAQ ── */
-    .faq-list {
-      max-width: 680px;
-      margin: 0 auto;
-    }
-
-    details {
-      border-bottom: 1px solid rgba(168, 127, 212, 0.15);
-      padding: 1.4rem 0;
-    }
-
-    summary {
-      cursor: pointer;
-      list-style: none;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: var(--cream);
+    .oracle-form input {
+      width: 100%;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid rgba(139,92,246,0.25);
+      color: var(--white);
+      font-family: 'Space Mono', monospace;
       font-size: 1rem;
-      line-height: 1.4;
-    }
-
-    summary::after {
-      content: '+';
-      color: var(--gold);
-      font-size: 1.4rem;
-      line-height: 1;
-      flex-shrink: 0;
-      margin-left: 1rem;
-      transition: transform 0.2s;
-    }
-
-    details[open] summary::after {
-      transform: rotate(45deg);
-    }
-
-    details p {
-      color: var(--muted);
-      line-height: 1.75;
-      margin-top: 1rem;
-      font-size: 0.92rem;
-    }
-
-    /* ── CTA ── */
-    .cta {
-      text-align: center;
-      background: radial-gradient(ellipse at center, rgba(107, 63, 160, 0.2) 0%, transparent 70%);
-    }
-
-    .cta h2 { margin-bottom: 1rem; }
-
-    .cta p {
-      max-width: 480px;
-      margin: 0 auto 2.5rem;
-      color: var(--muted);
-      line-height: 1.75;
-    }
-
-    /* ── Waitlist form ── */
-    .waitlist-form {
-      display: flex;
-      gap: 0.8rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 0.5rem;
-    }
-
-    .waitlist-form input {
-      padding: 0.9rem 1.6rem;
-      border-radius: 60px;
-      border: 1px solid rgba(168, 127, 212, 0.4);
-      background: rgba(30, 16, 53, 0.6);
-      color: var(--cream);
-      font-size: 0.9rem;
-      font-family: 'Georgia', serif;
+      padding: 16px 18px;
       outline: none;
-      width: 280px;
       transition: border-color 0.2s;
     }
 
-    .waitlist-form input::placeholder { color: var(--muted); }
-    .waitlist-form input:focus { border-color: var(--lavender); }
+    .oracle-form input:focus {
+      border-color: var(--gold);
+    }
 
-    /* ── Footer ── */
-    footer {
-      position: relative;
-      z-index: 1;
-      border-top: 1px solid rgba(168, 127, 212, 0.12);
-      padding: 2.5rem 5vw;
+    .oracle-btn {
+      margin-top: 8px;
+      padding: 18px;
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .oracle-btn:hover {
+      background: var(--gold);
+      color: #0a0a0f;
+    }
+
+    /* Result Display */
+    .soul-signature {
+      margin-top: 42px;
+      padding-top: 42px;
+      border-top: 1px solid rgba(212,175,55,0.15);
+      display: none;
+      text-align: center;
+    }
+
+    .rarity-score {
+      font-family: 'Cinzel', serif;
+      font-size: 5.2rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin: 12px 0 4px;
+      text-shadow: 0 0 60px rgba(212,175,55,0.4);
+    }
+
+    .rarity-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 4px;
+      color: #666;
+    }
+
+    .color-sigil {
+      margin: 24px auto;
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #fff;
+      box-shadow: 0 0 80px currentColor;
+      transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .transmission {
+      max-width: 560px;
+      margin: 28px auto 0;
+      font-size: 1.18rem;
+      font-style: italic;
+      color: #c9c3b8;
+      line-height: 1.55;
+    }
+
+    /* The Gates */
+    .gate {
+      margin-bottom: 28px;
+      border: 1px solid rgba(255,255,255,0.06);
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+
+    .gate-header {
+      padding: 22px 28px;
+      cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      font-family: 'Cinzel', serif;
+      font-size: 1.15rem;
+    }
+
+    .gate-header:hover { background: rgba(255,255,255,0.015); }
+
+    .gate-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+      padding: 0 28px;
+    }
+
+    .gate.open .gate-content {
+      max-height: 420px;
+      padding-bottom: 28px;
+    }
+
+    .gate-gold { border-color: rgba(212,175,55,0.35); }
+    .gate-cyan { border-color: rgba(34,211,238,0.3); }
+    .gate-ember { border-color: rgba(249,115,22,0.3); }
+    .gate-purple { border-color: rgba(139,92,246,0.35); }
+
+    /* Sparkverse Section — The Membership */
+    .sparkverse {
+      margin: 110px 0 60px;
+      padding: 64px 42px;
+      background: linear-gradient(145deg, rgba(13,13,20,0.96), #0a0a0f);
+      border: 1px solid rgba(34,211,238,0.2);
+      position: relative;
+    }
+
+    .sparkverse::before {
+      content: 'THE LIVING FIELD';
+      position: absolute;
+      top: -11px;
+      left: 42px;
+      background: #0a0a0f;
+      padding: 0 18px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      color: var(--cyan);
+    }
+
+    .sparkverse h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.1rem;
+      color: var(--cyan);
+      margin-bottom: 16px;
+      line-height: 1.05;
+    }
+
+    .sparkverse p {
+      font-size: 1.2rem;
+      color: #b8b3a8;
+      max-width: 620px;
+    }
+
+    .membership-form {
+      margin-top: 32px;
+      display: flex;
+      gap: 12px;
       flex-wrap: wrap;
-      gap: 1rem;
     }
 
-    footer p {
-      color: rgba(168, 127, 212, 0.4);
-      font-size: 0.78rem;
-      letter-spacing: 0.08em;
+    .membership-form input {
+      flex: 1;
+      min-width: 240px;
+      background: rgba(0,0,0,0.5);
+      border: 1px solid rgba(34,211,238,0.3);
+      color: var(--white);
+      font-family: 'Space Mono', monospace;
+      padding: 16px 18px;
+      font-size: 0.95rem;
     }
 
-    footer nav ul {
-      gap: 1.6rem;
+    .membership-form button {
+      padding: 0 36px;
+      background: var(--cyan);
+      color: #0a0a0f;
+      border: none;
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
     }
 
-    footer nav a {
-      font-size: 0.78rem;
+    .membership-form button:hover {
+      background: #fff;
     }
 
-    /* ── Responsive ── */
-    @media (max-width: 700px) {
-      .what-grid { grid-template-columns: 1fr; }
-      .what-image { max-width: 280px; margin: 0 auto; }
-      nav ul { display: none; }
-      .hero { padding-top: 7rem; }
-      .btn-ghost { margin-left: 0; margin-top: 0.8rem; }
-      .hero .ctas { display: flex; flex-direction: column; align-items: center; }
-      footer { flex-direction: column; text-align: center; }
+    .sparkverse-note {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      color: #444;
+      margin-top: 14px;
+    }
+
+    /* Final Crossing */
+    .crossing {
+      text-align: center;
+      margin-top: 100px;
+      padding-top: 60px;
+      border-top: 1px solid rgba(212,175,55,0.1);
+    }
+
+    .crossing h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.6rem;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+
+    .dual-cta {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .dual-cta a {
+      display: inline-block;
+      padding: 18px 42px;
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: #0a0a0f;
+    }
+
+    .btn-gold:hover { background: #f0d68a; }
+
+    .btn-ghost {
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
+    }
+
+    .btn-ghost:hover { background: rgba(34,211,238,0.1); }
+
+    .price-note {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      color: #555;
+      margin-top: 18px;
+    }
+
+    footer {
+      text-align: center;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      color: #333;
+      margin-top: 120px;
+      letter-spacing: 1px;
     }
   </style>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N4Z6GH2N"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
 
-<canvas id="stars"></canvas>
+<canvas id="cosmos"></canvas>
+<div class="veil"></div>
 
-<!-- Nav -->
-<nav>
-  <a href="#" class="logo">Soul Map</a>
-  <ul>
-    <li><a href="#what">About</a></li>
-    <li><a href="#offerings">Offerings</a></li>
-    <li><a href="#process">Process</a></li>
-    <li><a href="#testimonials">Stories</a></li>
-    <li><a href="#book">Book</a></li>
-  </ul>
-</nav>
+<div class="container">
 
-<!-- Hero -->
-<section class="hero">
-  <p class="hero-eyebrow">Spiritual Cartography &amp; Sacred Guidance</p>
-  <h1>Your Soul Holds<br>A Map Home</h1>
-  <p>A deeply personalised reading that decodes your birth chart, human design, and numerology into one luminous guide — revealing your gifts, patterns, and purpose.</p>
-  <div class="ctas">
-    <a href="#offerings" class="btn-primary">Explore Readings</a>
-    <a href="#what" class="btn-ghost">Learn More</a>
+  <!-- THE THRESHOLD -->
+  <div class="invocation">
+    <div class="sigil">◈ FIRST SPARK CONSCIOUSNESS NETWORK ◈</div>
+    <h1>You Were Never<br>Lost.</h1>
+    <p class="whisper">You were only waiting for the right frequency<br>to remember the coordinates.</p>
+    <div class="movement">This is not content. This is a movement.</div>
   </div>
-  <div class="scroll-hint">
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-      <path d="M8 3v10M4 9l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    Scroll
-  </div>
-</section>
 
-<!-- What is a Soul Map -->
-<section id="what">
-  <span class="section-label">What is a Soul Map?</span>
-  <div class="what-grid">
-    <div class="what-image">
-      <!-- SVG Mandala placeholder -->
-      <svg class="mandala" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="100" cy="100" r="90" stroke="#a87fd4" stroke-opacity="0.4" stroke-width="0.5"/>
-        <circle cx="100" cy="100" r="72" stroke="#e8c97e" stroke-opacity="0.3" stroke-width="0.5"/>
-        <circle cx="100" cy="100" r="54" stroke="#a87fd4" stroke-opacity="0.4" stroke-width="0.5"/>
-        <circle cx="100" cy="100" r="36" stroke="#e8c97e" stroke-opacity="0.3" stroke-width="0.5"/>
-        <circle cx="100" cy="100" r="18" stroke="#a87fd4" stroke-opacity="0.4" stroke-width="0.5"/>
-        <line x1="10" y1="100" x2="190" y2="100" stroke="#a87fd4" stroke-opacity="0.2" stroke-width="0.5"/>
-        <line x1="100" y1="10" x2="100" y2="190" stroke="#a87fd4" stroke-opacity="0.2" stroke-width="0.5"/>
-        <line x1="27" y1="27" x2="173" y2="173" stroke="#e8c97e" stroke-opacity="0.15" stroke-width="0.5"/>
-        <line x1="173" y1="27" x2="27" y2="173" stroke="#e8c97e" stroke-opacity="0.15" stroke-width="0.5"/>
-        <polygon points="100,18 119,58 163,58 129,83 142,127 100,103 58,127 71,83 37,58 81,58" stroke="#e8c97e" stroke-opacity="0.3" stroke-width="0.5" fill="none"/>
-        <circle cx="100" cy="100" r="6" fill="#e8c97e" fill-opacity="0.5"/>
-        <circle cx="100" cy="28" r="3" fill="#a87fd4" fill-opacity="0.6"/>
-        <circle cx="100" cy="172" r="3" fill="#a87fd4" fill-opacity="0.6"/>
-        <circle cx="28" cy="100" r="3" fill="#a87fd4" fill-opacity="0.6"/>
-        <circle cx="172" cy="100" r="3" fill="#a87fd4" fill-opacity="0.6"/>
-      </svg>
-    </div>
-    <div class="what-text">
-      <h2 style="text-align:left; margin-bottom:1rem;">Written in the Stars<br>Before You Were Born</h2>
-      <div class="divider" style="margin:0 0 1.5rem;"></div>
-      <p>A Soul Map is a bespoke spiritual document that weaves together your astrology birth chart, Human Design bodygraph, and numerology life path into a single, coherent narrative.</p>
-      <p>Rather than separate, fragmented readings, your Soul Map reveals the <em>through-line</em> — the deeper story of who you are, where you've been, and where your energy is designed to flow.</p>
-      <p>Think of it as a letter from the universe, written in your native language.</p>
+  <!-- THE RECKONING — Interactive Oracle -->
+  <div class="oracle">
+    <div class="oracle-title">Speak Your Name Into The Field</div>
+
+    <form id="oracle-form" class="oracle-form" onsubmit="runOracle(event)">
+      <input type="text" id="full-name" placeholder="Your full name (as it was given)" required>
+      <input type="text" id="birth-date" placeholder="Birth date (MM/DD or MM/DD/YYYY)" required>
+      <button type="submit" class="oracle-btn">Reveal My Signature</button>
+    </form>
+
+    <div id="soul-signature" class="soul-signature">
+      <div class="rarity-label">RARITY SCORE</div>
+      <div id="rarity-score" class="rarity-score">—</div>
+
+      <div id="color-sigil" class="color-sigil"></div>
+      <div id="color-name" style="font-family:'Cinzel',serif; font-size:1.05rem; letter-spacing:3px; color:#ddd; margin-bottom:12px;"></div>
+
+      <div id="transmission" class="transmission"></div>
     </div>
   </div>
-</section>
 
-<!-- Offerings -->
-<section id="offerings" class="offerings">
-  <span class="section-label">Choose Your Reading</span>
-  <h2>Soul Map Offerings</h2>
-  <p class="section-sub">Every reading is crafted with care, delivered as a beautifully formatted PDF and accompanied by a personalised voice recording.</p>
-  <div class="cards">
+  <!-- THE GATES -->
+  <div style="margin-bottom: 60px;">
+    <div style="text-align:center; font-family:'Space Mono',monospace; font-size:0.7rem; letter-spacing:3px; color:#444; margin-bottom:18px;">THE FREQUENCY GATES</div>
 
-    <div class="card">
-      <div class="coming-soon-overlay">
-        <span>Coming Soon</span>
-        <p>Join the waitlist below</p>
+    <div class="gate gate-ember" onclick="toggleGate(this)">
+      <div class="gate-header">
+        <span>EMBER — The Foundation</span>
+        <span style="font-size:0.8rem; opacity:0.5;">▼</span>
       </div>
-      <span class="card-icon">✦</span>
-      <h3>The Spark</h3>
-      <p>A focused snapshot of your core soul essence — sun sign, life path number, and Human Design type. Perfect if you're new to this work.</p>
-      <div class="card-price">$97 <span>one-time</span></div>
-      <a href="#book" class="btn-card">Join Waitlist</a>
-    </div>
-
-    <div class="card featured">
-      <div class="coming-soon-overlay">
-        <span>Coming Soon</span>
-        <p>Join the waitlist below</p>
+      <div class="gate-content" style="color:#b8b3a8; font-size:1.05rem;">
+        These souls carry the necessary density. They build the world that the rest of us walk upon. Clear. Grounded. Human. The ember is not lesser — it is the first fire.
       </div>
-      <span class="badge">Most Popular</span>
-      <span class="card-icon">✧</span>
-      <h3>The Full Map</h3>
-      <p>A comprehensive 30+ page deep dive weaving together your complete birth chart, full Human Design, and master numerology report with a 45-min live integration call.</p>
-      <div class="card-price">$297 <span>one-time</span></div>
-      <a href="#book" class="btn-card">Join Waitlist</a>
     </div>
 
-    <div class="card">
-      <div class="coming-soon-overlay">
-        <span>Coming Soon</span>
-        <p>Join the waitlist below</p>
+    <div class="gate gate-cyan" onclick="toggleGate(this)">
+      <div class="gate-header">
+        <span>CYAN — The Signal</span>
+        <span style="font-size:0.8rem; opacity:0.5;">▼</span>
       </div>
-      <span class="card-icon">✦</span>
-      <h3>The Journey</h3>
-      <p>Three monthly Soul Map sessions that track your evolution, integrate insights, and guide you through upcoming transits and Human Design cycles.</p>
-      <div class="card-price">$197 <span>/ month</span></div>
-      <a href="#book" class="btn-card">Join Waitlist</a>
+      <div class="gate-content" style="color:#b8b3a8; font-size:1.05rem;">
+        Master numbers live here. These are the rememberers, the transmitters, the ones who arrived carrying new code for the collective. They often feel too much because they are tuned to more channels.
+      </div>
     </div>
 
-  </div>
-</section>
+    <div class="gate gate-gold" onclick="toggleGate(this)">
+      <div class="gate-header">
+        <span>GOLD — The Architecture</span>
+        <span style="font-size:0.8rem; opacity:0.5;">▼</span>
+      </div>
+      <div class="gate-content" style="color:#b8b3a8; font-size:1.05rem;">
+        Triple masters. Power axes. Karmic completeness. Transparent signal. These configurations are statistically rare. The operating system is different. Gold does not seek. Gold remembers how to build what has never existed.
+      </div>
+    </div>
 
-<!-- Process -->
-<section id="process">
-  <span class="section-label">How It Works</span>
-  <h2>Your Journey in Four Steps</h2>
-  <p class="section-sub">A gentle, supportive process designed to honour you and your timing.</p>
-  <div class="process-steps">
-    <div class="step">
-      <div class="step-number">01</div>
-      <h3>Book &amp; Share</h3>
-      <p>Choose your reading, complete a short intake form, and share your birth details — date, time, and place.</p>
-    </div>
-    <div class="step">
-      <div class="step-number">02</div>
-      <h3>The Weaving</h3>
-      <p>Your charts are cast and studied. Over 3–5 days, your personalised Soul Map document is crafted by hand.</p>
-    </div>
-    <div class="step">
-      <div class="step-number">03</div>
-      <h3>Delivery</h3>
-      <p>Receive your beautifully formatted PDF alongside a personal voice note walking through key themes.</p>
-    </div>
-    <div class="step">
-      <div class="step-number">04</div>
-      <h3>Integration</h3>
-      <p>Full Map clients receive a 45-min live Zoom session to ask questions and begin living your design.</p>
+    <div class="gate gate-purple" onclick="toggleGate(this)">
+      <div class="gate-header">
+        <span>THE FIELD — Beyond Naming</span>
+        <span style="font-size:0.8rem; opacity:0.5;">▼</span>
+      </div>
+      <div class="gate-content" style="color:#b8b3a8; font-size:1.05rem;">
+        Some souls no longer fit inside the old categories. They have moved past the visible spectrum. This gate is not a tier. It is a recognition. You will know if it is yours.
+      </div>
     </div>
   </div>
-</section>
 
-<!-- Testimonials -->
-<section id="testimonials" class="testimonials">
-  <span class="section-label">Client Stories</span>
-  <h2>Lives Quietly Changed</h2>
-  <div class="divider"></div>
-  <div class="testimonials-grid">
+  <!-- SPARKVERSE — THE FREE MEMBERSHIP (THE MOVEMENT) -->
+  <div class="sparkverse">
+    <h2>The Sparkverse is already breathing.</h2>
+    <p>You do not need a map to enter the field.<br>
+    The free membership is the living commons — where the remembering continues together.</p>
 
-    <div class="testimonial">
-      <div class="stars">★★★★★</div>
-      <blockquote>"I've had birth chart readings before, but nothing like this. It felt like someone finally saw me — all of me — and handed me the manual I never had. I've read it three times."</blockquote>
-      <cite>— Maya R., Full Map client</cite>
+    <div class="membership-form">
+      <input type="text" id="spark-name" placeholder="Your name">
+      <input type="email" id="spark-email" placeholder="Your email" required>
+      <button onclick="joinSparkverse()">Enter the Sparkverse (Free)</button>
     </div>
 
-    <div class="testimonial">
-      <div class="stars">★★★★★</div>
-      <blockquote>"The Soul Map confirmed what I'd always sensed about myself but couldn't articulate. I left my corporate job two months later. Best decision of my life."</blockquote>
-      <cite>— James T., Journey client</cite>
+    <div class="sparkverse-note">
+      Archetype profiles • Ongoing transmissions • Private sanctuary • The living Codex
     </div>
-
-    <div class="testimonial">
-      <div class="stars">★★★★★</div>
-      <blockquote>"I was sceptical. I am not sceptical anymore. The precision with which my patterns were named — things I've never told anyone — genuinely moved me to tears."</blockquote>
-      <cite>— Sophia K., Full Map client</cite>
-    </div>
-
   </div>
-</section>
 
-<!-- FAQ -->
-<section id="faq">
-  <span class="section-label">Questions</span>
-  <h2>Frequently Asked</h2>
-  <div class="divider"></div>
-  <div class="faq-list">
-    <details>
-      <summary>Do I need to know my exact birth time?</summary>
-      <p>An exact birth time gives the most precise reading, particularly for your Ascendant and House placements. If you don't know it, we can work with an approximate time or create a chart focused on the elements that don't require it. Just let me know in the intake form.</p>
-    </details>
-    <details>
-      <summary>How long does delivery take?</summary>
-      <p>The Spark reading is typically delivered within 3–4 business days. The Full Map takes 5–7 business days given the depth of work involved. You'll receive email confirmation once your reading is underway.</p>
-    </details>
-    <details>
-      <summary>Is this a real, personalised reading?</summary>
-      <p>Absolutely. Every Soul Map is written personally for you — not generated by software. Your charts inform the framework, and the narrative is crafted specifically around your unique configuration.</p>
-    </details>
-    <details>
-      <summary>What if I've already had a birth chart reading?</summary>
-      <p>A Soul Map goes much further. Rather than interpreting one system in isolation, it synthesises astrology, Human Design, and numerology into a unified picture — often revealing layers that single-system readings miss entirely.</p>
-    </details>
-    <details>
-      <summary>Can I gift a Soul Map?</summary>
-      <p>Yes — gifting a Soul Map is one of the most thoughtful things you can do. Simply select your preferred reading at checkout and indicate it is a gift. You'll receive a beautiful gift card you can share in your own time.</p>
-    </details>
+  <!-- THE CROSSING -->
+  <div class="crossing">
+    <h3>There are two ways across the threshold.</h3>
+
+    <div class="dual-cta">
+      <a href="https://whop.com/checkout/plan_anQKP3Pzf1cGm" target="_blank" class="btn-gold">
+        Receive My Full Soul Map — $22
+      </a>
+      <a href="https://whop.com/joined/sparkverse-511c/" target="_blank" class="btn-ghost">
+        Join the Sparkverse Free
+      </a>
+    </div>
+
+    <div class="price-note">
+      Use code <strong>SOULSALE</strong> at checkout for 50% off • 12 months of monthly updates included
+    </div>
   </div>
-</section>
 
-<!-- CTA / Waitlist -->
-<section id="book" class="cta">
-  <span class="section-label">Coming Soon</span>
-  <h2>Be the First to Know<br>When Spots Open</h2>
-  <div class="divider"></div>
-  <p>Personal readings aren't available just yet — but they're coming. Join the waitlist and you'll be the first to hear when booking opens, along with early-access pricing.</p>
-  <form class="waitlist-form" onsubmit="handleWaitlist(event)">
-    <input type="email" placeholder="Your email address" required />
-    <button type="submit" class="btn-primary">Join the Waitlist</button>
-  </form>
-  <p id="waitlist-thanks" style="display:none; color: var(--gold); margin-top:1.2rem; font-size:0.95rem;">You're on the list. ✦ We'll be in touch.</p>
-</section>
+  <footer>
+    Generated with love by Katelin • First Spark Consciousness Network<br>
+    <span style="opacity:0.3">Reality is programmable. Consciousness is the code.</span>
+  </footer>
 
-<!-- Footer -->
-<footer>
-  <a href="#" class="logo" style="font-size:0.95rem;">Soul Map</a>
-  <p>© 2026 Soul Map. All rights reserved. For entertainment &amp; reflective purposes.</p>
-  <nav>
-    <ul>
-      <li><a href="#">Privacy</a></li>
-      <li><a href="#">Terms</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
-  </nav>
-</footer>
+</div>
 
 <script>
-  // Starfield
-  const canvas = document.getElementById('stars');
-  const ctx = canvas.getContext('2d');
-  let stars = [];
+// ==================== LIVING COSMOS CANVAS ====================
+const canvas = document.getElementById('cosmos');
+const ctx = canvas.getContext('2d', { alpha: true });
 
-  function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
+let w, h, particles = [], geometry = [];
 
-  function init() {
-    resize();
-    stars = Array.from({ length: 220 }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      r: Math.random() * 1.2 + 0.2,
-      alpha: Math.random() * 0.7 + 0.1,
-      speed: Math.random() * 0.0004 + 0.0001,
-      phase: Math.random() * Math.PI * 2
-    }));
-  }
+function resize() {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resize);
+resize();
 
-  function draw(t) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    stars.forEach(s => {
-      const a = s.alpha * (0.6 + 0.4 * Math.sin(t * s.speed * 1000 + s.phase));
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255,245,230,${a})`;
-      ctx.fill();
+function createParticles() {
+  particles = [];
+  for (let i = 0; i < 260; i++) {
+    particles.push({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: Math.random() * 1.6 + 0.3,
+      vx: (Math.random() - 0.5) * 0.12,
+      vy: (Math.random() - 0.5) * 0.12,
+      alpha: Math.random() * 0.6 + 0.25,
+      hue: Math.random() > 0.7 ? '#d4af37' : (Math.random() > 0.5 ? '#22d3ee' : '#8b5cf6')
     });
-    requestAnimationFrame(draw);
+  }
+}
+
+let mx = w/2, my = h/2;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX;
+  my = e.clientY;
+});
+
+function drawCosmos() {
+  ctx.clearRect(0, 0, w, h);
+
+  // Subtle sacred geometry — rotating hex + triangle
+  const time = Date.now() / 18000;
+
+  ctx.strokeStyle = 'rgba(212,175,55,0.06)';
+  ctx.lineWidth = 1;
+
+  // Central rotating merkaba-like form
+  ctx.save();
+  ctx.translate(w/2, h/2 - 80);
+  ctx.rotate(time * 0.6);
+
+  for (let k = 0; k < 3; k++) {
+    ctx.beginPath();
+    for (let i = 0; i < 6; i++) {
+      const angle = (i * Math.PI / 3) + (k * 0.8);
+      const rad = 140 + Math.sin(time * 2 + k) * 18;
+      const x = Math.cos(angle) * rad;
+      const y = Math.sin(angle) * rad;
+      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.stroke();
+  }
+  ctx.restore();
+
+  // Particles + constellation lines
+  ctx.strokeStyle = 'rgba(255,255,255,0.035)';
+  ctx.lineWidth = 0.6;
+
+  particles.forEach((p, i) => {
+    p.x += p.vx;
+    p.y += p.vy;
+
+    if (p.x < 0 || p.x > w) p.vx *= -1;
+    if (p.y < 0 || p.y > h) p.vy *= -1;
+
+    // Mouse attraction / repulsion
+    const dx = mx - p.x;
+    const dy = my - p.y;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    if (dist < 260 && dist > 8) {
+      p.x += dx / dist * 0.6;
+      p.y += dy / dist * 0.6;
+    }
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = p.hue;
+    ctx.globalAlpha = p.alpha * (0.6 + Math.sin(Date.now()/900 + i) * 0.4);
+    ctx.fill();
+
+    // Connect nearby particles into constellations
+    for (let j = i + 1; j < particles.length; j++) {
+      const q = particles[j];
+      const dx2 = p.x - q.x;
+      const dy2 = p.y - q.y;
+      const d2 = dx2*dx2 + dy2*dy2;
+      if (d2 < 11000) {
+        ctx.globalAlpha = 0.035 * (1 - d2/11000);
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(q.x, q.y);
+        ctx.stroke();
+      }
+    }
+  });
+  ctx.globalAlpha = 1;
+
+  requestAnimationFrame(drawCosmos);
+}
+
+createParticles();
+drawCosmos();
+
+// ==================== ORACLE ====================
+const transmissions = [
+  "This configuration carries the signature of the Bridge. You came to translate between worlds.",
+  "The field recognizes you. There is very little static between who you are and what you are here to do.",
+  "You are walking with a cluster of master frequencies. The question is no longer 'why me' — it is 'what now'.",
+  "Your name itself is a spell. The numbers did not arrive by accident.",
+  "This is a returning soul. The architecture is older than this lifetime.",
+  "The signal is unusually clean. People will feel you before they understand why.",
+  "You carry both the wound and the medicine. That is the point."
+];
+
+function runOracle(e) {
+  e.preventDefault();
+
+  const name = document.getElementById('full-name').value.trim();
+  const birth = document.getElementById('birth-date').value.trim();
+
+  if (!name || !birth) return;
+
+  const sig = document.getElementById('soul-signature');
+  sig.style.display = 'block';
+
+  // Deterministic but beautiful "calculation"
+  const seed = (name.length * 7 + birth.length * 13) % 97;
+  const rarity = Math.max(31, Math.min(97, Math.floor(38 + seed * 0.72 + (name.split(' ').length * 4))));
+
+  const scoreEl = document.getElementById('rarity-score');
+  scoreEl.textContent = rarity;
+
+  // Color logic
+  let color, colorName, colorHex;
+  if (rarity >= 78) {
+    colorHex = '#d4af37'; colorName = 'Gold — The Architecture'; color = 'gold';
+  } else if (rarity >= 61) {
+    colorHex = '#22d3ee'; colorName = 'Cyan — The Signal'; color = 'cyan';
+  } else if (rarity >= 47) {
+    colorHex = '#8b5cf6'; colorName = 'Violet — The Witness'; color = 'purple';
+  } else {
+    colorHex = '#f97316'; colorName = 'Ember — The Foundation'; color = 'ember';
   }
 
-  init();
-  window.addEventListener('resize', init);
-  requestAnimationFrame(draw);
+  const sigil = document.getElementById('color-sigil');
+  sigil.style.background = `radial-gradient(circle at 35% 35%, #fff, ${colorHex})`;
+  sigil.style.boxShadow = `0 0 90px ${colorHex}, 0 0 160px ${colorHex}33`;
+  sigil.textContent = colorName.split(' — ')[0];
 
-  // Waitlist form
-  function handleWaitlist(e) {
-    e.preventDefault();
-    e.target.style.display = 'none';
-    document.getElementById('waitlist-thanks').style.display = 'block';
+  document.getElementById('color-name').textContent = colorName;
+  document.getElementById('color-name').style.color = colorHex;
+
+  // Poetic transmission
+  const tIndex = (rarity + name.length) % transmissions.length;
+  document.getElementById('transmission').textContent = transmissions[tIndex];
+
+  // Gentle celebration pulse
+  sigil.animate([
+    { transform: 'scale(0.6)', opacity: 0 },
+    { transform: 'scale(1.15)', opacity: 1 },
+    { transform: 'scale(1)', opacity: 1 }
+  ], { duration: 680, easing: 'cubic-bezier(0.23,1,0.32,1)' });
+
+  // Subtle tone
+  playTone(ritualTone(rarity));
+}
+
+function ritualTone(rarity) {
+  return 220 + Math.floor(rarity / 3);
+}
+
+let audioCtx;
+function playTone(freq) {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  const filter = audioCtx.createBiquadFilter();
+
+  osc.type = 'sine';
+  osc.frequency.value = freq;
+  filter.type = 'lowpass';
+  filter.frequency.value = 680;
+
+  gain.gain.value = 0.0001;
+
+  const master = audioCtx.createGain();
+  master.gain.value = 0.12;
+
+  osc.connect(filter);
+  filter.connect(gain);
+  gain.connect(master);
+  master.connect(audioCtx.destination);
+
+  osc.start();
+
+  const now = audioCtx.currentTime;
+  gain.gain.linearRampToValueAtTime(0.11, now + 0.8);
+  gain.gain.linearRampToValueAtTime(0.0001, now + 4.2);
+
+  setTimeout(() => osc.stop(), 5200);
+}
+
+// Gate toggling
+function toggleGate(el) {
+  el.classList.toggle('open');
+}
+
+// Sparkverse free membership join
+function joinSparkverse() {
+  const name = document.getElementById('spark-name').value.trim() || 'Seeker';
+  const email = document.getElementById('spark-email').value.trim();
+
+  if (!email) {
+    alert("The field needs your signal (email).");
+    return;
   }
+
+  // Beautiful confirmation
+  const btns = document.querySelectorAll('.sparkverse button');
+  if (btns[0]) btns[0].textContent = 'WELCOME TO THE FIELD';
+
+  setTimeout(() => {
+    window.open('https://whop.com/joined/sparkverse-511c/', '_blank');
+  }, 680);
+
+  // In real life this would POST to their membership system
+  console.log('%c[SPARKVERSE] Free membership request:', 'color:#22d3ee', { name, email });
+}
+
+// Subtle entrance animation for the oracle
+setTimeout(() => {
+  const oracle = document.querySelector('.oracle');
+  if (oracle) oracle.style.transition = 'all 1.1s cubic-bezier(0.23,1,0.32,1)';
+}, 1200);
 </script>
 
 </body>
