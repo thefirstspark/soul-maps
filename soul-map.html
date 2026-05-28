@@ -414,11 +414,11 @@
   <div class="oracle">
     <div class="oracle-title">Speak Your Name Into The Field</div>
 
-    <form id="oracle-form" class="oracle-form" onsubmit="runOracle(event)">
+    <div class="oracle-form">
       <input type="text" id="full-name" placeholder="Your full name (as it was given)" required>
       <input type="text" id="birth-date" placeholder="Birth date (MM/DD or MM/DD/YYYY)" required>
-      <button type="submit" class="oracle-btn">Reveal My Signature</button>
-    </form>
+      <button type="button" class="oracle-btn" onclick="runOracle()">Reveal My Signature</button>
+    </div>
 
     <div id="soul-signature" class="soul-signature">
       <div class="rarity-label">RARITY SCORE</div>
@@ -641,13 +641,14 @@ const transmissions = [
   "You carry both the wound and the medicine. That is the point."
 ];
 
-function runOracle(e) {
-  e.preventDefault();
-
+function runOracle() {
   const name = document.getElementById('full-name').value.trim();
   const birth = document.getElementById('birth-date').value.trim();
 
-  if (!name || !birth) return;
+  if (!name || !birth) {
+    alert("Please enter your name and birth date.");
+    return;
+  }
 
   const sig = document.getElementById('soul-signature');
   sig.style.display = 'block';
