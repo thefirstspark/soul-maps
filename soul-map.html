@@ -164,6 +164,24 @@
       color: #0a0a0f;
     }
 
+    /* Mobile improvements for Oracle + keyboard handling */
+    @media (max-width: 600px) {
+      .oracle {
+        margin: 40px 0 60px;
+        padding: 28px 20px;
+      }
+
+      .oracle-form input,
+      .oracle-form button {
+        font-size: 16px; /* Prevents iOS zoom on focus */
+        padding: 18px 16px;
+      }
+
+      .oracle-title {
+        font-size: 0.95rem;
+      }
+    }
+
     /* Result Display */
     .soul-signature {
       margin-top: 42px;
@@ -415,8 +433,9 @@
     <div class="oracle-title">Speak Your Name Into The Field</div>
 
     <div class="oracle-form">
-      <input type="text" id="full-name" placeholder="Your full name (as it was given)" required>
-      <input type="text" id="birth-date" placeholder="Birth date (MM/DD or MM/DD/YYYY)" required>
+      <input type="text" id="full-name" placeholder="Your full name (as it was given)" required autocomplete="name">
+      <div style="font-family: 'Space Mono', monospace; font-size: 0.7rem; color: #666; margin-bottom: -4px;">Birth date</div>
+      <input type="date" id="birth-date" required>
       <button type="button" class="oracle-btn" onclick="runOracle()">Reveal My Signature</button>
     </div>
 
@@ -652,6 +671,11 @@ function runOracle() {
 
   const sig = document.getElementById('soul-signature');
   sig.style.display = 'block';
+
+  // Scroll result into view (especially important on mobile after keyboard)
+  setTimeout(() => {
+    sig.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 50);
 
   // Deterministic but beautiful "calculation"
   const seed = (name.length * 7 + birth.length * 13) % 97;
