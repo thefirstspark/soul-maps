@@ -102,10 +102,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.03), transparent); transition: left .4s; }
         .card:hover::before { left: 100%; }
         .card:hover { transform: translateY(-3px); }
+
+        /* Core 6 card colors (currently used in archive) */
         .card.gold { border-color: #d97706; } .card.green { border-color: #10b981; } .card.blue { border-color: #3b82f6; } .card.violet { border-color: #a855f7; } .card.ember { border-color: #FF6A3D; } .card.cyan { border-color: #26E4D8; }
         .card.gold:hover { box-shadow: 0 8px 30px rgba(217,119,6,.25); } .card.green:hover { box-shadow: 0 8px 30px rgba(16,185,129,.25); } .card.blue:hover { box-shadow: 0 8px 30px rgba(59,130,246,.25); } .card.violet:hover { box-shadow: 0 8px 30px rgba(168,85,247,.28); } .card.ember:hover { box-shadow: 0 8px 30px rgba(255,106,61,.28); } .card.cyan:hover { box-shadow: 0 8px 30px rgba(38,228,216,.25); }
         .card-name { font-size: clamp(1.1rem,3vw,1.5em); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 8px; }
         .card.gold .card-name { color: #f59e0b; } .card.green .card-name { color: #10b981; } .card.blue .card-name { color: #60a5fa; } .card.violet .card-name { color: #c084fc; } .card.ember .card-name { color: #FF8A5D; } .card.cyan .card-name { color: #26E4D8; }
+
+        /* Expanded Color Codex colors (ready for future soul maps) */
+        .card.red { border-color: #e24b4a; } .card.red:hover { box-shadow: 0 8px 30px rgba(226,75,74,.28); } .card.red .card-name { color: #f87171; }
+        .card.yellow { border-color: #f5c842; } .card.yellow:hover { box-shadow: 0 8px 30px rgba(245,200,66,.28); } .card.yellow .card-name { color: #fde047; }
+        .card.white { border-color: #e0e0ff; } .card.white:hover { box-shadow: 0 8px 30px rgba(224,224,255,.18); } .card.white .card-name { color: #f0f0ff; }
+        .card.rose { border-color: #f43f5e; } .card.rose:hover { box-shadow: 0 8px 30px rgba(244,63,94,.28); } .card.rose .card-name { color: #fb7185; }
+        .card.silver { border-color: #c4c8d4; } .card.silver:hover { box-shadow: 0 8px 30px rgba(196,200,212,.22); } .card.silver .card-name { color: #e2e8f0; }
         .card-sub { font-size: .75em; letter-spacing: 2px; color: #6b7280; text-transform: uppercase; margin-bottom: 10px; }
         .card-desc { font-size: .85em; color: #a5b4fc; line-height: 1.75; font-style: italic; }
         .card-arrow { position: absolute; right: 25px; top: 50%; transform: translateY(-50%); font-size: 1.5em; opacity: .4; transition: opacity .2s, right .2s; }
@@ -322,45 +331,76 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="no-results" id="no-results">No soul maps match that search.<br><span style="opacity:.5">Try a name, life path number, or zodiac sign.</span></div>
 
     <!-- Color Codex Paths - full system -->
-    <div style="max-width: 720px; margin: 60px auto 20px; text-align: center;">
-        <div style="font-family:'Cinzel',serif; font-size:0.65rem; letter-spacing:0.25em; color:#888; text-transform:uppercase; margin-bottom:8px;">The Color Codex</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; color:#e0e7ff; margin-bottom:8px;">Frequencies &amp; Paths</div>
-        <div style="font-size:0.85rem; color:#9ca3af; max-width:560px; margin:0 auto 24px; line-height:1.5;">
-            Nine frequencies of light + two structural layers. Your core color is fixed at birth.
-            Only some have deep mapped paths so far.
+    <div style="max-width: 740px; margin: 60px auto 20px; text-align: center;">
+        <div style="font-family:'Cinzel',serif; font-size:0.65rem; letter-spacing:0.25em; color:#888; text-transform:uppercase; margin-bottom:6px;">The Color Codex</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:#e0e7ff; margin-bottom:6px;">Frequencies &amp; Paths</div>
+
+        <!-- Visual Spectrum Bar -->
+        <div style="display:flex; height:9px; border-radius:9999px; overflow:hidden; margin:14px auto 18px; max-width:620px; box-shadow: 0 0 0 1px rgba(255,255,255,.06);">
+            <span style="flex:1; background:#e24b4a;" title="Red — The Will"></span>
+            <span style="flex:1; background:#ff6a3d;" title="Ember — Ignition"></span>
+            <span style="flex:1; background:#f5c842;" title="Yellow — Joy"></span>
+            <span style="flex:1; background:#10b981;" title="Green — The Field"></span>
+            <span style="flex:1; background:#22d3ee;" title="Cyan — Signal"></span>
+            <span style="flex:1; background:#3b82f6;" title="Blue — The Mind"></span>
+            <span style="flex:1; background:#8b5cf6;" title="Purple — Transformer"></span>
+            <span style="flex:1; background:#d4af37;" title="Gold — Master Tier"></span>
+            <span style="flex:1; background:#f0f0ff;" title="White — The All"></span>
+        </div>
+
+        <div style="font-size:0.82rem; color:#9ca3af; max-width:580px; margin:0 auto 18px; line-height:1.5;">
+            Nine frequencies of light + two structural layers.<br>
+            Your core color is fixed at birth. Only some paths have deep mapped content so far.
         </div>
 
         <!-- The three live deep paths -->
-        <div style="display:flex; flex-wrap:wrap; gap:16px; justify-content:center; margin-bottom:20px;">
+        <div style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-bottom:22px;">
             <!-- Purple -->
-            <div style="flex:1; min-width:220px; max-width:240px; text-align:center; padding:22px 18px; border:1px solid #6B4DF230; border-radius:4px; background:#6B4DF208;">
-                <div style="font-family:'Cinzel',serif; font-size:0.58rem; letter-spacing:0.2em; color:#6B4DF2; text-transform:uppercase; margin-bottom:6px;">Live Path</div>
-                <div style="font-family:'Cormorant Garamond',serif; font-size:1.05rem; color:#ccc; font-style:italic; margin-bottom:10px;">Mystic Violet</div>
-                <a href="purple-soul-journey.html" style="display:inline-block; padding:8px 20px; border:1px solid #6B4DF2; color:#6B4DF2; font-family:'Cinzel',serif; font-size:0.68rem; letter-spacing:0.15em; text-decoration:none; text-transform:uppercase; transition:all .2s;" onmouseover="this.style.background='#6B4DF2';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#6B4DF2'">The Purple Journey →</a>
+            <div style="flex:1; min-width:210px; max-width:235px; text-align:center; padding:18px 16px 20px; border:1px solid #6B4DF230; border-radius:4px; background:#6B4DF208; position:relative;">
+                <div style="position:absolute; top:0; left:0; right:0; height:3px; background:#6B4DF2; border-radius:4px 4px 0 0;"></div>
+                <div style="font-family:'Cinzel',serif; font-size:0.55rem; letter-spacing:0.22em; color:#6B4DF2; text-transform:uppercase; margin:4px 0 4px;">Live Deep Path</div>
+                <div style="font-family:'Cormorant Garamond',serif; font-size:1.0rem; color:#d1d5db; font-style:italic; margin-bottom:8px; line-height:1.2;">Mystic Violet<br><span style="font-size:0.72rem; color:#888;">The Transformer</span></div>
+                <a href="purple-soul-journey.html" style="display:inline-block; padding:7px 18px; border:1px solid #6B4DF2; color:#6B4DF2; font-family:'Cinzel',serif; font-size:0.65rem; letter-spacing:0.14em; text-decoration:none; text-transform:uppercase; transition:all .2s;" onmouseover="this.style.background='#6B4DF2';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#6B4DF2'">The Purple Journey →</a>
             </div>
 
             <!-- The Field / Green -->
-            <div style="flex:1; min-width:220px; max-width:240px; text-align:center; padding:22px 18px; border:1px solid #10b98130; border-radius:4px; background:#10b98108;">
-                <div style="font-family:'Cinzel',serif; font-size:0.58rem; letter-spacing:0.2em; color:#10b981; text-transform:uppercase; margin-bottom:6px;">Live Path</div>
-                <div style="font-family:'Cormorant Garamond',serif; font-size:1.05rem; color:#ccc; font-style:italic; margin-bottom:10px;">Field Green • Harmonizer</div>
-                <a href="the-field-path.html" style="display:inline-block; padding:8px 20px; border:1px solid #10b981; color:#10b981; font-family:'Cinzel',serif; font-size:0.68rem; letter-spacing:0.15em; text-decoration:none; text-transform:uppercase; transition:all .2s;" onmouseover="this.style.background='#10b981';this.style.color='#000'" onmouseout="this.style.background='transparent';this.style.color='#10b981'">Enter the Field →</a>
+            <div style="flex:1; min-width:210px; max-width:235px; text-align:center; padding:18px 16px 20px; border:1px solid #10b98130; border-radius:4px; background:#10b98108; position:relative;">
+                <div style="position:absolute; top:0; left:0; right:0; height:3px; background:#10b981; border-radius:4px 4px 0 0;"></div>
+                <div style="font-family:'Cinzel',serif; font-size:0.55rem; letter-spacing:0.22em; color:#10b981; text-transform:uppercase; margin:4px 0 4px;">Live Deep Path</div>
+                <div style="font-family:'Cormorant Garamond',serif; font-size:1.0rem; color:#d1d5db; font-style:italic; margin-bottom:8px; line-height:1.2;">Field Green<br><span style="font-size:0.72rem; color:#888;">The Harmonizer</span></div>
+                <a href="the-field-path.html" style="display:inline-block; padding:7px 18px; border:1px solid #10b981; color:#10b981; font-family:'Cinzel',serif; font-size:0.65rem; letter-spacing:0.14em; text-decoration:none; text-transform:uppercase; transition:all .2s;" onmouseover="this.style.background='#10b981';this.style.color='#000'" onmouseout="this.style.background='transparent';this.style.color='#10b981'">Enter the Field →</a>
             </div>
 
             <!-- Master Tier / Gold -->
-            <div style="flex:1; min-width:220px; max-width:240px; text-align:center; padding:22px 18px; border:1px solid #F3B23A30; border-radius:4px; background:#F3B23A08;">
-                <div style="font-family:'Cinzel',serif; font-size:0.58rem; letter-spacing:0.2em; color:#F3B23A; text-transform:uppercase; margin-bottom:6px;">Live Path</div>
-                <div style="font-family:'Cormorant Garamond',serif; font-size:1.05rem; color:#ccc; font-style:italic; margin-bottom:10px;">Signal Gold • Master Tier</div>
-                <a href="master-tier.html" style="display:inline-block; padding:8px 20px; border:1px solid #F3B23A; color:#F3B23A; font-family:'Cinzel',serif; font-size:0.68rem; letter-spacing:0.15em; text-decoration:none; text-transform:uppercase; transition:all .2s;" onmouseover="this.style.background='#F3B23A';this.style.color='#0B0B0C'" onmouseout="this.style.background='transparent';this.style.color='#F3B23A'">Hall of Rare Frequencies →</a>
+            <div style="flex:1; min-width:210px; max-width:235px; text-align:center; padding:18px 16px 20px; border:1px solid #F3B23A30; border-radius:4px; background:#F3B23A08; position:relative;">
+                <div style="position:absolute; top:0; left:0; right:0; height:3px; background:#F3B23A; border-radius:4px 4px 0 0;"></div>
+                <div style="font-family:'Cinzel',serif; font-size:0.55rem; letter-spacing:0.22em; color:#F3B23A; text-transform:uppercase; margin:4px 0 4px;">Live Deep Path</div>
+                <div style="font-family:'Cormorant Garamond',serif; font-size:1.0rem; color:#d1d5db; font-style:italic; margin-bottom:8px; line-height:1.2;">Signal Gold<br><span style="font-size:0.72rem; color:#888;">The Master Tier</span></div>
+                <a href="master-tier.html" style="display:inline-block; padding:7px 18px; border:1px solid #F3B23A; color:#F3B23A; font-family:'Cinzel',serif; font-size:0.65rem; letter-spacing:0.14em; text-decoration:none; text-transform:uppercase; transition:all .2s;" onmouseover="this.style.background='#F3B23A';this.style.color='#0B0B0C'" onmouseout="this.style.background='transparent';this.style.color='#F3B23A'">Hall of Rare Frequencies →</a>
             </div>
         </div>
 
-        <!-- Full spectrum summary -->
-        <div style="background:#0a0a0f; border:1px solid #222; border-radius:4px; padding:18px 20px; max-width:620px; margin:0 auto; font-size:0.82rem; color:#9ca3af; line-height:1.55;">
-            <strong style="color:#e0e7ff;">Full Spectrum (Color Codex):</strong><br>
-            Red (Will) • Ember (Ignition) • Yellow (Joy) • <strong style="color:#10b981">Green (Field)</strong> • Cyan (Signal) • Blue (Mind) • <strong style="color:#6B4DF2">Purple (Transformer)</strong> • <strong style="color:#F3B23A">Gold (Orchestrator)</strong> • White (The All)<br>
-            <span style="color:#888;">+ Structural:</span> Rose (Bond) • Silver (Mirror)
-            <div style="margin-top:10px; font-size:0.72rem; color:#666;">
-                See the complete model + live vs reserved status in the <a href="color-codex.html" style="color:#888; text-decoration:underline;">full Color Codex</a>.
+        <!-- Full spectrum summary (more visual) -->
+        <div style="background:#0a0a0f; border:1px solid #222; border-radius:4px; padding:16px 18px; max-width:640px; margin:0 auto; font-size:0.78rem; color:#9ca3af; line-height:1.65;">
+            <div style="margin-bottom:6px; color:#e0e7ff; font-weight:500;">Full Spectrum (9 Light + 2 Structural)</div>
+
+            <div style="display:flex; flex-wrap:wrap; gap:6px 10px; justify-content:center; font-size:0.72rem;">
+                <span style="color:#e24b4a;">● Red — Will</span>
+                <span style="color:#ff6a3d;">● Ember — Ignition</span>
+                <span style="color:#f5c842;">● Yellow — Joy</span>
+                <span style="color:#10b981; font-weight:600;">● Green — Field (Harmonizer)</span>
+                <span style="color:#22d3ee;">● Cyan — Signal</span>
+                <span style="color:#3b82f6;">● Blue — Mind</span>
+                <span style="color:#8b5cf6; font-weight:600;">● Purple — Transformer</span>
+                <span style="color:#d4af37; font-weight:600;">● Gold — Orchestrator (Master Tier)</span>
+                <span style="color:#f0f0ff;">○ White — The All</span>
+                <span style="color:#f43f5e;">○ Rose — Bond (Structural)</span>
+                <span style="color:#c4c8d4;">○ Silver — Mirror (Structural)</span>
+            </div>
+
+            <div style="margin-top:10px; font-size:0.68rem; color:#666; border-top:1px solid #222; padding-top:8px;">
+                <strong style="color:#888;">Live deep paths</strong> have dedicated pages. Others are active as card colors in the archive or still reserved.
+                See the complete model in the <a href="color-codex.html" style="color:#888; text-decoration:underline;">full Color Codex</a>.
             </div>
         </div>
     </div>
@@ -376,7 +416,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     input.addEventListener('keydown',e=>{if(e.key==='Escape'){input.value='';input.dispatchEvent(new Event('input'));input.blur();}});
 </script>
 <script>
-(function(){const field=document.getElementById('starfield');const colors=['#8b5cf6','#a855f7','#c084fc','#d97706','#f59e0b','#e0e7ff','#c7d2fe','#26E4D8'];for(let i=0;i<180;i++){const s=document.createElement('div');s.className='star';const size=Math.random()*2.5+0.4;s.style.width=size+'px';s.style.height=size+'px';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.backgroundColor=colors[Math.floor(Math.random()*colors.length)];s.style.setProperty('--dur',(Math.random()*4+2)+'s');s.style.setProperty('--lo',(Math.random()*0.15+0.05).toFixed(2));s.style.setProperty('--hi',(Math.random()*0.5+0.4).toFixed(2));s.style.animationDelay=(Math.random()*5)+'s';field.appendChild(s);}
+(function(){const field=document.getElementById('starfield');const colors=['#e24b4a','#ff6a3d','#f5c842','#10b981','#22d3ee','#3b82f6','#8b5cf6','#d4af37','#f0f0ff','#f43f5e','#c4c8d4'];for(let i=0;i<180;i++){const s=document.createElement('div');s.className='star';const size=Math.random()*2.5+0.4;s.style.width=size+'px';s.style.height=size+'px';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.backgroundColor=colors[Math.floor(Math.random()*colors.length)];s.style.setProperty('--dur',(Math.random()*4+2)+'s');s.style.setProperty('--lo',(Math.random()*0.15+0.05).toFixed(2));s.style.setProperty('--hi',(Math.random()*0.5+0.4).toFixed(2));s.style.animationDelay=(Math.random()*5)+'s';field.appendChild(s);}
 function spawnShooter(){const sh=document.createElement('div');sh.className='shooting-star';sh.style.left=Math.random()*80+'%';sh.style.top=Math.random()*40+'%';const dx=(Math.random()*250+150)*(Math.random()>0.5?1:-1);const dy=Math.random()*200+100;sh.style.setProperty('--dx',dx+'px');sh.style.setProperty('--dy',dy+'px');sh.style.setProperty('--shoot-dur',(Math.random()*1.5+1)+'s');sh.style.setProperty('--shoot-delay','0s');field.appendChild(sh);sh.addEventListener('animationend',()=>sh.remove());}
 function scheduleShooter(){const delay=Math.random()*6000+3000;setTimeout(()=>{spawnShooter();scheduleShooter();},delay);}scheduleShooter();
 let ticking=false;document.addEventListener('mousemove',e=>{if(ticking)return;ticking=true;requestAnimationFrame(()=>{const x=(e.clientX/window.innerWidth-0.5)*12;const y=(e.clientY/window.innerHeight-0.5)*12;field.style.transform=`translate(${x}px, ${y}px)`;ticking=false;});});})();
