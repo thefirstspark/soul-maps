@@ -115,6 +115,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .card.white { border-color: #e0e0ff; } .card.white:hover { box-shadow: 0 8px 30px rgba(224,224,255,.18); } .card.white .card-name { color: #f0f0ff; }
         .card.rose { border-color: #f43f5e; } .card.rose:hover { box-shadow: 0 8px 30px rgba(244,63,94,.28); } .card.rose .card-name { color: #fb7185; }
         .card.silver { border-color: #c4c8d4; } .card.silver:hover { box-shadow: 0 8px 30px rgba(196,200,212,.22); } .card.silver .card-name { color: #e2e8f0; }
+
+        /* Codex summary list hover */
+        .codex-freq { transition: filter .1s, text-decoration .1s; }
+        .codex-freq:hover { filter: brightness(1.3); text-decoration: underline; }
         .card-sub { font-size: .75em; letter-spacing: 2px; color: #6b7280; text-transform: uppercase; margin-bottom: 10px; }
         .card-desc { font-size: .85em; color: #a5b4fc; line-height: 1.75; font-style: italic; }
         .card-arrow { position: absolute; right: 25px; top: 50%; transform: translateY(-50%); font-size: 1.5em; opacity: .4; transition: opacity .2s, right .2s; }
@@ -385,17 +389,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div style="margin-bottom:6px; color:#e0e7ff; font-weight:500;">Full Spectrum (9 Light + 2 Structural)</div>
 
             <div style="display:flex; flex-wrap:wrap; gap:6px 10px; justify-content:center; font-size:0.72rem;">
-                <a href="color-codex.html#red" style="color:#e24b4a; text-decoration:none;">● Red — Will</a>
-                <a href="color-codex.html#ember" style="color:#ff6a3d; text-decoration:none;">● Ember — Ignition</a>
-                <a href="color-codex.html#yellow" style="color:#f5c842; text-decoration:none;">● Yellow — Joy</a>
-                <a href="color-codex.html#green" style="color:#10b981; font-weight:600; text-decoration:none;">● Green — Field (Harmonizer)</a>
-                <a href="color-codex.html#cyan" style="color:#22d3ee; text-decoration:none;">● Cyan — Signal</a>
-                <a href="color-codex.html#blue" style="color:#3b82f6; text-decoration:none;">● Blue — Mind</a>
-                <a href="color-codex.html#purple" style="color:#8b5cf6; font-weight:600; text-decoration:none;">● Purple — Transformer</a>
-                <a href="color-codex.html#gold" style="color:#d4af37; font-weight:600; text-decoration:none;">● Gold — Orchestrator (Master Tier)</a>
-                <a href="color-codex.html#white" style="color:#f0f0ff; text-decoration:none;">○ White — The All</a>
-                <a href="color-codex.html#rose" style="color:#f43f5e; text-decoration:none;">○ Rose — Bond (Structural)</a>
-                <a href="color-codex.html#silver" style="color:#c4c8d4; text-decoration:none;">○ Silver — Mirror (Structural)</a>
+                <a href="color-codex.html#red" class="codex-freq" style="color:#e24b4a; text-decoration:none;">● Red — Will</a>
+                <a href="color-codex.html#ember" class="codex-freq" style="color:#ff6a3d; text-decoration:none;">● Ember — Ignition</a>
+                <a href="color-codex.html#yellow" class="codex-freq" style="color:#f5c842; text-decoration:none;">● Yellow — Joy</a>
+                <a href="color-codex.html#green" class="codex-freq" style="color:#10b981; font-weight:600; text-decoration:none;">● Green — Field (Harmonizer)</a>
+                <a href="color-codex.html#cyan" class="codex-freq" style="color:#22d3ee; text-decoration:none;">● Cyan — Signal</a>
+                <a href="color-codex.html#blue" class="codex-freq" style="color:#3b82f6; text-decoration:none;">● Blue — Mind</a>
+                <a href="color-codex.html#purple" class="codex-freq" style="color:#8b5cf6; font-weight:600; text-decoration:none;">● Purple — Transformer</a>
+                <a href="color-codex.html#gold" class="codex-freq" style="color:#d4af37; font-weight:600; text-decoration:none;">● Gold — Orchestrator (Master Tier)</a>
+                <a href="color-codex.html#white" class="codex-freq" style="color:#f0f0ff; text-decoration:none;">○ White — The All</a>
+                <a href="color-codex.html#rose" class="codex-freq" style="color:#f43f5e; text-decoration:none;">○ Rose — Bond (Structural)</a>
+                <a href="color-codex.html#silver" class="codex-freq" style="color:#c4c8d4; text-decoration:none;">○ Silver — Mirror (Structural)</a>
             </div>
 
             <div style="margin-top:10px; font-size:0.68rem; color:#666; border-top:1px solid #222; padding-top:8px;">
