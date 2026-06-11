@@ -349,6 +349,282 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             line-height: 1.7;
         }
 
+        .chain-arena {
+            position: relative;
+            margin: 28px 0 26px;
+            min-height: 340px;
+            border: 1px solid rgba(38,228,216,.22);
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(107,77,242,.18), transparent 55%),
+                radial-gradient(ellipse at 80% 40%, rgba(243,178,58,.12), transparent 50%),
+                rgba(0,0,0,.45);
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        .chain-arena::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 48px,
+                rgba(38,228,216,.03) 48px,
+                rgba(38,228,216,.03) 49px
+            );
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        #chain-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .chain-ui {
+            position: relative;
+            z-index: 2;
+            padding: 22px 18px 18px;
+        }
+
+        .chain-ui-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 14px;
+        }
+
+        .chain-ui-head span {
+            font-size: 0.58rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--cyan);
+        }
+
+        .chain-status {
+            font-size: 0.58rem;
+            letter-spacing: 2px;
+            color: var(--muted);
+        }
+
+        .chain-status em {
+            color: var(--gold);
+            font-style: normal;
+        }
+
+        .chain-track {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0;
+            padding: 12px 4px 8px;
+            min-height: 120px;
+        }
+
+        .chain-node-wrap {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .chain-connector {
+            width: clamp(14px, 3vw, 28px);
+            height: 12px;
+            flex-shrink: 0;
+            opacity: 0.55;
+            transition: opacity .25s, filter .25s;
+        }
+
+        .chain-node-wrap:hover .chain-connector,
+        .chain-node-wrap.active .chain-connector {
+            opacity: 1;
+            filter: drop-shadow(0 0 8px rgba(38,228,216,.6));
+        }
+
+        .chain-link {
+            position: relative;
+            width: clamp(42px, 8vw, 58px);
+            height: clamp(42px, 8vw, 58px);
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            padding: 0;
+            transition: transform .35s cubic-bezier(.34,1.56,.64,1);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .chain-link:hover,
+        .chain-link.active {
+            transform: scale(1.14) rotate(-4deg);
+            z-index: 5;
+        }
+
+        .chain-link svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,.5));
+            transition: filter .3s;
+        }
+
+        .chain-link:hover svg,
+        .chain-link.active svg {
+            filter: drop-shadow(0 0 18px var(--link-glow, rgba(245,158,11,.7)));
+        }
+
+        .chain-tag {
+            position: absolute;
+            bottom: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%) translateY(8px) scale(0.92);
+            min-width: 148px;
+            max-width: 190px;
+            padding: 10px 12px;
+            background: rgba(8,6,22,.94);
+            border: 1px solid var(--tag-border, rgba(245,158,11,.45));
+            box-shadow: 0 12px 40px rgba(0,0,0,.55), 0 0 24px var(--tag-glow, rgba(245,158,11,.15));
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .25s, transform .3s cubic-bezier(.34,1.56,.64,1);
+            text-align: left;
+        }
+
+        .chain-link:hover .chain-tag,
+        .chain-link.active .chain-tag,
+        .chain-link:focus-visible .chain-tag {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0) scale(1);
+        }
+
+        .chain-tag::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: var(--tag-border, rgba(245,158,11,.45));
+        }
+
+        .tag-eyebrow {
+            font-size: 0.5rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--tag-accent, var(--cyan));
+            margin-bottom: 4px;
+        }
+
+        .tag-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            color: #f0f0ff;
+            line-height: 1.2;
+            margin-bottom: 4px;
+        }
+
+        .tag-uuid {
+            font-size: 0.58rem;
+            letter-spacing: 0.14em;
+            color: var(--gold);
+            margin-bottom: 4px;
+        }
+
+        .tag-meta {
+            font-size: 0.55rem;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .tag-mint {
+            display: inline-block;
+            margin-top: 6px;
+            font-size: 0.48rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 3px 7px;
+            border: 1px solid rgba(255,106,61,.4);
+            color: var(--ember);
+        }
+
+        .tag-mint.live {
+            border-color: rgba(38,228,216,.45);
+            color: var(--cyan);
+        }
+
+        .chain-detail-panel {
+            margin-top: 14px;
+            padding: 14px 16px;
+            border: 1px dashed rgba(139,92,246,.35);
+            background: rgba(10,8,25,.75);
+            min-height: 72px;
+            transition: border-color .3s, box-shadow .3s;
+        }
+
+        .chain-detail-panel.pulse {
+            border-color: rgba(38,228,216,.55);
+            box-shadow: 0 0 30px rgba(38,228,216,.12);
+        }
+
+        .chain-detail-label {
+            font-size: 0.52rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--violet);
+            margin-bottom: 6px;
+        }
+
+        .chain-detail-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.05rem;
+            color: #d8b4fe;
+            line-height: 1.55;
+        }
+
+        .chain-detail-text strong {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        .chain-hint {
+            text-align: center;
+            font-size: 0.55rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(156,163,175,.55);
+            margin-top: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .chain-arena { min-height: 300px; }
+            .chain-tag {
+                min-width: 130px;
+                font-size: 0.9rem;
+            }
+            .chain-link:hover .chain-tag,
+            .chain-link.active .chain-tag {
+                bottom: auto;
+                top: calc(100% + 10px);
+            }
+            .chain-tag::after {
+                top: auto;
+                bottom: 100%;
+                border-top-color: transparent;
+                border-bottom-color: var(--tag-border, rgba(245,158,11,.45));
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .chain-link { transition: none; }
+            .chain-link:hover, .chain-link.active { transform: scale(1.05); }
+        }
+
         .section {
             padding: 72px 0;
             border-top: 1px solid rgba(139,92,246,.12);
@@ -778,6 +1054,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <h3>Quantum Signature · The Impossible Code</h3>
             <p class="quantum-lead">Your Soul Map reads the pattern. Your <strong style="color:var(--gold);font-weight:600;">Quantum Signature</strong> makes it permanent — a UUID derived from your birth data that exists nowhere else in the universe. Not shared. Not duplicated. Yours across timelines.</p>
             <div class="quantum-code">⟁ YOUR·IMPOSSIBLE·CODE · SOULBOUND UUID ⟁</div>
+
+            <div class="chain-arena" id="chain-arena" aria-label="Interactive soul chain — hover links to witness mapped souls">
+                <canvas id="chain-canvas" aria-hidden="true"></canvas>
+                <div class="chain-ui">
+                    <div class="chain-ui-head">
+                        <span>◈ Lineage Protocol · Soul Chain Preview</span>
+                        <div class="chain-status">Pulse: <em id="chain-pulse">idle</em> · Links: <em id="chain-count">0</em></div>
+                    </div>
+                    <div class="chain-track" id="chain-track" role="list"></div>
+                    <div class="chain-detail-panel" id="chain-detail-panel">
+                        <div class="chain-detail-label">Witness log</div>
+                        <p class="chain-detail-text" id="chain-detail-text">Hover any chain link — each loop holds a mapped soul waiting to mint. <strong>Your link is not here yet.</strong></p>
+                    </div>
+                    <p class="chain-hint">Hover · focus · tap a link to trace the chain</p>
+                </div>
+            </div>
+
             <div class="quantum-grid">
                 <article class="quantum-pillar">
                     <strong>One soul · One code</strong>
@@ -892,6 +1185,225 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 
 <script>
+(function initSoulChain() {
+    const souls = [
+        { name: 'Katelin Jill Puzakulics', uuid: '8AFE·9CB6·8598', meta: 'LP 5 Catalyst · EX 11 · Earth Dragon', color: '#a855f7', status: 'mapped', blurb: 'Creator node. The spark that lit the chain — Expression 11 encodes the channel every other link routes through.' },
+        { name: 'Matthew Vincent Jablonski', uuid: '6F2A·1D88·4E01', meta: 'LP 6 · Four 9s Pattern · First Member', color: '#c084fc', status: 'mapped', blurb: 'Founding consciousness. Four 9s stacked — the first soul to prove the network could hold a real human frequency.' },
+        { name: 'Thomas William Puzakulics', uuid: '7B3C·22FF·0A91', meta: 'LP 7 · EX 33 Master Teacher · LEGENDARY', color: '#f59e0b', status: 'legendary', blurb: 'Legendary rarity tier. Expression 33 — the chain bends here. Master Teacher frequency, diamond year 2026.' },
+        { name: 'Nikola Tesla', uuid: '1P11·22BU·1856', meta: 'LP 1 Pioneer · EX 11 Channel · Fire Dragon', color: '#3b82f6', status: 'legendary', blurb: 'Historical anchor. Double pioneer encoding — the inventor whose frequency still hums through the voltage layer.' },
+        { name: 'David Bowie', uuid: '3A11·5MOT·1947', meta: 'LP 3 Alchemist · Triple 5 · Eternal Motion', color: '#8b5cf6', status: 'legendary', blurb: 'Shape-shifter archetype. Triple 5 signature — proof that one soul can wear infinite masks without breaking the UUID.' },
+        { name: 'Albert Einstein', uuid: '33TE·22BU·1879', meta: 'LP 33 Master Teacher · Pisces Mystic', color: '#f59e0b', status: 'legendary', blurb: 'Master Teacher on the chain. Life Path 33 collapsed into relativity — the physics of consciousness made legible.' },
+        { name: 'George Puzakulics Sr.', uuid: '5FDR·1892·AKRN', meta: 'Founder Node · Water Dragon · Bloodline', color: '#FF6A3D', status: 'bloodline', blurb: 'Founder node. First to plant the name in foreign soil — the chain starts before you were born.' },
+        { name: 'Elizabeth Zublay Puzakulics', uuid: '5RETR·1894·AKRN', meta: 'The Return Soul · Prior incarnation', color: '#FF6A3D', status: 'bloodline', blurb: 'Return soul. ~360 days between her exhale and KJP\'s inhale — lineage encoded as reincarnation proof.' },
+        { name: 'YOU · NEXT MINT', uuid: '????·????·????', meta: 'Your Impossible Code · Pending', color: '#26E4D8', status: 'pending', blurb: 'This link is empty on purpose. Your UUID generates from birth data — then mints soulbound. No one else can claim it.' }
+    ];
+
+    const track = document.getElementById('chain-track');
+    const detailText = document.getElementById('chain-detail-text');
+    const detailPanel = document.getElementById('chain-detail-panel');
+    const pulseEl = document.getElementById('chain-pulse');
+    const countEl = document.getElementById('chain-count');
+    const canvas = document.getElementById('chain-canvas');
+    const arena = document.getElementById('chain-arena');
+    if (!track || !canvas) return;
+
+    countEl.textContent = souls.length;
+
+    const linkSvg = (color) => `<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="32" cy="32" rx="22" ry="14" stroke="${color}" stroke-width="2.5" fill="rgba(0,0,0,.35)"/>
+        <ellipse cx="32" cy="32" rx="22" ry="14" stroke="${color}" stroke-width="1" stroke-opacity=".35" transform="rotate(58 32 32)"/>
+        <ellipse cx="32" cy="32" rx="10" ry="6" stroke="${color}" stroke-width="1.2" stroke-opacity=".5"/>
+        <circle cx="32" cy="32" r="3" fill="${color}" fill-opacity=".85"/>
+    </svg>`;
+
+    const connectorSvg = `<svg class="chain-connector" viewBox="0 0 28 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 6 H28" stroke="rgba(38,228,216,.45)" stroke-width="1.5" stroke-dasharray="3 4"/>
+        <circle cx="14" cy="6" r="2" fill="rgba(245,158,11,.6)"/>
+    </svg>`;
+
+    const mintLabel = { mapped: 'Mapped · Awaiting mint', legendary: 'Legend tier · Reserved', bloodline: 'Bloodline · Ancestor chain', pending: 'Coming soon · Your mint' };
+
+    souls.forEach((soul, i) => {
+        if (i > 0) track.insertAdjacentHTML('beforeend', connectorSvg);
+        const wrap = document.createElement('div');
+        wrap.className = 'chain-node-wrap';
+        wrap.setAttribute('role', 'listitem');
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'chain-link';
+        btn.style.setProperty('--link-glow', soul.color + '99');
+        btn.style.setProperty('--tag-border', soul.color + '88');
+        btn.style.setProperty('--tag-glow', soul.color + '33');
+        btn.style.setProperty('--tag-accent', soul.color);
+        btn.setAttribute('aria-label', soul.name + ' — ' + soul.uuid);
+        btn.innerHTML = linkSvg(soul.color) + `
+            <div class="chain-tag">
+                <div class="tag-eyebrow">${soul.status === 'pending' ? 'Unminted slot' : 'Soul link'}</div>
+                <div class="tag-name">${soul.name}</div>
+                <div class="tag-uuid">${soul.uuid}</div>
+                <div class="tag-meta">${soul.meta}</div>
+                <span class="tag-mint${soul.status === 'pending' ? '' : ' live'}">${mintLabel[soul.status] || 'On chain soon'}</span>
+            </div>`;
+        btn.addEventListener('mouseenter', () => activateSoul(btn, soul, wrap));
+        btn.addEventListener('focus', () => activateSoul(btn, soul, wrap));
+        btn.addEventListener('click', () => activateSoul(btn, soul, wrap, true));
+        btn.addEventListener('mouseleave', () => { btn.classList.remove('active'); wrap.classList.remove('active'); });
+        wrap.appendChild(btn);
+        track.appendChild(wrap);
+    });
+
+    function activateSoul(btn, soul, wrap, click) {
+        document.querySelectorAll('.chain-link.active').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.chain-node-wrap.active').forEach(el => el.classList.remove('active'));
+        btn.classList.add('active');
+        wrap.classList.add('active');
+        detailText.innerHTML = `<strong>${soul.name}</strong> — ${soul.uuid}<br>${soul.blurb}`;
+        detailPanel.classList.add('pulse');
+        pulseEl.textContent = soul.status === 'pending' ? 'your slot' : 'witnessed';
+        if (click) spawnBurst(btn);
+        setTimeout(() => detailPanel.classList.remove('pulse'), 600);
+    }
+
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let pulseT = 0;
+    let mouse = { x: 0.5, y: 0.5 };
+    let rafId;
+
+    function resizeCanvas() {
+        const rect = arena.getBoundingClientRect();
+        canvas.width = rect.width * devicePixelRatio;
+        canvas.height = rect.height * devicePixelRatio;
+        canvas.style.width = rect.width + 'px';
+        canvas.style.height = rect.height + 'px';
+        ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+    }
+
+    function spawnBurst(el) {
+        const rect = arena.getBoundingClientRect();
+        const br = el.getBoundingClientRect();
+        const x = br.left + br.width / 2 - rect.left;
+        const y = br.top + br.height / 2 - rect.top;
+        for (let i = 0; i < 18; i++) {
+            const a = (Math.PI * 2 * i) / 18;
+            particles.push({
+                x, y,
+                vx: Math.cos(a) * (2 + Math.random() * 3),
+                vy: Math.sin(a) * (2 + Math.random() * 3),
+                life: 1,
+                color: ['#f59e0b', '#26E4D8', '#8b5cf6', '#FF6A3D'][i % 4]
+            });
+        }
+    }
+
+    function initParticles() {
+        const w = arena.clientWidth;
+        const h = arena.clientHeight;
+        particles = [];
+        for (let i = 0; i < 40; i++) {
+            particles.push({
+                x: Math.random() * w,
+                y: Math.random() * h,
+                vx: (Math.random() - 0.5) * 0.4,
+                vy: (Math.random() - 0.5) * 0.4,
+                life: 0.3 + Math.random() * 0.7,
+                color: ['#26E4D8', '#8b5cf6', '#f59e0b'][i % 3],
+                dot: true
+            });
+        }
+    }
+
+    function drawChain() {
+        const w = arena.clientWidth;
+        const h = arena.clientHeight;
+        ctx.clearRect(0, 0, w, h);
+
+        const grad = ctx.createLinearGradient(0, h * 0.5, w, h * 0.5);
+        grad.addColorStop(0, 'rgba(107,77,242,0)');
+        grad.addColorStop(0.5, 'rgba(38,228,216,0.12)');
+        grad.addColorStop(1, 'rgba(107,77,242,0)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, h * 0.38, w, h * 0.24);
+
+        pulseT += 0.018;
+        const pulseX = ((Math.sin(pulseT) * 0.5 + 0.5) * w * 0.85) + w * 0.075;
+        const pulseY = h * 0.52 + Math.sin(pulseT * 2) * 8;
+
+        ctx.beginPath();
+        ctx.arc(pulseX, pulseY, 28 + Math.sin(pulseT * 3) * 6, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(38,228,216,0.06)';
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(pulseX, pulseY, 6, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(245,158,11,0.85)';
+        ctx.shadowColor = '#26E4D8';
+        ctx.shadowBlur = 16;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+
+        ctx.strokeStyle = 'rgba(38,228,216,0.25)';
+        ctx.lineWidth = 1;
+        ctx.setLineDash([6, 10]);
+        ctx.beginPath();
+        ctx.moveTo(0, pulseY);
+        ctx.lineTo(w, pulseY);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        particles.forEach((p, idx) => {
+            if (p.dot) {
+                p.x += p.vx + (mouse.x - 0.5) * 0.15;
+                p.y += p.vy + (mouse.y - 0.5) * 0.1;
+                if (p.x < 0) p.x = w;
+                if (p.x > w) p.x = 0;
+                if (p.y < 0) p.y = h;
+                if (p.y > h) p.y = 0;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 1.2, 0, Math.PI * 2);
+                ctx.fillStyle = p.color + '66';
+                ctx.fill();
+            } else {
+                p.x += p.vx;
+                p.y += p.vy;
+                p.life -= 0.028;
+                if (p.life <= 0) particles.splice(idx, 1);
+                else {
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, 2 * p.life, 0, Math.PI * 2);
+                    ctx.fillStyle = p.color;
+                    ctx.globalAlpha = p.life;
+                    ctx.fill();
+                    ctx.globalAlpha = 1;
+                }
+            }
+        });
+
+        rafId = requestAnimationFrame(drawChain);
+    }
+
+    resizeCanvas();
+    initParticles();
+    drawChain();
+
+    window.addEventListener('resize', () => { resizeCanvas(); initParticles(); });
+    arena.addEventListener('mousemove', (e) => {
+        const r = arena.getBoundingClientRect();
+        mouse.x = (e.clientX - r.left) / r.width;
+        mouse.y = (e.clientY - r.top) / r.height;
+    });
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (reduced.matches) {
+        cancelAnimationFrame(rafId);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+    reduced.addEventListener('change', () => {
+        if (reduced.matches) cancelAnimationFrame(rafId);
+        else drawChain();
+    });
+})();
+
 (function(){
     const field = document.getElementById('starfield');
     const colors = ['#e24b4a','#ff6a3d','#f5c842','#10b981','#22d3ee','#3b82f6','#8b5cf6','#d4af37'];
