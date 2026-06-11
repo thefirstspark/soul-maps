@@ -625,6 +625,172 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             .chain-link:hover, .chain-link.active { transform: scale(1.05); }
         }
 
+        .lab-feature {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 0;
+            border: 1px solid rgba(107,77,242,.35);
+            background: rgba(0,0,0,.4);
+            overflow: hidden;
+            min-height: 320px;
+        }
+
+        .lab-visual {
+            position: relative;
+            min-height: 280px;
+            background:
+                radial-gradient(circle at 50% 45%, rgba(107,77,242,.22), transparent 62%),
+                radial-gradient(circle at 30% 70%, rgba(38,228,216,.1), transparent 50%),
+                rgba(3,1,13,.85);
+        }
+
+        #lab-constellation {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .lab-visual-label {
+            position: absolute;
+            left: 14px;
+            bottom: 14px;
+            font-size: 0.52rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: rgba(156,163,175,.65);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .lab-content {
+            padding: 28px 26px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-left: 1px solid rgba(107,77,242,.2);
+            background: linear-gradient(160deg, rgba(13,7,40,.75), rgba(10,8,25,.92));
+        }
+
+        .lab-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.56rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--violet);
+            border: 1px solid rgba(139,92,246,.45);
+            padding: 5px 10px;
+            margin-bottom: 14px;
+            width: fit-content;
+        }
+
+        .lab-badge::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--ember);
+            box-shadow: 0 0 10px var(--ember);
+            animation: lab-blink 1.8s ease-in-out infinite;
+        }
+
+        @keyframes lab-blink {
+            0%, 100% { opacity: 0.45; transform: scale(0.9); }
+            50% { opacity: 1; transform: scale(1.15); }
+        }
+
+        .lab-content h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(0.95rem, 2.8vw, 1.25rem);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #f0f0ff;
+            margin-bottom: 10px;
+            line-height: 1.35;
+        }
+
+        .lab-lead {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.12rem;
+            color: #c4b5fd;
+            line-height: 1.55;
+            margin-bottom: 16px;
+        }
+
+        .lab-perks {
+            list-style: none;
+            margin: 0 0 20px;
+            padding: 0;
+        }
+
+        .lab-perks li {
+            font-size: 0.68rem;
+            color: var(--muted);
+            padding: 7px 0;
+            border-bottom: 1px dashed rgba(139,92,246,.15);
+            line-height: 1.55;
+        }
+
+        .lab-perks li::before {
+            content: '◇ ';
+            color: var(--cyan);
+        }
+
+        .lab-perks li:last-child { border-bottom: 0; }
+
+        .btn-lab {
+            border-color: var(--violet);
+            color: #c084fc;
+            align-self: flex-start;
+        }
+
+        .btn-lab:hover {
+            background: rgba(139,92,246,.15);
+            color: #e9d5ff;
+        }
+
+        .pipeline-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .pipeline-pill {
+            text-align: center;
+            padding: 10px 8px;
+            border: 1px solid rgba(139,92,246,.18);
+            background: rgba(10,8,25,.6);
+            font-size: 0.52rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--dim);
+        }
+
+        .pipeline-pill strong {
+            display: block;
+            color: var(--muted);
+            font-weight: 400;
+            margin-bottom: 3px;
+            letter-spacing: 2px;
+        }
+
+        .pipeline-pill.active {
+            border-color: rgba(255,106,61,.4);
+            color: var(--ember);
+        }
+
+        .pipeline-pill.active strong { color: var(--gold); }
+
+        @media (max-width: 900px) {
+            .lab-feature { grid-template-columns: 1fr; }
+            .lab-content { border-left: 0; border-top: 1px solid rgba(107,77,242,.2); }
+            .lab-visual { min-height: 240px; }
+            .pipeline-strip { grid-template-columns: 1fr; }
+        }
+
         .section {
             padding: 72px 0;
             border-top: 1px solid rgba(139,92,246,.12);
@@ -911,6 +1077,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <a href="archive.html">All Maps</a>
             <a href="#free-tools">Free Tools</a>
             <a href="#quantum">Quantum Signature</a>
+            <a href="#lab">Up Next</a>
         </div>
     </nav>
 
@@ -1092,6 +1259,38 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
     </section>
 
+    <section class="section" id="lab">
+        <div class="section-head">
+            <div class="eyebrow">In the lab</div>
+            <h2>What we're building next</h2>
+            <p>The Soul Map is the read. The chain is the proof. This is the network layer — where mapped souls connect into constellations.</p>
+        </div>
+
+        <div class="lab-feature">
+            <div class="lab-visual" id="lab-visual" aria-hidden="true">
+                <canvas id="lab-constellation"></canvas>
+                <span class="lab-visual-label">Live preview · drag to orbit</span>
+            </div>
+            <div class="lab-content">
+                <span class="lab-badge">Up Next · Building Now</span>
+                <h3>Family Resonance Index</h3>
+                <p class="lab-lead">Every Quantum Signature has a constellation. Enter your code, reveal verified bonds, resonance scores, bloodline echoes, and the souls orbiting yours.</p>
+                <ul class="lab-perks">
+                    <li>Interactive soul constellation map</li>
+                    <li>Verified bond requests — parent, sibling, partner, frequency twin, ancestor</li>
+                    <li>Avg resonance, strongest link, rarest bond in your field</li>
+                    <li>DNA-eligible bloodline layer (Lineage Protocol preview)</li>
+                </ul>
+                <a class="btn btn-lab" href="family-resonance-index.html">Play with the prototype →</a>
+                <div class="pipeline-strip">
+                    <div class="pipeline-pill"><strong>Live</strong>Free frequency tools</div>
+                    <div class="pipeline-pill active"><strong>Building</strong>Family Resonance</div>
+                    <div class="pipeline-pill"><strong>Queued</strong>On-chain mint</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="section" id="sparkverse">
         <div class="sparkverse-box">
             <div>
@@ -1185,6 +1384,107 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 
 <script>
+(function initLabConstellation() {
+    const canvas = document.getElementById('lab-constellation');
+    const wrap = document.getElementById('lab-visual');
+    if (!canvas || !wrap) return;
+
+    const ctx = canvas.getContext('2d');
+    const nodes = [
+        { label: 'YOU', color: '#f59e0b', r: 14, orbit: 0, speed: 0, phase: 0 },
+        { label: 'BOND', color: '#26E4D8', r: 8, orbit: 72, speed: 0.012, phase: 0 },
+        { label: 'LINE', color: '#FF6A3D', r: 7, orbit: 72, speed: 0.012, phase: Math.PI * 0.66 },
+        { label: 'MATE', color: '#8b5cf6', r: 9, orbit: 72, speed: 0.012, phase: Math.PI * 1.33 },
+        { label: 'ECHO', color: '#c084fc', r: 6, orbit: 118, speed: -0.008, phase: 1.2 },
+        { label: 'ROOT', color: '#f43f5e', r: 6, orbit: 118, speed: -0.008, phase: 3.8 }
+    ];
+    let t = 0;
+    let drag = false;
+    let spin = 0;
+    let mx = 0.5, my = 0.5;
+
+    function resize() {
+        const rect = wrap.getBoundingClientRect();
+        canvas.width = rect.width * devicePixelRatio;
+        canvas.height = rect.height * devicePixelRatio;
+        canvas.style.width = rect.width + 'px';
+        canvas.style.height = rect.height + 'px';
+        ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+    }
+
+    function draw() {
+        const w = wrap.clientWidth;
+        const h = wrap.clientHeight;
+        const cx = w * (0.48 + (mx - 0.5) * 0.06);
+        const cy = h * (0.46 + (my - 0.5) * 0.06);
+        ctx.clearRect(0, 0, w, h);
+        t += drag ? 0.03 : 0.012;
+        spin += drag ? 0.04 : 0.005;
+
+        [72, 118].forEach((rad, i) => {
+            ctx.beginPath();
+            ctx.arc(cx, cy, rad, 0, Math.PI * 2);
+            ctx.strokeStyle = `rgba(107,77,242,${0.12 + i * 0.06})`;
+            ctx.setLineDash([4, 8]);
+            ctx.stroke();
+            ctx.setLineDash([]);
+        });
+
+        const positions = nodes.map((n, i) => {
+            if (i === 0) return { x: cx, y: cy, n };
+            const ang = t * (n.speed * 60) + n.phase + spin;
+            return {
+                x: cx + Math.cos(ang) * n.orbit,
+                y: cy + Math.sin(ang) * n.orbit * 0.72,
+                n
+            };
+        });
+
+        positions.forEach((a, i) => {
+            if (i === 0) return;
+            ctx.beginPath();
+            ctx.moveTo(positions[0].x, positions[0].y);
+            ctx.lineTo(a.x, a.y);
+            ctx.strokeStyle = a.n.color + '44';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+        });
+
+        positions.forEach((p, i) => {
+            const pulse = i === 0 ? 1 + Math.sin(t * 3) * 0.08 : 1;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.n.r * pulse, 0, Math.PI * 2);
+            ctx.fillStyle = p.n.color + (i === 0 ? 'ee' : 'bb');
+            ctx.shadowColor = p.n.color;
+            ctx.shadowBlur = i === 0 ? 22 : 10;
+            ctx.fill();
+            ctx.shadowBlur = 0;
+            if (i === 0) {
+                ctx.fillStyle = '#0B0B0C';
+                ctx.font = 'bold 9px Space Mono, monospace';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('YOU', p.x, p.y);
+            }
+        });
+
+        requestAnimationFrame(draw);
+    }
+
+    resize();
+    draw();
+    window.addEventListener('resize', resize);
+    wrap.addEventListener('mousemove', (e) => {
+        const r = wrap.getBoundingClientRect();
+        mx = (e.clientX - r.left) / r.width;
+        my = (e.clientY - r.top) / r.height;
+    });
+    wrap.addEventListener('mousedown', () => { drag = true; });
+    window.addEventListener('mouseup', () => { drag = false; });
+    wrap.addEventListener('touchstart', () => { drag = true; }, { passive: true });
+    window.addEventListener('touchend', () => { drag = false; });
+})();
+
 (function initSoulChain() {
     const souls = [
         { name: 'Katelin Jill Puzakulics', uuid: '8AFE·9CB6·8598', meta: 'LP 5 Catalyst · EX 11 · Earth Dragon', color: '#a855f7', status: 'mapped', blurb: 'Creator node. The spark that lit the chain — Expression 11 encodes the channel every other link routes through.' },
