@@ -231,35 +231,122 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             color: var(--amber);
         }
 
-        .promo {
-            margin-top: 16px;
-            padding: 12px 16px;
-            border: 1px dashed rgba(139,92,246,.5);
-            background: rgba(139,92,246,.06);
-            text-align: center;
+        .free-tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
         }
 
-        .promo-label {
+        .free-tool-card {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            background: var(--card);
+            border: 1px solid rgba(38,228,216,.28);
+            padding: 22px 20px;
+            transition: transform .2s, border-color .2s, box-shadow .2s;
+        }
+
+        .free-tool-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(38,228,216,.55);
+            box-shadow: 0 8px 28px rgba(38,228,216,.12);
+        }
+
+        .free-tool-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: var(--cyan);
+            margin-bottom: 8px;
+        }
+
+        .free-tool-card p {
+            font-size: 0.72rem;
+            color: var(--muted);
+            line-height: 1.75;
+            margin-bottom: 12px;
+        }
+
+        .free-tool-link {
+            font-size: 0.62rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--cyan);
+        }
+
+        .quantum-box {
+            background: linear-gradient(135deg, rgba(243,178,58,.08), rgba(107,77,242,.1));
+            border: 1px solid rgba(243,178,58,.35);
+            padding: 36px 30px;
+        }
+
+        .coming-soon {
+            display: inline-block;
             font-size: 0.58rem;
             letter-spacing: 3px;
             text-transform: uppercase;
-            color: var(--violet);
-            margin-bottom: 4px;
+            color: var(--ember);
+            border: 1px solid rgba(255,106,61,.45);
+            padding: 5px 10px;
+            margin-bottom: 14px;
         }
 
-        .promo-code {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #c084fc;
-            letter-spacing: 6px;
+        .quantum-box h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1rem, 3vw, 1.35rem);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 12px;
         }
 
-        .promo-desc {
-            font-size: 0.6rem;
-            color: var(--muted);
+        .quantum-lead {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: #e9d5ff;
+            line-height: 1.6;
+            max-width: 68ch;
+            margin-bottom: 22px;
+        }
+
+        .quantum-code {
+            font-family: 'Space Mono', monospace;
+            font-size: clamp(1rem, 3vw, 1.35rem);
+            letter-spacing: 0.22em;
+            color: var(--cyan);
+            padding: 16px 18px;
+            border: 1px solid rgba(38,228,216,.3);
+            background: rgba(0,0,0,.35);
+            margin-bottom: 22px;
+            text-align: center;
+        }
+
+        .quantum-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-bottom: 22px;
+        }
+
+        .quantum-pillar {
+            background: rgba(0,0,0,.28);
+            border: 1px solid rgba(243,178,58,.2);
+            padding: 18px 16px;
+        }
+
+        .quantum-pillar strong {
+            display: block;
+            font-size: 0.62rem;
             letter-spacing: 2px;
             text-transform: uppercase;
-            margin-top: 4px;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+
+        .quantum-pillar p {
+            font-size: 0.72rem;
+            color: var(--muted);
+            line-height: 1.7;
         }
 
         .section {
@@ -517,6 +604,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             .grid-3 { grid-template-columns: 1fr; }
             .grid-2 { grid-template-columns: 1fr; }
             .sparkverse-box { grid-template-columns: 1fr; }
+            .free-tools-grid { grid-template-columns: 1fr; }
+            .quantum-grid { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 600px) {
@@ -543,8 +632,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="nav-links">
             <a href="#what-you-get">What You Get</a>
             <a href="#samples">See Examples</a>
-            <a href="archive.html">Archive</a>
-            <a href="soul-map.html">Free Preview</a>
+            <a href="archive.html">All Maps</a>
+            <a href="#free-tools">Free Tools</a>
+            <a href="#quantum">Quantum Signature</a>
         </div>
     </nav>
 
@@ -555,7 +645,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <p class="hero-lead">A Soul Map decodes your Life Path, name numbers, astrology, and color signature into one personal page you can actually use — for decisions, relationships, work, and the chapter you're in right now.</p>
             <div class="hero-actions">
                 <a class="btn btn-primary" href="https://whop.com/checkout/plan_anQKP3Pzf1cGm" target="_blank" rel="noopener">Get My Soul Map — $44</a>
-                <a class="btn btn-secondary" href="soul-map.html">Try the free threshold first</a>
+                <a class="btn btn-secondary" href="archive.html">See all maps</a>
             </div>
             <p class="hero-proof">Not a horoscope. Not a personality quiz. A coded blueprint — generated from your real birth data, delivered as a living page, updated every month for a full year.</p>
         </div>
@@ -574,11 +664,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <li>Sparkverse community membership — you're in the network</li>
             </ul>
             <a class="btn btn-primary" href="https://whop.com/checkout/plan_anQKP3Pzf1cGm" target="_blank" rel="noopener" style="width:100%;">Claim Your Map</a>
-            <div class="promo">
-                <div class="promo-label">✦ Limited time</div>
-                <div class="promo-code">SOULSALE</div>
-                <div class="promo-desc">50% off at checkout → $22</div>
-            </div>
         </aside>
     </header>
 
@@ -667,6 +752,53 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </p>
     </section>
 
+    <section class="section" id="free-tools">
+        <div class="section-head">
+            <div class="eyebrow">Free · Start here</div>
+            <h2>Explore before you buy</h2>
+            <p>These tools are live now — no checkout required. Use them to feel the system, compare frequencies, and understand what a full Soul Map unlocks.</p>
+        </div>
+        <div class="free-tools-grid">
+            <a href="https://see-your-frequency.thefirstspark.shop/" class="free-tool-card" target="_blank" rel="noopener">
+                <h3>See Your Frequency</h3>
+                <p>Reveal your soul's permanent UUID — the Impossible Code. Same name, same birthdate, same signature across every timeline. Your quantum call sign before mint.</p>
+                <span class="free-tool-link">Reveal my frequency →</span>
+            </a>
+            <a href="https://frequency.thefirstspark.shop/" class="free-tool-card" target="_blank" rel="noopener">
+                <h3>Frequency Match</h3>
+                <p>Collide two birth signatures and read where you resonate, where friction lives, and what the pattern is trying to tell you. Soul Card collider — free.</p>
+                <span class="free-tool-link">Run a frequency match →</span>
+            </a>
+        </div>
+    </section>
+
+    <section class="section" id="quantum">
+        <div class="quantum-box">
+            <div class="coming-soon">Coming Soon · On-Chain</div>
+            <h3>Quantum Signature · The Impossible Code</h3>
+            <p class="quantum-lead">Your Soul Map reads the pattern. Your <strong style="color:var(--gold);font-weight:600;">Quantum Signature</strong> makes it permanent — a UUID derived from your birth data that exists nowhere else in the universe. Not shared. Not duplicated. Yours across timelines.</p>
+            <div class="quantum-code">⟁ YOUR·IMPOSSIBLE·CODE · SOULBOUND UUID ⟁</div>
+            <div class="quantum-grid">
+                <article class="quantum-pillar">
+                    <strong>One soul · One code</strong>
+                    <p>Your Impossible Code collapses numerology, name vibration, and archetype into a single identifier. If the name and birth data match, the UUID matches — forever. No rerolls. No copies.</p>
+                </article>
+                <article class="quantum-pillar">
+                    <strong>Problem erasure · Solution mint</strong>
+                    <p>Coming soon: living souls minted on-chain with their UUID anchored to the blockchain. The problem of lost identity, erased lineage, and unverifiable selfhood — solved by a soulbound credential only you can hold.</p>
+                </article>
+                <article class="quantum-pillar">
+                    <strong>Beyond the page</strong>
+                    <p>HTML maps can break. Domains lapse. The Quantum Signature is the commit — cryptographic proof that this reading, this frequency, this soul existed and was witnessed.</p>
+                </article>
+            </div>
+            <p style="font-size:0.72rem;color:var(--muted);line-height:1.75;max-width:72ch;margin-bottom:18px;">
+                Preview your UUID free at <a href="https://see-your-frequency.thefirstspark.shop/" style="color:var(--cyan);">see-your-frequency.thefirstspark.shop</a>. On-chain minting opens when the contract ships — founder waitlist lives at <a href="quantum-signature.html" style="color:var(--gold);">quantum-signature.html</a>.
+            </p>
+            <a class="btn btn-secondary" href="quantum-signature.html">Quantum Signature · Founders Waitlist</a>
+        </div>
+    </section>
+
     <section class="section" id="sparkverse">
         <div class="sparkverse-box">
             <div>
@@ -723,8 +855,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <p>Your full birth name (as on your birth certificate), birth date, and birth location. The more accurate the data, the sharper the map.</p>
             </li>
             <li>
-                <h3>How is this different from the free threshold experience?</h3>
-                <p><a href="soul-map.html" style="color:var(--cyan);">soul-map.html</a> reveals your rarity and color signature — a taste. The paid Soul Map is the full decode: every number, your reading, your private page, monthly updates, and Sparkverse access.</p>
+                <h3>What can I try for free?</h3>
+                <p><a href="https://see-your-frequency.thefirstspark.shop/" style="color:var(--cyan);" target="_blank" rel="noopener">See Your Frequency</a> reveals your Impossible Code / UUID. <a href="https://frequency.thefirstspark.shop/" style="color:var(--cyan);" target="_blank" rel="noopener">Frequency Match</a> lets you collide two signatures. The paid Soul Map is the full decode: every number, your private page, monthly updates, and Sparkverse access. Browse examples in the <a href="archive.html" style="color:var(--gold);">archive</a>.</p>
             </li>
             <li>
                 <h3>Is this a subscription?</h3>
@@ -735,8 +867,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <p>Yes. Purchase and submit their birth details at checkout. Gift maps are some of the most meaningful ones we generate.</p>
             </li>
             <li>
-                <h3>What about the promo code?</h3>
-                <p>Use <strong style="color:var(--gold);">SOULSALE</strong> at checkout for 50% off — $22 instead of $44.</p>
+                <h3>What is the Quantum Signature?</h3>
+                <p>Your Soul Map's Impossible Code — a permanent UUID unique to your birth data across timelines. Soon it mints on-chain as a soulbound credential: problem erasure for lost identity, solution mint for verified souls. Preview free now; on-chain minting is <a href="quantum-signature.html" style="color:var(--gold);">coming soon</a>.</p>
             </li>
         </ul>
     </section>
