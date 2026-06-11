@@ -13,6 +13,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta name="theme-color" content="#0B0B0C">
     <meta name="robots" content="noindex, nofollow">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="codex-colors.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <!-- Google tag (gtag.js) -->
@@ -28,16 +29,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --core-black: #0B0B0C;
-            --ember: #FF6A3D;
-            --gold: #F3B23A;
-            --violet: #6B4DF2;
-            --cyan: #26E4D8;
+
             --green: #34d399;
             --text: #E8E4DF;
             --muted: #6b7280;
             --muted2: #9ca3af;
             --surface: rgba(11,11,12,.97);
-            --surface-border: rgba(243,178,58,.15);
+            --surface-border: rgba(212,175,55,.15);
         }
 
         body {
@@ -257,8 +255,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .map-link-box {
             margin-top: 18px;
             padding: 18px 20px;
-            border: 1px dashed rgba(243,178,58,.35);
-            background: rgba(243,178,58,.04);
+            border: 1px dashed rgba(212,175,55,.35);
+            background: rgba(212,175,55,.04);
         }
         .map-link-box .label {
             font-size: .55em;
@@ -281,7 +279,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             font-size: .65em;
             letter-spacing: 4px;
             text-transform: uppercase;
-            border: 1px solid rgba(243,178,58,.3);
+            border: 1px solid rgba(212,175,55,.3);
             padding: 10px 24px;
             color: var(--gold);
             margin-top: 8px;
@@ -303,7 +301,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
         .next-card:hover {
             border-color: var(--gold);
-            background: rgba(243,178,58,.04);
+            background: rgba(212,175,55,.04);
             transform: translateY(-2px);
         }
         .next-card .icon {
@@ -363,8 +361,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
         <defs>
             <linearGradient id="sg" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#F3B23A" stop-opacity=".6"/>
-                <stop offset="100%" stop-color="#6B4DF2" stop-opacity=".3"/>
+                <stop offset="0%" stop-color="#d4af37" stop-opacity=".6"/>
+                <stop offset="100%" stop-color="#8b5cf6" stop-opacity=".3"/>
             </linearGradient>
         </defs>
         <polygon points="200,40 360,280 40,280" fill="none" stroke="url(#sg)" stroke-width=".4"/>
@@ -498,7 +496,7 @@ function tick() {
         p.x += p.vx; p.y += p.vy;
         if (p.x < 0) p.x = canvas.width; if (p.x > canvas.width) p.x = 0;
         if (p.y < 0) p.y = canvas.height; if (p.y > canvas.height) p.y = 0;
-        ctx.fillStyle = 'rgba(243,178,58,' + p.a * 0.6 + ')';
+        ctx.fillStyle = 'rgba(212,175,55,' + p.a * 0.6 + ')';
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fill();

@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>A Purple Soul's Journey</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="codex-colors.css">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   
@@ -52,7 +53,7 @@
   .title-block h1 {
     font-family: 'Cinzel', serif;
     font-size: clamp(1.4rem, 4vw, 2.2rem);
-    color: #6B4DF2;
+    color: #8b5cf6;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     line-height: 1.4;
@@ -78,7 +79,7 @@
     top: 0;
     width: 1px;
     height: 100%;
-    background: linear-gradient(to bottom, transparent, #6B4DF2 10%, #6B4DF2 90%, transparent);
+    background: linear-gradient(to bottom, transparent, #8b5cf6 10%, #8b5cf6 90%, transparent);
     opacity: 0.25;
     transform: translateX(-50%);
   }
@@ -138,10 +139,10 @@
 
   .orb-red    { background: radial-gradient(circle at 35% 35%, #ff6b6b, #c0392b); --glow: rgba(192,57,43,0.6); }
   .orb-orange { background: radial-gradient(circle at 35% 35%, #FF9A3D, #FF6A3D); --glow: rgba(255,106,61,0.6); }
-  .orb-yellow { background: radial-gradient(circle at 35% 35%, #fff176, #F3B23A); --glow: rgba(243,178,58,0.6); }
+  .orb-yellow { background: radial-gradient(circle at 35% 35%, #fff176, #d4af37); --glow: rgba(212,175,55,0.6); }
   .orb-green  { background: radial-gradient(circle at 35% 35%, #69f0ae, #00b894); --glow: rgba(0,184,148,0.6); }
   .orb-blue   { background: radial-gradient(circle at 35% 35%, #74b9ff, #0984e3); --glow: rgba(9,132,227,0.6); }
-  .orb-purple { background: radial-gradient(circle at 35% 35%, #a29bfe, #6B4DF2); --glow: rgba(107,77,242,0.6); --p: 2s; }
+  .orb-purple { background: radial-gradient(circle at 35% 35%, #a29bfe, #8b5cf6); --glow: rgba(139,92,246,0.6); --p: 2s; }
   .orb-white  { background: radial-gradient(circle at 35% 35%, #ffffff, #dfe6e9); --glow: rgba(255,255,255,0.5); }
 
   .orb-label {
@@ -198,9 +199,9 @@
 
   .pill-red    { border-color: #c0392b; color: #c0392b; }
   .pill-orange { border-color: #FF6A3D; color: #FF6A3D; }
-  .pill-purple { border-color: #6B4DF2; color: #6B4DF2; }
+  .pill-purple { border-color: #8b5cf6; color: #8b5cf6; }
   .pill-white  { border-color: #aaa; color: #aaa; }
-  .pill-cyan   { border-color: #26E4D8; color: #26E4D8; }
+  .pill-cyan   { border-color: #22d3ee; color: #22d3ee; }
 
   .connector {
     width: 1px;
@@ -214,7 +215,7 @@
   .divider {
     width: 100%;
     height: 1px;
-    background: linear-gradient(to right, transparent, #6B4DF2 30%, #26E4D8 70%, transparent);
+    background: linear-gradient(to right, transparent, #8b5cf6 30%, #22d3ee 70%, transparent);
     opacity: 0.2;
     margin: 0 0 64px;
   }
@@ -231,14 +232,14 @@
   }
 
   .witness-block {
-    border: 1px solid #6B4DF220;
+    border: 1px solid #8b5cf620;
     border-radius: 4px;
     padding: 24px 28px;
     margin: 80px 0 64px;
     position: relative;
     animation: fadeIn 0.8s ease 2.2s forwards;
     opacity: 0;
-    background: #6B4DF205;
+    background: #8b5cf605;
   }
 
   .witness-block::before {
@@ -251,7 +252,7 @@
     font-family: 'Cinzel', serif;
     font-size: 0.6rem;
     letter-spacing: 0.2em;
-    color: #6B4DF2;
+    color: #8b5cf6;
   }
 
   .witness-block p {
@@ -383,7 +384,7 @@
     <!-- STAGE 7 -->
     <div class="stage">
       <div class="orb-wrap">
-        <div class="orb" style="background: radial-gradient(circle at 35% 35%, #ffffff, #26E4D8, #6B4DF2); --glow: rgba(38,228,216,0.4); --p:1.5s; width:52px; height:52px; border-radius:50%;"></div>
+        <div class="orb" style="background: radial-gradient(circle at 35% 35%, #ffffff, #22d3ee, #8b5cf6); --glow: rgba(34,211,238,0.4); --p:1.5s; width:52px; height:52px; border-radius:50%;"></div>
         <div class="orb-label">Beyond</div>
       </div>
       <div class="content">
@@ -412,7 +413,7 @@
     y: Math.random() * canvas.height,
     r: Math.random() * 1.2 + 0.2,
     d: (Math.random() * 3 + 1.5) + 's',
-    color: ['#6B4DF2','#26E4D8','#F3B23A','#ffffff'][Math.floor(Math.random()*4)],
+    color: ['#8b5cf6','#22d3ee','#d4af37','#ffffff'][Math.floor(Math.random()*4)],
     alpha: Math.random() * 0.5 + 0.1,
     speed: Math.random() * 0.3 + 0.1,
     phase: Math.random() * Math.PI * 2

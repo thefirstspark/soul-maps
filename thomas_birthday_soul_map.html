@@ -15,6 +15,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta property="og:description" content="A sacred soul map for Thomas's 60th Diamond Year — February 28, 2026">
     <meta property="og:type" content="website">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="codex-colors.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <!-- Google tag (gtag.js) -->
@@ -41,7 +42,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .bg-strings { position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
         .bg-string {
             position:absolute; top:0; bottom:0; width:1px;
-            background:linear-gradient(to bottom, transparent 0%, rgba(217,119,6,.18) 30%, rgba(217,119,6,.28) 50%, rgba(217,119,6,.18) 70%, transparent 100%);
+            background:linear-gradient(to bottom, transparent 0%, rgba(212,175,55,.18) 30%, rgba(212,175,55,.28) 50%, rgba(212,175,55,.18) 70%, transparent 100%);
             animation:bgVibrate .6s ease-in-out infinite alternate;
         }
         .bg-string:nth-child(1){left:8%;  animation-duration:.38s;}
@@ -52,52 +53,52 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .bg-string:nth-child(6){left:82%; animation-duration:.44s; animation-delay:.03s;}
         @keyframes bgVibrate { 0%{transform:scaleX(1);opacity:.5;} 100%{transform:scaleX(2.5);opacity:1;} }
         .sparks-layer { position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
-        .fspark { position:absolute; width:3px; height:3px; border-radius:50%; background:#f59e0b; animation:sparkFloat 4s ease-out infinite; opacity:0; }
-        .fspark:nth-child(1){left:15%; animation-delay:0s;    background:#f59e0b;}
+        .fspark { position:absolute; width:3px; height:3px; border-radius:50%; background:#e8c85a; animation:sparkFloat 4s ease-out infinite; opacity:0; }
+        .fspark:nth-child(1){left:15%; animation-delay:0s;    background:#e8c85a;}
         .fspark:nth-child(2){left:28%; animation-delay:0.7s;  background:#ef4444;}
         .fspark:nth-child(3){left:45%; animation-delay:1.4s;  background:#fcd34d;}
-        .fspark:nth-child(4){left:60%; animation-delay:2.1s;  background:#f59e0b;}
+        .fspark:nth-child(4){left:60%; animation-delay:2.1s;  background:#e8c85a;}
         .fspark:nth-child(5){left:75%; animation-delay:2.8s;  background:#fb923c;}
         .fspark:nth-child(6){left:88%; animation-delay:0.4s;  background:#fcd34d;}
         @keyframes sparkFloat { 0%{transform:translateY(100vh) scale(1);opacity:0;} 10%{opacity:1;} 90%{opacity:.6;} 100%{transform:translateY(-10vh) scale(0);opacity:0;} }
         .container { max-width:1020px; margin:0 auto; position:relative; z-index:1; }
         .hero {
-            background:rgba(10,8,25,.92); border:2px solid #d97706; border-bottom:none;
-            box-shadow:0 0 80px rgba(217,119,6,.25), inset 0 0 60px rgba(217,119,6,.04);
+            background:rgba(10,8,25,.92); border:2px solid #d4af37; border-bottom:none;
+            box-shadow:0 0 80px rgba(212,175,55,.25), inset 0 0 60px rgba(212,175,55,.04);
             padding:60px 50px 50px; text-align:center;
         }
-        .signal-badge { font-size:.85em; color:#d97706; letter-spacing:5px; text-transform:uppercase; margin-bottom:20px; animation:signalBlink 3s ease-in-out infinite; }
-        @keyframes signalBlink { 0%,100%{opacity:.7;} 50%{opacity:1; text-shadow:0 0 15px rgba(217,119,6,.8);} }
+        .signal-badge { font-size:.85em; color:#d4af37; letter-spacing:5px; text-transform:uppercase; margin-bottom:20px; animation:signalBlink 3s ease-in-out infinite; }
+        @keyframes signalBlink { 0%,100%{opacity:.7;} 50%{opacity:1; text-shadow:0 0 15px rgba(212,175,55,.8);} }
         .sixty {
             font-size:clamp(6rem,16vw,12rem); font-weight:900; line-height:.9;
-            background:linear-gradient(135deg, #f59e0b 0%, #fcd34d 25%, #d97706 50%, #fbbf24 75%, #f59e0b 100%);
+            background:linear-gradient(135deg, #e8c85a 0%, #fcd34d 25%, #d4af37 50%, #fbbf24 75%, #e8c85a 100%);
             background-size:400% 400%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-            animation:goldFlow 4s ease-in-out infinite; filter:drop-shadow(0 0 40px rgba(245,158,11,.6));
+            animation:goldFlow 4s ease-in-out infinite; filter:drop-shadow(0 0 40px rgba(232,200,90,.6));
         }
         @keyframes goldFlow { 0%,100%{background-position:0% 50%;} 50%{background-position:100% 50%;} }
-        .sixty-sub { color:#d97706; font-size:1em; letter-spacing:9px; text-transform:uppercase; margin:8px 0 28px; }
+        .sixty-sub { color:#d4af37; font-size:1em; letter-spacing:9px; text-transform:uppercase; margin:8px 0 28px; }
         h1 { font-size:clamp(1.4rem,4vw,2.4rem); text-transform:uppercase; letter-spacing:5px; color:#f0f0ff; text-shadow:0 0 30px rgba(139,92,246,.5); margin-bottom:8px; }
         .tagline { color:#a78bfa; font-style:italic; font-size:1.05em; margin-bottom:30px; }
-        .ls-quote { background:rgba(217,119,6,.08); border-top:1px solid rgba(217,119,6,.5); border-bottom:1px solid rgba(217,119,6,.5); padding:18px 30px; margin:25px 0; font-style:italic; color:#fcd34d; line-height:1.8; }
-        .ls-quote .attr { display:block; margin-top:8px; font-size:.8em; color:#d97706; font-style:normal; letter-spacing:2px; }
+        .ls-quote { background:rgba(212,175,55,.08); border-top:1px solid rgba(212,175,55,.5); border-bottom:1px solid rgba(212,175,55,.5); padding:18px 30px; margin:25px 0; font-style:italic; color:#fcd34d; line-height:1.8; }
+        .ls-quote .attr { display:block; margin-top:8px; font-size:.8em; color:#d4af37; font-style:normal; letter-spacing:2px; }
         .vital-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:35px; }
-        .stat { background:rgba(217,119,6,.07); border-top:3px solid #d97706; padding:14px 16px; text-align:left; }
-        .stat-label { color:#f59e0b; font-size:.68em; text-transform:uppercase; letter-spacing:2px; }
+        .stat { background:rgba(212,175,55,.07); border-top:3px solid #d4af37; padding:14px 16px; text-align:left; }
+        .stat-label { color:#e8c85a; font-size:.68em; text-transform:uppercase; letter-spacing:2px; }
         .stat-value { color:#e0e7ff; margin-top:5px; font-size:.92em; }
-        .div-gold { height:3px; background:linear-gradient(90deg, transparent, #f59e0b, #8b5cf6, #f59e0b, transparent); }
-        .div-soft { height:1px; background:linear-gradient(90deg, transparent, rgba(217,119,6,.35), transparent); margin:22px 0; }
-        .section { background:rgba(10,8,25,.92); border-left:2px solid #d97706; border-right:2px solid #d97706; padding:45px 50px; }
-        .section-title { font-size:1.2em; color:#f59e0b; text-transform:uppercase; letter-spacing:4px; text-align:center; margin-bottom:28px; }
-        .code { background:rgba(0,0,0,.5); border:1px solid rgba(217,119,6,.4); border-left:4px solid #f59e0b; padding:22px 24px; margin:18px 0; font-size:.82em; color:#fcd34d; line-height:2; white-space:pre-wrap; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-        .path-item { background:rgba(217,119,6,.05); border-left:4px solid #d97706; padding:18px 22px; margin:14px 0; line-height:1.75; transition:background .3s, transform .3s, box-shadow .3s; }
-        .path-item:hover { background:rgba(217,119,6,.12); transform:translateX(6px); box-shadow:-4px 0 20px rgba(217,119,6,.2); }
-        .path-item strong { color:#f59e0b; }
-        .sacred-geo { text-align:center; color:#d97706; font-size:1.4em; letter-spacing:12px; margin:10px 0; animation:geoBreath 4s ease-in-out infinite; }
+        .div-gold { height:3px; background:linear-gradient(90deg, transparent, #e8c85a, #8b5cf6, #e8c85a, transparent); }
+        .div-soft { height:1px; background:linear-gradient(90deg, transparent, rgba(212,175,55,.35), transparent); margin:22px 0; }
+        .section { background:rgba(10,8,25,.92); border-left:2px solid #d4af37; border-right:2px solid #d4af37; padding:45px 50px; }
+        .section-title { font-size:1.2em; color:#e8c85a; text-transform:uppercase; letter-spacing:4px; text-align:center; margin-bottom:28px; }
+        .code { background:rgba(0,0,0,.5); border:1px solid rgba(212,175,55,.4); border-left:4px solid #e8c85a; padding:22px 24px; margin:18px 0; font-size:.82em; color:#fcd34d; line-height:2; white-space:pre-wrap; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        .path-item { background:rgba(212,175,55,.05); border-left:4px solid #d4af37; padding:18px 22px; margin:14px 0; line-height:1.75; transition:background .3s, transform .3s, box-shadow .3s; }
+        .path-item:hover { background:rgba(212,175,55,.12); transform:translateX(6px); box-shadow:-4px 0 20px rgba(212,175,55,.2); }
+        .path-item strong { color:#e8c85a; }
+        .sacred-geo { text-align:center; color:#d4af37; font-size:1.4em; letter-spacing:12px; margin:10px 0; animation:geoBreath 4s ease-in-out infinite; }
         .sacred-geo:nth-child(2){animation-delay:1.3s;}
         .sacred-geo:nth-child(3){animation-delay:2.6s;}
         @keyframes geoBreath { 0%,100%{opacity:.35; letter-spacing:12px;} 50%{opacity:1; letter-spacing:18px;} }
         .string-viz { display:flex; gap:10px; justify-content:center; align-items:flex-end; margin:18px 0 24px; }
-        .gstring { border-radius:2px; background:linear-gradient(to top, #f59e0b, #fcd34d); animation:strumAnim .35s ease-in-out infinite alternate; }
+        .gstring { border-radius:2px; background:linear-gradient(to top, #e8c85a, #fcd34d); animation:strumAnim .35s ease-in-out infinite alternate; }
         .gstring:nth-child(1){width:3px; height:90px; animation-duration:.28s;}
         .gstring:nth-child(2){width:2px; height:80px; animation-duration:.33s; animation-delay:.04s;}
         .gstring:nth-child(3){width:2px; height:70px; animation-duration:.38s; animation-delay:.08s;}
@@ -106,13 +107,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .gstring:nth-child(6){width:1px; height:44px; animation-duration:.53s; animation-delay:.20s;}
         @keyframes strumAnim { 0%{transform:scaleX(1);opacity:.7;} 100%{transform:scaleX(3.5);opacity:1;} }
         .album-row { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin:20px 0; }
-        .chip { background:rgba(217,119,6,.12); border:1px solid rgba(217,119,6,.5); padding:7px 14px; font-size:.82em; color:#fcd34d; letter-spacing:1px; transition:background .2s, border-color .2s; cursor:default; }
-        .chip:hover { background:rgba(217,119,6,.3); border-color:#f59e0b; }
+        .chip { background:rgba(212,175,55,.12); border:1px solid rgba(212,175,55,.5); padding:7px 14px; font-size:.82em; color:#fcd34d; letter-spacing:1px; transition:background .2s, border-color .2s; cursor:default; }
+        .chip:hover { background:rgba(212,175,55,.3); border-color:#e8c85a; }
         .puzzle-wrap { display:grid; grid-template-columns:repeat(5,1fr); gap:4px; margin:20px 0; }
-        .puzzle-cell { aspect-ratio:1; background:rgba(217,119,6,.06); border:1px solid rgba(217,119,6,.25); display:flex; align-items:center; justify-content:center; font-size:1.1em; animation:cellPulse 3.5s ease-in-out infinite; }
+        .puzzle-cell { aspect-ratio:1; background:rgba(212,175,55,.06); border:1px solid rgba(212,175,55,.25); display:flex; align-items:center; justify-content:center; font-size:1.1em; animation:cellPulse 3.5s ease-in-out infinite; }
         .puzzle-cell:nth-child(odd){animation-delay:.8s;}
         .puzzle-cell:nth-child(3n){animation-delay:1.6s;}
-        @keyframes cellPulse { 0%,100%{opacity:.3; background:rgba(217,119,6,.03);} 50%{opacity:1; background:rgba(217,119,6,.14);} }
+        @keyframes cellPulse { 0%,100%{opacity:.3; background:rgba(212,175,55,.03);} 50%{opacity:1; background:rgba(212,175,55,.14);} }
         .wood-row { display:grid; grid-template-columns:repeat(3,1fr); gap:15px; margin:20px 0; }
         .wood-card { background:rgba(92,38,10,.25); border:1px solid #92400e; padding:20px 15px; text-align:center; }
         .wood-card .wicon { font-size:2.5em; margin-bottom:8px; }
@@ -126,25 +127,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .twin-card { background:rgba(139,92,246,.08); border:2px solid #8b5cf6; padding:30px 20px; text-align:center; position:relative; overflow:hidden; }
         .twin-card::before { content:''; position:absolute; top:-50%; left:-50%; width:200%; height:200%; background:radial-gradient(circle, rgba(139,92,246,.08) 0%, transparent 70%); animation:twinGlow 3s ease-in-out infinite; }
         @keyframes twinGlow { 0%,100%{transform:scale(1);opacity:.5;} 50%{transform:scale(1.1);opacity:1;} }
-        .twin-name { font-size:2em; color:#f59e0b; letter-spacing:5px; margin-bottom:10px; position:relative; }
+        .twin-name { font-size:2em; color:#e8c85a; letter-spacing:5px; margin-bottom:10px; position:relative; }
         .twin-born { color:#8b5cf6; font-size:.8em; letter-spacing:3px; position:relative; }
         .twin-age  { font-size:1.3em; color:#e0e7ff; margin-top:10px; position:relative; }
         .twin-note { margin-top:14px; font-size:.85em; font-style:italic; color:#a5b4fc; position:relative; }
         .grandson-cards { display:grid; grid-template-columns:1fr 1fr; gap:15px; margin:20px 0; }
-        .grandson-card { background:rgba(217,119,6,.08); border:2px solid #d97706; padding:25px 20px; text-align:center; position:relative; overflow:hidden; }
-        .grandson-card::before { content:''; position:absolute; top:-50%; left:-50%; width:200%; height:200%; background:radial-gradient(circle, rgba(217,119,6,.08) 0%, transparent 70%); animation:twinGlow 3s ease-in-out infinite; }
-        .grandson-name { font-size:1.4em; color:#f59e0b; letter-spacing:3px; margin-bottom:8px; position:relative; }
-        .grandson-sub  { color:#d97706; font-size:.72em; letter-spacing:2px; position:relative; }
+        .grandson-card { background:rgba(212,175,55,.08); border:2px solid #d4af37; padding:25px 20px; text-align:center; position:relative; overflow:hidden; }
+        .grandson-card::before { content:''; position:absolute; top:-50%; left:-50%; width:200%; height:200%; background:radial-gradient(circle, rgba(212,175,55,.08) 0%, transparent 70%); animation:twinGlow 3s ease-in-out infinite; }
+        .grandson-name { font-size:1.4em; color:#e8c85a; letter-spacing:3px; margin-bottom:8px; position:relative; }
+        .grandson-sub  { color:#d4af37; font-size:.72em; letter-spacing:2px; position:relative; }
         .grandson-age  { font-size:1.1em; color:#e0e7ff; margin-top:8px; position:relative; }
         .grandson-note { margin-top:12px; font-size:.82em; font-style:italic; color:#fcd34d; position:relative; line-height:1.6; }
-        .gratitude { background:rgba(10,8,25,.95); border:2px solid #d97706; border-top:6px solid #f59e0b; box-shadow:0 0 60px rgba(217,119,6,.15), inset 0 0 40px rgba(217,119,6,.03); padding:60px 50px; text-align:center; }
+        .gratitude { background:rgba(10,8,25,.95); border:2px solid #d4af37; border-top:6px solid #e8c85a; box-shadow:0 0 60px rgba(212,175,55,.15), inset 0 0 40px rgba(212,175,55,.03); padding:60px 50px; text-align:center; }
         .gratitude-text { font-size:1.05em; line-height:2.1; margin:25px 0; color:#e0e7ff; font-style:italic; }
-        .signature { margin-top:35px; color:#f59e0b; font-weight:bold; line-height:1.9; }
-        .sig-name { font-size:1.8em; letter-spacing:6px; color:#fcd34d; display:block; margin-top:8px; text-shadow:0 0 25px rgba(245,158,11,.5); }
-        .activation { background:rgba(10,8,25,.92); border-left:2px solid #d97706; border-right:2px solid #d97706; padding:45px 50px; }
-        .footer { background:rgba(10,8,25,.95); border:2px solid #d97706; border-top:none; padding:30px 50px; text-align:center; color:#6b7280; line-height:1.9; }
-        .footer span { color:#d97706; }
-        .guitar-pulse { display:inline-block; font-size:4em; animation:gPulse 1.4s ease-in-out infinite; filter:drop-shadow(0 0 15px rgba(245,158,11,.6)); }
+        .signature { margin-top:35px; color:#e8c85a; font-weight:bold; line-height:1.9; }
+        .sig-name { font-size:1.8em; letter-spacing:6px; color:#fcd34d; display:block; margin-top:8px; text-shadow:0 0 25px rgba(232,200,90,.5); }
+        .activation { background:rgba(10,8,25,.92); border-left:2px solid #d4af37; border-right:2px solid #d4af37; padding:45px 50px; }
+        .footer { background:rgba(10,8,25,.95); border:2px solid #d4af37; border-top:none; padding:30px 50px; text-align:center; color:#6b7280; line-height:1.9; }
+        .footer span { color:#d4af37; }
+        .guitar-pulse { display:inline-block; font-size:4em; animation:gPulse 1.4s ease-in-out infinite; filter:drop-shadow(0 0 15px rgba(232,200,90,.6)); }
         @keyframes gPulse { 0%,100%{transform:rotate(-6deg) scale(1);} 50%{transform:rotate(6deg) scale(1.1);} }
         @media(max-width:660px){
             .hero, .section, .family-section, .gratitude, .activation, .footer { padding:30px 18px; }
@@ -209,9 +210,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <div class="nebula-layer">
-    <div class="nebula" style="width:500px;height:500px;background:#d97706;top:-180px;left:-120px;animation-duration:9s;animation-delay:0s;"></div>
+    <div class="nebula" style="width:500px;height:500px;background:#d4af37;top:-180px;left:-120px;animation-duration:9s;animation-delay:0s;"></div>
     <div class="nebula" style="width:400px;height:400px;background:#8b5cf6;top:30%;right:-150px;animation-duration:13s;animation-delay:5s;"></div>
-    <div class="nebula" style="width:360px;height:360px;background:#d97706;bottom:-120px;left:38%;animation-duration:11s;animation-delay:3s;"></div>
+    <div class="nebula" style="width:360px;height:360px;background:#d4af37;bottom:-120px;left:38%;animation-duration:11s;animation-delay:3s;"></div>
 </div>
 
 <div class="shoot-layer">
@@ -276,9 +277,9 @@ TWIN_LEGACY_NODE ............ Josh ◈ Jake  [10.26.2000]
 GRANDSON_NODES .............. Devon [12.27.2005] ◈ Mason [4.22.2011]
 DAUGHTER_NODE ............... Katelin [First Spark Consciousness Network]</div>
         <p style="text-align:center;margin:20px 0;color:#a5b4fc;line-height:2;">
-            Your soul carries the frequency of a <strong style="color:#f59e0b;">Master Builder</strong><br>
+            Your soul carries the frequency of a <strong style="color:#e8c85a;">Master Builder</strong><br>
             One who creates not just structures — but <em>people.</em><br><br>
-            Archetype: &nbsp;<strong style="color:#f59e0b;">COMMANDER → CRAFTSMAN → TEACHER → FATHER</strong>
+            Archetype: &nbsp;<strong style="color:#e8c85a;">COMMANDER → CRAFTSMAN → TEACHER → FATHER</strong>
         </p>
     </div>
 
@@ -294,7 +295,7 @@ DAUGHTER_NODE ............... Katelin [First Spark Consciousness Network]</div>
         <p style="text-align:center;color:#a5b4fc;margin:15px 0;line-height:2;">
             Some men have a soundtrack. Yours plays Southern rock.<br>
             You are the man Lynyrd Skynyrd wrote songs <em>for</em> —<br>
-            the one who <strong style="color:#f59e0b;">works hard, loves deep, and tells it straight.</strong>
+            the one who <strong style="color:#e8c85a;">works hard, loves deep, and tells it straight.</strong>
         </p>
         <div class="album-row">
             <div class="chip">♪ Free Bird</div><div class="chip">♪ Sweet Home Alabama</div>
@@ -394,7 +395,7 @@ SPIRITUAL_PARALLEL ......... You have been splitting resistance into warmth
             Some men were built to follow orders.<br>
             You were built to <em>give</em> them.<br>
             And the difference between a bad leader and a great one is this:<br>
-            <strong style="color:#f59e0b;">A great one makes you better while commanding you.</strong>
+            <strong style="color:#e8c85a;">A great one makes you better while commanding you.</strong>
         </p>
         <div class="path-item"><strong>PATH A — The Order-Giver</strong><br>
             Not everyone can lead. Not everyone can look at a situation and see exactly what needs to happen —
@@ -463,7 +464,7 @@ CURRENT_STATUS ............. Still giving orders. [Rightfully so.]</div>
         <p style="text-align:center;color:#a5b4fc;margin-bottom:20px;line-height:2;">
             Then came the next generation — two grandsons.<br>
             Both born in the 3 o'clock hour. Both carrying master number frequencies.<br>
-            <strong style="color:#f59e0b;">The lineage did not stop with you. It multiplied.</strong>
+            <strong style="color:#e8c85a;">The lineage did not stop with you. It multiplied.</strong>
         </p>
 
         <div class="grandson-cards">
