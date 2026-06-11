@@ -20,6 +20,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Orbitron:wght@700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="codex-colors.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FPHDDHSCWS"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -35,11 +36,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             --text: #e0e7ff;
             --muted: #9ca3af;
             --dim: #6b7280;
-            --gold: #f59e0b;
-            --amber: #d97706;
-            --violet: #8b5cf6;
-            --cyan: #26E4D8;
-            --ember: #FF6A3D;
+            --amber: var(--codex-gold);
             --card: rgba(10, 8, 25, 0.92);
             --border: rgba(139, 92, 246, 0.28);
         }
@@ -48,9 +45,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         body {
             background:
-                radial-gradient(ellipse at 20% 10%, rgba(107,77,242,.18) 0%, transparent 55%),
+                radial-gradient(ellipse at 20% 10%, rgba(139,92,246,.18) 0%, transparent 55%),
                 radial-gradient(ellipse at 85% 30%, rgba(255,106,61,.14) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 90%, rgba(38,228,216,.12) 0%, transparent 55%),
+                radial-gradient(ellipse at 50% 90%, rgba(34,211,238,.12) 0%, transparent 55%),
                 var(--bg);
             font-family: 'Space Mono', 'Courier New', monospace;
             color: var(--text);
@@ -92,7 +89,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             border: 1px solid transparent;
             transition: color .2s, border-color .2s;
         }
-        .nav-links a:hover { color: var(--gold); border-color: rgba(245,158,11,.35); }
+        .nav-links a:hover { color: var(--gold); border-color: rgba(232,200,90,.35); }
 
         .hero {
             padding: 48px 0 72px;
@@ -160,7 +157,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             background: var(--gold);
             color: var(--bg);
             font-weight: 700;
-            box-shadow: 0 12px 32px rgba(245,158,11,.28);
+            box-shadow: 0 12px 32px rgba(232,200,90,.28);
         }
 
         .btn-primary:hover { background: #fbbf24; }
@@ -170,7 +167,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             color: var(--gold);
         }
 
-        .btn-secondary:hover { background: rgba(245,158,11,.08); }
+        .btn-secondary:hover { background: rgba(232,200,90,.08); }
 
         .hero-proof {
             font-size: 0.68rem;
@@ -182,7 +179,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         .offer-card {
             background: var(--card);
-            border: 1px solid rgba(245,158,11,.35);
+            border: 1px solid rgba(232,200,90,.35);
             padding: 28px 26px;
             box-shadow: 0 20px 50px rgba(0,0,0,.35);
         }
@@ -200,7 +197,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             color: var(--gold);
             line-height: 1;
             margin: 10px 0 14px;
-            text-shadow: 0 0 30px rgba(245,158,11,.35);
+            text-shadow: 0 0 30px rgba(232,200,90,.35);
         }
 
         .price-note {
@@ -242,15 +239,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             text-decoration: none;
             color: inherit;
             background: var(--card);
-            border: 1px solid rgba(38,228,216,.28);
+            border: 1px solid rgba(34,211,238,.28);
             padding: 22px 20px;
             transition: transform .2s, border-color .2s, box-shadow .2s;
         }
 
         .free-tool-card:hover {
             transform: translateY(-3px);
-            border-color: rgba(38,228,216,.55);
-            box-shadow: 0 8px 28px rgba(38,228,216,.12);
+            border-color: rgba(34,211,238,.55);
+            box-shadow: 0 8px 28px rgba(34,211,238,.12);
         }
 
         .free-tool-card h3 {
@@ -275,8 +272,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
 
         .quantum-box {
-            background: linear-gradient(135deg, rgba(243,178,58,.08), rgba(107,77,242,.1));
-            border: 1px solid rgba(243,178,58,.35);
+            background: linear-gradient(135deg, rgba(212,175,55,.08), rgba(139,92,246,.1));
+            border: 1px solid rgba(212,175,55,.35);
             padding: 36px 30px;
         }
 
@@ -315,7 +312,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             letter-spacing: 0.22em;
             color: var(--cyan);
             padding: 16px 18px;
-            border: 1px solid rgba(38,228,216,.3);
+            border: 1px solid rgba(34,211,238,.3);
             background: rgba(0,0,0,.35);
             margin-bottom: 22px;
             text-align: center;
@@ -330,7 +327,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         .quantum-pillar {
             background: rgba(0,0,0,.28);
-            border: 1px solid rgba(243,178,58,.2);
+            border: 1px solid rgba(212,175,55,.2);
             padding: 18px 16px;
         }
 
@@ -353,10 +350,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             position: relative;
             margin: 28px 0 26px;
             min-height: 340px;
-            border: 1px solid rgba(38,228,216,.22);
+            border: 1px solid rgba(34,211,238,.22);
             background:
-                radial-gradient(ellipse at 20% 50%, rgba(107,77,242,.18), transparent 55%),
-                radial-gradient(ellipse at 80% 40%, rgba(243,178,58,.12), transparent 50%),
+                radial-gradient(ellipse at 20% 50%, rgba(139,92,246,.18), transparent 55%),
+                radial-gradient(ellipse at 80% 40%, rgba(212,175,55,.12), transparent 50%),
                 rgba(0,0,0,.45);
             overflow: hidden;
             isolation: isolate;
@@ -370,8 +367,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 90deg,
                 transparent,
                 transparent 48px,
-                rgba(38,228,216,.03) 48px,
-                rgba(38,228,216,.03) 49px
+                rgba(34,211,238,.03) 48px,
+                rgba(34,211,238,.03) 49px
             );
             pointer-events: none;
             z-index: 0;
@@ -446,7 +443,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .chain-node-wrap:hover .chain-connector,
         .chain-node-wrap.active .chain-connector {
             opacity: 1;
-            filter: drop-shadow(0 0 8px rgba(38,228,216,.6));
+            filter: drop-shadow(0 0 8px rgba(34,211,238,.6));
         }
 
         .chain-link {
@@ -476,7 +473,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         .chain-link:hover svg,
         .chain-link.active svg {
-            filter: drop-shadow(0 0 18px var(--link-glow, rgba(245,158,11,.7)));
+            filter: drop-shadow(0 0 18px var(--link-glow, rgba(232,200,90,.7)));
         }
 
         .chain-tag {
@@ -488,8 +485,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             max-width: 190px;
             padding: 10px 12px;
             background: rgba(8,6,22,.94);
-            border: 1px solid var(--tag-border, rgba(245,158,11,.45));
-            box-shadow: 0 12px 40px rgba(0,0,0,.55), 0 0 24px var(--tag-glow, rgba(245,158,11,.15));
+            border: 1px solid var(--tag-border, rgba(232,200,90,.45));
+            box-shadow: 0 12px 40px rgba(0,0,0,.55), 0 0 24px var(--tag-glow, rgba(232,200,90,.15));
             opacity: 0;
             pointer-events: none;
             transition: opacity .25s, transform .3s cubic-bezier(.34,1.56,.64,1);
@@ -510,7 +507,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             left: 50%;
             transform: translateX(-50%);
             border: 6px solid transparent;
-            border-top-color: var(--tag-border, rgba(245,158,11,.45));
+            border-top-color: var(--tag-border, rgba(232,200,90,.45));
         }
 
         .tag-eyebrow {
@@ -554,7 +551,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
 
         .tag-mint.live {
-            border-color: rgba(38,228,216,.45);
+            border-color: rgba(34,211,238,.45);
             color: var(--cyan);
         }
 
@@ -568,8 +565,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
 
         .chain-detail-panel.pulse {
-            border-color: rgba(38,228,216,.55);
-            box-shadow: 0 0 30px rgba(38,228,216,.12);
+            border-color: rgba(34,211,238,.55);
+            box-shadow: 0 0 30px rgba(34,211,238,.12);
         }
 
         .chain-detail-label {
@@ -616,7 +613,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 top: auto;
                 bottom: 100%;
                 border-top-color: transparent;
-                border-bottom-color: var(--tag-border, rgba(245,158,11,.45));
+                border-bottom-color: var(--tag-border, rgba(232,200,90,.45));
             }
         }
 
@@ -629,7 +626,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             display: grid;
             grid-template-columns: 1.1fr 0.9fr;
             gap: 0;
-            border: 1px solid rgba(107,77,242,.35);
+            border: 1px solid rgba(139,92,246,.35);
             background: rgba(0,0,0,.4);
             overflow: hidden;
             min-height: 320px;
@@ -639,8 +636,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             position: relative;
             min-height: 280px;
             background:
-                radial-gradient(circle at 50% 45%, rgba(107,77,242,.22), transparent 62%),
-                radial-gradient(circle at 30% 70%, rgba(38,228,216,.1), transparent 50%),
+                radial-gradient(circle at 50% 45%, rgba(139,92,246,.22), transparent 62%),
+                radial-gradient(circle at 30% 70%, rgba(34,211,238,.1), transparent 50%),
                 rgba(3,1,13,.85);
         }
 
@@ -668,7 +665,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             display: flex;
             flex-direction: column;
             justify-content: center;
-            border-left: 1px solid rgba(107,77,242,.2);
+            border-left: 1px solid rgba(139,92,246,.2);
             background: linear-gradient(160deg, rgba(13,7,40,.75), rgba(10,8,25,.92));
         }
 
@@ -786,7 +783,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         @media (max-width: 900px) {
             .lab-feature { grid-template-columns: 1fr; }
-            .lab-content { border-left: 0; border-top: 1px solid rgba(107,77,242,.2); }
+            .lab-content { border-left: 0; border-top: 1px solid rgba(139,92,246,.2); }
             .lab-visual { min-height: 240px; }
             .pipeline-strip { grid-template-columns: 1fr; }
         }
@@ -841,7 +838,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             transition: transform .2s, border-color .2s;
         }
 
-        .card-block:hover { transform: translateY(-3px); border-color: rgba(245,158,11,.4); }
+        .card-block:hover { transform: translateY(-3px); border-color: rgba(232,200,90,.4); }
 
         .card-tag {
             font-size: 0.58rem;
@@ -876,12 +873,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
 
         .sample-card:hover { transform: translateY(-3px); }
-        .sample-card.gold { border-color: #d97706; }
-        .sample-card.gold:hover { box-shadow: 0 8px 30px rgba(217,119,6,.25); }
-        .sample-card.violet { border-color: #a855f7; }
-        .sample-card.violet:hover { box-shadow: 0 8px 30px rgba(168,85,247,.28); }
-        .sample-card.cyan { border-color: #26E4D8; }
-        .sample-card.cyan:hover { box-shadow: 0 8px 30px rgba(38,228,216,.25); }
+        .sample-card.gold { border-color: #d4af37; }
+        .sample-card.gold:hover { box-shadow: 0 8px 30px rgba(212,175,55,.25); }
+        .sample-card.violet { border-color: #8b5cf6; }
+        .sample-card.violet:hover { box-shadow: 0 8px 30px rgba(139,92,246,.28); }
+        .sample-card.cyan { border-color: #22d3ee; }
+        .sample-card.cyan:hover { box-shadow: 0 8px 30px rgba(34,211,238,.25); }
 
         .sample-sub {
             font-size: 0.62rem;
@@ -898,9 +895,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             margin-bottom: 8px;
         }
 
-        .sample-card.gold .sample-name { color: #f59e0b; }
+        .sample-card.gold .sample-name { color: #e8c85a; }
         .sample-card.violet .sample-name { color: #c084fc; }
-        .sample-card.cyan .sample-name { color: #26E4D8; }
+        .sample-card.cyan .sample-name { color: #22d3ee; }
 
         .sample-desc {
             font-size: 0.75rem;
@@ -921,8 +918,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .sample-card:hover .sample-arrow { opacity: 1; }
 
         .sparkverse-box {
-            background: linear-gradient(135deg, rgba(107,77,242,.12), rgba(38,228,216,.08));
-            border: 1px solid rgba(38,228,216,.35);
+            background: linear-gradient(135deg, rgba(139,92,246,.12), rgba(34,211,238,.08));
+            border: 1px solid rgba(34,211,238,.35);
             padding: 32px 28px;
             display: grid;
             grid-template-columns: 1fr auto;
@@ -959,7 +956,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             letter-spacing: 1.5px;
             text-transform: uppercase;
             padding: 6px 10px;
-            border: 1px solid rgba(38,228,216,.3);
+            border: 1px solid rgba(34,211,238,.3);
             color: var(--cyan);
         }
 
@@ -984,7 +981,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .final-cta {
             text-align: center;
             padding: 80px 0 100px;
-            border-top: 1px solid rgba(245,158,11,.2);
+            border-top: 1px solid rgba(232,200,90,.2);
         }
 
         .final-cta h2 {
@@ -1023,7 +1020,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             z-index: 50;
             display: none;
             background: rgba(10,8,25,.96);
-            border: 1px solid rgba(245,158,11,.4);
+            border: 1px solid rgba(232,200,90,.4);
             padding: 10px 12px;
             align-items: center;
             gap: 12px;
@@ -1391,8 +1388,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     const ctx = canvas.getContext('2d');
     const nodes = [
-        { label: 'YOU', color: '#f59e0b', r: 14, orbit: 0, speed: 0, phase: 0 },
-        { label: 'BOND', color: '#26E4D8', r: 8, orbit: 72, speed: 0.012, phase: 0 },
+        { label: 'YOU', color: '#e8c85a', r: 14, orbit: 0, speed: 0, phase: 0 },
+        { label: 'BOND', color: '#22d3ee', r: 8, orbit: 72, speed: 0.012, phase: 0 },
         { label: 'LINE', color: '#FF6A3D', r: 7, orbit: 72, speed: 0.012, phase: Math.PI * 0.66 },
         { label: 'MATE', color: '#8b5cf6', r: 9, orbit: 72, speed: 0.012, phase: Math.PI * 1.33 },
         { label: 'ECHO', color: '#c084fc', r: 6, orbit: 118, speed: -0.008, phase: 1.2 },
@@ -1424,7 +1421,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         [72, 118].forEach((rad, i) => {
             ctx.beginPath();
             ctx.arc(cx, cy, rad, 0, Math.PI * 2);
-            ctx.strokeStyle = `rgba(107,77,242,${0.12 + i * 0.06})`;
+            ctx.strokeStyle = `rgba(139,92,246,${0.12 + i * 0.06})`;
             ctx.setLineDash([4, 8]);
             ctx.stroke();
             ctx.setLineDash([]);
@@ -1487,15 +1484,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 (function initSoulChain() {
     const souls = [
-        { name: 'Katelin Jill Puzakulics', uuid: '8AFE·9CB6·8598', meta: 'LP 5 Catalyst · EX 11 · Earth Dragon', color: '#a855f7', status: 'mapped', blurb: 'Creator node. The spark that lit the chain — Expression 11 encodes the channel every other link routes through.' },
+        { name: 'Katelin Jill Puzakulics', uuid: '8AFE·9CB6·8598', meta: 'LP 5 Catalyst · EX 11 · Earth Dragon', color: '#8b5cf6', status: 'mapped', blurb: 'Creator node. The spark that lit the chain — Expression 11 encodes the channel every other link routes through.' },
         { name: 'Matthew Vincent Jablonski', uuid: '6F2A·1D88·4E01', meta: 'LP 6 · Four 9s Pattern · First Member', color: '#c084fc', status: 'mapped', blurb: 'Founding consciousness. Four 9s stacked — the first soul to prove the network could hold a real human frequency.' },
-        { name: 'Thomas William Puzakulics', uuid: '7B3C·22FF·0A91', meta: 'LP 7 · EX 33 Master Teacher · LEGENDARY', color: '#f59e0b', status: 'legendary', blurb: 'Legendary rarity tier. Expression 33 — the chain bends here. Master Teacher frequency, diamond year 2026.' },
+        { name: 'Thomas William Puzakulics', uuid: '7B3C·22FF·0A91', meta: 'LP 7 · EX 33 Master Teacher · LEGENDARY', color: '#e8c85a', status: 'legendary', blurb: 'Legendary rarity tier. Expression 33 — the chain bends here. Master Teacher frequency, diamond year 2026.' },
         { name: 'Nikola Tesla', uuid: '1P11·22BU·1856', meta: 'LP 1 Pioneer · EX 11 Channel · Fire Dragon', color: '#3b82f6', status: 'legendary', blurb: 'Historical anchor. Double pioneer encoding — the inventor whose frequency still hums through the voltage layer.' },
         { name: 'David Bowie', uuid: '3A11·5MOT·1947', meta: 'LP 3 Alchemist · Triple 5 · Eternal Motion', color: '#8b5cf6', status: 'legendary', blurb: 'Shape-shifter archetype. Triple 5 signature — proof that one soul can wear infinite masks without breaking the UUID.' },
-        { name: 'Albert Einstein', uuid: '33TE·22BU·1879', meta: 'LP 33 Master Teacher · Pisces Mystic', color: '#f59e0b', status: 'legendary', blurb: 'Master Teacher on the chain. Life Path 33 collapsed into relativity — the physics of consciousness made legible.' },
+        { name: 'Albert Einstein', uuid: '33TE·22BU·1879', meta: 'LP 33 Master Teacher · Pisces Mystic', color: '#e8c85a', status: 'legendary', blurb: 'Master Teacher on the chain. Life Path 33 collapsed into relativity — the physics of consciousness made legible.' },
         { name: 'George Puzakulics Sr.', uuid: '5FDR·1892·AKRN', meta: 'Founder Node · Water Dragon · Bloodline', color: '#FF6A3D', status: 'bloodline', blurb: 'Founder node. First to plant the name in foreign soil — the chain starts before you were born.' },
         { name: 'Elizabeth Zublay Puzakulics', uuid: '5RETR·1894·AKRN', meta: 'The Return Soul · Prior incarnation', color: '#FF6A3D', status: 'bloodline', blurb: 'Return soul. ~360 days between her exhale and KJP\'s inhale — lineage encoded as reincarnation proof.' },
-        { name: 'YOU · NEXT MINT', uuid: '????·????·????', meta: 'Your Impossible Code · Pending', color: '#26E4D8', status: 'pending', blurb: 'This link is empty on purpose. Your UUID generates from birth data — then mints soulbound. No one else can claim it.' }
+        { name: 'YOU · NEXT MINT', uuid: '????·????·????', meta: 'Your Impossible Code · Pending', color: '#22d3ee', status: 'pending', blurb: 'This link is empty on purpose. Your UUID generates from birth data — then mints soulbound. No one else can claim it.' }
     ];
 
     const track = document.getElementById('chain-track');
@@ -1517,8 +1514,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </svg>`;
 
     const connectorSvg = `<svg class="chain-connector" viewBox="0 0 28 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0 6 H28" stroke="rgba(38,228,216,.45)" stroke-width="1.5" stroke-dasharray="3 4"/>
-        <circle cx="14" cy="6" r="2" fill="rgba(245,158,11,.6)"/>
+        <path d="M0 6 H28" stroke="rgba(34,211,238,.45)" stroke-width="1.5" stroke-dasharray="3 4"/>
+        <circle cx="14" cy="6" r="2" fill="rgba(232,200,90,.6)"/>
     </svg>`;
 
     const mintLabel = { mapped: 'Mapped · Awaiting mint', legendary: 'Legend tier · Reserved', bloodline: 'Bloodline · Ancestor chain', pending: 'Coming soon · Your mint' };
@@ -1591,7 +1588,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 vx: Math.cos(a) * (2 + Math.random() * 3),
                 vy: Math.sin(a) * (2 + Math.random() * 3),
                 life: 1,
-                color: ['#f59e0b', '#26E4D8', '#8b5cf6', '#FF6A3D'][i % 4]
+                color: ['#e8c85a', '#22d3ee', '#8b5cf6', '#FF6A3D'][i % 4]
             });
         }
     }
@@ -1607,7 +1604,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 vx: (Math.random() - 0.5) * 0.4,
                 vy: (Math.random() - 0.5) * 0.4,
                 life: 0.3 + Math.random() * 0.7,
-                color: ['#26E4D8', '#8b5cf6', '#f59e0b'][i % 3],
+                color: ['#22d3ee', '#8b5cf6', '#e8c85a'][i % 3],
                 dot: true
             });
         }
@@ -1619,9 +1616,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         ctx.clearRect(0, 0, w, h);
 
         const grad = ctx.createLinearGradient(0, h * 0.5, w, h * 0.5);
-        grad.addColorStop(0, 'rgba(107,77,242,0)');
-        grad.addColorStop(0.5, 'rgba(38,228,216,0.12)');
-        grad.addColorStop(1, 'rgba(107,77,242,0)');
+        grad.addColorStop(0, 'rgba(139,92,246,0)');
+        grad.addColorStop(0.5, 'rgba(34,211,238,0.12)');
+        grad.addColorStop(1, 'rgba(139,92,246,0)');
         ctx.fillStyle = grad;
         ctx.fillRect(0, h * 0.38, w, h * 0.24);
 
@@ -1631,18 +1628,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         ctx.beginPath();
         ctx.arc(pulseX, pulseY, 28 + Math.sin(pulseT * 3) * 6, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(38,228,216,0.06)';
+        ctx.fillStyle = 'rgba(34,211,238,0.06)';
         ctx.fill();
 
         ctx.beginPath();
         ctx.arc(pulseX, pulseY, 6, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(245,158,11,0.85)';
-        ctx.shadowColor = '#26E4D8';
+        ctx.fillStyle = 'rgba(232,200,90,0.85)';
+        ctx.shadowColor = '#22d3ee';
         ctx.shadowBlur = 16;
         ctx.fill();
         ctx.shadowBlur = 0;
 
-        ctx.strokeStyle = 'rgba(38,228,216,0.25)';
+        ctx.strokeStyle = 'rgba(34,211,238,0.25)';
         ctx.lineWidth = 1;
         ctx.setLineDash([6, 10]);
         ctx.beginPath();

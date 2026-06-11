@@ -17,6 +17,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="codex-colors.css">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FPHDDHSCWS"></script>
     <script>
@@ -31,9 +32,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         body {
             background:
-                radial-gradient(ellipse at 20% 10%, rgba(107,77,242,.18) 0%, transparent 55%),
+                radial-gradient(ellipse at 20% 10%, rgba(139,92,246,.18) 0%, transparent 55%),
                 radial-gradient(ellipse at 85% 30%, rgba(255,106,61,.14) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 90%, rgba(38,228,216,.12) 0%, transparent 55%),
+                radial-gradient(ellipse at 50% 90%, rgba(34,211,238,.12) 0%, transparent 55%),
                 #050818;
             font-family: 'Space Mono', 'Courier New', monospace;
             color: #e0e7ff;
@@ -55,27 +56,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         .beam { position: absolute; width: 2px; height: 380px; transform-origin: top center; opacity: 0; animation: beam-pulse 8s ease-in-out infinite; mix-blend-mode: screen; filter: blur(.4px); }
         .beam.b1 { top: 14%; left: 18%; transform: rotate(35deg); background: linear-gradient(180deg, rgba(255,0,80,.0), rgba(255,0,80,.8), rgba(255,160,0,.6), rgba(255,230,0,.4), transparent); animation-delay: -1s; }
-        .beam.b2 { top: 28%; left: 82%; transform: rotate(-42deg); background: linear-gradient(180deg, rgba(38,228,216,.0), rgba(38,228,216,.8), rgba(107,77,242,.6), rgba(255,0,180,.4), transparent); animation-delay: -3s; }
-        .beam.b3 { top: 62%; left: 10%; transform: rotate(28deg); background: linear-gradient(180deg, rgba(107,77,242,.0), rgba(107,77,242,.8), rgba(38,228,216,.6), rgba(0,255,150,.4), transparent); animation-delay: -5s; }
-        .beam.b4 { top: 72%; left: 88%; transform: rotate(-30deg); background: linear-gradient(180deg, rgba(255,106,61,.0), rgba(255,106,61,.8), rgba(243,178,58,.6), rgba(255,230,0,.4), transparent); animation-delay: -2s; }
+        .beam.b2 { top: 28%; left: 82%; transform: rotate(-42deg); background: linear-gradient(180deg, rgba(34,211,238,.0), rgba(34,211,238,.8), rgba(139,92,246,.6), rgba(255,0,180,.4), transparent); animation-delay: -3s; }
+        .beam.b3 { top: 62%; left: 10%; transform: rotate(28deg); background: linear-gradient(180deg, rgba(139,92,246,.0), rgba(139,92,246,.8), rgba(34,211,238,.6), rgba(0,255,150,.4), transparent); animation-delay: -5s; }
+        .beam.b4 { top: 72%; left: 88%; transform: rotate(-30deg); background: linear-gradient(180deg, rgba(255,106,61,.0), rgba(255,106,61,.8), rgba(212,175,55,.6), rgba(255,230,0,.4), transparent); animation-delay: -2s; }
         .beam.b5 { top: 44%; left: 52%; transform: rotate(15deg); background: linear-gradient(180deg, rgba(0,200,255,.0), rgba(0,200,255,.7), rgba(140,80,255,.5), rgba(255,40,180,.3), transparent); animation-delay: -6s; }
         .beam.b6 { top: 90%; left: 38%; transform: rotate(-12deg); background: linear-gradient(180deg, rgba(255,230,0,.0), rgba(255,230,0,.7), rgba(0,255,150,.5), rgba(0,200,255,.3), transparent); animation-delay: -4s; }
         @keyframes beam-pulse { 0%, 100% { opacity: 0; } 50% { opacity: .65; } }
 
-        #aurora { position: fixed; inset: -20%; pointer-events: none; z-index: 0; background: radial-gradient(ellipse 60% 40% at 30% 20%, rgba(107,77,242,.22), transparent 60%), radial-gradient(ellipse 50% 35% at 70% 60%, rgba(38,228,216,.18), transparent 60%), radial-gradient(ellipse 45% 30% at 50% 90%, rgba(255,106,61,.16), transparent 60%); filter: blur(40px); animation: aurora-shift 28s ease-in-out infinite alternate; mix-blend-mode: screen; }
+        #aurora { position: fixed; inset: -20%; pointer-events: none; z-index: 0; background: radial-gradient(ellipse 60% 40% at 30% 20%, rgba(139,92,246,.22), transparent 60%), radial-gradient(ellipse 50% 35% at 70% 60%, rgba(34,211,238,.18), transparent 60%), radial-gradient(ellipse 45% 30% at 50% 90%, rgba(255,106,61,.16), transparent 60%); filter: blur(40px); animation: aurora-shift 28s ease-in-out infinite alternate; mix-blend-mode: screen; }
         @keyframes aurora-shift { 0% { transform: translate(0, 0) scale(1); } 50% { transform: translate(-3%, 2%) scale(1.08); } 100% { transform: translate(2%, -3%) scale(1.04); } }
         @media (prefers-reduced-motion: reduce) { .prism, .beam, #aurora { animation: none; opacity: .4; } }
 
         #starfield { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
         .star { position: absolute; border-radius: 50%; animation: twinkle var(--dur, 3s) ease-in-out infinite; }
         @keyframes twinkle { 0%, 100% { opacity: var(--lo, 0.2); } 50% { opacity: var(--hi, 0.8); } }
-        .shooting-star { position: absolute; width: 2px; height: 2px; background: #fff; border-radius: 50%; box-shadow: 0 0 6px 2px rgba(139,92,246,.6), 0 0 12px 4px rgba(217,119,6,.3); opacity: 0; animation: shoot var(--shoot-dur, 2s) ease-in var(--shoot-delay, 5s) infinite; }
+        .shooting-star { position: absolute; width: 2px; height: 2px; background: #fff; border-radius: 50%; box-shadow: 0 0 6px 2px rgba(139,92,246,.6), 0 0 12px 4px rgba(212,175,55,.3); opacity: 0; animation: shoot var(--shoot-dur, 2s) ease-in var(--shoot-delay, 5s) infinite; }
         @keyframes shoot { 0% { opacity: 0; transform: translate(0, 0) scale(1); } 5% { opacity: 1; } 40% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--dx, 300px), var(--dy, 200px)) scale(0.3); } }
 
         .container { max-width: 700px; margin: 0 auto; width: 100%; position: relative; z-index: 1; }
         .header { text-align: center; margin-bottom: 44px; }
-        .signal { font-size: .75em; color: #d97706; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 18px; animation: pulse 3s ease-in-out infinite; }
-        @keyframes pulse { 0%,100% { opacity:.6; } 50% { opacity:1; text-shadow:0 0 15px rgba(217,119,6,.8); } }
+        .signal { font-size: .75em; color: var(--codex-gold); letter-spacing: 5px; text-transform: uppercase; margin-bottom: 18px; animation: pulse 3s ease-in-out infinite; }
+        @keyframes pulse { 0%,100% { opacity:.6; } 50% { opacity:1; text-shadow:0 0 15px rgba(212,175,55,.8); } }
         h1 { font-family: 'Orbitron', sans-serif; font-size: clamp(1.4rem, 5vw, 2.2rem); text-transform: uppercase; letter-spacing: 4px; color: #f0f0ff; margin-bottom: 10px; }
         .sub { color: #8b5cf6; font-style: italic; font-size: .9em; }
         .search-wrap { position: relative; margin: 32px 0 8px; }
@@ -84,37 +85,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         #search::placeholder { color: rgba(224,231,255,.25); }
         #search:focus { border-color: rgba(139,92,246,.7); box-shadow: 0 0 20px rgba(139,92,246,.12); }
         .search-count { text-align: right; font-size: .6em; letter-spacing: .15em; color: rgba(224,231,255,.2); margin-bottom: 4px; min-height: 1.2em; }
-        .divider { height: 2px; background: linear-gradient(90deg, transparent, #d97706, #8b5cf6, #d97706, transparent); margin: 24px 0; }
+        .divider { height: 2px; background: linear-gradient(90deg, transparent, var(--codex-gold), var(--codex-purple), var(--codex-gold), transparent); margin: 24px 0; }
 
         .bloodline-header { text-align: center; margin: 28px 0 8px; padding: 24px 20px 18px; border-top: 1px solid rgba(255,106,61,.45); border-bottom: 1px solid rgba(255,106,61,.45); background: linear-gradient(180deg, rgba(255,106,61,.05), transparent); }
-        .bloodline-eyebrow { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: .28em; text-transform: uppercase; color: #FF6A3D; margin-bottom: 10px; }
-        .bloodline-title { font-family: 'Cinzel', serif; font-size: 28px; font-weight: 700; letter-spacing: .04em; color: #f3b23a; margin-bottom: 8px; }
+        .bloodline-eyebrow { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: .28em; text-transform: uppercase; color: var(--codex-ember); margin-bottom: 10px; }
+        .bloodline-title { font-family: 'Cinzel', serif; font-size: 28px; font-weight: 700; letter-spacing: .04em; color: #d4af37; margin-bottom: 8px; }
         .bloodline-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; color: #c9c4d8; max-width: 560px; margin: 0 auto; line-height: 1.4; }
         .bloodline-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(255,106,61,.35), transparent); margin: 28px 0 18px; }
 
-        .family-cluster-header { text-align: center; margin: 32px 0 8px; padding: 18px 16px 14px; border-top: 1px dashed rgba(38,228,216,.35); border-bottom: 1px dashed rgba(38,228,216,.35); background: linear-gradient(180deg, rgba(38,228,216,.04), transparent); }
-        .family-cluster-eyebrow { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: .3em; text-transform: uppercase; color: #26E4D8; margin-bottom: 8px; }
+        .family-cluster-header { text-align: center; margin: 32px 0 8px; padding: 18px 16px 14px; border-top: 1px dashed rgba(34,211,238,.35); border-bottom: 1px dashed rgba(34,211,238,.35); background: linear-gradient(180deg, rgba(34,211,238,.04), transparent); }
+        .family-cluster-eyebrow { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: .3em; text-transform: uppercase; color: var(--codex-cyan); margin-bottom: 8px; }
         .family-cluster-title { font-family: 'Cinzel', serif; font-size: 22px; font-weight: 700; letter-spacing: .08em; color: #c9c4d8; margin-bottom: 6px; }
         .family-cluster-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; color: #888; max-width: 480px; margin: 0 auto; line-height: 1.4; }
-        .family-cluster-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(38,228,216,.3), transparent); margin: 28px 0 18px; }
+        .family-cluster-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(34,211,238,.3), transparent); margin: 28px 0 18px; }
 
         .card { background: rgba(10,8,25,.9); border: 2px solid transparent; padding: 28px 30px; margin: 14px 0; text-decoration: none; display: block; transition: transform .25s, box-shadow .25s, border-color .25s; position: relative; overflow: hidden; }
         .card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.03), transparent); transition: left .4s; }
         .card:hover::before { left: 100%; }
         .card:hover { transform: translateY(-3px); }
 
-        /* Core 6 card colors (currently used in archive) */
-        .card.gold { border-color: #d97706; } .card.green { border-color: #10b981; } .card.blue { border-color: #3b82f6; } .card.violet { border-color: #a855f7; } .card.ember { border-color: #FF6A3D; } .card.cyan { border-color: #26E4D8; }
-        .card.gold:hover { box-shadow: 0 8px 30px rgba(217,119,6,.25); } .card.green:hover { box-shadow: 0 8px 30px rgba(16,185,129,.25); } .card.blue:hover { box-shadow: 0 8px 30px rgba(59,130,246,.25); } .card.violet:hover { box-shadow: 0 8px 30px rgba(168,85,247,.28); } .card.ember:hover { box-shadow: 0 8px 30px rgba(255,106,61,.28); } .card.cyan:hover { box-shadow: 0 8px 30px rgba(38,228,216,.25); }
         .card-name { font-size: clamp(1.1rem,3vw,1.5em); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 8px; }
-        .card.gold .card-name { color: #f59e0b; } .card.green .card-name { color: #10b981; } .card.blue .card-name { color: #60a5fa; } .card.violet .card-name { color: #c084fc; } .card.ember .card-name { color: #FF8A5D; } .card.cyan .card-name { color: #26E4D8; }
-
-        /* Expanded Color Codex colors (ready for future soul maps) */
-        .card.red { border-color: #e24b4a; } .card.red:hover { box-shadow: 0 8px 30px rgba(226,75,74,.28); } .card.red .card-name { color: #f87171; }
-        .card.yellow { border-color: #f5c842; } .card.yellow:hover { box-shadow: 0 8px 30px rgba(245,200,66,.28); } .card.yellow .card-name { color: #fde047; }
-        .card.white { border-color: #e0e0ff; } .card.white:hover { box-shadow: 0 8px 30px rgba(224,224,255,.18); } .card.white .card-name { color: #f0f0ff; }
-        .card.rose { border-color: #f43f5e; } .card.rose:hover { box-shadow: 0 8px 30px rgba(244,63,94,.28); } .card.rose .card-name { color: #fb7185; }
-        .card.silver { border-color: #c4c8d4; } .card.silver:hover { box-shadow: 0 8px 30px rgba(196,200,212,.22); } .card.silver .card-name { color: #e2e8f0; }
 
         /* Codex summary list hover */
         .codex-freq { transition: filter .1s, text-decoration .1s; }
@@ -125,19 +115,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .card:hover .card-arrow { opacity: 1; right: 20px; }
         .no-results { display: none; text-align: center; padding: 48px 0; font-size: .78em; color: rgba(224,231,255,.2); letter-spacing: .1em; font-style: italic; }
 
-        .cta-wrap { text-align:center; padding:36px 24px 40px; border:1px solid rgba(217,119,6,.4); background:rgba(217,119,6,.03); margin:10px 0 30px; }
-        .cta-lbl { font-size:.6em; letter-spacing:4px; text-transform:uppercase; color:#d97706; opacity:.7; margin-bottom:12px; }
-        .cta-price-big { font-size:clamp(2.4rem,10vw,4.5rem); font-weight:700; color:#f59e0b; margin-bottom:6px; text-shadow:0 0 30px rgba(245,158,11,.4); }
+        .cta-wrap { text-align:center; padding:36px 24px 40px; border:1px solid rgba(212,175,55,.4); background:rgba(212,175,55,.03); margin:10px 0 30px; }
+        .cta-lbl { font-size:.6em; letter-spacing:4px; text-transform:uppercase; color:var(--codex-gold); opacity:.7; margin-bottom:12px; }
+        .cta-price-big { font-size:clamp(2.4rem,10vw,4.5rem); font-weight:700; color:var(--codex-gold-light); margin-bottom:6px; text-shadow:0 0 30px rgba(212,175,55,.4); }
         .cta-heading { font-size:clamp(.85rem,3vw,1.1rem); text-transform:uppercase; letter-spacing:5px; color:#f0f0ff; margin-bottom:16px; }
         .cta-copy { font-size:.78em; color:#9ca3af; line-height:1.85; max-width:440px; margin:0 auto 26px; font-style:italic; }
-        .cta-pay-btn { background:transparent; border:1px solid #f59e0b; color:#f59e0b; font-family:'Space Mono','Courier New',monospace; font-size:.8em; letter-spacing:4px; text-transform:uppercase; padding:15px 36px; cursor:pointer; transition:background .2s,color .2s; text-decoration: none; display: inline-block; }
-        .cta-pay-btn:hover { background:#f59e0b; color:#070a18; }
+        .cta-pay-btn { background:transparent; border:1px solid var(--codex-gold-light); color:var(--codex-gold-light); font-family:'Space Mono','Courier New',monospace; font-size:.8em; letter-spacing:4px; text-transform:uppercase; padding:15px 36px; cursor:pointer; transition:background .2s,color .2s; text-decoration: none; display: inline-block; }
+        .cta-pay-btn:hover { background:var(--codex-gold-light); color:#070a18; }
         .cta-fine { margin-top:14px; font-size:.6em; letter-spacing:2px; color:#6b7280; text-transform:uppercase; }
 
         .footer { text-align: center; margin-top: 50px; color: #374151; font-size: .75em; letter-spacing: 2px; }
-        .footer span { color: #d97706; }
+        .footer span { color: var(--codex-gold); }
         .footer a { color: #6b7280; text-decoration: none; transition: color .2s; }
-        .footer a:hover { color: #d97706; }
+        .footer a:hover { color: var(--codex-gold); }
         @media(max-width:480px){ .card { padding: 20px 18px; } .card-arrow { display: none; } }
     </style>
 </head>
@@ -149,30 +139,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div id="aurora"></div>
 <div id="prism-field">
     <div class="beam b1"></div><div class="beam b2"></div><div class="beam b3"></div><div class="beam b4"></div><div class="beam b5"></div><div class="beam b6"></div>
-    <div class="prism p1"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="prism-grad-1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff3b8a" stop-opacity=".9"/><stop offset="33%" stop-color="#ffb52e" stop-opacity=".85"/><stop offset="66%" stop-color="#26e4d8" stop-opacity=".85"/><stop offset="100%" stop-color="#6b4df2" stop-opacity=".9"/></linearGradient></defs><polygon points="50,8 90,82 10,82" fill="url(#prism-grad-1)" stroke="rgba(255,255,255,.6)" stroke-width="1.2"/><polygon points="50,8 90,82 10,82" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="0.5"/></svg></div>
-    <div class="prism p2"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="prism-grad-2" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#26e4d8" stop-opacity=".9"/><stop offset="50%" stop-color="#6b4df2" stop-opacity=".85"/><stop offset="100%" stop-color="#ff3b8a" stop-opacity=".9"/></linearGradient></defs><polygon points="50,8 90,82 10,82" fill="url(#prism-grad-2)" stroke="rgba(255,255,255,.5)" stroke-width="1"/></svg></div>
-    <div class="prism p3"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="prism-grad-3" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#ff6a3d" stop-opacity=".9"/><stop offset="50%" stop-color="#f3b23a" stop-opacity=".85"/><stop offset="100%" stop-color="#26e4d8" stop-opacity=".9"/></linearGradient></defs><polygon points="50,8 90,82 10,82" fill="url(#prism-grad-3)" stroke="rgba(255,255,255,.55)" stroke-width="1.2"/></svg></div>
-    <div class="prism p4"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="prism-grad-4" x1="50%" y1="0%" x2="50%" y2="100%"><stop offset="0%" stop-color="#6b4df2" stop-opacity=".9"/><stop offset="50%" stop-color="#ff3b8a" stop-opacity=".85"/><stop offset="100%" stop-color="#f3b23a" stop-opacity=".9"/></linearGradient></defs><polygon points="50,8 90,82 10,82" fill="url(#prism-grad-4)" stroke="rgba(255,255,255,.5)" stroke-width="1"/></svg></div>
-    <div class="prism p5"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="prism-grad-5" x1="20%" y1="20%" x2="80%" y2="80%"><stop offset="0%" stop-color="#ffe600" stop-opacity=".85"/><stop offset="50%" stop-color="#26e4d8" stop-opacity=".85"/><stop offset="100%" stop-color="#6b4df2" stop-opacity=".9"/></linearGradient></defs><polygon points="50,8 90,82 10,82" fill="url(#prism-grad-5)" stroke="rgba(255,255,255,.55)" stroke-width="1"/></svg></div>
+    <div class="prism p1"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="prism-grad-1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff3b8a" stop-opacity=".9"/><stop offset="33%" stop-color="#ffb52e" stop-opacity=".85"/><stop offset="66%" stop-color="#22d3ee" stop-opacity=".85"/><stop offset="100%" stop-color="#8b5cf6" stop-opacity=".9"/></linearGradient></defs><polygon points="50,8 90,82 10,82" fill="url(#prism-grad-1)" stroke="rgba(255,255,255,.6)" stroke-width="1.2"/><polygon points="50,8 90,82 10,82" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="0.5"/></svg></div>
+    <div class="prism p2"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="prism-grad-2" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#22d3ee" stop-opacity=".9"/><stop offset="50%" stop-color="#8b5cf6" stop-opacity=".85"/><stop offset="100%" stop-color="#ff3b8a" stop-opacity=".9"/></linearGradient></defs><polygon points="50,8 90,82 10,82" fill="url(#prism-grad-2)" stroke="rgba(255,255,255,.5)" stroke-width="1"/></svg></div>
+    <div class="prism p3"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="prism-grad-3" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#ff6a3d" stop-opacity=".9"/><stop offset="50%" stop-color="#d4af37" stop-opacity=".85"/><stop offset="100%" stop-color="#22d3ee" stop-opacity=".9"/></linearGradient></defs><polygon points="50,8 90,82 10,82" fill="url(#prism-grad-3)" stroke="rgba(255,255,255,.55)" stroke-width="1.2"/></svg></div>
+    <div class="prism p4"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="prism-grad-4" x1="50%" y1="0%" x2="50%" y2="100%"><stop offset="0%" stop-color="#8b5cf6" stop-opacity=".9"/><stop offset="50%" stop-color="#ff3b8a" stop-opacity=".85"/><stop offset="100%" stop-color="#d4af37" stop-opacity=".9"/></linearGradient></defs><polygon points="50,8 90,82 10,82" fill="url(#prism-grad-4)" stroke="rgba(255,255,255,.5)" stroke-width="1"/></svg></div>
+    <div class="prism p5"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="prism-grad-5" x1="20%" y1="20%" x2="80%" y2="80%"><stop offset="0%" stop-color="#ffe600" stop-opacity=".85"/><stop offset="50%" stop-color="#22d3ee" stop-opacity=".85"/><stop offset="100%" stop-color="#8b5cf6" stop-opacity=".9"/></linearGradient></defs><polygon points="50,8 90,82 10,82" fill="url(#prism-grad-5)" stroke="rgba(255,255,255,.55)" stroke-width="1"/></svg></div>
     <div class="prism p6"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="prism-grad-6" x1="0%" y1="50%" x2="100%" y2="50%"><stop offset="0%" stop-color="#ff3b8a" stop-opacity=".9"/><stop offset="50%" stop-color="#ffb52e" stop-opacity=".85"/><stop offset="100%" stop-color="#00ff96" stop-opacity=".9"/></linearGradient></defs><polygon points="50,8 90,82 10,82" fill="url(#prism-grad-6)" stroke="rgba(255,255,255,.55)" stroke-width="1.2"/></svg></div>
 </div>
 <div id="starfield"></div>
 <div class="container">
 
     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:28px;padding-bottom:18px;border-bottom:1px solid rgba(139,92,246,.2);">
-        <a href="index.html" style="font-family:'Orbitron',sans-serif;font-size:.62rem;letter-spacing:3px;text-transform:uppercase;color:#d97706;text-decoration:none;">← Get Your Soul Map</a>
+        <a href="index.html" style="font-family:'Orbitron',sans-serif;font-size:.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--codex-gold);text-decoration:none;">← Get Your Soul Map</a>
         <div style="font-size:.58rem;letter-spacing:2px;text-transform:uppercase;color:#6b7280;">Living Archive · Browse Only</div>
     </div>
 
     <!-- Special callout for the new interactive experience -->
-    <div style="margin: 0 auto 42px; max-width: 620px; text-align: center; padding: 24px 28px; background: rgba(217,119,6,0.035); border: 1px solid rgba(245,158,11,0.35); border-radius: 2px;">
-        <div style="font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 4px; text-transform: uppercase; color: #f59e0b; opacity: 0.85; margin-bottom: 10px;">
+    <div style="margin: 0 auto 42px; max-width: 620px; text-align: center; padding: 24px 28px; background: rgba(212,175,55,0.035); border: 1px solid rgba(232,200,90,0.35); border-radius: 2px;">
+        <div style="font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 4px; text-transform: uppercase; color: var(--codex-gold-light); opacity: 0.85; margin-bottom: 10px;">
             New • The Threshold
         </div>
         <div style="font-size: 1.15rem; color: #f0f0ff; line-height: 1.25; margin-bottom: 14px; font-family: 'Orbitron', sans-serif; letter-spacing: 1px;">
             An interactive Soul Signature experience
         </div>
-        <a href="soul-map.html" style="display: inline-block; padding: 12px 32px; background: transparent; border: 1px solid #f59e0b; color: #f59e0b; font-family: 'Space Mono', monospace; font-size: 0.78rem; letter-spacing: 3px; text-transform: uppercase; text-decoration: none; transition: all 0.2s;">
+        <a href="soul-map.html" style="display: inline-block; padding: 12px 32px; background: transparent; border: 1px solid var(--codex-gold-light); color: var(--codex-gold-light); font-family: 'Space Mono', monospace; font-size: 0.78rem; letter-spacing: 3px; text-transform: uppercase; text-decoration: none; transition: all 0.2s;">
             Enter the interactive experience
         </a>
         <div style="margin-top: 10px; font-family: 'Space Mono', monospace; font-size: 0.65rem; color: #6b7280;">
@@ -183,7 +173,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="header">
         <div class="signal">◈ &nbsp; Soul Map Archive &nbsp; ◈</div>
         <h1>First Spark<br>Soul Maps</h1>
-        <div class="sub">Sacred maps generated with love · <a href="index.html" style="color:#f59e0b;text-decoration:none;border-bottom:1px solid rgba(245,158,11,.35);">Ready for yours?</a></div>
+        <div class="sub">Sacred maps generated with love · <a href="index.html" style="color:var(--codex-gold-light);text-decoration:none;border-bottom:1px solid rgba(212,175,55,.35);">Ready for yours?</a></div>
     </div>
     <div class="search-wrap">
         <span class="search-icon">✦</span>
@@ -363,11 +353,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <!-- The three live deep paths -->
         <div style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-bottom:22px;">
             <!-- Purple -->
-            <div style="flex:1; min-width:210px; max-width:235px; text-align:center; padding:18px 16px 20px; border:1px solid #6B4DF230; border-radius:4px; background:#6B4DF208; position:relative;">
-                <div style="position:absolute; top:0; left:0; right:0; height:3px; background:#6B4DF2; border-radius:4px 4px 0 0;"></div>
-                <div style="font-family:'Cinzel',serif; font-size:0.55rem; letter-spacing:0.22em; color:#6B4DF2; text-transform:uppercase; margin:4px 0 4px;">Live Deep Path</div>
+            <div style="flex:1; min-width:210px; max-width:235px; text-align:center; padding:18px 16px 20px; border:1px solid #8b5cf630; border-radius:4px; background:#8b5cf608; position:relative;">
+                <div style="position:absolute; top:0; left:0; right:0; height:3px; background:#8b5cf6; border-radius:4px 4px 0 0;"></div>
+                <div style="font-family:'Cinzel',serif; font-size:0.55rem; letter-spacing:0.22em; color:#8b5cf6; text-transform:uppercase; margin:4px 0 4px;">Live Deep Path</div>
                 <div style="font-family:'Cormorant Garamond',serif; font-size:1.0rem; color:#d1d5db; font-style:italic; margin-bottom:8px; line-height:1.2;">Mystic Violet<br><span style="font-size:0.72rem; color:#888;">The Transformer</span></div>
-                <a href="purple-soul-journey.html" style="display:inline-block; padding:7px 18px; border:1px solid #6B4DF2; color:#6B4DF2; font-family:'Cinzel',serif; font-size:0.65rem; letter-spacing:0.14em; text-decoration:none; text-transform:uppercase; transition:all .2s;" onmouseover="this.style.background='#6B4DF2';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#6B4DF2'">The Purple Journey →</a>
+                <a href="purple-soul-journey.html" style="display:inline-block; padding:7px 18px; border:1px solid #8b5cf6; color:#8b5cf6; font-family:'Cinzel',serif; font-size:0.65rem; letter-spacing:0.14em; text-decoration:none; text-transform:uppercase; transition:all .2s;" onmouseover="this.style.background='#8b5cf6';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#8b5cf6'">The Purple Journey →</a>
             </div>
 
             <!-- The Field / Green -->
@@ -379,11 +369,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
 
             <!-- Master Tier / Gold -->
-            <div style="flex:1; min-width:210px; max-width:235px; text-align:center; padding:18px 16px 20px; border:1px solid #F3B23A30; border-radius:4px; background:#F3B23A08; position:relative;">
-                <div style="position:absolute; top:0; left:0; right:0; height:3px; background:#F3B23A; border-radius:4px 4px 0 0;"></div>
-                <div style="font-family:'Cinzel',serif; font-size:0.55rem; letter-spacing:0.22em; color:#F3B23A; text-transform:uppercase; margin:4px 0 4px;">Live Deep Path</div>
+            <div style="flex:1; min-width:210px; max-width:235px; text-align:center; padding:18px 16px 20px; border:1px solid #d4af3730; border-radius:4px; background:#d4af3708; position:relative;">
+                <div style="position:absolute; top:0; left:0; right:0; height:3px; background:#d4af37; border-radius:4px 4px 0 0;"></div>
+                <div style="font-family:'Cinzel',serif; font-size:0.55rem; letter-spacing:0.22em; color:#d4af37; text-transform:uppercase; margin:4px 0 4px;">Live Deep Path</div>
                 <div style="font-family:'Cormorant Garamond',serif; font-size:1.0rem; color:#d1d5db; font-style:italic; margin-bottom:8px; line-height:1.2;">Signal Gold<br><span style="font-size:0.72rem; color:#888;">The Master Tier</span></div>
-                <a href="master-tier.html" style="display:inline-block; padding:7px 18px; border:1px solid #F3B23A; color:#F3B23A; font-family:'Cinzel',serif; font-size:0.65rem; letter-spacing:0.14em; text-decoration:none; text-transform:uppercase; transition:all .2s;" onmouseover="this.style.background='#F3B23A';this.style.color='#0B0B0C'" onmouseout="this.style.background='transparent';this.style.color='#F3B23A'">Hall of Rare Frequencies →</a>
+                <a href="master-tier.html" style="display:inline-block; padding:7px 18px; border:1px solid #d4af37; color:#d4af37; font-family:'Cinzel',serif; font-size:0.65rem; letter-spacing:0.14em; text-decoration:none; text-transform:uppercase; transition:all .2s;" onmouseover="this.style.background='#d4af37';this.style.color='#0B0B0C'" onmouseout="this.style.background='transparent';this.style.color='#d4af37'">Hall of Rare Frequencies →</a>
             </div>
         </div>
 

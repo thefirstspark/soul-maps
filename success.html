@@ -13,6 +13,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta name="theme-color" content="#0B0B0C">
     <meta name="robots" content="noindex, nofollow">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="codex-colors.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <!-- Google tag (gtag.js) -->
@@ -28,16 +29,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --core-black: #0B0B0C;
-            --ember: #FF6A3D;
-            --gold: #F3B23A;
-            --violet: #6B4DF2;
-            --cyan: #26E4D8;
+
             --green: #34d399;
             --text: #E8E4DF;
             --muted: #6b7280;
             --muted2: #9ca3af;
             --surface: rgba(11,11,12,.97);
-            --surface-border: rgba(243,178,58,.15);
+            --surface-border: rgba(212,175,55,.15);
         }
 
         body {
@@ -241,7 +239,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         input, textarea, select {
             width: 100%;
             background: rgba(255,255,255,.03);
-            border: 1px solid rgba(243,178,58,.12);
+            border: 1px solid rgba(212,175,55,.12);
             color: var(--text);
             font-family: 'Space Mono', 'Courier New', monospace;
             font-size: .8em;
@@ -252,7 +250,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
         input:focus, textarea:focus, select:focus {
             border-color: var(--gold);
-            box-shadow: 0 0 0 1px rgba(243,178,58,.1);
+            box-shadow: 0 0 0 1px rgba(212,175,55,.1);
         }
         input::placeholder, textarea::placeholder {
             color: rgba(255,255,255,.15);
@@ -286,14 +284,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             position: absolute;
             top: 0; left: -100%;
             width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(243,178,58,.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(212,175,55,.1), transparent);
             transition: left .5s;
         }
         .submit-btn:hover::before { left: 100%; }
         .submit-btn:hover {
             background: var(--gold);
             color: var(--core-black);
-            box-shadow: 0 0 40px rgba(243,178,58,.2);
+            box-shadow: 0 0 40px rgba(212,175,55,.2);
         }
         .submit-btn:disabled {
             opacity: .5;
@@ -340,7 +338,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             font-size: .65em;
             letter-spacing: 4px;
             text-transform: uppercase;
-            border: 1px solid rgba(243,178,58,.3);
+            border: 1px solid rgba(212,175,55,.3);
             padding: 10px 24px;
             color: var(--gold);
             margin-top: 16px;
@@ -388,8 +386,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
         <defs>
             <linearGradient id="sg" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#F3B23A" stop-opacity=".6"/>
-                <stop offset="100%" stop-color="#6B4DF2" stop-opacity=".3"/>
+                <stop offset="0%" stop-color="#d4af37" stop-opacity=".6"/>
+                <stop offset="100%" stop-color="#8b5cf6" stop-opacity=".3"/>
             </linearGradient>
         </defs>
         <circle cx="200" cy="200" r="180" fill="none" stroke="url(#sg)" stroke-width=".5"/>
@@ -556,7 +554,7 @@ Particle.prototype.reset = function() {
     this.vy = (Math.random() - .5) * .15;
     this.size = Math.random() * 1.5 + .5;
     this.alpha = Math.random() * .3 + .05;
-    this.color = ['#F3B23A','#6B4DF2','#26E4D8','#FF6A3D'][Math.floor(Math.random()*4)];
+    this.color = ['#d4af37','#8b5cf6','#22d3ee','#FF6A3D'][Math.floor(Math.random()*4)];
 };
 Particle.prototype.update = function() {
     this.x += this.vx;

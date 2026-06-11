@@ -5,15 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Keith Brian Davis — Soul Map | The First Spark</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="../codex-colors.css">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --black:#0B0B0C;
-    --ember:#FF6A3D;
-    --gold:#F3B23A;
-    --violet:#6B4DF2;
-    --cyan:#26E4D8;
+
     --ink:#E8E6E3;
     --mute:#8A8680;
   }
@@ -21,7 +19,7 @@
   html,body{background:var(--black);color:var(--ink);font-family:'Space Mono',monospace;overflow-x:hidden}
   body{
     background-image:
-      radial-gradient(ellipse at top, rgba(107,77,242,0.15), transparent 50%),
+      radial-gradient(ellipse at top, rgba(139,92,246,0.15), transparent 50%),
       radial-gradient(ellipse at bottom, rgba(255,106,61,0.1), transparent 50%),
       linear-gradient(var(--black),var(--black));
     min-height:100vh;
@@ -33,10 +31,10 @@
     background-image:
       radial-gradient(1px 1px at 20% 30%, white, transparent),
       radial-gradient(1px 1px at 60% 70%, white, transparent),
-      radial-gradient(1px 1px at 80% 10%, #26E4D8, transparent),
-      radial-gradient(2px 2px at 30% 80%, #F3B23A, transparent),
+      radial-gradient(1px 1px at 80% 10%, #22d3ee, transparent),
+      radial-gradient(2px 2px at 30% 80%, #d4af37, transparent),
       radial-gradient(1px 1px at 90% 50%, white, transparent),
-      radial-gradient(1px 1px at 15% 60%, #6B4DF2, transparent),
+      radial-gradient(1px 1px at 15% 60%, #8b5cf6, transparent),
       radial-gradient(1px 1px at 45% 15%, white, transparent),
       radial-gradient(1px 1px at 75% 85%, white, transparent);
     background-size:200% 200%;
@@ -88,7 +86,7 @@
   /* Numerology grid */
   .num-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin-top:24px}
   .num-card{
-    border:1px solid rgba(243,178,58,0.2);background:rgba(11,11,12,0.6);
+    border:1px solid rgba(212,175,55,0.2);background:rgba(11,11,12,0.6);
     padding:24px;position:relative;transition:all 0.3s;
     backdrop-filter:blur(8px);
   }
@@ -113,8 +111,8 @@
     display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px;
   }
   .astro-cell{
-    border:1px solid rgba(38,228,216,0.2);padding:22px;text-align:center;
-    background:radial-gradient(ellipse at top,rgba(107,77,242,0.08),transparent);
+    border:1px solid rgba(34,211,238,0.2);padding:22px;text-align:center;
+    background:radial-gradient(ellipse at top,rgba(139,92,246,0.08),transparent);
   }
   .astro-cell .symbol{font-size:2.2rem;margin-bottom:8px;display:block}
   .astro-cell .type{font-size:10px;letter-spacing:0.3em;color:var(--mute);text-transform:uppercase;margin-bottom:6px}
@@ -146,24 +144,24 @@
 
   /* Code console */
   .console{
-    border:1px solid var(--cyan);background:rgba(38,228,216,0.04);
+    border:1px solid var(--cyan);background:rgba(34,211,238,0.04);
     padding:24px;font-family:'Space Mono',monospace;font-size:12px;
     line-height:1.9;margin-top:28px;
   }
   .console .line{display:flex;gap:16px;color:var(--mute)}
   .console .line .k{color:var(--cyan);min-width:160px}
   .console .line .v{color:var(--ink)}
-  .console .comment{color:var(--mute);font-style:italic;margin-top:12px;padding-top:12px;border-top:1px dashed rgba(38,228,216,0.2)}
+  .console .comment{color:var(--mute);font-style:italic;margin-top:12px;padding-top:12px;border-top:1px dashed rgba(34,211,238,0.2)}
 
   /* Compatibility */
   .compat{
     border:1px solid var(--violet);padding:28px;margin-top:24px;
-    background:linear-gradient(135deg,rgba(107,77,242,0.08),rgba(255,106,61,0.04));
+    background:linear-gradient(135deg,rgba(139,92,246,0.08),rgba(255,106,61,0.04));
     position:relative;overflow:hidden;
   }
   .compat::before{
     content:'';position:absolute;top:-50%;right:-50%;width:200%;height:200%;
-    background:radial-gradient(circle,rgba(107,77,242,0.1),transparent 40%);
+    background:radial-gradient(circle,rgba(139,92,246,0.1),transparent 40%);
     animation:pulse 8s ease-in-out infinite;
   }
   @keyframes pulse{
@@ -177,7 +175,7 @@
   /* Ritual */
   .ritual{
     border:1px dashed var(--gold);padding:28px;margin-top:24px;
-    background:rgba(243,178,58,0.03);
+    background:rgba(212,175,55,0.03);
   }
   .ritual-title{
     font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--gold);
@@ -186,7 +184,7 @@
   .ritual ol{list-style:none;counter-reset:step}
   .ritual li{
     counter-increment:step;padding:12px 0 12px 44px;position:relative;
-    font-size:14px;line-height:1.7;border-bottom:1px solid rgba(243,178,58,0.1);
+    font-size:14px;line-height:1.7;border-bottom:1px solid rgba(212,175,55,0.1);
   }
   .ritual li:last-child{border-bottom:0}
   .ritual li::before{
@@ -197,7 +195,7 @@
   /* Footer */
   footer{
     text-align:center;margin-top:80px;padding-top:40px;
-    border-top:1px solid rgba(243,178,58,0.15);
+    border-top:1px solid rgba(212,175,55,0.15);
   }
   footer .sig{
     font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;
@@ -231,18 +229,18 @@
         <defs>
           <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0%" stop-color="#FF6A3D"/>
-            <stop offset="50%" stop-color="#F3B23A"/>
-            <stop offset="100%" stop-color="#6B4DF2"/>
+            <stop offset="50%" stop-color="#d4af37"/>
+            <stop offset="100%" stop-color="#8b5cf6"/>
           </linearGradient>
         </defs>
         <circle cx="70" cy="70" r="65" fill="none" stroke="url(#g1)" stroke-width="0.5" opacity="0.6"/>
-        <circle cx="70" cy="70" r="50" fill="none" stroke="#26E4D8" stroke-width="0.3" opacity="0.5"/>
+        <circle cx="70" cy="70" r="50" fill="none" stroke="#22d3ee" stroke-width="0.3" opacity="0.5"/>
         <!-- 8-pointed star for Life Path 8 -->
-        <polygon points="70,15 80,60 125,70 80,80 70,125 60,80 15,70 60,60" fill="none" stroke="#F3B23A" stroke-width="0.8" opacity="0.8"/>
+        <polygon points="70,15 80,60 125,70 80,80 70,125 60,80 15,70 60,60" fill="none" stroke="#d4af37" stroke-width="0.8" opacity="0.8"/>
         <polygon points="70,25 77,63 115,70 77,77 70,115 63,77 25,70 63,63" fill="none" stroke="#FF6A3D" stroke-width="0.5" opacity="0.6" transform="rotate(22.5 70 70)"/>
         <!-- 5-pointed inside for Birthday 5 -->
-        <polygon points="70,45 75,62 93,62 79,73 84,90 70,80 56,90 61,73 47,62 65,62" fill="none" stroke="#26E4D8" stroke-width="0.4" opacity="0.7"/>
-        <circle cx="70" cy="70" r="4" fill="#F3B23A"/>
+        <polygon points="70,45 75,62 93,62 79,73 84,90 70,80 56,90 61,73 47,62 65,62" fill="none" stroke="#22d3ee" stroke-width="0.4" opacity="0.7"/>
+        <circle cx="70" cy="70" r="4" fill="#d4af37"/>
       </svg>
     </div>
     <div class="badge">Soul Map · Sparkverse Entry</div>

@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Soul Map — Jacob David Paul Lanoux | The First Spark</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="codex-colors.css">
 <style>
   :root {
     --black: #0B0B0C; --deep-space: #0a0a0f;
-    --ember: #FF6A3D; --gold: #F3B23A; --violet: #6B4DF2; --cyan: #26E4D8;
     --white: #f0ece4; --dim: #888;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -16,9 +16,9 @@
     font-size: 14px; line-height: 1.7; overflow-x: hidden; }
   body::before { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
     background:
-      radial-gradient(ellipse 50% 35% at 20% 15%, rgba(243,178,58,.22), transparent 60%),
+      radial-gradient(ellipse 50% 35% at 20% 15%, rgba(212,175,55,.22), transparent 60%),
       radial-gradient(ellipse 45% 30% at 80% 50%, rgba(255,106,61,.16), transparent 60%),
-      radial-gradient(ellipse 40% 30% at 50% 90%, rgba(107,77,242,.14), transparent 60%);
+      radial-gradient(ellipse 40% 30% at 50% 90%, rgba(139,92,246,.14), transparent 60%);
     filter: blur(30px); }
   .stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
   .star { position: absolute; border-radius: 50%; background: var(--white);
@@ -36,18 +36,18 @@
   .header-meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
     font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: .18em;
     text-transform: uppercase; color: var(--dim); padding-bottom: 24px;
-    border-bottom: 1px solid rgba(243,178,58,.22); margin-bottom: 36px; }
+    border-bottom: 1px solid rgba(212,175,55,.22); margin-bottom: 36px; }
   .lifespan { text-align: center; margin: 0 0 36px;
     font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem;
     color: var(--gold); letter-spacing: .04em; }
 
   .sigil-wrap { display: flex; justify-content: center; margin: 8px 0 12px; }
-  .sigil { width: 240px; height: 240px; filter: drop-shadow(0 0 26px rgba(243,178,58,.4)); }
+  .sigil { width: 240px; height: 240px; filter: drop-shadow(0 0 26px rgba(212,175,55,.4)); }
   .sigil-label { text-align: center; font-family: 'Space Mono', monospace; font-size: 10px;
     letter-spacing: .32em; text-transform: uppercase; color: var(--dim); margin-bottom: 36px; }
   .coords { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 14px; margin: 24px 0 40px; }
-  .coord-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(243,178,58,0.22);
+  .coord-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(212,175,55,0.22);
     border-radius: 8px; padding: 18px; text-align: center; transition: border-color .3s; }
   .coord-card:hover { border-color: var(--ember); }
   .coord-label { font-size: .7rem; color: var(--dim); text-transform: uppercase;
@@ -57,7 +57,7 @@
   .section-num { font-family: 'Space Mono', monospace; font-size: 11px;
     letter-spacing: .28em; color: var(--ember); margin-bottom: 6px; }
   h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 600;
-    color: var(--cyan); border-bottom: 1px solid rgba(38,228,216,0.25);
+    color: var(--cyan); border-bottom: 1px solid rgba(34,211,238,0.25);
     padding-bottom: 8px; margin: 0 0 20px; letter-spacing: .04em; }
   h3 { font-family: 'Cinzel', serif; font-size: 1rem; color: var(--gold);
     margin: 24px 0 8px; letter-spacing: .12em; text-transform: uppercase; }
@@ -74,8 +74,8 @@
   blockquote { border-left: 3px solid var(--gold); padding: 8px 0 8px 20px;
     margin: 22px 0; font-style: italic; font-size: 1.15rem; color: var(--white);
     font-family: 'Cormorant Garamond', serif; }
-  .axiom { background: linear-gradient(135deg, rgba(243,178,58,.15), rgba(255,106,61,.1));
-    border: 1px solid rgba(243,178,58,.4); border-radius: 10px; padding: 26px;
+  .axiom { background: linear-gradient(135deg, rgba(212,175,55,.15), rgba(255,106,61,.1));
+    border: 1px solid rgba(212,175,55,.4); border-radius: 10px; padding: 26px;
     margin: 28px 0; text-align: center; }
   .axiom-label { font-family: 'Space Mono', monospace; font-size: 10px;
     letter-spacing: .32em; color: var(--gold); margin-bottom: 12px; text-transform: uppercase; }
@@ -83,18 +83,18 @@
     color: var(--white); letter-spacing: .03em; }
   ul, ol { padding-left: 24px; margin-bottom: 14px; }
   li { font-size: 15px; margin-bottom: 8px; font-family: 'Cormorant Garamond', serif; line-height: 1.6; }
-  .ritual { background: rgba(255,255,255,.03); border: 1px solid rgba(38,228,216,.25);
+  .ritual { background: rgba(255,255,255,.03); border: 1px solid rgba(34,211,238,.25);
     border-radius: 10px; padding: 26px; margin: 22px 0; }
   .ritual-title { font-family: 'Cinzel', serif; font-size: 1.05rem; letter-spacing: .1em;
     text-transform: uppercase; color: var(--cyan); margin-bottom: 6px; }
   .ritual-sub { font-family: 'Space Mono', monospace; font-size: 11px;
     letter-spacing: .18em; color: var(--dim); margin-bottom: 16px; text-transform: uppercase; }
-  .for-her { background: linear-gradient(135deg, rgba(107,77,242,.12), rgba(38,228,216,.08));
-    border: 1px solid rgba(107,77,242,.3); border-radius: 10px; padding: 24px;
+  .for-her { background: linear-gradient(135deg, rgba(139,92,246,.12), rgba(34,211,238,.08));
+    border: 1px solid rgba(139,92,246,.3); border-radius: 10px; padding: 24px;
     margin: 22px 0; }
   .for-her-label { font-family: 'Space Mono', monospace; font-size: 10px;
     letter-spacing: .32em; color: var(--violet); margin-bottom: 10px; text-transform: uppercase; }
-  .footer { border-top: 1px solid rgba(243,178,58,.22); padding-top: 24px; margin-top: 48px;
+  .footer { border-top: 1px solid rgba(212,175,55,.22); padding-top: 24px; margin-top: 48px;
     font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: .16em;
     text-transform: uppercase; color: var(--dim); text-align: center; line-height: 1.9; }
   .footer .sig { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem;
@@ -120,12 +120,12 @@
   <div class="sigil-wrap">
     <svg class="sigil" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
       <!-- Outer corona — Leo solar ring -->
-      <circle cx="120" cy="120" r="108" fill="none" stroke="#F3B23A" stroke-width="1.4" opacity=".6"/>
+      <circle cx="120" cy="120" r="108" fill="none" stroke="#d4af37" stroke-width="1.4" opacity=".6"/>
       <!-- Inner ring -->
       <circle cx="120" cy="120" r="92" fill="none" stroke="#FF6A3D" stroke-width="0.6" stroke-dasharray="2 3" opacity=".6"/>
 
       <!-- Sun rays — 12 (one for each year through Athens, the month he was born, the spread of him) -->
-      <g stroke="#F3B23A" stroke-width="1.8" stroke-linecap="round">
+      <g stroke="#d4af37" stroke-width="1.8" stroke-linecap="round">
         <line x1="120" y1="18" x2="120" y2="34"/>
         <line x1="120" y1="206" x2="120" y2="222"/>
         <line x1="18" y1="120" x2="34" y2="120"/>
@@ -143,16 +143,16 @@
 
       <!-- Monkey's path — playful loop -->
       <path d="M 70 160 Q 90 145 110 160 T 150 160 T 180 155"
-            fill="none" stroke="#26E4D8" stroke-width="1.5" opacity=".85"/>
+            fill="none" stroke="#22d3ee" stroke-width="1.5" opacity=".85"/>
 
       <!-- Heart / 6 essence — the Soul Urge -->
       <path d="M 120 175 C 113 168, 102 170, 102 180 C 102 190, 120 200, 120 200 C 120 200, 138 190, 138 180 C 138 170, 127 168, 120 175 Z"
-            fill="none" stroke="#6B4DF2" stroke-width="1.5"/>
+            fill="none" stroke="#8b5cf6" stroke-width="1.5"/>
 
       <!-- Center star — the sun he carried -->
-      <circle cx="120" cy="120" r="6" fill="#F3B23A"/>
-      <circle cx="120" cy="120" r="14" fill="none" stroke="#F3B23A" stroke-width="0.8" opacity=".7"/>
-      <circle cx="120" cy="120" r="22" fill="none" stroke="#F3B23A" stroke-width="0.4" opacity=".5"/>
+      <circle cx="120" cy="120" r="6" fill="#d4af37"/>
+      <circle cx="120" cy="120" r="14" fill="none" stroke="#d4af37" stroke-width="0.8" opacity=".7"/>
+      <circle cx="120" cy="120" r="22" fill="none" stroke="#d4af37" stroke-width="0.4" opacity=".5"/>
     </svg>
   </div>
   <div class="sigil-label">Personal Sigil · The Sun, The Mane, The Heart</div>
@@ -179,7 +179,7 @@
     <h2>The Three Glyphs of Him</h2>
     <div class="glyph-row">
       <div class="glyph-box">
-        <svg class="glyph-svg" viewBox="0 0 48 48"><circle cx="24" cy="24" r="6" fill="#F3B23A"/><g stroke="#F3B23A" stroke-width="1.8" stroke-linecap="round"><line x1="24" y1="6" x2="24" y2="14"/><line x1="24" y1="34" x2="24" y2="42"/><line x1="6" y1="24" x2="14" y2="24"/><line x1="34" y1="24" x2="42" y2="24"/><line x1="11" y1="11" x2="16" y2="16"/><line x1="32" y1="32" x2="37" y2="37"/><line x1="11" y1="37" x2="16" y2="32"/><line x1="32" y1="16" x2="37" y2="11"/></g></svg>
+        <svg class="glyph-svg" viewBox="0 0 48 48"><circle cx="24" cy="24" r="6" fill="#d4af37"/><g stroke="#d4af37" stroke-width="1.8" stroke-linecap="round"><line x1="24" y1="6" x2="24" y2="14"/><line x1="24" y1="34" x2="24" y2="42"/><line x1="6" y1="24" x2="14" y2="24"/><line x1="34" y1="24" x2="42" y2="24"/><line x1="11" y1="11" x2="16" y2="16"/><line x1="32" y1="32" x2="37" y2="37"/><line x1="11" y1="37" x2="16" y2="32"/><line x1="32" y1="16" x2="37" y2="11"/></g></svg>
         <div class="glyph-name">The Sun</div>
         <div class="glyph-meaning">A center of warmth others oriented toward</div>
       </div>
@@ -189,7 +189,7 @@
         <div class="glyph-meaning">A presence with edges visible from a distance</div>
       </div>
       <div class="glyph-box">
-        <svg class="glyph-svg" viewBox="0 0 48 48"><path d="M 24 38 C 18 32, 8 28, 8 20 C 8 14, 14 10, 18 14 C 20 16, 24 20, 24 20 C 24 20, 28 16, 30 14 C 34 10, 40 14, 40 20 C 40 28, 30 32, 24 38 Z" fill="none" stroke="#6B4DF2" stroke-width="2"/></svg>
+        <svg class="glyph-svg" viewBox="0 0 48 48"><path d="M 24 38 C 18 32, 8 28, 8 20 C 8 14, 14 10, 18 14 C 20 16, 24 20, 24 20 C 24 20, 28 16, 30 14 C 34 10, 40 14, 40 20 C 40 28, 30 32, 24 38 Z" fill="none" stroke="#8b5cf6" stroke-width="2"/></svg>
         <div class="glyph-name">The Heart</div>
         <div class="glyph-meaning">A capacity for love that ran deeper than he showed</div>
       </div>

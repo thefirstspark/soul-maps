@@ -8,6 +8,7 @@
 <meta property="og:title" content="Family Resonance — Soul Constellation">
 <meta property="og:description" content="Every signature has a constellation. Find yours.">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Space+Mono:wght@400;700&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="codex-colors.css">
 
 <style>
 :root {
@@ -15,12 +16,11 @@
   --deep-space: #03010d;
   --indigo-deep: #0d0728;
   --indigo: #1a1145;
-  --ember: #FF6A3D;
-  --gold: #F3B23A;
+
   --gold-soft: #FFE9A8;
-  --violet: #6B4DF2;
+
   --violet-soft: #8B6FFF;
-  --cyan: #26E4D8;
+
   --soft-white: #f0f0f0;
   --dim: #888;
 }
@@ -471,8 +471,8 @@ footer a { color: var(--gold); text-decoration: none; }
     <svg class="constellation-svg" id="constellation" viewBox="0 0 700 540" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#F3B23A" stop-opacity="0.4"/>
-          <stop offset="100%" stop-color="#F3B23A" stop-opacity="0"/>
+          <stop offset="0%" stop-color="#d4af37" stop-opacity="0.4"/>
+          <stop offset="100%" stop-color="#d4af37" stop-opacity="0"/>
         </radialGradient>
       </defs>
       <g id="connections"></g>
@@ -480,8 +480,8 @@ footer a { color: var(--gold); text-decoration: none; }
     </svg>
     <div class="legend">
       <div class="legend-item"><span class="legend-dot" style="background:#FF6A3D"></span>Bloodline (DNA-eligible)</div>
-      <div class="legend-item"><span class="legend-dot" style="background:#6B4DF2"></span>Soul Resonance</div>
-      <div class="legend-item"><span class="legend-dot" style="background:#26E4D8"></span>Ancestor / Lineage</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#8b5cf6"></span>Soul Resonance</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#22d3ee"></span>Ancestor / Lineage</div>
     </div>
   </div>
 
@@ -678,9 +678,9 @@ const TYPE_COLORS = {
   siblings: '#FF6A3D',
   extended_family: '#FF6A3D',
   partners: '#FF6A3D',
-  soul_resonance: '#6B4DF2',
-  frequency_twin: '#6B4DF2',
-  ancestor: '#26E4D8',
+  soul_resonance: '#8b5cf6',
+  frequency_twin: '#8b5cf6',
+  ancestor: '#22d3ee',
   other: '#8B6FFF'
 };
 
@@ -702,7 +702,7 @@ function drawConstellation(centerSoul, centerSig, bonds) {
     const radius = minR + ((100 - b.resonance) / 50) * (maxR - minR);
     const x = cx + radius * Math.cos(angle);
     const y = cy + radius * Math.sin(angle);
-    const color = TYPE_COLORS[b.type] || partner.color || '#26E4D8';
+    const color = TYPE_COLORS[b.type] || partner.color || '#22d3ee';
 
     const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
     line.setAttribute('x1', cx); line.setAttribute('y1', cy);

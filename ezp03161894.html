@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Soul Map — Elizabeth Zublay Puzakulics | The First Spark</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="codex-colors.css">
 <style>
   :root {
     --black: #0B0B0C; --deep-space: #0a0a0f;
-    --ember: #FF6A3D; --gold: #F3B23A; --violet: #6B4DF2; --cyan: #26E4D8;
     --white: #f0ece4; --dim: #888;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -16,9 +16,9 @@
     font-size: 14px; line-height: 1.7; overflow-x: hidden; }
   body::before { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
     background:
-      radial-gradient(ellipse 50% 35% at 20% 15%, rgba(107,77,242,.22), transparent 60%),
+      radial-gradient(ellipse 50% 35% at 20% 15%, rgba(139,92,246,.22), transparent 60%),
       radial-gradient(ellipse 45% 30% at 80% 50%, rgba(255,106,61,.16), transparent 60%),
-      radial-gradient(ellipse 40% 30% at 50% 90%, rgba(38,228,216,.14), transparent 60%);
+      radial-gradient(ellipse 40% 30% at 50% 90%, rgba(34,211,238,.14), transparent 60%);
     filter: blur(30px); }
   .stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
   .star { position: absolute; border-radius: 50%; background: var(--white);
@@ -36,11 +36,11 @@
   .header-meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
     font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: .18em;
     text-transform: uppercase; color: var(--dim); padding-bottom: 24px;
-    border-bottom: 1px solid rgba(107,77,242,.22); margin-bottom: 36px; }
+    border-bottom: 1px solid rgba(139,92,246,.22); margin-bottom: 36px; }
 
-  .bridge { background: linear-gradient(135deg, rgba(107,77,242,.18), rgba(255,106,61,.1));
-    border: 1px solid rgba(107,77,242,.4); border-radius: 12px; padding: 26px 28px;
-    margin-bottom: 36px; box-shadow: 0 0 40px rgba(107,77,242,.15) inset; }
+  .bridge { background: linear-gradient(135deg, rgba(139,92,246,.18), rgba(255,106,61,.1));
+    border: 1px solid rgba(139,92,246,.4); border-radius: 12px; padding: 26px 28px;
+    margin-bottom: 36px; box-shadow: 0 0 40px rgba(139,92,246,.15) inset; }
   .bridge-label { font-family: 'Space Mono', monospace; font-size: 10px;
     letter-spacing: .32em; color: var(--violet); text-transform: uppercase; margin-bottom: 12px; }
   .bridge-line { font-family: 'Cinzel', serif; font-size: 1.25rem; letter-spacing: .04em;
@@ -51,12 +51,12 @@
     letter-spacing: .14em; color: var(--dim); margin-top: 14px; text-transform: uppercase; }
 
   .sigil-wrap { display: flex; justify-content: center; margin: 8px 0 12px; }
-  .sigil { width: 240px; height: 240px; filter: drop-shadow(0 0 24px rgba(107,77,242,.4)); }
+  .sigil { width: 240px; height: 240px; filter: drop-shadow(0 0 24px rgba(139,92,246,.4)); }
   .sigil-label { text-align: center; font-family: 'Space Mono', monospace; font-size: 10px;
     letter-spacing: .32em; text-transform: uppercase; color: var(--dim); margin-bottom: 36px; }
   .coords { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 14px; margin: 24px 0 40px; }
-  .coord-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(107,77,242,0.2);
+  .coord-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(139,92,246,0.2);
     border-radius: 8px; padding: 18px; text-align: center; transition: border-color .3s; }
   .coord-card:hover { border-color: var(--cyan); }
   .coord-label { font-size: .7rem; color: var(--dim); text-transform: uppercase;
@@ -66,14 +66,14 @@
   .section-num { font-family: 'Space Mono', monospace; font-size: 11px;
     letter-spacing: .28em; color: var(--violet); margin-bottom: 6px; }
   h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 600;
-    color: var(--cyan); border-bottom: 1px solid rgba(38,228,216,0.25);
+    color: var(--cyan); border-bottom: 1px solid rgba(34,211,238,0.25);
     padding-bottom: 8px; margin: 0 0 20px; letter-spacing: .04em; }
   h3 { font-family: 'Cinzel', serif; font-size: 1rem; color: var(--gold);
     margin: 24px 0 8px; letter-spacing: .12em; text-transform: uppercase; }
   p { margin-bottom: 14px; font-size: 15px; font-family: 'Cormorant Garamond', serif; line-height: 1.6; }
   p .pull { font-family: 'Cinzel', serif; font-weight: 700; color: var(--violet); letter-spacing: .04em; }
   .glyph-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 16px; margin: 22px 0; }
-  .glyph-box { background: rgba(255,255,255,.03); border: 1px solid rgba(107,77,242,.25);
+  .glyph-box { background: rgba(255,255,255,.03); border: 1px solid rgba(139,92,246,.25);
     border-radius: 8px; padding: 18px; text-align: center; }
   .glyph-svg { width: 56px; height: 56px; margin: 0 auto 12px; display: block; }
   .glyph-name { font-family: 'Cinzel', serif; font-size: .9rem; letter-spacing: .12em;
@@ -84,14 +84,14 @@
     margin: 22px 0; font-style: italic; font-size: 1.15rem; color: var(--white);
     font-family: 'Cormorant Garamond', serif; }
 
-  .timeline { background: rgba(255,255,255,.02); border: 1px solid rgba(107,77,242,.3);
+  .timeline { background: rgba(255,255,255,.02); border: 1px solid rgba(139,92,246,.3);
     border-radius: 10px; padding: 24px; margin: 22px 0; }
   .timeline-title { font-family: 'Cinzel', serif; font-size: .95rem; letter-spacing: .16em;
     text-transform: uppercase; text-align: center; color: var(--violet); margin-bottom: 16px; }
   .timeline-svg { width: 100%; height: auto; display: block; }
 
-  .axiom { background: linear-gradient(135deg, rgba(107,77,242,.18), rgba(255,106,61,.1));
-    border: 1px solid rgba(107,77,242,.4); border-radius: 10px; padding: 26px;
+  .axiom { background: linear-gradient(135deg, rgba(139,92,246,.18), rgba(255,106,61,.1));
+    border: 1px solid rgba(139,92,246,.4); border-radius: 10px; padding: 26px;
     margin: 28px 0; text-align: center; }
   .axiom-label { font-family: 'Space Mono', monospace; font-size: 10px;
     letter-spacing: .32em; color: var(--gold); margin-bottom: 12px; text-transform: uppercase; }
@@ -99,13 +99,13 @@
     color: var(--white); letter-spacing: .03em; }
   ul, ol { padding-left: 24px; margin-bottom: 14px; }
   li { font-size: 15px; margin-bottom: 8px; font-family: 'Cormorant Garamond', serif; line-height: 1.6; }
-  .ritual { background: rgba(255,255,255,.03); border: 1px solid rgba(38,228,216,.25);
+  .ritual { background: rgba(255,255,255,.03); border: 1px solid rgba(34,211,238,.25);
     border-radius: 10px; padding: 26px; margin: 22px 0; }
   .ritual-title { font-family: 'Cinzel', serif; font-size: 1.05rem; letter-spacing: .1em;
     text-transform: uppercase; color: var(--cyan); margin-bottom: 6px; }
   .ritual-sub { font-family: 'Space Mono', monospace; font-size: 11px;
     letter-spacing: .18em; color: var(--dim); margin-bottom: 16px; text-transform: uppercase; }
-  .footer { border-top: 1px solid rgba(107,77,242,.22); padding-top: 24px; margin-top: 48px;
+  .footer { border-top: 1px solid rgba(139,92,246,.22); padding-top: 24px; margin-top: 48px;
     font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: .16em;
     text-transform: uppercase; color: var(--dim); text-align: center; line-height: 1.9; }
   .footer .sig { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem;
@@ -139,23 +139,23 @@
 
   <div class="sigil-wrap">
     <svg class="sigil" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="110" cy="110" r="102" fill="none" stroke="#6B4DF2" stroke-width="1.2" opacity=".55"/>
-      <circle cx="110" cy="110" r="86" fill="none" stroke="#26E4D8" stroke-width="0.5" stroke-dasharray="2 3" opacity=".55"/>
-      <circle cx="86" cy="110" r="38" fill="none" stroke="#6B4DF2" stroke-width="1.8"/>
+      <circle cx="110" cy="110" r="102" fill="none" stroke="#8b5cf6" stroke-width="1.2" opacity=".55"/>
+      <circle cx="110" cy="110" r="86" fill="none" stroke="#22d3ee" stroke-width="0.5" stroke-dasharray="2 3" opacity=".55"/>
+      <circle cx="86" cy="110" r="38" fill="none" stroke="#8b5cf6" stroke-width="1.8"/>
       <circle cx="134" cy="110" r="38" fill="none" stroke="#FF6A3D" stroke-width="1.8"/>
-      <path d="M 30 148 Q 50 134 70 148 T 110 148 T 150 148 T 190 148" fill="none" stroke="#F3B23A" stroke-width="2"/>
+      <path d="M 30 148 Q 50 134 70 148 T 110 148 T 150 148 T 190 148" fill="none" stroke="#d4af37" stroke-width="2"/>
       <line x1="110" y1="14" x2="110" y2="206" stroke="#F0ECE4" stroke-width="1" stroke-dasharray="3 4" opacity=".5"/>
       <g transform="translate(110,62)">
-        <circle r="4" fill="#6B4DF2"/>
-        <text y="-8" text-anchor="middle" font-family="Space Mono" font-size="7" fill="#6B4DF2" letter-spacing="0.1em">1894</text>
+        <circle r="4" fill="#8b5cf6"/>
+        <text y="-8" text-anchor="middle" font-family="Space Mono" font-size="7" fill="#8b5cf6" letter-spacing="0.1em">1894</text>
       </g>
       <g transform="translate(110,158)">
         <circle r="4" fill="#FF6A3D"/>
         <text y="14" text-anchor="middle" font-family="Space Mono" font-size="7" fill="#FF6A3D" letter-spacing="0.1em">1988</text>
       </g>
-      <circle cx="110" cy="110" r="5" fill="#F3B23A"/>
-      <circle cx="110" cy="110" r="11" fill="none" stroke="#F3B23A" stroke-width="1"/>
-      <circle cx="110" cy="110" r="16" fill="none" stroke="#F3B23A" stroke-width="0.4" stroke-dasharray="1 2"/>
+      <circle cx="110" cy="110" r="5" fill="#d4af37"/>
+      <circle cx="110" cy="110" r="11" fill="none" stroke="#d4af37" stroke-width="1"/>
+      <circle cx="110" cy="110" r="16" fill="none" stroke="#d4af37" stroke-width="0.4" stroke-dasharray="1 2"/>
     </svg>
   </div>
   <div class="sigil-label">Personal Sigil · The Vesica · Two Fish, One Thread</div>
@@ -182,17 +182,17 @@
     <h2>The Three Glyphs of Her Life</h2>
     <div class="glyph-row">
       <div class="glyph-box">
-        <svg class="glyph-svg" viewBox="0 0 48 48"><circle cx="18" cy="24" r="11" fill="none" stroke="#6B4DF2" stroke-width="1.8"/><circle cx="30" cy="24" r="11" fill="none" stroke="#FF6A3D" stroke-width="1.8"/></svg>
+        <svg class="glyph-svg" viewBox="0 0 48 48"><circle cx="18" cy="24" r="11" fill="none" stroke="#8b5cf6" stroke-width="1.8"/><circle cx="30" cy="24" r="11" fill="none" stroke="#FF6A3D" stroke-width="1.8"/></svg>
         <div class="glyph-name">The Vesica</div>
         <div class="glyph-meaning">Two worlds overlapping. The womb gate.</div>
       </div>
       <div class="glyph-box">
-        <svg class="glyph-svg" viewBox="0 0 48 48"><path d="M 4 30 Q 12 22 20 30 T 36 30 Q 42 30 44 26" fill="none" stroke="#F3B23A" stroke-width="2"/></svg>
+        <svg class="glyph-svg" viewBox="0 0 48 48"><path d="M 4 30 Q 12 22 20 30 T 36 30 Q 42 30 44 26" fill="none" stroke="#d4af37" stroke-width="2"/></svg>
         <div class="glyph-name">The Wave</div>
         <div class="glyph-meaning">A life that moves and returns</div>
       </div>
       <div class="glyph-box">
-        <svg class="glyph-svg" viewBox="0 0 48 48"><line x1="24" y1="6" x2="24" y2="42" stroke="#F0ECE4" stroke-width="1.4" stroke-dasharray="3 3" opacity=".7"/><circle cx="24" cy="14" r="3" fill="#6B4DF2"/><circle cx="24" cy="34" r="3" fill="#FF6A3D"/></svg>
+        <svg class="glyph-svg" viewBox="0 0 48 48"><line x1="24" y1="6" x2="24" y2="42" stroke="#F0ECE4" stroke-width="1.4" stroke-dasharray="3 3" opacity=".7"/><circle cx="24" cy="14" r="3" fill="#8b5cf6"/><circle cx="24" cy="34" r="3" fill="#FF6A3D"/></svg>
         <div class="glyph-name">The Thread</div>
         <div class="glyph-meaning">The line that does not break between lives</div>
       </div>
@@ -215,13 +215,13 @@
     <div class="timeline">
       <div class="timeline-title">— The Handoff —</div>
       <svg class="timeline-svg" viewBox="0 0 760 160" xmlns="http://www.w3.org/2000/svg">
-        <line x1="40" y1="80" x2="720" y2="80" stroke="#6B4DF2" stroke-width="1.5" opacity=".6"/>
-        <circle cx="100" cy="80" r="8" fill="#6B4DF2"/>
+        <line x1="40" y1="80" x2="720" y2="80" stroke="#8b5cf6" stroke-width="1.5" opacity=".6"/>
+        <circle cx="100" cy="80" r="8" fill="#8b5cf6"/>
         <text x="100" y="60" text-anchor="middle" font-family="Cinzel" font-size="11" font-weight="700" fill="#F0ECE4">ELIZABETH</text>
         <text x="100" y="105" text-anchor="middle" font-family="Space Mono" font-size="9" fill="#888">16 MAR 1894</text>
-        <path d="M 100 80 Q 360 30 580 80" fill="none" stroke="#6B4DF2" stroke-width="0.8" stroke-dasharray="2 3" opacity=".7"/>
+        <path d="M 100 80 Q 360 30 580 80" fill="none" stroke="#8b5cf6" stroke-width="0.8" stroke-dasharray="2 3" opacity=".7"/>
         <text x="340" y="40" text-anchor="middle" font-family="Cormorant Garamond" font-style="italic" font-size="13" fill="#888">93 years, 2 months, 9 days</text>
-        <circle cx="580" cy="80" r="8" fill="none" stroke="#6B4DF2" stroke-width="2"/>
+        <circle cx="580" cy="80" r="8" fill="none" stroke="#8b5cf6" stroke-width="2"/>
         <text x="580" y="60" text-anchor="middle" font-family="Cinzel" font-size="10" font-weight="500" fill="#F0ECE4">EXHALE</text>
         <text x="580" y="105" text-anchor="middle" font-family="Space Mono" font-size="9" fill="#888">25 MAY 1987</text>
         <line x1="580" y1="80" x2="680" y2="80" stroke="#FF6A3D" stroke-width="2" stroke-dasharray="4 3"/>
@@ -229,7 +229,7 @@
         <circle cx="680" cy="80" r="8" fill="#FF6A3D"/>
         <text x="680" y="60" text-anchor="middle" font-family="Cinzel" font-size="10" font-weight="500" fill="#F0ECE4">INHALE</text>
         <text x="680" y="105" text-anchor="middle" font-family="Space Mono" font-size="9" fill="#888">19 MAY 1988</text>
-        <text x="680" y="145" text-anchor="middle" font-family="Cinzel" font-size="11" font-weight="700" fill="#F3B23A">KJP</text>
+        <text x="680" y="145" text-anchor="middle" font-family="Cinzel" font-size="11" font-weight="700" fill="#d4af37">KJP</text>
       </svg>
     </div>
 

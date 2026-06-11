@@ -6,15 +6,13 @@
 <title>Raymond Lee Honaker — Soul Map | The First Spark</title>
 <meta name="description" content="A consciousness technology reading for Raymond Lee Honaker — born May 9, 1964, Frankfurt, Germany. Numerology, astrology, and Selector Model debug output.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="codex-colors.css">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --black:#0B0B0C;
-    --ember:#FF6A3D;
-    --gold:#F3B23A;
-    --violet:#6B4DF2;
-    --cyan:#26E4D8;
+
     --ink:#E8E6E3;
     --mute:#8A8680;
   }
@@ -22,7 +20,7 @@
   html,body{background:var(--black);color:var(--ink);font-family:'Space Mono',monospace;overflow-x:hidden}
   body{
     background-image:
-      radial-gradient(ellipse at top, rgba(107,77,242,0.15), transparent 50%),
+      radial-gradient(ellipse at top, rgba(139,92,246,0.15), transparent 50%),
       radial-gradient(ellipse at bottom, rgba(255,106,61,0.1), transparent 50%),
       linear-gradient(var(--black),var(--black));
     min-height:100vh;
@@ -33,10 +31,10 @@
     background-image:
       radial-gradient(1px 1px at 20% 30%, white, transparent),
       radial-gradient(1px 1px at 60% 70%, white, transparent),
-      radial-gradient(1px 1px at 80% 10%, #26E4D8, transparent),
-      radial-gradient(2px 2px at 30% 80%, #F3B23A, transparent),
+      radial-gradient(1px 1px at 80% 10%, #22d3ee, transparent),
+      radial-gradient(2px 2px at 30% 80%, #d4af37, transparent),
       radial-gradient(1px 1px at 90% 50%, white, transparent),
-      radial-gradient(1px 1px at 15% 60%, #6B4DF2, transparent),
+      radial-gradient(1px 1px at 15% 60%, #8b5cf6, transparent),
       radial-gradient(1px 1px at 45% 15%, white, transparent),
       radial-gradient(1px 1px at 75% 85%, white, transparent);
     background-size:200% 200%;
@@ -86,12 +84,12 @@
 
   .num-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
   .num-card{
-    border:1px solid rgba(243,178,58,0.25);background:rgba(255,255,255,0.02);
+    border:1px solid rgba(212,175,55,0.25);background:rgba(255,255,255,0.02);
     padding:24px 22px;border-radius:4px;position:relative;overflow:hidden;
     transition:transform 0.3s ease, border-color 0.3s ease;
   }
   .num-card:hover{transform:translateY(-3px);border-color:var(--gold)}
-  .num-card.master{border-color:var(--violet);background:linear-gradient(135deg,rgba(107,77,242,0.08),rgba(255,255,255,0.02))}
+  .num-card.master{border-color:var(--violet);background:linear-gradient(135deg,rgba(139,92,246,0.08),rgba(255,255,255,0.02))}
   .num-card .glyph{
     font-family:'Cormorant Garamond',serif;font-size:3.4rem;font-weight:300;
     color:var(--gold);line-height:1;margin-bottom:6px;
@@ -103,8 +101,8 @@
 
   .astro-chart{
     display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;
-    border:1px solid rgba(38,228,216,0.2);padding:24px;border-radius:4px;
-    background:rgba(38,228,216,0.03);
+    border:1px solid rgba(34,211,238,0.2);padding:24px;border-radius:4px;
+    background:rgba(34,211,238,0.03);
   }
   .astro-cell{text-align:center;padding:14px 8px;border-right:1px dashed rgba(255,255,255,0.06)}
   .astro-cell:last-child{border-right:none}
@@ -121,7 +119,7 @@
   .chinese-block .sign{font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--gold)}
 
   .console{
-    background:#000;border:1px solid rgba(38,228,216,0.3);border-radius:4px;
+    background:#000;border:1px solid rgba(34,211,238,0.3);border-radius:4px;
     padding:24px 26px;font-family:'Space Mono',monospace;font-size:0.86rem;
   }
   .console .line{margin-bottom:12px;color:var(--ink);line-height:1.7}
@@ -129,14 +127,14 @@
   .console .v{color:var(--gold)}
   .console .comment{color:var(--mute);margin-top:18px;font-style:italic;font-size:0.84rem}
 
-  .compat{border:1px solid rgba(107,77,242,0.3);padding:30px;border-radius:4px;
-    background:linear-gradient(135deg,rgba(107,77,242,0.06),rgba(38,228,216,0.04));
+  .compat{border:1px solid rgba(139,92,246,0.3);padding:30px;border-radius:4px;
+    background:linear-gradient(135deg,rgba(139,92,246,0.06),rgba(34,211,238,0.04));
   }
   .compat-head{display:flex;align-items:center;justify-content:center;gap:24px;margin-bottom:24px;flex-wrap:wrap}
   .compat-head .name{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;color:var(--gold)}
   .compat-head .x{color:var(--violet);font-size:1.5rem}
 
-  .ritual{border:1px solid rgba(243,178,58,0.3);padding:30px;border-radius:4px;background:rgba(243,178,58,0.03)}
+  .ritual{border:1px solid rgba(212,175,55,0.3);padding:30px;border-radius:4px;background:rgba(212,175,55,0.03)}
   .ritual-title{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;color:var(--gold);margin-bottom:14px}
   .ritual ol{padding-left:22px}
   .ritual li{margin-bottom:14px;line-height:1.7;font-size:0.95rem}
@@ -144,7 +142,7 @@
 
   footer{
     text-align:center;margin-top:80px;padding-top:40px;
-    border-top:1px solid rgba(243,178,58,0.15);
+    border-top:1px solid rgba(212,175,55,0.15);
   }
   footer .sig{
     font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;
@@ -182,21 +180,21 @@
         <defs>
           <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0%" stop-color="#FF6A3D"/>
-            <stop offset="50%" stop-color="#F3B23A"/>
-            <stop offset="100%" stop-color="#6B4DF2"/>
+            <stop offset="50%" stop-color="#d4af37"/>
+            <stop offset="100%" stop-color="#8b5cf6"/>
           </linearGradient>
         </defs>
         <!-- Outer ring - Life Path 7 (heptagon, the seeker) -->
         <circle cx="70" cy="70" r="65" fill="none" stroke="url(#g1)" stroke-width="0.5" opacity="0.6"/>
-        <circle cx="70" cy="70" r="50" fill="none" stroke="#26E4D8" stroke-width="0.3" opacity="0.5"/>
+        <circle cx="70" cy="70" r="50" fill="none" stroke="#22d3ee" stroke-width="0.3" opacity="0.5"/>
         <!-- 7-pointed star (Life Path 7 — the seeker) -->
-        <polygon points="70,18 79,52 115,52 86,72 97,108 70,86 43,108 54,72 25,52 61,52" fill="none" stroke="#F3B23A" stroke-width="0.7" opacity="0.85"/>
+        <polygon points="70,18 79,52 115,52 86,72 97,108 70,86 43,108 54,72 25,52 61,52" fill="none" stroke="#d4af37" stroke-width="0.7" opacity="0.85"/>
         <!-- 9-pointed star inside (Birthday 9 — the completer) -->
         <polygon points="70,32 74,52 92,46 81,62 100,68 81,74 92,90 74,84 70,104 66,84 48,90 59,74 40,68 59,62 48,46 66,52" fill="none" stroke="#FF6A3D" stroke-width="0.5" opacity="0.7"/>
         <!-- Inner double-11 (master twin pillars: Soul Urge 11 / Personality 11) -->
-        <line x1="62" y1="55" x2="62" y2="85" stroke="#6B4DF2" stroke-width="1.2" opacity="0.85"/>
-        <line x1="78" y1="55" x2="78" y2="85" stroke="#6B4DF2" stroke-width="1.2" opacity="0.85"/>
-        <circle cx="70" cy="70" r="4" fill="#F3B23A"/>
+        <line x1="62" y1="55" x2="62" y2="85" stroke="#8b5cf6" stroke-width="1.2" opacity="0.85"/>
+        <line x1="78" y1="55" x2="78" y2="85" stroke="#8b5cf6" stroke-width="1.2" opacity="0.85"/>
+        <circle cx="70" cy="70" r="4" fill="#d4af37"/>
       </svg>
     </div>
     <div class="badge">Soul Map · Sparkverse Entry</div>
