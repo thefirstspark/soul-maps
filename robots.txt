@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://soul-maps.thefirstspark.shop/sitemap.xml
