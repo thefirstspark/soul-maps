@@ -2559,18 +2559,26 @@ def _build_card_html(filename, summary, birth_date, birth_city=None):
         </a>'''
 
 
+def _archive_html_path(work_dir):
+    """Return archive.html when present; fall back to legacy index.html."""
+    archive_path = work_dir / 'archive.html'
+    if archive_path.exists():
+        return archive_path
+    return work_dir / 'index.html'
+
+
 def update_index_html(work_dir, filename, summary, birth_date, birth_city=None):
-    """Insert a new card into index.html if one doesn't already exist for this file."""
-    index_path = work_dir / 'index.html'
-    if not index_path.exists():
-        print(f"  [INDEX] index.html not found in {work_dir}, skipping index update")
+    """Insert a new card into archive.html (or legacy index.html)."""
+    archive_path = _archive_html_path(work_dir)
+    if not archive_path.exists():
+        print(f"  [ARCHIVE] archive.html not found in {work_dir}, skipping archive update")
         return False
 
-    html = index_path.read_text(encoding='utf-8')
+    html = archive_path.read_text(encoding='utf-8')
 
     # Skip if this filename already has a card
     if f'href="{filename}"' in html:
-        print(f"  [INDEX] Card for {filename} already exists, skipping")
+        print(f"  [ARCHIVE] Card for {filename} already exists, skipping")
         return False
 
     # Build the new card
@@ -2582,11 +2590,11 @@ def update_index_html(work_dir, filename, summary, birth_date, birth_city=None):
         insert_pos = html.index(marker) + len(marker)
         html = html[:insert_pos] + '\n' + card + '\n' + html[insert_pos:]
     else:
-        print(f"  [INDEX] Could not find insertion point in index.html")
+        print(f"  [ARCHIVE] Could not find insertion point in {archive_path.name}")
         return False
 
-    index_path.write_text(html, encoding='utf-8')
-    print(f"  [INDEX] Added card for {summary['name']} to index.html")
+    archive_path.write_text(html, encoding='utf-8')
+    print(f"  [ARCHIVE] Added card for {summary['name']} to {archive_path.name}")
     return True
 
 
@@ -2627,25 +2635,26 @@ def _api_put_file(token, repo, filepath, content_str, message):
 
 
 def _api_update_index(token, repo, filename, summary, birth_date, birth_city=None):
-    """Fetch index.html from GitHub, insert card, push back — no local clone needed."""
+    """Fetch archive.html from GitHub, insert card, push back — no local clone needed."""
     import base64
-    path = f"/repos/thefirstspark/{repo}/contents/index.html"
+    archive_name = 'archive.html'
+    path = f"/repos/thefirstspark/{repo}/contents/{archive_name}"
     try:
         existing, _ = _github_api('GET', path, token)
         html = base64.b64decode(existing['content']).decode('utf-8')
         sha = existing['sha']
     except Exception as e:
-        print(f"  [INDEX] Could not fetch index.html: {e}")
+        print(f"  [ARCHIVE] Could not fetch {archive_name}: {e}")
         return False
 
     if f'href="{filename}"' in html:
-        print(f"  [INDEX] Card for {filename} already exists")
+        print(f"  [ARCHIVE] Card for {filename} already exists")
         return False
 
     card = _build_card_html(filename, summary, birth_date, birth_city)
     marker = '<div id="cards-list">'
     if marker not in html:
-        print(f"  [INDEX] Insertion point not found")
+        print(f"  [ARCHIVE] Insertion point not found in {archive_name}")
         return False
 
     insert_pos = html.index(marker) + len(marker)
@@ -2654,11 +2663,11 @@ def _api_update_index(token, repo, filename, summary, birth_date, birth_city=Non
     import base64 as b64
     encoded = b64.b64encode(html.encode('utf-8')).decode()
     _github_api('PUT', path, token, {
-        'message': f'Index: add card for {summary["name"]}',
+        'message': f'Archive: add card for {summary["name"]}',
         'content': encoded,
         'sha': sha,
     })
-    print(f"  [INDEX] Added card for {summary['name']}")
+    print(f"  [ARCHIVE] Added card for {summary['name']}")
     return True
 
 
@@ -2672,7 +2681,7 @@ def deploy_to_github(html_content, filename, repo='soul-maps', summary=None, bir
         # Upload the soul map file
         _api_put_file(token, repo, filename, html_content, f'Soul Map: {filename}')
 
-        # Update index.html if summary provided
+        # Update archive.html if summary provided
         if summary and birth_date and repo == 'soul-maps':
             _api_update_index(token, repo, filename, summary, birth_date, birth_city)
 
