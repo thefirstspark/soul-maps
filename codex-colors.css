@@ -11,6 +11,7 @@
   --codex-yellow: #f5c842;
   --codex-yellow-light: #fde047;
   --codex-green: #10b981;
+  --codex-green-light: #34d399;
   --codex-cyan: #22d3ee;
   --codex-blue: #3b82f6;
   --codex-blue-light: #60a5fa;
@@ -31,6 +32,7 @@
   --ember: var(--codex-ember);
   --yellow: var(--codex-yellow);
   --green: var(--codex-green);
+  --green-light: var(--codex-green-light);
   --cyan: var(--codex-cyan);
   --blue: var(--codex-blue);
   --purple: var(--codex-purple);
