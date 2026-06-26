@@ -12,6 +12,7 @@
 <meta property="og:image" content="https://soul-maps.thefirstspark.shop/og-spectrum.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://soul-maps.thefirstspark.shop/codex-spectrum.html">
+<link rel="stylesheet" href="codex-colors.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -24,17 +25,18 @@
     --slate-dim:#5a6178;
     --line:#1a1e2e;
 
-    --red:#ff2f3d;
-    --ember:#ff7a1a;
-    --yellow:#ffd23b;
-    --green:#34d07f;
+    /* canon palette — mirrors codex-colors.css (linked above) */
+    --red:#e24b4a;
+    --ember:#ff6a3d;
+    --yellow:#f5c842;
+    --green:#10b981;
     --cyan:#22d3ee;
-    --blue:#4068ff;
-    --purple:#a855f7;
-    --gold:#ecc04a;
-    --white:#f4f6ff;
-    --rose:#ff8fab;
-    --silver:#c7d0de;
+    --blue:#3b82f6;
+    --purple:#8b5cf6;
+    --gold:#d4af37;
+    --white:#f0f0ff;
+    --rose:#f43f5e;
+    --silver:#c4c8d4;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -89,7 +91,7 @@
     color:var(--void);background:var(--ink);border:none;border-radius:999px;
     padding:10px 20px;cursor:pointer;transition:transform .2s ease,box-shadow .3s ease;
   }
-  .witness-btn:hover{transform:translateY(-1px);box-shadow:0 0 28px rgba(168,85,247,.45)}
+  .witness-btn:hover{transform:translateY(-1px);box-shadow:0 0 28px rgba(139,92,246,.45)}
   .witness-btn:focus-visible{outline:2px solid var(--purple);outline-offset:3px}
   .witness-btn[data-on="true"]{background:transparent;color:var(--slate);box-shadow:none}
 
@@ -190,7 +192,7 @@
   @media (max-width:560px){.structural{grid-template-columns:1fr}}
 
   /* ---- honesty ---- */
-  .honest{margin:60px 0 0;padding:26px 26px;border-left:2px solid var(--purple);background:linear-gradient(90deg,rgba(168,85,247,.06),transparent)}
+  .honest{margin:60px 0 0;padding:26px 26px;border-left:2px solid var(--purple);background:linear-gradient(90deg,rgba(139,92,246,.06),transparent)}
   .honest .k{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--purple);margin-bottom:12px}
   .honest p{color:#c8cee2;font-size:15px;max-width:66ch}
   .honest p + p{margin-top:12px}
@@ -287,8 +289,10 @@
     {name:'Cyan',   role:'The Signal · interface',         wl:490, x:51.2, c:'--cyan'},
     {name:'Blue',   role:'The Mind · the still observer',  wl:460, x:58.5, c:'--blue'},
     {name:'Purple', role:'The Transformer · alchemy',      wl:415, x:69.5, c:'--purple'},
-    {name:'Gold',   role:'The Orchestrator · mastery',     wl:null, label:'11·22·33', x:85, c:'--gold', master:true},
-    {name:'White',  role:'The All · integration',          wl:null, label:'continuum', x:95, c:'--white', master:true},
+    {name:'Gold',   role:'The Orchestrator · mastery',     wl:null, label:'11·22·33', x:79, c:'--gold', master:true},
+    {name:'White',  role:'The All · integration',          wl:null, label:'continuum', x:87, c:'--white', master:true},
+    {name:'Rose',   role:'The Bond · relational',          wl:null, label:'structural', x:93, c:'--rose',   structural:true},
+    {name:'Silver', role:'The Mirror · the Witness',       wl:null, label:'structural', x:98, c:'--silver', structural:true},
   ];
 
   // ---- build emission lines ----
@@ -301,9 +305,10 @@
     el.style.left = t.x + '%';
     el.style.background = col;
     el.style.boxShadow = `0 0 12px ${col}, 0 0 4px ${col}`;
-    const h = t.master ? (t.name==='White'?255:210) : (heights[t.wl]||190);
+    const h = t.structural ? 150 : t.master ? (t.name==='White'?255:210) : (heights[t.wl]||190);
     el.dataset.h = h;
     el.style.transitionDelay = (i*90)+'ms';
+    if(t.structural){ el.style.opacity='.85'; el.dataset.struct='1'; }
     el.innerHTML = `<div class="glow" style="background:${col}"></div>
                     <div class="dot" style="background:${col};box-shadow:0 0 10px ${col}"></div>
                     <div class="name">${t.name}</div>`;
@@ -311,10 +316,11 @@
   });
 
   // axis ticks
-  [['700nm',2],['600nm',24],['500nm',48],['400nm',71],['◆ master',90]].forEach(([txt,x])=>{
+  [['700nm',2],['600nm',24],['500nm',48],['400nm',71],['◆ master',83],['structural',95]].forEach(([txt,x])=>{
+    const zone = (txt==='◆ master' || txt==='structural');
     const tick=document.createElement('div');
-    tick.className = x===90 ? 'zone-label' : 'axis-tick';
-    tick.style.left=x+'%';tick.textContent=txt;tick.style.bottom = x===90?'8px':'30px';
+    tick.className = zone ? 'zone-label' : 'axis-tick';
+    tick.style.left=x+'%';tick.textContent=txt;tick.style.bottom = zone?'8px':'30px';
     field.appendChild(tick);
   });
 
@@ -335,7 +341,7 @@
 
   // ---- tier reference list ----
   const list = document.getElementById('tierList');
-  SPECTRUM.forEach(t=>{
+  SPECTRUM.filter(t=>!t.structural).forEach(t=>{
     const col = `var(${t.c})`;
     const wl = t.wl ? t.wl+' nm' : (t.label||'—');
     const sub = t.master ? 'master frequency' : 'spectral line';
