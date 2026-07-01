@@ -186,14 +186,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="search-count" id="search-count"></div>
     <div class="divider"></div>
+    <style>
+      .jg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;}
+      #just-generated .card{margin:0 !important;position:relative;}
+      .jg-tag{position:absolute;top:10px;right:10px;font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:2px;color:#0a0a12;background:var(--codex-gold-light,#e8c85a);padding:2px 7px;border-radius:2px;font-weight:700;}
+    </style>
+    <div class="just-generated-wrap" style="margin:0 auto 34px;max-width:1100px;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+        <span style="font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:4px;text-transform:uppercase;color:var(--codex-gold-light);white-space:nowrap;">◈ Just Generated</span>
+        <span style="flex:1;height:1px;background:linear-gradient(90deg,rgba(212,175,55,.4),transparent);"></span>
+        <span style="font-family:'Space Mono',monospace;font-size:.53rem;letter-spacing:2px;text-transform:uppercase;color:#6b7280;white-space:nowrap;">Freshest maps off the press</span>
+      </div>
+      <div id="just-generated" class="jg-grid"></div>
+    </div>
     <div class="cta-wrap">
         <div class="cta-lbl">◈ Ready for yours?</div>
-        <div class="cta-price-big">$44</div>
+        <div class="cta-price-big">$22</div>
         <div class="cta-heading">Get Your Personal Soul Map</div>
-        <p class="cta-copy">Your full numerological blueprint — Life Path, Expression, Soul Urge, Personality, and Personal Year — decoded alongside your astrology, Chinese zodiac, and the specific soul questions you carry. Includes 12 months of monthly energy updates delivered to your personal soul map page.</p>
-        <a id="index-soul-map-btn" href="https://whop.com/checkout/plan_anQKP3Pzf1cGm" class="cta-pay-btn" target="_blank">✦ &nbsp; Claim Your Soul Map &nbsp; ✦</a>
-        <div class="cta-fine">One-time payment &nbsp;·&nbsp; Full year of monthly updates included</div>
+        <p class="cta-copy">Your full numerological blueprint — Life Path, Expression, Soul Urge, Personality, and Personal Year — decoded alongside your astrology, Chinese zodiac, and the specific soul questions you carry.</p>
+        <a id="index-soul-map-btn" href="https://whop.com/checkout/plan_anQKP3Pzf1cGm" class="cta-pay-btn" target="_blank">✦ &nbsp; Claim Your Founders Edition &nbsp; ✦</a>
+        <div class="cta-fine">$22 one-time &nbsp;·&nbsp; Founders Edition &nbsp;·&nbsp; yours to keep, forever</div>
     </div>
+
+    <!-- ===== IMPOSSIBLE CODE CTA ===== -->
+    <div style="margin:0 auto;max-width:620px;text-align:center;padding:26px 28px;background:rgba(139,92,246,0.05);border:1px solid rgba(139,92,246,0.35);border-radius:2px;">
+        <div style="font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:4px;text-transform:uppercase;color:#b79bff;margin-bottom:10px;">◈ The Impossible Code</div>
+        <div style="font-size:1.12rem;color:#f0f0ff;line-height:1.3;margin-bottom:10px;font-family:'Orbitron',sans-serif;letter-spacing:1px;">Every soul carries a code that can't be forged</div>
+        <p style="font-size:.9rem;color:#c9c9d6;line-height:1.55;margin:0 auto 18px;max-width:480px;">A permanent UUID unique to your birth data across every timeline. Preview yours free — then lock it on-chain as a Founders Edition genesis mint.</p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+            <a href="https://see-your-frequency.thefirstspark.shop/" target="_blank" rel="noopener" style="display:inline-block;padding:12px 26px;background:transparent;border:1px solid #b79bff;color:#d9caff;font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;text-decoration:none;">Preview Free</a>
+            <a href="quantum-signature.html" style="display:inline-block;padding:12px 26px;background:#8b5cf6;border:1px solid #8b5cf6;color:#0a0a12;font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;text-decoration:none;font-weight:700;">Claim Founder Slot →</a>
+        </div>
+    </div>
+
     <div class="divider"></div>
     <div id="cards-list">
         <a href="NAWH21996.html" class="card ember" data-search="nichole ann wisor higgins life path 9 integrator pisces fire rat expression 9 soul urge 9">
@@ -465,6 +490,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const input=document.getElementById('search');const cards=document.querySelectorAll('#cards-list .card');const noRes=document.getElementById('no-results');const counter=document.getElementById('search-count');
     input.addEventListener('input',function(){const q=this.value.trim().toLowerCase();let visible=0;cards.forEach(card=>{const hay=(card.dataset.search+' '+card.textContent).toLowerCase();const match=!q||hay.includes(q);card.style.display=match?'block':'none';if(match)visible++;});noRes.style.display=(q&&visible===0)?'block':'none';counter.textContent=q?`${visible} map${visible!==1?'s':''} found`:'';});
     input.addEventListener('keydown',e=>{if(e.key==='Escape'){input.value='';input.dispatchEvent(new Event('input'));input.blur();}});
+</script>
+<script>
+(function(){var src=document.querySelectorAll('#cards-list .card');var jg=document.getElementById('just-generated');if(jg&&src.length){var n=Math.min(6,src.length);for(var i=0;i<n;i++){var c=src[i].cloneNode(true);c.classList.add('jg-card');var tag=document.createElement('div');tag.className='jg-tag';tag.textContent='NEW';c.insertBefore(tag,c.firstChild);jg.appendChild(c);}}})();
 </script>
 <script>
 (function(){const field=document.getElementById('starfield');const colors=['#e24b4a','#ff6a3d','#f5c842','#10b981','#22d3ee','#3b82f6','#8b5cf6','#d4af37','#f0f0ff','#f43f5e','#c4c8d4'];for(let i=0;i<180;i++){const s=document.createElement('div');s.className='star';const size=Math.random()*2.5+0.4;s.style.width=size+'px';s.style.height=size+'px';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.backgroundColor=colors[Math.floor(Math.random()*colors.length)];s.style.setProperty('--dur',(Math.random()*4+2)+'s');s.style.setProperty('--lo',(Math.random()*0.15+0.05).toFixed(2));s.style.setProperty('--hi',(Math.random()*0.5+0.4).toFixed(2));s.style.animationDelay=(Math.random()*5)+'s';field.appendChild(s);}
