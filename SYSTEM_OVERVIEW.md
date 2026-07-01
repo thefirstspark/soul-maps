@@ -8,7 +8,7 @@ Complete end-to-end automation for selling Soul Maps with recurring monthly upda
 Buyer Journey:
 ┌─────────────────────────────────────────────────────────────────┐
 │ 1. Sales Page (index.html)                                       │
-│    $44 · Click "Claim Your Soul Map" → Whop checkout             │
+│    $22 · Click "Claim Your Soul Map" → Whop checkout             │
 └──────────────────┬──────────────────────────────────────────────┘
                    │
                    ▼
@@ -285,13 +285,13 @@ Check your SMTP email (Gmail inbox) for:
 
 ## Cost Breakdown
 
-- **Whop**: 10% transaction fee ($4.40 per $44 sale)
+- **Whop**: 10% transaction fee ($2.20 per $22 sale)
 - **Email**: Free (Gmail SMTP)
 - **GitHub**: Free (public Pages + Actions)
 - **Hosting**: Free (GitHub Pages)
 - **Webhook Server**: ~$5-10/month (Railway, Render, etc.)
 
-**Net per sale**: ~$39.60 (after Whop fee)
+**Net per sale**: ~$19.80 (after Whop fee)
 
 ## Future Enhancements
 

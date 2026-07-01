@@ -17,7 +17,7 @@ Customers see what is live and working. Investors hear the vision in 1:1 convers
 ## PHASE 1 — ACTIVE (Now → 60 days)
 
 ### 1.1 Soul Maps revenue stabilization
-- **Price:** $44 one-time, includes 12 months of Frequencies
+- **Price:** $22 one-time (Founders Edition)
 - **Deliverable:** Personalized HTML Soul Map + access to Monthly Frequencies tier
 - **Channels:** Whop checkout, direct link from index, Sparkverse member upsell
 - **Infrastructure debt:** verify Resend email delivery (open question — audit pending)
