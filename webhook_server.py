@@ -252,7 +252,7 @@ def send_confirmation_email(recipient_email, recipient_name, soul_map_url):
           VIEW YOUR SOUL MAP
         </a>
       </div>
-      <p style="font-size: 14px; color: #a8a8a8;">You have 12 months of monthly updates. New energy reports are generated automatically each month.</p>
+      <p style="font-size: 14px; color: #a8a8a8;">This is your private Soul Map page — yours to keep, forever. Bookmark the link above.</p>
       <div style="margin-top: 50px; padding-top: 30px; border-top: 1px solid #6B4DF2; text-align: center; font-size: 12px; color: #6b7280;">
         <p><strong style="color: #F3B23A;">The First Spark</strong></p>
         <p><a href="https://thefirstspark.shop" style="color: #26E4D8;">thefirstspark.shop</a></p>

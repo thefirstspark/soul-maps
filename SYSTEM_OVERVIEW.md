@@ -167,7 +167,7 @@ Expected response:
   "name": "Test User",
   "url": "https://soul-maps.thefirstspark.shop/TU51990.html",
   "monthly_update": "TU51990-202604.html",
-  "message": "Soul Map generated for Test User · 12 monthly updates included"
+  "message": "Soul Map generated for Test User"
 }
 ```
 

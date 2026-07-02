@@ -125,7 +125,7 @@ Receives intake data and generates soul map.
   "name": "John Doe",
   "url": "https://soul-maps.thefirstspark.shop/JD51990.html",
   "monthly_update": "JD51990-202604.html",
-  "message": "Soul Map generated for John Doe · 12 monthly updates included",
+  "message": "Soul Map generated for John Doe",
   "summary": {
     "name": "John Doe",
     "life_path": 7,
