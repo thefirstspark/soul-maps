@@ -473,14 +473,13 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Soul Map — ${name} | The First Spark</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="codex-colors.css">
 <style>
+  /* --ember/--gold/--violet/--cyan come from codex-colors.css (canonical Color Codex palette) */
   :root {
     --black: #0B0B0C;
     --deep-space: #0a0a0f;
-    --ember: #FF6A3D;
-    --gold: #F3B23A;
-    --violet: #6B4DF2;
-    --cyan: #26E4D8;
+
     --white: #f0ece4;
     --dim: #888;
   }
