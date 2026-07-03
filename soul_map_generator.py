@@ -2558,43 +2558,41 @@ def _build_card_html(filename, summary, birth_date, birth_city=None):
         </a>'''
 
 
-def _archive_html_path(work_dir):
-    """Return archive.html when present; fall back to legacy index.html."""
-    archive_path = work_dir / 'archive.html'
-    if archive_path.exists():
-        return archive_path
-    return work_dir / 'index.html'
+# Listing pages that show a card for every soul map. Every generated map is
+# posted to all of them (index.html is the storefront at soul-maps.thefirstspark.shop).
+LISTING_PAGES = ('archive.html', 'index.html')
 
 
 def update_index_html(work_dir, filename, summary, birth_date, birth_city=None):
-    """Insert a new card into archive.html (or legacy index.html)."""
-    archive_path = _archive_html_path(work_dir)
-    if not archive_path.exists():
-        print(f"  [ARCHIVE] archive.html not found in {work_dir}, skipping archive update")
-        return False
-
-    html = archive_path.read_text(encoding='utf-8')
-
-    # Skip if this filename already has a card
-    if f'href="{filename}"' in html:
-        print(f"  [ARCHIVE] Card for {filename} already exists, skipping")
-        return False
-
-    # Build the new card
+    """Insert a new card into every listing page (index.html + archive.html)."""
     card = _build_card_html(filename, summary, birth_date, birth_city)
-
-    # Insert right after the <div id="cards-list"> opening
     marker = '<div id="cards-list">'
-    if marker in html:
+    any_updated = False
+
+    for page_name in LISTING_PAGES:
+        page = work_dir / page_name
+        if not page.exists():
+            print(f"  [LISTING] {page_name} not found in {work_dir}, skipping")
+            continue
+
+        html = page.read_text(encoding='utf-8')
+
+        # Skip if this filename already has a card on this page
+        if f'href="{filename}"' in html:
+            print(f"  [LISTING] Card for {filename} already in {page_name}, skipping")
+            continue
+
+        if marker not in html:
+            print(f"  [LISTING] Could not find insertion point in {page_name}")
+            continue
+
         insert_pos = html.index(marker) + len(marker)
         html = html[:insert_pos] + '\n' + card + '\n' + html[insert_pos:]
-    else:
-        print(f"  [ARCHIVE] Could not find insertion point in {archive_path.name}")
-        return False
+        page.write_text(html, encoding='utf-8')
+        print(f"  [LISTING] Added card for {summary['name']} to {page_name}")
+        any_updated = True
 
-    archive_path.write_text(html, encoding='utf-8')
-    print(f"  [ARCHIVE] Added card for {summary['name']} to {archive_path.name}")
-    return True
+    return any_updated
 
 
 def _github_api(method, path, token, json_body=None):
@@ -2634,40 +2632,47 @@ def _api_put_file(token, repo, filepath, content_str, message):
 
 
 def _api_update_index(token, repo, filename, summary, birth_date, birth_city=None):
-    """Fetch archive.html from GitHub, insert card, push back — no local clone needed."""
+    """Fetch each listing page from GitHub, insert card, push back — no local clone needed.
+
+    Posts to every page in LISTING_PAGES (index.html + archive.html) so the map
+    appears on the storefront and the archive.
+    """
     import base64
-    archive_name = 'archive.html'
-    path = f"/repos/thefirstspark/{repo}/contents/{archive_name}"
-    try:
-        existing, _ = _github_api('GET', path, token)
-        html = base64.b64decode(existing['content']).decode('utf-8')
-        sha = existing['sha']
-    except Exception as e:
-        print(f"  [ARCHIVE] Could not fetch {archive_name}: {e}")
-        return False
-
-    if f'href="{filename}"' in html:
-        print(f"  [ARCHIVE] Card for {filename} already exists")
-        return False
-
     card = _build_card_html(filename, summary, birth_date, birth_city)
     marker = '<div id="cards-list">'
-    if marker not in html:
-        print(f"  [ARCHIVE] Insertion point not found in {archive_name}")
-        return False
+    any_updated = False
 
-    insert_pos = html.index(marker) + len(marker)
-    html = html[:insert_pos] + '\n' + card + '\n' + html[insert_pos:]
+    for page_name in LISTING_PAGES:
+        path = f"/repos/thefirstspark/{repo}/contents/{page_name}"
+        try:
+            existing, _ = _github_api('GET', path, token)
+            html = base64.b64decode(existing['content']).decode('utf-8')
+            sha = existing['sha']
+        except Exception as e:
+            print(f"  [LISTING] Could not fetch {page_name}: {e}")
+            continue
 
-    import base64 as b64
-    encoded = b64.b64encode(html.encode('utf-8')).decode()
-    _github_api('PUT', path, token, {
-        'message': f'Archive: add card for {summary["name"]}',
-        'content': encoded,
-        'sha': sha,
-    })
-    print(f"  [ARCHIVE] Added card for {summary['name']}")
-    return True
+        if f'href="{filename}"' in html:
+            print(f"  [LISTING] Card for {filename} already in {page_name}")
+            continue
+
+        if marker not in html:
+            print(f"  [LISTING] Insertion point not found in {page_name}")
+            continue
+
+        insert_pos = html.index(marker) + len(marker)
+        html = html[:insert_pos] + '\n' + card + '\n' + html[insert_pos:]
+
+        encoded = base64.b64encode(html.encode('utf-8')).decode()
+        _github_api('PUT', path, token, {
+            'message': f'Listing: add card for {summary["name"]} to {page_name}',
+            'content': encoded,
+            'sha': sha,
+        })
+        print(f"  [LISTING] Added card for {summary['name']} to {page_name}")
+        any_updated = True
+
+    return any_updated
 
 
 def deploy_to_github(html_content, filename, repo='soul-maps', summary=None, birth_date=None, birth_city=None):
