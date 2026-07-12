@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0B0B0C">
+<meta name="robots" content="noindex, nofollow">
+<title>The Pattern Key · Daily Frequency Journal — The First Spark</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --core-black: #0B0B0C;
+  --red: #e24b4a;      --ember: #ff6a3d;   --yellow: #f5c842;
+  --green: #10b981;    --cyan: #22d3ee;    --blue: #3b82f6;
+  --purple: #8b5cf6;   --gold: #d4af37;    --white: #f0f0ff;
+  --text: #E8E4DF;     --muted: #6b7280;   --muted2: #9ca3af;
+  --surface: rgba(20,20,24,.55);
+  --surface-line: rgba(212,175,55,.14);
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--core-black);
+  font-family: 'Space Mono', 'Courier New', monospace;
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+}
+canvas#bg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+.sigil {
+  position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 720px; height: 720px; max-width: 120vw; max-height: 120vw;
+  opacity: .035; z-index: 0; pointer-events: none;
+}
+.sigil svg { width: 100%; height: 100%; animation: spin 160s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.wrap { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; padding: 48px 22px 120px; }
+
+/* ── Masthead ── */
+.mast { text-align: center; margin-bottom: 34px; animation: fadeUp .8s ease-out; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+.kicker {
+  display: inline-block; font-size: .58rem; letter-spacing: 6px; text-transform: uppercase;
+  color: var(--muted2); border: 1px solid var(--surface-line); padding: 7px 18px; margin-bottom: 20px;
+}
+.mast h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; font-style: italic;
+  font-size: clamp(2.4rem, 9vw, 3.8rem); letter-spacing: 2px; color: var(--gold); line-height: 1.05;
+}
+.mast .sub { font-size: .72rem; letter-spacing: 3px; color: var(--muted2); margin-top: 12px; text-transform: uppercase; }
+.mast .greet { font-size: .82rem; color: var(--text); margin-top: 14px; font-style: italic; min-height: 1em; }
+.mast .greet .n { color: var(--gold); }
+.div { height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); opacity: .35; margin: 30px 0; }
+
+/* ── Ribbon ── */
+.ribbon-card { margin-bottom: 30px; animation: fadeUp .9s ease-out .1s both; }
+.section-tag { font-size: .56rem; letter-spacing: 5px; text-transform: uppercase; color: var(--ember); margin-bottom: 12px; }
+.ribbon {
+  display: flex; gap: 3px; height: 46px; border: 1px solid var(--surface-line);
+  padding: 5px; background: rgba(0,0,0,.3); overflow: hidden;
+}
+.ribbon .seg { flex: 1 1 0; min-width: 4px; border-radius: 1px; opacity: .9; transition: transform .2s, opacity .2s; position: relative; }
+.ribbon .seg.empty { background: repeating-linear-gradient(45deg, rgba(255,255,255,.02), rgba(255,255,255,.02) 3px, transparent 3px, transparent 6px); opacity: .5; }
+.ribbon .seg:hover { transform: scaleY(1.12); opacity: 1; }
+.ribbon .seg[title]:hover::after {
+  content: attr(title); position: absolute; bottom: 130%; left: 50%; transform: translateX(-50%);
+  background: #000; border: 1px solid var(--surface-line); color: var(--text); font-size: .6rem;
+  padding: 4px 8px; white-space: nowrap; z-index: 5; letter-spacing: 1px;
+}
+.ribbon-legend { display: flex; justify-content: space-between; font-size: .55rem; color: var(--muted); letter-spacing: 2px; margin-top: 8px; text-transform: uppercase; }
+
+/* ── Stat strip ── */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 30px; animation: fadeUp .9s ease-out .15s both; }
+.stat { border: 1px solid rgba(255,255,255,.06); background: var(--surface); padding: 16px 10px; text-align: center; }
+.stat .v { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; color: var(--gold); line-height: 1; }
+.stat .v.freqname { font-size: 1.05rem; font-style: italic; padding-top: 6px; }
+.stat .l { font-size: .5rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+
+/* ── Entry panel ── */
+.panel { background: var(--surface); border: 1px solid var(--surface-line); padding: 30px 26px; position: relative; animation: fadeUp 1s ease-out .2s both; margin-bottom: 26px; }
+.panel::before { content:''; position:absolute; top:-1px; left:22%; right:22%; height:1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+.panel-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; flex-wrap: wrap; gap: 6px; }
+.panel-head h2 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 1.55rem; color: var(--gold); letter-spacing: 1px; }
+.today-date { font-size: .62rem; letter-spacing: 3px; color: var(--muted2); text-transform: uppercase; }
+.q { font-size: .78rem; color: var(--text); letter-spacing: .5px; margin: 24px 0 12px; }
+.q .num { color: var(--ember); margin-right: 8px; }
+.q.first { margin-top: 14px; }
+
+/* Frequency grid */
+.freqs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.freq {
+  border: 1px solid rgba(255,255,255,.08); background: rgba(0,0,0,.25); padding: 12px 8px 11px;
+  cursor: pointer; text-align: center; transition: all .18s; position: relative; overflow: hidden;
+}
+.freq:hover { border-color: rgba(255,255,255,.28); transform: translateY(-2px); }
+.freq .dot { width: 20px; height: 20px; border-radius: 50%; margin: 0 auto 8px; box-shadow: 0 0 12px currentColor; }
+.freq .fname { font-size: .74rem; letter-spacing: 1px; color: var(--text); }
+.freq .frole { font-size: .52rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-top: 3px; }
+.freq.sel { border-color: currentColor; background: rgba(255,255,255,.05); }
+.freq.sel::after { content:'◆'; position: absolute; top: 5px; right: 7px; font-size: .6rem; }
+.freq .tagline { font-size: .5rem; font-style: italic; color: var(--muted2); margin-top: 5px; opacity: 0; height: 0; transition: opacity .2s; }
+.freq.sel .tagline, .freq:hover .tagline { opacity: 1; height: auto; }
+
+/* intensity */
+.intensity-row { display: flex; align-items: center; gap: 14px; margin-top: 6px; }
+.intensity-row input[type=range] { flex: 1; -webkit-appearance: none; height: 3px; background: linear-gradient(90deg, var(--muted), var(--gold)); outline: none; border-radius: 2px; }
+.intensity-row input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: var(--gold); cursor: pointer; box-shadow: 0 0 10px rgba(212,175,55,.6); }
+.intensity-row input[type=range]::-moz-range-thumb { width: 16px; height: 16px; border-radius: 50%; background: var(--gold); cursor: pointer; border: none; }
+.intensity-val { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--gold); width: 42px; text-align: center; }
+
+textarea, input.line {
+  width: 100%; background: rgba(0,0,0,.3); border: 1px solid rgba(255,255,255,.08); color: var(--text);
+  font-family: 'Space Mono', monospace; font-size: .76rem; padding: 12px 14px; line-height: 1.7;
+  resize: vertical; transition: border-color .2s;
+}
+textarea { min-height: 64px; }
+textarea:focus, input.line:focus { outline: none; border-color: var(--gold); }
+textarea::placeholder, input.line::placeholder { color: var(--muted); font-style: italic; }
+
+.save-row { display: flex; gap: 12px; align-items: center; margin-top: 26px; flex-wrap: wrap; }
+.btn {
+  font-family: 'Space Mono', monospace; font-size: .64rem; letter-spacing: 3px; text-transform: uppercase;
+  padding: 14px 26px; cursor: pointer; background: transparent; transition: all .22s; border: 1px solid;
+}
+.btn.primary { border-color: var(--gold); color: var(--gold); }
+.btn.primary:hover { background: var(--gold); color: var(--core-black); box-shadow: 0 0 24px rgba(212,175,55,.4); }
+.btn.ghost { border-color: rgba(255,255,255,.15); color: var(--muted2); }
+.btn.ghost:hover { border-color: var(--text); color: var(--text); }
+.save-note { font-size: .6rem; color: var(--green); letter-spacing: 2px; opacity: 0; transition: opacity .3s; }
+.save-note.show { opacity: 1; }
+
+/* history */
+.hist-card { animation: fadeUp 1s ease-out .3s both; }
+.entry {
+  border: 1px solid rgba(255,255,255,.06); border-left: 3px solid; background: rgba(0,0,0,.22);
+  padding: 14px 16px; margin-bottom: 10px; cursor: pointer; transition: background .2s, transform .2s;
+}
+.entry:hover { background: rgba(255,255,255,.03); transform: translateX(3px); }
+.entry-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.entry-freq { font-size: .72rem; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; }
+.entry-freq .cdot { width: 11px; height: 11px; border-radius: 50%; box-shadow: 0 0 8px currentColor; }
+.entry-date { font-size: .56rem; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; }
+.entry-body { font-size: .68rem; color: var(--muted2); line-height: 1.7; margin-top: 8px; display: none; white-space: pre-wrap; }
+.entry.open .entry-body { display: block; }
+.entry-body .lbl { color: var(--ember); font-size: .54rem; letter-spacing: 2px; text-transform: uppercase; display: block; margin: 10px 0 3px; }
+.entry-sig { font-style: italic; color: var(--gold); }
+.entry-del { font-size: .55rem; color: var(--muted); letter-spacing: 1px; margin-top: 10px; display: inline-block; text-decoration: underline; }
+.entry-del:hover { color: var(--red); }
+.empty-hist { font-size: .72rem; color: var(--muted); font-style: italic; text-align: center; padding: 24px 0; line-height: 1.9; }
+
+/* reading — pattern insight */
+.insight { border: 1px dashed rgba(212,175,55,.35); background: rgba(212,175,55,.04); padding: 20px 22px; margin-top: 4px; }
+.insight p { font-size: .74rem; color: var(--muted2); line-height: 1.95; }
+.insight p strong { color: var(--gold); }
+.insight .rule { font-style: italic; color: var(--text); }
+
+.tools { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
+.foot { text-align: center; margin-top: 46px; font-size: .58rem; letter-spacing: 2px; color: var(--muted); line-height: 2.2; }
+.foot a { color: var(--gold); text-decoration: none; }
+.foot a:hover { color: var(--cyan); }
+.foot .star { color: var(--gold); }
+
+@media (max-width: 560px) {
+  .wrap { padding: 34px 14px 90px; }
+  .panel { padding: 24px 16px; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .freqs { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .freq { padding: 10px 4px; }
+  .freq .frole { display: none; }
+}
+@media print {
+  canvas#bg, .sigil, .save-row, .tools, .entry-del, .freqs .tagline { display: none !important; }
+  body { background: #fff; color: #111; }
+  .panel, .entry, .stat, .insight { border-color: #ccc; background: #fff; }
+  .mast h1, .panel-head h2, .stat .v { color: #7a5c00; }
+}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div class="sigil">
+  <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+    <defs><linearGradient id="sg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d4af37" stop-opacity=".6"/>
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity=".3"/>
+    </linearGradient></defs>
+    <polygon points="200,40 360,280 40,280" fill="none" stroke="url(#sg)" stroke-width=".4"/>
+    <polygon points="200,360 60,120 340,120" fill="none" stroke="url(#sg)" stroke-width=".4"/>
+    <circle cx="200" cy="200" r="120" fill="none" stroke="url(#sg)" stroke-width=".3"/>
+    <circle cx="200" cy="200" r="60" fill="none" stroke="url(#sg)" stroke-width=".3"/>
+    <line x1="200" y1="20" x2="200" y2="380" stroke="url(#sg)" stroke-width=".2"/>
+    <line x1="20" y1="200" x2="380" y2="200" stroke="url(#sg)" stroke-width=".2"/>
+  </svg>
+</div>
+
+<div class="wrap">
+
+  <div class="mast">
+    <span class="kicker">◆ &nbsp; The First Spark &nbsp; ◆</span>
+    <h1>The Pattern Key</h1>
+    <div class="sub">Daily Frequency Journal</div>
+    <div class="greet" id="greet"></div>
+  </div>
+
+  <!-- Ribbon -->
+  <div class="ribbon-card">
+    <div class="section-tag">◆ Your Spectrum · last 30 days</div>
+    <div class="ribbon" id="ribbon"></div>
+    <div class="ribbon-legend"><span id="ribbon-start">— 30 days ago</span><span>today —</span></div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat"><div class="v" id="s-streak">0</div><div class="l">Day Streak</div></div>
+    <div class="stat"><div class="v" id="s-total">0</div><div class="l">Days Logged</div></div>
+    <div class="stat"><div class="v freqname" id="s-dom">—</div><div class="l">Dominant</div></div>
+    <div class="stat"><div class="v freqname" id="s-shift">—</div><div class="l">Common Shift</div></div>
+  </div>
+
+  <!-- Today's entry -->
+  <div class="panel">
+    <div class="panel-head">
+      <h2 id="entry-title">Today's Frequency</h2>
+      <span class="today-date" id="today-date"></span>
+    </div>
+
+    <div class="q first"><span class="num">01</span>Which frequency ran you today?</div>
+    <div class="freqs" id="freqs"></div>
+
+    <div class="q"><span class="num">02</span>How strongly did it run? <span style="color:var(--muted);font-size:.9em;">(intensity)</span></div>
+    <div class="intensity-row">
+      <input type="range" id="intensity" min="1" max="10" value="5">
+      <span class="intensity-val" id="intensity-val">5</span>
+    </div>
+
+    <div class="q"><span class="num">03</span>What moved you toward it?</div>
+    <textarea id="q-toward" placeholder="The pull. The moment. What lit it up…"></textarea>
+
+    <div class="q"><span class="num">04</span>What did you resist — or run from?</div>
+    <textarea id="q-resist" placeholder="The edge you didn't cross. The old loop…"></textarea>
+
+    <div class="q"><span class="num">05</span>The pattern you noticed —</div>
+    <textarea id="q-pattern" placeholder="Have you been here before? What repeats?"></textarea>
+
+    <div class="q"><span class="num">06</span>One signal for tomorrow</div>
+    <input class="line" id="q-signal" maxlength="140" placeholder="A single line to your future self…">
+
+    <div class="save-row">
+      <button class="btn primary" id="save-btn">◆ Seal Today's Entry</button>
+      <button class="btn ghost" id="clear-btn">Clear</button>
+      <span class="save-note" id="save-note">◆ Sealed. The pattern remembers.</span>
+    </div>
+  </div>
+
+  <!-- Insight -->
+  <div class="ribbon-card">
+    <div class="section-tag">◆ The Pattern Speaks</div>
+    <div class="insight"><p id="insight-text" class="rule">Log three days and the Key begins to read you back.</p></div>
+  </div>
+
+  <!-- History -->
+  <div class="hist-card">
+    <div class="section-tag">◆ The Record</div>
+    <div id="history"></div>
+  </div>
+
+  <div class="tools">
+    <button class="btn ghost" id="export-btn">↓ Export Backup</button>
+    <button class="btn ghost" id="import-btn">↑ Restore</button>
+    <button class="btn ghost" id="print-btn">⎙ Print</button>
+    <input type="file" id="import-file" accept="application/json" style="display:none">
+  </div>
+
+  <div class="foot">
+    <p>Everything you write lives only in this browser. Nothing is uploaded. Export a backup often.</p>
+    <p style="margin-top:10px;"><a href="https://soul-maps.thefirstspark.shop/">Soul Map Archive</a> &nbsp;·&nbsp; <a href="https://thefirstspark.shop/">The First Spark</a></p>
+    <p style="margin-top:10px;" class="star">✦ &nbsp; First Spark Consciousness Network &nbsp; ✦</p>
+  </div>
+</div>
+
+<script>
+"use strict";
+/* ───────────────────────── The Pattern Key — engine ───────────────────────── */
+
+var FREQS = [
+  { id:'red',    name:'Red',    role:'The Will',        tag:'Reds move.',            color:'#e24b4a' },
+  { id:'ember',  name:'Ember',  role:'The Ignition',    tag:'Embers begin.',         color:'#ff6a3d' },
+  { id:'yellow', name:'Yellow', role:'The Joy',         tag:'Yellows shine.',        color:'#f5c842' },
+  { id:'green',  name:'Green',  role:'The Field',       tag:'Fields hold.',          color:'#10b981' },
+  { id:'cyan',   name:'Cyan',   role:'The Signal',      tag:'Signals connect.',      color:'#22d3ee' },
+  { id:'blue',   name:'Blue',   role:'The Mind',        tag:'Minds witness.',        color:'#3b82f6' },
+  { id:'purple', name:'Purple', role:'The Transformer', tag:'Purples transform.',    color:'#8b5cf6' },
+  { id:'gold',   name:'Gold',   role:'The Orchestrator',tag:'Masters orchestrate.',  color:'#d4af37' },
+  { id:'white',  name:'White',  role:'The All',         tag:'White holds it all.',   color:'#f0f0ff' }
+];
+var FMAP = {}; FREQS.forEach(function(f){ FMAP[f.id] = f; });
+
+var STORE = 'patternKey.v1';
+var state = load();
+var selectedFreq = null;
+
+function load() {
+  try { var raw = localStorage.getItem(STORE); if (raw) return JSON.parse(raw); }
+  catch(e){}
+  return { name:'', entries:{} }; // entries keyed by YYYY-MM-DD
+}
+function save() { try { localStorage.setItem(STORE, JSON.stringify(state)); } catch(e){} }
+
+/* ── date helpers (local, no libs) ── */
+function pad(n){ return n<10 ? '0'+n : ''+n; }
+function keyOf(d){ return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()); }
+function todayKey(){ return keyOf(new Date()); }
+function fmtLong(k){
+  var p=k.split('-'), d=new Date(+p[0], +p[1]-1, +p[2]);
+  return d.toLocaleDateString(undefined,{weekday:'long', month:'long', day:'numeric'});
+}
+function fmtShort(k){
+  var p=k.split('-'), d=new Date(+p[0], +p[1]-1, +p[2]);
+  return d.toLocaleDateString(undefined,{month:'short', day:'numeric'});
+}
+function addDays(d,n){ var x=new Date(d); x.setDate(x.getDate()+n); return x; }
+
+/* ── name greeting ── */
+function firstName(){ return (state.name||'').trim().split(' ')[0]; }
+function renderGreet(){
+  var el = document.getElementById('greet');
+  var n = firstName();
+  if (n) { el.innerHTML = 'Welcome back, <span class="n">'+escapeHtml(n)+'</span>. What ran you today?'; }
+  else { el.innerHTML = '<span style="cursor:pointer;text-decoration:underline;color:var(--muted2)" id="set-name">+ name this journal</span>'; }
+}
+function escapeHtml(s){ return (s||'').replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+
+/* ── build frequency tiles ── */
+function renderFreqs(){
+  var wrap = document.getElementById('freqs');
+  wrap.innerHTML = '';
+  FREQS.forEach(function(f){
+    var el = document.createElement('div');
+    el.className = 'freq'; el.style.color = f.color; el.dataset.id = f.id;
+    el.innerHTML =
+      '<div class="dot" style="background:'+f.color+';color:'+f.color+'"></div>'+
+      '<div class="fname">'+f.name+'</div>'+
+      '<div class="frole">'+f.role+'</div>'+
+      '<div class="tagline">'+f.tag+'</div>';
+    el.addEventListener('click', function(){ selectFreq(f.id); });
+    wrap.appendChild(el);
+  });
+}
+function selectFreq(id){
+  selectedFreq = id;
+  document.querySelectorAll('.freq').forEach(function(el){
+    el.classList.toggle('sel', el.dataset.id === id);
+  });
+  var f = FMAP[id];
+  document.getElementById('entry-title').textContent = f.name + ' — ' + f.role;
+  document.getElementById('entry-title').style.color = f.color;
+}
+
+/* ── load today's saved entry into the form (edit-in-place) ── */
+function hydrateForm(){
+  var e = state.entries[todayKey()];
+  if (!e) return;
+  if (e.freq) selectFreq(e.freq);
+  document.getElementById('intensity').value = e.intensity || 5;
+  document.getElementById('intensity-val').textContent = e.intensity || 5;
+  document.getElementById('q-toward').value = e.toward || '';
+  document.getElementById('q-resist').value = e.resist || '';
+  document.getElementById('q-pattern').value = e.pattern || '';
+  document.getElementById('q-signal').value = e.signal || '';
+  document.getElementById('save-btn').textContent = '◆ Update Today';
+}
+
+/* ── save today ── */
+function saveToday(){
+  if (!selectedFreq){ flashNote('Choose a frequency first.', true); return; }
+  state.entries[todayKey()] = {
+    freq: selectedFreq,
+    intensity: +document.getElementById('intensity').value,
+    toward: document.getElementById('q-toward').value.trim(),
+    resist: document.getElementById('q-resist').value.trim(),
+    pattern: document.getElementById('q-pattern').value.trim(),
+    signal: document.getElementById('q-signal').value.trim(),
+    ts: keyOf(new Date())
+  };
+  save();
+  flashNote('◆ Sealed. The pattern remembers.', false);
+  document.getElementById('save-btn').textContent = '◆ Update Today';
+  renderAll();
+}
+function flashNote(msg, warn){
+  var n = document.getElementById('save-note');
+  n.textContent = msg;
+  n.style.color = warn ? 'var(--red)' : 'var(--green)';
+  n.classList.add('show');
+  setTimeout(function(){ n.classList.remove('show'); }, 2600);
+}
+function clearForm(){
+  selectedFreq = null;
+  document.querySelectorAll('.freq').forEach(function(el){ el.classList.remove('sel'); });
+  document.getElementById('intensity').value = 5;
+  document.getElementById('intensity-val').textContent = 5;
+  ['q-toward','q-resist','q-pattern','q-signal'].forEach(function(id){ document.getElementById(id).value=''; });
+  document.getElementById('entry-title').textContent = "Today's Frequency";
+  document.getElementById('entry-title').style.color = 'var(--gold)';
+}
+
+/* ── ribbon (last 30 days) ── */
+function renderRibbon(){
+  var wrap = document.getElementById('ribbon');
+  wrap.innerHTML = '';
+  var today = new Date();
+  for (var i=29; i>=0; i--){
+    var k = keyOf(addDays(today, -i));
+    var e = state.entries[k];
+    var seg = document.createElement('div');
+    if (e && FMAP[e.freq]){
+      var f = FMAP[e.freq];
+      var op = 0.35 + (e.intensity/10)*0.65;
+      seg.className = 'seg';
+      seg.style.background = f.color;
+      seg.style.opacity = op;
+      seg.title = fmtShort(k)+' · '+f.name+' ('+e.intensity+'/10)';
+    } else {
+      seg.className = 'seg empty';
+      seg.title = fmtShort(k)+' · —';
+    }
+    wrap.appendChild(seg);
+  }
+  document.getElementById('ribbon-start').textContent = fmtShort(keyOf(addDays(today,-29)));
+}
+
+/* ── stats ── */
+function computeStats(){
+  var keys = Object.keys(state.entries).sort();
+  var total = keys.length;
+
+  // streak: consecutive days ending today or yesterday
+  var streak = 0;
+  var cur = new Date();
+  if (!state.entries[keyOf(cur)]) cur = addDays(cur, -1); // grace: yesterday still counts
+  while (state.entries[keyOf(cur)]) { streak++; cur = addDays(cur, -1); }
+
+  // dominant frequency
+  var counts = {};
+  keys.forEach(function(k){ var f=state.entries[k].freq; counts[f]=(counts[f]||0)+1; });
+  var dom=null, domN=0;
+  for (var f in counts){ if(counts[f]>domN){domN=counts[f]; dom=f;} }
+
+  // most common transition (freq A -> freq B on consecutive logged days)
+  var trans = {}, bestT=null, bestTN=0;
+  for (var i=1;i<keys.length;i++){
+    var a=state.entries[keys[i-1]].freq, b=state.entries[keys[i]].freq;
+    if (a===b) continue;
+    var t=a+'→'+b; trans[t]=(trans[t]||0)+1;
+    if (trans[t]>bestTN){ bestTN=trans[t]; bestT=t; }
+  }
+  return { total:total, streak:streak, dom:dom, domN:domN, counts:counts, bestT:bestT, bestTN:bestTN, keys:keys };
+}
+function renderStats(st){
+  document.getElementById('s-streak').textContent = st.streak;
+  document.getElementById('s-total').textContent = st.total;
+  var domEl = document.getElementById('s-dom');
+  if (st.dom){ domEl.textContent = FMAP[st.dom].name; domEl.style.color = FMAP[st.dom].color; }
+  else { domEl.textContent = '—'; domEl.style.color = 'var(--gold)'; }
+  var shiftEl = document.getElementById('s-shift');
+  if (st.bestT){
+    var p = st.bestT.split('→');
+    shiftEl.innerHTML = FMAP[p[0]].name.slice(0,3)+'→'+FMAP[p[1]].name.slice(0,3);
+  } else { shiftEl.textContent = '—'; }
+}
+
+/* ── the reading ── */
+function renderInsight(st){
+  var el = document.getElementById('insight-text');
+  if (st.total < 3){
+    el.className = 'rule';
+    el.textContent = 'Log ' + (3-st.total) + ' more day' + (3-st.total===1?'':'s') + ' and the Key begins to read you back.';
+    return;
+  }
+  el.className = '';
+  var domF = FMAP[st.dom];
+  var pct = Math.round((st.domN/st.total)*100);
+  var lines = [];
+  lines.push('<strong>'+domF.name+'</strong> is your carrier frequency — it ran you on <strong>'+pct+'%</strong> of your logged days. <em class="rule">'+domF.tag+'</em>');
+
+  // spread / range
+  var distinct = Object.keys(st.counts).length;
+  if (distinct <= 2) lines.push('You are living inside a narrow band right now. Deep, not wide. Watch for the frequency you <em>never</em> log — that\'s usually the one asking for attention.');
+  else if (distinct >= 6) lines.push('You are moving across a wide spectrum — '+distinct+' distinct frequencies in your record. Range like this is either integration or scatter. The signals you left yourself will tell you which.');
+
+  if (st.bestT){
+    var p = st.bestT.split('→');
+    lines.push('Your most-worn path is <strong>'+FMAP[p[0]].name+' → '+FMAP[p[1]].name+'</strong>. When '+FMAP[p[0]].name+' rises, '+FMAP[p[1]].name+' tends to follow. That is a pattern you can now <em>see coming</em>.');
+  }
+
+  // streak nudge
+  if (st.streak >= 7) lines.push('<strong>'+st.streak+' days unbroken.</strong> You are no longer guessing at yourself — you have data on your own soul.');
+  else if (st.streak >= 3) lines.push('A '+st.streak+'-day thread is forming. Keep it unbroken and the map sharpens.');
+
+  el.innerHTML = lines.join('<br><br>');
+}
+
+/* ── history list ── */
+function renderHistory(st){
+  var wrap = document.getElementById('history');
+  if (st.keys.length === 0){
+    wrap.innerHTML = '<div class="empty-hist">No entries yet.<br>Your record begins the moment you seal your first day.</div>';
+    return;
+  }
+  wrap.innerHTML = '';
+  st.keys.slice().reverse().forEach(function(k){
+    var e = state.entries[k]; var f = FMAP[e.freq] || FMAP.white;
+    var div = document.createElement('div');
+    div.className = 'entry'; div.style.borderLeftColor = f.color;
+    var body = '';
+    if (e.toward)  body += '<span class="lbl">Moved toward</span>'+escapeHtml(e.toward);
+    if (e.resist)  body += '<span class="lbl">Resisted</span>'+escapeHtml(e.resist);
+    if (e.pattern) body += '<span class="lbl">Pattern</span>'+escapeHtml(e.pattern);
+    if (e.signal)  body += '<span class="lbl">Signal to tomorrow</span><span class="entry-sig">'+escapeHtml(e.signal)+'</span>';
+    if (!body) body = '<span style="color:var(--muted);font-style:italic">No notes — frequency only.</span>';
+    div.innerHTML =
+      '<div class="entry-top">'+
+        '<span class="entry-freq" style="color:'+f.color+'"><span class="cdot" style="background:'+f.color+';color:'+f.color+'"></span>'+f.name+' · '+f.role+' <span style="color:var(--muted)">'+e.intensity+'/10</span></span>'+
+        '<span class="entry-date">'+fmtLong(k)+'</span>'+
+      '</div>'+
+      '<div class="entry-body">'+body+'<br><span class="entry-del" data-k="'+k+'">delete this entry</span></div>';
+    div.addEventListener('click', function(ev){
+      if (ev.target.classList.contains('entry-del')){
+        ev.stopPropagation();
+        if (confirm('Delete the entry for '+fmtLong(k)+'? This cannot be undone.')){
+          delete state.entries[k]; save(); renderAll();
+          if (k===todayKey()){ clearForm(); document.getElementById('save-btn').textContent='◆ Seal Today\'s Entry'; }
+        }
+        return;
+      }
+      div.classList.toggle('open');
+    });
+    wrap.appendChild(div);
+  });
+}
+
+/* ── export / import ── */
+function exportBackup(){
+  var blob = new Blob([JSON.stringify(state, null, 2)], {type:'application/json'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url; a.download = 'pattern-key-backup-'+todayKey()+'.json';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+function importBackup(file){
+  var reader = new FileReader();
+  reader.onload = function(){
+    try {
+      var data = JSON.parse(reader.result);
+      if (!data.entries) throw new Error('bad');
+      if (confirm('Restore this backup? It will merge with your current entries.')){
+        state.name = state.name || data.name || '';
+        for (var k in data.entries){ state.entries[k] = data.entries[k]; }
+        save(); location.reload();
+      }
+    } catch(e){ alert('That file is not a valid Pattern Key backup.'); }
+  };
+  reader.readAsText(file);
+}
+
+/* ── master render ── */
+function renderAll(){
+  renderRibbon();
+  var st = computeStats();
+  renderStats(st);
+  renderInsight(st);
+  renderHistory(st);
+}
+
+/* ── wire up ── */
+function init(){
+  document.getElementById('today-date').textContent = fmtLong(todayKey());
+  renderGreet();
+  renderFreqs();
+  hydrateForm();
+  renderAll();
+
+  document.getElementById('intensity').addEventListener('input', function(){
+    document.getElementById('intensity-val').textContent = this.value;
+  });
+  document.getElementById('save-btn').addEventListener('click', saveToday);
+  document.getElementById('clear-btn').addEventListener('click', function(){
+    clearForm(); document.getElementById('save-btn').textContent = '◆ Seal Today\'s Entry';
+  });
+  document.getElementById('export-btn').addEventListener('click', exportBackup);
+  document.getElementById('import-btn').addEventListener('click', function(){ document.getElementById('import-file').click(); });
+  document.getElementById('import-file').addEventListener('change', function(){ if(this.files[0]) importBackup(this.files[0]); });
+  document.getElementById('print-btn').addEventListener('click', function(){ window.print(); });
+
+  document.getElementById('greet').addEventListener('click', function(ev){
+    if (ev.target.id === 'set-name'){
+      var n = prompt('Name this journal — your name, or a name for who you are becoming:');
+      if (n!==null){ state.name = n.trim(); save(); renderGreet(); }
+    }
+  });
+
+  // read ?name= handoff from the capture page (optional)
+  try {
+    var qp = new URLSearchParams(location.search);
+    if (qp.get('name') && !state.name){ state.name = qp.get('name'); save(); renderGreet(); }
+  } catch(e){}
+}
+
+/* ── particle field ── */
+(function(){
+  var c = document.getElementById('bg'), x = c.getContext('2d'), ps = [], N = 55;
+  function rs(){ c.width = innerWidth; c.height = innerHeight; }
+  rs(); addEventListener('resize', rs);
+  for (var i=0;i<N;i++) ps.push({ x:Math.random()*c.width, y:Math.random()*c.height, r:Math.random()*1.4+.2, vx:(Math.random()-.5)*.14, vy:(Math.random()-.5)*.14, a:Math.random()*.5+.2 });
+  (function t(){
+    x.clearRect(0,0,c.width,c.height);
+    for (var i=0;i<ps.length;i++){ var p=ps[i]; p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0)p.x=c.width; if(p.x>c.width)p.x=0; if(p.y<0)p.y=c.height; if(p.y>c.height)p.y=0;
+      x.fillStyle='rgba(212,175,55,'+p.a*.6+')'; x.beginPath(); x.arc(p.x,p.y,p.r,0,Math.PI*2); x.fill();
+    } requestAnimationFrame(t);
+  })();
+})();
+
+init();
+</script>
+</body>
+</html>

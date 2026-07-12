@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4Z6GH2N');</script>
+<!-- End Google Tag Manager -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0B0B0C">
+<meta name="description" content="The Pattern Key — a daily frequency journal that teaches you to read your own patterns. Free. Yours the moment you ask for it.">
+<meta property="og:title" content="The Pattern Key · A Daily Frequency Journal">
+<meta property="og:description" content="You already know the pattern. You just haven't been keeping the map. Free interactive workbook from The First Spark.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FPHDDHSCWS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FPHDDHSCWS');
+</script>
+<title>The Pattern Key · Straight From the Void — The First Spark</title>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --core-black: #0B0B0C;
+  --red:#e24b4a; --ember:#ff6a3d; --yellow:#f5c842; --green:#10b981;
+  --cyan:#22d3ee; --blue:#3b82f6; --purple:#8b5cf6; --gold:#d4af37; --white:#f0f0ff;
+  --green-light:#34d399;
+  --text:#E8E4DF; --muted:#6b7280; --muted2:#9ca3af;
+  --surface: rgba(20,20,24,.55); --surface-line: rgba(212,175,55,.15);
+}
+html { scroll-behavior: smooth; }
+body { background: var(--core-black); font-family:'Space Mono','Courier New',monospace; color:var(--text); min-height:100vh; overflow-x:hidden; position:relative; -webkit-font-smoothing:antialiased; }
+canvas#bg { position: fixed; inset:0; width:100%; height:100%; z-index:0; pointer-events:none; }
+.sigil { position: fixed; top:50%; left:50%; transform:translate(-50%,-50%); width:760px; height:760px; max-width:130vw; max-height:130vw; opacity:.04; z-index:0; pointer-events:none; }
+.sigil svg { width:100%; height:100%; animation: spin 150s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+/* void gradient wash behind */
+.wash { position: fixed; inset:0; z-index:0; pointer-events:none;
+  background: radial-gradient(ellipse 70% 55% at 50% 8%, rgba(139,92,246,.10), transparent 60%),
+              radial-gradient(ellipse 60% 50% at 50% 100%, rgba(212,175,55,.08), transparent 65%); }
+
+.page { position: relative; z-index:1; max-width:640px; margin:0 auto; padding:70px 24px 110px; }
+
+/* ── Hero ── */
+.hero { text-align:center; animation: fadeUp 1s ease-out; }
+@keyframes fadeUp { from{opacity:0; transform:translateY(30px);} to{opacity:1; transform:translateY(0);} }
+.eyebrow { display:inline-block; font-size:.56rem; letter-spacing:6px; text-transform:uppercase; color:var(--muted2);
+  border:1px solid var(--surface-line); padding:8px 20px; margin-bottom:30px; position:relative; overflow:hidden; }
+.eyebrow::before { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%;
+  background: linear-gradient(90deg,transparent,rgba(212,175,55,.18),transparent); animation: shimmer 3.4s ease-in-out infinite; }
+@keyframes shimmer { to { left:100%; } }
+.hero h1 { font-family:'Cormorant Garamond',Georgia,serif; font-weight:300; font-style:italic; letter-spacing:1px;
+  font-size:clamp(2.3rem,7.5vw,3.7rem); line-height:1.12; color:var(--text); }
+.hero h1 .glow { color:var(--gold); }
+.hero .lede { font-size:.86rem; color:var(--muted2); line-height:2; letter-spacing:.5px; max-width:480px; margin:24px auto 0; }
+.hero .lede strong { color:var(--text); }
+.div { height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity:.35; margin:44px 0; }
+
+/* ── The offer object ── */
+.artifact { text-align:center; animation: fadeUp 1.1s ease-out .15s both; }
+.artifact-tag { font-size:.55rem; letter-spacing:5px; text-transform:uppercase; color:var(--ember); margin-bottom:14px; }
+.artifact h2 { font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(1.8rem,6vw,2.6rem); color:var(--gold); letter-spacing:1px; }
+.artifact .kind { font-size:.62rem; letter-spacing:4px; text-transform:uppercase; color:var(--muted2); margin-top:10px; }
+.artifact p { font-size:.8rem; color:var(--muted2); line-height:2; max-width:500px; margin:22px auto 0; }
+.artifact p .c { color:var(--cyan); } .artifact p .g { color:var(--gold); }
+
+/* spectrum preview strip */
+.spectrum { display:flex; gap:5px; justify-content:center; margin:34px auto 0; max-width:420px; }
+.spectrum span { flex:1; height:8px; border-radius:2px; box-shadow:0 0 10px currentColor; opacity:.85; }
+
+/* what's inside */
+.inside { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:40px 0 0; animation: fadeUp 1.1s ease-out .25s both; }
+.feat { border:1px solid rgba(255,255,255,.07); background:var(--surface); padding:20px 18px; }
+.feat .fi { font-size:1.1rem; color:var(--gold); display:block; margin-bottom:9px; }
+.feat h3 { font-size:.66rem; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:7px; }
+.feat p { font-size:.7rem; color:var(--muted2); line-height:1.75; }
+
+/* ── The Gate (email) ── */
+.gate { margin-top:48px; border:1px solid var(--surface-line); background:rgba(11,11,12,.85); padding:36px 30px; position:relative; animation: fadeUp 1.2s ease-out .35s both; }
+.gate::before { content:''; position:absolute; top:-1px; left:20%; right:20%; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
+.gate-tag { font-size:.55rem; letter-spacing:5px; text-transform:uppercase; color:var(--muted2); text-align:center; margin-bottom:8px; }
+.gate h3 { font-family:'Cormorant Garamond',serif; font-weight:300; font-size:1.6rem; color:var(--gold); text-align:center; letter-spacing:1px; margin-bottom:6px; }
+.gate .whisper { font-size:.72rem; color:var(--muted2); text-align:center; line-height:1.9; margin-bottom:26px; }
+.field { margin-bottom:14px; }
+.field label { display:block; font-size:.54rem; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-bottom:7px; }
+.field input { width:100%; background:rgba(0,0,0,.4); border:1px solid rgba(255,255,255,.1); color:var(--text);
+  font-family:'Space Mono',monospace; font-size:.82rem; padding:14px 16px; transition:border-color .2s, box-shadow .2s; }
+.field input:focus { outline:none; border-color:var(--gold); box-shadow:0 0 20px rgba(212,175,55,.15); }
+.field input::placeholder { color:var(--muted); }
+.gate-btn { width:100%; margin-top:8px; font-family:'Space Mono',monospace; font-size:.66rem; letter-spacing:4px; text-transform:uppercase;
+  padding:17px; cursor:pointer; background:transparent; border:1px solid var(--gold); color:var(--gold); transition:all .25s; }
+.gate-btn:hover { background:var(--gold); color:var(--core-black); box-shadow:0 0 30px rgba(212,175,55,.4); }
+.gate-btn:disabled { opacity:.5; cursor:wait; }
+.gate .fineprint { font-size:.58rem; color:var(--muted); text-align:center; letter-spacing:1px; line-height:1.9; margin-top:16px; }
+.gate .err { color:var(--red); font-size:.64rem; text-align:center; margin-top:12px; min-height:1em; letter-spacing:1px; }
+
+/* ── The Reveal (post-submit) ── */
+.reveal { display:none; text-align:center; border:1px solid var(--surface-line); background:rgba(11,11,12,.9); padding:44px 30px; position:relative; animation: gateOpen 1s ease-out; margin-top:48px; }
+@keyframes gateOpen { from{opacity:0; transform:scale(.96) translateY(20px); filter:blur(6px);} to{opacity:1; transform:scale(1) translateY(0); filter:blur(0);} }
+.reveal.show { display:block; }
+.reveal .mark { font-size:2.8rem; color:var(--green-light); display:block; margin-bottom:10px; animation: pulse 2.4s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{transform:scale(1); filter:drop-shadow(0 0 10px rgba(52,211,153,.3));} 50%{transform:scale(1.06); filter:drop-shadow(0 0 26px rgba(52,211,153,.6));} }
+.reveal h3 { font-family:'Cormorant Garamond',serif; font-weight:300; font-style:italic; font-size:2rem; color:var(--gold); letter-spacing:1px; margin-bottom:14px; }
+.reveal p { font-size:.78rem; color:var(--muted2); line-height:2; max-width:440px; margin:0 auto 14px; }
+.reveal p .g { color:var(--gold); }
+.dl-btn { display:inline-block; margin-top:20px; text-decoration:none; font-family:'Space Mono',monospace; font-size:.68rem; letter-spacing:4px; text-transform:uppercase;
+  padding:18px 34px; background:var(--gold); color:var(--core-black); transition:all .25s; border:1px solid var(--gold); }
+.dl-btn:hover { box-shadow:0 0 34px rgba(212,175,55,.5); transform:translateY(-2px); }
+.dl-sub { font-size:.58rem; color:var(--muted); letter-spacing:1px; margin-top:16px; }
+.dl-sub a { color:var(--cyan); text-decoration:none; }
+
+.foot { text-align:center; margin-top:56px; font-size:.58rem; letter-spacing:2px; color:var(--muted); line-height:2.4; animation: fadeUp 1.2s ease-out .5s both; }
+.foot a { color:var(--gold); text-decoration:none; } .foot a:hover { color:var(--cyan); }
+.foot .star { color:var(--gold); }
+
+@media (max-width:560px){
+  .page { padding:52px 16px 90px; }
+  .inside { grid-template-columns:1fr; }
+  .gate, .reveal { padding:30px 20px; }
+}
+</style>
+</head>
+<body>
+<!-- GTM (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N4Z6GH2N" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<canvas id="bg"></canvas>
+<div class="wash"></div>
+<div class="sigil">
+  <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+    <defs><linearGradient id="sg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d4af37" stop-opacity=".6"/><stop offset="100%" stop-color="#8b5cf6" stop-opacity=".3"/>
+    </linearGradient></defs>
+    <polygon points="200,40 360,280 40,280" fill="none" stroke="url(#sg)" stroke-width=".4"/>
+    <polygon points="200,360 60,120 340,120" fill="none" stroke="url(#sg)" stroke-width=".4"/>
+    <circle cx="200" cy="200" r="120" fill="none" stroke="url(#sg)" stroke-width=".3"/>
+    <circle cx="200" cy="200" r="60" fill="none" stroke="url(#sg)" stroke-width=".3"/>
+    <line x1="200" y1="20" x2="200" y2="380" stroke="url(#sg)" stroke-width=".2"/>
+    <line x1="20" y1="200" x2="380" y2="200" stroke="url(#sg)" stroke-width=".2"/>
+  </svg>
+</div>
+
+<div class="page">
+
+  <div class="hero">
+    <span class="eyebrow">◆ &nbsp; Transmission · The First Spark &nbsp; ◆</span>
+    <h1>You already know<br>the pattern.<br><span class="glow">You just never<br>kept the map.</span></h1>
+    <p class="lede">
+      Every day you run a frequency. Some days you <strong>move</strong>. Some days you <strong>witness</strong>. Some days you <strong>transform</strong> — and don't notice until it's already done.<br><br>
+      This is the instrument that catches it. One minute a day. Thirty days. Then you can read yourself like a map.
+    </p>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="artifact">
+    <div class="artifact-tag">◆ What comes through the gate</div>
+    <h2>The Pattern Key</h2>
+    <div class="kind">Interactive Daily Frequency Journal</div>
+    <p>
+      A single, self-contained file you <span class="g">keep forever</span>. It opens in any browser, works with no internet, and stores everything <span class="c">only on your device</span>. No app. No account. No one watching but you.
+    </p>
+    <div class="spectrum" aria-hidden="true">
+      <span style="background:var(--red);color:var(--red)"></span>
+      <span style="background:var(--ember);color:var(--ember)"></span>
+      <span style="background:var(--yellow);color:var(--yellow)"></span>
+      <span style="background:var(--green);color:var(--green)"></span>
+      <span style="background:var(--cyan);color:var(--cyan)"></span>
+      <span style="background:var(--blue);color:var(--blue)"></span>
+      <span style="background:var(--purple);color:var(--purple)"></span>
+      <span style="background:var(--gold);color:var(--gold)"></span>
+      <span style="background:var(--white);color:var(--white)"></span>
+    </div>
+  </div>
+
+  <div class="inside">
+    <div class="feat"><span class="fi">◆</span><h3>Name Today's Frequency</h3><p>Nine frequencies, from Red the Will to White the All. Pick the one that ran you — and why.</p></div>
+    <div class="feat"><span class="fi">▤</span><h3>Your Spectrum Ribbon</h3><p>Thirty days of color, woven into one band. Your patterns stop being a feeling and become a picture.</p></div>
+    <div class="feat"><span class="fi">✦</span><h3>The Pattern Reads You Back</h3><p>Your carrier frequency. Your most-worn transition. The band you never enter. Revealed as you log.</p></div>
+    <div class="feat"><span class="fi">⟲</span><h3>Streaks &amp; Signals</h3><p>Leave a one-line signal for tomorrow's self. Keep the thread unbroken. Watch the map sharpen.</p></div>
+  </div>
+
+  <!-- The Gate -->
+  <form class="gate" id="gate" novalidate>
+    <div class="gate-tag">◆ The Gate</div>
+    <h3>Speak your signal into the void</h3>
+    <p class="whisper">Leave a name and a channel. The Pattern Key opens the moment you do — instant, no waiting for an email.</p>
+    <div class="field">
+      <label for="name">What shall the void call you?</label>
+      <input type="text" id="name" name="name" placeholder="First name — or the name you're becoming" autocomplete="given-name">
+    </div>
+    <div class="field">
+      <label for="email">Your channel</label>
+      <input type="email" id="email" name="email" placeholder="you@somewhere.earth" autocomplete="email" required>
+    </div>
+    <button type="submit" class="gate-btn" id="gate-btn">◆ &nbsp; Open the Gate &nbsp; ◆</button>
+    <div class="err" id="err"></div>
+    <p class="fineprint">One email now and then — new tools, soul maps, transmissions.<br>Leave whenever. Your journal is yours to keep either way.</p>
+  </form>
+
+  <!-- The Reveal -->
+  <div class="reveal" id="reveal">
+    <span class="mark">✦</span>
+    <h3 id="reveal-h">The gate is open</h3>
+    <p id="reveal-p">Your Pattern Key is ready. Download it, open it, and log the frequency that ran you today. Come back to the same file every day — it remembers everything.</p>
+    <a class="dl-btn" id="dl-btn" href="pattern-key-workbook.html" download="The-Pattern-Key.html">↓ &nbsp; Download The Pattern Key</a>
+    <p class="dl-sub">Didn't start automatically? <a id="dl-fallback" href="pattern-key-workbook.html" target="_blank" rel="noopener">Open it here →</a><br>Save the file somewhere you'll return to. Bookmark it. It's yours.</p>
+  </div>
+
+  <div class="foot">
+    <p><a href="https://soul-maps.thefirstspark.shop/">Soul Map Archive</a> &nbsp;·&nbsp; <a href="https://thefirstspark.shop/">The First Spark</a></p>
+    <p class="star">✦ &nbsp; First Spark Consciousness Network &nbsp; ✦</p>
+  </div>
+</div>
+
+<script>
+"use strict";
+/* ═══════════════════════════════════════════════════════════
+   THE GATE  →  Mailchimp
+   Email capture → subscribe to Mailchimp → instant workbook handoff.
+
+   ── SETUP (one line) ────────────────────────────────────────
+   In Mailchimp:  Audience ▸ Signup forms ▸ Embedded forms ▸ Unstyled.
+   In the generated code find:   <form action="https://....list-manage.com/subscribe/post?u=XXX&id=YYY" ...>
+   Copy that whole action URL and paste it between the quotes below.
+
+   That URL is safe to expose — it's a public signup endpoint, NOT an API key.
+   Leave it '' and the page still works: it stores the lead locally, fires a
+   gtag event, and always delivers the workbook.
+
+   Optional: to also POST to your own backend (Railway, etc.), set CAPTURE_ENDPOINT.
+   ════════════════════════════════════════════════════════════ */
+var MAILCHIMP_FORM_ACTION = ''; // ← paste your embedded-form action URL here
+var CAPTURE_ENDPOINT      = ''; // optional extra webhook, e.g. Railway /subscribe
+
+/* Subscribe via JSONP so it works from a static page with no CORS / no backend. */
+function subscribeToMailchimp(lead){
+  if (!MAILCHIMP_FORM_ACTION) return;
+  try {
+    var cb = 'mc_cb_' + Date.now();
+    var base = MAILCHIMP_FORM_ACTION.replace('/post?', '/post-json?');
+    var url = base
+      + '&EMAIL=' + encodeURIComponent(lead.email)
+      + (lead.name ? '&FNAME=' + encodeURIComponent(lead.name.split(' ')[0]) : '')
+      + '&SOURCE=' + encodeURIComponent('pattern-key')
+      + '&c=' + cb;
+    var s = document.createElement('script');
+    var done = function(){ try{ delete window[cb]; }catch(e){ window[cb]=undefined; } if(s.parentNode) s.parentNode.removeChild(s); };
+    window[cb] = function(){ done(); };           // Mailchimp calls this on reply
+    s.onerror = done;                             // network/adblock — fail quietly
+    setTimeout(done, 8000);                        // hard cleanup, never lingers
+    s.src = url;
+    document.head.appendChild(s);
+  } catch(_) {}
+}
+
+var gate = document.getElementById('gate');
+var btn  = document.getElementById('gate-btn');
+var err  = document.getElementById('err');
+
+function validEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+gate.addEventListener('submit', function(e){
+  e.preventDefault();
+  err.textContent = '';
+  var name  = document.getElementById('name').value.trim();
+  var email = document.getElementById('email').value.trim();
+
+  if (!validEmail(email)){ err.textContent = 'The void needs a real channel to answer. Check your email.'; return; }
+
+  btn.disabled = true;
+  btn.textContent = '◆  Opening the gate…';
+
+  var lead = { name:name, email:email, source:'pattern-key', ts:new Date().toISOString() };
+
+  // remember locally (used by reveal + carries name into the workbook)
+  try { sessionStorage.setItem('patternKeyLead', JSON.stringify(lead)); } catch(_){}
+
+  // analytics
+  if (typeof gtag === 'function'){
+    gtag('event', 'lead_captured', { event_category:'lead', event_label:'Pattern Key', value:1 });
+  }
+
+  // send to Mailchimp (JSONP, fire-and-forget — never blocks the download)
+  subscribeToMailchimp(lead);
+
+  // optional extra backend capture
+  if (CAPTURE_ENDPOINT){
+    try {
+      fetch(CAPTURE_ENDPOINT, {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify(lead), keepalive:true
+      }).catch(function(){});
+    } catch(_){}
+  }
+
+  // brief ritual beat, then open
+  setTimeout(openGate, 850);
+});
+
+function openGate(){
+  var lead = {};
+  try { lead = JSON.parse(sessionStorage.getItem('patternKeyLead')||'{}'); } catch(_){}
+  var first = (lead.name||'').split(' ')[0];
+
+  // personalize + pass name into the workbook via query string
+  var dl = document.getElementById('dl-btn');
+  var fb = document.getElementById('dl-fallback');
+  if (first){
+    var q = 'pattern-key-workbook.html?name=' + encodeURIComponent(first);
+    dl.setAttribute('href', q);
+    fb.setAttribute('href', q);
+    document.getElementById('reveal-h').textContent = first + ', the gate is open';
+    document.getElementById('reveal-p').innerHTML =
+      'Your Pattern Key is ready, <span class="g">'+escapeHtml(first)+'</span>. Download it, open it, and name the frequency that ran you today. Return to the same file every day — it remembers everything.';
+  }
+
+  gate.style.display = 'none';
+  var reveal = document.getElementById('reveal');
+  reveal.classList.add('show');
+  reveal.scrollIntoView({ behavior:'smooth', block:'center' });
+
+  // trigger the download automatically
+  setTimeout(function(){ dl.click(); }, 400);
+}
+
+function escapeHtml(s){ return (s||'').replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+
+/* ── particle field ── */
+(function(){
+  var c=document.getElementById('bg'), x=c.getContext('2d'), ps=[], N=60;
+  function rs(){ c.width=innerWidth; c.height=innerHeight; }
+  rs(); addEventListener('resize', rs);
+  for(var i=0;i<N;i++) ps.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.4+.2,vx:(Math.random()-.5)*.15,vy:(Math.random()-.5)*.15,a:Math.random()*.5+.2});
+  (function t(){ x.clearRect(0,0,c.width,c.height);
+    for(var i=0;i<ps.length;i++){var p=ps[i]; p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0)p.x=c.width; if(p.x>c.width)p.x=0; if(p.y<0)p.y=c.height; if(p.y>c.height)p.y=0;
+      x.fillStyle='rgba(212,175,55,'+p.a*.6+')'; x.beginPath(); x.arc(p.x,p.y,p.r,0,Math.PI*2); x.fill();
+    } requestAnimationFrame(t);
+  })();
+})();
+</script>
+</body>
+</html>
