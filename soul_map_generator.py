@@ -461,6 +461,156 @@ PERSONAL_DAY_MEANINGS = {
     33: "Today: Serve others. Your presence heals.",
 }
 
+# ============================================================
+# 5b. ADVICE CONTENT
+# ============================================================
+
+# Domain-specific advice keyed by personal month/year number.
+# Each entry is a dict of {domain: advice_text}.
+CYCLE_ADVICE = {
+    1: {
+        'work':          "Launch. This is the window for starting projects, pitching ideas, and staking out new territory. Don't wait for permission. The cycle rewards first movers.",
+        'relationships': "Initiate the conversation you've been circling. State your position clearly. Relationships that can't hold your independent self aren't the right fit for this phase.",
+        'creativity':    "Start something you've never tried. Imperfect beginnings beat perfect non-starts. The 1 cycle is pure creative momentum — use it.",
+        'health':        "Establish a new physical routine. One habit started now compounds across the entire cycle. Focus on what ignites energy, not what drains it.",
+        'finances':      "Make the first move on a financial goal. Open the account, send the proposal, make the call. Initiating creates options — waiting forfeits them.",
+    },
+    2: {
+        'work':          "Partner up. Collaboration outperforms solo effort this cycle. Listen twice as much as you speak in meetings. The quiet observations are where the real signal lives.",
+        'relationships': "Deepen what exists before adding new. Be patient with timing — things are developing under the surface. Small acts of care carry more weight than grand gestures.",
+        'creativity':    "Co-create. Find a collaborator, a writing partner, a creative sounding board. Your work gets richer through dialogue right now.",
+        'health':        "Rest is productive. The 2 cycle supports the nervous system through gentleness — walks, stretching, sleep. Pushing hard works against the frequency.",
+        'finances':      "Review and organize rather than expand. Look for overlooked income or underused assets. Patience with timing here pays off more than aggressive moves.",
+    },
+    3: {
+        'work':          "Communicate and be visible. Present your ideas, write the post, send the pitch. The 3 cycle rewards those who show up and speak up. Hiding wastes the frequency.",
+        'relationships': "Be expressive. Say what you feel. Light social energy is high — lean into connection, joy, and play. Laughter is data in a 3 cycle.",
+        'creativity':    "This is your highest creative window in the cycle. Create without editing. Let the work breathe. Expression is the point, not perfection.",
+        'health':        "Joy is medicine this month. Prioritize what makes you feel alive — movement that feels like play, food that delights, rest that restores. Depletion through obligation costs double.",
+        'finances':      "Invest in creative tools or education that amplifies your expression. Avoid impulse buys from social comparison. Money flows toward authentic visibility.",
+    },
+    4: {
+        'work':          "Build systems and execute. This is the cycle for doing the unsexy structural work — the foundation that everything else stands on. Document, organize, and deliver.",
+        'relationships': "Show up consistently. Small reliable actions matter more than big romantic gestures. Loyalty and follow-through are the currency of this frequency.",
+        'creativity':    "Finish what you started. Discipline now creates the conditions for future flow. Constraints breed creativity — use the limitation as a feature.",
+        'health':        "Structure your routines tightly. Consistent sleep, regular meals, and scheduled movement compound in this cycle. Discipline with the body now creates a strong base.",
+        'finances':      "Budget, track, and tighten systems. Address what you've been avoiding. The work you do now on financial foundations sets the architecture for the next 4 years.",
+    },
+    5: {
+        'work':          "Adapt fast. Old methods may stop working — that's information, not failure. Stay curious about new approaches. Unexpected pivots are often upgrades in disguise.",
+        'relationships': "Give yourself and others room to breathe. Clingy or controlling dynamics hit maximum friction now. Freedom and variety aren't threats — they're fuel.",
+        'creativity':    "Follow curiosity without a destination. Experiment, remix, break your own rules. Breakthroughs come from unexpected combinations, not rehearsed methods.",
+        'health':        "Move. Literally. New environments, new exercise modalities, time outdoors in unfamiliar places. The 5 cycle wants physical variety — repetitive routines create drag.",
+        'finances':      "Stay flexible with financial plans. Opportunities may appear suddenly. Keep liquid — overly rigid commitments will chafe. Quick decisions have windows.",
+    },
+    6: {
+        'work':          "Serve with care, but enforce your boundaries. Over-responsibility is the 6 trap. Delegate, say no to what isn't yours to carry, and let others develop their own capacity.",
+        'relationships': "Tend to home and close relationships. This is the cycle for deepening commitments, resolving tensions, and showing up as the stable presence. Repair what needs repairing.",
+        'creativity':    "Create for others. Make something that genuinely helps or beautifies someone else's life. Service-oriented creative work lands with exceptional power in this cycle.",
+        'health':        "Prioritize the home environment. Your physical surroundings directly affect your nervous system this cycle. Clear clutter, bring in beauty, tend to your physical space.",
+        'finances':      "Invest in stability — home, family, long-term security. Avoid decisions made from guilt or obligation. Financial generosity is rewarding but requires strong boundaries.",
+    },
+    7: {
+        'work':          "Research, study, and go deep. This is the cycle for expertise, not expansion. The quality of your thinking and preparation will determine next cycle's results.",
+        'relationships': "Solitude is not neglect. Communicate your need for inner quiet so others don't misread your withdrawal. Time alone now is fuel, not avoidance.",
+        'creativity':    "Work in private. Don't publish or share prematurely. The 7 cycle is for developing depth — let the work mature before it meets the world.",
+        'health':        "Mental and spiritual health first. Meditation, journaling, time in nature without devices. Your nervous system is processing more than it lets on. Honor the integration.",
+        'finances':      "Don't make major financial moves now unless thoroughly researched. Patience rewards more than speed. Study what you don't yet understand before committing.",
+    },
+    8: {
+        'work':          "Lead and negotiate. Step into authority with confidence. Ask for the raise, sign the contract, close the deal. The 8 cycle rewards those who operate at the scale of their vision.",
+        'relationships': "Power dynamics are visible now — in your relationships and in yourself. Use influence ethically. Generosity with power creates loyalty; abuse creates damage that outlasts the cycle.",
+        'creativity':    "Create at scale. Think about distribution, reach, and legacy. This is not the time for small projects — expand the scope of your ambition.",
+        'health':        "Strength training. Building physical power in an 8 cycle runs with the frequency. Regulate stress actively — the intensity of this period requires deliberate decompression.",
+        'finances':      "Move on major financial opportunities. This is the manifestation cycle. Negotiating, investing, and building wealth align with the current frequency. Think bigger than feels comfortable.",
+    },
+    9: {
+        'work':          "Complete and release. Finish what you started, hand off what no longer serves you, and tie up loose ends. Starting new projects now creates drag — clear the runway for Year 1.",
+        'relationships': "Release relationships or dynamics that have run their course. Practice forgiveness — for others and for yourself. Completion is the greatest gift a 9 cycle offers.",
+        'creativity':    "Synthesize and integrate your creative work. What have you learned? What themes recur? Collect, curate, and complete. The harvest is richer than it appears.",
+        'health':        "Detox and clear. What physical patterns need completing? Lingering symptoms often signal something the system is ready to release. Rest, cleanse, and honor what is ending.",
+        'finances':      "Conclude financial obligations — pay off debts, close accounts, simplify. Clear the financial field for the new cycle. Hoarding energy now creates blocks for Year 1.",
+    },
+    11: {
+        'work':          "Transmit your vision. People are unusually receptive to what you share right now. Speak, write, teach — your signal carries unusual clarity and voltage in this master cycle.",
+        'relationships': "Connections made now may be significant beyond what's immediately apparent. Stay open to unlikely people. Your frequency is drawing toward you what you most need to encounter.",
+        'creativity':    "Channel without editing. The 11 is a receiving cycle — inspiration comes at speed, often at odd hours. Capture everything. Refine later. The raw signal is the gold.",
+        'health':        "Ground aggressively. Master years run hot and the nervous system absorbs more than it releases. Time in nature, bodywork, and consistent grounding practices prevent burnout.",
+        'finances':      "Trust inspired financial intuitions, but verify before acting. The 11 sends clear signals — and also magnifies wishful thinking. Calibrate: does this serve the vision or the fantasy?",
+    },
+    22: {
+        'work':          "Build for permanence. This cycle supports large-scale creation — infrastructure, institutions, platforms, legacies. Think about what you want to still exist in 20 years and build toward that.",
+        'relationships': "Collaborate with people who share your long-term vision. Transactional relationships chafe now. Find those who want to build something real and build with them.",
+        'creativity':    "Architect. This is not a cycle for sketches — it's a cycle for blueprints. Create the plan that others can build from. Structure and scale are the point.",
+        'health':        "Protect your physical system like the long-term asset it is. Sustainable practices beat intense short-term efforts. You are building capacity for years, not weeks.",
+        'finances':      "Invest in long-term assets. Create financial infrastructure — systems, accounts, structures — that support your vision decade over decade. Think generationally.",
+    },
+    33: {
+        'work':          "Serve without losing self. Your presence transforms the field around you right now — use this deliberately. Mentor, teach, hold space. Your impact is larger than you know.",
+        'relationships': "You are a healing force in your close relationships this cycle. Show up fully. The people in your inner circle need your presence, not your performance.",
+        'creativity':    "Create for the collective. Art, writing, teaching, music — any form of expression aimed at healing or awakening lands with unusual power in this master cycle.",
+        'health':        "Self-care is not optional — it is structural. You cannot transmit healing if you are depleted. Rest, nourish, and protect your energy with the same care you give others.",
+        'finances':      "Generosity is rewarded, but without boundaries it drains. Give from overflow, not from scarcity. Financial structures that support your service mission are worth investing in now.",
+    },
+}
+
+# Tone modifiers: how the personal year context colors the advice
+YEAR_TONE = {
+    1:  "New beginnings amplify the urgency. Act now — the window for planting is open.",
+    2:  "Patience deepens the work. Don't rush outcomes; let partnerships develop.",
+    3:  "Expression multiplies results. Being visible creates unexpected openings.",
+    4:  "Discipline compounds. The work done now builds the platform for the next cycle.",
+    5:  "Change is the method. Stay loose — rigidity costs more than uncertainty.",
+    6:  "Service and stability are the themes. Root down while expanding outward.",
+    7:  "Inner work is outer preparation. What you understand now becomes your power later.",
+    8:  "Manifestation is at peak. Operate at the scale of your actual vision.",
+    9:  "Completion is the beginning. Clear space and trust the threshold you're crossing.",
+    11: "Master transmission is active. Elevate every interaction — the signal is hot.",
+    22: "Build for permanence. Scale and structure are the language of this cycle.",
+    33: "Service as power. Your presence is the offering — show up fully.",
+}
+
+ADVICE_DOMAINS = [
+    ('work',          '⚡ Work & Direction',      '#26E4D8'),
+    ('relationships', '♡ Relationships',          '#F3B23A'),
+    ('creativity',    '✦ Creativity & Expression', '#8b5cf6'),
+    ('health',        '◉ Body & Energy',           '#84cc16'),
+    ('finances',      '◈ Finances',                '#FF6A3D'),
+]
+
+
+def generate_advice_html(personal_month_num, personal_year_num, name):
+    """Build an HTML advice block for a given personal month inside a personal year.
+
+    Returns an HTML string ready for template substitution.
+    """
+    advice_set = CYCLE_ADVICE.get(personal_month_num, CYCLE_ADVICE.get(1))
+    year_tone = YEAR_TONE.get(personal_year_num, '')
+
+    items_html = ''
+    for domain_key, domain_label, color in ADVICE_DOMAINS:
+        text = advice_set.get(domain_key, '')
+        items_html += f"""
+      <div style="margin: 14px 0; padding: 16px 20px; background: rgba(255,255,255,0.02); border-left: 3px solid {color}; border-radius: 0 6px 6px 0;">
+        <div style="font-family: 'Space Mono', monospace; font-size: 0.7rem; color: {color}; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 8px;">{domain_label}</div>
+        <div style="font-size: 0.95rem; color: #e8e6e3; line-height: 1.75;">{text}</div>
+      </div>"""
+
+    year_context_html = ''
+    if year_tone:
+        year_context_html = f"""
+      <div style="margin-top: 24px; padding: 14px 18px; background: rgba(243,178,58,0.06); border: 1px solid rgba(243,178,58,0.2); border-radius: 6px; font-family: 'Space Mono', monospace; font-size: 0.75rem; color: #F3B23A; line-height: 1.6;">
+        <strong>Personal Year {personal_year_num} context:</strong> {year_tone}
+      </div>"""
+
+    return f"""
+  <div style="margin: 28px 0; padding: 28px; background: rgba(10,10,15,0.85); border: 1px solid rgba(38,228,216,0.2); border-radius: 10px;">
+    <div style="font-family: 'Space Mono', monospace; font-size: 0.7rem; color: #26E4D8; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; margin-bottom: 6px;">Advice for Personal Month {personal_month_num}</div>
+    <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: #F3B23A; font-weight: 600; margin-bottom: 20px;">{name.split()[0]}, here is how to move this month</div>
+    {items_html}
+    {year_context_html}
+  </div>"""
+
 
 # ============================================================
 # 6. HTML TEMPLATE
@@ -821,6 +971,10 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
       <a href="${monthly_update_link}" style="color: #26E4D8; text-decoration: none; font-family: 'Space Mono', monospace; font-size: 0.9rem;">→ View This Month's Energy Update</a>
     </p>
   </div>
+
+  <!-- ===== ADVICE ===== -->
+  <h2>Advice for This Cycle</h2>
+  ${advice_section}
 
   <!-- ===== ADVANCED FEATURES ===== -->
   <h2>Advanced Analysis</h2>
@@ -1995,6 +2149,7 @@ def generate_soul_map(full_name, birth_date, birth_time=None, birth_city=None, b
         shadow_integration_section=shadow_html,
         activation_code_section=activation_html,
         destiny_checkpoints_section=destiny_html,
+        advice_section=generate_advice_html(pm, py, full_name),
     )
 
     return html, {
@@ -2298,10 +2453,15 @@ def generate_monthly_update(full_name, birth_date, current_year=None, current_mo
     </div>
 
     <div class="year-context">
-      Within your Personal Year ${py}, this month's energy is: <span class="highlight">${current_month} + ${py} context = ${pm}</span>
+      Within your Personal Year ${py}, this month's energy is: <span class="highlight">${current_month} + ${py} context = ${current_month}</span>
     </div>
 
     <a href="${map_slug}.html" class="back-link">← Return to Full Soul Map</a>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Advice for This Month</h2>
+    ${advice_section}
   </section>
 
   <footer class="footer">
@@ -2344,6 +2504,7 @@ def generate_monthly_update(full_name, birth_date, current_year=None, current_mo
         next_month_meaning_title=PERSONAL_MONTH_MEANINGS.get(pm_next, 'Cycle').split('.')[0],
         next_month_meaning=PERSONAL_MONTH_MEANINGS.get(pm_next, 'Frequency unmapped.'),
         map_slug=base_filename,
+        advice_section=generate_advice_html(pm, py, full_name),
     )
 
     # Filename: {INITIALS}{BIRTHMONTH}{BIRTHYEAR}-{YYYYMM}.html
