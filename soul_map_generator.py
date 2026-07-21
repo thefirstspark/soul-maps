@@ -1482,6 +1482,95 @@ def format_quantum_display(quantum_hex):
     return quantum_hex or ''
 
 
+# Color Codex — CSS class names match codex-colors.css / archive cards
+# (violet = purple tier; rose/silver/red/yellow are structural + spectrum)
+CODEX_COLOR_META = {
+    'red':    {'role': 'The Will',         'tier': 'Red'},
+    'ember':  {'role': 'The Ignition',     'tier': 'Ember'},
+    'yellow': {'role': 'The Joy',          'tier': 'Yellow'},
+    'green':  {'role': 'The Field',        'tier': 'Green'},
+    'cyan':   {'role': 'The Signal',       'tier': 'Cyan'},
+    'blue':   {'role': 'The Mind',         'tier': 'Blue'},
+    'violet': {'role': 'The Transformer',  'tier': 'Purple'},
+    'gold':   {'role': 'The Orchestrator', 'tier': 'Gold'},
+    'white':  {'role': 'The All',          'tier': 'White'},
+    'rose':   {'role': 'The Bond',         'tier': 'Rose'},
+    'silver': {'role': 'The Mirror',       'tier': 'Silver'},
+}
+
+
+def codex_color_for(life_path, expression, soul_urge, personality, birthday, maturity=None):
+    """
+    Assign Color Codex tier from birth numerology (not name hash).
+
+    Priority (first match wins) — aligned with color-codex.html chips:
+      1. Gold     — LP/EX/SU is 22 or 33, or 2+ master numbers in core set
+      2. Violet   — any single 11 on LP / EX / SU  (Transformer)
+      3. Rose     — Life Path 2 or 6             (Bond / relational)
+      4. Silver   — Life Path 9                  (Mirror / completion)
+      5. Spectrum — Life Path primary with EX refinements
+      6. Green    — Field fallback               (stabilizer)
+
+    Returns (css_class, role_label, tier_name)
+    e.g. ('violet', 'The Transformer', 'Purple')
+    """
+    core = [life_path, expression, soul_urge, personality, birthday]
+    if maturity is not None:
+        core.append(maturity)
+    masters = [n for n in core if n in MASTER_NUMBERS]
+
+    # 1. Orchestrator
+    if life_path in (22, 33) or expression in (22, 33) or soul_urge in (22, 33):
+        return 'gold', CODEX_COLOR_META['gold']['role'], CODEX_COLOR_META['gold']['tier']
+    if len(masters) >= 2:
+        return 'gold', CODEX_COLOR_META['gold']['role'], CODEX_COLOR_META['gold']['tier']
+
+    # 2. Transformer — single master 11 channel (Katelin: LP5 + EX11 → violet)
+    if 11 in (life_path, expression, soul_urge):
+        return 'violet', CODEX_COLOR_META['violet']['role'], CODEX_COLOR_META['violet']['tier']
+
+    # 3. Bond
+    if life_path in (2, 6):
+        return 'rose', CODEX_COLOR_META['rose']['role'], CODEX_COLOR_META['rose']['tier']
+
+    # 4. Mirror
+    if life_path == 9:
+        return 'silver', CODEX_COLOR_META['silver']['role'], CODEX_COLOR_META['silver']['tier']
+
+    # 5. Spectrum by Life Path + Expression refinements
+    if life_path == 1:
+        if expression == 8:
+            return 'red', CODEX_COLOR_META['red']['role'], CODEX_COLOR_META['red']['tier']
+        return 'ember', CODEX_COLOR_META['ember']['role'], CODEX_COLOR_META['ember']['tier']
+
+    if life_path == 3:
+        if 5 in (expression, soul_urge):
+            return 'cyan', CODEX_COLOR_META['cyan']['role'], CODEX_COLOR_META['cyan']['tier']
+        return 'yellow', CODEX_COLOR_META['yellow']['role'], CODEX_COLOR_META['yellow']['tier']
+
+    if life_path == 4:
+        # Architect: Field if building/holding expression, else Mind
+        if expression in (4, 6, 8, 2):
+            return 'green', CODEX_COLOR_META['green']['role'], CODEX_COLOR_META['green']['tier']
+        return 'blue', CODEX_COLOR_META['blue']['role'], CODEX_COLOR_META['blue']['tier']
+
+    if life_path == 5:
+        if expression == 3 or soul_urge == 3:
+            return 'cyan', CODEX_COLOR_META['cyan']['role'], CODEX_COLOR_META['cyan']['tier']
+        return 'ember', CODEX_COLOR_META['ember']['role'], CODEX_COLOR_META['ember']['tier']
+
+    if life_path == 7:
+        if expression == 9 or soul_urge == 9:
+            return 'silver', CODEX_COLOR_META['silver']['role'], CODEX_COLOR_META['silver']['tier']
+        return 'blue', CODEX_COLOR_META['blue']['role'], CODEX_COLOR_META['blue']['tier']
+
+    if life_path == 8:
+        return 'red', CODEX_COLOR_META['red']['role'], CODEX_COLOR_META['red']['tier']
+
+    # 6. Field fallback
+    return 'green', CODEX_COLOR_META['green']['role'], CODEX_COLOR_META['green']['tier']
+
+
 def identity_key(full_name, birth_date):
     """Stable person key: normalized name + birth date."""
     return f"{normalize_name(full_name).casefold()}|{birth_date.isoformat()}"
@@ -1570,6 +1659,7 @@ def get_or_mint_signature(full_name, birth_date, lp, expr, su, pers, bday):
     quantum = quantum_signature(lp, expr, su, pers, bday)
     hz = soul_resonance_frequency(lp, expr, su, pers, bday)
     act = activation_code(full_name, birth_date, lp)
+    color_class, color_role, color_tier = codex_color_for(lp, expr, su, pers, bday)
     rec = {
         'name': normalize_name(full_name),
         'dob': birth_date.isoformat(),
@@ -1577,6 +1667,9 @@ def get_or_mint_signature(full_name, birth_date, lp, expr, su, pers, bday):
         'quantum_display': format_quantum_display(quantum),
         'resonance_hz': hz,
         'activation': act,
+        'codex_color': color_class,
+        'codex_role': color_role,
+        'codex_tier': color_tier,
         'core': {
             'life_path': lp,
             'expression': expr,
@@ -1808,6 +1901,20 @@ def generate_soul_map(full_name, birth_date, birth_time=None, birth_city=None, b
     quantum_sig = sig_rec['quantum']
     resonance_hz = sig_rec['resonance_hz']
     activation_code_val = sig_rec['activation']
+    # Color Codex — prefer locked mint; compute if older mints predate color field
+    if sig_rec.get('codex_color'):
+        codex_class = sig_rec['codex_color']
+        codex_role = sig_rec.get('codex_role') or CODEX_COLOR_META.get(codex_class, {}).get('role', '')
+        codex_tier = sig_rec.get('codex_tier') or CODEX_COLOR_META.get(codex_class, {}).get('tier', '')
+    else:
+        codex_class, codex_role, codex_tier = codex_color_for(lp, expr, su, pers, bday, mat)
+        # Backfill color onto existing mint so next load is locked
+        sig_rec['codex_color'] = codex_class
+        sig_rec['codex_role'] = codex_role
+        sig_rec['codex_tier'] = codex_tier
+        reg = load_signatures_local()
+        reg[identity_key(full_name, birth_date)] = sig_rec
+        save_signatures_local(reg)
 
     # Karmic Debt Remediation
     karmic_remedies = karmic_debt_remediation(lp, expr, su, pers, bday, full_name)
@@ -2208,6 +2315,9 @@ def generate_soul_map(full_name, birth_date, birth_time=None, birth_city=None, b
         'resonance_hz': resonance_hz,
         'activation': activation_code_val,
         'signature_new_mint': is_new_sig,
+        'codex_color': codex_class,
+        'codex_role': codex_role,
+        'codex_tier': codex_tier,
     }
 
 
@@ -2687,6 +2797,7 @@ def generate_batch(csv_filepath, mode='both', no_deploy=False, output_dir=None):
 # 10. GITHUB AUTO-DEPLOY
 # ============================================================
 
+# Legacy name-hash palette (kept only as last-resort fallback)
 CARD_COLORS = ['gold', 'violet', 'green', 'blue', 'ember', 'cyan']
 
 LP_SHORT_LABELS = {
@@ -2706,6 +2817,8 @@ def _build_card_html(filename, summary, birth_date, birth_city=None):
     expr = summary.get('expression', '')
     su = summary.get('soul_urge', '')
     py = summary.get('personal_year', '')
+    pers = summary.get('personality', '')
+    bday = summary.get('birthday', '')
 
     lp_label = LP_SHORT_LABELS.get(lp, str(lp))
     # Windows strftime doesn't support %-d, use a fallback
@@ -2715,6 +2828,26 @@ def _build_card_html(filename, summary, birth_date, birth_city=None):
         date_str = birth_date.strftime('%B %d, %Y').replace(' 0', ' ')
 
     city_part = f' \u00b7 {birth_city}' if birth_city else ''
+
+    # Color Codex tier (real assignment — not name hash)
+    color = summary.get('codex_color')
+    codex_tier = summary.get('codex_tier')
+    codex_role = summary.get('codex_role')
+    if not color:
+        try:
+            color, codex_role, codex_tier = codex_color_for(
+                lp,
+                expr or 0,
+                su or 0,
+                pers or 0,
+                bday or 0,
+                summary.get('maturity_number'),
+            )
+        except Exception:
+            color_key = normalize_name(name).casefold()
+            color = CARD_COLORS[sum(ord(c) for c in color_key) % len(CARD_COLORS)]
+            codex_tier = color
+            codex_role = ''
 
     # Build search keywords
     search_parts = [
@@ -2727,6 +2860,8 @@ def _build_card_html(filename, summary, birth_date, birth_city=None):
         search_parts.append(f'expression {expr}')
     if su:
         search_parts.append(f'soul urge {su}')
+    if codex_tier:
+        search_parts.append(f'{codex_tier.lower()} {codex_role.lower()}'.strip())
     search_str = ' '.join(p for p in search_parts if p)
 
     # Build description
@@ -2738,13 +2873,9 @@ def _build_card_html(filename, summary, birth_date, birth_city=None):
         desc_parts.append(f'{ss} Sun')
     if chinese:
         desc_parts.append(chinese)
+    if codex_tier:
+        desc_parts.append(f'{codex_tier} · {codex_role}' if codex_role else codex_tier)
     desc_str = ' \u00b7 '.join(desc_parts)
-
-    # Stable decorative color until Color Codex rules land (step 3).
-    # Use casefolded normalized name so "Katelin" / "KATELIN " / double spaces
-    # don't flip the archive card hue.
-    color_key = normalize_name(name).casefold()
-    color = CARD_COLORS[sum(ord(c) for c in color_key) % len(CARD_COLORS)]
 
     return f'''        <a href="{filename}" class="card {color}" data-search="{search_str}">
             <div class="card-sub">Soul Map \u00b7 {date_str}{city_part}</div>
