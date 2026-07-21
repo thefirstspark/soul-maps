@@ -667,6 +667,59 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
     margin-top: 16px;
     letter-spacing: 1px;
   }
+  /* Color Codex badge — every map */
+  .codex-badge {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin: 20px 0 28px;
+    border: 1px solid var(--codex-border, rgba(139,92,246,0.5));
+    border-radius: 10px;
+    background: var(--codex-wash, rgba(139,92,246,0.12));
+    overflow: hidden;
+  }
+  .codex-badge-swatch {
+    width: 10px;
+    flex-shrink: 0;
+    background: var(--codex-hex, #8b5cf6);
+  }
+  .codex-badge-body {
+    padding: 16px 20px;
+    flex: 1;
+  }
+  .codex-badge-kicker {
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--dim, #888);
+    margin-bottom: 6px;
+  }
+  .codex-badge-tier {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--codex-hex, #8b5cf6);
+    line-height: 1.2;
+  }
+  .codex-badge-role {
+    font-size: 0.9rem;
+    color: var(--white, #f0ece4);
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+  }
+  .codex-badge-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 0.72rem;
+    letter-spacing: 1px;
+    color: #26E4D8;
+    text-decoration: none;
+  }
+  .codex-badge-link:hover { text-shadow: 0 0 8px rgba(38,228,216,0.5); }
+  @media (max-width: 520px) {
+    .codex-badge-tier { font-size: 1.4rem; }
+    .codex-badge-body { padding: 14px 16px; }
+  }
 </style>
 </head>
 <body>
@@ -677,6 +730,7 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   <h1>${name}</h1>
   ${ceremony_banner}
   <p class="generated-date">Generated ${gen_date} · thefirstspark.shop</p>
+  ${codex_badge}
 
   <p class="intro">
     This isn't a personality test. It's a coordinate system — a map of the patterns
@@ -1485,18 +1539,44 @@ def format_quantum_display(quantum_hex):
 # Color Codex — CSS class names match codex-colors.css / archive cards
 # (violet = purple tier; rose/silver/red/yellow are structural + spectrum)
 CODEX_COLOR_META = {
-    'red':    {'role': 'The Will',         'tier': 'Red'},
-    'ember':  {'role': 'The Ignition',     'tier': 'Ember'},
-    'yellow': {'role': 'The Joy',          'tier': 'Yellow'},
-    'green':  {'role': 'The Field',        'tier': 'Green'},
-    'cyan':   {'role': 'The Signal',       'tier': 'Cyan'},
-    'blue':   {'role': 'The Mind',         'tier': 'Blue'},
-    'violet': {'role': 'The Transformer',  'tier': 'Purple'},
-    'gold':   {'role': 'The Orchestrator', 'tier': 'Gold'},
-    'white':  {'role': 'The All',          'tier': 'White'},
-    'rose':   {'role': 'The Bond',         'tier': 'Rose'},
-    'silver': {'role': 'The Mirror',       'tier': 'Silver'},
+    'red':    {'role': 'The Will',         'tier': 'Red',    'hex': '#e24b4a'},
+    'ember':  {'role': 'The Ignition',     'tier': 'Ember',  'hex': '#ff6a3d'},
+    'yellow': {'role': 'The Joy',          'tier': 'Yellow', 'hex': '#f5c842'},
+    'green':  {'role': 'The Field',        'tier': 'Green',  'hex': '#10b981'},
+    'cyan':   {'role': 'The Signal',       'tier': 'Cyan',   'hex': '#22d3ee'},
+    'blue':   {'role': 'The Mind',         'tier': 'Blue',   'hex': '#3b82f6'},
+    'violet': {'role': 'The Transformer',  'tier': 'Purple', 'hex': '#8b5cf6'},
+    'gold':   {'role': 'The Orchestrator', 'tier': 'Gold',   'hex': '#d4af37'},
+    'white':  {'role': 'The All',          'tier': 'White',  'hex': '#f0f0ff'},
+    'rose':   {'role': 'The Bond',         'tier': 'Rose',   'hex': '#f43f5e'},
+    'silver': {'role': 'The Mirror',       'tier': 'Silver', 'hex': '#c4c8d4'},
 }
+
+
+def build_codex_badge_html(codex_class, codex_role=None, codex_tier=None):
+    """Visible Color Codex chip for the top of every Soul Map page."""
+    meta = CODEX_COLOR_META.get(codex_class, {})
+    hex_color = meta.get('hex', '#8b5cf6')
+    tier = codex_tier or meta.get('tier', codex_class.title() if codex_class else 'Unknown')
+    role = codex_role or meta.get('role', '')
+    # Soft wash from the tier hex
+    if hex_color.startswith('#') and len(hex_color) == 7:
+        r, g, b = int(hex_color[1:3], 16), int(hex_color[3:5], 16), int(hex_color[5:7], 16)
+        wash = f'rgba({r},{g},{b},0.12)'
+        border = f'rgba({r},{g},{b},0.5)'
+    else:
+        wash, border = 'rgba(139,92,246,0.12)', 'rgba(139,92,246,0.5)'
+
+    return f'''  <div class="codex-badge" style="--codex-hex:{hex_color}; --codex-wash:{wash}; --codex-border:{border};">
+    <div class="codex-badge-swatch" aria-hidden="true"></div>
+    <div class="codex-badge-body">
+      <div class="codex-badge-kicker">Color Codex</div>
+      <div class="codex-badge-tier">{tier}</div>
+      <div class="codex-badge-role">{role}</div>
+      <a class="codex-badge-link" href="color-codex.html#{codex_class if codex_class != 'violet' else 'purple'}">What this color means →</a>
+    </div>
+  </div>
+'''
 
 
 def codex_color_for(life_path, expression, soul_urge, personality, birthday, maturity=None):
@@ -2228,12 +2308,16 @@ def generate_soul_map(full_name, birth_date, birth_time=None, birth_city=None, b
 
     destiny_html += "    </table>\n  </div>"
 
+    # Color Codex badge (top of every map)
+    codex_badge = build_codex_badge_html(codex_class, codex_role, codex_tier)
+
     # === Build HTML ===
     template = Template(HTML_TEMPLATE)
     html = template.safe_substitute(
         name=full_name,
         ceremony_banner=ceremony_banner,
         gen_date=datetime.now().strftime('%B %d, %Y'),
+        codex_badge=codex_badge,
         life_path=lp,
         expression=expr,
         soul_urge=su,
