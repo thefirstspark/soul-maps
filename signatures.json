@@ -6,6 +6,9 @@
     "quantum_display": "E185·5DD7·82A3",
     "resonance_hz": 824.43,
     "activation": "1C245658[LP5]",
+    "codex_color": "violet",
+    "codex_role": "The Transformer",
+    "codex_tier": "Purple",
     "core": {
       "life_path": 5,
       "expression": 11,
@@ -15,6 +18,7 @@
     },
     "minted_at": "2026-05-19T00:00:00Z",
     "formula_version": 1,
-    "note": "Canonical founder mint — matches live kjp519 / KJP51988 formula values"
+    "note": "Canonical founder mint — real formula + Color Codex purple (EX 11 Transformer)"
   }
 }
+
