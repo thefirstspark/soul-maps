@@ -1,0 +1,20 @@
+{
+  "katelin jill puzakulics|1988-05-19": {
+    "name": "Katelin Jill Puzakulics",
+    "dob": "1988-05-19",
+    "quantum": "E1855DD782A3",
+    "quantum_display": "E185·5DD7·82A3",
+    "resonance_hz": 824.43,
+    "activation": "1C245658[LP5]",
+    "core": {
+      "life_path": 5,
+      "expression": 11,
+      "soul_urge": 4,
+      "personality": 7,
+      "birthday": 1
+    },
+    "minted_at": "2026-05-19T00:00:00Z",
+    "formula_version": 1,
+    "note": "Canonical founder mint — matches live kjp519 / KJP51988 formula values"
+  }
+}

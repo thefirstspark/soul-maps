@@ -1457,13 +1457,148 @@ def quantum_signature(life_path, expression, soul_urge, personality, birthday):
     """
     Generate a unique quantum identifier from core numbers.
     This is your soul's fingerprint in the system.
-    Returns a base-32 encoded signature.
+    Returns a 12-char hex signature (SHA-256 prefix).
     """
     import hashlib
     core_string = f"{life_path}{expression}{soul_urge}{personality}{birthday}"
     hash_obj = hashlib.sha256(core_string.encode())
     signature = hash_obj.hexdigest()[:12].upper()
     return signature
+
+
+# ============================================================
+# SIGNATURE REGISTRY — first mint wins (permanent UUID)
+# ============================================================
+
+SIGNATURES_FILE = Path(__file__).resolve().parent / 'signatures.json'
+SIGNATURE_FORMULA_VERSION = 1
+
+
+def format_quantum_display(quantum_hex):
+    """Pretty form: E1855DD782A3 → E185·5DD7·82A3"""
+    q = (quantum_hex or '').replace('·', '').replace('-', '').replace(' ', '').upper()
+    if len(q) == 12:
+        return f"{q[:4]}\u00b7{q[4:8]}\u00b7{q[8:12]}"
+    return quantum_hex or ''
+
+
+def identity_key(full_name, birth_date):
+    """Stable person key: normalized name + birth date."""
+    return f"{normalize_name(full_name).casefold()}|{birth_date.isoformat()}"
+
+
+def load_signatures_local():
+    import json
+    if SIGNATURES_FILE.exists():
+        try:
+            return json.loads(SIGNATURES_FILE.read_text(encoding='utf-8'))
+        except Exception as e:
+            print(f"  [SIG] Could not read local signatures.json: {e}")
+    return {}
+
+
+def save_signatures_local(registry):
+    import json
+    SIGNATURES_FILE.write_text(
+        json.dumps(registry, indent=2, ensure_ascii=False) + '\n',
+        encoding='utf-8',
+    )
+
+
+def load_signatures_github(token, repo='soul-maps'):
+    """Fetch signatures.json from the soul-maps repo (Railway has no durable disk)."""
+    import base64
+    import json
+    path = f"/repos/thefirstspark/{repo}/contents/signatures.json"
+    try:
+        existing, _ = _github_api('GET', path, token)
+        content = base64.b64decode(existing['content']).decode('utf-8')
+        return json.loads(content), existing.get('sha')
+    except Exception:
+        return {}, None
+
+
+def load_signatures(repo='soul-maps'):
+    """Merge local + GitHub registries. Local wins on key conflict."""
+    local = load_signatures_local()
+    token = os.environ.get('GITHUB_PAT')
+    if token:
+        remote, _ = load_signatures_github(token, repo)
+        merged = dict(remote or {})
+        merged.update(local or {})
+        return merged
+    return local
+
+
+def persist_signatures(registry, repo='soul-maps', message=None):
+    """Write registry to disk and, when GITHUB_PAT is set, to the repo."""
+    import json
+    save_signatures_local(registry)
+    token = os.environ.get('GITHUB_PAT')
+    if not token:
+        return False
+    try:
+        _api_put_file(
+            token,
+            repo,
+            'signatures.json',
+            json.dumps(registry, indent=2, ensure_ascii=False) + '\n',
+            message or 'Registry: update permanent soul signatures',
+        )
+        return True
+    except Exception as e:
+        print(f"  [SIG] GitHub persist failed: {e}")
+        return False
+
+
+def get_or_mint_signature(full_name, birth_date, lp, expr, su, pers, bday):
+    """
+    First write wins for quantum / resonance / activation.
+
+    Re-generations for the same name+DOB reuse the stored mint even if the
+    formula later changes — marketing "permanent UUID" becomes real.
+
+    Returns (record_dict, is_new_mint: bool)
+    """
+    key = identity_key(full_name, birth_date)
+    registry = load_signatures()
+    if key in registry:
+        rec = registry[key]
+        print(f"  [SIG] Reusing permanent mint: {rec.get('quantum')} ({rec.get('resonance_hz')} Hz)")
+        return rec, False
+
+    quantum = quantum_signature(lp, expr, su, pers, bday)
+    hz = soul_resonance_frequency(lp, expr, su, pers, bday)
+    act = activation_code(full_name, birth_date, lp)
+    rec = {
+        'name': normalize_name(full_name),
+        'dob': birth_date.isoformat(),
+        'quantum': quantum,
+        'quantum_display': format_quantum_display(quantum),
+        'resonance_hz': hz,
+        'activation': act,
+        'core': {
+            'life_path': lp,
+            'expression': expr,
+            'soul_urge': su,
+            'personality': pers,
+            'birthday': bday,
+        },
+        'minted_at': datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),
+        'formula_version': SIGNATURE_FORMULA_VERSION,
+    }
+    registry[key] = rec
+    save_signatures_local(registry)
+    # Best-effort remote persist so Railway / other hosts share the mint
+    persisted = persist_signatures(
+        registry,
+        message=f"Registry: mint signature for {normalize_name(full_name)}",
+    )
+    print(
+        f"  [SIG] NEW permanent mint: {quantum} @ {hz} Hz"
+        + (" (pushed to GitHub)" if persisted else " (local only — set GITHUB_PAT to share)")
+    )
+    return rec, True
 
 
 def vibrational_blueprint(life_path, expression, resonance_hz):
@@ -1668,9 +1803,12 @@ def generate_soul_map(full_name, birth_date, birth_time=None, birth_city=None, b
     c_animal, c_element = chinese_zodiac(birth_date.year)
 
     # === ADVANCED FEATURES ===
-    # Soul Resonance Frequency
-    resonance_hz = soul_resonance_frequency(lp, expr, su, pers, bday)
-    
+    # Permanent Impossible Code — first mint wins for this name+DOB
+    sig_rec, is_new_sig = get_or_mint_signature(full_name, birth_date, lp, expr, su, pers, bday)
+    quantum_sig = sig_rec['quantum']
+    resonance_hz = sig_rec['resonance_hz']
+    activation_code_val = sig_rec['activation']
+
     # Karmic Debt Remediation
     karmic_remedies = karmic_debt_remediation(lp, expr, su, pers, bday, full_name)
     
@@ -1689,11 +1827,7 @@ def generate_soul_map(full_name, birth_date, birth_time=None, birth_city=None, b
     # Oracle Mapping
     oracle_data = oracle_mapping(lp, expr, su)
     
-    # === NEW ADVANCED FEATURES ===
-    # Quantum Signature (Soul Fingerprint)
-    quantum_sig = quantum_signature(lp, expr, su, pers, bday)
-    
-    # Vibrational Blueprint
+    # Vibrational Blueprint (uses permanent resonance)
     vibration_bars, vibration_wave = vibrational_blueprint(lp, expr, resonance_hz)
     
     # Destiny Checkpoints
@@ -1701,9 +1835,6 @@ def generate_soul_map(full_name, birth_date, birth_time=None, birth_city=None, b
     
     # Shadow Integration Path
     shadow_path = shadow_integration_path(kl, chall, lp)
-    
-    # Activation Code
-    activation_code_val = activation_code(full_name, birth_date, lp)
 
     # === Build HTML for new sections ===
     # Karmic Lessons HTML
@@ -1903,13 +2034,20 @@ def generate_soul_map(full_name, birth_date, birth_time=None, birth_city=None, b
     # === NEW FEATURE HTML SECTIONS ===
     
     # Quantum Signature HTML
+    quantum_display = sig_rec.get('quantum_display') or format_quantum_display(quantum_sig)
+    mint_note = (
+        f"Minted {sig_rec.get('minted_at', 'on first generate')} · formula v{sig_rec.get('formula_version', 1)}"
+        if not is_new_sig
+        else f"Newly minted {sig_rec.get('minted_at', 'now')} · formula v{sig_rec.get('formula_version', 1)}"
+    )
     quantum_html = f"""
-  <div style="margin: 24px 0; padding: 24px; background: linear-gradient(135deg, rgba(255,106,61,0.1), rgba(38,228,216,0.1)); border: 2px solid #FF6A3D; border-radius: 8px;">
+  <div style="margin: 24px 0; padding: 24px; background: linear-gradient(135deg, rgba(255,106,61,0.1), rgba(38,228,216,0.1)); border: 2px solid #FF6A3D; border-radius: 8px;" data-quantum="{quantum_sig}" data-sig-key="{identity_key(full_name, birth_date)}">
     <div style="font-size: 0.85rem; color: #FF6A3D; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 16px;">Quantum Signature</div>
-    <div style="font-family: 'Courier New', monospace; font-size: 1.4rem; letter-spacing: 3px; color: #26E4D8; font-weight: 700; margin: 16px 0; text-align: center; padding: 16px; background: rgba(26,26,46,0.8); border-radius: 6px;">{quantum_sig}</div>
+    <div style="font-family: 'Courier New', monospace; font-size: 1.4rem; letter-spacing: 3px; color: #26E4D8; font-weight: 700; margin: 16px 0; text-align: center; padding: 16px; background: rgba(26,26,46,0.8); border-radius: 6px;">{quantum_display}</div>
     <div style="font-size: 0.9rem; color: #f0ece4; line-height: 1.6;">
-      Your unique soul fingerprint. This signature encodes the essence of your core numbers. It's the vibrational ID you carry through all timelines.
+      Your permanent soul fingerprint — minted once for this name and birth date, then locked. Re-runs reuse this ID.
     </div>
+    <div style="font-size: 0.7rem; color: #888; margin-top: 10px; text-align: center; letter-spacing: 1px;">{mint_note}</div>
   </div>
     """
     
@@ -2065,6 +2203,11 @@ def generate_soul_map(full_name, birth_date, birth_time=None, birth_city=None, b
         'sun_sign': ss_name,
         'chinese': f"{c_element} {c_animal}",
         'selector_layer': sel_layer,
+        'quantum': quantum_sig,
+        'quantum_display': quantum_display,
+        'resonance_hz': resonance_hz,
+        'activation': activation_code_val,
+        'signature_new_mint': is_new_sig,
     }
 
 
