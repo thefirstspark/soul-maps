@@ -171,6 +171,20 @@
     margin-top: 16px;
     letter-spacing: 1px;
   }
+
+  .codex-badge {
+    display: flex; align-items: stretch; gap: 0; margin: 20px 0 28px;
+    border: 1px solid var(--codex-border, rgba(139,92,246,0.5));
+    border-radius: 10px; background: var(--codex-wash, rgba(139,92,246,0.12)); overflow: hidden;
+  }
+  .codex-badge-swatch { width: 10px; flex-shrink: 0; background: var(--codex-hex, #8b5cf6); }
+  .codex-badge-body { padding: 16px 20px; flex: 1; }
+  .codex-badge-kicker { font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: var(--dim, #888); margin-bottom: 6px; }
+  .codex-badge-tier { font-family: 'Cormorant Garamond', serif; font-size: 1.75rem; font-weight: 700; color: var(--codex-hex, #8b5cf6); line-height: 1.2; }
+  .codex-badge-role { font-size: 0.9rem; color: var(--white, #f0ece4); margin-top: 4px; letter-spacing: 0.5px; }
+  .codex-badge-link { display: inline-block; margin-top: 10px; font-size: 0.72rem; letter-spacing: 1px; color: #26E4D8; text-decoration: none; }
+  .codex-badge-link:hover { text-shadow: 0 0 8px rgba(38,228,216,0.5); }
+
 </style>
 </head>
 <body>
@@ -181,6 +195,16 @@
   <h1>Patrick Allen Roberts</h1>
   
   <p class="generated-date">Generated May 04, 2026 · thefirstspark.shop</p>
+  <div class="codex-badge" style="--codex-hex:#c4c8d4; --codex-wash:rgba(196,200,212,0.12); --codex-border:rgba(196,200,212,0.5);">
+    <div class="codex-badge-swatch" aria-hidden="true"></div>
+    <div class="codex-badge-body">
+      <div class="codex-badge-kicker">Color Codex</div>
+      <div class="codex-badge-tier">Silver</div>
+      <div class="codex-badge-role">The Mirror</div>
+      <a class="codex-badge-link" href="color-codex.html#silver">What this color means →</a>
+    </div>
+  </div>
+
 
   <p class="intro">
     This isn't a personality test. It's a coordinate system — a map of the patterns
