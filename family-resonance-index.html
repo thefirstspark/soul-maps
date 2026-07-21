@@ -495,7 +495,7 @@ footer a { color: var(--gold); text-decoration: none; }
     <div class="form-grid">
       <div class="form-field">
         <label>Your Quantum Signature</label>
-        <input type="text" id="claimerSig" placeholder="8AFE9CB68598" maxlength="14">
+        <input type="text" id="claimerSig" placeholder="E1855DD782A3" maxlength="14">
       </div>
       <div class="form-field">
         <label>Their Quantum Signature</label>
@@ -602,7 +602,7 @@ async function loadConstellation() {
   const inputSig = normalizeSignature(document.getElementById('sigInput').value);
   if (inputSig.length !== 12) {
     document.getElementById('loading').classList.add('hidden');
-    showError('Quantum Signature must be 12 hex characters (e.g. 8AFE9CB68598)');
+    showError('Quantum Signature must be 12 hex characters (e.g. E1855DD782A3)');
     return;
   }
 
