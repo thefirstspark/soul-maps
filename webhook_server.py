@@ -36,7 +36,13 @@ load_dotenv()
 
 # Import generator functions from soul_map_generator.py
 sys.path.insert(0, str(Path(__file__).parent))
-from soul_map_generator import generate_soul_map, generate_monthly_update, deploy_to_github, get_base_filename
+from soul_map_generator import (
+    generate_soul_map,
+    generate_monthly_update,
+    deploy_to_github,
+    get_base_filename,
+    normalize_name,
+)
 
 # Path to subscriber database
 SUBSCRIBERS_FILE = Path(__file__).parent / 'subscribers.json'
@@ -347,12 +353,14 @@ def generate_soul_map_webhook():
         if not data.get('name') or not data.get('dob'):
             return jsonify({'success': False, 'error': 'Missing required fields: name, dob'}), 400
 
-        name = data['name'].strip()
+        name = normalize_name(data['name'])
         dob_str = data['dob'].strip()
         email = (data.get('email') or '').strip()
         time_str = (data.get('time') or '').strip() or None
-        city = (data.get('city') or '').strip() or None
+        city = normalize_name(data.get('city') or '') or None
         country = (data.get('country') or 'US').strip()
+        if not name:
+            return jsonify({'success': False, 'error': 'Name is empty after cleanup'}), 400
 
         try:
             from datetime import datetime as dt

@@ -37,6 +37,32 @@ PYTHAGOREAN_MAP = {
 VOWELS = set('AEIOU')
 
 
+def normalize_name(name):
+    """Canonicalize a person name before any numerology, IDs, or archive cards.
+
+    Stops silent identity drift from form quirks:
+      - leading/trailing spaces  ("Katelin ... ")
+      - double spaces / tabs / newlines
+      - non-breaking spaces, zero-width chars
+      - unicode compatibility forms (NFKC)
+
+    Does not force Title Case — preserves intentional casing (e.g. McDonald).
+    Letter math already uppercases inside name_to_number / activation_code.
+    """
+    if name is None:
+        return ''
+    import unicodedata
+    s = unicodedata.normalize('NFKC', str(name))
+    # Common invisible / non-standard spaces that form inputs smuggle in
+    for ch in ('\u00a0', '\u2000', '\u2001', '\u2002', '\u2003', '\u2004',
+               '\u2005', '\u2006', '\u2007', '\u2008', '\u2009', '\u200a',
+               '\u202f', '\u205f', '\u3000'):
+        s = s.replace(ch, ' ')
+    s = s.replace('\u200b', '').replace('\ufeff', '')  # zero-width / BOM
+    s = re.sub(r'\s+', ' ', s).strip()
+    return s
+
+
 def reduce_number(n, preserve_masters=True):
     """Reduce to single digit, preserving master numbers if flagged."""
     while n > 9:
@@ -58,7 +84,8 @@ def life_path(birth_date):
 
 def name_to_number(name, filter_fn=None):
     """Convert name to numerological number, optionally filtering letters."""
-    clean = name.upper().replace(' ', '')
+    # Letters only — hyphens/apostrophes/digits don't carry Pythagorean values
+    clean = re.sub(r'[^A-Z]', '', normalize_name(name).upper())
     if filter_fn:
         clean = ''.join(c for c in clean if filter_fn(c))
     total = sum(PYTHAGOREAN_MAP.get(c, 0) for c in clean)
@@ -114,7 +141,7 @@ def hidden_passion(full_name):
     """Find the most frequent digit (1-9) in full name.
     Represents deepest unconscious motivation.
     """
-    clean = full_name.upper().replace(' ', '')
+    clean = re.sub(r'[^A-Z]', '', normalize_name(full_name).upper())
     digit_counts = {str(i): 0 for i in range(1, 10)}
     for c in clean:
         digit = PYTHAGOREAN_MAP.get(c)
@@ -129,7 +156,7 @@ def karmic_lessons(full_name):
     """Find which digits (1-9) are ABSENT from the name.
     These represent the lessons you came to learn.
     """
-    clean = full_name.upper().replace(' ', '')
+    clean = re.sub(r'[^A-Z]', '', normalize_name(full_name).upper())
     present_digits = set()
     for c in clean:
         digit = PYTHAGOREAN_MAP.get(c)
@@ -898,6 +925,22 @@ const SUN_SIGN_COLORS = {
   'Pisces': ['#22d3ee', '#06b6d4', '#0891b7']
 };
 
+// Life Path color palette (numerology-driven) — each core frequency gets its own hue triad
+const LIFE_PATH_COLORS = {
+  1:  ['#FF6A3D', '#ea580c', '#dc2626'],   // Pioneer — fire / initiation
+  2:  ['#26E4D8', '#06b6d4', '#0891b7'],   // Diplomat — water / connection
+  3:  ['#F3B23A', '#fbbf24', '#f59e0b'],   // Communicator — gold / expression
+  4:  ['#84cc16', '#4d7c0f', '#6b7280'],   // Architect — earth / structure
+  5:  ['#8b5cf6', '#7c3aed', '#a855f7'],   // Catalyst — electric violet / change
+  6:  ['#fb7185', '#f43f5e', '#e11d48'],   // Protector — rose / harmony
+  7:  ['#6B4DF2', '#7c3aed', '#4338ca'],   // Seeker — deep indigo / mystery
+  8:  ['#F3B23A', '#10b981', '#059669'],   // Materializer — gold + emerald / power
+  9:  ['#6B4DF2', '#F3B23A', '#26E4D8'],   // Integrator — full spectrum / completion
+  11: ['#26E4D8', '#F3B23A', '#e0f2fe'],   // Master Illuminator — luminous cyan-gold
+  22: ['#F3B23A', '#6B4DF2', '#fbbf24'],   // Master Builder — gold + violet
+  33: ['#8b5cf6', '#26E4D8', '#F3B23A']    // Master Teacher — violet + cyan + gold triad
+};
+
 // Extract data from page
 const lifePathStr = document.querySelector('h2')?.textContent || '';
 const lifePathMatch = lifePathStr.match(/Life Path (\d+)/);
@@ -915,7 +958,8 @@ const expressionNum = ${expression};
 function createPersonalStarfield() {
   const starfield = document.getElementById('starfield');
   const seed = lifePathNum * 1000 + soulUrgeNum * 100 + expressionNum * 10;
-  const colors = SUN_SIGN_COLORS[sunSign] || SUN_SIGN_COLORS['Pisces'];
+  // Color now derives from Life Path (core frequency); sun-sign palette kept as fallback
+  const colors = LIFE_PATH_COLORS[lifePathNum] || SUN_SIGN_COLORS[sunSign] || SUN_SIGN_COLORS['Pisces'];
 
   for (let i = 0; i < 150; i++) {
     const star = document.createElement('div');
@@ -1547,7 +1591,9 @@ def activation_code(full_name, birth_date, life_path):
     This is the trigger sequence for their highest potential.
     """
     import hashlib
-    code_string = f"{full_name.upper()}{birth_date.day:02d}{birth_date.month:02d}{life_path}"
+    # Normalize first so trailing spaces / double spaces don't mint a different code
+    name_key = normalize_name(full_name).upper()
+    code_string = f"{name_key}{birth_date.day:02d}{birth_date.month:02d}{life_path}"
     hash_val = hashlib.md5(code_string.encode()).hexdigest()
     
     # Extract unique 8-char code
@@ -1561,7 +1607,10 @@ def activation_code(full_name, birth_date, life_path):
 
 def generate_soul_map(full_name, birth_date, birth_time=None, birth_city=None, birth_country='US', memorial_date=None, birthday_from=None):
     """Generate complete Soul Map data and return rendered HTML."""
-    
+    full_name = normalize_name(full_name)
+    if birth_city:
+        birth_city = normalize_name(birth_city)
+
     # Define current_year early for use in advanced calculations
     current_year = date.today().year
 
@@ -2025,7 +2074,7 @@ def generate_soul_map(full_name, birth_date, birth_time=None, birth_city=None, b
 
 def initials_from_name(full_name):
     """Extract initials from full name."""
-    return ''.join(word[0].upper() for word in full_name.split() if word)
+    return ''.join(word[0].upper() for word in normalize_name(full_name).split() if word)
 
 
 def get_base_filename(full_name, birth_date):
@@ -2043,6 +2092,7 @@ def generate_monthly_update(full_name, birth_date, current_year=None, current_mo
 
     Returns (html, filename, data_dict)
     """
+    full_name = normalize_name(full_name)
     if current_year is None:
         current_year = date.today().year
     if current_month is None:
@@ -2378,10 +2428,10 @@ def load_batch_csv(filepath):
                     continue
 
                 records.append({
-                    'name': row.get('Name', '').strip(),
+                    'name': normalize_name(row.get('Name', '')),
                     'date': row.get('Date', '').strip(),
                     'time': row.get('Time', '').strip() or None,
-                    'city': row.get('City', '').strip() or None,
+                    'city': normalize_name(row.get('City', '')) or None,
                     'country': row.get('Country', 'US').strip() or 'US',
                 })
     except Exception as e:
@@ -2547,8 +2597,11 @@ def _build_card_html(filename, summary, birth_date, birth_city=None):
         desc_parts.append(chinese)
     desc_str = ' \u00b7 '.join(desc_parts)
 
-    # Pick color based on hash of name for consistency
-    color = CARD_COLORS[sum(ord(c) for c in name) % len(CARD_COLORS)]
+    # Stable decorative color until Color Codex rules land (step 3).
+    # Use casefolded normalized name so "Katelin" / "KATELIN " / double spaces
+    # don't flip the archive card hue.
+    color_key = normalize_name(name).casefold()
+    color = CARD_COLORS[sum(ord(c) for c in color_key) % len(CARD_COLORS)]
 
     return f'''        <a href="{filename}" class="card {color}" data-search="{search_str}">
             <div class="card-sub">Soul Map \u00b7 {date_str}{city_part}</div>
@@ -2739,6 +2792,13 @@ def main():
     # Single mode — require name and date
     if not args.name or not args.date:
         parser.error("--name and --date required for single mode (or use --batch for multiple)")
+
+    # Canonicalize name once so CLI, files, and math all agree
+    args.name = normalize_name(args.name)
+    if args.city:
+        args.city = normalize_name(args.city)
+    if args.birthday_from:
+        args.birthday_from = normalize_name(args.birthday_from)
 
     # Parse date
     birth_date = datetime.strptime(args.date, '%Y-%m-%d').date()
