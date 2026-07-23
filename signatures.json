@@ -59,5 +59,25 @@
     },
     "minted_at": "2026-07-23T11:59:35Z",
     "formula_version": 1
+  },
+  "maureen vivian mccaffrey|1923-12-11": {
+    "name": "Maureen Vivian McCaffrey",
+    "dob": "1923-12-11",
+    "quantum": "1F1E104DDA64",
+    "quantum_display": "1F1E·104D·DA64",
+    "resonance_hz": 696.47,
+    "activation": "7D5D4074[LP2]",
+    "codex_color": "rose",
+    "codex_role": "The Bond",
+    "codex_tier": "Rose",
+    "core": {
+      "life_path": 2,
+      "expression": 9,
+      "soul_urge": 3,
+      "personality": 6,
+      "birthday": 11
+    },
+    "minted_at": "2026-07-23T12:02:17Z",
+    "formula_version": 1
   }
 }
