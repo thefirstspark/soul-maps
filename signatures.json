@@ -19,5 +19,25 @@
     "minted_at": "2026-05-19T00:00:00Z",
     "formula_version": 1,
     "note": "Canonical founder mint — real formula + Color Codex purple (EX 11 Transformer)"
+  },
+  "helen puzakulics|1917-12-15": {
+    "name": "Helen Puzakulics",
+    "dob": "1917-12-15",
+    "quantum": "0959E30583CD",
+    "quantum_display": "0959·E305·83CD",
+    "resonance_hz": 710.9,
+    "activation": "9AE3BE1C[LP9]",
+    "codex_color": "silver",
+    "codex_role": "The Mirror",
+    "codex_tier": "Silver",
+    "core": {
+      "life_path": 9,
+      "expression": 3,
+      "soul_urge": 8,
+      "personality": 4,
+      "birthday": 6
+    },
+    "minted_at": "2026-07-23T11:49:46Z",
+    "formula_version": 1
   }
 }
