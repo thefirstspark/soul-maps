@@ -99,5 +99,25 @@
     },
     "minted_at": "2026-07-23T12:03:35Z",
     "formula_version": 1
+  },
+  "staci marie ferrell|1988-08-26": {
+    "name": "Staci Marie Ferrell",
+    "dob": "1988-08-26",
+    "quantum": "2B7F83FC066B",
+    "quantum_display": "2B7F·83FC·066B",
+    "resonance_hz": 845.34,
+    "activation": "DCC10ABF[LP6]",
+    "codex_color": "rose",
+    "codex_role": "The Bond",
+    "codex_tier": "Rose",
+    "core": {
+      "life_path": 6,
+      "expression": 3,
+      "soul_urge": 8,
+      "personality": 4,
+      "birthday": 8
+    },
+    "minted_at": "2026-07-23T12:09:00Z",
+    "formula_version": 1
   }
 }
