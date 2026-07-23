@@ -39,5 +39,25 @@
     },
     "minted_at": "2026-07-23T11:49:46Z",
     "formula_version": 1
+  },
+  "edward joseph puzakulics|1963-01-18": {
+    "name": "edward joseph puzakulics",
+    "dob": "1963-01-18",
+    "quantum": "4D9EB30B2430",
+    "quantum_display": "4D9E·B30B·2430",
+    "resonance_hz": 1015.63,
+    "activation": "5DD13207[LP11]",
+    "codex_color": "gold",
+    "codex_role": "The Orchestrator",
+    "codex_tier": "Gold",
+    "core": {
+      "life_path": 11,
+      "expression": 6,
+      "soul_urge": 33,
+      "personality": 9,
+      "birthday": 9
+    },
+    "minted_at": "2026-07-23T11:59:35Z",
+    "formula_version": 1
   }
 }
