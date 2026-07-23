@@ -79,5 +79,25 @@
     },
     "minted_at": "2026-07-23T12:02:17Z",
     "formula_version": 1
+  },
+  "christine ann puzakulics|1952-09-13": {
+    "name": "Christine Ann Puzakulics",
+    "dob": "1952-09-13",
+    "quantum": "148BD8736A11",
+    "quantum_display": "148B·D873·6A11",
+    "resonance_hz": 792.03,
+    "activation": "DBDD38A1[LP3]",
+    "codex_color": "yellow",
+    "codex_role": "The Joy",
+    "codex_tier": "Yellow",
+    "core": {
+      "life_path": 3,
+      "expression": 3,
+      "soul_urge": 4,
+      "personality": 8,
+      "birthday": 4
+    },
+    "minted_at": "2026-07-23T12:03:35Z",
+    "formula_version": 1
   }
 }
