@@ -1733,6 +1733,11 @@ def get_or_mint_signature(full_name, birth_date, lp, expr, su, pers, bday):
     registry = load_signatures()
     if key in registry:
         rec = registry[key]
+        # Backfill stable URL stem so monthly updates and re-gens share one path
+        if not rec.get('base_filename'):
+            rec['base_filename'] = get_base_filename(full_name, birth_date)
+            registry[key] = rec
+            save_signatures_local(registry)
         print(f"  [SIG] Reusing permanent mint: {rec.get('quantum')} ({rec.get('resonance_hz')} Hz)")
         return rec, False
 
@@ -1747,6 +1752,7 @@ def get_or_mint_signature(full_name, birth_date, lp, expr, su, pers, bday):
         'quantum_display': format_quantum_display(quantum),
         'resonance_hz': hz,
         'activation': act,
+        'base_filename': get_base_filename(full_name, birth_date),
         'codex_color': color_class,
         'codex_role': color_role,
         'codex_tier': color_tier,
@@ -1946,11 +1952,6 @@ def generate_soul_map(full_name, birth_date, birth_time=None, birth_city=None, b
     # === Sun Sign ===
     ss_name, ss_symbol = sun_sign(birth_date)
 
-    # === Monthly Update Link ===
-    today = date.today()
-    base_filename = get_base_filename(full_name, birth_date)
-    monthly_update_filename = f"{base_filename}-{today.year}{today.month:02d}.html"
-
     # === Full Chart (if birth time provided) ===
     astro_extra_html = ''
     if birth_time and birth_city:
@@ -1977,10 +1978,14 @@ def generate_soul_map(full_name, birth_date, birth_time=None, birth_city=None, b
 
     # === ADVANCED FEATURES ===
     # Permanent Impossible Code — first mint wins for this name+DOB
+    # (also locks base_filename so URLs stay stable across regenerations)
     sig_rec, is_new_sig = get_or_mint_signature(full_name, birth_date, lp, expr, su, pers, bday)
     quantum_sig = sig_rec['quantum']
     resonance_hz = sig_rec['resonance_hz']
     activation_code_val = sig_rec['activation']
+    today = date.today()
+    base_filename = sig_rec.get('base_filename') or resolve_base_filename(full_name, birth_date)
+    monthly_update_filename = f"{base_filename}-{today.year}{today.month:02d}.html"
     # Color Codex — prefer locked mint; compute if older mints predate color field
     if sig_rec.get('codex_color'):
         codex_class = sig_rec['codex_color']
@@ -2402,6 +2407,7 @@ def generate_soul_map(full_name, birth_date, birth_time=None, birth_city=None, b
         'codex_color': codex_class,
         'codex_role': codex_role,
         'codex_tier': codex_tier,
+        'base_filename': base_filename,
     }
 
 
@@ -2414,20 +2420,65 @@ def initials_from_name(full_name):
     return ''.join(word[0].upper() for word in normalize_name(full_name).split() if word)
 
 
+def name_hash_suffix(full_name, birth_date, length=4):
+    """Short stable hash of identity_key — disambiguates same-initials collisions."""
+    import hashlib
+    key = identity_key(full_name, birth_date)
+    return hashlib.sha256(key.encode('utf-8')).hexdigest()[:length]
+
+
+def get_base_filename_legacy(full_name, birth_date):
+    """Pre-2026 format: {INITIALS}{MONTH}{YEAR} e.g. AJT91988.
+
+    Kept for docs/migration; new maps use get_base_filename().
+    """
+    return f"{initials_from_name(full_name)}{birth_date.month}{birth_date.year}"
+
+
 def get_base_filename(full_name, birth_date):
-    """Generate base filename: {INITIALS}{BIRTH_MONTH}{BIRTH_YEAR}.
-    E.g. Aaron Joseph Thomas born 9/24/1988 → AJT91988
+    """Unique base filename: {INITIALS}{MONTH}{DAY}{YEAR}-{hash4}.
+
+    E.g. Aaron Joseph Thomas born 1988-09-24 → AJT9241988-a3f2
+
+    Day + short name hash prevent collisions (John Doe vs Jane Doe same month/year).
+    Prefer resolve_base_filename() so permanent mints keep a stable URL.
     """
     initials = initials_from_name(full_name)
-    month = birth_date.month
-    year = birth_date.year
-    return f"{initials}{month}{year}"
+    stem = f"{initials}{birth_date.month}{birth_date.day}{birth_date.year}"
+    return f"{stem}-{name_hash_suffix(full_name, birth_date)}"
 
 
-def generate_monthly_update(full_name, birth_date, current_year=None, current_month=None):
+def resolve_base_filename(full_name, birth_date, preferred=None):
+    """Return permanent base filename for this person.
+
+    Priority:
+      1. explicit preferred (e.g. from subscriber record)
+      2. signatures.json mint field base_filename (first-write-wins)
+      3. newly computed get_base_filename(), persisted onto mint if present
+    """
+    if preferred:
+        return preferred
+
+    key = identity_key(full_name, birth_date)
+    registry = load_signatures()
+    rec = registry.get(key)
+    if rec and rec.get('base_filename'):
+        return rec['base_filename']
+
+    base = get_base_filename(full_name, birth_date)
+    if rec is not None:
+        rec['base_filename'] = base
+        registry[key] = rec
+        save_signatures_local(registry)
+    return base
+
+
+def generate_monthly_update(full_name, birth_date, current_year=None, current_month=None, base_filename=None):
     """Generate a monthly update page for a soul map.
 
     Returns (html, filename, data_dict)
+
+    base_filename: optional permanent stem (from subscriber or signatures registry).
     """
     full_name = normalize_name(full_name)
     if current_year is None:
@@ -2451,8 +2502,8 @@ def generate_monthly_update(full_name, birth_date, current_year=None, current_mo
     month_name = calendar.month_name[current_month]
     next_month_name = calendar.month_name[next_month]
 
-    # Base filename for linking
-    base_filename = get_base_filename(full_name, birth_date)
+    # Base filename for linking — registry / preferred stem wins
+    base_filename = resolve_base_filename(full_name, birth_date, preferred=base_filename)
 
     # Personal Year context
     py = personal_year(birth_date, current_year)
@@ -2733,7 +2784,7 @@ def generate_monthly_update(full_name, birth_date, current_year=None, current_mo
         map_slug=base_filename,
     )
 
-    # Filename: {INITIALS}{BIRTHMONTH}{BIRTHYEAR}-{YYYYMM}.html
+    # Filename: {base}-{YYYYMM}.html  (base is unique stem)
     filename = f"{base_filename}-{current_year}{current_month:02d}.html"
 
     return html, filename, {
@@ -2742,6 +2793,7 @@ def generate_monthly_update(full_name, birth_date, current_year=None, current_mo
         'personal_year': py,
         'month': current_month,
         'year': current_year,
+        'base_filename': base_filename,
     }
 
 
@@ -3205,8 +3257,8 @@ def main():
         for key, val in summary.items():
             print(f"  {key:>16}: {val}")
 
-        # Filename — use shortened format: {INITIALS}{MONTH}{YEAR}.html
-        filename = f"{get_base_filename(args.name, birth_date)}.html"
+        # Filename — unique stem: {INITIALS}{M}{D}{YEAR}-{hash}.html
+        filename = f"{resolve_base_filename(args.name, birth_date)}.html"
 
     # Save locally if requested
     if args.output:

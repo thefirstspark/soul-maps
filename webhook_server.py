@@ -11,6 +11,11 @@ Setup:
 Environment variables (set in .env or export):
   GITHUB_PAT=ghp_your_personal_access_token
   RESEND_API_KEY=re_your_resend_api_key
+  GENERATE_API_KEY=long-random-secret   # required for POST /generate (unless ALLOW_INSECURE_GENERATE=1)
+  ALLOW_INSECURE_GENERATE=0             # local dev only — open /generate without a key
+  GENERATE_RATE_LIMIT_IP=8              # max /generate hits per IP per window
+  GENERATE_RATE_LIMIT_EMAIL=3           # max /generate hits per email per window
+  GENERATE_RATE_WINDOW_SEC=900          # window length (default 15 minutes)
 
 Run:
   python webhook_server.py
@@ -23,6 +28,9 @@ import os
 import sys
 import json
 import threading
+import time
+import hmac
+from collections import defaultdict, deque
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -40,15 +48,125 @@ from soul_map_generator import (
     generate_soul_map,
     generate_monthly_update,
     deploy_to_github,
-    get_base_filename,
+    resolve_base_filename,
     normalize_name,
 )
 
 # Path to subscriber database
 SUBSCRIBERS_FILE = Path(__file__).parent / 'subscribers.json'
 
+ALLOWED_ORIGINS = [
+    "https://soul-maps.thefirstspark.shop",
+    "https://thefirstspark.shop",
+    "http://localhost:5000",
+    "http://127.0.0.1:5000",
+]
+
 app = Flask(__name__)
-CORS(app, origins=["https://soul-maps.thefirstspark.shop", "https://thefirstspark.shop"])
+CORS(app, origins=ALLOWED_ORIGINS)
+
+
+# ============================================================
+# GENERATE AUTH + RATE LIMITS
+# ============================================================
+
+_rate_lock = threading.Lock()
+_rate_buckets = defaultdict(deque)  # key -> deque of monotonic timestamps
+
+
+def _env_int(name, default):
+    try:
+        return int(os.getenv(name, str(default)))
+    except (TypeError, ValueError):
+        return default
+
+
+def _client_ip():
+    forwarded = (request.headers.get('X-Forwarded-For') or '').split(',')[0].strip()
+    return forwarded or (request.remote_addr or 'unknown')
+
+
+def _extract_api_key():
+    """Accept X-Soul-Map-Key, X-Api-Key, or Authorization: Bearer <key>."""
+    key = (
+        request.headers.get('X-Soul-Map-Key')
+        or request.headers.get('X-Api-Key')
+        or ''
+    ).strip()
+    if key:
+        return key
+    auth = (request.headers.get('Authorization') or '').strip()
+    if auth.lower().startswith('bearer '):
+        return auth[7:].strip()
+    # Body fallback (harder to log-leak; prefer header)
+    data = request.get_json(silent=True) or {}
+    return (data.get('api_key') or data.get('generate_api_key') or '').strip()
+
+
+def _auth_generate_request():
+    """
+    Gate POST /generate.
+
+    Production: GENERATE_API_KEY must be set and match the request.
+    Local/dev: set ALLOW_INSECURE_GENERATE=1 to skip (never in production).
+    """
+    expected = (os.getenv('GENERATE_API_KEY') or '').strip()
+    allow_insecure = (os.getenv('ALLOW_INSECURE_GENERATE') or '').strip().lower() in (
+        '1', 'true', 'yes', 'on'
+    )
+
+    if not expected:
+        if allow_insecure:
+            print("[AUTH] ALLOW_INSECURE_GENERATE — /generate is open (dev only)")
+            return None
+        return (
+            jsonify({
+                'success': False,
+                'error': 'Server misconfigured: GENERATE_API_KEY is not set. '
+                         'Set the key, or ALLOW_INSECURE_GENERATE=1 for local dev only.',
+            }),
+            503,
+        )
+
+    provided = _extract_api_key()
+    if not provided or not hmac.compare_digest(provided, expected):
+        return jsonify({'success': False, 'error': 'Unauthorized — invalid or missing API key'}), 401
+    return None
+
+
+def _rate_limited(bucket_key, limit, window_sec):
+    """Return True if this bucket has exceeded limit within window_sec."""
+    now = time.monotonic()
+    with _rate_lock:
+        q = _rate_buckets[bucket_key]
+        while q and (now - q[0]) > window_sec:
+            q.popleft()
+        if len(q) >= limit:
+            return True
+        q.append(now)
+        return False
+
+
+def _check_rate_limits(email):
+    window = _env_int('GENERATE_RATE_WINDOW_SEC', 900)
+    ip_limit = _env_int('GENERATE_RATE_LIMIT_IP', 8)
+    email_limit = _env_int('GENERATE_RATE_LIMIT_EMAIL', 3)
+
+    ip = _client_ip()
+    if _rate_limited(f'ip:{ip}', ip_limit, window):
+        return jsonify({
+            'success': False,
+            'error': 'Rate limit exceeded for this network. Try again later.',
+        }), 429
+
+    if email:
+        email_key = email.strip().lower()
+        if _rate_limited(f'email:{email_key}', email_limit, window):
+            return jsonify({
+                'success': False,
+                'error': 'Rate limit exceeded for this email. Try again later.',
+            }), 429
+    return None
 
 
 # ============================================================
@@ -194,7 +312,7 @@ def add_subscriber(name, dob, email, extra=None):
     }
 
     if extra:
-        for key in ('birth_hospital', 'soul_questions', 'interests', 'city'):
+        for key in ('birth_hospital', 'soul_questions', 'interests', 'city', 'base_filename'):
             if extra.get(key):
                 subscriber[key] = extra[key]
 
@@ -313,10 +431,15 @@ def _run_generation(name, dob_str, birth_date, birth_time, city, country, email,
             birth_country=country
         )
 
-        base_filename = get_base_filename(name, birth_date)
+        base_filename = (
+            (summary or {}).get('base_filename')
+            or resolve_base_filename(name, birth_date, preferred=(extra or {}).get('base_filename'))
+        )
         filename = f"{base_filename}.html"
+        if extra is not None:
+            extra['base_filename'] = base_filename
 
-        print(f"  [GIT] Committing soul map...")
+        print(f"  [GIT] Committing soul map as {filename}...")
         success, result = deploy_to_github(html_soul_map, filename, summary=summary,
                                            birth_date=birth_date, birth_city=city)
         if success:
@@ -327,9 +450,11 @@ def _run_generation(name, dob_str, birth_date, birth_time, city, country, email,
             live_url = None
 
         print(f"  [MONTHLY] Generating monthly update...")
-        html_monthly, filename_monthly, _ = generate_monthly_update(name, birth_date)
+        html_monthly, filename_monthly, _ = generate_monthly_update(
+            name, birth_date, base_filename=base_filename
+        )
         deploy_to_github(html_monthly, filename_monthly)
-        print(f"  [MONTHLY] ✓ Committed")
+        print(f"  [MONTHLY] ✓ Committed {filename_monthly}")
 
         add_subscriber(name, dob_str, email, extra=extra)
 
@@ -348,7 +473,13 @@ def _run_generation(name, dob_str, birth_date, birth_time, city, country, email,
 @app.route('/generate', methods=['POST'])
 def generate_soul_map_webhook():
     try:
-        data = request.get_json()
+        auth_err = _auth_generate_request()
+        if auth_err is not None:
+            return auth_err
+
+        data = request.get_json(silent=True)
+        if not data:
+            return jsonify({'success': False, 'error': 'JSON body required'}), 400
 
         if not data.get('name') or not data.get('dob'):
             return jsonify({'success': False, 'error': 'Missing required fields: name, dob'}), 400
@@ -361,6 +492,10 @@ def generate_soul_map_webhook():
         country = (data.get('country') or 'US').strip()
         if not name:
             return jsonify({'success': False, 'error': 'Name is empty after cleanup'}), 400
+
+        rate_err = _check_rate_limits(email)
+        if rate_err is not None:
+            return rate_err
 
         try:
             from datetime import datetime as dt
@@ -376,11 +511,15 @@ def generate_soul_map_webhook():
             except ValueError:
                 return jsonify({'success': False, 'error': 'Invalid time format. Use HH:MM (24-hour)'}), 400
 
+        # Deterministic unique stem (also locked into signatures on generate)
+        base_filename = resolve_base_filename(name, birth_date)
+
         extra = {
             'birth_hospital': data.get('birth_hospital'),
             'soul_questions': data.get('soul_questions'),
             'interests': data.get('interests'),
-            'city': city
+            'city': city,
+            'base_filename': base_filename,
         }
 
         # Fire and forget — return immediately so Railway doesn't timeout
@@ -391,12 +530,15 @@ def generate_soul_map_webhook():
         )
         t.start()
 
-        print(f"[WEBHOOK] Accepted {name} — generation running in background")
+        print(f"[WEBHOOK] Accepted {name} → {base_filename} — generation running in background")
 
+        preview_url = f"https://soul-maps.thefirstspark.shop/{base_filename}.html"
         return jsonify({
             'success': True,
             'name': name,
-            'message': f'Soul Map queued for {name} — check your email in 2-3 minutes'
+            'base_filename': base_filename,
+            'url': preview_url,
+            'message': f'Soul Map queued for {name} — check your email in about 5 minutes'
         }), 200
 
     except Exception as e:
@@ -507,13 +649,18 @@ def deploy_test():
 @app.route('/', methods=['GET'])
 def index():
     """Info page."""
+    key_set = bool((os.getenv('GENERATE_API_KEY') or '').strip())
     return jsonify({
         'service': 'Soul Map Webhook Server',
         'endpoints': {
-            'POST /generate': 'Generate a soul map from intake data',
+            'POST /generate': 'Generate a soul map from intake data (requires X-Soul-Map-Key)',
             'GET /health': 'Health check'
         },
-        'docs': 'See webhook_server.py for request format'
+        'auth': {
+            'generate_api_key_configured': key_set,
+            'header': 'X-Soul-Map-Key',
+        },
+        'docs': 'See WEBHOOK_SETUP.md for request format'
     }), 200
 
 
@@ -530,6 +677,13 @@ if __name__ == '__main__':
     if not os.getenv('RESEND_API_KEY'):
         print("\n[WARN] RESEND_API_KEY not set. Confirmation emails won't send.")
         print("  To enable: export RESEND_API_KEY=re_...")
+
+    if not (os.getenv('GENERATE_API_KEY') or '').strip():
+        if (os.getenv('ALLOW_INSECURE_GENERATE') or '').strip().lower() in ('1', 'true', 'yes', 'on'):
+            print("\n[WARN] GENERATE_API_KEY unset + ALLOW_INSECURE_GENERATE — /generate is OPEN.")
+        else:
+            print("\n[WARN] GENERATE_API_KEY not set. POST /generate will return 503 until you set it.")
+            print("  export GENERATE_API_KEY=...   # and put the same key in success.html")
 
     # Get port from environment (Railway sets this), default to 5000 for local
     port = int(os.getenv('PORT', 5000))
