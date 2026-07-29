@@ -18,15 +18,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         :root {
             --void: #0a0a0f;
             --deep-space: #0d0d14;
-            --sacred-gold: #d4af37;
-            --glitch-cyan: #22d3ee;
-            --mystic-purple: #8b5cf6;
+            /* The Field — green tier (re-themed from gold/purple to match canonical Green) */
+            --sacred-gold: #10b981;   /* emerald — primary */
+            --glitch-cyan: #34d399;   /* emerald light — bright accent */
+            --mystic-purple: #059669; /* deep emerald — gradients/depth */
 
             --blood-moon: #dc2626;
             --soft-white: #e8e6e3;
             --muted: #6b7280;
-            --rose-quartz: #f472b6;
-            --moonlight: #c4b5fd;
+            --rose-quartz: #6ee7b7;   /* soft green */
+            --moonlight: #a7f3d0;     /* pale mint */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -463,7 +464,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             border-left: 2px solid var(--muted);
             margin-top: 15px;
         }
-    </style>
+    
+  .codex-badge {
+    display: flex; align-items: stretch; gap: 0; margin: 20px auto 28px; max-width: 640px;
+    border: 1px solid var(--codex-border, rgba(139,92,246,0.5));
+    border-radius: 10px; background: var(--codex-wash, rgba(139,92,246,0.12)); overflow: hidden;
+  }
+  .codex-badge-swatch { width: 10px; flex-shrink: 0; background: var(--codex-hex, #8b5cf6); }
+  .codex-badge-body { padding: 16px 20px; flex: 1; text-align: left; }
+  .codex-badge-kicker { font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: var(--dim, #888); margin-bottom: 6px; }
+  .codex-badge-tier { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.75rem; font-weight: 700; color: var(--codex-hex, #8b5cf6); line-height: 1.2; }
+  .codex-badge-role { font-size: 0.9rem; color: var(--white, #f0ece4); margin-top: 4px; letter-spacing: 0.5px; }
+  .codex-badge-link { display: inline-block; margin-top: 10px; font-size: 0.72rem; letter-spacing: 1px; color: #26E4D8; text-decoration: none; }
+  .codex-badge-link:hover { text-shadow: 0 0 8px rgba(38,228,216,0.5); }
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -477,6 +491,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="brand">◈ Soul Map ◈</div>
             <h1 class="title">Aerie Ann Tippel</h1>
             <p class="subtitle">The Triple-Master Messenger Born in the Moon's Own House</p>
+  <div class="codex-badge" style="--codex-hex:#10b981; --codex-wash:rgba(16,185,129,0.12); --codex-border:rgba(16,185,129,0.5);">
+    <div class="codex-badge-swatch" aria-hidden="true"></div>
+    <div class="codex-badge-body">
+      <div class="codex-badge-kicker">Color Codex</div>
+      <div class="codex-badge-tier">Green</div>
+      <div class="codex-badge-role">The Field</div>
+      <a class="codex-badge-link" href="color-codex.html#green">What this color means &rarr;</a>
+    </div>
+  </div>
+
             <div class="birth-data">
                 BORN: May 23, 2023 · ~6:30 AM EDT<br>
                 Akron General Hospital · Akron, Ohio
