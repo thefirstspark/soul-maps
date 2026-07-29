@@ -99,6 +99,19 @@ body {
   .numbers-grid { grid-template-columns: 1fr 1fr; }
   .cosmic-grid { grid-template-columns: 1fr 1fr; }
 }
+
+  .codex-badge {
+    display: flex; align-items: stretch; gap: 0; margin: 20px auto 28px; max-width: 640px;
+    border: 1px solid var(--codex-border, rgba(139,92,246,0.5));
+    border-radius: 10px; background: var(--codex-wash, rgba(139,92,246,0.12)); overflow: hidden;
+  }
+  .codex-badge-swatch { width: 10px; flex-shrink: 0; background: var(--codex-hex, #8b5cf6); }
+  .codex-badge-body { padding: 16px 20px; flex: 1; text-align: left; }
+  .codex-badge-kicker { font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: var(--dim, #888); margin-bottom: 6px; }
+  .codex-badge-tier { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.75rem; font-weight: 700; color: var(--codex-hex, #8b5cf6); line-height: 1.2; }
+  .codex-badge-role { font-size: 0.9rem; color: var(--white, #f0ece4); margin-top: 4px; letter-spacing: 0.5px; }
+  .codex-badge-link { display: inline-block; margin-top: 10px; font-size: 0.72rem; letter-spacing: 1px; color: #26E4D8; text-decoration: none; }
+  .codex-badge-link:hover { text-shadow: 0 0 8px rgba(38,228,216,0.5); }
 </style>
 </head>
 <body>
@@ -108,6 +121,16 @@ body {
   <header class="header">
     <div class="header-label">Soul Map — Consciousness Decoded</div>
     <h1>Priya Sharma</h1>
+  <div class="codex-badge" style="--codex-hex:#8b5cf6; --codex-wash:rgba(139,92,246,0.12); --codex-border:rgba(139,92,246,0.5);">
+    <div class="codex-badge-swatch" aria-hidden="true"></div>
+    <div class="codex-badge-body">
+      <div class="codex-badge-kicker">Color Codex</div>
+      <div class="codex-badge-tier">Purple</div>
+      <div class="codex-badge-role">The Transformer</div>
+      <a class="codex-badge-link" href="color-codex.html#purple">What this color means &rarr;</a>
+    </div>
+  </div>
+
     <div class="meta">1993-09-03 · 11:30 · Mumbai, India</div>
   </header>
 

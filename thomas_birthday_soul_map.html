@@ -171,7 +171,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         @keyframes shootAcross{0%{transform:translateX(-220px) rotate(-18deg);opacity:0;}4%{opacity:.85;}18%{opacity:0;}100%{transform:translateX(112vw) rotate(-18deg);opacity:0;}}
         .floater{position:absolute;animation:floatUp linear infinite;opacity:0;-webkit-user-select:none;user-select:none;}
         @keyframes floatUp{0%{transform:translateY(110vh) translateX(0) rotate(-8deg);opacity:0;}6%{opacity:1;}48%{transform:translateY(50vh) translateX(20px) rotate(8deg);}94%{opacity:.6;}100%{transform:translateY(-14vh) translateX(-8px) rotate(18deg);opacity:0;}}
-    </style>
+    
+  .codex-badge {
+    display: flex; align-items: stretch; gap: 0; margin: 20px auto 28px; max-width: 640px;
+    border: 1px solid var(--codex-border, rgba(139,92,246,0.5));
+    border-radius: 10px; background: var(--codex-wash, rgba(139,92,246,0.12)); overflow: hidden;
+  }
+  .codex-badge-swatch { width: 10px; flex-shrink: 0; background: var(--codex-hex, #8b5cf6); }
+  .codex-badge-body { padding: 16px 20px; flex: 1; text-align: left; }
+  .codex-badge-kicker { font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: var(--dim, #888); margin-bottom: 6px; }
+  .codex-badge-tier { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.75rem; font-weight: 700; color: var(--codex-hex, #8b5cf6); line-height: 1.2; }
+  .codex-badge-role { font-size: 0.9rem; color: var(--white, #f0ece4); margin-top: 4px; letter-spacing: 0.5px; }
+  .codex-badge-link { display: inline-block; margin-top: 10px; font-size: 0.72rem; letter-spacing: 1px; color: #26E4D8; text-decoration: none; }
+  .codex-badge-link:hover { text-shadow: 0 0 8px rgba(38,228,216,0.5); }
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -243,6 +256,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="sixty">60</div>
         <div class="sixty-sub">Years of Being Absolutely Legendary</div>
         <h1>Thomas William Puzakulics</h1>
+  <div class="codex-badge" style="--codex-hex:#d4af37; --codex-wash:rgba(212,175,55,0.12); --codex-border:rgba(212,175,55,0.5);">
+    <div class="codex-badge-swatch" aria-hidden="true"></div>
+    <div class="codex-badge-body">
+      <div class="codex-badge-kicker">Color Codex</div>
+      <div class="codex-badge-tier">Gold</div>
+      <div class="codex-badge-role">The Orchestrator</div>
+      <a class="codex-badge-link" href="color-codex.html#gold">What this color means &rarr;</a>
+    </div>
+  </div>
+
         <div class="tagline">"Born to rock. Built to last. Made to teach."</div>
         <div class="ls-quote">
             ♪ &nbsp;"Mama told me when I was young — come sit beside me, my only son.<br>
