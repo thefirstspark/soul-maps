@@ -362,6 +362,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
         .footer a:hover { color: var(--cyan); }
 
+        #dob-input {
+            letter-spacing: 2px;
+            text-align: center;
+        }
+        #dob-input.invalid {
+            border-color: var(--ember);
+            box-shadow: 0 0 0 1px rgba(255,106,61,.15);
+        }
+        .dob-error {
+            display: none;
+            color: var(--ember);
+            font-size: .6em;
+            letter-spacing: 2px;
+            margin-top: 8px;
+        }
+        .dob-error.show { display: block; }
+
         @media (max-width: 520px) {
             .page { padding: 40px 16px 80px; }
             .field-row { grid-template-columns: 1fr; }
@@ -370,10 +387,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             .step-line { width: 20px; margin: 0 6px; }
             .step span:not(.step-num) { display: none; }
             .sigil-container { width: 300px; height: 300px; }
-        }
-
-        #dob-month, #dob-day, #dob-year {
-            flex: 1;
+            /* 16px minimum stops iOS Safari from auto-zooming when a field is tapped */
+            input, textarea, select { font-size: 16px; padding: 15px 16px; }
         }
     </style>
 </head>
@@ -452,30 +467,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <div class="field-row">
                 <div class="field">
-                    <label for="dob">Date of Birth</label>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;">
-                        <select id="dob-month" required>
-                            <option value="">Month</option>
-                            <option value="01">January</option>
-                            <option value="02">February</option>
-                            <option value="03">March</option>
-                            <option value="04">April</option>
-                            <option value="05">May</option>
-                            <option value="06">June</option>
-                            <option value="07">July</option>
-                            <option value="08">August</option>
-                            <option value="09">September</option>
-                            <option value="10">October</option>
-                            <option value="11">November</option>
-                            <option value="12">December</option>
-                        </select>
-                        <select id="dob-day" required>
-                            <option value="">Day</option>
-                        </select>
-                        <select id="dob-year" required>
-                            <option value="">Year</option>
-                        </select>
-                    </div>
+                    <label for="dob-input">Date of Birth</label>
+                    <input type="text" id="dob-input" inputmode="numeric" autocomplete="bday"
+                           placeholder="MM / DD / YYYY" maxlength="14" required>
+                    <div id="dob-error" class="dob-error">Enter a real date &#8212; MM / DD / YYYY</div>
                     <input type="hidden" id="dob" name="dob">
                 </div>
                 <div class="field">
@@ -590,73 +585,50 @@ animate();
 var form = document.getElementById('intake-form');
 var submitBtn = document.getElementById('submit-btn');
 
-// Date picker logic
-var dobMonth = document.getElementById('dob-month');
-var dobDay = document.getElementById('dob-day');
-var dobYear = document.getElementById('dob-year');
+// Typable date of birth — auto-formats digits into MM / DD / YYYY as you type.
+// Accepts any year (no dropdown cap), so older souls map just fine.
+var dobInput = document.getElementById('dob-input');
+var dobError = document.getElementById('dob-error');
 var dobHidden = document.getElementById('dob');
 
-function getDaysInMonth(month, year) {
-    return new Date(year, month, 0).getDate();
-}
-
-function populateDays() {
-    var month = parseInt(dobMonth.value);
-    var year = parseInt(dobYear.value);
-    var selectedDay = dobDay.value;
-
-    dobDay.innerHTML = '<option value="">Day</option>';
-
-    if (month && year) {
-        var daysInMonth = getDaysInMonth(month, year);
-        for (var i = 1; i <= daysInMonth; i++) {
-            var option = document.createElement('option');
-            option.value = String(i).padStart(2, '0');
-            option.textContent = i;
-            dobDay.appendChild(option);
-        }
-        dobDay.value = selectedDay;
+dobInput.addEventListener('input', function() {
+    var digits = dobInput.value.replace(/\D/g, '').slice(0, 8);
+    var out = digits;
+    if (digits.length > 4) {
+        out = digits.slice(0, 2) + ' / ' + digits.slice(2, 4) + ' / ' + digits.slice(4);
+    } else if (digits.length > 2) {
+        out = digits.slice(0, 2) + ' / ' + digits.slice(2);
     }
+    dobInput.value = out;
+    dobInput.classList.remove('invalid');
+    dobError.classList.remove('show');
     updateDobHidden();
-}
-
-function populateYears() {
-    var currentYear = new Date().getFullYear();
-    var selectedYear = dobYear.value;
-
-    dobYear.innerHTML = '<option value="">Year</option>';
-    for (var i = currentYear; i >= currentYear - 120; i--) {
-        var option = document.createElement('option');
-        option.value = i;
-        option.textContent = i;
-        dobYear.appendChild(option);
-    }
-    dobYear.value = selectedYear;
-}
+});
 
 function updateDobHidden() {
-    var month = dobMonth.value;
-    var day = dobDay.value;
-    var year = dobYear.value;
+    dobHidden.value = '';
+    var digits = dobInput.value.replace(/\D/g, '');
+    if (digits.length !== 8) return;
 
-    if (month && day && year) {
-        dobHidden.value = year + '-' + month + '-' + day;
-    } else {
-        dobHidden.value = '';
-    }
+    var month = parseInt(digits.slice(0, 2), 10);
+    var day = parseInt(digits.slice(2, 4), 10);
+    var year = parseInt(digits.slice(4), 10);
+    var daysInMonth = new Date(year, month, 0).getDate();
+
+    if (month < 1 || month > 12 || day < 1 || day > daysInMonth || year < 1) return;
+    if (new Date(digits.slice(4) + '-' + digits.slice(0, 2) + '-' + digits.slice(2, 4)) > new Date()) return;
+
+    dobHidden.value = digits.slice(4) + '-' + digits.slice(0, 2) + '-' + digits.slice(2, 4);
 }
-
-dobMonth.addEventListener('change', populateDays);
-dobDay.addEventListener('change', updateDobHidden);
-dobYear.addEventListener('change', populateDays);
-
-populateYears();
 
 form.addEventListener('submit', function(e) {
     e.preventDefault();
 
+    updateDobHidden();
     if (!dobHidden.value) {
-        alert('Please select your complete date of birth');
+        dobInput.classList.add('invalid');
+        dobError.classList.add('show');
+        dobInput.focus();
         return;
     }
 
