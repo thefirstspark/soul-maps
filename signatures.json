@@ -119,5 +119,25 @@
     },
     "minted_at": "2026-07-23T12:09:00Z",
     "formula_version": 1
+  },
+  "blake harrison smith|2010-08-27": {
+    "name": "blake harrison smith",
+    "dob": "2010-08-27",
+    "quantum": "77481AC85CAC",
+    "quantum_display": "7748·1AC8·5CAC",
+    "resonance_hz": 667.18,
+    "activation": "87155E45[LP2]",
+    "codex_color": "rose",
+    "codex_role": "The Bond",
+    "codex_tier": "Rose",
+    "core": {
+      "life_path": 2,
+      "expression": 4,
+      "soul_urge": 4,
+      "personality": 9,
+      "birthday": 9
+    },
+    "minted_at": "2026-07-30T02:00:55Z",
+    "formula_version": 1
   }
 }
