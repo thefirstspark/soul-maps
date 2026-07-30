@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="codex-colors.css">
 <style>
+  /* --ember/--gold/--violet/--cyan come from codex-colors.css (canonical Color Codex palette) */
   :root {
     --black: #0B0B0C;
     --deep-space: #0a0a0f;
@@ -52,7 +53,7 @@
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.6rem; font-weight: 600;
     color: var(--cyan);
-    border-bottom: 1px solid rgba(34,211,238,0.2);
+    border-bottom: 1px solid rgba(38,228,216,0.2);
     padding-bottom: 8px; margin: 48px 0 20px;
   }
   h3 {
@@ -76,7 +77,7 @@
   }
   .number-card {
     background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(139,92,246,0.2);
+    border: 1px solid rgba(107,77,242,0.2);
     border-radius: 8px; padding: 20px; text-align: center;
     transition: border-color 0.3s;
   }
@@ -101,6 +102,76 @@
     font-size: 0.8rem; letter-spacing: 1px;
     text-transform: uppercase;
   }
+  /* ===== Archetype signature ===== */
+  .archetype {
+    margin: 32px 0 40px;
+    padding: 32px 28px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.02);
+    position: relative;
+    overflow: hidden;
+  }
+  .archetype::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  }
+  .archetype .eyebrow {
+    font-size: 0.7rem; color: var(--dim);
+    text-transform: uppercase; letter-spacing: 3px;
+    text-align: center; margin-bottom: 10px;
+  }
+  .archetype .glyph {
+    text-align: center; font-size: 1.4rem; line-height: 1;
+    margin-bottom: 6px; opacity: 0.85;
+  }
+  .archetype .arch-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.2rem; font-weight: 700; line-height: 1.05;
+    text-align: center; margin-bottom: 4px;
+  }
+  .archetype .arch-index {
+    text-align: center; font-size: 0.7rem; color: var(--dim);
+    letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px;
+  }
+  .archetype .tags {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 8px; margin-bottom: 24px;
+  }
+  .archetype .tag {
+    font-size: 0.68rem; letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 5px 12px; border-radius: 20px;
+    border: 1px solid currentColor; font-weight: 700;
+  }
+  .archetype .essence {
+    color: var(--white); line-height: 1.85; text-align: center;
+    max-width: 60ch; margin: 0 auto 26px;
+  }
+  .archetype .gs-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px; margin-bottom: 22px;
+  }
+  .archetype .gs {
+    background: rgba(255,255,255,0.02);
+    border-left: 3px solid var(--dim);
+    padding: 14px 16px;
+  }
+  .archetype .gs.gift { border-left-color: #34C46A; }
+  .archetype .gs.shadow { border-left-color: #FF4D8D; }
+  .archetype .gs .gs-label {
+    font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px;
+    color: var(--dim); margin-bottom: 6px;
+  }
+  .archetype .gs p { font-size: 0.85rem; line-height: 1.7; }
+  .archetype .derivation {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 16px; font-size: 0.72rem; color: var(--dim);
+    line-height: 1.8; text-align: center;
+  }
+  .archetype .derivation b { color: var(--white); font-weight: 700; }
+  @media (max-width: 600px) {
+    .archetype { padding: 24px 18px; }
+    .archetype .arch-name { font-size: 2.3rem; }
+  }
   .astro-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 12px; margin: 20px 0;
@@ -115,8 +186,8 @@
   .reading { color: var(--white); line-height: 1.8; margin: 12px 0; }
   .zodiac-badge {
     display: inline-flex; align-items: center; gap: 12px;
-    background: rgba(212,175,55,0.08);
-    border: 1px solid rgba(212,175,55,0.2);
+    background: rgba(243,178,58,0.08);
+    border: 1px solid rgba(243,178,58,0.2);
     border-radius: 8px; padding: 16px 24px; margin: 16px 0;
   }
   .zodiac-badge .animal { font-size: 2rem; }
@@ -126,8 +197,8 @@
     text-transform: uppercase; letter-spacing: 2px;
   }
   .cycle-box {
-    background: rgba(139,92,246,0.06);
-    border: 1px solid rgba(139,92,246,0.15);
+    background: rgba(107,77,242,0.06);
+    border: 1px solid rgba(107,77,242,0.15);
     border-radius: 8px; padding: 24px; margin: 20px 0;
   }
   .cycle-number {
@@ -144,7 +215,7 @@
   .generated-date { color: var(--dim); font-size: 0.75rem; margin-top: 4px; }
   .ceremony-banner {
     background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(243, 178, 58, 0.15));
-    border: 2px solid #8b5cf6;
+    border: 2px solid #6B4DF2;
     border-radius: 8px;
     padding: 32px 24px;
     margin: 24px 0;
@@ -152,7 +223,7 @@
     font-family: 'Cormorant Garamond', serif;
   }
   .ceremony-text {
-    color: #d4af37;
+    color: #F3B23A;
     font-size: 0.95rem;
     letter-spacing: 2px;
     line-height: 2;
@@ -161,30 +232,69 @@
     display: block;
     font-size: 1.8rem;
     font-weight: 700;
-    color: #8b5cf6;
+    color: #6B4DF2;
     margin: 16px 0;
   }
   .ceremony-date {
     display: block;
     font-size: 0.85rem;
-    color: #22d3ee;
+    color: #26E4D8;
     margin-top: 16px;
     letter-spacing: 1px;
   }
-
+  /* Color Codex badge — every map */
   .codex-badge {
-    display: flex; align-items: stretch; gap: 0; margin: 20px 0 28px;
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin: 20px 0 28px;
     border: 1px solid var(--codex-border, rgba(139,92,246,0.5));
-    border-radius: 10px; background: var(--codex-wash, rgba(139,92,246,0.12)); overflow: hidden;
+    border-radius: 10px;
+    background: var(--codex-wash, rgba(139,92,246,0.12));
+    overflow: hidden;
   }
-  .codex-badge-swatch { width: 10px; flex-shrink: 0; background: var(--codex-hex, #8b5cf6); }
-  .codex-badge-body { padding: 16px 20px; flex: 1; }
-  .codex-badge-kicker { font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: var(--dim, #888); margin-bottom: 6px; }
-  .codex-badge-tier { font-family: 'Cormorant Garamond', serif; font-size: 1.75rem; font-weight: 700; color: var(--codex-hex, #8b5cf6); line-height: 1.2; }
-  .codex-badge-role { font-size: 0.9rem; color: var(--white, #f0ece4); margin-top: 4px; letter-spacing: 0.5px; }
-  .codex-badge-link { display: inline-block; margin-top: 10px; font-size: 0.72rem; letter-spacing: 1px; color: #26E4D8; text-decoration: none; }
+  .codex-badge-swatch {
+    width: 10px;
+    flex-shrink: 0;
+    background: var(--codex-hex, #8b5cf6);
+  }
+  .codex-badge-body {
+    padding: 16px 20px;
+    flex: 1;
+  }
+  .codex-badge-kicker {
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--dim, #888);
+    margin-bottom: 6px;
+  }
+  .codex-badge-tier {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--codex-hex, #8b5cf6);
+    line-height: 1.2;
+  }
+  .codex-badge-role {
+    font-size: 0.9rem;
+    color: var(--white, #f0ece4);
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+  }
+  .codex-badge-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 0.72rem;
+    letter-spacing: 1px;
+    color: #26E4D8;
+    text-decoration: none;
+  }
   .codex-badge-link:hover { text-shadow: 0 0 8px rgba(38,228,216,0.5); }
-
+  @media (max-width: 520px) {
+    .codex-badge-tier { font-size: 1.4rem; }
+    .codex-badge-body { padding: 14px 16px; }
+  }
 </style>
 </head>
 <body>
@@ -194,8 +304,8 @@
   <p class="subtitle">Soul Map</p>
   <h1>Alexandria Kaye Muster</h1>
   
-  <p class="generated-date">Generated May 05, 2026 · thefirstspark.shop</p>
-  <div class="codex-badge" style="--codex-hex:#8b5cf6; --codex-wash:rgba(139,92,246,0.12); --codex-border:rgba(139,92,246,0.5);">
+  <p class="generated-date">Generated July 29, 2026 · thefirstspark.shop</p>
+    <div class="codex-badge" style="--codex-hex:#8b5cf6; --codex-wash:rgba(139,92,246,0.12); --codex-border:rgba(139,92,246,0.5);">
     <div class="codex-badge-swatch" aria-hidden="true"></div>
     <div class="codex-badge-body">
       <div class="codex-badge-kicker">Color Codex</div>
@@ -210,6 +320,44 @@
     This isn't a personality test. It's a coordinate system — a map of the patterns
     encoded in your existence. Numbers, planets, elements. Not metaphors. Syntax.
   </p>
+
+  <!-- ===== ARCHETYPE SIGNATURE ===== -->
+
+  <div class="archetype" style="--arch-realm: #FF5A36; --arch-verb: #19D3E0;">
+    <div class="archetype-rule" style="position:absolute; top:0; left:0; right:0; height:2px;
+         background: linear-gradient(90deg, transparent, #19D3E0, #FF5A36, transparent);"></div>
+    <div class="eyebrow">Your Archetype</div>
+    <div class="glyph" style="color: #FF5A36;">▪</div>
+    <div class="arch-name" style="color: #FF5A36;">Ember</div>
+    <div class="arch-index">Node 1 of 12 · Ignition Realm</div>
+
+    <div class="tags">
+      <span class="tag" style="color: #19D3E0;">SELECT</span>
+      <span class="tag" style="color: #26E4D8;">Physics</span>
+      <span class="tag" style="color: #FF5A36;">Ignition</span>
+    </div>
+
+    <p class="essence">The first heat. You are the proof that something can start from nothing — no permission, no blueprint, just the decision to burn.</p>
+
+    <div class="gs-grid">
+      <div class="gs gift">
+        <div class="gs-label">The Gift</div>
+        <p>You can begin. Most people cannot. Where others need conditions, you need only a choice.</p>
+      </div>
+      <div class="gs shadow">
+        <div class="gs-label">The Shadow</div>
+        <p>Burning fuel without building a hearth. Starting is not the same as sustaining, and you can mistake ignition for completion.</p>
+      </div>
+    </div>
+
+    <div class="derivation">
+      <b>Core Code — SELECT:</b> choose · build · claim — you move reality by deciding<br>
+      <b>Selector Layer — Physics:</b> Structure frequency — you build the architecture of reality<br>
+      <b>Ignition:</b> The break. Where the old timeline ends and heat enters the system.<br>
+      <span style="opacity:0.7;">Derived from Life Path 4 (quadrant) × Soul Urge 4 (node 1 of 3).</span>
+    </div>
+  </div>
+
 
   <!-- ===== CORE NUMBERS ===== -->
   <h2>Core Numbers</h2>
@@ -253,13 +401,13 @@
   <!-- ===== HIDDEN PASSION ===== -->
   <h2>Hidden Passion — Your Deepest Drive</h2>
   <div style="text-align: center; margin: 24px 0;">
-    <div style="font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 700; color: #22d3ee; margin-bottom: 12px;">1</div>
+    <div style="font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 700; color: #26E4D8; margin-bottom: 12px;">1</div>
     <p class="reading">Drive to lead and initiate. Your deepest motivation is independence and pioneering.</p>
   </div>
 
   <!-- ===== KARMIC LESSONS ===== -->
   <h2>Karmic Lessons — What You Came To Learn</h2>
-  <div style="margin: 20px 0; padding: 16px; background: rgba(139,92,246,0.1); border-left: 4px solid #8b5cf6; border-radius: 4px;">
+  <div style="margin: 20px 0; padding: 16px; background: rgba(107,77,242,0.1); border-left: 4px solid #6B4DF2; border-radius: 4px;">
     <p class="reading">Lesson: Master power. Use influence ethically. Manage resources wisely.</p>
   </div>
 
@@ -268,25 +416,25 @@
 
   <h3>Pinnacles — Major Life Themes</h3>
   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin: 16px 0;">
-    <div style="padding: 16px; background: rgba(34,211,238,0.08); border: 1px solid rgba(34,211,238,0.2); border-radius: 6px;">
-      <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #22d3ee; font-weight: 700; margin-bottom: 4px;">9</div>
+    <div style="padding: 16px; background: rgba(38,228,216,0.08); border: 1px solid rgba(38,228,216,0.2); border-radius: 6px;">
+      <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #26E4D8; font-weight: 700; margin-bottom: 4px;">9</div>
       <div style="font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Pinnacle 1</div>
-      <p style="font-size: 0.85rem; color: #f0ece4;">First pinnacle: Completion phase. Release old cycles. Prepare for transformation.</p>
+      <p style="font-size: 0.85rem; color: #f0ece4;">Completion phase. Release old cycles. Prepare for transformation.</p>
     </div>
-    <div style="padding: 16px; background: rgba(34,211,238,0.08); border: 1px solid rgba(34,211,238,0.2); border-radius: 6px;">
-      <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #22d3ee; font-weight: 700; margin-bottom: 4px;">1</div>
+    <div style="padding: 16px; background: rgba(38,228,216,0.08); border: 1px solid rgba(38,228,216,0.2); border-radius: 6px;">
+      <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #26E4D8; font-weight: 700; margin-bottom: 4px;">1</div>
       <div style="font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Pinnacle 2</div>
-      <p style="font-size: 0.85rem; color: #f0ece4;">First pinnacle: Pioneer phase. Lay groundwork. Initiate change.</p>
+      <p style="font-size: 0.85rem; color: #f0ece4;">Pioneer phase. Lay groundwork. Initiate change.</p>
     </div>
-    <div style="padding: 16px; background: rgba(34,211,238,0.08); border: 1px solid rgba(34,211,238,0.2); border-radius: 6px;">
-      <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #22d3ee; font-weight: 700; margin-bottom: 4px;">1</div>
+    <div style="padding: 16px; background: rgba(38,228,216,0.08); border: 1px solid rgba(38,228,216,0.2); border-radius: 6px;">
+      <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #26E4D8; font-weight: 700; margin-bottom: 4px;">1</div>
       <div style="font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Pinnacle 3</div>
-      <p style="font-size: 0.85rem; color: #f0ece4;">First pinnacle: Pioneer phase. Lay groundwork. Initiate change.</p>
+      <p style="font-size: 0.85rem; color: #f0ece4;">Pioneer phase. Lay groundwork. Initiate change.</p>
     </div>
-    <div style="padding: 16px; background: rgba(34,211,238,0.08); border: 1px solid rgba(34,211,238,0.2); border-radius: 6px;">
-      <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #22d3ee; font-weight: 700; margin-bottom: 4px;">7</div>
+    <div style="padding: 16px; background: rgba(38,228,216,0.08); border: 1px solid rgba(38,228,216,0.2); border-radius: 6px;">
+      <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #26E4D8; font-weight: 700; margin-bottom: 4px;">7</div>
       <div style="font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Pinnacle 4</div>
-      <p style="font-size: 0.85rem; color: #f0ece4;">First pinnacle: Seeker phase. Study deeply. Retreat inward.</p>
+      <p style="font-size: 0.85rem; color: #f0ece4;">Seeker phase. Study deeply. Retreat inward.</p>
     </div>
   </div>
 
@@ -316,7 +464,7 @@
 
   <!-- ===== SOUL SYNTHESIS ===== -->
   <h2>Soul Synthesis</h2>
-  <div style="margin: 24px 0; padding: 24px; background: rgba(139,92,246,0.05); border: 1px solid rgba(139,92,246,0.15); border-radius: 8px;">
+  <div style="margin: 24px 0; padding: 24px; background: rgba(107,77,242,0.05); border: 1px solid rgba(107,77,242,0.15); border-radius: 8px;">
     <div class="reading"><p class="reading" style="margin-bottom: 16px;">You run on Life Path 4 — <em>Architect</em>. Expression 11 (Master Intuitive) is how you transmit. Soul Urge 4 (Architect) is what fuels you underneath. That triangle is the core engine.</p>
     <p class="reading" style="margin-bottom: 16px;">You carry master number <strong>11</strong> — frequencies most people only brush against. Master-level signal isn't a gift you can chase; it's a current you have to learn to operate inside without burning out. The volume runs high by default. Your system needs more downtime, more grounding, and more permission to be intense than most will think makes sense. That isn't fragility. It's structural.</p>
     <p class="reading" style="margin-bottom: 16px;">Personality 7 (Decoder): what others receive from you first. Birthday 6: your innate gift — the frequency that was online before you had words for any of this.</p>
@@ -327,7 +475,7 @@
 
   <!-- ===== DEBUGGING NOTES ===== -->
   <h2>Debugging Notes — Watch For These Loops</h2>
-  <div style="margin: 24px 0; padding: 24px; background: rgba(212,175,55,0.05); border: 1px solid rgba(212,175,55,0.15); border-radius: 8px;">
+  <div style="margin: 24px 0; padding: 24px; background: rgba(243,178,58,0.05); border: 1px solid rgba(243,178,58,0.15); border-radius: 8px;">
     <div class="reading" style="font-size: 0.95rem;"><ul style="margin: 0; padding-left: 20px;">
   <li style="margin-bottom: 12px;"><strong>Master number overload:</strong> You hold 1 master frequency placement (11). The high voltage burns out anything that isn't grounded. Rest is not optional — it's part of the architecture. Treat downtime as load-bearing.</li>
   <li style="margin-bottom: 12px;"><strong>Karmic Lesson 8:</strong> Master power. Use influence ethically. Manage resources wisely. Don't avoid the assignment — it's the upgrade.</li>
@@ -340,25 +488,25 @@
   <div style="margin: 20px 0; overflow-x: auto;">
     <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
       <thead>
-        <tr style="border-bottom: 2px solid #22d3ee;">
-          <th style="padding: 12px; text-align: left; color: #22d3ee; font-weight: 600;">Month</th>
-          <th style="padding: 12px; text-align: center; color: #22d3ee; font-weight: 600;">Number</th>
-          <th style="padding: 12px; text-align: left; color: #22d3ee; font-weight: 600;">Meaning</th>
+        <tr style="border-bottom: 2px solid #26E4D8;">
+          <th style="padding: 12px; text-align: left; color: #26E4D8; font-weight: 600;">Month</th>
+          <th style="padding: 12px; text-align: center; color: #26E4D8; font-weight: 600;">Number</th>
+          <th style="padding: 12px; text-align: left; color: #26E4D8; font-weight: 600;">Meaning</th>
         </tr>
       </thead>
       <tbody>
-        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">January</td><td style="padding: 10px 12px; text-align: center; color: #22d3ee; font-weight: 600;">2</td><td style="padding: 10px 12px;">Patience. Partnerships. Let what you planted take root.</td></tr>
-        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">February</td><td style="padding: 10px 12px; text-align: center; color: #22d3ee; font-weight: 600;">3</td><td style="padding: 10px 12px;">Expression month. Create. Be visible. Share what’s been brewing.</td></tr>
-        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">March</td><td style="padding: 10px 12px; text-align: center; color: #22d3ee; font-weight: 600;">4</td><td style="padding: 10px 12px;">Build month. Foundations. Systems. Do the unsexy work.</td></tr>
-        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">April</td><td style="padding: 10px 12px; text-align: center; color: #22d3ee; font-weight: 600;">5</td><td style="padding: 10px 12px;">Change month. Something shifts — let it. Don’t grip the old timeline.</td></tr>
-        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">May</td><td style="padding: 10px 12px; text-align: center; color: #22d3ee; font-weight: 600;">6</td><td style="padding: 10px 12px;">Responsibility month. Home. Family. Recalibrate what ‘balance’ means.</td></tr>
-        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">June</td><td style="padding: 10px 12px; text-align: center; color: #22d3ee; font-weight: 600;">7</td><td style="padding: 10px 12px;">Inner work month. Go deep. Study. Rest. The answers are inside the code.</td></tr>
-        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">July</td><td style="padding: 10px 12px; text-align: center; color: #22d3ee; font-weight: 600;">8</td><td style="padding: 10px 12px;">Power month. Harvest. Manifest. Step into the version you’ve been compiling.</td></tr>
-        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">August</td><td style="padding: 10px 12px; text-align: center; color: #22d3ee; font-weight: 600;">9</td><td style="padding: 10px 12px;">Completion month. Release. Grieve if needed. Clear the cache for what’s next.</td></tr>
-        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">September</td><td style="padding: 10px 12px; text-align: center; color: #22d3ee; font-weight: 600;">1</td><td style="padding: 10px 12px;">New Cycle. Plant seeds. Start the thing you’ve been circling.</td></tr>
-        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">October</td><td style="padding: 10px 12px; text-align: center; color: #22d3ee; font-weight: 600;">11</td><td style="padding: 10px 12px;">Illumination month. Downloads are incoming. Trust what you can’t yet prove.</td></tr>
-        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">November</td><td style="padding: 10px 12px; text-align: center; color: #22d3ee; font-weight: 600;">3</td><td style="padding: 10px 12px;">Expression month. Create. Be visible. Share what’s been brewing.</td></tr>
-        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">December</td><td style="padding: 10px 12px; text-align: center; color: #22d3ee; font-weight: 600;">4</td><td style="padding: 10px 12px;">Build month. Foundations. Systems. Do the unsexy work.</td></tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">January</td><td style="padding: 10px 12px; text-align: center; color: #26E4D8; font-weight: 600;">2</td><td style="padding: 10px 12px;">Patience. Partnerships. Let what you planted take root.</td></tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">February</td><td style="padding: 10px 12px; text-align: center; color: #26E4D8; font-weight: 600;">3</td><td style="padding: 10px 12px;">Expression month. Create. Be visible. Share what’s been brewing.</td></tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">March</td><td style="padding: 10px 12px; text-align: center; color: #26E4D8; font-weight: 600;">4</td><td style="padding: 10px 12px;">Build month. Foundations. Systems. Do the unsexy work.</td></tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">April</td><td style="padding: 10px 12px; text-align: center; color: #26E4D8; font-weight: 600;">5</td><td style="padding: 10px 12px;">Change month. Something shifts — let it. Don’t grip the old timeline.</td></tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">May</td><td style="padding: 10px 12px; text-align: center; color: #26E4D8; font-weight: 600;">6</td><td style="padding: 10px 12px;">Responsibility month. Home. Family. Recalibrate what ‘balance’ means.</td></tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">June</td><td style="padding: 10px 12px; text-align: center; color: #26E4D8; font-weight: 600;">7</td><td style="padding: 10px 12px;">Inner work month. Go deep. Study. Rest. The answers are inside the code.</td></tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">July</td><td style="padding: 10px 12px; text-align: center; color: #26E4D8; font-weight: 600;">8</td><td style="padding: 10px 12px;">Power month. Harvest. Manifest. Step into the version you’ve been compiling.</td></tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">August</td><td style="padding: 10px 12px; text-align: center; color: #26E4D8; font-weight: 600;">9</td><td style="padding: 10px 12px;">Completion month. Release. Grieve if needed. Clear the cache for what’s next.</td></tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">September</td><td style="padding: 10px 12px; text-align: center; color: #26E4D8; font-weight: 600;">1</td><td style="padding: 10px 12px;">New Cycle. Plant seeds. Start the thing you’ve been circling.</td></tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">October</td><td style="padding: 10px 12px; text-align: center; color: #26E4D8; font-weight: 600;">11</td><td style="padding: 10px 12px;">Illumination month. Downloads are incoming. Trust what you can’t yet prove.</td></tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">November</td><td style="padding: 10px 12px; text-align: center; color: #26E4D8; font-weight: 600;">3</td><td style="padding: 10px 12px;">Expression month. Create. Be visible. Share what’s been brewing.</td></tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td style="padding: 10px 12px;">December</td><td style="padding: 10px 12px; text-align: center; color: #26E4D8; font-weight: 600;">4</td><td style="padding: 10px 12px;">Build month. Foundations. Systems. Do the unsexy work.</td></tr>
       </tbody>
     </table>
   </div>
@@ -370,13 +518,7 @@
       <div class="planet">☉ Sun</div>
       <div class="sign">Sagittarius ♐</div>
     </div>
-        <div class="astro-item"><div class="planet">☽ Moon</div><div class="sign">Capricorn</div></div>
-    <div class="astro-item"><div class="planet">↑ Rising</div><div class="sign">Aquarius</div></div>
-    <div class="astro-item"><div class="planet">☿ Mercury</div><div class="sign">Sagittarius</div></div>
-    <div class="astro-item"><div class="planet">♀ Venus</div><div class="sign">Sagittarius</div></div>
-    <div class="astro-item"><div class="planet">♂ Mars</div><div class="sign">Sagittarius</div></div>
-    <div class="astro-item"><div class="planet">♃ Jupiter</div><div class="sign">Scorpio</div></div>
-    <div class="astro-item"><div class="planet">♄ Saturn</div><div class="sign">Aquarius</div></div>
+    <div class="astro-item"><div class="planet">☽ Moon / ↑ Rising</div><div class="sign">Birth time needed for full chart</div></div>
   </div>
   <h3>Sun in Sagittarius</h3>
   <p class="reading">Explorer protocol. Maps uncharted territories of thought and terrain.</p>
@@ -397,10 +539,238 @@
     <div class="cycle-number">1</div>
     <h3>Personal Year 1</h3>
     <p class="reading">New Cycle. Plant seeds. Start the thing you’ve been circling.</p>
-    <h3 style="margin-top: 20px;">Personal Month: 6</h3>
+    <h3 style="margin-top: 20px;">Personal Month: 8</h3>
     <p style="margin-top: 20px; text-align: center;">
-      <a href="AKM121993-202605.html" style="color: #22d3ee; text-decoration: none; font-family: 'Space Mono', monospace; font-size: 0.9rem;">→ View This Month's Energy Update</a>
+      <a href="AKM121993-202607.html" style="color: #26E4D8; text-decoration: none; font-family: 'Space Mono', monospace; font-size: 0.9rem;">→ View This Month's Energy Update</a>
     </p>
+  </div>
+
+  <!-- ===== ADVANCED FEATURES ===== -->
+  <h2>Advanced Analysis</h2>
+  
+  
+  <div style="text-align: center; margin: 32px 0; padding: 32px; background: linear-gradient(135deg, rgba(107,77,242,0.1), rgba(38,228,216,0.1)); border-radius: 12px;">
+    <div style="font-size: 0.85rem; color: #26E4D8; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px;">Soul Resonance Frequency</div>
+    <div style="font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 700; color: #F3B23A; margin: 16px 0;">870.48 Hz</div>
+    <div style="width: 100%; height: 3px; background: linear-gradient(to right, #6B4DF2, #26E4D8, #F3B23A); margin: 20px 0; border-radius: 2px;"></div>
+    <div style="font-size: 0.9rem; color: #f0ece4; line-height: 1.6;">
+      Your core numbers translate to a harmonic frequency in the Schumann range. This is your vibrational signature — the frequency your energy naturally aligns with. 432 Hz is the baseline; your unique pattern modulates from there.
+    </div>
+  </div>
+    
+  
+  
+  <div style="margin: 24px 0; padding: 20px; background: rgba(243,178,58,0.08); border: 2px solid #F3B23A; border-radius: 8px;">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+      <div style="font-size: 0.85rem; color: #F3B23A; text-transform: uppercase; letter-spacing: 2px; font-weight: 700;">Rarity Score</div>
+      <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: #F3B23A; font-weight: 700;">25</div>
+    </div>
+    <div style="font-size: 0.9rem; color: #f0ece4;">
+      Master numbers present: <span style="color: #26E4D8; font-weight: 600;">1</span>
+    </div>  </div>
+  
+  <h3 style="margin-top: 32px;">Karmic Remediation Pathways</h3>
+  <div style="margin: 12px 0;">
+    <div style="margin: 12px 0; padding: 12px; background: rgba(107,77,242,0.08); border-left: 3px solid #6B4DF2; border-radius: 4px;">
+      <div style="font-weight: 600; color: #6B4DF2; font-size: 0.9rem; margin-bottom: 6px;">13/4 Potential</div>
+      <div style="font-size: 0.85rem; color: #f0ece4; line-height: 1.6;">Impulsiveness remedy: Build daily discipline rituals. Karmic lesson is creating lasting structure from chaos.</div>
+    </div>
+            </div>
+  
+  <h3 style="margin-top: 32px;">Power Timing</h3>
+  
+  <div style="margin: 24px 0; padding: 20px; background: rgba(255,106,61,0.08); border: 1px solid #FF6A3D; border-radius: 8px;">
+    <div style="font-size: 0.85rem; color: #FF6A3D; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 12px;">Power Hour Today</div>
+    <div style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: #FF6A3D; font-weight: 700; margin: 8px 0;">05:06</div>
+    <div style="font-size: 0.85rem; color: #f0ece4;">Maximum resonance window for today's frequency</div>
+  </div>
+    
+  
+  <h3 style="margin-top: 32px;">Evolutionary Trajectory</h3>
+  
+  <div style="margin: 24px 0; padding: 20px; background: rgba(38,228,216,0.08); border: 1px solid #26E4D8; border-radius: 8px;">
+    <div style="font-size: 0.85rem; color: #26E4D8; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 12px;">Current Cycle Position</div>
+    <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: #26E4D8; font-weight: 700; margin: 8px 0;">
+      Year 1 of 9
+    </div>
+    <div style="font-size: 0.85rem; color: #f0ece4;">
+      Next transition: December 15, 2026
+      · 8 years left in this cycle
+    </div>
+  </div>
+    
+  
+  <h3 style="margin-top: 32px;">Arcana Trinity</h3>
+  
+  <div style="margin: 24px 0; padding: 24px; background: linear-gradient(135deg, rgba(107,77,242,0.12), rgba(243,178,58,0.12)); border: 2px solid #6B4DF2; border-radius: 8px;">
+    <div style="font-size: 0.85rem; color: #6B4DF2; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 16px; text-align: center;">Arcana Trinity</div>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 16px 0;">
+      <div style="text-align: center; padding: 16px; background: rgba(255,255,255,0.03); border-radius: 8px;">
+        <div style="font-weight: 600; color: #F3B23A; font-size: 1rem; margin-bottom: 4px;">The Emperor</div>
+        <div style="font-size: 0.7rem; color: #26E4D8; text-transform: uppercase;">Life Path</div>
+      </div>
+      <div style="text-align: center; padding: 16px; background: rgba(255,255,255,0.03); border-radius: 8px;">
+        <div style="font-weight: 600; color: #F3B23A; font-size: 1rem; margin-bottom: 4px;">Justice</div>
+        <div style="font-size: 0.7rem; color: #26E4D8; text-transform: uppercase;">Expression</div>
+      </div>
+      <div style="text-align: center; padding: 16px; background: rgba(255,255,255,0.03); border-radius: 8px;">
+        <div style="font-weight: 600; color: #F3B23A; font-size: 1rem; margin-bottom: 4px;">The Emperor</div>
+        <div style="font-size: 0.7rem; color: #26E4D8; text-transform: uppercase;">Soul Urge</div>
+      </div>
+    </div>
+    <div style="margin-top: 16px; padding: 12px; background: rgba(107,77,242,0.1); border-left: 3px solid #6B4DF2; color: #f0ece4; font-size: 0.85rem; line-height: 1.6;">
+      Your arcana trinity: The Emperor (your journey), Justice (how you show), The Emperor (what drives you beneath). These three arcana are woven through every choice.
+    </div>
+  </div>
+    
+  
+  <h3 style="margin-top: 32px;">Next 90 Days — Optimal Windows</h3>
+  <div style="margin: 24px 0; padding: 20px; background: rgba(107,77,242,0.05); border: 1px solid rgba(107,77,242,0.15); border-radius: 8px;">
+    <table style="width: 100%; margin: 12px 0; font-size: 0.85rem; border-collapse: collapse;">
+      <tr style="border-bottom: 1px solid rgba(38,228,216,0.15);">
+        <td style="padding: 10px 8px; color: #26E4D8;">Aug 11</td>
+        <td style="padding: 10px 8px; text-align: center; color: #F3B23A; font-weight: 600;">Master Number Day</td>
+        <td style="padding: 10px 8px; color: #f0ece4; text-align: right;">Master frequency alignment — optimal for...</td>
+      </tr>
+        
+      <tr style="border-bottom: 1px solid rgba(38,228,216,0.15);">
+        <td style="padding: 10px 8px; color: #26E4D8;">Aug 15</td>
+        <td style="padding: 10px 8px; text-align: center; color: #F3B23A; font-weight: 600;">Personal Month Shift</td>
+        <td style="padding: 10px 8px; color: #f0ece4; text-align: right;">Completion month. Release. Grieve if nee...</td>
+      </tr>
+        
+      <tr style="border-bottom: 1px solid rgba(38,228,216,0.15);">
+        <td style="padding: 10px 8px; color: #26E4D8;">Sep 15</td>
+        <td style="padding: 10px 8px; text-align: center; color: #F3B23A; font-weight: 600;">Personal Month Shift</td>
+        <td style="padding: 10px 8px; color: #f0ece4; text-align: right;">New Cycle. Plant seeds. Start the thing ...</td>
+      </tr>
+        
+      <tr style="border-bottom: 1px solid rgba(38,228,216,0.15);">
+        <td style="padding: 10px 8px; color: #26E4D8;">Oct 15</td>
+        <td style="padding: 10px 8px; text-align: center; color: #F3B23A; font-weight: 600;">Personal Month Shift</td>
+        <td style="padding: 10px 8px; color: #f0ece4; text-align: right;">Illumination month. Downloads are incomi...</td>
+      </tr>
+        </table>
+  </div>
+  
+  <!-- ===== ULTIMATE FEATURES ===== -->
+  <h2 style="margin-top: 60px; border-top: 2px solid rgba(243,178,58,0.2); padding-top: 40px;">The Impossible Code</h2>
+  
+  <h3 style="margin-top: 32px;">Quantum Signature</h3>
+  
+  <div style="margin: 24px 0; padding: 24px; background: linear-gradient(135deg, rgba(255,106,61,0.1), rgba(38,228,216,0.1)); border: 2px solid #FF6A3D; border-radius: 8px;" data-quantum="0A112E39943B" data-sig-key="alexandria kaye muster|1993-12-15">
+    <div style="font-size: 0.85rem; color: #FF6A3D; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 16px;">Quantum Signature</div>
+    <div style="font-family: 'Courier New', monospace; font-size: 1.4rem; letter-spacing: 3px; color: #26E4D8; font-weight: 700; margin: 16px 0; text-align: center; padding: 16px; background: rgba(26,26,46,0.8); border-radius: 6px;">0A11·2E39·943B</div>
+    <div style="font-size: 0.9rem; color: #f0ece4; line-height: 1.6;">
+      Your permanent soul fingerprint — minted once for this name and birth date, then locked. Re-runs reuse this ID.
+    </div>
+    <div style="font-size: 0.7rem; color: #888; margin-top: 10px; text-align: center; letter-spacing: 1px;">Newly minted 2026-07-30T02:26:44Z · formula v1</div>
+  </div>
+    
+  
+  <h3 style="margin-top: 32px;">Vibrational Blueprint</h3>
+  
+  <div style="margin: 24px 0; padding: 24px; background: rgba(107,77,242,0.08); border: 1px solid #6B4DF2; border-radius: 8px;">
+    <div style="font-size: 0.85rem; color: #6B4DF2; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 16px;">Vibrational Blueprint</div>
+    <div style="font-family: 'Courier New', monospace; font-size: 1.2rem; color: #26E4D8; line-height: 1.8; margin: 16px 0; padding: 12px; background: rgba(26,26,46,0.8); border-radius: 4px;">
+      █████  ████<br/>
+      ▁▂▃▄▅▆▇█
+    </div>
+    <div style="font-size: 0.85rem; color: #f0ece4;">Visual representation of your frequency signature. The bars show your life path intensity; the wave shows your harmonic resonance.</div>
+  </div>
+    
+  
+  <h3 style="margin-top: 32px;">Your Activation Sequence</h3>
+  
+  <div style="margin: 24px 0; padding: 24px; background: linear-gradient(135deg, rgba(38,228,216,0.12), rgba(243,178,58,0.12)); border: 2px solid #26E4D8; border-radius: 8px; text-align: center;">
+    <div style="font-size: 0.75rem; color: #26E4D8; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 12px; font-weight: 700;">Your Activation Sequence</div>
+    <div style="font-family: 'Courier New', monospace; font-size: 1.8rem; letter-spacing: 2px; color: #F3B23A; font-weight: 700; margin: 16px 0; padding: 16px; background: rgba(26,26,46,0.8); border-radius: 6px; border: 1px dashed #26E4D8;">D671D28F[LP4]</div>
+    <div style="font-size: 0.9rem; color: #f0ece4; margin-top: 12px;">
+      This is your personal frequency trigger. When you speak, write, or think this code, you align with your highest potential. It's your soul's call sign.
+    </div>
+  </div>
+    
+  
+  <h3 style="margin-top: 32px;">Shadow Integration Path</h3>
+  
+  <div style="margin: 24px 0; padding: 24px; background: linear-gradient(135deg, rgba(243,178,58,0.08), rgba(139,92,246,0.08)); border: 2px solid #F3B23A; border-radius: 8px;">
+    <div style="font-size: 0.85rem; color: #F3B23A; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 16px;">Shadow Integration Pathway</div>
+    <div style="font-size: 0.9rem; color: #f0ece4; margin-bottom: 16px; font-style: italic;">Your shadows are not enemies. They are untranslated parts of your code. Here is how to integrate them:</div>
+    <div style="margin-top: 12px;">
+
+      <div style="margin: 12px 0; padding: 12px; background: rgba(255,255,255,0.03); border-left: 3px solid #F3B23A; border-radius: 4px;">
+        <div style="color: #F3B23A; font-weight: 600; margin-bottom: 6px;">Lesson 8: Master power. Use influence ethically. Manage resources wisely.</div>
+        <div style="font-size: 0.85rem; color: #f0ece4;">Practice: Make one resourceful choice. Empowerment is ethical.</div>
+      </div>
+    </div>
+  </div>
+  
+  <h3 style="margin-top: 32px;">Destiny Checkpoints</h3>
+  
+  <div style="margin: 24px 0; padding: 24px; background: rgba(255,106,61,0.08); border: 1px solid #FF6A3D; border-radius: 8px;">
+    <div style="font-size: 0.85rem; color: #FF6A3D; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 16px;">Major Life Transition Points</div>
+    <table style="width: 100%; font-size: 0.85rem; border-collapse: collapse;">
+
+      <tr><td colspan="3" style="padding: 14px 8px 6px; color: #F3B23A; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 700;">Pinnacle Phases (Life Arc)</td></tr>
+
+      <tr style="border-bottom: 1px solid rgba(255,106,61,0.15);">
+        <td style="padding: 10px 8px; color: #26E4D8; font-weight: 600; white-space: nowrap;">Age 0-32</td>
+        <td style="padding: 10px 8px; color: #f0ece4; white-space: nowrap;">Pinnacle 1 · Number 9</td>
+        <td style="padding: 10px 8px; color: #f0ece4;">Completion phase. Release old cycles. Prepare for transformation.</td>
+      </tr>
+
+      <tr style="border-bottom: 1px solid rgba(255,106,61,0.15);">
+        <td style="padding: 10px 8px; color: #26E4D8; font-weight: 600; white-space: nowrap;">Age 33-41</td>
+        <td style="padding: 10px 8px; color: #f0ece4; white-space: nowrap;">Pinnacle 2 · Number 1</td>
+        <td style="padding: 10px 8px; color: #f0ece4;">Pioneer phase. Lay groundwork. Initiate change.</td>
+      </tr>
+
+      <tr style="border-bottom: 1px solid rgba(255,106,61,0.15);">
+        <td style="padding: 10px 8px; color: #26E4D8; font-weight: 600; white-space: nowrap;">Age 42-50</td>
+        <td style="padding: 10px 8px; color: #f0ece4; white-space: nowrap;">Pinnacle 3 · Number 1</td>
+        <td style="padding: 10px 8px; color: #f0ece4;">Pioneer phase. Lay groundwork. Initiate change.</td>
+      </tr>
+
+      <tr style="border-bottom: 1px solid rgba(255,106,61,0.15);">
+        <td style="padding: 10px 8px; color: #26E4D8; font-weight: 600; white-space: nowrap;">Age 51+</td>
+        <td style="padding: 10px 8px; color: #f0ece4; white-space: nowrap;">Pinnacle 4 · Number 7</td>
+        <td style="padding: 10px 8px; color: #f0ece4;">Seeker phase. Study deeply. Retreat inward.</td>
+      </tr>
+
+      <tr><td colspan="3" style="padding: 14px 8px 6px; color: #F3B23A; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 700;">Master Personal Years Ahead</td></tr>
+
+      <tr style="border-bottom: 1px solid rgba(255,106,61,0.15);">
+        <td style="padding: 10px 8px; color: #26E4D8; font-weight: 600; white-space: nowrap;">Age 34</td>
+        <td style="padding: 10px 8px; color: #f0ece4; white-space: nowrap;">2027 · Personal Year 11</td>
+        <td style="padding: 10px 8px; color: #f0ece4;">Illumination. Downloads are incoming. Trust what you can’t yet prove.</td>
+      </tr>
+
+      <tr style="border-bottom: 1px solid rgba(255,106,61,0.15);">
+        <td style="padding: 10px 8px; color: #26E4D8; font-weight: 600; white-space: nowrap;">Age 43</td>
+        <td style="padding: 10px 8px; color: #f0ece4; white-space: nowrap;">2036 · Personal Year 11</td>
+        <td style="padding: 10px 8px; color: #f0ece4;">Illumination. Downloads are incoming. Trust what you can’t yet prove.</td>
+      </tr>
+
+      <tr style="border-bottom: 1px solid rgba(255,106,61,0.15);">
+        <td style="padding: 10px 8px; color: #26E4D8; font-weight: 600; white-space: nowrap;">Age 52</td>
+        <td style="padding: 10px 8px; color: #f0ece4; white-space: nowrap;">2045 · Personal Year 11</td>
+        <td style="padding: 10px 8px; color: #f0ece4;">Illumination. Downloads are incoming. Trust what you can’t yet prove.</td>
+      </tr>
+
+      <tr style="border-bottom: 1px solid rgba(255,106,61,0.15);">
+        <td style="padding: 10px 8px; color: #26E4D8; font-weight: 600; white-space: nowrap;">Age 61</td>
+        <td style="padding: 10px 8px; color: #f0ece4; white-space: nowrap;">2054 · Personal Year 11</td>
+        <td style="padding: 10px 8px; color: #f0ece4;">Illumination. Downloads are incoming. Trust what you can’t yet prove.</td>
+      </tr>
+
+      <tr><td colspan="3" style="padding: 14px 8px 6px; color: #F3B23A; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 700;">Saturn Returns</td></tr>
+
+      <tr style="border-bottom: 1px solid rgba(255,106,61,0.15);">
+        <td style="padding: 10px 8px; color: #26E4D8; font-weight: 600; white-space: nowrap;">Age 58-60</td>
+        <td style="padding: 10px 8px; color: #f0ece4; white-space: nowrap;">★ Second Saturn Return</td>
+        <td style="padding: 10px 8px; color: #f0ece4;">Major restructuring. Reality tests every structure you built. Authentic authority emerges.</td>
+      </tr>
+    </table>
   </div>
 
   <!-- ===== FOOTER ===== -->
@@ -425,16 +795,32 @@ function seededRandom(seed) {
 const SUN_SIGN_COLORS = {
   'Aries': ['#f97316', '#ea580c', '#dc2626'],
   'Taurus': ['#84cc16', '#65a30d', '#4d7c0f'],
-  'Gemini': ['#8b5cf6', '#7c3aed', '#8b5cf6'],
+  'Gemini': ['#8b5cf6', '#7c3aed', '#a855f7'],
   'Cancer': ['#22d3ee', '#06b6d4', '#0891b7'],
   'Leo': ['#f97316', '#ea580c', '#fbbf24'],
   'Virgo': ['#84cc16', '#65a30d', '#4d7c0f'],
-  'Libra': ['#8b5cf6', '#7c3aed', '#8b5cf6'],
+  'Libra': ['#8b5cf6', '#7c3aed', '#a855f7'],
   'Scorpio': ['#22d3ee', '#0f172a', '#1e293b'],
   'Sagittarius': ['#f97316', '#ea580c', '#fbbf24'],
   'Capricorn': ['#6b7280', '#4b5563', '#1f2937'],
-  'Aquarius': ['#8b5cf6', '#7c3aed', '#8b5cf6'],
+  'Aquarius': ['#8b5cf6', '#7c3aed', '#a855f7'],
   'Pisces': ['#22d3ee', '#06b6d4', '#0891b7']
+};
+
+// Life Path color palette (numerology-driven) — each core frequency gets its own hue triad
+const LIFE_PATH_COLORS = {
+  1:  ['#FF6A3D', '#ea580c', '#dc2626'],   // Pioneer — fire / initiation
+  2:  ['#26E4D8', '#06b6d4', '#0891b7'],   // Diplomat — water / connection
+  3:  ['#F3B23A', '#fbbf24', '#f59e0b'],   // Communicator — gold / expression
+  4:  ['#84cc16', '#4d7c0f', '#6b7280'],   // Architect — earth / structure
+  5:  ['#8b5cf6', '#7c3aed', '#a855f7'],   // Catalyst — electric violet / change
+  6:  ['#fb7185', '#f43f5e', '#e11d48'],   // Protector — rose / harmony
+  7:  ['#6B4DF2', '#7c3aed', '#4338ca'],   // Seeker — deep indigo / mystery
+  8:  ['#F3B23A', '#10b981', '#059669'],   // Materializer — gold + emerald / power
+  9:  ['#6B4DF2', '#F3B23A', '#26E4D8'],   // Integrator — full spectrum / completion
+  11: ['#26E4D8', '#F3B23A', '#e0f2fe'],   // Master Illuminator — luminous cyan-gold
+  22: ['#F3B23A', '#6B4DF2', '#fbbf24'],   // Master Builder — gold + violet
+  33: ['#8b5cf6', '#26E4D8', '#F3B23A']    // Master Teacher — violet + cyan + gold triad
 };
 
 // Extract data from page
@@ -454,7 +840,8 @@ const expressionNum = 11;
 function createPersonalStarfield() {
   const starfield = document.getElementById('starfield');
   const seed = lifePathNum * 1000 + soulUrgeNum * 100 + expressionNum * 10;
-  const colors = SUN_SIGN_COLORS[sunSign] || SUN_SIGN_COLORS['Pisces'];
+  // Color now derives from Life Path (core frequency); sun-sign palette kept as fallback
+  const colors = LIFE_PATH_COLORS[lifePathNum] || SUN_SIGN_COLORS[sunSign] || SUN_SIGN_COLORS['Pisces'];
 
   for (let i = 0; i < 150; i++) {
     const star = document.createElement('div');

@@ -102,6 +102,76 @@
     font-size: 0.8rem; letter-spacing: 1px;
     text-transform: uppercase;
   }
+  /* ===== Archetype signature ===== */
+  .archetype {
+    margin: 32px 0 40px;
+    padding: 32px 28px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.02);
+    position: relative;
+    overflow: hidden;
+  }
+  .archetype::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  }
+  .archetype .eyebrow {
+    font-size: 0.7rem; color: var(--dim);
+    text-transform: uppercase; letter-spacing: 3px;
+    text-align: center; margin-bottom: 10px;
+  }
+  .archetype .glyph {
+    text-align: center; font-size: 1.4rem; line-height: 1;
+    margin-bottom: 6px; opacity: 0.85;
+  }
+  .archetype .arch-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.2rem; font-weight: 700; line-height: 1.05;
+    text-align: center; margin-bottom: 4px;
+  }
+  .archetype .arch-index {
+    text-align: center; font-size: 0.7rem; color: var(--dim);
+    letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px;
+  }
+  .archetype .tags {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 8px; margin-bottom: 24px;
+  }
+  .archetype .tag {
+    font-size: 0.68rem; letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 5px 12px; border-radius: 20px;
+    border: 1px solid currentColor; font-weight: 700;
+  }
+  .archetype .essence {
+    color: var(--white); line-height: 1.85; text-align: center;
+    max-width: 60ch; margin: 0 auto 26px;
+  }
+  .archetype .gs-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px; margin-bottom: 22px;
+  }
+  .archetype .gs {
+    background: rgba(255,255,255,0.02);
+    border-left: 3px solid var(--dim);
+    padding: 14px 16px;
+  }
+  .archetype .gs.gift { border-left-color: #34C46A; }
+  .archetype .gs.shadow { border-left-color: #FF4D8D; }
+  .archetype .gs .gs-label {
+    font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px;
+    color: var(--dim); margin-bottom: 6px;
+  }
+  .archetype .gs p { font-size: 0.85rem; line-height: 1.7; }
+  .archetype .derivation {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 16px; font-size: 0.72rem; color: var(--dim);
+    line-height: 1.8; text-align: center;
+  }
+  .archetype .derivation b { color: var(--white); font-weight: 700; }
+  @media (max-width: 600px) {
+    .archetype { padding: 24px 18px; }
+    .archetype .arch-name { font-size: 2.3rem; }
+  }
   .astro-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 12px; margin: 20px 0;
@@ -234,7 +304,7 @@
   <p class="subtitle">Soul Map</p>
   <h1>Staci Marie Ferrell</h1>
   
-  <p class="generated-date">Generated July 23, 2026 · thefirstspark.shop</p>
+  <p class="generated-date">Generated July 29, 2026 · thefirstspark.shop</p>
     <div class="codex-badge" style="--codex-hex:#f43f5e; --codex-wash:rgba(244,63,94,0.12); --codex-border:rgba(244,63,94,0.5);">
     <div class="codex-badge-swatch" aria-hidden="true"></div>
     <div class="codex-badge-body">
@@ -250,6 +320,44 @@
     This isn't a personality test. It's a coordinate system — a map of the patterns
     encoded in your existence. Numbers, planets, elements. Not metaphors. Syntax.
   </p>
+
+  <!-- ===== ARCHETYPE SIGNATURE ===== -->
+
+  <div class="archetype" style="--arch-realm: #34C46A; --arch-verb: #A855F7;">
+    <div class="archetype-rule" style="position:absolute; top:0; left:0; right:0; height:2px;
+         background: linear-gradient(90deg, transparent, #A855F7, #34C46A, transparent);"></div>
+    <div class="eyebrow">Your Archetype</div>
+    <div class="glyph" style="color: #34C46A;">●</div>
+    <div class="arch-name" style="color: #34C46A;">Mirror</div>
+    <div class="arch-index">Node 7 of 12 · Expansion Realm</div>
+
+    <div class="tags">
+      <span class="tag" style="color: #A855F7;">WITNESS</span>
+      <span class="tag" style="color: #26E4D8;">Relational</span>
+      <span class="tag" style="color: #34C46A;">Expansion</span>
+    </div>
+
+    <p class="essence">People meet themselves in you. You see accurately — without flinching and without editing — and being seen that clearly is what sets someone free.</p>
+
+    <div class="gs-grid">
+      <div class="gs gift">
+        <div class="gs-label">The Gift</div>
+        <p>Undistorted perception of other people. You give them back to themselves at full resolution, which is a thing almost nobody receives twice in a life.</p>
+      </div>
+      <div class="gs shadow">
+        <div class="gs-label">The Shadow</div>
+        <p>Losing your own signal in the reflection. Hold the mirror long enough and you forget which face is yours. Being endlessly seen-through is not the same as being known.</p>
+      </div>
+    </div>
+
+    <div class="derivation">
+      <b>Core Code — WITNESS:</b> see · map · know — you move reality by perceiving it accurately<br>
+      <b>Selector Layer — Relational:</b> Harmony frequency — you calibrate collective fields<br>
+      <b>Expansion:</b> The build. Where energy becomes structure other people can stand on.<br>
+      <span style="opacity:0.7;">Derived from Life Path 6 (quadrant) × Soul Urge 8 (node 2 of 3).</span>
+    </div>
+  </div>
+
 
   <!-- ===== CORE NUMBERS ===== -->
   <h2>Core Numbers</h2>
@@ -311,22 +419,22 @@
     <div style="padding: 16px; background: rgba(38,228,216,0.08); border: 1px solid rgba(38,228,216,0.2); border-radius: 6px;">
       <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #26E4D8; font-weight: 700; margin-bottom: 4px;">7</div>
       <div style="font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Pinnacle 1</div>
-      <p style="font-size: 0.85rem; color: #f0ece4;">First pinnacle: Seeker phase. Study deeply. Retreat inward.</p>
+      <p style="font-size: 0.85rem; color: #f0ece4;">Seeker phase. Study deeply. Retreat inward.</p>
     </div>
     <div style="padding: 16px; background: rgba(38,228,216,0.08); border: 1px solid rgba(38,228,216,0.2); border-radius: 6px;">
       <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #26E4D8; font-weight: 700; margin-bottom: 4px;">7</div>
       <div style="font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Pinnacle 2</div>
-      <p style="font-size: 0.85rem; color: #f0ece4;">First pinnacle: Seeker phase. Study deeply. Retreat inward.</p>
+      <p style="font-size: 0.85rem; color: #f0ece4;">Seeker phase. Study deeply. Retreat inward.</p>
     </div>
     <div style="padding: 16px; background: rgba(38,228,216,0.08); border: 1px solid rgba(38,228,216,0.2); border-radius: 6px;">
       <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #26E4D8; font-weight: 700; margin-bottom: 4px;">5</div>
       <div style="font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Pinnacle 3</div>
-      <p style="font-size: 0.85rem; color: #f0ece4;">First pinnacle: Freedom phase. Explore options. Embrace change.</p>
+      <p style="font-size: 0.85rem; color: #f0ece4;">Freedom phase. Explore options. Embrace change.</p>
     </div>
     <div style="padding: 16px; background: rgba(38,228,216,0.08); border: 1px solid rgba(38,228,216,0.2); border-radius: 6px;">
       <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #26E4D8; font-weight: 700; margin-bottom: 4px;">7</div>
       <div style="font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Pinnacle 4</div>
-      <p style="font-size: 0.85rem; color: #f0ece4;">First pinnacle: Seeker phase. Study deeply. Retreat inward.</p>
+      <p style="font-size: 0.85rem; color: #f0ece4;">Seeker phase. Study deeply. Retreat inward.</p>
     </div>
   </div>
 
@@ -467,7 +575,7 @@
   
   <div style="margin: 24px 0; padding: 20px; background: rgba(255,106,61,0.08); border: 1px solid #FF6A3D; border-radius: 8px;">
     <div style="font-size: 0.85rem; color: #FF6A3D; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 12px;">Power Hour Today</div>
-    <div style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: #FF6A3D; font-weight: 700; margin: 8px 0;">11:12</div>
+    <div style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: #FF6A3D; font-weight: 700; margin: 8px 0;">12:13</div>
     <div style="font-size: 0.85rem; color: #f0ece4;">Maximum resonance window for today's frequency</div>
   </div>
     
@@ -477,18 +585,19 @@
   <div style="margin: 24px 0; padding: 20px; background: rgba(38,228,216,0.08); border: 1px solid #26E4D8; border-radius: 8px;">
     <div style="font-size: 0.85rem; color: #26E4D8; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 12px;">Current Cycle Position</div>
     <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: #26E4D8; font-weight: 700; margin: 8px 0;">
-      Year 2 of 9
+      Year 8 of 9
     </div>
     <div style="font-size: 0.85rem; color: #f0ece4;">
-      Next transition: September 29, 1988
+      Next transition: August 26, 2026
+      · 1 year left in this cycle
     </div>
   </div>
     
   
-  <h3 style="margin-top: 32px;">Oracle Trinity</h3>
+  <h3 style="margin-top: 32px;">Arcana Trinity</h3>
   
   <div style="margin: 24px 0; padding: 24px; background: linear-gradient(135deg, rgba(107,77,242,0.12), rgba(243,178,58,0.12)); border: 2px solid #6B4DF2; border-radius: 8px;">
-    <div style="font-size: 0.85rem; color: #6B4DF2; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 16px; text-align: center;">Oracle Trinity</div>
+    <div style="font-size: 0.85rem; color: #6B4DF2; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 16px; text-align: center;">Arcana Trinity</div>
     <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 16px 0;">
       <div style="text-align: center; padding: 16px; background: rgba(255,255,255,0.03); border-radius: 8px;">
         <div style="font-weight: 600; color: #F3B23A; font-size: 1rem; margin-bottom: 4px;">The Lovers</div>
@@ -504,7 +613,7 @@
       </div>
     </div>
     <div style="margin-top: 16px; padding: 12px; background: rgba(107,77,242,0.1); border-left: 3px solid #6B4DF2; color: #f0ece4; font-size: 0.85rem; line-height: 1.6;">
-      Your oracle trinity: The Lovers (your journey), The Empress (how you show), Strength (what drives you beneath). These three arcana are woven through every choice.
+      Your arcana trinity: The Lovers (your journey), The Empress (how you show), Strength (what drives you beneath). These three arcana are woven through every choice.
     </div>
   </div>
     
@@ -512,12 +621,6 @@
   <h3 style="margin-top: 32px;">Next 90 Days — Optimal Windows</h3>
   <div style="margin: 24px 0; padding: 20px; background: rgba(107,77,242,0.05); border: 1px solid rgba(107,77,242,0.15); border-radius: 8px;">
     <table style="width: 100%; margin: 12px 0; font-size: 0.85rem; border-collapse: collapse;">
-      <tr style="border-bottom: 1px solid rgba(38,228,216,0.15);">
-        <td style="padding: 10px 8px; color: #26E4D8;">Jul 26</td>
-        <td style="padding: 10px 8px; text-align: center; color: #F3B23A; font-weight: 600;">Personal Month Shift</td>
-        <td style="padding: 10px 8px; color: #f0ece4; text-align: right;">Responsibility month. Home. Family. Reca...</td>
-      </tr>
-        
       <tr style="border-bottom: 1px solid rgba(38,228,216,0.15);">
         <td style="padding: 10px 8px; color: #26E4D8;">Aug 22</td>
         <td style="padding: 10px 8px; text-align: center; color: #F3B23A; font-weight: 600;">Master Number Day</td>
@@ -531,6 +634,12 @@
       </tr>
         
       <tr style="border-bottom: 1px solid rgba(38,228,216,0.15);">
+        <td style="padding: 10px 8px; color: #26E4D8;">Aug 26</td>
+        <td style="padding: 10px 8px; text-align: center; color: #F3B23A; font-weight: 600;">Personal Year Transition</td>
+        <td style="padding: 10px 8px; color: #f0ece4; text-align: right;">Power year. Harvest. Manifest. Step into...</td>
+      </tr>
+        
+      <tr style="border-bottom: 1px solid rgba(38,228,216,0.15);">
         <td style="padding: 10px 8px; color: #26E4D8;">Sep 26</td>
         <td style="padding: 10px 8px; text-align: center; color: #F3B23A; font-weight: 600;">Personal Month Shift</td>
         <td style="padding: 10px 8px; color: #f0ece4; text-align: right;">Power month. Harvest. Manifest. Step int...</td>
@@ -540,6 +649,12 @@
         <td style="padding: 10px 8px; color: #26E4D8;">Oct 11</td>
         <td style="padding: 10px 8px; text-align: center; color: #F3B23A; font-weight: 600;">Master Number Day</td>
         <td style="padding: 10px 8px; color: #f0ece4; text-align: right;">Master frequency alignment — optimal for...</td>
+      </tr>
+        
+      <tr style="border-bottom: 1px solid rgba(38,228,216,0.15);">
+        <td style="padding: 10px 8px; color: #26E4D8;">Oct 26</td>
+        <td style="padding: 10px 8px; text-align: center; color: #F3B23A; font-weight: 600;">Personal Month Shift</td>
+        <td style="padding: 10px 8px; color: #f0ece4; text-align: right;">Completion month. Release. Grieve if nee...</td>
       </tr>
         </table>
   </div>
@@ -555,7 +670,7 @@
     <div style="font-size: 0.9rem; color: #f0ece4; line-height: 1.6;">
       Your permanent soul fingerprint — minted once for this name and birth date, then locked. Re-runs reuse this ID.
     </div>
-    <div style="font-size: 0.7rem; color: #888; margin-top: 10px; text-align: center; letter-spacing: 1px;">Newly minted 2026-07-23T12:09:00Z · formula v1</div>
+    <div style="font-size: 0.7rem; color: #888; margin-top: 10px; text-align: center; letter-spacing: 1px;">Minted 2026-07-23T12:09:00Z · formula v1</div>
   </div>
     
   

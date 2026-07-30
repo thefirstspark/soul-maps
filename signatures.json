@@ -41,7 +41,8 @@
       "birthday": 6
     },
     "minted_at": "2026-07-23T11:49:46Z",
-    "formula_version": 1
+    "formula_version": 1,
+    "birth_country": "US"
   },
   "edward joseph puzakulics|1963-01-18": {
     "name": "edward joseph puzakulics",
@@ -61,7 +62,8 @@
       "birthday": 9
     },
     "minted_at": "2026-07-23T11:59:35Z",
-    "formula_version": 1
+    "formula_version": 1,
+    "birth_country": "US"
   },
   "maureen vivian mccaffrey|1923-12-11": {
     "name": "Maureen Vivian McCaffrey",
@@ -81,7 +83,8 @@
       "birthday": 11
     },
     "minted_at": "2026-07-23T12:02:17Z",
-    "formula_version": 1
+    "formula_version": 1,
+    "birth_country": "US"
   },
   "christine ann puzakulics|1952-09-13": {
     "name": "Christine Ann Puzakulics",
@@ -101,7 +104,8 @@
       "birthday": 4
     },
     "minted_at": "2026-07-23T12:03:35Z",
-    "formula_version": 1
+    "formula_version": 1,
+    "birth_country": "US"
   },
   "staci marie ferrell|1988-08-26": {
     "name": "Staci Marie Ferrell",
@@ -121,7 +125,8 @@
       "birthday": 8
     },
     "minted_at": "2026-07-23T12:09:00Z",
-    "formula_version": 1
+    "formula_version": 1,
+    "birth_country": "US"
   },
   "blake harrison smith|2010-08-27": {
     "name": "blake harrison smith",
@@ -141,6 +146,826 @@
       "birthday": 9
     },
     "minted_at": "2026-07-30T02:00:55Z",
-    "formula_version": 1
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "alexandria kaye muster|1993-12-15": {
+    "name": "Alexandria Kaye Muster",
+    "dob": "1993-12-15",
+    "quantum": "0A112E39943B",
+    "quantum_display": "0A11·2E39·943B",
+    "resonance_hz": 870.48,
+    "activation": "D671D28F[LP4]",
+    "codex_color": "violet",
+    "codex_role": "The Transformer",
+    "codex_tier": "Purple",
+    "core": {
+      "life_path": 4,
+      "expression": 11,
+      "soul_urge": 4,
+      "personality": 7,
+      "birthday": 6
+    },
+    "minted_at": "2026-07-30T02:26:44Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "alexandria muster|1993-12-01": {
+    "name": "Alexandria Muster",
+    "dob": "1993-12-01",
+    "quantum": "40CA7187B7EE",
+    "quantum_display": "40CA·7187·B7EE",
+    "resonance_hz": 784.86,
+    "activation": "1CC0BADB[LP8]",
+    "codex_color": "red",
+    "codex_role": "The Will",
+    "codex_tier": "Red",
+    "core": {
+      "life_path": 8,
+      "expression": 5,
+      "soul_urge": 7,
+      "personality": 7,
+      "birthday": 1
+    },
+    "minted_at": "2026-07-30T02:26:44Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "alan michael kendle|1994-01-31": {
+    "name": "ALAN MICHAEL KENDLE",
+    "dob": "1994-01-31",
+    "quantum": "56FDD26BE54C",
+    "quantum_display": "56FD·D26B·E54C",
+    "resonance_hz": 700.79,
+    "activation": "F62B5B29[LP1]",
+    "codex_color": "ember",
+    "codex_role": "The First Heat",
+    "codex_tier": "Ember",
+    "core": {
+      "life_path": 1,
+      "expression": 4,
+      "soul_urge": 9,
+      "personality": 4,
+      "birthday": 4
+    },
+    "minted_at": "2026-07-30T02:26:44Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "ann marie puzakulics|1956-08-25": {
+    "name": "Ann Marie puzakulics",
+    "dob": "1956-08-25",
+    "quantum": "93D6AC4DE139",
+    "quantum_display": "93D6·AC4D·E139",
+    "resonance_hz": 823.22,
+    "activation": "6F332634[LP9]",
+    "codex_color": "silver",
+    "codex_role": "The Reflector",
+    "codex_tier": "Silver",
+    "core": {
+      "life_path": 9,
+      "expression": 7,
+      "soul_urge": 5,
+      "personality": 11,
+      "birthday": 7
+    },
+    "minted_at": "2026-07-30T02:26:44Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "ashton rebecca davis|1986-06-04": {
+    "name": "Ashton Rebecca Davis",
+    "dob": "1986-06-04",
+    "quantum": "41E20B7D9413",
+    "quantum_display": "41E2·0B7D·9413",
+    "resonance_hz": 686.88,
+    "activation": "1CCA9E17[LP7]",
+    "codex_color": "blue",
+    "codex_role": "The Mind",
+    "codex_tier": "Blue",
+    "core": {
+      "life_path": 7,
+      "expression": 7,
+      "soul_urge": 1,
+      "personality": 6,
+      "birthday": 4
+    },
+    "minted_at": "2026-07-30T02:26:44Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "brian mitchell dupert|1970-05-29": {
+    "name": "Brian Mitchell dupert",
+    "dob": "1970-05-29",
+    "quantum": "3DDDF5BE60BE",
+    "quantum_display": "3DDD·F5BE·60BE",
+    "resonance_hz": 776.91,
+    "activation": "FE986C7D[LP6]",
+    "codex_color": "rose",
+    "codex_role": "The Bond",
+    "codex_tier": "Rose",
+    "core": {
+      "life_path": 6,
+      "expression": 3,
+      "soul_urge": 5,
+      "personality": 7,
+      "birthday": 11
+    },
+    "minted_at": "2026-07-30T02:26:44Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "benjamin reed carlton|2023-05-23": {
+    "name": "Benjamin Reed Carlton",
+    "dob": "2023-05-23",
+    "quantum": "7BC43C395B83",
+    "quantum_display": "7BC4·3C39·5B83",
+    "resonance_hz": 788.49,
+    "activation": "AC91278B[LP8]",
+    "codex_color": "red",
+    "codex_role": "The Will",
+    "codex_tier": "Red",
+    "core": {
+      "life_path": 8,
+      "expression": 3,
+      "soul_urge": 5,
+      "personality": 7,
+      "birthday": 5
+    },
+    "minted_at": "2026-07-30T02:26:44Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "cody evan’s belford|1987-10-22": {
+    "name": "Cody Evan’s belford",
+    "dob": "1987-10-22",
+    "quantum": "6E99A928BB69",
+    "quantum_display": "6E99·A928·BB69",
+    "resonance_hz": 936.06,
+    "activation": "F017BFBB[LP3]",
+    "codex_color": "cyan",
+    "codex_role": "The Signal",
+    "codex_tier": "Cyan",
+    "core": {
+      "life_path": 3,
+      "expression": 8,
+      "soul_urge": 5,
+      "personality": 3,
+      "birthday": 22
+    },
+    "minted_at": "2026-07-30T02:26:44Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "candy sue slaughter|1956-01-25": {
+    "name": "Candy sue slaughter",
+    "dob": "1956-01-25",
+    "quantum": "40DB3E0773A4",
+    "quantum_display": "40DB·3E07·73A4",
+    "resonance_hz": 805.25,
+    "activation": "96A11719[LP11]",
+    "codex_color": "violet",
+    "codex_role": "The Transformer",
+    "codex_tier": "Purple",
+    "core": {
+      "life_path": 11,
+      "expression": 5,
+      "soul_urge": 9,
+      "personality": 5,
+      "birthday": 7
+    },
+    "minted_at": "2026-07-30T02:26:44Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "donald john trump|1946-06-14": {
+    "name": "Donald John Trump",
+    "dob": "1946-06-14",
+    "quantum": "B378C88E27FF",
+    "quantum_display": "B378·C88E·27FF",
+    "resonance_hz": 784.86,
+    "activation": "09D86010[LP4]",
+    "codex_color": "blue",
+    "codex_role": "The Mind",
+    "codex_tier": "Blue",
+    "core": {
+      "life_path": 4,
+      "expression": 5,
+      "soul_urge": 7,
+      "personality": 7,
+      "birthday": 5
+    },
+    "minted_at": "2026-07-30T02:26:44Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "david ray lehman|1984-06-22": {
+    "name": "David Ray Lehman",
+    "dob": "1984-06-22",
+    "quantum": "93B8CBE05842",
+    "quantum_display": "93B8·CBE0·5842",
+    "resonance_hz": 1087.26,
+    "activation": "14FCEF07[LP5]",
+    "codex_color": "gold",
+    "codex_role": "The Orchestrator",
+    "codex_tier": "Gold",
+    "core": {
+      "life_path": 5,
+      "expression": 11,
+      "soul_urge": 8,
+      "personality": 3,
+      "birthday": 22
+    },
+    "minted_at": "2026-07-30T02:26:44Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "heather lyn kammer|1987-02-23": {
+    "name": "Heather Lyn Kammer",
+    "dob": "1987-02-23",
+    "quantum": "2D7551E67545",
+    "quantum_display": "2D75·51E6·7545",
+    "resonance_hz": 784.17,
+    "activation": "F908B2E7[LP5]",
+    "codex_color": "ember",
+    "codex_role": "The First Heat",
+    "codex_tier": "Ember",
+    "core": {
+      "life_path": 5,
+      "expression": 6,
+      "soul_urge": 8,
+      "personality": 7,
+      "birthday": 5
+    },
+    "minted_at": "2026-07-30T02:26:44Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "isabella nicole weber|2007-06-28": {
+    "name": "Isabella Nicole Weber",
+    "dob": "2007-06-28",
+    "quantum": "50F1169EEAE3",
+    "quantum_display": "50F1·169E·EAE3",
+    "resonance_hz": 517.19,
+    "activation": "9372875C[LP7]",
+    "codex_color": "blue",
+    "codex_role": "The Mind",
+    "codex_tier": "Blue",
+    "core": {
+      "life_path": 7,
+      "expression": 1,
+      "soul_urge": 1,
+      "personality": 9,
+      "birthday": 1
+    },
+    "minted_at": "2026-07-30T02:26:44Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "john christopher depp|1963-06-09": {
+    "name": "JOHN CHRISTOPHER DEPP",
+    "dob": "1963-06-09",
+    "quantum": "3E9BBF7FB594",
+    "quantum_display": "3E9B·BF7F·B594",
+    "resonance_hz": 722.39,
+    "activation": "E2A11A29[LP7]",
+    "codex_color": "blue",
+    "codex_role": "The Mind",
+    "codex_tier": "Blue",
+    "core": {
+      "life_path": 7,
+      "expression": 2,
+      "soul_urge": 4,
+      "personality": 7,
+      "birthday": 9
+    },
+    "minted_at": "2026-07-30T02:26:44Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "joseph keith hobbs|1985-05-13": {
+    "name": "Joseph Keith Hobbs",
+    "dob": "1985-05-13",
+    "quantum": "39A4B698248C",
+    "quantum_display": "39A4·B698·248C",
+    "resonance_hz": 679.71,
+    "activation": "4E74CDCE[LP5]",
+    "codex_color": "ember",
+    "codex_role": "The First Heat",
+    "codex_tier": "Ember",
+    "core": {
+      "life_path": 5,
+      "expression": 1,
+      "soul_urge": 4,
+      "personality": 6,
+      "birthday": 4
+    },
+    "minted_at": "2026-07-30T02:26:44Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "joshua robert starcher|1986-09-12": {
+    "name": "Joshua Robert Starcher",
+    "dob": "1986-09-12",
+    "quantum": "B6CB430B558A",
+    "quantum_display": "B6CB·430B·558A",
+    "resonance_hz": 472.78,
+    "activation": "F4202BDF[LP9]",
+    "codex_color": "silver",
+    "codex_role": "The Reflector",
+    "codex_tier": "Silver",
+    "core": {
+      "life_path": 9,
+      "expression": 1,
+      "soul_urge": 9,
+      "personality": 1,
+      "birthday": 3
+    },
+    "minted_at": "2026-07-30T02:26:44Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "joshua thomas puzakulics|2000-10-26": {
+    "name": "Joshua Thomas Puzakulics",
+    "dob": "2000-10-26",
+    "quantum": "9D727E24EA3A",
+    "quantum_display": "9D72·7E24·EA3A",
+    "resonance_hz": 1209.6,
+    "activation": "0FF752AC[LP11]",
+    "codex_color": "gold",
+    "codex_role": "The Orchestrator",
+    "codex_tier": "Gold",
+    "core": {
+      "life_path": 11,
+      "expression": 1,
+      "soul_urge": 33,
+      "personality": 4,
+      "birthday": 8
+    },
+    "minted_at": "2026-07-30T02:26:44Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "joseph tyler stimpfel|1991-09-13": {
+    "name": "Joseph Tyler stimpfel",
+    "dob": "1991-09-13",
+    "quantum": "AEC8EAF6ABF1",
+    "quantum_display": "AEC8·EAF6·ABF1",
+    "resonance_hz": 632.88,
+    "activation": "5EA38F68[LP6]",
+    "codex_color": "rose",
+    "codex_role": "The Bond",
+    "codex_tier": "Rose",
+    "core": {
+      "life_path": 6,
+      "expression": 1,
+      "soul_urge": 3,
+      "personality": 7,
+      "birthday": 4
+    },
+    "minted_at": "2026-07-30T02:26:44Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "john vincent thurmer|1992-04-02": {
+    "name": "John Vincent Thurmer",
+    "dob": "1992-04-02",
+    "quantum": "0A9EC0847C90",
+    "quantum_display": "0A9E·C084·7C90",
+    "resonance_hz": 679.19,
+    "activation": "8F2C50D8[LP9]",
+    "codex_color": "silver",
+    "codex_role": "The Reflector",
+    "codex_tier": "Silver",
+    "core": {
+      "life_path": 9,
+      "expression": 3,
+      "soul_urge": 1,
+      "personality": 11,
+      "birthday": 2
+    },
+    "minted_at": "2026-07-30T02:26:44Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "jacob william puzakulics|2000-10-26": {
+    "name": "Jacob William Puzakulics",
+    "dob": "2000-10-26",
+    "quantum": "23C65645182F",
+    "quantum_display": "23C6·5645·182F",
+    "resonance_hz": 792.98,
+    "activation": "E0781361[LP11]",
+    "codex_color": "violet",
+    "codex_role": "The Transformer",
+    "codex_tier": "Purple",
+    "core": {
+      "life_path": 11,
+      "expression": 6,
+      "soul_urge": 6,
+      "personality": 9,
+      "birthday": 8
+    },
+    "minted_at": "2026-07-30T02:26:44Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "katie marie wunderle|1988-01-02": {
+    "name": "Katie Marie Wunderle",
+    "dob": "1988-01-02",
+    "quantum": "B72083C07C0A",
+    "quantum_display": "B720·83C0·7C0A",
+    "resonance_hz": 856.83,
+    "activation": "7504B14F[LP11]",
+    "codex_color": "violet",
+    "codex_role": "The Transformer",
+    "codex_tier": "Purple",
+    "core": {
+      "life_path": 11,
+      "expression": 5,
+      "soul_urge": 7,
+      "personality": 7,
+      "birthday": 2
+    },
+    "minted_at": "2026-07-30T02:26:44Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "michael allen oke|1980-05-16": {
+    "name": "Michael Allen oke",
+    "dob": "1980-05-16",
+    "quantum": "35F8C310E8ED",
+    "quantum_display": "35F8·C310·E8ED",
+    "resonance_hz": 682.82,
+    "activation": "6EB1278B[LP3]",
+    "codex_color": "cyan",
+    "codex_role": "The Signal",
+    "codex_tier": "Cyan",
+    "core": {
+      "life_path": 3,
+      "expression": 9,
+      "soul_urge": 5,
+      "personality": 4,
+      "birthday": 7
+    },
+    "minted_at": "2026-07-30T02:26:44Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "michael andrew puzakulics|1923-09-19": {
+    "name": "Michael Andrew Puzakulics",
+    "dob": "1923-09-19",
+    "quantum": "E50A2DCC8DE1",
+    "quantum_display": "E50A·2DCC·8DE1",
+    "resonance_hz": 702.0,
+    "activation": "2DE9B3D3[LP7]",
+    "codex_color": "blue",
+    "codex_role": "The Mind",
+    "codex_tier": "Blue",
+    "core": {
+      "life_path": 7,
+      "expression": 3,
+      "soul_urge": 1,
+      "personality": 11,
+      "birthday": 1
+    },
+    "minted_at": "2026-07-30T02:26:44Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "malachi daniel moore|1984-01-17": {
+    "name": "Malachi Daniel Moore",
+    "dob": "1984-01-17",
+    "quantum": "093DE8E5D76D",
+    "quantum_display": "093D·E8E5·D76D",
+    "resonance_hz": 871.26,
+    "activation": "8A87CDF2[LP4]",
+    "codex_color": "blue",
+    "codex_role": "The Mind",
+    "codex_tier": "Blue",
+    "core": {
+      "life_path": 4,
+      "expression": 5,
+      "soul_urge": 7,
+      "personality": 7,
+      "birthday": 8
+    },
+    "minted_at": "2026-07-30T02:26:44Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "matthew joseph kmiec|1977-01-18": {
+    "name": "Matthew Joseph kmiec",
+    "dob": "1977-01-18",
+    "quantum": "652D5F5BE2F0",
+    "quantum_display": "652D·5F5B·E2F0",
+    "resonance_hz": 793.67,
+    "activation": "C8E0348D[LP7]",
+    "codex_color": "blue",
+    "codex_role": "The Mind",
+    "codex_tier": "Blue",
+    "core": {
+      "life_path": 7,
+      "expression": 6,
+      "soul_urge": 4,
+      "personality": 11,
+      "birthday": 9
+    },
+    "minted_at": "2026-07-30T02:26:44Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "mark john puzakulics|1959-07-11": {
+    "name": "Mark John Puzakulics",
+    "dob": "1959-07-11",
+    "quantum": "BF4A2A248C06",
+    "quantum_display": "BF4A·2A24·8C06",
+    "resonance_hz": 910.14,
+    "activation": "07232A78[LP6]",
+    "codex_color": "rose",
+    "codex_role": "The Bond",
+    "codex_tier": "Rose",
+    "core": {
+      "life_path": 6,
+      "expression": 4,
+      "soul_urge": 5,
+      "personality": 8,
+      "birthday": 11
+    },
+    "minted_at": "2026-07-30T02:26:44Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "matthew vincent jablonski|1994-10-09": {
+    "name": "Matthew Vincent Jablonski",
+    "dob": "1994-10-09",
+    "quantum": "EFD139BBD0B9",
+    "quantum_display": "EFD1·39BB·D0B9",
+    "resonance_hz": 487.64,
+    "activation": "BE6471AC[LP6]",
+    "codex_color": "rose",
+    "codex_role": "The Bond",
+    "codex_tier": "Rose",
+    "core": {
+      "life_path": 6,
+      "expression": 9,
+      "soul_urge": 9,
+      "personality": 9,
+      "birthday": 9
+    },
+    "minted_at": "2026-07-30T02:26:45Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "michael wayne atha|1979-12-30": {
+    "name": "Michael Wayne Atha",
+    "dob": "1979-12-30",
+    "quantum": "883A25E3C69F",
+    "quantum_display": "883A·25E3·C69F",
+    "resonance_hz": 636.08,
+    "activation": "F4C74E78[LP5]",
+    "codex_color": "ember",
+    "codex_role": "The First Heat",
+    "codex_tier": "Ember",
+    "core": {
+      "life_path": 5,
+      "expression": 5,
+      "soul_urge": 5,
+      "personality": 9,
+      "birthday": 3
+    },
+    "minted_at": "2026-07-30T02:26:45Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "nichole ann wisor higgins|1996-02-27": {
+    "name": "Nichole Ann Wisor HIGGINS",
+    "dob": "1996-02-27",
+    "quantum": "FD5F56B40A79",
+    "quantum_display": "FD5F·56B4·0A79",
+    "resonance_hz": 479.95,
+    "activation": "B6F9B453[LP9]",
+    "codex_color": "silver",
+    "codex_role": "The Reflector",
+    "codex_tier": "Silver",
+    "core": {
+      "life_path": 9,
+      "expression": 9,
+      "soul_urge": 9,
+      "personality": 9,
+      "birthday": 9
+    },
+    "minted_at": "2026-07-30T02:26:45Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "natalie jane carlton|2026-05-28": {
+    "name": "NATALIE JANE CARLTON",
+    "dob": "2026-05-28",
+    "quantum": "FB0576D49005",
+    "quantum_display": "FB05·76D4·9005",
+    "resonance_hz": 939.6,
+    "activation": "3BC5BBB4[LP7]",
+    "codex_color": "gold",
+    "codex_role": "The Orchestrator",
+    "codex_tier": "Gold",
+    "core": {
+      "life_path": 7,
+      "expression": 4,
+      "soul_urge": 11,
+      "personality": 11,
+      "birthday": 1
+    },
+    "minted_at": "2026-07-30T02:26:45Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "patrick allen roberts|1980-03-04": {
+    "name": "Patrick Allen Roberts",
+    "dob": "1980-03-04",
+    "quantum": "39F1B0B5A098",
+    "quantum_display": "39F1·B0B5·A098",
+    "resonance_hz": 646.79,
+    "activation": "97FF3490[LP7]",
+    "codex_color": "silver",
+    "codex_role": "The Reflector",
+    "codex_tier": "Silver",
+    "core": {
+      "life_path": 7,
+      "expression": 3,
+      "soul_urge": 9,
+      "personality": 3,
+      "birthday": 4
+    },
+    "minted_at": "2026-07-30T02:26:45Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "rachael maureen johnson|1967-08-30": {
+    "name": "Rachael Maureen Johnson",
+    "dob": "1967-08-30",
+    "quantum": "1D5A857F9CCC",
+    "quantum_display": "1D5A·857F·9CCC",
+    "resonance_hz": 1065.57,
+    "activation": "42D42096[LP7]",
+    "codex_color": "gold",
+    "codex_role": "The Orchestrator",
+    "codex_tier": "Gold",
+    "core": {
+      "life_path": 7,
+      "expression": 4,
+      "soul_urge": 33,
+      "personality": 7,
+      "birthday": 3
+    },
+    "minted_at": "2026-07-30T02:26:45Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "shawn micheal shutts|1987-09-07": {
+    "name": "Shawn Micheal Shutts",
+    "dob": "1987-09-07",
+    "quantum": "6790092E40FD",
+    "quantum_display": "6790·092E·40FD",
+    "resonance_hz": 658.11,
+    "activation": "CFDA281B[LP5]",
+    "codex_color": "ember",
+    "codex_role": "The First Heat",
+    "codex_tier": "Ember",
+    "core": {
+      "life_path": 5,
+      "expression": 7,
+      "soul_urge": 1,
+      "personality": 6,
+      "birthday": 7
+    },
+    "minted_at": "2026-07-30T02:26:45Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "stephen small|1978-11-20": {
+    "name": "Stephen small",
+    "dob": "1978-11-20",
+    "quantum": "139344725820",
+    "quantum_display": "1393·4472·5820",
+    "resonance_hz": 776.39,
+    "activation": "DA21F32E[LP2]",
+    "codex_color": "violet",
+    "codex_role": "The Transformer",
+    "codex_tier": "Purple",
+    "core": {
+      "life_path": 2,
+      "expression": 9,
+      "soul_urge": 11,
+      "personality": 7,
+      "birthday": 2
+    },
+    "minted_at": "2026-07-30T02:26:45Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "tammi kristine bartoletta|1973-04-08": {
+    "name": "Tammi Kristine Bartoletta",
+    "dob": "1973-04-08",
+    "quantum": "4F93909CFF73",
+    "quantum_display": "4F93·909C·FF73",
+    "resonance_hz": 777.69,
+    "activation": "EF3F5ED3[LP5]",
+    "codex_color": "ember",
+    "codex_role": "The First Heat",
+    "codex_tier": "Ember",
+    "core": {
+      "life_path": 5,
+      "expression": 5,
+      "soul_urge": 1,
+      "personality": 4,
+      "birthday": 8
+    },
+    "minted_at": "2026-07-30T02:26:45Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "terry ricketson|1972-06-23": {
+    "name": "Terry Ricketson",
+    "dob": "1972-06-23",
+    "quantum": "7984902249E1",
+    "quantum_display": "7984·9022·49E1",
+    "resonance_hz": 846.03,
+    "activation": "622F72D1[LP3]",
+    "codex_color": "violet",
+    "codex_role": "The Transformer",
+    "codex_tier": "Purple",
+    "core": {
+      "life_path": 3,
+      "expression": 11,
+      "soul_urge": 7,
+      "personality": 4,
+      "birthday": 5
+    },
+    "minted_at": "2026-07-30T02:26:45Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "taylor swift|1989-12-13": {
+    "name": "Taylor Swift",
+    "dob": "1989-12-13",
+    "quantum": "72EED6D02D62",
+    "quantum_display": "72EE·D6D0·2D62",
+    "resonance_hz": 830.91,
+    "activation": "AF2EEDD2[LP7]",
+    "codex_color": "blue",
+    "codex_role": "The Mind",
+    "codex_tier": "Blue",
+    "core": {
+      "life_path": 7,
+      "expression": 6,
+      "soul_urge": 7,
+      "personality": 8,
+      "birthday": 4
+    },
+    "minted_at": "2026-07-30T02:26:45Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "thomas william puzakulics|1966-02-28": {
+    "name": "Thomas William Puzakulics",
+    "dob": "1966-02-28",
+    "quantum": "0F042BCC0EAB",
+    "quantum_display": "0F04·2BCC·0EAB",
+    "resonance_hz": 551.75,
+    "activation": "84E041AA[LP7]",
+    "codex_color": "blue",
+    "codex_role": "The Mind",
+    "codex_tier": "Blue",
+    "core": {
+      "life_path": 7,
+      "expression": 6,
+      "soul_urge": 6,
+      "personality": 9,
+      "birthday": 1
+    },
+    "minted_at": "2026-07-30T02:26:45Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "valerie lynne labriola|1961-11-26": {
+    "name": "Valerie Lynne labriola",
+    "dob": "1961-11-26",
+    "quantum": "6DFDED1F5FE1",
+    "quantum_display": "6DFD·ED1F·5FE1",
+    "resonance_hz": 804.56,
+    "activation": "EFC49B02[LP9]",
+    "codex_color": "silver",
+    "codex_role": "The Reflector",
+    "codex_tier": "Silver",
+    "core": {
+      "life_path": 9,
+      "expression": 5,
+      "soul_urge": 6,
+      "personality": 8,
+      "birthday": 8
+    },
+    "minted_at": "2026-07-30T02:26:45Z",
+    "formula_version": 1,
+    "birth_country": "US"
   }
 }
