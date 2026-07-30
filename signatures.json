@@ -967,5 +967,131 @@
     "minted_at": "2026-07-30T02:26:45Z",
     "formula_version": 1,
     "birth_country": "US"
+  },
+  "adele|1988-05-05": {
+    "name": "Adele",
+    "dob": "1988-05-05",
+    "quantum": "A208A66BF1F6",
+    "quantum_display": "A208·A66B·F1F6",
+    "resonance_hz": 757.21,
+    "activation": "7FC3E0C1[LP9]",
+    "codex_color": "violet",
+    "codex_role": "The Transformer",
+    "codex_tier": "Purple",
+    "core": {
+      "life_path": 9,
+      "expression": 9,
+      "soul_urge": 11,
+      "personality": 7,
+      "birthday": 5
+    },
+    "minted_at": "2026-07-30T02:42:46Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "albert einstein|1879-03-14": {
+    "name": "Albert Einstein",
+    "dob": "1879-03-14",
+    "quantum": "BB3DDC9D9066",
+    "quantum_display": "BB3D·DC9D·9066",
+    "resonance_hz": 764.9,
+    "activation": "7FFB7E17[LP6]",
+    "codex_color": "rose",
+    "codex_role": "The Bond",
+    "codex_tier": "Rose",
+    "core": {
+      "life_path": 6,
+      "expression": 9,
+      "soul_urge": 7,
+      "personality": 11,
+      "birthday": 5
+    },
+    "minted_at": "2026-07-30T02:42:46Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "david bowie|1947-01-08": {
+    "name": "David Bowie",
+    "dob": "1947-01-08",
+    "quantum": "289DA6B88624",
+    "quantum_display": "289D·A6B8·8624",
+    "resonance_hz": 705.63,
+    "activation": "0153E203[LP3]",
+    "codex_color": "yellow",
+    "codex_role": "The Joy",
+    "codex_tier": "Yellow",
+    "core": {
+      "life_path": 3,
+      "expression": 4,
+      "soul_urge": 3,
+      "personality": 1,
+      "birthday": 8
+    },
+    "minted_at": "2026-07-30T02:42:46Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "elvis aaron presley|1935-01-08": {
+    "name": "Elvis Aaron Presley",
+    "dob": "1935-01-08",
+    "quantum": "67F8CFC9FB66",
+    "quantum_display": "67F8·CFC9·FB66",
+    "resonance_hz": 739.24,
+    "activation": "4CFEA0FF[LP9]",
+    "codex_color": "silver",
+    "codex_role": "The Reflector",
+    "codex_tier": "Silver",
+    "core": {
+      "life_path": 9,
+      "expression": 9,
+      "soul_urge": 5,
+      "personality": 4,
+      "birthday": 8
+    },
+    "minted_at": "2026-07-30T02:42:46Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "nikola tesla|1856-07-10": {
+    "name": "Nikola Tesla",
+    "dob": "1856-07-10",
+    "quantum": "69FC162B3A49",
+    "quantum_display": "69FC·162B·3A49",
+    "resonance_hz": 939.6,
+    "activation": "05C67FDD[LP1]",
+    "codex_color": "gold",
+    "codex_role": "The Orchestrator",
+    "codex_tier": "Gold",
+    "core": {
+      "life_path": 1,
+      "expression": 11,
+      "soul_urge": 22,
+      "personality": 7,
+      "birthday": 1
+    },
+    "minted_at": "2026-07-30T02:42:46Z",
+    "formula_version": 1,
+    "birth_country": "US"
+  },
+  "tupac amaru shakur|1971-06-16": {
+    "name": "Tupac Amaru Shakur",
+    "dob": "1971-06-16",
+    "quantum": "6F631C26E75F",
+    "quantum_display": "6F63·1C26·E75F",
+    "resonance_hz": 949.19,
+    "activation": "C869FBC6[LP22]",
+    "codex_color": "gold",
+    "codex_role": "The Orchestrator",
+    "codex_tier": "Gold",
+    "core": {
+      "life_path": 22,
+      "expression": 4,
+      "soul_urge": 4,
+      "personality": 9,
+      "birthday": 7
+    },
+    "minted_at": "2026-07-30T02:42:46Z",
+    "formula_version": 1,
+    "birth_country": "US"
   }
 }
