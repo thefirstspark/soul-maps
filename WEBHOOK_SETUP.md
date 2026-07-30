@@ -21,11 +21,13 @@ Create a `.env` file in the `soul-maps/` directory (or export in your shell):
 # Scopes needed: repo (all), read:user
 export GITHUB_PAT=ghp_your_token_here
 
-# Gmail SMTP (optional, for email confirmations)
-# Use app password, not your regular password
-# Create at: https://myaccount.google.com/apppasswords
-export SMTP_EMAIL=your_email@gmail.com
-export SMTP_PASSWORD=your_app_password
+# Required for POST /generate (unless ALLOW_INSECURE_GENERATE=1 for local dev)
+export GENERATE_API_KEY=$(python -c "import secrets; print(secrets.token_urlsafe(32))")
+# Put the same value in success.html:
+#   <meta name="soul-map-generate-key" content="YOUR_KEY">
+
+# Resend (optional, for confirmation emails)
+export RESEND_API_KEY=re_...
 ```
 
 ### 3. Start the Webhook Server
@@ -50,8 +52,13 @@ By default, the form action is `/api/generate-soul-map`, which works if:
 For **local testing**, manually test the webhook:
 
 ```bash
+# Local open mode (dev only):
+export ALLOW_INSECURE_GENERATE=1
+
+# Or with a key:
 curl -X POST http://localhost:5000/generate \
   -H "Content-Type: application/json" \
+  -H "X-Soul-Map-Key: $GENERATE_API_KEY" \
   -d '{
     "name": "John Doe",
     "dob": "1990-05-15",
@@ -60,6 +67,10 @@ curl -X POST http://localhost:5000/generate \
     "email": "john@example.com"
   }'
 ```
+
+**Auth headers accepted:** `X-Soul-Map-Key`, `X-Api-Key`, or `Authorization: Bearer <key>`.
+
+**Rate limits (defaults):** 8 requests / 15 min per IP, 3 / 15 min per email.
 
 ## Production Deployment
 
@@ -118,24 +129,20 @@ Receives intake data and generates soul map.
 }
 ```
 
-**Response (Success):**
+**Response (Success — queued):**
 ```json
 {
   "success": true,
   "name": "John Doe",
-  "url": "https://soul-maps.thefirstspark.shop/JD51990.html",
-  "monthly_update": "JD51990-202604.html",
-  "message": "Soul Map generated for John Doe",
-  "summary": {
-    "name": "John Doe",
-    "life_path": 7,
-    "expression": 3,
-    "personal_year": 8,
-    "sun_sign": "Taurus",
-    ...
-  }
+  "base_filename": "JD5151990-a3f2",
+  "url": "https://soul-maps.thefirstspark.shop/JD5151990-a3f2.html",
+  "message": "Soul Map queued for John Doe — check your email in about 5 minutes"
 }
 ```
+
+**Filename format (unique):** `{INITIALS}{MONTH}{DAY}{YEAR}-{hash4}`  
+Example: Jane Doe 1990-05-15 → `JD5151990-xxxx` (differs from John Doe same DOB month via hash).  
+Stem is permanent (stored in `signatures.json` + `subscribers.json`).
 
 **Response (Error):**
 ```json

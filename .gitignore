@@ -23,3 +23,8 @@ Thumbs.db
 .vscode/
 .idea/
 subscribers.json
+
+# Codex resync scratch
+_before.html
+_after.html
+_codex_backups/

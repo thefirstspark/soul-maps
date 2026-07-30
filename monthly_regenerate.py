@@ -184,9 +184,26 @@ def regenerate_all_monthly_updates(send_emails=True):
             from datetime import datetime as dt
             birth_date = dt.strptime(dob_str, '%Y-%m-%d').date()
 
-            # Generate monthly update
-            html, filename, summary = generate_monthly_update(name, birth_date)
+            # Generate monthly update — reuse permanent stem when stored on the subscriber
+            html, filename, summary = generate_monthly_update(
+                name,
+                birth_date,
+                base_filename=sub.get('base_filename'),
+            )
             files_generated.append((filename, html))
+            # Backfill stem so next month stays stable even if registry is cold
+            if summary and summary.get('base_filename') and not sub.get('base_filename'):
+                sub['base_filename'] = summary['base_filename']
+                # Persist onto the on-disk subscribers.json record
+                all_subs = load_subscribers()
+                for row in all_subs:
+                    if row.get('email') == email and not row.get('base_filename'):
+                        row['base_filename'] = summary['base_filename']
+                try:
+                    with open(SUBSCRIBERS_FILE, 'w', encoding='utf-8') as f:
+                        json.dump(all_subs, f, indent=2, ensure_ascii=False)
+                except Exception as persist_err:
+                    print(f"  [WARN] Could not persist base_filename for {email}: {persist_err}")
 
             print(f"  [{i}/{len(subscribers)}] ✓ {name:30s} → {filename}")
             success_count += 1

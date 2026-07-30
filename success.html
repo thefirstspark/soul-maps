@@ -12,6 +12,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#0B0B0C">
     <meta name="robots" content="noindex, nofollow">
+    <!-- Must match Railway GENERATE_API_KEY. Leave empty only for local insecure mode. -->
+    <meta name="soul-map-generate-key" content="">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="codex-colors.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -679,6 +682,15 @@ form.addEventListener('submit', function(e) {
         webhookUrl = '/api/generate-soul-map';
     }
 
+    // Site key for POST /generate — must match GENERATE_API_KEY on the Railway webhook.
+    // Rotate both together if this value is abused. (Static Pages cannot fully hide a key;
+    // server rate limits still apply.)
+    // Set via: window.SOUL_MAP_GENERATE_KEY or meta[name="soul-map-generate-key"]
+    var generateKey = (typeof window.SOUL_MAP_GENERATE_KEY === 'string' && window.SOUL_MAP_GENERATE_KEY)
+        || (document.querySelector('meta[name="soul-map-generate-key"]')
+            && document.querySelector('meta[name="soul-map-generate-key"]').getAttribute('content'))
+        || '';
+
     // Single-fire redirect. Whichever path resolves first (response < 3s, or 3s timeout) navigates.
     var redirected = false;
     function go(extra) {
@@ -690,6 +702,7 @@ form.addEventListener('submit', function(e) {
                 email: jsonData.email,
                 url: (extra && extra.url) || null,
                 mapName: (extra && extra.mapName) || null,
+                baseFilename: (extra && extra.baseFilename) || null,
                 ts: new Date().toISOString()
             }));
         } catch (_) { /* storage may be unavailable; thank-you.html falls back to generic copy */ }
@@ -706,14 +719,19 @@ form.addEventListener('submit', function(e) {
     // Hard cap \u2014 redirect after 3s no matter what so the user never stares at a frozen button
     var maxWait = setTimeout(function () { go(); }, 3000);
 
+    var headers = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    };
+    if (generateKey) {
+        headers['X-Soul-Map-Key'] = generateKey;
+    }
+
     // Fire the request. keepalive lets it finish server-side even after we navigate away.
     fetch(webhookUrl, {
         method: 'POST',
         body: JSON.stringify(jsonData),
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        },
+        headers: headers,
         keepalive: true
     }).then(function (res) {
         if (!res.ok && res.status !== 200) throw new Error('Backend returned ' + res.status);
@@ -722,7 +740,8 @@ form.addEventListener('submit', function(e) {
         clearTimeout(maxWait);
         go({
             url: data && data.url ? data.url : null,
-            mapName: data && data.name ? data.name : null
+            mapName: data && data.name ? data.name : null,
+            baseFilename: data && data.base_filename ? data.base_filename : null
         });
     }).catch(function (err) {
         // If the request fails before the 3s timeout, still redirect \u2014 backend may have processed
