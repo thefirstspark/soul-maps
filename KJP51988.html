@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Soul Map — katelin jill puzakulics | The First Spark</title>
+<title>Soul Map — Katelin Jill Puzakulics | The First Spark</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="codex-colors.css">
 <style>
@@ -101,6 +101,76 @@
     padding: 6px 16px; border-radius: 20px;
     font-size: 0.8rem; letter-spacing: 1px;
     text-transform: uppercase;
+  }
+  /* ===== Archetype signature ===== */
+  .archetype {
+    margin: 32px 0 40px;
+    padding: 32px 28px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.02);
+    position: relative;
+    overflow: hidden;
+  }
+  .archetype::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  }
+  .archetype .eyebrow {
+    font-size: 0.7rem; color: var(--dim);
+    text-transform: uppercase; letter-spacing: 3px;
+    text-align: center; margin-bottom: 10px;
+  }
+  .archetype .glyph {
+    text-align: center; font-size: 1.4rem; line-height: 1;
+    margin-bottom: 6px; opacity: 0.85;
+  }
+  .archetype .arch-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.2rem; font-weight: 700; line-height: 1.05;
+    text-align: center; margin-bottom: 4px;
+  }
+  .archetype .arch-index {
+    text-align: center; font-size: 0.7rem; color: var(--dim);
+    letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px;
+  }
+  .archetype .tags {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 8px; margin-bottom: 24px;
+  }
+  .archetype .tag {
+    font-size: 0.68rem; letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 5px 12px; border-radius: 20px;
+    border: 1px solid currentColor; font-weight: 700;
+  }
+  .archetype .essence {
+    color: var(--white); line-height: 1.85; text-align: center;
+    max-width: 60ch; margin: 0 auto 26px;
+  }
+  .archetype .gs-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px; margin-bottom: 22px;
+  }
+  .archetype .gs {
+    background: rgba(255,255,255,0.02);
+    border-left: 3px solid var(--dim);
+    padding: 14px 16px;
+  }
+  .archetype .gs.gift { border-left-color: #34C46A; }
+  .archetype .gs.shadow { border-left-color: #FF4D8D; }
+  .archetype .gs .gs-label {
+    font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px;
+    color: var(--dim); margin-bottom: 6px;
+  }
+  .archetype .gs p { font-size: 0.85rem; line-height: 1.7; }
+  .archetype .derivation {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 16px; font-size: 0.72rem; color: var(--dim);
+    line-height: 1.8; text-align: center;
+  }
+  .archetype .derivation b { color: var(--white); font-weight: 700; }
+  @media (max-width: 600px) {
+    .archetype { padding: 24px 18px; }
+    .archetype .arch-name { font-size: 2.3rem; }
   }
   .astro-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -232,7 +302,7 @@
 <div class="container">
 
   <p class="subtitle">Soul Map</p>
-  <h1>katelin jill puzakulics</h1>
+  <h1>Katelin Jill Puzakulics</h1>
   
   <p class="generated-date">Generated July 29, 2026 · thefirstspark.shop</p>
     <div class="codex-badge" style="--codex-hex:#8b5cf6; --codex-wash:rgba(139,92,246,0.12); --codex-border:rgba(139,92,246,0.5);">
@@ -250,6 +320,44 @@
     This isn't a personality test. It's a coordinate system — a map of the patterns
     encoded in your existence. Numbers, planets, elements. Not metaphors. Syntax.
   </p>
+
+  <!-- ===== ARCHETYPE SIGNATURE ===== -->
+
+  <div class="archetype" style="--arch-realm: #FF5A36; --arch-verb: #FF4D8D;">
+    <div class="archetype-rule" style="position:absolute; top:0; left:0; right:0; height:2px;
+         background: linear-gradient(90deg, transparent, #FF4D8D, #FF5A36, transparent);"></div>
+    <div class="eyebrow">Your Archetype</div>
+    <div class="glyph" style="color: #FF5A36;">▲</div>
+    <div class="arch-name" style="color: #FF5A36;">Fracture</div>
+    <div class="arch-index">Node 2 of 12 · Ignition Realm</div>
+
+    <div class="tags">
+      <span class="tag" style="color: #FF4D8D;">RELEASE</span>
+      <span class="tag" style="color: #26E4D8;">Temporal</span>
+      <span class="tag" style="color: #FF5A36;">Ignition</span>
+    </div>
+
+    <p class="essence">You break the timeline you were assigned. The rupture is not damage — it is the doorway, and you are the one who walks through first.</p>
+
+    <div class="gs-grid">
+      <div class="gs gift">
+        <div class="gs-label">The Gift</div>
+        <p>You end things cleanly. You can see which structures are already dead and say so out loud.</p>
+      </div>
+      <div class="gs shadow">
+        <div class="gs-label">The Shadow</div>
+        <p>Breaking what was still load-bearing. Not every wall is a cage; some are holding the roof up.</p>
+      </div>
+    </div>
+
+    <div class="derivation">
+      <b>Core Code — RELEASE:</b> break · transmute · free — you move reality by letting go<br>
+      <b>Selector Layer — Temporal:</b> Freedom frequency — you collapse fixed timelines<br>
+      <b>Ignition:</b> The break. Where the old timeline ends and heat enters the system.<br>
+      <span style="opacity:0.7;">Derived from Life Path 5 (quadrant) × Soul Urge 4 (node 1 of 3).</span>
+    </div>
+  </div>
+
 
   <!-- ===== CORE NUMBERS ===== -->
   <h2>Core Numbers</h2>
@@ -311,22 +419,22 @@
     <div style="padding: 16px; background: rgba(38,228,216,0.08); border: 1px solid rgba(38,228,216,0.2); border-radius: 6px;">
       <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #26E4D8; font-weight: 700; margin-bottom: 4px;">6</div>
       <div style="font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Pinnacle 1</div>
-      <p style="font-size: 0.85rem; color: #f0ece4;">First pinnacle: Harmony phase. Serve community. Balance relationships.</p>
+      <p style="font-size: 0.85rem; color: #f0ece4;">Harmony phase. Serve community. Balance relationships.</p>
     </div>
     <div style="padding: 16px; background: rgba(38,228,216,0.08); border: 1px solid rgba(38,228,216,0.2); border-radius: 6px;">
       <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #26E4D8; font-weight: 700; margin-bottom: 4px;">9</div>
       <div style="font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Pinnacle 2</div>
-      <p style="font-size: 0.85rem; color: #f0ece4;">First pinnacle: Completion phase. Release old cycles. Prepare for transformation.</p>
+      <p style="font-size: 0.85rem; color: #f0ece4;">Completion phase. Release old cycles. Prepare for transformation.</p>
     </div>
     <div style="padding: 16px; background: rgba(38,228,216,0.08); border: 1px solid rgba(38,228,216,0.2); border-radius: 6px;">
       <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #26E4D8; font-weight: 700; margin-bottom: 4px;">6</div>
       <div style="font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Pinnacle 3</div>
-      <p style="font-size: 0.85rem; color: #f0ece4;">First pinnacle: Harmony phase. Serve community. Balance relationships.</p>
+      <p style="font-size: 0.85rem; color: #f0ece4;">Harmony phase. Serve community. Balance relationships.</p>
     </div>
     <div style="padding: 16px; background: rgba(38,228,216,0.08); border: 1px solid rgba(38,228,216,0.2); border-radius: 6px;">
       <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #26E4D8; font-weight: 700; margin-bottom: 4px;">4</div>
       <div style="font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Pinnacle 4</div>
-      <p style="font-size: 0.85rem; color: #f0ece4;">First pinnacle: Foundation phase. Build structures. Establish security.</p>
+      <p style="font-size: 0.85rem; color: #f0ece4;">Foundation phase. Build structures. Establish security.</p>
     </div>
   </div>
 
@@ -490,18 +598,19 @@
   <div style="margin: 24px 0; padding: 20px; background: rgba(38,228,216,0.08); border: 1px solid #26E4D8; border-radius: 8px;">
     <div style="font-size: 0.85rem; color: #26E4D8; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 12px;">Current Cycle Position</div>
     <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: #26E4D8; font-weight: 700; margin: 8px 0;">
-      Year 3 of 9
+      Year 7 of 9
     </div>
     <div style="font-size: 0.85rem; color: #f0ece4;">
-      Next transition: March 09, 1989
+      Next transition: May 19, 2027
+      · 2 years left in this cycle
     </div>
   </div>
     
   
-  <h3 style="margin-top: 32px;">Oracle Trinity</h3>
+  <h3 style="margin-top: 32px;">Arcana Trinity</h3>
   
   <div style="margin: 24px 0; padding: 24px; background: linear-gradient(135deg, rgba(107,77,242,0.12), rgba(243,178,58,0.12)); border: 2px solid #6B4DF2; border-radius: 8px;">
-    <div style="font-size: 0.85rem; color: #6B4DF2; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 16px; text-align: center;">Oracle Trinity</div>
+    <div style="font-size: 0.85rem; color: #6B4DF2; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 16px; text-align: center;">Arcana Trinity</div>
     <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 16px 0;">
       <div style="text-align: center; padding: 16px; background: rgba(255,255,255,0.03); border-radius: 8px;">
         <div style="font-weight: 600; color: #F3B23A; font-size: 1rem; margin-bottom: 4px;">The Hierophant</div>
@@ -517,7 +626,7 @@
       </div>
     </div>
     <div style="margin-top: 16px; padding: 12px; background: rgba(107,77,242,0.1); border-left: 3px solid #6B4DF2; color: #f0ece4; font-size: 0.85rem; line-height: 1.6;">
-      Your oracle trinity: The Hierophant (your journey), Justice (how you show), The Emperor (what drives you beneath). These three arcana are woven through every choice.
+      Your arcana trinity: The Hierophant (your journey), Justice (how you show), The Emperor (what drives you beneath). These three arcana are woven through every choice.
     </div>
   </div>
     
