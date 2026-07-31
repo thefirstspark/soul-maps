@@ -1093,5 +1093,28 @@
     "minted_at": "2026-07-30T02:42:46Z",
     "formula_version": 1,
     "birth_country": "US"
+  },
+  "ellen johanning|1991-09-07": {
+    "name": "Ellen johanning",
+    "dob": "1991-09-07",
+    "quantum": "23D2EA4C09CC",
+    "quantum_display": "23D2·EA4C·09CC",
+    "resonance_hz": 736.13,
+    "activation": "BBC0227D[LP9]",
+    "codex_color": "silver",
+    "codex_role": "The Reflector",
+    "codex_tier": "Silver",
+    "core": {
+      "life_path": 9,
+      "expression": 5,
+      "soul_urge": 8,
+      "personality": 6,
+      "birthday": 7
+    },
+    "minted_at": "2026-07-31T05:28:03Z",
+    "formula_version": 1,
+    "birth_time": "23:45",
+    "birth_city": "Barberton Ohio united states",
+    "birth_country": "US"
   }
 }
