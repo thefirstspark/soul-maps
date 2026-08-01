@@ -304,6 +304,38 @@
     .codex-badge-tier { font-size: 1.4rem; }
     .codex-badge-body { padding: 14px 16px; }
   }
+  /* ===== Mobile reflow for the deep sections (Advanced Analysis, Impossible Code) =====
+     Those sections are inline-styled, so attribute selectors + !important retrofit them. */
+  @media (max-width: 640px) {
+    .container { padding: 40px 16px; }
+    /* Stack data tables (90-day windows, destiny checkpoints) into readable cards
+       instead of squeezing three columns onto a phone screen */
+    table, tbody, tr, td { display: block; width: 100% !important; }
+    tr { padding: 10px 0; }
+    td {
+      padding: 2px 0 !important;
+      text-align: left !important;
+      white-space: normal !important;
+    }
+    td[colspan] { padding-top: 18px !important; }
+    /* Fixed multi-column grids (Arcana Trinity) collapse to a single column */
+    div[style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+    /* Code blocks (Impossible Code, Activation Sequence) stay on-screen at any length */
+    div[style*="Courier New"] {
+      font-size: 1.05rem !important;
+      letter-spacing: 1.5px !important;
+      overflow-wrap: anywhere;
+    }
+    /* Oversized display numbers scale down */
+    div[style*="font-size: 3.5rem"] { font-size: 2.4rem !important; }
+    div[style*="font-size: 2.5rem"] { font-size: 1.9rem !important; }
+    div[style*="font-size: 2rem"] { font-size: 1.6rem !important; }
+    div[style*="font-size: 1.8rem"] { font-size: 1.4rem !important; }
+    /* Big padded feature boxes breathe less on a phone */
+    div[style*="padding: 32px"] { padding: 20px 16px !important; }
+    div[style*="padding: 24px"] { padding: 18px 14px !important; }
+    div[style*="padding: 20px"] { padding: 16px 14px !important; }
+  }
 </style>
 </head>
 <body>
