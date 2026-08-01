@@ -1116,5 +1116,27 @@
     "birth_time": "23:45",
     "birth_city": "Barberton Ohio united states",
     "birth_country": "US"
+  },
+  "elizabeth zubaly|1896-03-16": {
+    "name": "elizabeth zubaly",
+    "dob": "1896-03-16",
+    "quantum": "FFB853678155",
+    "quantum_display": "FFB8·5367·8155",
+    "resonance_hz": 762.48,
+    "activation": "3A70CA28[LP7]",
+    "codex_color": "blue",
+    "codex_role": "The Mind",
+    "codex_tier": "Blue",
+    "core": {
+      "life_path": 7,
+      "expression": 4,
+      "soul_urge": 6,
+      "personality": 7,
+      "birthday": 7
+    },
+    "minted_at": "2026-08-01T08:22:36Z",
+    "formula_version": 1,
+    "birth_city": "checklaslovakia",
+    "birth_country": "US"
   }
 }
