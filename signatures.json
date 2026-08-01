@@ -1183,5 +1183,28 @@
     "birth_time": "15:15",
     "birth_city": "Akron, ohio",
     "birth_country": "US"
+  },
+  "devon ray lehman|2005-12-27": {
+    "name": "Devon ray lehman",
+    "dob": "2005-12-27",
+    "quantum": "AA9D32F1999F",
+    "quantum_display": "AA9D·32F1·999F",
+    "resonance_hz": 623.98,
+    "activation": "CEBAF57B[LP1]",
+    "codex_color": "ember",
+    "codex_role": "The First Heat",
+    "codex_tier": "Ember",
+    "core": {
+      "life_path": 1,
+      "expression": 4,
+      "soul_urge": 9,
+      "personality": 4,
+      "birthday": 9
+    },
+    "minted_at": "2026-08-01T19:08:56Z",
+    "formula_version": 1,
+    "birth_time": "15:28",
+    "birth_city": "Akron ohio",
+    "birth_country": "US"
   }
 }
