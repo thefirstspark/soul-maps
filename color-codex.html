@@ -512,5 +512,38 @@
   </footer>
 
 </div>
+  <script>
+  /* Color Codex live count — reads the archive (index.html) on load and
+     writes each tier's soul count, flipping Live/Open automatically.
+     Zero pipeline changes: whenever a soul map updates index.html, this stays current. */
+  (function () {
+    var ALIAS = { violet: 'purple' }; // archive uses .card violet for the Purple tier
+    fetch('index.html', { cache: 'no-store' })
+      .then(function (r) { if (!r.ok) throw r.status; return r.text(); })
+      .then(function (html) {
+        var counts = {}, re = /class="card\s+([a-z]+)"/gi, m;
+        while ((m = re.exec(html)) !== null) {
+          var c = m[1].toLowerCase(); c = ALIAS[c] || c;
+          counts[c] = (counts[c] || 0) + 1;
+        }
+        document.querySelectorAll('article.tier[id]').forEach(function (art) {
+          var id = art.id.toLowerCase(), n = counts[id] || 0;
+          var status = art.querySelector('.status');
+          if (status) {
+            if (n > 0) { status.className = 'status live'; status.textContent = 'Live \u00b7 ' + n + (n === 1 ? ' soul' : ' souls'); }
+            else { status.className = 'status open'; status.textContent = 'Open tier'; }
+          }
+          var link = art.querySelector('.tier-link');
+          if (link && n > 0 && link.classList.contains('muted')) {
+            var a = document.createElement('a');
+            a.className = 'tier-link'; a.href = 'index.html';
+            a.textContent = 'Search ' + id + ' maps in archive \u2192';
+            link.replaceWith(a);
+          }
+        });
+      })
+      .catch(function () { /* offline / fetch blocked: keep static fallback */ });
+  })();
+  </script>
 </body>
 </html>
