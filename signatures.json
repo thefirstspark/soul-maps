@@ -1138,5 +1138,27 @@
     "formula_version": 1,
     "birth_city": "checklaslovakia",
     "birth_country": "US"
+  },
+  "gina marie sutton|1988-09-14": {
+    "name": "Gina Marie sutton",
+    "dob": "1988-09-14",
+    "quantum": "857CACC2723E",
+    "quantum_display": "857C·ACC2·723E",
+    "resonance_hz": 985.74,
+    "activation": "C0F3F75E[LP22]",
+    "codex_color": "gold",
+    "codex_role": "The Orchestrator",
+    "codex_tier": "Gold",
+    "core": {
+      "life_path": 22,
+      "expression": 6,
+      "soul_urge": 7,
+      "personality": 8,
+      "birthday": 5
+    },
+    "minted_at": "2026-08-01T18:56:06Z",
+    "formula_version": 1,
+    "birth_city": "Washington pa usa",
+    "birth_country": "US"
   }
 }
