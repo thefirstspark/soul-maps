@@ -1206,5 +1206,28 @@
     "birth_time": "15:28",
     "birth_city": "Akron ohio",
     "birth_country": "US"
+  },
+  "eric allen lamb|1990-01-15": {
+    "name": "eric allen lamb",
+    "dob": "1990-01-15",
+    "quantum": "E488B9E87E35",
+    "quantum_display": "E488·B9E8·7E35",
+    "resonance_hz": 816.57,
+    "activation": "4F6E5209[LP8]",
+    "codex_color": "red",
+    "codex_role": "The Will",
+    "codex_tier": "Red",
+    "core": {
+      "life_path": 8,
+      "expression": 8,
+      "soul_urge": 3,
+      "personality": 5,
+      "birthday": 6
+    },
+    "minted_at": "2026-08-06T02:24:29Z",
+    "formula_version": 1,
+    "birth_time": "20:09",
+    "birth_city": "akron",
+    "birth_country": "US"
   }
 }
