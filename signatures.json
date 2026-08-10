@@ -1273,5 +1273,28 @@
     "formula_version": 1,
     "birth_city": "oz semere carpethian, russia",
     "birth_country": "US"
+  },
+  "david norton ferris|1988-09-07": {
+    "name": "David Norton Ferris",
+    "dob": "1988-09-07",
+    "quantum": "A1F4946F6D23",
+    "quantum_display": "A1F4·946F·6D23",
+    "resonance_hz": 707.27,
+    "activation": "EDFB3400[LP6]",
+    "codex_color": "rose",
+    "codex_role": "The Bond",
+    "codex_tier": "Rose",
+    "core": {
+      "life_path": 6,
+      "expression": 4,
+      "soul_urge": 9,
+      "personality": 4,
+      "birthday": 7
+    },
+    "minted_at": "2026-08-10T03:03:07Z",
+    "formula_version": 1,
+    "birth_time": "11:37",
+    "birth_city": "akron, ohio",
+    "birth_country": "US"
   }
 }
