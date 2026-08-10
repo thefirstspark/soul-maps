@@ -1229,5 +1229,27 @@
     "birth_time": "20:09",
     "birth_city": "akron",
     "birth_country": "US"
+  },
+  "jura puzakulics|1892-05-16": {
+    "name": "jura puzakulics",
+    "dob": "1892-05-16",
+    "quantum": "1E1A2F34C718",
+    "quantum_display": "1E1A·2F34·C718",
+    "resonance_hz": 693.62,
+    "activation": "4FAE2B00[LP5]",
+    "codex_color": "ember",
+    "codex_role": "The First Heat",
+    "codex_tier": "Ember",
+    "core": {
+      "life_path": 5,
+      "expression": 9,
+      "soul_urge": 2,
+      "personality": 7,
+      "birthday": 7
+    },
+    "minted_at": "2026-08-10T00:40:02Z",
+    "formula_version": 1,
+    "birth_city": "oz semere carpethian, russia",
+    "birth_country": "US"
   }
 }
