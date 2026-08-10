@@ -1251,5 +1251,27 @@
     "formula_version": 1,
     "birth_city": "oz semere carpethian, russia",
     "birth_country": "US"
+  },
+  "erzsa zubaly|1894-03-16": {
+    "name": "erzsa zubaly",
+    "dob": "1894-03-16",
+    "quantum": "29BC839D8715",
+    "quantum_display": "29BC·839D·8715",
+    "resonance_hz": 759.63,
+    "activation": "6EB1C984[LP5]",
+    "codex_color": "cyan",
+    "codex_role": "The Signal",
+    "codex_tier": "Cyan",
+    "core": {
+      "life_path": 5,
+      "expression": 3,
+      "soul_urge": 1,
+      "personality": 11,
+      "birthday": 7
+    },
+    "minted_at": "2026-08-10T00:40:38Z",
+    "formula_version": 1,
+    "birth_city": "oz semere carpethian, russia",
+    "birth_country": "US"
   }
 }
