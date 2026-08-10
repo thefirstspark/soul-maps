@@ -1296,5 +1296,27 @@
     "birth_time": "11:37",
     "birth_city": "akron, ohio",
     "birth_country": "US"
+  },
+  "georgia ann puzakulics|1948-10-17": {
+    "name": "Georgia Ann Puzakulics",
+    "dob": "1948-10-17",
+    "quantum": "334F8D38B29A",
+    "quantum_display": "334F·8D38·B29A",
+    "resonance_hz": 914.46,
+    "activation": "3BE8104B[LP4]",
+    "codex_color": "violet",
+    "codex_role": "The Transformer",
+    "codex_tier": "Purple",
+    "core": {
+      "life_path": 4,
+      "expression": 5,
+      "soul_urge": 11,
+      "personality": 3,
+      "birthday": 8
+    },
+    "minted_at": "2026-08-10T06:28:55Z",
+    "formula_version": 1,
+    "birth_city": "akron, ohio",
+    "birth_country": "US"
   }
 }
