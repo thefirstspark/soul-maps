@@ -1340,5 +1340,28 @@
     "formula_version": 1,
     "birth_city": "United Kingdom",
     "birth_country": "US"
+  },
+  "kenneth earl wiber jr|1949-01-31": {
+    "name": "kenneth earl wiber jr",
+    "dob": "1949-01-31",
+    "quantum": "3716D3DF7AD3",
+    "quantum_display": "3716·D3DF·7AD3",
+    "resonance_hz": 566.87,
+    "activation": "441FD068[LP1]",
+    "codex_color": "ember",
+    "codex_role": "The First Heat",
+    "codex_tier": "Ember",
+    "core": {
+      "life_path": 1,
+      "expression": 9,
+      "soul_urge": 3,
+      "personality": 6,
+      "birthday": 4
+    },
+    "minted_at": "2026-08-12T09:57:25Z",
+    "formula_version": 1,
+    "birth_time": "12:00",
+    "birth_city": "oklahoma city, oklahoma usa",
+    "birth_country": "US"
   }
 }
