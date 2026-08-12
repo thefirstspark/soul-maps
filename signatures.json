@@ -1318,5 +1318,27 @@
     "formula_version": 1,
     "birth_city": "akron, ohio",
     "birth_country": "US"
+  },
+  "alfie james catlow|2013-11-26": {
+    "name": "Alfie James Catlow",
+    "dob": "2013-11-26",
+    "quantum": "958D31FA5D3D",
+    "quantum_display": "958D·31FA·5D3D",
+    "resonance_hz": 824.43,
+    "activation": "FC74E30B[LP7]",
+    "codex_color": "violet",
+    "codex_role": "The Transformer",
+    "codex_tier": "Purple",
+    "core": {
+      "life_path": 7,
+      "expression": 11,
+      "soul_urge": 1,
+      "personality": 1,
+      "birthday": 8
+    },
+    "minted_at": "2026-08-12T07:08:19Z",
+    "formula_version": 1,
+    "birth_city": "United Kingdom",
+    "birth_country": "US"
   }
 }
