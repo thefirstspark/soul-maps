@@ -1363,5 +1363,27 @@
     "birth_time": "12:00",
     "birth_city": "oklahoma city, oklahoma usa",
     "birth_country": "US"
+  },
+  "aaron gabriel golbin|2003-09-04": {
+    "name": "Aaron Gabriel Golbin",
+    "dob": "2003-09-04",
+    "quantum": "E706BCF60120",
+    "quantum_display": "E706·BCF6·0120",
+    "resonance_hz": 785.98,
+    "activation": "D773F540[LP9]",
+    "codex_color": "violet",
+    "codex_role": "The Transformer",
+    "codex_tier": "Purple",
+    "core": {
+      "life_path": 9,
+      "expression": 9,
+      "soul_urge": 11,
+      "personality": 7,
+      "birthday": 4
+    },
+    "minted_at": "2026-08-18T00:20:16Z",
+    "formula_version": 1,
+    "birth_city": "ny, ny",
+    "birth_country": "US"
   }
 }
