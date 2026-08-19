@@ -1385,5 +1385,27 @@
     "formula_version": 1,
     "birth_city": "ny, ny",
     "birth_country": "US"
+  },
+  "gerald ray lehman|1958-09-14": {
+    "name": "Gerald Ray Lehman",
+    "dob": "1958-09-14",
+    "quantum": "F21F5F53F851",
+    "quantum_display": "F21F·5F53·F851",
+    "resonance_hz": 643.25,
+    "activation": "9C940D39[LP1]",
+    "codex_color": "ember",
+    "codex_role": "The First Heat",
+    "codex_tier": "Ember",
+    "core": {
+      "life_path": 1,
+      "expression": 9,
+      "soul_urge": 4,
+      "personality": 5,
+      "birthday": 5
+    },
+    "minted_at": "2026-08-19T20:22:29Z",
+    "formula_version": 1,
+    "birth_city": "akron ohio",
+    "birth_country": "US"
   }
 }
