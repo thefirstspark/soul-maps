@@ -304,6 +304,55 @@
     .codex-badge-tier { font-size: 1.4rem; }
     .codex-badge-body { padding: 14px 16px; }
   }
+  /* Share + journey actions */
+  .map-actions {
+    display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+    margin: 20px 0 8px;
+  }
+  .map-actions button, .map-actions a {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem; letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 12px 18px; border-radius: 999px; cursor: pointer;
+    text-decoration: none; display: inline-flex; align-items: center;
+    justify-content: center; transition: 0.2s; border: 1px solid rgba(38,228,216,0.45);
+    background: transparent; color: #26E4D8;
+  }
+  .map-actions .primary {
+    background: linear-gradient(90deg, #FF6A3D, #F3B23A);
+    border: none; color: #0B0B0C; font-weight: 700;
+  }
+  .map-actions button:hover, .map-actions a:hover { filter: brightness(1.08); }
+  .map-actions button:focus-visible, .map-actions a:focus-visible {
+    outline: 2px solid #26E4D8; outline-offset: 3px;
+  }
+  .share-toast {
+    display: none; text-align: center; font-size: 0.75rem;
+    color: #F3B23A; margin-top: 8px; letter-spacing: 1px;
+  }
+  .share-toast.show { display: block; }
+  .upgrade-strip {
+    margin: 28px 0; padding: 22px 18px; text-align: center;
+    border: 1px solid rgba(243,178,58,0.4); border-radius: 12px;
+    background: linear-gradient(135deg, rgba(243,178,58,0.08), rgba(107,77,242,0.08));
+  }
+  .upgrade-strip h3 {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.35rem;
+    color: #F3B23A; margin-bottom: 8px; border: none; padding: 0;
+  }
+  .upgrade-strip p {
+    font-size: 0.9rem; color: #f0ece4; line-height: 1.55;
+    max-width: 48ch; margin: 0 auto 14px;
+  }
+  .disclaimer-note {
+    margin-top: 16px; font-size: 0.72rem; color: #888; line-height: 1.55;
+    text-align: center; max-width: 52ch; margin-left: auto; margin-right: auto;
+  }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid #26E4D8; outline-offset: 3px;
+  }
+  @media (max-width: 600px) {
+    .map-actions button, .map-actions a { width: 100%; }
+  }
   /* ===== Mobile reflow for the deep sections (Advanced Analysis, Impossible Code) =====
      Those sections are inline-styled, so attribute selectors + !important retrofit them. */
   @media (max-width: 640px) {
@@ -342,25 +391,32 @@
 <div id="starfield" class="stars"></div>
 <div class="container">
 
-  <p class="subtitle">Soul Map</p>
+  <p class="subtitle">Soul Map · Player Card</p>
   <h1>Stephen small</h1>
   
-  <p class="generated-date">Generated August 01, 2026 · thefirstspark.shop</p>
-    <div class="codex-badge" style="--codex-hex:#8b5cf6; --codex-wash:rgba(139,92,246,0.12); --codex-border:rgba(139,92,246,0.5);">
+  <p class="generated-date">Generated August 27, 2026 · thefirstspark.shop</p>
+    <div class="codex-badge" style="--codex-hex:#c4c8d4; --codex-wash:rgba(196,200,212,0.12); --codex-border:rgba(196,200,212,0.5);">
     <div class="codex-badge-swatch" aria-hidden="true"></div>
     <div class="codex-badge-body">
       <div class="codex-badge-kicker">Color Codex</div>
-      <div class="codex-badge-tier">Purple</div>
-      <div class="codex-badge-role">The Transformer</div>
-      <a class="codex-badge-link" href="color-codex.html#purple">What this color means →</a>
+      <div class="codex-badge-tier">Silver</div>
+      <div class="codex-badge-role">The Reflector</div>
+      <a class="codex-badge-link" href="color-codex.html#silver">What this color means →</a>
     </div>
   </div>
 
 
   <p class="intro">
-    This isn't a personality test. It's a coordinate system — a map of the patterns
-    encoded in your existence. Numbers, planets, elements. Not metaphors. Syntax.
+    This is your coordinate story — numbers, planets, and archetypes from the Selector Model.
+    Read it as a map for reflection, not a lab report.
   </p>
+
+  <div class="map-actions" role="group" aria-label="Share and explore">
+    <button type="button" class="primary" onclick="shareSoulMap('native')" aria-label="Share this Player Card">Share this Player Card</button>
+    <button type="button" onclick="shareSoulMap('copy')" aria-label="Copy link to this Soul Map">Copy link</button>
+    <a href="https://frequency.thefirstspark.shop/" target="_blank" rel="noopener">Compare a connection</a>
+  </div>
+  <div class="share-toast" id="shareToast" role="status">Link copied.</div>
 
   <!-- ===== ARCHETYPE SIGNATURE ===== -->
 
@@ -403,6 +459,14 @@
     </div>
   </div>
 
+
+  <div class="upgrade-strip">
+    <h3>Compare this code with someone else</h3>
+    <p>Run a free Frequency Match — two names, two birth dates, one symbolic Player Card collision.</p>
+    <div class="map-actions" style="margin:0">
+      <a class="primary" href="https://frequency.thefirstspark.shop/" target="_blank" rel="noopener">Create Your Frequency Match</a>
+    </div>
+  </div>
 
   <!-- ===== CORE NUMBERS ===== -->
   <h2>Core Numbers</h2>
@@ -596,11 +660,11 @@
   
   
   <div style="text-align: center; margin: 32px 0; padding: 32px; background: linear-gradient(135deg, rgba(107,77,242,0.1), rgba(38,228,216,0.1)); border-radius: 12px;">
-    <div style="font-size: 0.85rem; color: #26E4D8; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px;">Soul Resonance Frequency</div>
-    <div style="font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 700; color: #F3B23A; margin: 16px 0;">776.39 Hz</div>
+    <div style="font-size: 0.85rem; color: #26E4D8; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px;">Symbolic Resonance Tone</div>
+    <div style="font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 700; color: #F3B23A; margin: 16px 0;">776.39 Hz <span style="font-size:0.35em;letter-spacing:2px;color:#888;display:block;margin-top:6px;">SELECTOR MODEL · EXPERIMENTAL</span></div>
     <div style="width: 100%; height: 3px; background: linear-gradient(to right, #6B4DF2, #26E4D8, #F3B23A); margin: 20px 0; border-radius: 2px;"></div>
     <div style="font-size: 0.9rem; color: #f0ece4; line-height: 1.6;">
-      Your core numbers translate to a harmonic frequency in the Schumann range. This is your vibrational signature — the frequency your energy naturally aligns with. 432 Hz is the baseline; your unique pattern modulates from there.
+      A poetic tone derived from your core numbers for reflection and flavor — not a lab measurement of the Earth&rsquo;s Schumann resonances or a clinical frequency reading. Use it as atmosphere for the map, not as science.
     </div>
   </div>
     
@@ -622,7 +686,7 @@
   
   <div style="margin: 24px 0; padding: 20px; background: rgba(255,106,61,0.08); border: 1px solid #FF6A3D; border-radius: 8px;">
     <div style="font-size: 0.85rem; color: #FF6A3D; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 12px;">Power Hour Today</div>
-    <div style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: #FF6A3D; font-weight: 700; margin: 8px 0;">15:16</div>
+    <div style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: #FF6A3D; font-weight: 700; margin: 8px 0;">08:09</div>
     <div style="font-size: 0.85rem; color: #f0ece4;">Maximum resonance window for today's frequency</div>
   </div>
     
@@ -669,12 +733,6 @@
   <div style="margin: 24px 0; padding: 20px; background: rgba(107,77,242,0.05); border: 1px solid rgba(107,77,242,0.15); border-radius: 8px;">
     <table style="width: 100%; margin: 12px 0; font-size: 0.85rem; border-collapse: collapse;">
       <tr style="border-bottom: 1px solid rgba(38,228,216,0.15);">
-        <td style="padding: 10px 8px; color: #26E4D8;">Aug 20</td>
-        <td style="padding: 10px 8px; text-align: center; color: #F3B23A; font-weight: 600;">Personal Month Shift</td>
-        <td style="padding: 10px 8px; color: #f0ece4; text-align: right;">Build month. Foundations. Systems. Do th...</td>
-      </tr>
-        
-      <tr style="border-bottom: 1px solid rgba(38,228,216,0.15);">
         <td style="padding: 10px 8px; color: #26E4D8;">Sep 20</td>
         <td style="padding: 10px 8px; text-align: center; color: #F3B23A; font-weight: 600;">Personal Month Shift</td>
         <td style="padding: 10px 8px; color: #f0ece4; text-align: right;">Change month. Something shifts — let it....</td>
@@ -685,19 +743,37 @@
         <td style="padding: 10px 8px; text-align: center; color: #F3B23A; font-weight: 600;">Personal Month Shift</td>
         <td style="padding: 10px 8px; color: #f0ece4; text-align: right;">Responsibility month. Home. Family. Reca...</td>
       </tr>
+        
+      <tr style="border-bottom: 1px solid rgba(38,228,216,0.15);">
+        <td style="padding: 10px 8px; color: #26E4D8;">Nov 20</td>
+        <td style="padding: 10px 8px; text-align: center; color: #F3B23A; font-weight: 600;">Personal Month Shift</td>
+        <td style="padding: 10px 8px; color: #f0ece4; text-align: right;">Inner work month. Go deep. Study. Rest. ...</td>
+      </tr>
+        
+      <tr style="border-bottom: 1px solid rgba(38,228,216,0.15);">
+        <td style="padding: 10px 8px; color: #26E4D8;">Nov 20</td>
+        <td style="padding: 10px 8px; text-align: center; color: #F3B23A; font-weight: 600;">Personal Year Transition</td>
+        <td style="padding: 10px 8px; color: #f0ece4; text-align: right;">Change year. Something shifts — let it. ...</td>
+      </tr>
+        
+      <tr style="border-bottom: 1px solid rgba(38,228,216,0.15);">
+        <td style="padding: 10px 8px; color: #26E4D8;">Nov 22</td>
+        <td style="padding: 10px 8px; text-align: center; color: #F3B23A; font-weight: 600;">Master Number Day</td>
+        <td style="padding: 10px 8px; color: #f0ece4; text-align: right;">Master frequency alignment — optimal for...</td>
+      </tr>
         </table>
   </div>
   
   <!-- ===== ULTIMATE FEATURES ===== -->
   <h2 style="margin-top: 60px; border-top: 2px solid rgba(243,178,58,0.2); padding-top: 40px;">The Impossible Code</h2>
   
-  <h3 style="margin-top: 32px;">Quantum Signature</h3>
+  <h3 style="margin-top: 32px;">Impossible Code</h3>
   
   <div style="margin: 24px 0; padding: 24px; background: linear-gradient(135deg, rgba(255,106,61,0.1), rgba(38,228,216,0.1)); border: 2px solid #FF6A3D; border-radius: 8px;" data-quantum="139344725820" data-sig-key="stephen small|1978-11-20">
-    <div style="font-size: 0.85rem; color: #FF6A3D; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 16px;">Quantum Signature</div>
+    <div style="font-size: 0.85rem; color: #FF6A3D; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 16px;">Impossible Code <span style="font-size:0.75em;opacity:0.8">(symbolic ID)</span></div>
     <div style="font-family: 'Courier New', monospace; font-size: 1.4rem; letter-spacing: 3px; color: #26E4D8; font-weight: 700; margin: 16px 0; text-align: center; padding: 16px; background: rgba(26,26,46,0.8); border-radius: 6px;">1393·4472·5820</div>
     <div style="font-size: 0.9rem; color: #f0ece4; line-height: 1.6;">
-      Your permanent soul fingerprint — minted once for this name and birth date, then locked. Re-runs reuse this ID.
+      A permanent ID minted once for this name and birth date inside the Selector Model — poetic fingerprint, not a physics claim. Re-runs reuse this code.
     </div>
     <div style="font-size: 0.7rem; color: #888; margin-top: 10px; text-align: center; letter-spacing: 1px;">Minted 2026-07-30T02:26:45Z · formula v1</div>
   </div>
@@ -711,7 +787,7 @@
       ███  ██<br/>
       ▁▂▃▄▅▆▇█
     </div>
-    <div style="font-size: 0.85rem; color: #f0ece4;">Visual representation of your frequency signature. The bars show your life path intensity; the wave shows your harmonic resonance.</div>
+    <div style="font-size: 0.85rem; color: #f0ece4;">A visual flourish for your symbolic tone — bars track Life Path intensity in the model; the wave is atmospheric, not a measured waveform.</div>
   </div>
     
   
@@ -721,7 +797,7 @@
     <div style="font-size: 0.75rem; color: #26E4D8; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 12px; font-weight: 700;">Your Activation Sequence</div>
     <div style="font-family: 'Courier New', monospace; font-size: 1.8rem; letter-spacing: 2px; color: #F3B23A; font-weight: 700; margin: 16px 0; padding: 16px; background: rgba(26,26,46,0.8); border-radius: 6px; border: 1px dashed #26E4D8;">DA21F32E[LP2]</div>
     <div style="font-size: 0.9rem; color: #f0ece4; margin-top: 12px;">
-      This is your personal frequency trigger. When you speak, write, or think this code, you align with your highest potential. It's your soul's call sign.
+      A personal call sign from the model — a phrase to hold, speak, or ignore. Ritual flavor for focus and reflection, not a clinical activation protocol.
     </div>
   </div>
     
@@ -807,18 +883,62 @@
     </table>
   </div>
 
+  <div class="upgrade-strip">
+    <h3>Build another Full Soul Map</h3>
+    <p>One-time Founders Edition map for someone you love, lead, or can&rsquo;t stop thinking about.</p>
+    <div class="map-actions" style="margin:0">
+      <a class="primary" href="https://soul-maps.thefirstspark.shop/" target="_blank" rel="noopener">Build Your Full Soul Map</a>
+      <a href="https://frequency.thefirstspark.shop/" target="_blank" rel="noopener">Compare Another Connection</a>
+    </div>
+  </div>
+
+  <p class="disclaimer-note">For reflection, exploration, and entertainment. Symbolic readings from the Selector Model — not scientific measurement, medical advice, or professional counseling.</p>
+
   <!-- ===== FOOTER ===== -->
   <div class="footer">
     <p>THE FIRST SPARK — Reality is programmable. Consciousness is the code.</p>
     <p style="margin-top: 8px;">
       <a href="https://thefirstspark.shop">thefirstspark.shop</a> ·
-      <a href="https://whop.com/joined/sparkverse-511c/">Join the Sparkverse</a>
+      <a href="https://whop.com/joined/sparkverse-511c/">Join the Sparkverse</a> ·
+      <a href="https://frequency.thefirstspark.shop/">Frequency Match</a>
     </p>
   </div>
 
 </div>
 
 <script>
+function shareSoulMap(mode) {
+  var title = document.title || 'Soul Map';
+  var nameEl = document.querySelector('h1');
+  var archEl = document.querySelector('.arch-name');
+  var name = nameEl ? nameEl.textContent.trim() : 'Soul Map';
+  var arch = archEl ? archEl.textContent.trim() : '';
+  var url = window.location.href.split('#')[0];
+  var text = name + (arch ? ' · ' + arch : '') + '\n\nPlayer Card from The First Spark\n' + url;
+  var toast = document.getElementById('shareToast');
+  function showToast(msg) {
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(function(){ toast.classList.remove('show'); }, 2800);
+  }
+  if (mode === 'copy' || !navigator.share) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function(){ showToast('Link copied — paste anywhere.'); })
+        .catch(function(){ window.prompt('Copy this link:', url); });
+    } else {
+      window.prompt('Copy this link:', url);
+    }
+    return;
+  }
+  navigator.share({ title: title, text: text, url: url }).catch(function(e) {
+    if (e && e.name === 'AbortError') return;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function(){ showToast('Link copied.'); });
+    }
+  });
+}
+
 // Seeded random number generator
 function seededRandom(seed) {
   const x = Math.sin(seed) * 10000;
