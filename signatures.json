@@ -786,9 +786,9 @@
     "quantum_display": "39F1·B0B5·A098",
     "resonance_hz": 646.79,
     "activation": "97FF3490[LP7]",
-    "codex_color": "silver",
-    "codex_role": "The Reflector",
-    "codex_tier": "Silver",
+    "codex_color": "ember",
+    "codex_role": "The First Heat",
+    "codex_tier": "Ember",
     "core": {
       "life_path": 7,
       "expression": 3,
@@ -798,7 +798,8 @@
     },
     "minted_at": "2026-07-30T02:26:45Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "birth_city": "akron, ohio"
   },
   "rachael maureen johnson|1967-08-30": {
     "name": "Rachael Maureen Johnson",
