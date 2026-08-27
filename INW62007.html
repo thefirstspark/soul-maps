@@ -251,6 +251,32 @@
     margin-top: 16px;
     letter-spacing: 1px;
   }
+  /* Memorial photograph — deliberately quiet: soft frame, no glow, no motion */
+  .memorial-photo {
+    display: block;
+    margin: 22px auto 6px;
+    max-width: 260px;
+    width: 100%;
+  }
+  .memorial-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    border: 1px solid rgba(107, 77, 242, 0.55);
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.45);
+  }
+  .memorial-photo figcaption {
+    margin-top: 10px;
+    font-size: 0.78rem;
+    line-height: 1.6;
+    color: #9aa4c4;
+    letter-spacing: 0.5px;
+    font-style: italic;
+  }
+  @media (max-width: 600px) {
+    .memorial-photo { max-width: 200px; }
+  }
   /* Color Codex badge — every map */
   .codex-badge {
     display: flex;
@@ -343,6 +369,13 @@
     font-size: 0.9rem; color: #f0ece4; line-height: 1.55;
     max-width: 48ch; margin: 0 auto 14px;
   }
+  /* Memorial variant: present but not selling hard */
+  .upgrade-strip--quiet {
+    border-color: rgba(154,164,196,0.28);
+    background: rgba(255,255,255,0.02);
+  }
+  .upgrade-strip--quiet h3 { color: #9aa4c4; font-size: 1.15rem; }
+  .upgrade-strip--quiet p { color: #b9c0d6; }
   .disclaimer-note {
     margin-top: 16px; font-size: 0.72rem; color: #888; line-height: 1.55;
     text-align: center; max-width: 52ch; margin-left: auto; margin-right: auto;
@@ -895,11 +928,12 @@
   </div>
 
   <div class="upgrade-strip">
-    <h3>Build another Full Soul Map</h3>
-    <p>One-time Founders Edition map for someone you love, lead, or can&rsquo;t stop thinking about.</p>
+    <h3>Get your own Soul Map</h3>
+    <p>Your full coordinate story &mdash; core numbers, archetype, Color Codex and Impossible Code &mdash;
+       built from your name and birth date, live at your own URL in about five minutes.</p>
     <div class="map-actions" style="margin:0">
-      <a class="primary" href="https://soul-maps.thefirstspark.shop/" target="_blank" rel="noopener">Build Your Full Soul Map</a>
-      <a href="https://frequency.thefirstspark.shop/" target="_blank" rel="noopener">Compare Another Connection</a>
+      <a class="primary" href="https://whop.com/checkout/plan_anQKP3Pzf1cGm" target="_blank" rel="noopener">Claim Your Soul Map &mdash; $22</a>
+      <a href="https://frequency.thefirstspark.shop/" target="_blank" rel="noopener">Compare a connection (free)</a>
     </div>
   </div>
 
