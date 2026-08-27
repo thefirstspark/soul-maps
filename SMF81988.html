@@ -251,6 +251,32 @@
     margin-top: 16px;
     letter-spacing: 1px;
   }
+  /* Memorial photograph — deliberately quiet: soft frame, no glow, no motion */
+  .memorial-photo {
+    display: block;
+    margin: 22px auto 6px;
+    max-width: 260px;
+    width: 100%;
+  }
+  .memorial-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    border: 1px solid rgba(107, 77, 242, 0.55);
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.45);
+  }
+  .memorial-photo figcaption {
+    margin-top: 10px;
+    font-size: 0.78rem;
+    line-height: 1.6;
+    color: #9aa4c4;
+    letter-spacing: 0.5px;
+    font-style: italic;
+  }
+  @media (max-width: 600px) {
+    .memorial-photo { max-width: 200px; }
+  }
   /* Color Codex badge — every map */
   .codex-badge {
     display: flex;
@@ -398,6 +424,10 @@
       &#9670; IN MEMORIAM &#9670;
       <span class="ceremony-subtitle">Staci Marie Ferrell</span>
       August 26, 1988 &mdash; October 19, 2002
+      <figure class="memorial-photo">
+        <img src="media/kateandstaci.jpg" alt="Staci and Katelin" loading="lazy">
+        <figcaption>Staci and Katelin</figcaption>
+      </figure>
       <span class="ceremony-date">Their pattern is permanent. This map honors what they encoded.</span>
     </div>
   </div>
