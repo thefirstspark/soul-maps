@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
 
+# Family memorial photographs. They display normally on the maps; this only
+# keeps them out of image search. Note: robots.txt is a crawler courtesy, not
+# access control — the files stay publicly fetchable by direct URL.
+Disallow: /media/
+
 Sitemap: https://soul-maps.thefirstspark.shop/sitemap.xml
