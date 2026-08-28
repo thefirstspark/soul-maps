@@ -46,7 +46,22 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://soul-maps.thefirstspark.shop/sparkverse-archetype-wheel.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://soul-maps.thefirstspark.shop/compare.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://soul-maps.thefirstspark.shop/ember-soul-journey.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://soul-maps.thefirstspark.shop/red-soul-journey.html</loc>
     <lastmod>2026-08-27</lastmod>
     <priority>0.7</priority>
   </url>
@@ -76,12 +91,22 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://soul-maps.thefirstspark.shop/sparkverse-archetype-wheel.html</loc>
+    <loc>https://soul-maps.thefirstspark.shop/rose-soul-journey.html</loc>
     <lastmod>2026-08-27</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://soul-maps.thefirstspark.shop/compare.html</loc>
+    <loc>https://soul-maps.thefirstspark.shop/white-soul-journey.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://soul-maps.thefirstspark.shop/silver-soul-journey.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://soul-maps.thefirstspark.shop/yellow-soul-journey.html</loc>
     <lastmod>2026-08-27</lastmod>
     <priority>0.7</priority>
   </url>

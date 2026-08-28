@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Red Soul's Journey</title>
+<meta name="description" content="Red on the Color Codex - The Will. How a red soul reaches Radiant 2 (Life Path + Expression), the arc across lives, and what the colour means on your Soul Map.">
+<link rel="canonical" href="https://soul-maps.thefirstspark.shop/red-soul-journey.html">
+<meta property="og:title" content="A Red Soul's Journey &mdash; Red &middot; The Will">
+<meta property="og:description" content="Red on the Color Codex - The Will. How a red soul reaches Radiant 2 (Life Path + Expression), the arc across lives, and what the colour means on your Soul Map.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://soul-maps.thefirstspark.shop/red-soul-journey.html">
+<meta property="og:image" content="https://soul-maps.thefirstspark.shop/preview-soulmaps.png">
+<meta name="twitter:card" content="summary_large_image">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root { --cta-hex: #e24b4a; --cta-line: #e24b4a55; }
+  .codex-cta { max-width: 680px; margin: 46px auto 10px; padding: 26px 20px; text-align: center;
+    border: 1px solid var(--cta-line); border-radius: 12px; background: rgba(255,255,255,0.02); }
+  .codex-cta .codex-cta-fact { font-size: 0.95rem; color: #cfd3e6; line-height: 1.6; margin-bottom: 16px; }
+  .codex-cta a { display: inline-block; margin: 6px 8px; padding: 11px 20px; border-radius: 8px;
+    text-decoration: none; font-size: 0.9rem; letter-spacing: 0.5px; border: 1px solid var(--cta-line); color: #e6e8f2; }
+  .codex-cta a.cta-primary { background: var(--cta-hex); border-color: var(--cta-hex); color: #0B0B0C; font-weight: 700; }
+  .codex-cta a:hover { filter: brightness(1.1); }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0B0B0C; font-family: 'Cormorant Garamond', serif; overflow-x: hidden; min-height: 100vh; }
+
+  .starfield { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+  .container { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; padding: 60px 24px 100px; }
+
+  .title-block { text-align: center; margin-bottom: 80px; animation: fadeDown 1.2s ease forwards; opacity: 0; }
+  .title-block h1 {
+    font-family: 'Cinzel', serif; font-size: clamp(1.4rem, 4vw, 2.2rem);
+    color: #e24b4a; letter-spacing: 0.15em; text-transform: uppercase; line-height: 1.4;
+  }
+  .title-block p { color: #888; font-style: italic; font-size: 1.1rem; margin-top: 12px; letter-spacing: 0.05em; }
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
+  .spine {
+    position: absolute; left: 50%; top: 0; width: 1px; height: 100%;
+    background: linear-gradient(to bottom, transparent, #e24b4a 10%, #e24b4a 90%, transparent);
+    opacity: 0.25; transform: translateX(-50%);
+  }
+
+  .journey { position: relative; }
+  .stage { display: flex; align-items: flex-start; gap: 28px; margin-bottom: 64px; opacity: 0; animation: fadeIn 0.8s ease forwards; }
+  .stage:nth-child(1) { animation-delay: 0.3s; }
+  .stage:nth-child(2) { animation-delay: 0.6s; }
+  .stage:nth-child(3) { animation-delay: 0.9s; }
+  .stage:nth-child(4) { animation-delay: 1.2s; }
+  .stage:nth-child(5) { animation-delay: 1.5s; }
+  .stage:nth-child(6) { animation-delay: 1.8s; }
+  .stage:nth-child(7) { animation-delay: 2.1s; }
+  .stage.right { flex-direction: row-reverse; text-align: right; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+  .orb-wrap { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .orb { width: 52px; height: 52px; border-radius: 50%; position: relative; flex-shrink: 0; animation: pulse var(--p, 3s) ease-in-out infinite alternate; }
+  @keyframes pulse {
+    from { box-shadow: 0 0 12px var(--glow), 0 0 24px var(--glow); }
+    to   { box-shadow: 0 0 24px var(--glow), 0 0 48px var(--glow), 0 0 80px var(--glow); }
+  }
+
+  .orb-brown   { background: radial-gradient(circle at 35% 35%, #a78566, #5c3a21); --glow: rgba(92,58,33,0.55); }
+  .orb-red     { background: radial-gradient(circle at 35% 35%, #ff6b6b, #c0392b); --glow: rgba(192,57,43,0.6); }
+  .orb-sprout  { background: radial-gradient(circle at 35% 35%, #d9f99d, #84cc16); --glow: rgba(132,204,22,0.55); }
+  .orb-green   { background: radial-gradient(circle at 35% 35%, #69f0ae, #7c2929); --glow: rgba(16,185,129,0.75); --p: 2s; }
+  .orb-emerald { background: radial-gradient(circle at 35% 35%, #f4bbba, #7c2929); --glow: rgba(6,95,70,0.6); }
+  .orb-gold    { background: radial-gradient(circle at 35% 35%, #fde68a, #d97706); --glow: rgba(217,119,6,0.55); }
+
+  .orb-label { font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.12em; color: #666; text-transform: uppercase; margin-top: 8px; white-space: nowrap; }
+  .content { padding-top: 6px; flex: 1; }
+  .life-tag { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: #555; margin-bottom: 6px; }
+  .stage-title { font-family: 'Cinzel', serif; font-size: 1rem; color: #c8f0d6; letter-spacing: 0.08em; margin-bottom: 8px; line-height: 1.4; }
+  .stage-desc { font-size: 0.95rem; color: #888; line-height: 1.7; font-style: italic; font-weight: 300; }
+
+  .event-pill { display: inline-block; margin-top: 10px; padding: 3px 12px; border-radius: 20px; font-size: 0.72rem; font-family: 'Cinzel', serif; letter-spacing: 0.1em; border: 1px solid; }
+  .pill-brown   { border-color: #5c3a21; color: #a78566; }
+  .pill-red     { border-color: #c0392b; color: #c0392b; }
+  .pill-sprout  { border-color: #84cc16; color: #d9f99d; }
+  .pill-green   { border-color: #e24b4a; color: #ec8a89; }
+  .pill-emerald { border-color: #7c2929; color: #f4bbba; }
+  .pill-gold    { border-color: #d97706; color: #f59e0b; }
+
+  .divider { width: 100%; height: 1px; background: linear-gradient(to right, transparent, #e24b4a 30%, #d97706 70%, transparent); opacity: 0.25; margin: 0 0 64px; }
+
+  .witness-block {
+    border: 1px solid #e24b4a20; border-radius: 4px; padding: 24px 28px; margin: 80px 0 64px;
+    position: relative; animation: fadeIn 0.8s ease 2.2s forwards; opacity: 0; background: #e24b4a06;
+  }
+  .witness-block::before {
+    content: 'THE HEART'; position: absolute; top: -10px; left: 20px; background: #0B0B0C;
+    padding: 0 12px; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; color: #e24b4a;
+  }
+  .witness-block p { color: #888; font-style: italic; font-size: 0.95rem; line-height: 1.8; font-weight: 300; }
+
+  .footer-note { text-align: center; color: #444; font-style: italic; font-size: 0.9rem; margin-top: 40px; letter-spacing: 0.05em; animation: fadeIn 1s ease 2.5s forwards; opacity: 0; }
+
+  .back-link {
+    display: inline-block; margin-top: 60px; padding: 8px 22px;
+    border: 1px solid #e24b4a; color: #e24b4a; font-family: 'Cinzel', serif;
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    text-decoration: none; transition: background 0.25s, color 0.25s;
+  }
+  .back-link:hover { background: #e24b4a; color: #0B0B0C; }
+
+  @media (max-width: 520px) { .stage.right { flex-direction: row; text-align: left; } .orb { width: 40px; height: 40px; } }
+
+  .orb-ash { background: radial-gradient(circle at 35% 35%, #9ca3af, #4b5563); --glow: #4b556399; }
+  .pill-ash { border-color: #4b5563; color: #9ca3af; }
+  .orb-kindle { background: radial-gradient(circle at 35% 35%, #fb923c, #c2410c); --glow: #c2410c99; }
+  .pill-kindle { border-color: #c2410c; color: #fb923c; }
+  .orb-iron { background: radial-gradient(circle at 35% 35%, #94a3b8, #334155); --glow: #33415599; }
+  .pill-iron { border-color: #334155; color: #94a3b8; }
+  .orb-red { background: radial-gradient(circle at 35% 35%, #ff6b6b, #c0392b); --glow: #c0392b99; }
+  .pill-red { border-color: #c0392b; color: #ff6b6b; }
+  .orb-rosew { background: radial-gradient(circle at 35% 35%, #fda4af, #be123c); --glow: #be123c99; }
+  .pill-rosew { border-color: #be123c; color: #fda4af; }
+  :root { --cta-hex: #e24b4a; --cta-line: #e24b4a55; }
+  .codex-cta { max-width: 680px; margin: 46px auto 10px; padding: 26px 20px; text-align: center;
+    border: 1px solid var(--cta-line); border-radius: 12px; background: rgba(255,255,255,0.02); }
+  .codex-cta .codex-cta-fact { font-size: 0.95rem; color: #cfd3e6; line-height: 1.6; margin-bottom: 16px; }
+  .codex-cta a { display: inline-block; margin: 6px 8px; padding: 11px 20px; border-radius: 8px;
+    text-decoration: none; font-size: 0.9rem; letter-spacing: 0.5px; border: 1px solid var(--cta-line); color: #e6e8f2; }
+  .codex-cta a.cta-primary { background: var(--cta-hex); border-color: var(--cta-hex); color: #0B0B0C; font-weight: 700; }
+  .codex-cta a:hover { filter: brightness(1.1); }
+</style>
+</head>
+<body>
+<canvas class="starfield" id="stars"></canvas>
+<div class="container">
+  <div class="title-block">
+    <h1>A Red Soul's Journey</h1>
+    <p>the force that learned where to point</p>
+  </div>
+  <div class="journey">
+    <div class="spine"></div>
+    <div class="stage">
+      <div class="orb-wrap">
+        <div class="orb orb-ash" style="--p:4s"></div>
+        <div class="orb-label">Ground</div>
+      </div>
+      <div class="content">
+        <div class="life-tag">Early Lives &middot; Powerless</div>
+        <div class="stage-title">Ash &middot; The Lives Without Leverage</div>
+        <div class="stage-desc">The soul arrives with no say. Lives spent under someone else&rsquo;s decision &mdash; owned, conscripted, married off, overruled. It learns exactly what it costs to have no will of your own, and it does not forget.</div>
+        <span class="event-pill pill-ash">Origin &middot; Endure</span>
+      </div>
+    </div>
+    <div class="stage right">
+      <div class="orb-wrap">
+        <div class="orb orb-kindle" style="--p:3.5s"></div>
+        <div class="orb-label">First No</div>
+      </div>
+      <div class="content">
+        <div class="life-tag">Middle Lives &middot; Refusing</div>
+        <div class="stage-title">Kindle &middot; The First No</div>
+        <div class="stage-desc">One life, the soul says no. Small, badly timed, expensive. It loses &mdash; but something ignites that never goes back out. The soul discovers that refusal is a kind of fire, and that fire, uncontrolled, burns the wrong people.</div>
+        <span class="event-pill pill-kindle">Catalyst &middot; Refuse</span>
+      </div>
+    </div>
+    <div class="stage">
+      <div class="orb-wrap">
+        <div class="orb orb-iron" style="--p:3s"></div>
+        <div class="orb-label">The Forge</div>
+      </div>
+      <div class="content">
+        <div class="life-tag">Late Lives &middot; Aiming</div>
+        <div class="stage-title">Iron &middot; The Discipline</div>
+        <div class="stage-desc">Lives of command and consequence. Soldier, builder, foreman, mother of many. The soul learns force is useless without direction. It stops asking whether it <em>can</em> and starts asking what the force is <em>for</em>. Restraint becomes the real strength.</div>
+        <span class="event-pill pill-iron">Secondary &middot; Direct</span>
+      </div>
+    </div>
+    <div class="stage right">
+      <div class="orb-wrap">
+        <div class="orb orb-red" style="--p:2s"></div>
+        <div class="orb-label">You &middot; Now</div>
+      </div>
+      <div class="content">
+        <div class="life-tag">Current &middot; The Red Life</div>
+        <div class="stage-title">The Will</div>
+        <div class="stage-desc">You move first and you decide fast. People feel the weight of you before you speak. The work of this life is not getting stronger &mdash; you are already strong. It is choosing what deserves your force, and letting the rest go untouched.</div>
+        <span class="event-pill pill-red">Current &middot; Decide</span>
+      </div>
+    </div>
+    <div class="stage">
+      <div class="orb-wrap">
+        <div class="orb orb-rosew" style="--p:3.2s"></div>
+        <div class="orb-label">Synthesis</div>
+      </div>
+      <div class="content">
+        <div class="life-tag">Synthesis &middot; Force in Service</div>
+        <div class="stage-title">Rose &middot; The Will That Protects</div>
+        <div class="stage-desc">Eventually red warms toward rose &mdash; power that exists to shelter rather than to win. The soul stops needing to prove it could have won. It stands in front of people instead of over them. The strength was always meant to be a doorway.</div>
+        <span class="event-pill pill-rosew">Synthesis &middot; Shelter</span>
+      </div>
+    </div>
+  </div>
+
+  <p class="footer-note">power is only clean when it is aimed at something other than yourself &#10022;</p>
+
+  <div class="codex-cta">
+    <p class="codex-cta-fact">Red is <strong>Radiant 2</strong> on the Color Codex wheel &mdash; your Life Path plus your Expression, reduced. Eleven numbers, eleven colours, one each.</p>
+    <a class="cta-primary" href="https://whop.com/checkout/plan_anQKP3Pzf1cGm" target="_blank" rel="noopener">Get your Soul Map &mdash; $22</a>
+    <a href="color-codex.html">See all eleven colours</a>
+  </div>
+
+  <div style="text-align:center;">
+    <a href="index.html" class="back-link">&larr; Back to the Archive</a>
+  </div>
+
+</div>
+<script>
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const PALETTE = ["#e24b4a", "#ff8a80", "#ffcdd2", "#ffffff"];
+  const stars = Array.from({length: 160}, () => ({
+    x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+    r: Math.random() * 1.2 + 0.3,
+    color: PALETTE[Math.floor(Math.random() * PALETTE.length)],
+    alpha: Math.random() * 0.5 + 0.1, speed: Math.random() * 0.3 + 0.1,
+    phase: Math.random() * Math.PI * 2
+  }));
+  let t = 0;
+  function drawStars() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    t += 0.008;
+    stars.forEach(s => {
+      const a = s.alpha * (0.5 + 0.5 * Math.sin(t * s.speed + s.phase));
+      ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = s.color; ctx.globalAlpha = a; ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(drawStars);
+  }
+  drawStars();
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  });
+</script>
+</body>
+</html>

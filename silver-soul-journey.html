@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Silver Soul's Journey</title>
+<meta name="description" content="Silver on the Color Codex - The Reflector. How a silver soul reaches Radiant 11 (Life Path + Expression), the arc across lives, and what the colour means on your Soul Map.">
+<link rel="canonical" href="https://soul-maps.thefirstspark.shop/silver-soul-journey.html">
+<meta property="og:title" content="A Silver Soul's Journey &mdash; Silver &middot; The Reflector">
+<meta property="og:description" content="Silver on the Color Codex - The Reflector. How a silver soul reaches Radiant 11 (Life Path + Expression), the arc across lives, and what the colour means on your Soul Map.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://soul-maps.thefirstspark.shop/silver-soul-journey.html">
+<meta property="og:image" content="https://soul-maps.thefirstspark.shop/preview-soulmaps.png">
+<meta name="twitter:card" content="summary_large_image">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root { --cta-hex: #c4c8d4; --cta-line: #c4c8d455; }
+  .codex-cta { max-width: 680px; margin: 46px auto 10px; padding: 26px 20px; text-align: center;
+    border: 1px solid var(--cta-line); border-radius: 12px; background: rgba(255,255,255,0.02); }
+  .codex-cta .codex-cta-fact { font-size: 0.95rem; color: #cfd3e6; line-height: 1.6; margin-bottom: 16px; }
+  .codex-cta a { display: inline-block; margin: 6px 8px; padding: 11px 20px; border-radius: 8px;
+    text-decoration: none; font-size: 0.9rem; letter-spacing: 0.5px; border: 1px solid var(--cta-line); color: #e6e8f2; }
+  .codex-cta a.cta-primary { background: var(--cta-hex); border-color: var(--cta-hex); color: #0B0B0C; font-weight: 700; }
+  .codex-cta a:hover { filter: brightness(1.1); }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0B0B0C; font-family: 'Cormorant Garamond', serif; overflow-x: hidden; min-height: 100vh; }
+
+  .starfield { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+  .container { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; padding: 60px 24px 100px; }
+
+  .title-block { text-align: center; margin-bottom: 80px; animation: fadeDown 1.2s ease forwards; opacity: 0; }
+  .title-block h1 {
+    font-family: 'Cinzel', serif; font-size: clamp(1.4rem, 4vw, 2.2rem);
+    color: #c4c8d4; letter-spacing: 0.15em; text-transform: uppercase; line-height: 1.4;
+  }
+  .title-block p { color: #888; font-style: italic; font-size: 1.1rem; margin-top: 12px; letter-spacing: 0.05em; }
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
+  .spine {
+    position: absolute; left: 50%; top: 0; width: 1px; height: 100%;
+    background: linear-gradient(to bottom, transparent, #c4c8d4 10%, #c4c8d4 90%, transparent);
+    opacity: 0.25; transform: translateX(-50%);
+  }
+
+  .journey { position: relative; }
+  .stage { display: flex; align-items: flex-start; gap: 28px; margin-bottom: 64px; opacity: 0; animation: fadeIn 0.8s ease forwards; }
+  .stage:nth-child(1) { animation-delay: 0.3s; }
+  .stage:nth-child(2) { animation-delay: 0.6s; }
+  .stage:nth-child(3) { animation-delay: 0.9s; }
+  .stage:nth-child(4) { animation-delay: 1.2s; }
+  .stage:nth-child(5) { animation-delay: 1.5s; }
+  .stage:nth-child(6) { animation-delay: 1.8s; }
+  .stage:nth-child(7) { animation-delay: 2.1s; }
+  .stage.right { flex-direction: row-reverse; text-align: right; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+  .orb-wrap { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .orb { width: 52px; height: 52px; border-radius: 50%; position: relative; flex-shrink: 0; animation: pulse var(--p, 3s) ease-in-out infinite alternate; }
+  @keyframes pulse {
+    from { box-shadow: 0 0 12px var(--glow), 0 0 24px var(--glow); }
+    to   { box-shadow: 0 0 24px var(--glow), 0 0 48px var(--glow), 0 0 80px var(--glow); }
+  }
+
+  .orb-brown   { background: radial-gradient(circle at 35% 35%, #a78566, #5c3a21); --glow: rgba(92,58,33,0.55); }
+  .orb-red     { background: radial-gradient(circle at 35% 35%, #ff6b6b, #c0392b); --glow: rgba(192,57,43,0.6); }
+  .orb-sprout  { background: radial-gradient(circle at 35% 35%, #d9f99d, #84cc16); --glow: rgba(132,204,22,0.55); }
+  .orb-green   { background: radial-gradient(circle at 35% 35%, #69f0ae, #6c6e75); --glow: rgba(16,185,129,0.75); --p: 2s; }
+  .orb-emerald { background: radial-gradient(circle at 35% 35%, #e9eaef, #6c6e75); --glow: rgba(6,95,70,0.6); }
+  .orb-gold    { background: radial-gradient(circle at 35% 35%, #fde68a, #d97706); --glow: rgba(217,119,6,0.55); }
+
+  .orb-label { font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.12em; color: #666; text-transform: uppercase; margin-top: 8px; white-space: nowrap; }
+  .content { padding-top: 6px; flex: 1; }
+  .life-tag { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: #555; margin-bottom: 6px; }
+  .stage-title { font-family: 'Cinzel', serif; font-size: 1rem; color: #c8f0d6; letter-spacing: 0.08em; margin-bottom: 8px; line-height: 1.4; }
+  .stage-desc { font-size: 0.95rem; color: #888; line-height: 1.7; font-style: italic; font-weight: 300; }
+
+  .event-pill { display: inline-block; margin-top: 10px; padding: 3px 12px; border-radius: 20px; font-size: 0.72rem; font-family: 'Cinzel', serif; letter-spacing: 0.1em; border: 1px solid; }
+  .pill-brown   { border-color: #5c3a21; color: #a78566; }
+  .pill-red     { border-color: #c0392b; color: #c0392b; }
+  .pill-sprout  { border-color: #84cc16; color: #d9f99d; }
+  .pill-green   { border-color: #c4c8d4; color: #d9dbe3; }
+  .pill-emerald { border-color: #6c6e75; color: #e9eaef; }
+  .pill-gold    { border-color: #d97706; color: #f59e0b; }
+
+  .divider { width: 100%; height: 1px; background: linear-gradient(to right, transparent, #c4c8d4 30%, #d97706 70%, transparent); opacity: 0.25; margin: 0 0 64px; }
+
+  .witness-block {
+    border: 1px solid #c4c8d420; border-radius: 4px; padding: 24px 28px; margin: 80px 0 64px;
+    position: relative; animation: fadeIn 0.8s ease 2.2s forwards; opacity: 0; background: #c4c8d406;
+  }
+  .witness-block::before {
+    content: 'THE HEART'; position: absolute; top: -10px; left: 20px; background: #0B0B0C;
+    padding: 0 12px; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; color: #c4c8d4;
+  }
+  .witness-block p { color: #888; font-style: italic; font-size: 0.95rem; line-height: 1.8; font-weight: 300; }
+
+  .footer-note { text-align: center; color: #444; font-style: italic; font-size: 0.9rem; margin-top: 40px; letter-spacing: 0.05em; animation: fadeIn 1s ease 2.5s forwards; opacity: 0; }
+
+  .back-link {
+    display: inline-block; margin-top: 60px; padding: 8px 22px;
+    border: 1px solid #c4c8d4; color: #c4c8d4; font-family: 'Cinzel', serif;
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    text-decoration: none; transition: background 0.25s, color 0.25s;
+  }
+  .back-link:hover { background: #c4c8d4; color: #0B0B0C; }
+
+  @media (max-width: 520px) { .stage.right { flex-direction: row; text-align: left; } .orb { width: 40px; height: 40px; } }
+
+  .orb-fog { background: radial-gradient(circle at 35% 35%, #cbd5e1, #64748b); --glow: #64748b99; }
+  .pill-fog { border-color: #64748b; color: #cbd5e1; }
+  .orb-obsidian { background: radial-gradient(circle at 35% 35%, #475569, #0f172a); --glow: #0f172a99; }
+  .pill-obsidian { border-color: #0f172a; color: #475569; }
+  .orb-pewter { background: radial-gradient(circle at 35% 35%, #94a3b8, #475569); --glow: #47556999; }
+  .pill-pewter { border-color: #475569; color: #94a3b8; }
+  .orb-silver { background: radial-gradient(circle at 35% 35%, #e5e7eb, #9ca3af); --glow: #9ca3af99; }
+  .pill-silver { border-color: #9ca3af; color: #e5e7eb; }
+  .orb-whites { background: radial-gradient(circle at 35% 35%, #ffffff, #e5e7eb); --glow: #e5e7eb99; }
+  .pill-whites { border-color: #e5e7eb; color: #ffffff; }
+  :root { --cta-hex: #c4c8d4; --cta-line: #c4c8d455; }
+  .codex-cta { max-width: 680px; margin: 46px auto 10px; padding: 26px 20px; text-align: center;
+    border: 1px solid var(--cta-line); border-radius: 12px; background: rgba(255,255,255,0.02); }
+  .codex-cta .codex-cta-fact { font-size: 0.95rem; color: #cfd3e6; line-height: 1.6; margin-bottom: 16px; }
+  .codex-cta a { display: inline-block; margin: 6px 8px; padding: 11px 20px; border-radius: 8px;
+    text-decoration: none; font-size: 0.9rem; letter-spacing: 0.5px; border: 1px solid var(--cta-line); color: #e6e8f2; }
+  .codex-cta a.cta-primary { background: var(--cta-hex); border-color: var(--cta-hex); color: #0B0B0C; font-weight: 700; }
+  .codex-cta a:hover { filter: brightness(1.1); }
+</style>
+</head>
+<body>
+<canvas class="starfield" id="stars"></canvas>
+<div class="container">
+  <div class="title-block">
+    <h1>A Silver Soul's Journey</h1>
+    <p>the surface that gave everyone back to themselves</p>
+  </div>
+  <div class="journey">
+    <div class="spine"></div>
+    <div class="stage">
+      <div class="orb-wrap">
+        <div class="orb orb-fog" style="--p:4s"></div>
+        <div class="orb-label">Ground</div>
+      </div>
+      <div class="content">
+        <div class="life-tag">Early Lives &middot; Unseen</div>
+        <div class="stage-title">Fog &middot; The Lives Nobody Looked At</div>
+        <div class="stage-desc">The soul arrives peripheral. Servant, second child, the one at the back of the room. It watches for a living. Being unseen teaches it to read a face faster than anyone in the room can hide it.</div>
+        <span class="event-pill pill-fog">Origin &middot; Watch</span>
+      </div>
+    </div>
+    <div class="stage right">
+      <div class="orb-wrap">
+        <div class="orb orb-obsidian" style="--p:3.5s"></div>
+        <div class="orb-label">The Crack</div>
+      </div>
+      <div class="content">
+        <div class="life-tag">Middle Lives &middot; Distorting</div>
+        <div class="stage-title">Obsidian &middot; When the Mirror Lied</div>
+        <div class="stage-desc">A life where the soul shows someone the truth about themselves and is destroyed for it. It learns reflection is dangerous &mdash; that people will break the glass rather than look. So it learns to show a flattering angle instead, and hates itself for it.</div>
+        <span class="event-pill pill-obsidian">Catalyst &middot; Distort</span>
+      </div>
+    </div>
+    <div class="stage">
+      <div class="orb-wrap">
+        <div class="orb orb-pewter" style="--p:3s"></div>
+        <div class="orb-label">The Polishing</div>
+      </div>
+      <div class="content">
+        <div class="life-tag">Late Lives &middot; Clarifying</div>
+        <div class="stage-title">Pewter &middot; Learning to Show It Kindly</div>
+        <div class="stage-desc">Lives of counsel and confession. Priest, midwife, barber, the friend everyone tells the truth to at 2am. The soul learns to hand people back their own reflection at a survivable speed. Accuracy with mercy becomes the whole craft.</div>
+        <span class="event-pill pill-pewter">Secondary &middot; Clarify</span>
+      </div>
+    </div>
+    <div class="stage right">
+      <div class="orb-wrap">
+        <div class="orb orb-silver" style="--p:2s"></div>
+        <div class="orb-label">You &middot; Now</div>
+      </div>
+      <div class="content">
+        <div class="life-tag">Current &middot; The Silver Life</div>
+        <div class="stage-title">The Reflector</div>
+        <div class="stage-desc">People understand themselves better after talking to you and can rarely say why. You see the thing they are not saying. The work of this life is remembering you have a face of your own &mdash; that you are not obliged to be surface for everyone.</div>
+        <span class="event-pill pill-silver">Current &middot; Reflect</span>
+      </div>
+    </div>
+    <div class="stage">
+      <div class="orb-wrap">
+        <div class="orb orb-whites" style="--p:3.2s"></div>
+        <div class="orb-label">Synthesis</div>
+      </div>
+      <div class="content">
+        <div class="life-tag">Synthesis &middot; Seen at Last</div>
+        <div class="stage-title">White &middot; The Mirror Turns</div>
+        <div class="stage-desc">Silver opens into white: the reflector finally reflected. Someone looks at the soul with the same accuracy it has spent lifetimes offering. It stops being only a surface and becomes a presence. Being known turns out to be the thing it was carrying all along.</div>
+        <span class="event-pill pill-whites">Synthesis &middot; Be Seen</span>
+      </div>
+    </div>
+  </div>
+
+  <p class="footer-note">you spent lifetimes reflecting, you are allowed to be looked at &#10022;</p>
+
+  <div class="codex-cta">
+    <p class="codex-cta-fact">Silver is <strong>Radiant 11</strong> on the Color Codex wheel &mdash; your Life Path plus your Expression, reduced. Eleven numbers, eleven colours, one each.</p>
+    <a class="cta-primary" href="https://whop.com/checkout/plan_anQKP3Pzf1cGm" target="_blank" rel="noopener">Get your Soul Map &mdash; $22</a>
+    <a href="color-codex.html">See all eleven colours</a>
+  </div>
+
+  <div style="text-align:center;">
+    <a href="index.html" class="back-link">&larr; Back to the Archive</a>
+  </div>
+
+</div>
+<script>
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const PALETTE = ["#c4c8d4", "#e5e7eb", "#f3f4f6", "#ffffff"];
+  const stars = Array.from({length: 160}, () => ({
+    x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+    r: Math.random() * 1.2 + 0.3,
+    color: PALETTE[Math.floor(Math.random() * PALETTE.length)],
+    alpha: Math.random() * 0.5 + 0.1, speed: Math.random() * 0.3 + 0.1,
+    phase: Math.random() * Math.PI * 2
+  }));
+  let t = 0;
+  function drawStars() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    t += 0.008;
+    stars.forEach(s => {
+      const a = s.alpha * (0.5 + 0.5 * Math.sin(t * s.speed + s.phase));
+      ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = s.color; ctx.globalAlpha = a; ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(drawStars);
+  }
+  drawStars();
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  });
+</script>
+</body>
+</html>
