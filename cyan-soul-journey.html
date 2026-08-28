@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Cyan Soul's Journey</title>
+<meta name="description" content="Cyan on the Color Codex — The Signal. How a cyan soul reaches Radiant 5 (Life Path + Expression), the arc across lives, and what the colour means on your Soul Map.">
+<link rel="canonical" href="https://soul-maps.thefirstspark.shop/cyan-soul-journey.html">
+<meta property="og:title" content="A Cyan Soul's Journey — Cyan · The Signal">
+<meta property="og:description" content="Cyan on the Color Codex — The Signal. How a cyan soul reaches Radiant 5 (Life Path + Expression), the arc across lives, and what the colour means on your Soul Map.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://soul-maps.thefirstspark.shop/cyan-soul-journey.html">
+<meta property="og:image" content="https://soul-maps.thefirstspark.shop/preview-soulmaps.png">
+<meta name="twitter:card" content="summary_large_image">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root { --cta-hex: #22d3ee; --cta-line: #22d3ee55; }
+  .codex-cta { max-width: 680px; margin: 46px auto 10px; padding: 26px 20px; text-align: center;
+    border: 1px solid var(--cta-line); border-radius: 12px; background: rgba(255,255,255,0.02); }
+  .codex-cta .codex-cta-fact { font-size: 0.95rem; color: #cfd3e6; line-height: 1.6; margin-bottom: 16px; }
+  .codex-cta a { display: inline-block; margin: 6px 8px; padding: 11px 20px; border-radius: 8px;
+    text-decoration: none; font-size: 0.9rem; letter-spacing: 0.5px; border: 1px solid var(--cta-line); color: #e6e8f2; }
+  .codex-cta a.cta-primary { background: var(--cta-hex); border-color: var(--cta-hex); color: #0B0B0C; font-weight: 700; }
+  .codex-cta a:hover { filter: brightness(1.1); }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0B0B0C; font-family: 'Cormorant Garamond', serif; overflow-x: hidden; min-height: 100vh; }
+
+  .starfield { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+  .container { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; padding: 60px 24px 100px; }
+
+  .title-block { text-align: center; margin-bottom: 80px; animation: fadeDown 1.2s ease forwards; opacity: 0; }
+  .title-block h1 {
+    font-family: 'Cinzel', serif; font-size: clamp(1.4rem, 4vw, 2.2rem);
+    color: #26E4D8; letter-spacing: 0.15em; text-transform: uppercase; line-height: 1.4;
+  }
+  .title-block p { color: #888; font-style: italic; font-size: 1.1rem; margin-top: 12px; letter-spacing: 0.05em; }
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
+  .spine {
+    position: absolute; left: 50%; top: 0; width: 1px; height: 100%;
+    background: linear-gradient(to bottom, transparent, #26E4D8 10%, #26E4D8 90%, transparent);
+    opacity: 0.25; transform: translateX(-50%);
+  }
+
+  .journey { position: relative; }
+  .stage { display: flex; align-items: flex-start; gap: 28px; margin-bottom: 64px; opacity: 0; animation: fadeIn 0.8s ease forwards; }
+  .stage:nth-child(1) { animation-delay: 0.3s; }
+  .stage:nth-child(2) { animation-delay: 0.6s; }
+  .stage:nth-child(3) { animation-delay: 0.9s; }
+  .stage:nth-child(4) { animation-delay: 1.2s; }
+  .stage:nth-child(5) { animation-delay: 1.5s; }
+  .stage:nth-child(6) { animation-delay: 1.8s; }
+  .stage:nth-child(7) { animation-delay: 2.1s; }
+  .stage.right { flex-direction: row-reverse; text-align: right; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+  .orb-wrap { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .orb { width: 52px; height: 52px; border-radius: 50%; position: relative; flex-shrink: 0; animation: pulse var(--p, 3s) ease-in-out infinite alternate; }
+  @keyframes pulse {
+    from { box-shadow: 0 0 12px var(--glow), 0 0 24px var(--glow); }
+    to   { box-shadow: 0 0 24px var(--glow), 0 0 48px var(--glow), 0 0 80px var(--glow); }
+  }
+
+  .orb-silence { background: radial-gradient(circle at 35% 35%, #4b5563, #1f2937); --glow: rgba(75,85,99,0.5); }
+  .orb-blue    { background: radial-gradient(circle at 35% 35%, #74b9ff, #0984e3); --glow: rgba(9,132,227,0.55); }
+  .orb-violet  { background: radial-gradient(circle at 35% 35%, #a29bfe, #6B4DF2); --glow: rgba(107,77,242,0.55); }
+  .orb-cyan    { background: radial-gradient(circle at 35% 35%, #a5f3fc, #0e7490); --glow: rgba(38,228,216,0.75); --p: 2s; }
+  .orb-aqua    { background: radial-gradient(circle at 35% 35%, #ccfbf1, #14b8a6); --glow: rgba(20,184,166,0.55); }
+  .orb-ultra   { background: radial-gradient(circle at 35% 35%, #ffffff, #26E4D8, #6B4DF2); --glow: rgba(38,228,216,0.4); --p: 1.5s; }
+
+  .orb-label { font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.12em; color: #666; text-transform: uppercase; margin-top: 8px; white-space: nowrap; }
+  .content { padding-top: 6px; flex: 1; }
+  .life-tag { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: #555; margin-bottom: 6px; }
+  .stage-title { font-family: 'Cinzel', serif; font-size: 1rem; color: #b8f6f0; letter-spacing: 0.08em; margin-bottom: 8px; line-height: 1.4; }
+  .stage-desc { font-size: 0.95rem; color: #888; line-height: 1.7; font-style: italic; font-weight: 300; }
+
+  .event-pill { display: inline-block; margin-top: 10px; padding: 3px 12px; border-radius: 20px; font-size: 0.72rem; font-family: 'Cinzel', serif; letter-spacing: 0.1em; border: 1px solid; }
+  .pill-silence { border-color: #4b5563; color: #9ca3af; }
+  .pill-blue    { border-color: #0984e3; color: #74b9ff; }
+  .pill-violet  { border-color: #6B4DF2; color: #c4b5fd; }
+  .pill-cyan    { border-color: #26E4D8; color: #67e8f9; }
+  .pill-aqua    { border-color: #14b8a6; color: #ccfbf1; }
+  .pill-ultra   { border-color: #6B4DF2; color: #c4b5fd; }
+
+  .divider { width: 100%; height: 1px; background: linear-gradient(to right, transparent, #26E4D8 30%, #6B4DF2 70%, transparent); opacity: 0.25; margin: 0 0 64px; }
+
+  .witness-block {
+    border: 1px solid #26E4D820; border-radius: 4px; padding: 24px 28px; margin: 80px 0 64px;
+    position: relative; animation: fadeIn 0.8s ease 2.2s forwards; opacity: 0; background: #26E4D806;
+  }
+  .witness-block::before {
+    content: 'THE SIGNAL'; position: absolute; top: -10px; left: 20px; background: #0B0B0C;
+    padding: 0 12px; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; color: #26E4D8;
+  }
+  .witness-block p { color: #888; font-style: italic; font-size: 0.95rem; line-height: 1.8; font-weight: 300; }
+
+  .footer-note { text-align: center; color: #444; font-style: italic; font-size: 0.9rem; margin-top: 40px; letter-spacing: 0.05em; animation: fadeIn 1s ease 2.5s forwards; opacity: 0; }
+
+  .back-link {
+    display: inline-block; margin-top: 60px; padding: 8px 22px;
+    border: 1px solid #26E4D8; color: #26E4D8; font-family: 'Cinzel', serif;
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    text-decoration: none; transition: background 0.25s, color 0.25s;
+  }
+  .back-link:hover { background: #26E4D8; color: #0B0B0C; }
+
+  @media (max-width: 520px) { .stage.right { flex-direction: row; text-align: left; } .orb { width: 40px; height: 40px; } }
+</style>
+</head>
+<body>
+
+<canvas class="starfield" id="stars"></canvas>
+
+<div class="container">
+
+  <div class="title-block">
+    <h1>A Cyan Soul's Journey</h1>
+    <p>the wire the signal travels</p>
+  </div>
+
+  <div class="journey">
+    <div class="spine"></div>
+
+    <div class="stage">
+      <div class="orb-wrap">
+        <div class="orb orb-silence" style="--p:4s"></div>
+        <div class="orb-label">Silence</div>
+      </div>
+      <div class="content">
+        <div class="life-tag">Early Lives · Before the Signal</div>
+        <div class="stage-title">Silence · Before Transmission</div>
+        <div class="stage-desc">Lives without song. Lives without art. The soul is being grounded, given a body to walk in, given a name no one will ever broadcast. The silence is not absence — it is the wire being installed.</div>
+        <span class="event-pill pill-silence">Origin · Wire</span>
+      </div>
+    </div>
+
+    <div class="stage right">
+      <div class="orb-wrap">
+        <div class="orb orb-blue" style="--p:3.5s"></div>
+        <div class="orb-label">Listener</div>
+      </div>
+      <div class="content">
+        <div class="life-tag">Middle Lives · Tuning</div>
+        <div class="stage-title">Blue · The Listener</div>
+        <div class="stage-desc">The soul learns to hear. Lives spent at the edge of music, at the edge of prayer, at the edge of the prophet's tent. The signal is still arriving in someone else's voice — but the soul is memorizing its shape. The receiver is being tuned.</div>
+        <span class="event-pill pill-blue">Secondary · Tune</span>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="orb-wrap">
+        <div class="orb orb-violet" style="--p:3s"></div>
+        <div class="orb-label">First Transmission</div>
+      </div>
+      <div class="content">
+        <div class="life-tag">Late Lives · The Mouth Opens</div>
+        <div class="stage-title">Violet · The First Transmission</div>
+        <div class="stage-desc">The soul begins to receive directly. Lives of small bands of strange children gathered to hear. Lives of street poets, accidental healers, people who said things that didn't quite belong to them. The signal has started using this name to arrive.</div>
+        <span class="event-pill pill-violet">Tertiary · Receive</span>
+      </div>
+    </div>
+
+    <div class="stage right">
+      <div class="orb-wrap">
+        <div class="orb orb-cyan" style="--p:2s"></div>
+        <div class="orb-label">You · Now</div>
+      </div>
+      <div class="content">
+        <div class="life-tag">Current · The Cyan Life</div>
+        <div class="stage-title">The Channel</div>
+        <div class="stage-desc">The signal moves through you with less resistance now. You did not invent what comes out of your mouth at 3am. You did not write the song that arrived whole. You are the wire. The job is not to make the signal louder — only to stop pinching the line.</div>
+        <span class="event-pill pill-cyan">You Are Here</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="witness-block">
+    <p>You cannot take full credit and you cannot fully refuse it. Something arrives through you that does not exactly belong to you, but it could not arrive without you. That tension is the price of being cyan. The signal does not need you to push it — it needs you to stop apologizing for being the place it lands.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="journey">
+    <div class="spine"></div>
+
+    <div class="stage">
+      <div class="orb-wrap">
+        <div class="orb orb-cyan" style="--p:1.8s; filter: brightness(1.2)"></div>
+        <div class="orb-label">Open Line</div>
+      </div>
+      <div class="content">
+        <div class="life-tag">Midlife · Current</div>
+        <div class="stage-title">The Open Line</div>
+        <div class="stage-desc">The last static drops off. You stop trying to translate the signal into something more acceptable. The transmission gets clearer because the receiver finally stops editing. You no longer flinch at what comes through.</div>
+        <span class="event-pill pill-cyan">In Progress</span>
+      </div>
+    </div>
+
+    <div class="stage right">
+      <div class="orb-wrap">
+        <div class="orb orb-aqua" style="--p:2.5s"></div>
+        <div class="orb-label">Effortless</div>
+      </div>
+      <div class="content">
+        <div class="life-tag">Next Lives · Broadcast Without Push</div>
+        <div class="stage-title">Aqua · Effortless Broadcast</div>
+        <div class="stage-desc">The signal arrives without the need to speak it. Presence becomes the message. People feel told without being told. These are quiet, luminous lives — souls whose mere existence in a room shifts the frequency of everyone in it.</div>
+        <span class="event-pill pill-aqua">What Comes Next</span>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="orb-wrap">
+        <div class="orb orb-ultra"></div>
+        <div class="orb-label">Source</div>
+      </div>
+      <div class="content">
+        <div class="life-tag">The Edge · Back to the Field</div>
+        <div class="stage-title">Past the Visible Spectrum</div>
+        <div class="stage-desc">Eventually the wire dissolves back into the signal. The receiver returns to the source it was always plugged into. There is no broadcaster and no audience left — only the field, humming. The information returns home.</div>
+        <span class="event-pill pill-ultra">The Field</span>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="footer-note">the signal does not need you to push it ✦</p>
+
+  <div style="text-align:center;">
+    <a href="index.html" class="back-link">← Back to the Archive</a>
+  </div>
+
+</div>
+
+
+  <div class="codex-cta">
+    <p class="codex-cta-fact">Cyan is <strong>Radiant 5</strong> on the Color Codex wheel &mdash; your Life Path plus your Expression, reduced. Eleven numbers, eleven colours, one each.</p>
+    <a class="cta-primary" href="https://whop.com/checkout/plan_anQKP3Pzf1cGm" target="_blank" rel="noopener">Get your Soul Map &mdash; $22</a>
+    <a href="color-codex.html">See all eleven colours</a>
+  </div>
+
+<script>
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const stars = Array.from({length: 180}, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 1.2 + 0.2,
+    color: ['#26E4D8','#67e8f9','#6B4DF2','#ffffff'][Math.floor(Math.random()*4)],
+    alpha: Math.random() * 0.5 + 0.1,
+    speed: Math.random() * 0.3 + 0.1,
+    phase: Math.random() * Math.PI * 2
+  }));
+
+  let t = 0;
+  function drawStars() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    t += 0.008;
+    stars.forEach(s => {
+      const a = s.alpha * (0.5 + 0.5 * Math.sin(t * s.speed + s.phase));
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = s.color;
+      ctx.globalAlpha = a;
+      ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(drawStars);
+  }
+  drawStars();
+
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+</script>
+</body>
+</html>

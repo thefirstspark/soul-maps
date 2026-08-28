@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>An Ember Soul's Journey</title>
+<meta name="description" content="Ember on the Color Codex — The First Heat. How a ember soul reaches Radiant 1 (Life Path + Expression), the arc across lives, and what the colour means on your Soul Map.">
+<link rel="canonical" href="https://soul-maps.thefirstspark.shop/ember-soul-journey.html">
+<meta property="og:title" content="An Ember Soul's Journey — Ember · The First Heat">
+<meta property="og:description" content="Ember on the Color Codex — The First Heat. How a ember soul reaches Radiant 1 (Life Path + Expression), the arc across lives, and what the colour means on your Soul Map.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://soul-maps.thefirstspark.shop/ember-soul-journey.html">
+<meta property="og:image" content="https://soul-maps.thefirstspark.shop/preview-soulmaps.png">
+<meta name="twitter:card" content="summary_large_image">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root { --cta-hex: #ff6a3d; --cta-line: #ff6a3d55; }
+  .codex-cta { max-width: 680px; margin: 46px auto 10px; padding: 26px 20px; text-align: center;
+    border: 1px solid var(--cta-line); border-radius: 12px; background: rgba(255,255,255,0.02); }
+  .codex-cta .codex-cta-fact { font-size: 0.95rem; color: #cfd3e6; line-height: 1.6; margin-bottom: 16px; }
+  .codex-cta a { display: inline-block; margin: 6px 8px; padding: 11px 20px; border-radius: 8px;
+    text-decoration: none; font-size: 0.9rem; letter-spacing: 0.5px; border: 1px solid var(--cta-line); color: #e6e8f2; }
+  .codex-cta a.cta-primary { background: var(--cta-hex); border-color: var(--cta-hex); color: #0B0B0C; font-weight: 700; }
+  .codex-cta a:hover { filter: brightness(1.1); }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0B0B0C; font-family: 'Cormorant Garamond', serif; overflow-x: hidden; min-height: 100vh; }
+
+  .starfield { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+  .container { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; padding: 60px 24px 100px; }
+
+  .title-block { text-align: center; margin-bottom: 80px; animation: fadeDown 1.2s ease forwards; opacity: 0; }
+  .title-block h1 {
+    font-family: 'Cinzel', serif; font-size: clamp(1.4rem, 4vw, 2.2rem);
+    color: #FF6A3D; letter-spacing: 0.15em; text-transform: uppercase; line-height: 1.4;
+  }
+  .title-block p { color: #888; font-style: italic; font-size: 1.1rem; margin-top: 12px; letter-spacing: 0.05em; }
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
+  .spine {
+    position: absolute; left: 50%; top: 0; width: 1px; height: 100%;
+    background: linear-gradient(to bottom, transparent, #FF6A3D 10%, #FF6A3D 90%, transparent);
+    opacity: 0.25; transform: translateX(-50%);
+  }
+
+  .journey { position: relative; }
+  .stage { display: flex; align-items: flex-start; gap: 28px; margin-bottom: 64px; opacity: 0; animation: fadeIn 0.8s ease forwards; }
+  .stage:nth-child(1) { animation-delay: 0.3s; }
+  .stage:nth-child(2) { animation-delay: 0.6s; }
+  .stage:nth-child(3) { animation-delay: 0.9s; }
+  .stage:nth-child(4) { animation-delay: 1.2s; }
+  .stage:nth-child(5) { animation-delay: 1.5s; }
+  .stage:nth-child(6) { animation-delay: 1.8s; }
+  .stage:nth-child(7) { animation-delay: 2.1s; }
+  .stage.right { flex-direction: row-reverse; text-align: right; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+  .orb-wrap { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .orb { width: 52px; height: 52px; border-radius: 50%; position: relative; flex-shrink: 0; animation: pulse var(--p, 3s) ease-in-out infinite alternate; }
+  @keyframes pulse {
+    from { box-shadow: 0 0 12px var(--glow), 0 0 24px var(--glow); }
+    to   { box-shadow: 0 0 24px var(--glow), 0 0 48px var(--glow), 0 0 80px var(--glow); }
+  }
+
+  .orb-smoke  { background: radial-gradient(circle at 35% 35%, #6b6b73, #2c2c34); --glow: rgba(120,120,130,0.45); }
+  .orb-red    { background: radial-gradient(circle at 35% 35%, #ff6b6b, #c0392b); --glow: rgba(192,57,43,0.6); }
+  .orb-orange { background: radial-gradient(circle at 35% 35%, #FF9A3D, #FF6A3D); --glow: rgba(255,106,61,0.55); }
+  .orb-ember  { background: radial-gradient(circle at 35% 35%, #fdba74, #FF6A3D); --glow: rgba(255,106,61,0.75); --p: 2s; }
+  .orb-amber  { background: radial-gradient(circle at 35% 35%, #fed7aa, #b45309); --glow: rgba(180,83,9,0.55); }
+  .orb-ultra  { background: radial-gradient(circle at 35% 35%, #ffffff, #6B4DF2, #26E4D8); --glow: rgba(107,77,242,0.4); --p: 1.5s; }
+
+  .orb-label { font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.12em; color: #666; text-transform: uppercase; margin-top: 8px; white-space: nowrap; }
+  .content { padding-top: 6px; flex: 1; }
+  .life-tag { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: #555; margin-bottom: 6px; }
+  .stage-title { font-family: 'Cinzel', serif; font-size: 1rem; color: #f7c8a8; letter-spacing: 0.08em; margin-bottom: 8px; line-height: 1.4; }
+  .stage-desc { font-size: 0.95rem; color: #888; line-height: 1.7; font-style: italic; font-weight: 300; }
+
+  .event-pill { display: inline-block; margin-top: 10px; padding: 3px 12px; border-radius: 20px; font-size: 0.72rem; font-family: 'Cinzel', serif; letter-spacing: 0.1em; border: 1px solid; }
+  .pill-smoke  { border-color: #6b6b73; color: #9a9aa3; }
+  .pill-red    { border-color: #c0392b; color: #c0392b; }
+  .pill-orange { border-color: #FF6A3D; color: #FF6A3D; }
+  .pill-ember  { border-color: #FF6A3D; color: #FF8A5D; }
+  .pill-amber  { border-color: #b45309; color: #fed7aa; }
+  .pill-ultra  { border-color: #6B4DF2; color: #c4b5fd; }
+
+  .divider { width: 100%; height: 1px; background: linear-gradient(to right, transparent, #FF6A3D 30%, #6B4DF2 70%, transparent); opacity: 0.25; margin: 0 0 64px; }
+
+  .witness-block {
+    border: 1px solid #FF6A3D20; border-radius: 4px; padding: 24px 28px; margin: 80px 0 64px;
+    position: relative; animation: fadeIn 0.8s ease 2.2s forwards; opacity: 0; background: #FF6A3D06;
+  }
+  .witness-block::before {
+    content: 'THE COAL'; position: absolute; top: -10px; left: 20px; background: #0B0B0C;
+    padding: 0 12px; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; color: #FF6A3D;
+  }
+  .witness-block p { color: #888; font-style: italic; font-size: 0.95rem; line-height: 1.8; font-weight: 300; }
+
+  .footer-note { text-align: center; color: #444; font-style: italic; font-size: 0.9rem; margin-top: 40px; letter-spacing: 0.05em; animation: fadeIn 1s ease 2.5s forwards; opacity: 0; }
+
+  .back-link {
+    display: inline-block; margin-top: 60px; padding: 8px 22px;
+    border: 1px solid #FF6A3D; color: #FF6A3D; font-family: 'Cinzel', serif;
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    text-decoration: none; transition: background 0.25s, color 0.25s;
+  }
+  .back-link:hover { background: #FF6A3D; color: #0B0B0C; }
+
+  @media (max-width: 520px) { .stage.right { flex-direction: row; text-align: left; } .orb { width: 40px; height: 40px; } }
+</style>
+</head>
+<body>
+
+<canvas class="starfield" id="stars"></canvas>
+
+<div class="container">
+
+  <div class="title-block">
+    <h1>An Ember Soul's Journey</h1>
+    <p>the fire your blood remembers</p>
+  </div>
+
+  <div class="journey">
+    <div class="spine"></div>
+
+    <div class="stage">
+      <div class="orb-wrap">
+        <div class="orb orb-smoke" style="--p:4s"></div>
+        <div class="orb-label">Before</div>
+      </div>
+      <div class="content">
+        <div class="life-tag">Pre-Incarnation · Ancestral Echo</div>
+        <div class="stage-title">Smoke · Before the Spark</div>
+        <div class="stage-desc">Before the first flame, there is smoke — the memory of fire that has not yet arrived. The soul holds names, languages, songs without words. Nothing has happened yet, but everything is already on its way. The blood is preparing to remember.</div>
+        <span class="event-pill pill-smoke">Origin · Whisper</span>
+      </div>
+    </div>
+
+    <div class="stage right">
+      <div class="orb-wrap">
+        <div class="orb orb-red" style="--p:3.5s"></div>
+        <div class="orb-label">First Fire</div>
+      </div>
+      <div class="content">
+        <div class="life-tag">Founder Lives · The Crossing</div>
+        <div class="stage-title">The Red Incarnations</div>
+        <div class="stage-desc">Lives that crossed oceans. Lives that planted a name in foreign soil and held it through hunger. These are the founder nodes — the great-grandparents, the first to arrive, the ones who chose to begin. Their fire is the one yours was lit from.</div>
+        <span class="event-pill pill-red">Primary · Cross</span>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="orb-wrap">
+        <div class="orb orb-orange" style="--p:3s"></div>
+        <div class="orb-label">Hearth</div>
+      </div>
+      <div class="content">
+        <div class="life-tag">Family Lives · Gather</div>
+        <div class="stage-title">Orange · The Hearth</div>
+        <div class="stage-desc">Mother lives. Father lives. Kitchen lives. The fire moves indoors and starts feeding people. The lineage learns to gather, to feed, to pass plates. This is where the name becomes a family instead of just a survival.</div>
+        <span class="event-pill pill-orange">Secondary · Gather</span>
+      </div>
+    </div>
+
+    <div class="stage right">
+      <div class="orb-wrap">
+        <div class="orb orb-ember" style="--p:2s"></div>
+        <div class="orb-label">You · Now</div>
+      </div>
+      <div class="content">
+        <div class="life-tag">Current · The Ember Life</div>
+        <div class="stage-title">Keeper of the Coal</div>
+        <div class="stage-desc">You hold a fire someone else lit. You did not start it and you cannot let it go out. This is the burden and the gift of being an ember — the flame is older than your face, and it chose to keep burning through you. You are the current chapter of a much longer book.</div>
+        <span class="event-pill pill-ember">You Are Here</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="witness-block">
+    <p>Something older than your face passes through you. When you cook a recipe you were never taught, when a word in a language you don't speak rises up in a dream, when a stranger says <em>you look exactly like</em> — that is the ember reporting in. You are not haunted. You are inhabited by the ones who refused to disappear.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="journey">
+    <div class="spine"></div>
+
+    <div class="stage">
+      <div class="orb-wrap">
+        <div class="orb orb-ember" style="--p:1.8s; filter: brightness(1.15)"></div>
+        <div class="orb-label">Hand-Off</div>
+      </div>
+      <div class="content">
+        <div class="life-tag">Midlife · Pass the Fire</div>
+        <div class="stage-title">The Hand-Off</div>
+        <div class="stage-desc">A moment arrives — a birth, a deathbed, a teaching, a story finally told — when the fire moves out of you and into someone younger. You don't lose it. You just stop being the only one carrying it.</div>
+        <span class="event-pill pill-ember">In Progress</span>
+      </div>
+    </div>
+
+    <div class="stage right">
+      <div class="orb-wrap">
+        <div class="orb orb-amber" style="--p:2.5s"></div>
+        <div class="orb-label">Long Burn</div>
+      </div>
+      <div class="content">
+        <div class="life-tag">Next Lives · Settled Lineage</div>
+        <div class="stage-title">Amber · The Long Burn</div>
+        <div class="stage-desc">The lineage is no longer in danger. The fire settles, deepens, becomes warmth instead of survival. These lives are quiet caretakers — keepers of stories, of recipes, of the graves. Nothing dramatic. Just the slow honoring of what was nearly lost.</div>
+        <span class="event-pill pill-amber">What Comes Next</span>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="orb-wrap">
+        <div class="orb orb-ultra"></div>
+        <div class="orb-label">Return</div>
+      </div>
+      <div class="content">
+        <div class="life-tag">The Edge · Source</div>
+        <div class="stage-title">Returns to the Field</div>
+        <div class="stage-desc">Eventually the ancestral fire dissolves back into the source it came from. The name lets go of its shape. What remains is not lineage — it is simply light. The pattern has done its work. The fire returns home.</div>
+        <span class="event-pill pill-ultra">The Field</span>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="footer-note">you are not the first, and you are not the last ✦</p>
+
+  <div style="text-align:center;">
+    <a href="index.html" class="back-link">← Back to the Archive</a>
+  </div>
+
+</div>
+
+
+  <div class="codex-cta">
+    <p class="codex-cta-fact">Ember is <strong>Radiant 1</strong> on the Color Codex wheel &mdash; your Life Path plus your Expression, reduced. Eleven numbers, eleven colours, one each.</p>
+    <a class="cta-primary" href="https://whop.com/checkout/plan_anQKP3Pzf1cGm" target="_blank" rel="noopener">Get your Soul Map &mdash; $22</a>
+    <a href="color-codex.html">See all eleven colours</a>
+  </div>
+
+<script>
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const stars = Array.from({length: 180}, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 1.2 + 0.2,
+    color: ['#FF6A3D','#F3B23A','#c0392b','#ffffff'][Math.floor(Math.random()*4)],
+    alpha: Math.random() * 0.5 + 0.1,
+    speed: Math.random() * 0.3 + 0.1,
+    phase: Math.random() * Math.PI * 2
+  }));
+
+  let t = 0;
+  function drawStars() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    t += 0.008;
+    stars.forEach(s => {
+      const a = s.alpha * (0.5 + 0.5 * Math.sin(t * s.speed + s.phase));
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = s.color;
+      ctx.globalAlpha = a;
+      ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(drawStars);
+  }
+  drawStars();
+
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Blue Soul's Journey</title>
+<meta name="description" content="Blue on the Color Codex — The Mind. How a blue soul reaches Radiant 6 (Life Path + Expression), the arc across lives, and what the colour means on your Soul Map.">
+<link rel="canonical" href="https://soul-maps.thefirstspark.shop/blue-soul-journey.html">
+<meta property="og:title" content="A Blue Soul's Journey — Blue · The Mind">
+<meta property="og:description" content="Blue on the Color Codex — The Mind. How a blue soul reaches Radiant 6 (Life Path + Expression), the arc across lives, and what the colour means on your Soul Map.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://soul-maps.thefirstspark.shop/blue-soul-journey.html">
+<meta property="og:image" content="https://soul-maps.thefirstspark.shop/preview-soulmaps.png">
+<meta name="twitter:card" content="summary_large_image">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root { --cta-hex: #3b82f6; --cta-line: #3b82f655; }
+  .codex-cta { max-width: 680px; margin: 46px auto 10px; padding: 26px 20px; text-align: center;
+    border: 1px solid var(--cta-line); border-radius: 12px; background: rgba(255,255,255,0.02); }
+  .codex-cta .codex-cta-fact { font-size: 0.95rem; color: #cfd3e6; line-height: 1.6; margin-bottom: 16px; }
+  .codex-cta a { display: inline-block; margin: 6px 8px; padding: 11px 20px; border-radius: 8px;
+    text-decoration: none; font-size: 0.9rem; letter-spacing: 0.5px; border: 1px solid var(--cta-line); color: #e6e8f2; }
+  .codex-cta a.cta-primary { background: var(--cta-hex); border-color: var(--cta-hex); color: #0B0B0C; font-weight: 700; }
+  .codex-cta a:hover { filter: brightness(1.1); }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0B0B0C; font-family: 'Cormorant Garamond', serif; overflow-x: hidden; min-height: 100vh; }
+
+  .starfield { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+  .container { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; padding: 60px 24px 100px; }
+
+  .title-block { text-align: center; margin-bottom: 80px; animation: fadeDown 1.2s ease forwards; opacity: 0; }
+  .title-block h1 {
+    font-family: 'Cinzel', serif; font-size: clamp(1.4rem, 4vw, 2.2rem);
+    color: #60a5fa; letter-spacing: 0.15em; text-transform: uppercase; line-height: 1.4;
+  }
+  .title-block p { color: #888; font-style: italic; font-size: 1.1rem; margin-top: 12px; letter-spacing: 0.05em; }
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
+  .spine {
+    position: absolute; left: 50%; top: 0; width: 1px; height: 100%;
+    background: linear-gradient(to bottom, transparent, #3b82f6 10%, #3b82f6 90%, transparent);
+    opacity: 0.25; transform: translateX(-50%);
+  }
+
+  .journey { position: relative; }
+  .stage { display: flex; align-items: flex-start; gap: 28px; margin-bottom: 64px; opacity: 0; animation: fadeIn 0.8s ease forwards; }
+  .stage:nth-child(1) { animation-delay: 0.3s; }
+  .stage:nth-child(2) { animation-delay: 0.6s; }
+  .stage:nth-child(3) { animation-delay: 0.9s; }
+  .stage:nth-child(4) { animation-delay: 1.2s; }
+  .stage:nth-child(5) { animation-delay: 1.5s; }
+  .stage:nth-child(6) { animation-delay: 1.8s; }
+  .stage:nth-child(7) { animation-delay: 2.1s; }
+  .stage.right { flex-direction: row-reverse; text-align: right; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+  .orb-wrap { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .orb { width: 52px; height: 52px; border-radius: 50%; position: relative; flex-shrink: 0; animation: pulse var(--p, 3s) ease-in-out infinite alternate; }
+  @keyframes pulse {
+    from { box-shadow: 0 0 12px var(--glow), 0 0 24px var(--glow); }
+    to   { box-shadow: 0 0 24px var(--glow), 0 0 48px var(--glow), 0 0 80px var(--glow); }
+  }
+
+  .orb-sky    { background: radial-gradient(circle at 35% 35%, #bae6fd, #7dd3fc); --glow: rgba(125,211,252,0.55); }
+  .orb-cobalt { background: radial-gradient(circle at 35% 35%, #93c5fd, #1d4ed8); --glow: rgba(29,78,216,0.6); }
+  .orb-indigo { background: radial-gradient(circle at 35% 35%, #818cf8, #3730a3); --glow: rgba(55,48,163,0.6); }
+  .orb-blue   { background: radial-gradient(circle at 35% 35%, #74b9ff, #0984e3); --glow: rgba(9,132,227,0.75); --p: 2s; }
+  .orb-violet { background: radial-gradient(circle at 35% 35%, #a29bfe, #6B4DF2); --glow: rgba(107,77,242,0.55); }
+  .orb-white  { background: radial-gradient(circle at 35% 35%, #ffffff, #dfe6e9); --glow: rgba(255,255,255,0.5); }
+
+  .orb-label { font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.12em; color: #666; text-transform: uppercase; margin-top: 8px; white-space: nowrap; }
+  .content { padding-top: 6px; flex: 1; }
+  .life-tag { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: #555; margin-bottom: 6px; }
+  .stage-title { font-family: 'Cinzel', serif; font-size: 1rem; color: #cfe2ff; letter-spacing: 0.08em; margin-bottom: 8px; line-height: 1.4; }
+  .stage-desc { font-size: 0.95rem; color: #888; line-height: 1.7; font-style: italic; font-weight: 300; }
+
+  .event-pill { display: inline-block; margin-top: 10px; padding: 3px 12px; border-radius: 20px; font-size: 0.72rem; font-family: 'Cinzel', serif; letter-spacing: 0.1em; border: 1px solid; }
+  .pill-sky    { border-color: #7dd3fc; color: #bae6fd; }
+  .pill-cobalt { border-color: #1d4ed8; color: #93c5fd; }
+  .pill-indigo { border-color: #3730a3; color: #818cf8; }
+  .pill-blue   { border-color: #0984e3; color: #74b9ff; }
+  .pill-violet { border-color: #6B4DF2; color: #c4b5fd; }
+  .pill-white  { border-color: #aaa; color: #aaa; }
+
+  .divider { width: 100%; height: 1px; background: linear-gradient(to right, transparent, #3b82f6 30%, #6B4DF2 70%, transparent); opacity: 0.25; margin: 0 0 64px; }
+
+  .witness-block {
+    border: 1px solid #3b82f620; border-radius: 4px; padding: 24px 28px; margin: 80px 0 64px;
+    position: relative; animation: fadeIn 0.8s ease 2.2s forwards; opacity: 0; background: #3b82f606;
+  }
+  .witness-block::before {
+    content: 'THE PATTERN'; position: absolute; top: -10px; left: 20px; background: #0B0B0C;
+    padding: 0 12px; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; color: #60a5fa;
+  }
+  .witness-block p { color: #888; font-style: italic; font-size: 0.95rem; line-height: 1.8; font-weight: 300; }
+
+  .footer-note { text-align: center; color: #444; font-style: italic; font-size: 0.9rem; margin-top: 40px; letter-spacing: 0.05em; animation: fadeIn 1s ease 2.5s forwards; opacity: 0; }
+
+  .back-link {
+    display: inline-block; margin-top: 60px; padding: 8px 22px;
+    border: 1px solid #60a5fa; color: #60a5fa; font-family: 'Cinzel', serif;
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    text-decoration: none; transition: background 0.25s, color 0.25s;
+  }
+  .back-link:hover { background: #3b82f6; color: #0B0B0C; }
+
+  @media (max-width: 520px) { .stage.right { flex-direction: row; text-align: left; } .orb { width: 40px; height: 40px; } }
+</style>
+</head>
+<body>
+
+<canvas class="starfield" id="stars"></canvas>
+
+<div class="container">
+
+  <div class="title-block">
+    <h1>A Blue Soul's Journey</h1>
+    <p>from watching to weaving</p>
+  </div>
+
+  <div class="journey">
+    <div class="spine"></div>
+
+    <div class="stage">
+      <div class="orb-wrap">
+        <div class="orb orb-sky" style="--p:4s"></div>
+        <div class="orb-label">Watching</div>
+      </div>
+      <div class="content">
+        <div class="life-tag">Early Lives · Before the Knowing</div>
+        <div class="stage-title">Sky · The Watcher</div>
+        <div class="stage-desc">The soul arrives quiet. It watches more than it acts. Long lives spent at the edge of villages, at the back of rooms, looking up. The information is being gathered. Nothing is being said yet. The data takes lifetimes to compile.</div>
+        <span class="event-pill pill-sky">Origin · Observe</span>
+      </div>
+    </div>
+
+    <div class="stage right">
+      <div class="orb-wrap">
+        <div class="orb orb-cobalt" style="--p:3.5s"></div>
+        <div class="orb-label">First Patterns</div>
+      </div>
+      <div class="content">
+        <div class="life-tag">Middle Lives · Order Begins</div>
+        <div class="stage-title">Cobalt · The First Knowing</div>
+        <div class="stage-desc">Pattern begins to surface. Lives of counting stars. Lives of cataloguing herbs. Lives where the soul learned that two things repeat together for a reason. The mind sharpens against the world like flint. Knowing starts to feel like home.</div>
+        <span class="event-pill pill-cobalt">Secondary · Order</span>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="orb-wrap">
+        <div class="orb orb-indigo" style="--p:3s"></div>
+        <div class="orb-label">Inward</div>
+      </div>
+      <div class="content">
+        <div class="life-tag">Late Lives · Solitude</div>
+        <div class="stage-title">Indigo · The Inward Turn</div>
+        <div class="stage-desc">The soul turns from cataloguing the world to cataloguing itself. Lives of monks. Lives of librarians. Lives where the door stayed shut and the candle stayed lit. The structure is moving from outside to inside. Architecture becomes interior.</div>
+        <span class="event-pill pill-indigo">Tertiary · Inward</span>
+      </div>
+    </div>
+
+    <div class="stage right">
+      <div class="orb-wrap">
+        <div class="orb orb-blue" style="--p:2s"></div>
+        <div class="orb-label">You · Now</div>
+      </div>
+      <div class="content">
+        <div class="life-tag">Current · The Blue Life</div>
+        <div class="stage-title">The Quiet Architect</div>
+        <div class="stage-desc">You see the structure others miss. You design things that hold. People come to you when their life has fallen out of shape, because they sense you know how shape works. The patience to wait for the design to finish itself — that patience was earned across many lives.</div>
+        <span class="event-pill pill-blue">You Are Here</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="witness-block">
+    <p>You think slowly on purpose. The slowness is not a defect — it is the part of you that refuses to mistake noise for signal. When others have already moved, you are still watching the seam. You have done this before. You will be right again. The world is not in a hurry, even when it pretends to be.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="journey">
+    <div class="spine"></div>
+
+    <div class="stage">
+      <div class="orb-wrap">
+        <div class="orb orb-blue" style="--p:1.8s; filter: brightness(1.2)"></div>
+        <div class="orb-label">Long Plan</div>
+      </div>
+      <div class="content">
+        <div class="life-tag">Midlife · Current</div>
+        <div class="stage-title">The Long Plan</div>
+        <div class="stage-desc">You stop trying to convince people the design is right. You let the years prove it. The patience deepens into something quieter than confidence. You no longer need to be understood while you build — only to keep building.</div>
+        <span class="event-pill pill-blue">In Progress</span>
+      </div>
+    </div>
+
+    <div class="stage right">
+      <div class="orb-wrap">
+        <div class="orb orb-violet" style="--p:2.5s"></div>
+        <div class="orb-label">Intuition</div>
+      </div>
+      <div class="content">
+        <div class="life-tag">Next Lives · The Mind Softens</div>
+        <div class="stage-title">Pattern Becomes Intuition</div>
+        <div class="stage-desc">What you used to calculate, you simply know. The architecture becomes a kind of music you no longer have to read. These are violet lives — the soul that thinks without thinking, that sees the whole loom without having to count threads.</div>
+        <span class="event-pill pill-violet">What Comes Next</span>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="orb-wrap">
+        <div class="orb orb-white" style="--p:2.5s"></div>
+        <div class="orb-label">Arrival</div>
+      </div>
+      <div class="content">
+        <div class="life-tag">Synthesis · Beyond Structure</div>
+        <div class="stage-title">White</div>
+        <div class="stage-desc">The need to figure anything out dissolves. Pattern returns to the field it came from. The soul stops designing and simply rests inside the design that was always there. Not less intelligent — just no longer needing intelligence to feel safe.</div>
+        <span class="event-pill pill-white">Synthesis</span>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="footer-note">you don't have to explain the math to be right ✦</p>
+
+  <div style="text-align:center;">
+    <a href="index.html" class="back-link">← Back to the Archive</a>
+  </div>
+
+</div>
+
+
+  <div class="codex-cta">
+    <p class="codex-cta-fact">Blue is <strong>Radiant 6</strong> on the Color Codex wheel &mdash; your Life Path plus your Expression, reduced. Eleven numbers, eleven colours, one each.</p>
+    <a class="cta-primary" href="https://whop.com/checkout/plan_anQKP3Pzf1cGm" target="_blank" rel="noopener">Get your Soul Map &mdash; $22</a>
+    <a href="color-codex.html">See all eleven colours</a>
+  </div>
+
+<script>
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const stars = Array.from({length: 180}, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 1.2 + 0.2,
+    color: ['#3b82f6','#60a5fa','#818cf8','#ffffff'][Math.floor(Math.random()*4)],
+    alpha: Math.random() * 0.5 + 0.1,
+    speed: Math.random() * 0.3 + 0.1,
+    phase: Math.random() * Math.PI * 2
+  }));
+
+  let t = 0;
+  function drawStars() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    t += 0.008;
+    stars.forEach(s => {
+      const a = s.alpha * (0.5 + 0.5 * Math.sin(t * s.speed + s.phase));
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = s.color;
+      ctx.globalAlpha = a;
+      ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(drawStars);
+  }
+  drawStars();
+
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+</script>
+</body>
+</html>
