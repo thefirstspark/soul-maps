@@ -134,7 +134,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             .cta-pay-btn { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; width: 100%; max-width: 320px; }
         }
         @media(max-width:480px){ .card { padding: 20px 18px; } .card-arrow { display: none; } .card-name { letter-spacing: 2px; } }
-    </style>
+      /* ===== Codex colour-coding: card border + name per tier =====
+     Border uses the true tier hex; the name is lightened until it clears
+     WCAG AA (4.5:1) on the card surface, which the dark tiers need. */
+  .card.ember { border-color: #ff6a3d; }
+  .card.ember .card-name { color: #ff6a3d; }
+  .card.red { border-color: #e24b4a; }
+  .card.red .card-name { color: #e24b4a; }
+  .card.gold { border-color: #d4af37; }
+  .card.gold .card-name { color: #d4af37; }
+  .card.green { border-color: #10b981; }
+  .card.green .card-name { color: #10b981; }
+  .card.cyan { border-color: #22d3ee; }
+  .card.cyan .card-name { color: #22d3ee; }
+  .card.blue { border-color: #3b82f6; }
+  .card.blue .card-name { color: #3b82f6; }
+  .card.violet { border-color: #8b5cf6; }
+  .card.violet .card-name { color: #9164f6; }
+  .card.rose { border-color: #f43f5e; }
+  .card.rose .card-name { color: #f43f5e; }
+  .card.white { border-color: #f0f0ff; }
+  .card.white .card-name { color: #f0f0ff; }
+  .card.silver { border-color: #c4c8d4; }
+  .card.silver .card-name { color: #c4c8d4; }
+  .card.yellow { border-color: #f5c842; }
+  .card.yellow .card-name { color: #f5c842; }
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
