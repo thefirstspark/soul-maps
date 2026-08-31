@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All the Ways a Soul Can Travel the Tree of Life — The First Spark</title>
+<meta name="description" content="An ebook atlas of every route a soul can take across the Tree of Life: the Lightning Flash, the Serpent's Climb, the Arrow, the Pillars, the 22 Gates, the Four Worlds, and the Abyss.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#05030f;
+    --deep:#0b0722;
+    --panel:#100a2e;
+    --line:#2a1f5e;
+    --star:#e8e4ff;
+    --gold:#ffd166;
+    --cyan:#4de3ff;
+    --magenta:#ff4dd8;
+    --violet:#9d7bff;
+    --dim:#9a92c9;
+    --body:#cfc9ee;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--void);
+    color:var(--body);
+    font-family:'Space Mono',monospace;
+    line-height:1.75;
+    font-size:16px;
+    overflow-x:hidden;
+  }
+  /* starfield */
+  .stars{position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:
+      radial-gradient(1px 1px at 12% 18%, var(--star) 50%, transparent 51%),
+      radial-gradient(1px 1px at 78% 8%,  var(--star) 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 33% 64%, var(--cyan) 50%, transparent 51%),
+      radial-gradient(1px 1px at 89% 47%, var(--star) 50%, transparent 51%),
+      radial-gradient(1px 1px at 55% 31%, var(--star) 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 8% 82%,  var(--magenta) 50%, transparent 51%),
+      radial-gradient(1px 1px at 67% 88%, var(--star) 50%, transparent 51%),
+      radial-gradient(1px 1px at 44% 5%,  var(--gold) 50%, transparent 51%),
+      radial-gradient(1px 1px at 23% 41%, var(--star) 50%, transparent 51%),
+      radial-gradient(1px 1px at 95% 72%, var(--star) 50%, transparent 51%);
+    opacity:.55;
+    animation:twinkle 7s ease-in-out infinite alternate;
+  }
+  @keyframes twinkle{from{opacity:.35}to{opacity:.7}}
+  main{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:0 24px}
+
+  /* ---------- cover ---------- */
+  .cover{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:64px 0}
+  .cover .kicker{font-family:'Orbitron',sans-serif;font-weight:500;letter-spacing:.55em;text-transform:uppercase;font-size:.7rem;color:var(--cyan);margin-bottom:28px}
+  .cover h1{
+    font-family:'Orbitron',sans-serif;font-weight:900;text-transform:uppercase;
+    font-size:clamp(1.9rem,6vw,3.4rem);line-height:1.15;letter-spacing:.06em;
+    background:linear-gradient(120deg,var(--gold) 0%,var(--magenta) 55%,var(--cyan) 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    text-shadow:0 0 60px rgba(255,77,216,.25);
+    max-width:16ch;
+  }
+  .cover .sub{margin-top:26px;color:var(--dim);font-style:italic;max-width:46ch}
+  .cover .brand{margin-top:52px;font-family:'Orbitron',sans-serif;font-size:.75rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold)}
+  .cover .brand span{color:var(--dim)}
+  .scrolldown{margin-top:60px;color:var(--violet);font-size:.8rem;letter-spacing:.3em;animation:bob 2.4s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(9px)}}
+
+  /* ---------- chapter chrome ---------- */
+  section.chapter{padding:88px 0 24px;border-top:1px solid var(--line)}
+  .chnum{font-family:'Orbitron',sans-serif;color:var(--magenta);font-size:.72rem;letter-spacing:.5em;text-transform:uppercase;margin-bottom:14px}
+  h2{
+    font-family:'Orbitron',sans-serif;font-weight:700;text-transform:uppercase;
+    letter-spacing:.08em;font-size:clamp(1.3rem,4vw,1.9rem);color:var(--star);
+    margin-bottom:8px;
+  }
+  .chsub{color:var(--gold);font-style:italic;margin-bottom:34px;font-size:.95rem}
+  p{margin-bottom:1.35em}
+  em{color:var(--cyan);font-style:italic}
+  strong{color:var(--gold);font-weight:700}
+  .drop::first-letter{
+    font-family:'Orbitron',sans-serif;font-weight:900;float:left;
+    font-size:3.1em;line-height:.9;padding-right:.14em;color:var(--magenta);
+  }
+  blockquote{
+    border-left:2px solid var(--cyan);padding:6px 0 6px 22px;margin:34px 0;
+    color:var(--star);font-style:italic;
+  }
+  blockquote .who{display:block;margin-top:8px;color:var(--dim);font-style:normal;font-size:.85rem}
+  .glyphbreak{text-align:center;color:var(--violet);letter-spacing:1.2em;margin:42px 0 42px 1.2em;user-select:none}
+
+  /* ---------- panels / cards ---------- */
+  .panel{
+    background:linear-gradient(160deg,var(--panel),var(--deep));
+    border:1px solid var(--line);border-radius:10px;
+    padding:26px 28px;margin:34px 0;
+    box-shadow:0 0 40px rgba(77,227,255,.05) inset;
+  }
+  .panel h3{font-family:'Orbitron',sans-serif;font-size:.85rem;letter-spacing:.28em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px}
+  .panel ul{list-style:none}
+  .panel li{padding:7px 0;border-bottom:1px dashed rgba(157,123,255,.18)}
+  .panel li:last-child{border-bottom:none}
+  .panel li b{color:var(--gold);font-weight:700}
+  .panel li i{color:var(--dim);font-style:italic}
+  .routecard{border-left:3px solid var(--gold)}
+  .warn{border-left:3px solid var(--magenta)}
+  .warn h3{color:var(--magenta)}
+
+  table{width:100%;border-collapse:collapse;margin:34px 0;font-size:.88rem}
+  th{font-family:'Orbitron',sans-serif;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--cyan);text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+  td{padding:10px 12px;border-bottom:1px dashed rgba(157,123,255,.16);vertical-align:top}
+  td:first-child{color:var(--gold);white-space:nowrap}
+
+  /* ---------- TOC ---------- */
+  nav.toc{padding:80px 0 30px}
+  nav.toc h2{margin-bottom:30px}
+  nav.toc ol{list-style:none;counter-reset:ch}
+  nav.toc a{
+    counter-increment:ch;display:flex;align-items:baseline;gap:18px;
+    padding:15px 6px;text-decoration:none;color:var(--body);
+    border-bottom:1px dashed rgba(157,123,255,.2);transition:all .18s ease;
+  }
+  nav.toc a::before{
+    content:counter(ch,upper-roman);
+    font-family:'Orbitron',sans-serif;font-size:.7rem;color:var(--magenta);
+    min-width:2.6em;letter-spacing:.15em;
+  }
+  nav.toc a .t{font-family:'Orbitron',sans-serif;font-size:.86rem;letter-spacing:.12em;text-transform:uppercase;color:var(--star)}
+  nav.toc a .d{color:var(--dim);font-size:.82rem;margin-left:auto;text-align:right;font-style:italic}
+  nav.toc a:hover{background:rgba(77,227,255,.05);padding-left:14px}
+  nav.toc a:hover .t{color:var(--cyan)}
+
+  /* ---------- tree svg ---------- */
+  figure.tree{margin:44px auto;text-align:center}
+  figure.tree svg{max-width:420px;width:100%;height:auto;filter:drop-shadow(0 0 24px rgba(157,123,255,.18))}
+  figure.tree figcaption{color:var(--dim);font-size:.8rem;font-style:italic;margin-top:14px}
+  .sef circle{fill:var(--deep);stroke:var(--violet);stroke-width:1.4}
+  .sef text{fill:var(--star);font-family:'Orbitron',sans-serif;font-size:4.6px;letter-spacing:.06em;text-anchor:middle}
+  .sef .n{fill:var(--dim);font-size:3.4px;font-family:'Space Mono',monospace}
+  .path{stroke:rgba(157,123,255,.4);stroke-width:.8;fill:none}
+  .flash{stroke:var(--gold);stroke-width:1.8;fill:none;stroke-linejoin:round;
+    stroke-dasharray:6 3;animation:zap 3.5s linear infinite;filter:drop-shadow(0 0 3px rgba(255,209,102,.8))}
+  @keyframes zap{to{stroke-dashoffset:-90}}
+  .serpent{stroke:var(--cyan);stroke-width:1.2;fill:none;stroke-dasharray:3 3;animation:zap 6s linear infinite reverse;opacity:.85}
+  .arrow{stroke:var(--magenta);stroke-width:1.6;fill:none;stroke-dasharray:5 4;animation:zap 4s linear infinite;filter:drop-shadow(0 0 3px rgba(255,77,216,.7))}
+  .daath circle{stroke-dasharray:3 3;stroke:var(--dim);fill:transparent}
+  .daath text{fill:var(--dim)}
+  .legend{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-top:10px;font-size:.75rem;color:var(--dim)}
+  .legend span::before{content:"—— ";font-weight:700}
+  .lg-gold::before{color:var(--gold)} .lg-cyan::before{color:var(--cyan)} .lg-mag::before{color:var(--magenta)}
+
+  /* ---------- footer ---------- */
+  footer{position:relative;z-index:1;text-align:center;padding:90px 24px 70px;border-top:1px solid var(--line);margin-top:70px}
+  footer .sig{font-family:'Orbitron',sans-serif;letter-spacing:.4em;text-transform:uppercase;font-size:.72rem;color:var(--gold)}
+  footer .fine{color:var(--dim);font-size:.78rem;margin-top:16px;font-style:italic}
+  .backtop{display:inline-block;margin-top:34px;color:var(--cyan);text-decoration:none;font-size:.8rem;letter-spacing:.25em;text-transform:uppercase}
+  .backtop:hover{color:var(--star)}
+
+  @media print{
+    .stars,.scrolldown{display:none}
+    body{background:#fff;color:#111}
+  }
+</style>
+</head>
+<body>
+<div class="stars" aria-hidden="true"></div>
+
+<main>
+
+  <!-- ============ COVER ============ -->
+  <header class="cover" id="top">
+    <div class="kicker">A Soul-Map Atlas</div>
+    <h1>All the Ways a Soul Can Travel the Tree of Life</h1>
+    <p class="sub">Ten stations. Twenty-two roads. One traveler — you. An ebook of every route the spark can take between the crown of heaven and the soil of the world.</p>
+    <div class="brand">The First Spark <span>// Soul-Map Series</span></div>
+    <div class="scrolldown">▼ DESCEND ▼</div>
+  </header>
+
+  <!-- ============ TOC ============ -->
+  <nav class="toc" aria-label="Table of contents">
+    <h2>Table of Routes</h2>
+    <ol>
+      <li><a href="#ch1"><span class="t">The Map Itself</span><span class="d">ten stations of light</span></a></li>
+      <li><a href="#ch2"><span class="t">The Lightning Flash</span><span class="d">the way down</span></a></li>
+      <li><a href="#ch3"><span class="t">The Serpent's Climb</span><span class="d">the way back up</span></a></li>
+      <li><a href="#ch4"><span class="t">The Path of the Arrow</span><span class="d">straight up the middle</span></a></li>
+      <li><a href="#ch5"><span class="t">The Three Pillars</span><span class="d">mercy, severity, balance</span></a></li>
+      <li><a href="#ch6"><span class="t">The Twenty-Two Gates</span><span class="d">walking the paths one by one</span></a></li>
+      <li><a href="#ch7"><span class="t">Jacob's Ladder</span><span class="d">four worlds, one tree</span></a></li>
+      <li><a href="#ch8"><span class="t">The Veils &amp; the Abyss</span><span class="d">the crossings no map can soften</span></a></li>
+      <li><a href="#ch9"><span class="t">The Spiral Return</span><span class="d">circuits, lifetimes, and the long game</span></a></li>
+      <li><a href="#ch10"><span class="t">Choosing Your Route</span><span class="d">a traveler's field guide</span></a></li>
+    </ol>
+  </nav>
+
+  <!-- ============ CH 1 ============ -->
+  <section class="chapter" id="ch1">
+    <div class="chnum">Chapter I</div>
+    <h2>The Map Itself</h2>
+    <div class="chsub">Ten stations of light, and the wiring between them</div>
+
+    <p class="drop">Before a soul can travel, it needs a map. The Tree of Life is the oldest one still in circulation: ten spheres of light — the <strong>sephirot</strong> — strung between the highest heaven and the ground under your feet, connected by twenty-two paths like the wiring diagram of a living circuit. Kabbalists drew it. Magicians memorized it. Mystics climbed it. And every version of it agrees on one thing: <em>the Tree is not somewhere else.</em> It is a diagram of you. Every station on the map is a room in your own soul, and every path is a hallway you have walked in the dark without knowing its name.</p>
+
+    <figure class="tree">
+      <svg viewBox="0 0 100 104" role="img" aria-label="The Tree of Life: ten sephirot connected by twenty-two paths, with the Lightning Flash descending, the Serpent ascending, and the Arrow rising up the middle pillar">
+        <!-- 22 paths -->
+        <g class="path">
+          <line x1="50" y1="8"  x2="80" y2="20"/><line x1="50" y1="8"  x2="20" y2="20"/>
+          <line x1="50" y1="8"  x2="50" y2="52"/><line x1="80" y1="20" x2="20" y2="20"/>
+          <line x1="80" y1="20" x2="50" y2="52"/><line x1="80" y1="20" x2="80" y2="42"/>
+          <line x1="20" y1="20" x2="50" y2="52"/><line x1="20" y1="20" x2="20" y2="42"/>
+          <line x1="80" y1="42" x2="20" y2="42"/><line x1="80" y1="42" x2="50" y2="52"/>
+          <line x1="80" y1="42" x2="80" y2="66"/><line x1="20" y1="42" x2="50" y2="52"/>
+          <line x1="20" y1="42" x2="20" y2="66"/><line x1="50" y1="52" x2="80" y2="66"/>
+          <line x1="50" y1="52" x2="50" y2="78"/><line x1="50" y1="52" x2="20" y2="66"/>
+          <line x1="80" y1="66" x2="20" y2="66"/><line x1="80" y1="66" x2="50" y2="78"/>
+          <line x1="80" y1="66" x2="50" y2="92"/><line x1="20" y1="66" x2="50" y2="78"/>
+          <line x1="20" y1="66" x2="50" y2="92"/><line x1="50" y1="78" x2="50" y2="92"/>
+        </g>
+        <!-- lightning flash (descent) -->
+        <polyline class="flash" points="50,8 80,20 20,20 80,42 20,42 50,52 80,66 20,66 50,78 50,92"/>
+        <!-- serpent (ascent, drawn as gentle wave near the flash, reversed) -->
+        <polyline class="serpent" points="50,92 50,78 20,66 80,66 50,52 20,42 80,42 20,20 80,20 50,8"/>
+        <!-- arrow (middle pillar) -->
+        <line class="arrow" x1="50" y1="92" x2="50" y2="8"/>
+        <!-- daath -->
+        <g class="daath"><circle cx="50" cy="30" r="4.6"/><text x="50" y="31.5" font-size="3.4" text-anchor="middle" font-family="Space Mono,monospace">DAATH</text></g>
+        <!-- sephirot -->
+        <g class="sef"><circle cx="50" cy="8"  r="6.4"/><text x="50" y="7.4">KETHER</text><text class="n" x="50" y="11.4">crown</text></g>
+        <g class="sef"><circle cx="80" cy="20" r="6.4"/><text x="80" y="19.4">CHOKMAH</text><text class="n" x="80" y="23.4">wisdom</text></g>
+        <g class="sef"><circle cx="20" cy="20" r="6.4"/><text x="20" y="19.4">BINAH</text><text class="n" x="20" y="23.4">understanding</text></g>
+        <g class="sef"><circle cx="80" cy="42" r="6.4"/><text x="80" y="41.4">CHESED</text><text class="n" x="80" y="45.4">mercy</text></g>
+        <g class="sef"><circle cx="20" cy="42" r="6.4"/><text x="20" y="41.4">GEBURAH</text><text class="n" x="20" y="45.4">severity</text></g>
+        <g class="sef"><circle cx="50" cy="52" r="6.4"/><text x="50" y="51.4">TIPHERETH</text><text class="n" x="50" y="55.4">beauty</text></g>
+        <g class="sef"><circle cx="80" cy="66" r="6.4"/><text x="80" y="65.4">NETZACH</text><text class="n" x="80" y="69.4">victory</text></g>
+        <g class="sef"><circle cx="20" cy="66" r="6.4"/><text x="20" y="65.4">HOD</text><text class="n" x="20" y="69.4">splendor</text></g>
+        <g class="sef"><circle cx="50" cy="78" r="6.4"/><text x="50" y="77.4">YESOD</text><text class="n" x="50" y="81.4">foundation</text></g>
+        <g class="sef"><circle cx="50" cy="92" r="6.4"/><text x="50" y="91.4">MALKUTH</text><text class="n" x="50" y="95.4">kingdom</text></g>
+      </svg>
+      <figcaption>The full circuit board of the soul. Three travel routes are lit.</figcaption>
+      <div class="legend">
+        <span class="lg-gold">Lightning Flash (descent)</span>
+        <span class="lg-cyan">Serpent's Climb (ascent)</span>
+        <span class="lg-mag">Path of the Arrow (middle pillar)</span>
+      </div>
+    </figure>
+
+    <div class="panel">
+      <h3>The Ten Stations</h3>
+      <ul>
+        <li><b>1 · Kether</b> — the Crown. <i>Pure undivided being; the spark before it knows it is a spark.</i></li>
+        <li><b>2 · Chokmah</b> — Wisdom. <i>Raw creative force; the flash of an idea before words.</i></li>
+        <li><b>3 · Binah</b> — Understanding. <i>The great womb of form; force given shape and limit.</i></li>
+        <li><b>4 · Chesed</b> — Mercy. <i>Expansion, generosity, the yes that builds worlds.</i></li>
+        <li><b>5 · Geburah</b> — Severity. <i>The blade that prunes; strength, judgment, necessary no.</i></li>
+        <li><b>6 · Tiphereth</b> — Beauty. <i>The heart-sun at the center; where all routes cross.</i></li>
+        <li><b>7 · Netzach</b> — Victory. <i>Desire, art, passion; the fire that endures.</i></li>
+        <li><b>8 · Hod</b> — Splendor. <i>Mind, language, pattern; the glittering intellect.</i></li>
+        <li><b>9 · Yesod</b> — Foundation. <i>Dream, moonlight, the subconscious engine of the real.</i></li>
+        <li><b>10 · Malkuth</b> — Kingdom. <i>The body, the earth, this exact moment. You are here.</i></li>
+      </ul>
+    </div>
+
+    <p>And one non-station: <strong>Daath</strong>, the hidden sphere, drawn in dashes because it is less a place than a hole in the map — the point where knowledge either carries you across the Abyss or drops you into it. We will get there. Every traveler does, eventually.</p>
+
+    <p>What matters for now is this: the Tree can be traveled in more than one way, and the route changes the journey completely. The same ten stations, walked in a different order, make a different soul. This book is the atlas of those routes.</p>
+    <div class="glyphbreak">✦ ✦ ✦</div>
+  </section>
+
+  <!-- ============ CH 2 ============ -->
+  <section class="chapter" id="ch2">
+    <div class="chnum">Chapter II</div>
+    <h2>The Lightning Flash</h2>
+    <div class="chsub">The way down — how the spark became you</div>
+
+    <p class="drop">The first journey is one you have already taken, which is why you don't remember it. Kabbalists call it the <strong>Lightning Flash</strong> — the Flaming Sword — the zigzag of creation striking down from Kether to Malkuth in a single instant: 1 to 2 to 3, crossing the Abyss, 4 to 5 to 6, 7 to 8 to 9, and finally 10, the ground. It is the route the soul takes <em>into</em> incarnation. Pure light, stepping itself down through ten transformers until it is dense enough to wear a body and forget its own voltage.</p>
+
+    <p>Trace it on the map and you see the pattern: the Flash never travels a pillar. It cuts diagonally, alternating side to side — force, then form, then force, then form — like a current oscillating between positive and negative until it grounds. Every crossing costs it something. At Chokmah it gives up stillness. At Binah it gives up freedom. At Chesed it takes on hope; at Geburah, consequence; at Tiphereth, a self. By Yesod it is dreaming, and at Malkuth it wakes up in a crib with no memory of the trip.</p>
+
+    <blockquote>
+      The descent is not a fall. It is a delivery. Something in Kether wanted hands, and you are what it grew them into.
+      <span class="who">— Soul-Map Series, Codex fragment</span>
+    </blockquote>
+
+    <div class="panel routecard">
+      <h3>Route Profile — The Lightning Flash</h3>
+      <ul>
+        <li><b>Direction:</b> descent, Kether → Malkuth</li>
+        <li><b>Speed:</b> instantaneous; this is the only route not walked but <i>struck</i></li>
+        <li><b>Who travels it:</b> every soul, exactly once per incarnation — and every genuine act of creation, in miniature</li>
+        <li><b>Signature:</b> the zigzag; alternation between expansion and constraint</li>
+        <li><b>What it teaches:</b> that limitation is not the opposite of light — it is light's delivery method</li>
+      </ul>
+    </div>
+
+    <p>Here is the practical secret hidden in the Flash: <strong>it is also the anatomy of making anything.</strong> An idea (Kether) becomes raw inspiration (Chokmah), takes structure (Binah), gets fed and expanded (Chesed), gets edited and cut (Geburah), finds its identity (Tiphereth), gathers passion (Netzach) and precision (Hod), takes shape in imagination (Yesod), and finally ships (Malkuth). Every project, painting, and business you have ever finished traveled the Lightning Flash whether you knew it or not. Every one you abandoned stalled at a specific sphere — and if you're honest with yourself, you can name which one.</p>
+    <div class="glyphbreak">⚡ ⚡ ⚡</div>
+  </section>
+
+  <!-- ============ CH 3 ============ -->
+  <section class="chapter" id="ch3">
+    <div class="chnum">Chapter III</div>
+    <h2>The Serpent's Climb</h2>
+    <div class="chsub">The way back up — one path at a time, no skipping</div>
+
+    <p class="drop">If the Lightning Flash is how the soul comes down, the <strong>Serpent of Wisdom</strong> is how it goes home. The serpent — coiled at the base of the Tree, in Malkuth, in the body, in the ordinary Tuesday afternoon of your life — climbs by winding back and forth across <em>every one of the twenty-two paths in reverse order</em>, touching each sphere from the bottom up. Where the Flash skips, the Serpent savors. Nothing is passed over. Nothing is skipped. This is the long road, and it is the honest one.</p>
+
+    <p>The Serpent's rule is simple and brutal: <strong>you cannot climb past a lesson you haven't integrated.</strong> Want to rise from Malkuth to Yesod? Then you must make peace with your own subconscious — the dreams, the habits, the moonlit machinery under your daylight self. Want to move from Yesod toward Hod and Netzach? Then mind and desire must each be met on their own ground: the intellect sharpened without becoming a cage, the passions honored without becoming a flood. The Serpent does not let you spiritually bypass. It is the anti-shortcut.</p>
+
+    <div class="panel routecard">
+      <h3>Route Profile — The Serpent's Climb</h3>
+      <ul>
+        <li><b>Direction:</b> ascent, Malkuth → Kether, via all 22 paths in reverse</li>
+        <li><b>Speed:</b> a lifetime, sometimes several</li>
+        <li><b>Who travels it:</b> the initiate, the student, anyone doing the slow work of actually changing</li>
+        <li><b>Signature:</b> thoroughness; the winding coil that leaves no path unwalked</li>
+        <li><b>What it teaches:</b> that the way up is made of the same steps as the way down, taken awake this time</li>
+      </ul>
+    </div>
+
+    <p>This is the route of every real initiatory system, and of every honest therapy, apprenticeship, and recovery. It looks slower than the other routes because it is. It is also the only one where you arrive with everything you learned still in your hands. The Flash delivers a soul; the Serpent returns a <em>self</em> — tempered, tested, and carrying the whole map as lived memory rather than doctrine.</p>
+
+    <blockquote>
+      The serpent was never the villain of the garden. It was the only one who knew the tree had more than one fruit — and that you were allowed to climb.
+      <span class="who">— Soul-Map Series, Codex fragment</span>
+    </blockquote>
+    <div class="glyphbreak">☽ ✦ ☾</div>
+  </section>
+
+  <!-- ============ CH 4 ============ -->
+  <section class="chapter" id="ch4">
+    <div class="chnum">Chapter IV</div>
+    <h2>The Path of the Arrow</h2>
+    <div class="chsub">Straight up the middle — the mystic's express line</div>
+
+    <p class="drop">There is a third route, and it is the steepest: straight up the <strong>Middle Pillar</strong> — Malkuth to Yesod to Tiphereth, through the hidden non-place of Daath, into Kether. Kabbalists call it the <strong>Path of the Arrow</strong>, because it is shot, not walked: the route of the pure mystic who bypasses the side pillars entirely and aims the whole self at union in a single vertical line.</p>
+
+    <p>It is the shortest route on the map and the most demanding per step. The Arrow touches only the spheres of <em>equilibrium</em> — body, dream, heart, crown — which means the traveler gets no help from the side pillars' back-and-forth. No swing from mercy to severity to build momentum. No detour through intellect or passion to catch your breath. Just the dead-vertical climb: ground yourself (Malkuth), face the deep subconscious (Yesod, the hardest honest mirror there is), stabilize a true self in the heart-sun (Tiphereth), and then — the part no book can prepare you for — release even that self at the Abyss, and let what remains be drawn upward.</p>
+
+    <div class="panel routecard">
+      <h3>Route Profile — The Path of the Arrow</h3>
+      <ul>
+        <li><b>Direction:</b> ascent, Malkuth → Yesod → Tiphereth → (Daath) → Kether</li>
+        <li><b>Speed:</b> can be a single moment of grace — or the entire discipline of a life aimed at one</li>
+        <li><b>Who travels it:</b> mystics, contemplatives, and anyone in the moments meditation actually breaks through</li>
+        <li><b>Signature:</b> verticality; balance held under acceleration</li>
+        <li><b>What it teaches:</b> that the center of you and the center of everything are on the same axis</li>
+      </ul>
+    </div>
+
+    <p>Most travelers don't live on the Arrow — they visit it. Deep meditation touches it. Peak experience touches it. Grief sometimes tears the shaft open without permission. The practical use of this route is not to abandon the Serpent's work, but to know the vertical line exists: whatever sphere you're stuck in, there is always a straight line home running right through the middle of you.</p>
+    <div class="glyphbreak">↟ ↟ ↟</div>
+  </section>
+
+  <!-- ============ CH 5 ============ -->
+  <section class="chapter" id="ch5">
+    <div class="chnum">Chapter V</div>
+    <h2>The Three Pillars</h2>
+    <div class="chsub">Mercy, severity, and the razor between them</div>
+
+    <p class="drop">Look at the Tree side-on and it resolves into three vertical <strong>pillars</strong>, and every soul leans toward one of them. The right-hand <strong>Pillar of Mercy</strong> (Chokmah, Chesed, Netzach) is the line of force: expansion, yes, giving, fire. The left-hand <strong>Pillar of Severity</strong> (Binah, Geburah, Hod) is the line of form: structure, no, boundary, discernment. Between them stands the <strong>Pillar of Equilibrium</strong> — the Arrow's road — which owns nothing but balance.</p>
+
+    <p>A soul can travel the Tree by pillar, and many do without ever hearing the word Kabbalah. The chronic giver who says yes until they burn out is climbing the right pillar alone. The perfectionist who edits their life down to a fortress is climbing the left pillar alone. Each pillar, traveled solo, becomes a pathology: mercy without severity dissolves into shapeless indulgence; severity without mercy calcifies into cruelty — first toward others, eventually toward the self.</p>
+
+    <table>
+      <thead><tr><th>Pillar</th><th>Spheres</th><th>Gift</th><th>Trap when traveled alone</th></tr></thead>
+      <tbody>
+        <tr><td>Mercy (right)</td><td>Chokmah · Chesed · Netzach</td><td>Expansion, generosity, creative fire</td><td>Overflow — no container, no follow-through, burnout by yes</td></tr>
+        <tr><td>Severity (left)</td><td>Binah · Geburah · Hod</td><td>Structure, discipline, precision</td><td>Contraction — rigidity, judgment, a life edited down to nothing</td></tr>
+        <tr><td>Equilibrium (middle)</td><td>Malkuth · Yesod · Tiphereth · Kether</td><td>Balance, presence, the true axis</td><td>Detachment — floating above your own life instead of living it</td></tr>
+      </tbody>
+    </table>
+
+    <p>The pillar route done <em>well</em> is a pendulum: swing right to build, swing left to refine, return to center to rest and integrate. Breathe in, breathe out, be still. The Tree even breathes this way in the body's oldest practices — expansion, contraction, stillness — because the pillars were never only theology. They are the two hands and the spine of everything you will ever make.</p>
+    <div class="glyphbreak">║ ┃ ║</div>
+  </section>
+
+  <!-- ============ CH 6 ============ -->
+  <section class="chapter" id="ch6">
+    <div class="chnum">Chapter VI</div>
+    <h2>The Twenty-Two Gates</h2>
+    <div class="chsub">Pathworking — traveling the roads instead of the stations</div>
+
+    <p class="drop">Every route so far has treated the paths as connective tissue between the spheres. The pathworker inverts this: <strong>the paths themselves are the destination.</strong> Each of the twenty-two paths carries a Hebrew letter, and in the Western tradition, a tarot trump — twenty-two distinct experiences of <em>transition</em>, each one a gate the soul can enter deliberately and walk as an inner journey.</p>
+
+    <p>This is the technique called <strong>pathworking</strong>: enter a trance or deep visualization at one sphere, walk the corridor of a specific path with its symbols as your terrain, and emerge at the next sphere changed by the crossing. The path from Malkuth up to Yesod — the path of <em>Tav</em>, the World card — is traditionally the first: the gate out of ordinary consciousness into the dreaming layer. The path from Yesod to Tiphereth — <em>Samekh</em>, Temperance, the Arrow's own corridor — is the long dark tunnel toward the heart-sun, patron path of every dark night that turned out to be a birth canal.</p>
+
+    <div class="panel">
+      <h3>A Few Gates and What They Cross</h3>
+      <ul>
+        <li><b>Tav · The World</b> — Malkuth → Yesod. <i>First gate: from the daylight world into the dreaming one.</i></li>
+        <li><b>Shin · Judgement</b> — Malkuth → Hod. <i>The fire that wakes the sleeping mind.</i></li>
+        <li><b>Qoph · The Moon</b> — Malkuth → Netzach. <i>The night road of instinct, fear, and deep body-memory.</i></li>
+        <li><b>Samekh · Temperance</b> — Yesod → Tiphereth. <i>The dark tunnel to the heart; the tested faith of the Arrow.</i></li>
+        <li><b>Gimel · The High Priestess</b> — Tiphereth → Kether. <i>The longest single path, straight across the Abyss by moonlight.</i></li>
+        <li><b>Aleph · The Fool</b> — Kether → Chokmah. <i>The first breath; the spark stepping off the edge, laughing.</i></li>
+      </ul>
+    </div>
+
+    <p>The pathworker's route through the Tree is nonlinear by design. You travel the gate your life has already put you in front of. Grieving? You are standing at a specific path whether you name it or not. Falling in love, starting over, ending something that needed ending — each is a gate, and the old maps annotated all twenty-two of them with symbols meant to be <em>used</em>, not framed. Pathworking is simply doing consciously what life does to you anyway, and taking notes.</p>
+    <div class="glyphbreak">🜁 🜂 🜄</div>
+  </section>
+
+  <!-- ============ CH 7 ============ -->
+  <section class="chapter" id="ch7">
+    <div class="chnum">Chapter VII</div>
+    <h2>Jacob's Ladder</h2>
+    <div class="chsub">Four worlds, one tree — the vertical stack</div>
+
+    <p class="drop">Here the map folds. The Tree you have been studying is not one tree: the Kabbalists teach that it repeats through <strong>four worlds</strong>, stacked like transparencies — and that the soul travels not only <em>across</em> the Tree but <em>through</em> its layers. The Malkuth of one world is the Kether of the world below. Light steps down through the whole stack like a ladder, which is why the tradition names this arrangement after Jacob's dream: a ladder set on the earth, its top reaching heaven, and traffic moving in both directions.</p>
+
+    <div class="panel">
+      <h3>The Four Worlds</h3>
+      <ul>
+        <li><b>Atziluth</b> — the World of Emanation. <i>Pure divine fire; will before form. The realm of the soul-spark itself.</i></li>
+        <li><b>Briah</b> — the World of Creation. <i>The archangelic layer; great patterns, callings, the shape of a destiny.</i></li>
+        <li><b>Yetzirah</b> — the World of Formation. <i>The angelic and imaginal layer; dream, symbol, emotion, the astral workshop.</i></li>
+        <li><b>Assiah</b> — the World of Action. <i>Matter. Bodies. Rent. The world where the work either happens or doesn't.</i></li>
+      </ul>
+    </div>
+
+    <p>Traveling by worlds means asking, of any sphere, <em>at which altitude am I meeting this?</em> There is a Tiphereth of the body (your literal heart and its health), a Tiphereth of formation (your self-image), a Tiphereth of creation (your calling), and a Tiphereth of emanation (the divine center that all the others are copies of). A soul working on "the heart" might be at any of the four altitudes, and the medicine is different at each one.</p>
+
+    <p>The four worlds also map the anatomy of the soul itself in the old teaching: <strong>nefesh</strong>, the vital body-soul; <strong>ruach</strong>, the feeling-and-thinking spirit; <strong>neshamah</strong>, the deep soul that understands; and above them the barely-embodied sparks, <strong>chayah</strong> and <strong>yechidah</strong> — life-force and union. You are not one traveler on the ladder. You are a caravan, and its members travel at different speeds. Much of what feels like inner conflict is simply caravan members reporting from different worlds.</p>
+    <div class="glyphbreak">≡ ≡ ≡</div>
+  </section>
+
+  <!-- ============ CH 8 ============ -->
+  <section class="chapter" id="ch8">
+    <div class="chnum">Chapter VIII</div>
+    <h2>The Veils &amp; the Abyss</h2>
+    <div class="chsub">The crossings no map can soften</div>
+
+    <p class="drop">Every honest atlas marks the dangerous water. The Tree has two great discontinuities, and every upward route must reckon with both. The first is the <strong>Veil of Paroketh</strong>, stretched below Tiphereth: the membrane between the personality (the four lowest spheres — body, dream, mind, desire) and the true self above them. Crossing it is the moment you stop identifying with your machinery — your habits, your cleverness, your wanting — and locate yourself in the quiet heart-sun behind them. Most travelers cross Paroketh many times before it holds. It feels like dying and turns out to be waking.</p>
+
+    <p>The second crossing is the one the maps mark in black: the <strong>Abyss</strong>, the gulf between the lower seven spheres and the supernal three — with <strong>Daath</strong>, the false sphere of Knowledge, hovering over it like a bridge that is only there if you don't need it. Below the Abyss, the soul travels as a self: a someone, with a name and a story, accumulating understanding. Across the Abyss, none of that survives — not because it is destroyed, but because it was always a vehicle, and vehicles stop at the water's edge.</p>
+
+    <blockquote>
+      At the Abyss you learn the last rule of travel: everything that can be carried must be set down. What crosses is not what you have. It is what you are when the having stops.
+      <span class="who">— Soul-Map Series, Codex fragment</span>
+    </blockquote>
+
+    <div class="panel warn">
+      <h3>Traveler's Advisory</h3>
+      <ul>
+        <li><b>Paroketh</b> — <i>crossed by surrender of identification. Symptoms of approach: your old motivations stop working before new ones arrive. This is normal. Keep walking.</i></li>
+        <li><b>Daath</b> — <i>knowledge without love or humility becomes a trapdoor. The Abyss is littered with brilliant people who tried to think their way across.</i></li>
+        <li><b>The Abyss</b> — <i>not on the syllabus. No technique crosses it; techniques are luggage. It crosses you, when what's left of you weighs nothing.</i></li>
+      </ul>
+    </div>
+
+    <p>Why include the crossings in a book of routes? Because knowing they exist changes how you travel everywhere else. The traveler who knows about Paroketh doesn't panic when their personality starts feeling like a costume. The traveler who knows about the Abyss holds their insights lightly, and their credentials lighter. The dangerous water disciplines the whole map.</p>
+    <div class="glyphbreak">▓ ░ ▓</div>
+  </section>
+
+  <!-- ============ CH 9 ============ -->
+  <section class="chapter" id="ch9">
+    <div class="chnum">Chapter IX</div>
+    <h2>The Spiral Return</h2>
+    <div class="chsub">Circuits, lifetimes, and the long game</div>
+
+    <p class="drop">One more route, and it is the one that contains all the others: the <strong>spiral</strong>. No soul travels the Tree once. You descend by the Flash, climb some portion of the Serpent, touch the Arrow in your best moments, lean on a pillar in your worst, walk the gates life shoves you through — and then, in this life or the tradition says another, you come around again. Same stations. Higher coil. The Tree walked the second time is not the same Tree, because the traveler is not the same traveler.</p>
+
+    <p>This is why the map forgives. Miss a lesson at Geburah — refuse the necessary cut, keep what needed pruning — and the spiral does not expel you. It simply brings Geburah around again, dressed in new circumstances, until the lesson lands. What the old teachings call <em>gilgul</em>, the wheel of souls, and what a therapist calls a repeating pattern, are the same observation at different altitudes: <strong>unintegrated spheres recur.</strong> The curriculum is patient because it has to be. It is teaching the same ten subjects to everyone, forever, using whatever your life happens to be made of.</p>
+
+    <p>The spiral also explains the strange comfort of the Tree: nothing is ever wasted on it. The wrong turn was a path — every one of the twenty-two is on the map, including the ones you took bleeding. The years you'd call lost were a sphere doing its slow work under another name. Seen from inside one coil, a life can look like wreckage. Seen along the axis of the spiral, it is a single ascending line that never once stopped moving.</p>
+
+    <blockquote>
+      You have not been going in circles. You have been going in spirals, and a spiral seen from above is a circle only to someone who cannot see the climb.
+      <span class="who">— Soul-Map Series, Codex fragment</span>
+    </blockquote>
+    <div class="glyphbreak">◌ ◎ ◉</div>
+  </section>
+
+  <!-- ============ CH 10 ============ -->
+  <section class="chapter" id="ch10">
+    <div class="chnum">Chapter X</div>
+    <h2>Choosing Your Route</h2>
+    <div class="chsub">A traveler's field guide</div>
+
+    <p class="drop">So: ten stations, twenty-two roads, three pillars, four worlds, two crossings, one spiral — and seven distinct ways to travel. Which one is yours? Trick question. You are already on several of them. The only real choice the Tree offers is the one it has always offered: <strong>to travel awake or asleep.</strong> Here is the field guide.</p>
+
+    <table>
+      <thead><tr><th>Route</th><th>Take it when…</th></tr></thead>
+      <tbody>
+        <tr><td>Lightning Flash</td><td>You are creating something and need it to actually land in the world. Ride the descent; don't stall mid-zigzag.</td></tr>
+        <tr><td>Serpent's Climb</td><td>You are doing the slow, honest work of change. Trust the coil. No skipped lessons, no shortcuts, no shame about the pace.</td></tr>
+        <tr><td>Path of the Arrow</td><td>You need to remember, right now, that there is a straight line between you and the source. Sit down. Breathe up the middle pillar.</td></tr>
+        <tr><td>The Pillars</td><td>Your life has tipped — all yes or all no. Swing to the other pillar deliberately, then find the center.</td></tr>
+        <tr><td>The 22 Gates</td><td>Life has put you at a threshold. Name the gate, learn its symbols, and walk it on purpose instead of being dragged through.</td></tr>
+        <tr><td>Jacob's Ladder</td><td>You keep solving a problem at the wrong altitude. Ask which world it actually lives in, and go meet it there.</td></tr>
+        <tr><td>The Spiral</td><td>Always. This is the one you're on regardless. The choice is only whether to notice the coil rising.</td></tr>
+      </tbody>
+    </table>
+
+    <p>And a closing word from the bottom of the map, because Malkuth deserves the last one. Every tradition that ever drew this Tree agrees that the tenth sphere — the body, the dirt, the Tuesday — is not the exile it appears to be. Its title in the old books is <em>Kallah</em>, the Bride, and the whole descent of light was for the sake of this meeting. The soul does not travel the Tree to escape the world. It travels the Tree the way sap does: so that something blooms at the far end of the branch.</p>
+
+    <p><strong>You are the far end of the branch.</strong> The crown is real, the climb is real, the Abyss is real — and so is this: wherever you are standing right now is on the map, and every path out of it is lit. Travel well, spark.</p>
+    <div class="glyphbreak">✦ ⚡ ✦</div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="sig">The First Spark</div>
+  <p class="fine">All the Ways a Soul Can Travel the Tree of Life · Soul-Map Series · <a href="https://thefirstspark.shop" style="color:var(--cyan);text-decoration:none">thefirstspark.shop</a></p>
+  <p class="fine">Want your own map of the climb? <a href="index.html" style="color:var(--gold);text-decoration:none">Browse the Soul Map Archive →</a> · <a href="color-codex.html" style="color:var(--gold);text-decoration:none">Decode the Color Codex →</a></p>
+  <a class="backtop" href="#top">▲ Return to the Crown ▲</a>
+</footer>
+
+</body>
+</html>
