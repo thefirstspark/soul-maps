@@ -1441,5 +1441,27 @@
     "birth_time": "12:31",
     "birth_city": "Tatabanya",
     "birth_country": "US"
+  },
+  "mackenzie leigh puzakulics|1997-05-28": {
+    "name": "Mackenzie leigh puzakulics",
+    "dob": "1997-05-28",
+    "quantum": "731635661BB6",
+    "quantum_display": "7316·3566·1BB6",
+    "resonance_hz": 564.54,
+    "activation": "DA965C75[LP5]",
+    "codex_color": "silver",
+    "codex_role": "The Reflector",
+    "codex_tier": "Silver",
+    "core": {
+      "life_path": 5,
+      "expression": 6,
+      "soul_urge": 5,
+      "personality": 1,
+      "birthday": 1
+    },
+    "minted_at": "2026-09-01T00:19:49Z",
+    "formula_version": 1,
+    "birth_city": "akron, ohio",
+    "birth_country": "US"
   }
 }
