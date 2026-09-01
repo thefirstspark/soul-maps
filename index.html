@@ -892,14 +892,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <section class="buy-hero" id="get-yours">
         <h2>A reading of who you are and what you're built for — from your name and birth date.</h2>
         <p class="buy-lead">Who you are, what you're here to do, and what to focus on right now. Not a vague reading — a map you can actually use, on a private page you keep forever.</p>
-        <a href="KJP51988.html" class="buy-example-link">See a real Soul Map first — open the founder's →</a>
+        <a href="KJP51988.html" class="buy-example-link" data-track="archive_sample_map">See a real Soul Map first — open the founder's →</a>
         <div class="buy-price-row">
             <span class="buy-price-main" id="buy-price">$22</span>
         </div>
         <p class="buy-price-note">One-time payment · Founders Edition · yours to keep</p>
 
-        <a id="index-soul-map-btn" href="https://whop.com/checkout/plan_anQKP3Pzf1cGm" class="cta-pay-btn" target="_blank" rel="noopener noreferrer">Get My Soul Map — $22 →</a>
-        <div class="cta-fine">Live URL in about 5 minutes · Birth date + full name · <a href="https://thefirstspark.shop/soul-map.html" style="color:#a78bfa; text-decoration:none; border-bottom:1px solid rgba(167,139,250,.35);">preview your numbers free →</a></div>
+        <a id="index-soul-map-btn" href="https://whop.com/checkout/plan_anQKP3Pzf1cGm" class="cta-pay-btn" target="_blank" rel="noopener noreferrer" data-track="archive_hero_checkout">Get My Soul Map — $22 →</a>
+        <div class="cta-fine">Live URL in about 5 minutes · Birth date + full name · <a href="https://thefirstspark.shop/soul-map.html" data-track="archive_free_preview" style="color:#a78bfa; text-decoration:none; border-bottom:1px solid rgba(167,139,250,.35);">preview your numbers free →</a></div>
 
         <ul class="buy-bullets">
             <li>
@@ -1536,7 +1536,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <strong>Soul Map — $22</strong>
         One-time · Founders Edition
     </div>
-    <a href="https://whop.com/checkout/plan_anQKP3Pzf1cGm" class="cta-pay-btn" target="_blank" rel="noopener noreferrer">Get Mine →</a>
+    <a href="https://whop.com/checkout/plan_anQKP3Pzf1cGm" class="cta-pay-btn" target="_blank" rel="noopener noreferrer" data-track="archive_sticky_checkout">Get Mine →</a>
 </div>
 
 <script>
@@ -1681,6 +1681,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         });
     });
 })();
+</script>
+<script>
+/* Funnel click tracking — elements opt in via data-track */
+document.addEventListener('click', function(e) {
+    var el = e.target.closest('[data-track]');
+    if (!el || !window.gtag) return;
+    gtag('event', 'funnel_click', {
+        link_id: el.getAttribute('data-track'),
+        page: location.pathname
+    });
+});
 </script>
 </body>
 </html>
