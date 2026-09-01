@@ -1507,5 +1507,27 @@
     "formula_version": 1,
     "birth_city": "akron ohio",
     "birth_country": "US"
+  },
+  "ralph james schreve|1925-09-27": {
+    "name": "Ralph James Schreve",
+    "dob": "1925-09-27",
+    "quantum": "F2DCBB02303B",
+    "quantum_display": "F2DC·BB02·303B",
+    "resonance_hz": 837.65,
+    "activation": "36C30535[LP8]",
+    "codex_color": "silver",
+    "codex_role": "The Reflector",
+    "codex_tier": "Silver",
+    "core": {
+      "life_path": 8,
+      "expression": 3,
+      "soul_urge": 8,
+      "personality": 4,
+      "birthday": 9
+    },
+    "minted_at": "2026-09-01T00:25:59Z",
+    "formula_version": 1,
+    "birth_city": "ashtabula county ohio",
+    "birth_country": "US"
   }
 }
