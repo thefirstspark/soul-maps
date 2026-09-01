@@ -1529,5 +1529,27 @@
     "formula_version": 1,
     "birth_city": "ashtabula county ohio",
     "birth_country": "US"
+  },
+  "gail maurene shreve|1949-03-14": {
+    "name": "Gail Maurene Shreve",
+    "dob": "1949-03-14",
+    "quantum": "63067A4E9C10",
+    "quantum_display": "6306·7A4E·9C10",
+    "resonance_hz": 730.86,
+    "activation": "6469E379[LP4]",
+    "codex_color": "violet",
+    "codex_role": "The Transformer",
+    "codex_tier": "Purple",
+    "core": {
+      "life_path": 4,
+      "expression": 3,
+      "soul_urge": 7,
+      "personality": 5,
+      "birthday": 5
+    },
+    "minted_at": "2026-09-01T00:30:27Z",
+    "formula_version": 1,
+    "birth_city": "elyria, lorain ohio",
+    "birth_country": "US"
   }
 }
