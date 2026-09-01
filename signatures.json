@@ -1595,5 +1595,27 @@
     "formula_version": 1,
     "birth_city": "akron, ohio",
     "birth_country": "US"
+  },
+  "robert eugene mccullough|1919-05-19": {
+    "name": "Robert Eugene McCullough",
+    "dob": "1919-05-19",
+    "quantum": "3DA0D3570E7F",
+    "quantum_display": "3DA0·D357·0E7F",
+    "resonance_hz": 882.06,
+    "activation": "CEB882F6[LP8]",
+    "codex_color": "blue",
+    "codex_role": "The Mind",
+    "codex_tier": "Blue",
+    "core": {
+      "life_path": 8,
+      "expression": 7,
+      "soul_urge": 5,
+      "personality": 11,
+      "birthday": 1
+    },
+    "minted_at": "2026-09-01T00:41:30Z",
+    "formula_version": 1,
+    "birth_city": "mahoning ohio usa",
+    "birth_country": "US"
   }
 }
