@@ -1573,5 +1573,27 @@
     "formula_version": 1,
     "birth_city": "cuyahoga, ohio , usa",
     "birth_country": "US"
+  },
+  "julia puzakulics|1921-06-22": {
+    "name": "Julia Puzakulics",
+    "dob": "1921-06-22",
+    "quantum": "4168F74E5ECC",
+    "quantum_display": "4168·F74E·5ECC",
+    "resonance_hz": 943.23,
+    "activation": "D4EC8FED[LP5]",
+    "codex_color": "rose",
+    "codex_role": "The Bond",
+    "codex_tier": "Rose",
+    "core": {
+      "life_path": 5,
+      "expression": 3,
+      "soul_urge": 11,
+      "personality": 1,
+      "birthday": 22
+    },
+    "minted_at": "2026-09-01T00:39:46Z",
+    "formula_version": 1,
+    "birth_city": "akron, ohio",
+    "birth_country": "US"
   }
 }
