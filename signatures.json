@@ -1485,5 +1485,27 @@
     "formula_version": 1,
     "birth_city": "hallburg, west virgina",
     "birth_country": "US"
+  },
+  "lawrence wayne johnson|1947-08-08": {
+    "name": "lawrence wayne johnson",
+    "dob": "1947-08-08",
+    "quantum": "93DF921D7A5A",
+    "quantum_display": "93DF·921D·7A5A",
+    "resonance_hz": 892.86,
+    "activation": "26FC7992[LP1]",
+    "codex_color": "red",
+    "codex_role": "The Will",
+    "codex_tier": "Red",
+    "core": {
+      "life_path": 1,
+      "expression": 1,
+      "soul_urge": 11,
+      "personality": 8,
+      "birthday": 8
+    },
+    "minted_at": "2026-09-01T00:24:26Z",
+    "formula_version": 1,
+    "birth_city": "akron ohio",
+    "birth_country": "US"
   }
 }
