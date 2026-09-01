@@ -1463,5 +1463,27 @@
     "formula_version": 1,
     "birth_city": "akron, ohio",
     "birth_country": "US"
+  },
+  "della delphie dawson|1927-11-27": {
+    "name": "Della Delphie Dawson",
+    "dob": "1927-11-27",
+    "quantum": "4B62F0AC1FCF",
+    "quantum_display": "4B62·F0AC·1FCF",
+    "resonance_hz": 769.22,
+    "activation": "6205A670[LP3]",
+    "codex_color": "ember",
+    "codex_role": "The First Heat",
+    "codex_tier": "Ember",
+    "core": {
+      "life_path": 3,
+      "expression": 7,
+      "soul_urge": 5,
+      "personality": 11,
+      "birthday": 9
+    },
+    "minted_at": "2026-09-01T00:22:01Z",
+    "formula_version": 1,
+    "birth_city": "hallburg, west virgina",
+    "birth_country": "US"
   }
 }
