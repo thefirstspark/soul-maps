@@ -1551,5 +1551,27 @@
     "formula_version": 1,
     "birth_city": "elyria, lorain ohio",
     "birth_country": "US"
+  },
+  "monica grace frost|1923-12-11": {
+    "name": "Monica Grace Frost",
+    "dob": "1923-12-11",
+    "quantum": "BA0558FAF494",
+    "quantum_display": "BA05·58FA·F494",
+    "resonance_hz": 792.03,
+    "activation": "DCF60730[LP2]",
+    "codex_color": "violet",
+    "codex_role": "The Transformer",
+    "codex_tier": "Purple",
+    "core": {
+      "life_path": 2,
+      "expression": 5,
+      "soul_urge": 1,
+      "personality": 4,
+      "birthday": 11
+    },
+    "minted_at": "2026-09-01T00:36:10Z",
+    "formula_version": 1,
+    "birth_city": "cuyahoga, ohio , usa",
+    "birth_country": "US"
   }
 }
