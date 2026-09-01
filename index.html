@@ -739,26 +739,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .map-spotlight-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; margin-bottom:14px; }
         .map-spotlight-card { display:flex; flex-direction:column; padding:22px 20px; border:1px solid rgba(107,77,242,.35); background:rgba(107,77,242,.08); transition:transform .2s,border-color .2s,box-shadow .2s; }
         .map-spotlight-card:hover { transform:translateY(-3px); border-color:#a78bfa; box-shadow:0 8px 28px rgba(107,77,242,.22); }
-        .map-spotlight-link { display:block; text-decoration:none; flex:1; }
-        .map-spotlight-buy { margin-top:12px; padding-top:12px; border-top:1px solid rgba(251,191,36,.2); font-family:'Orbitron',sans-serif; font-size:.48rem; letter-spacing:.12em; text-transform:uppercase; color:#fbbf24; text-decoration:none; }
-        .map-spotlight-buy:hover { color:#fff; }
         .map-spotlight-sub { font-size:.55em; letter-spacing:.12em; text-transform:uppercase; color:rgba(224,231,255,.45); margin-bottom:6px; }
         .map-spotlight-name { font-family:'Orbitron',sans-serif; font-size:.72rem; letter-spacing:.08em; color:#c4b5fd; margin-bottom:8px; }
         .map-spotlight-desc { font-size:.72em; color:#9ca3af; line-height:1.65; margin-bottom:12px; }
-        .map-spotlight-enter { font-size:.52em; letter-spacing:.2em; text-transform:uppercase; color:#fbbf24; }
-        .map-spotlight-meta { text-align:center; font-size:.58em; letter-spacing:.16em; text-transform:uppercase; color:rgba(156,163,175,.75); margin-bottom:0; }
-        .card.featured-today { border-color: rgba(251,191,36,.55) !important; box-shadow: 0 0 24px rgba(251,191,36,.12); }
-        .card.featured-today::before {
-            content: 'Featured today';
-            position: absolute;
-            top: 12px;
-            right: 44px;
-            font-size: .48em;
-            letter-spacing: .18em;
-            text-transform: uppercase;
-            color: #fbbf24;
-            opacity: .85;
-        }
+        .map-spotlight-enter { font-size:.52em; letter-spacing:.2em; text-transform:uppercase; color:#fbbf24; margin-top: auto; }
+        a.map-spotlight-card { text-decoration: none; color: inherit; cursor: pointer; }
         .card { position: relative; }
 
         /* ── FOOTER ── */
@@ -965,12 +950,49 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="divider"></div>
 
-    <div class="spotlight-wrap">
+    <div class="spotlight-wrap" id="guides">
         <div class="spotlight-head">
-            <h2>◈ TODAY'S FEATURED MAPS ◈</h2>
-            <p>Three souls from the archive, spotlighted daily — everyone gets featured.</p>
+            <h2>◈ USEFUL INFO ◈</h2>
+            <p>How the maps work — plus tools to go deeper.</p>
         </div>
-        <div id="mapSpotlight"></div>
+        <div class="map-spotlight-grid">
+            <a href="https://thefirstspark.shop/what-is-a-soul-map.html" class="map-spotlight-card">
+                <div class="map-spotlight-sub">Explainer</div>
+                <div class="map-spotlight-name">What is a Soul Map?</div>
+                <div class="map-spotlight-desc">The product in plain English — what you get, how it's calculated, and why it isn't a horoscope.</div>
+                <div class="map-spotlight-enter">Read →</div>
+            </a>
+            <a href="color-codex.html" class="map-spotlight-card">
+                <div class="map-spotlight-sub">Color system</div>
+                <div class="map-spotlight-name">The Color Codex</div>
+                <div class="map-spotlight-desc">Eleven frequencies sort the archive. Your core color is set at birth — here's what each one means.</div>
+                <div class="map-spotlight-enter">Decode →</div>
+            </a>
+            <a href="https://thefirstspark.shop/selector-model-ip.html" class="map-spotlight-card">
+                <div class="map-spotlight-sub">The engine</div>
+                <div class="map-spotlight-name">The Selector Model</div>
+                <div class="map-spotlight-desc">The framework under every map and the Sparkverse — Release, Select, Witness.</div>
+                <div class="map-spotlight-enter">Study →</div>
+            </a>
+            <a href="compare.html" class="map-spotlight-card">
+                <div class="map-spotlight-sub">Tool</div>
+                <div class="map-spotlight-name">Compare Maps</div>
+                <div class="map-spotlight-desc">Put two player cards side by side. See how the numbers stack, clash, or complete each other.</div>
+                <div class="map-spotlight-enter">Compare →</div>
+            </a>
+            <a href="family-resonance-index.html" class="map-spotlight-card">
+                <div class="map-spotlight-sub">Lineage</div>
+                <div class="map-spotlight-name">Family Resonance</div>
+                <div class="map-spotlight-desc">Verified bonds, frequency match scores, and lineage echoes across the constellation.</div>
+                <div class="map-spotlight-enter">Open →</div>
+            </a>
+            <a href="tree-of-life.html" class="map-spotlight-card">
+                <div class="map-spotlight-sub">Free atlas</div>
+                <div class="map-spotlight-name">Tree of Life</div>
+                <div class="map-spotlight-desc">Ten stations, twenty-two roads — every route a soul can take, mapped in one ebook.</div>
+                <div class="map-spotlight-enter">Read →</div>
+            </a>
+        </div>
     </div>
 
     <div class="divider"></div>
@@ -1515,26 +1537,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <a href="https://whop.com/checkout/plan_anQKP3Pzf1cGm" class="cta-pay-btn" target="_blank" rel="noopener noreferrer">Get Mine →</a>
 </div>
-
-<script src="https://thefirstspark.shop/js/soul-map-rotation.js"></script>
-<script src="https://thefirstspark.shop/js/soul-map-rotation-ui.js"></script>
-<script>
-(function () {
-    SoulMapRotation.renderSpotlight(document.getElementById('mapSpotlight'), {
-        count: 3,
-        showArchiveLink: false,
-        showRotationMeta: true
-    });
-
-    var result = SoulMapRotation.getFeaturedMaps(window.SOUL_MAP_ROTATION || [], 3);
-    var featuredHrefs = new Set(result.featured.map(function (m) { return m.href; }));
-
-    document.querySelectorAll('#cards-list .card').forEach(function (card) {
-        var href = card.getAttribute('href');
-        if (href && featuredHrefs.has(href)) card.classList.add('featured-today');
-    });
-})();
-</script>
 
 <script>
     const input   = document.getElementById('search');

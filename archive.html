@@ -114,6 +114,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .card:hover .card-arrow { opacity: 1; right: 20px; }
         .no-results { display: none; text-align: center; padding: 48px 0; font-size: .78em; color: rgba(224,231,255,.2); letter-spacing: .1em; font-style: italic; }
 
+        .guides-wrap { margin: 8px 0 28px; }
+        .guides-head { text-align:center; margin-bottom: 22px; }
+        .guides-head h2 { font-family:'Orbitron',sans-serif; font-size:1rem; letter-spacing:.14em; color:#e0e7ff; margin-bottom:8px; }
+        .guides-head p { font-size:.75em; color:#9ca3af; letter-spacing:.08em; }
+        .guides-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; }
+        .guide-card { display:flex; flex-direction:column; padding:22px 20px; border:1px solid rgba(107,77,242,.35); background:rgba(107,77,242,.08); text-decoration:none; color:inherit; transition:transform .2s,border-color .2s,box-shadow .2s; }
+        .guide-card:hover { transform:translateY(-3px); border-color:#a78bfa; box-shadow:0 8px 28px rgba(107,77,242,.22); }
+        .guide-sub { font-size:.55em; letter-spacing:.12em; text-transform:uppercase; color:rgba(224,231,255,.45); margin-bottom:6px; }
+        .guide-name { font-family:'Orbitron',sans-serif; font-size:.72rem; letter-spacing:.08em; color:#c4b5fd; margin-bottom:8px; }
+        .guide-desc { font-size:.72em; color:#9ca3af; line-height:1.65; margin-bottom:12px; }
+        .guide-enter { font-size:.52em; letter-spacing:.2em; text-transform:uppercase; color:var(--codex-gold); margin-top:auto; }
+
         .cta-wrap { text-align:center; padding:36px 24px 40px; border:1px solid rgba(212,175,55,.4); background:rgba(212,175,55,.03); margin:10px 0 30px; }
         .cta-lbl { font-size:.6em; letter-spacing:4px; text-transform:uppercase; color:var(--codex-gold); opacity:.7; margin-bottom:12px; }
         .cta-price-big { font-size:clamp(2.4rem,10vw,4.5rem); font-weight:700; color:var(--codex-gold-light); margin-bottom:6px; text-shadow:0 0 30px rgba(212,175,55,.4); }
@@ -210,6 +222,53 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <input type="text" id="search" placeholder="Search by name, life path, sign, keyword…" autocomplete="off" spellcheck="false">
     </div>
     <div class="search-count" id="search-count"></div>
+    <div class="divider"></div>
+
+    <div class="guides-wrap" id="guides">
+        <div class="guides-head">
+            <h2>◈ USEFUL INFO ◈</h2>
+            <p>How the maps work — plus tools to go deeper.</p>
+        </div>
+        <div class="guides-grid">
+            <a href="https://thefirstspark.shop/what-is-a-soul-map.html" class="guide-card">
+                <div class="guide-sub">Explainer</div>
+                <div class="guide-name">What is a Soul Map?</div>
+                <div class="guide-desc">The product in plain English — what you get, how it's calculated, and why it isn't a horoscope.</div>
+                <div class="guide-enter">Read →</div>
+            </a>
+            <a href="color-codex.html" class="guide-card">
+                <div class="guide-sub">Color system</div>
+                <div class="guide-name">The Color Codex</div>
+                <div class="guide-desc">Eleven frequencies sort the archive. Your core color is set at birth — here's what each one means.</div>
+                <div class="guide-enter">Decode →</div>
+            </a>
+            <a href="https://thefirstspark.shop/selector-model-ip.html" class="guide-card">
+                <div class="guide-sub">The engine</div>
+                <div class="guide-name">The Selector Model</div>
+                <div class="guide-desc">The framework under every map and the Sparkverse — Release, Select, Witness.</div>
+                <div class="guide-enter">Study →</div>
+            </a>
+            <a href="compare.html" class="guide-card">
+                <div class="guide-sub">Tool</div>
+                <div class="guide-name">Compare Maps</div>
+                <div class="guide-desc">Put two player cards side by side. See how the numbers stack, clash, or complete each other.</div>
+                <div class="guide-enter">Compare →</div>
+            </a>
+            <a href="family-resonance-index.html" class="guide-card">
+                <div class="guide-sub">Lineage</div>
+                <div class="guide-name">Family Resonance</div>
+                <div class="guide-desc">Verified bonds, frequency match scores, and lineage echoes across the constellation.</div>
+                <div class="guide-enter">Open →</div>
+            </a>
+            <a href="tree-of-life.html" class="guide-card">
+                <div class="guide-sub">Free atlas</div>
+                <div class="guide-name">Tree of Life</div>
+                <div class="guide-desc">Ten stations, twenty-two roads — every route a soul can take, mapped in one ebook.</div>
+                <div class="guide-enter">Read →</div>
+            </a>
+        </div>
+    </div>
+
     <div class="divider"></div>
     <style>
       .jg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;}
