@@ -1661,5 +1661,27 @@
     "formula_version": 1,
     "birth_city": "porbandar india",
     "birth_country": "US"
+  },
+  "abraham lincoln|1809-02-12": {
+    "name": "Abraham Lincoln",
+    "dob": "1809-02-12",
+    "quantum": "9DDE15430334",
+    "quantum_display": "9DDE·1543·0334",
+    "resonance_hz": 555.38,
+    "activation": "846B8881[LP5]",
+    "codex_color": "silver",
+    "codex_role": "The Reflector",
+    "codex_tier": "Silver",
+    "core": {
+      "life_path": 5,
+      "expression": 6,
+      "soul_urge": 9,
+      "personality": 6,
+      "birthday": 3
+    },
+    "minted_at": "2026-09-02T02:25:42Z",
+    "formula_version": 1,
+    "birth_city": "sinking spring farm hodgenville, kentucky",
+    "birth_country": "US"
   }
 }
