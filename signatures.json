@@ -1749,5 +1749,27 @@
     "formula_version": 1,
     "birth_city": "Tur'i Remety, Zakarpats'ka, Ukraine,",
     "birth_country": "US"
+  },
+  "james michael puzakulics|1950-02-04": {
+    "name": "james michael puzakulics",
+    "dob": "1950-02-04",
+    "quantum": "C7BCB868AB4D",
+    "quantum_display": "C7BC·B868·AB4D",
+    "resonance_hz": 648.0,
+    "activation": "66B6FBB9[LP3]",
+    "codex_color": "violet",
+    "codex_role": "The Transformer",
+    "codex_tier": "Purple",
+    "core": {
+      "life_path": 3,
+      "expression": 4,
+      "soul_urge": 1,
+      "personality": 3,
+      "birthday": 4
+    },
+    "minted_at": "2026-09-02T02:40:37Z",
+    "formula_version": 1,
+    "birth_city": "akron, ohio",
+    "birth_country": "US"
   }
 }
