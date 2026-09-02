@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4Z6GH2N');</script>
+<!-- End Google Tag Manager -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#050818">
+<title>Soul Card — The First Spark</title>
+<meta name="description" content="A shareable Soul Card minted from a Soul Map: Color Codex tier, Impossible Code, core numbers, resonance.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://soul-maps.thefirstspark.shop/card.html">
+<meta property="og:title" content="Soul Card — The First Spark">
+<meta property="og:description" content="Every Soul Map mints a Soul Card. Download yours, share it, collide it.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://thefirstspark.shop/preview-soulmaps.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="codex-colors.css">
+<script src="codex-wheel.js"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FPHDDHSCWS"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FPHDDHSCWS');
+</script>
+<style>
+:root{ --void:#050818; --ink:#e0e7ff; --dim:#6b7280; --spark:#fbbf24; --nebula:#8b5cf6; --cyan:#22d3ee; --hot-pink:#ec4899; --tier:#8b5cf6; }
+*{ box-sizing:border-box; }
+body{ margin:0; min-height:100vh; padding:40px 16px 80px; color:var(--ink); font-family:'Space Mono','Courier New',monospace;
+  background: radial-gradient(ellipse at 20% 10%, rgba(107,77,242,.18) 0%, transparent 55%),
+              radial-gradient(ellipse at 85% 30%, rgba(255,106,61,.14) 0%, transparent 50%),
+              radial-gradient(ellipse at 50% 90%, rgba(38,228,216,.12) 0%, transparent 55%), var(--void); }
+.top{ font-family:'Orbitron',sans-serif; font-size:.7rem; letter-spacing:4px; text-transform:uppercase; text-align:center; margin-bottom:28px; }
+.top a{ color:#c4b5fd; text-decoration:none; } .top a:hover{ color:var(--spark); }
+main{ max-width:520px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:22px; }
+#state-card{ display:flex; flex-direction:column; align-items:center; gap:22px; width:100%; }
+.stage{ width:min(100%,420px); aspect-ratio:9/16; border-radius:18px; overflow:hidden;
+  box-shadow:0 0 0 1px rgba(255,255,255,.08), 0 30px 80px -20px color-mix(in srgb, var(--tier) 55%, transparent); }
+.stage canvas{ display:block; width:100%; height:100%; max-width:100%; }
+.meta{ text-align:center; } .meta h1{ font-family:'Orbitron',sans-serif; font-size:1.05rem; letter-spacing:3px; text-transform:uppercase; margin:0 0 6px; color:#f0f0ff; }
+.meta .role{ color:var(--tier); font-size:.78rem; letter-spacing:3px; text-transform:uppercase; } .meta .q{ color:var(--cyan); font-size:1.1rem; letter-spacing:4px; margin-top:8px; user-select:all; }
+.actions{ display:grid; grid-template-columns:1fr 1fr; gap:10px; width:min(100%,420px); }
+.btn{ display:block; text-align:center; padding:13px 14px; border:1px solid rgba(139,92,246,.55); border-radius:8px; background:rgba(10,8,25,.9); color:#e0e7ff;
+  font-family:'Space Mono',monospace; font-size:.72rem; letter-spacing:2px; text-transform:uppercase; text-decoration:none; cursor:pointer; transition:background .2s,color .2s,border-color .2s; }
+.btn:hover{ background:var(--nebula); color:#0a0a12; }
+.btn.hot{ grid-column:1/-1; border-color:var(--hot-pink); color:#fff; background:linear-gradient(135deg,var(--hot-pink),var(--nebula)); font-weight:700; } .btn.hot:hover{ filter:brightness(1.15); }
+.state{ text-align:center; max-width:420px; } .state h2{ font-family:'Orbitron',sans-serif; letter-spacing:3px; font-size:1rem; color:var(--spark); }
+.state p{ font-size:.85rem; line-height:1.7; color:#a5b4fc; } .state code{ color:var(--cyan); }
+.state form{ display:flex; gap:8px; justify-content:center; margin:14px 0; } .state input{ background:rgba(10,8,25,.9); border:1px solid rgba(139,92,246,.45); color:#e0e7ff; padding:10px 12px; font-family:inherit; letter-spacing:2px; width:200px; }
+#toast{ position:fixed; left:50%; bottom:28px; transform:translateX(-50%) translateY(20px); opacity:0; background:#0a0819; border:1px solid var(--nebula); color:#e0e7ff; padding:10px 18px; font-size:.72rem; letter-spacing:2px; border-radius:6px; transition:opacity .25s, transform .25s; pointer-events:none; }
+#toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+[hidden]{ display:none !important; }
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N4Z6GH2N"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<header class="top"><a href="index.html">◈ Soul Maps</a> &nbsp;·&nbsp; <a href="archive.html">Archive</a> &nbsp;·&nbsp; <a href="color-codex.html">Color Codex</a></header>
+<main id="app">
+  <section id="state-loading" class="state"><h2>Reading the registry…</h2></section>
+
+  <section id="state-card" hidden>
+    <div class="stage"><canvas id="card" width="1080" height="1920" role="img" aria-label="Soul Card"></canvas></div>
+    <div class="meta"><h1 id="m-name"></h1><div class="role" id="m-role"></div><div class="q" id="m-quantum"></div></div>
+    <div class="actions">
+      <button class="btn" id="btn-download" type="button">Download PNG</button>
+      <button class="btn" id="btn-share" type="button">Share</button>
+      <button class="btn" id="btn-copy" type="button">Copy card link</button>
+      <a class="btn" id="btn-codex" href="color-codex.html">Read the tier</a>
+      <a class="btn hot" id="btn-collide" target="_blank" rel="noopener">Collide with me →</a>
+    </div>
+  </section>
+
+  <section id="state-missing" class="state" hidden>
+    <h2 id="miss-title"></h2>
+    <p id="miss-body"></p>
+    <form id="miss-form"><input id="miss-input" placeholder="E1855DD782A3" maxlength="16" aria-label="Soul Card ID"><button class="btn" type="submit">Open</button></form>
+    <div class="actions" style="margin:0 auto">
+      <a class="btn hot" href="https://whop.com/checkout/plan_anQKP3Pzf1cGm">Claim your Soul Map — $22</a>
+      <a class="btn" href="archive.html">Browse the archive</a>
+      <a class="btn" href="https://thefirstspark.shop/soul-pattern-generator.html">Preview free</a>
+    </div>
+  </section>
+</main>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>
+(function(){
+  'use strict';
+  const REGISTRY_URL = './signatures.json';
+  const CANON = 'https://soul-maps.thefirstspark.shop/card.html';
+  const FREQ  = 'https://frequency.thefirstspark.shop/';
+  const FALLBACK = [
+    {color:'Ember',  role:'The First Heat',   hex:'#ff6a3d', dark:false},
+    {color:'Red',    role:'The Will',         hex:'#e24b4a', dark:false},
+    {color:'Gold',   role:'The Orchestrator', hex:'#d4af37', dark:true},
+    {color:'Green',  role:'The Field',        hex:'#10b981', dark:false},
+    {color:'Cyan',   role:'The Signal',       hex:'#22d3ee', dark:true},
+    {color:'Blue',   role:'The Mind',         hex:'#3b82f6', dark:false},
+    {color:'Purple', role:'The Transformer',  hex:'#8b5cf6', dark:false},
+    {color:'Rose',   role:'The Bond',         hex:'#f43f5e', dark:false},
+    {color:'White',  role:'The All',          hex:'#f0f0ff', dark:true},
+    {color:'Silver', role:'The Reflector',    hex:'#c4c8d4', dark:true},
+    {color:'Yellow', role:'The Joy',          hex:'#f5c842', dark:true}
+  ];
+  const DEFAULT_TIER = {color:'Purple', role:'The Transformer', hex:'#8b5cf6', dark:false};
+
+  const $ = id => document.getElementById(id);
+  const normId = raw => String(raw||'').replace(/[^0-9a-f]/gi,'').toUpperCase();
+  const cardNo = n => '№ ' + String(n).padStart(3,'0');
+  const pad3 = n => String(n).padStart(3,'0');
+  const slug = s => String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+  const escapeHtml = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+  function rgba(hex, a){
+    const h = String(hex).replace('#','');
+    const v = h.length === 3 ? h.split('').map(c => c + c).join('') : h;
+    const n = parseInt(v, 16);
+    return 'rgba(' + ((n>>16)&255) + ',' + ((n>>8)&255) + ',' + (n&255) + ',' + a + ')';
+  }
+  function mulberry32(a){ return function(){ a|=0; a=a+0x6D2B79F5|0; let t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+
+  async function loadRegistry(){ const r = await fetch(REGISTRY_URL, {cache:'no-cache'}); if(!r.ok) throw new Error('registry '+r.status); return r.json(); }
+  function resolve(reg, id){
+    const q = normId(id); if (q.length !== 12) return null;
+    const keys = Object.keys(reg);
+    for (let i = 0; i < keys.length; i++){ const e = reg[keys[i]]; if (e && e.quantum && String(e.quantum).toUpperCase() === q) return { entry:e, key:keys[i], number:i+1 }; }
+    return null;
+  }
+  function tierFor(entry){
+    let color = (entry.codex_color || entry.codex_tier || '').toLowerCase();
+    if (color === 'violet') color = 'purple';
+    const table = (window.CODEX_WHEEL_TIERS && window.CODEX_WHEEL_TIERS.length) ? window.CODEX_WHEEL_TIERS : FALLBACK;
+    return table.find(t => String(t.color).toLowerCase() === color) || DEFAULT_TIER;
+  }
+
+  let toastTimer = null;
+  function toast(msg){ const t = $('toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 1800); }
+  function show(id){ ['state-loading','state-card','state-missing'].forEach(s => { $(s).hidden = (s !== id); }); }
+
+  function showMissing(title, bodyHtml, opts){
+    opts = opts || {};
+    $('miss-title').textContent = title;
+    $('miss-body').innerHTML = bodyHtml;
+    const form = $('miss-form');
+    form.hidden = !!opts.hideForm;
+    $('miss-input').value = opts.prefill || '';
+    show('state-missing');
+  }
+
+  // ---------- canvas helpers ----------
+  function roundRectPath(ctx, x, y, w, h, r){
+    if (typeof ctx.roundRect === 'function'){ ctx.beginPath(); ctx.roundRect(x, y, w, h, r); return; }
+    ctx.beginPath();
+    ctx.moveTo(x + r, y); ctx.lineTo(x + w - r, y); ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+    ctx.lineTo(x + w, y + h - r); ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    ctx.lineTo(x + r, y + h); ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+    ctx.lineTo(x, y + r); ctx.quadraticCurveTo(x, y, x + r, y); ctx.closePath();
+  }
+  const hasLS = ctx => ('letterSpacing' in ctx);
+  function setLS(ctx, px){ if (hasLS(ctx)) ctx.letterSpacing = px + 'px'; }
+  function text(ctx, str, x, y, font, fill, ls, shadow){
+    ctx.font = font; ctx.fillStyle = fill; setLS(ctx, ls || 0);
+    if (shadow){ ctx.shadowColor = shadow.color; ctx.shadowBlur = shadow.blur; } else { ctx.shadowColor = 'transparent'; ctx.shadowBlur = 0; }
+    ctx.fillText(str, x + ((ls && hasLS(ctx)) ? ls/2 : 0), y);   // Chromium counts trailing letterSpacing in width
+    ctx.shadowColor = 'transparent'; ctx.shadowBlur = 0; setLS(ctx, 0);
+  }
+  function radial(ctx, x, y, r0, r1, c0, c1){ const g = ctx.createRadialGradient(x, y, r0, x, y, r1); g.addColorStop(0, c0); g.addColorStop(1, c1); return g; }
+
+  function drawSigil(ctx, q, lp, T){
+    const cx = 540, cy = 640, R = 300;
+    const n = [...q].map(c => parseInt(c, 16));
+    const node = i => { const a = (i*30 + (n[i]/16)*30 - 90) * Math.PI/180; const r = 120 + (n[(i+5)%12]/15) * 180; return [cx + r*Math.cos(a), cy + r*Math.sin(a), r, a]; };
+    const P = Array.from({length:12}, (_, i) => node(i));
+
+    // Aura
+    ctx.fillStyle = radial(ctx, cx, cy, 0, 360, rgba(T,.55), rgba(T,0)); ctx.beginPath(); ctx.arc(cx, cy, 360, 0, Math.PI*2); ctx.fill();
+
+    // 1. rings + ticks
+    ctx.lineWidth = 1.5; ctx.strokeStyle = rgba(T,.35); ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI*2); ctx.stroke();
+    ctx.strokeStyle = rgba(T,.5); ctx.lineWidth = 1.5;
+    for (let k = 0; k < 12; k++){ const a = (k*30 - 90) * Math.PI/180; ctx.beginPath(); ctx.moveTo(cx + 292*Math.cos(a), cy + 292*Math.sin(a)); ctx.lineTo(cx + 308*Math.cos(a), cy + 308*Math.sin(a)); ctx.stroke(); }
+    ctx.lineWidth = 1; ctx.strokeStyle = rgba(T,.25); ctx.beginPath(); ctx.arc(cx, cy, 120, 0, Math.PI*2); ctx.stroke();
+    ctx.setLineDash([4,10]); ctx.strokeStyle = 'rgba(255,255,255,.12)'; ctx.beginPath(); ctx.arc(cx, cy, 210, 0, Math.PI*2); ctx.stroke(); ctx.setLineDash([]);
+
+    // 2. web chords
+    ctx.strokeStyle = 'rgba(255,255,255,.16)'; ctx.lineWidth = 1;
+    for (let i = 0; i < 12; i++){ const j = (i + 3 + (n[i] % 5)) % 12; ctx.beginPath(); ctx.moveTo(P[i][0], P[i][1]); ctx.lineTo(P[j][0], P[j][1]); ctx.stroke(); }
+
+    // 3. constellation polygon
+    ctx.beginPath(); ctx.moveTo(P[0][0], P[0][1]); for (let i = 1; i < 12; i++) ctx.lineTo(P[i][0], P[i][1]); ctx.closePath();
+    ctx.strokeStyle = T; ctx.lineWidth = 2.5; ctx.shadowColor = rgba(T,.9); ctx.shadowBlur = 18; ctx.stroke();
+    ctx.shadowColor = 'transparent'; ctx.shadowBlur = 0;
+
+    // 4. nodes
+    const maxN = Math.max(...n);
+    let sparkDrawn = false;
+    for (let i = 0; i < 12; i++){
+      const r = 4 + (n[i] % 4) * 2;
+      ctx.fillStyle = rgba(T,.25); ctx.beginPath(); ctx.arc(P[i][0], P[i][1], r + 6, 0, Math.PI*2); ctx.fill();
+      ctx.fillStyle = T; ctx.beginPath(); ctx.arc(P[i][0], P[i][1], r, 0, Math.PI*2); ctx.fill();
+      if (!sparkDrawn && n[i] === maxN){ sparkDrawn = true; ctx.strokeStyle = '#fbbf24'; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(P[i][0], P[i][1], r + 10, 0, Math.PI*2); ctx.stroke(); }
+    }
+
+    // 5. core glyph
+    text(ctx, String(lp), cx, cy + 54, '900 150px Orbitron', '#f0f0ff', 0, {color: rgba(T,1), blur: 40});
+    text(ctx, 'LIFE PATH', cx, cy + 96, '400 16px "Space Mono"', 'rgba(224,231,255,.5)', 5);
+
+    // 6. master halo
+    if ([11,22,33].includes(Number(lp))){ ctx.strokeStyle = 'rgba(251,191,36,.18)'; ctx.lineWidth = 1; [330,345,360].forEach(r => { ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI*2); ctx.stroke(); }); }
+  }
+
+  function drawCard(canvas, data){
+    const { entry, q, n, t } = data;
+    const T = t.hex;
+    const ctx = canvas.getContext('2d');
+    ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
+    ctx.setTransform(1,0,0,1,0,0); ctx.clearRect(0,0,1080,1920);
+
+    // 0 background
+    ctx.fillStyle = '#050818'; ctx.fillRect(0, 0, 1080, 1920);
+    // 1 aurora
+    ctx.fillStyle = radial(ctx, 540, 640, 0, 760, rgba(T,.42), rgba(T,0)); ctx.fillRect(0,0,1080,1920);
+    ctx.fillStyle = radial(ctx, 120, 1720, 0, 620, 'rgba(139,92,246,.20)', 'rgba(139,92,246,0)'); ctx.fillRect(0,0,1080,1920);
+    ctx.fillStyle = radial(ctx, 980, 1840, 0, 520, 'rgba(34,211,238,.14)', 'rgba(34,211,238,0)'); ctx.fillRect(0,0,1080,1920);
+    // 2 starfield
+    const rnd = mulberry32(parseInt(q.slice(0,8), 16));
+    for (let i = 0; i < 160; i++){
+      const x = rnd()*1080, y = rnd()*1920, r = .6 + rnd()*1.6, a = .25 + rnd()*.65;
+      ctx.globalAlpha = a; ctx.fillStyle = '#e0e7ff'; ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI*2); ctx.fill();
+      if (i % 12 === 0){ ctx.globalAlpha = .8; ctx.strokeStyle = '#fbbf24'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(x - 3*r, y); ctx.lineTo(x + 3*r, y); ctx.moveTo(x, y - 3*r); ctx.lineTo(x, y + 3*r); ctx.stroke(); }
+    }
+    ctx.globalAlpha = 1;
+    // 3 frame
+    roundRectPath(ctx, 48, 48, 984, 1824, 36); ctx.strokeStyle = rgba(T,.85); ctx.lineWidth = 3; ctx.stroke();
+    roundRectPath(ctx, 72, 72, 936, 1776, 28); ctx.strokeStyle = 'rgba(255,255,255,.08)'; ctx.lineWidth = 1; ctx.stroke();
+    ctx.strokeStyle = rgba(T,.6); ctx.lineWidth = 2;
+    [[72,72,1,1],[1008,72,-1,1],[72,1848,1,-1],[1008,1848,-1,-1]].forEach(([x,y,sx,sy]) => { ctx.beginPath(); ctx.moveTo(x, y + sy*40); ctx.lineTo(x, y); ctx.lineTo(x + sx*40, y); ctx.stroke(); });
+    // 4 header
+    text(ctx, 'THE FIRST SPARK · SOUL CARD', 540, 150, '700 26px Orbitron', '#fbbf24', 8);
+    text(ctx, cardNo(n), 540, 198, '400 28px "Space Mono"', 'rgba(224,231,255,.62)', 6);
+    // 5 sigil
+    const core = entry.core || {};
+    drawSigil(ctx, q, core.life_path != null ? core.life_path : '—', T);
+    // 6 name
+    const name = String(entry.name || '').toUpperCase();
+    let N = 64; setLS(ctx, 4);
+    ctx.font = '900 ' + N + 'px Orbitron';
+    while (ctx.measureText(name).width > 900 && N > 40){ N -= 2; ctx.font = '900 ' + N + 'px Orbitron'; }
+    const nameShadow = {color: rgba(T,.9), blur: 30};
+    if (ctx.measureText(name).width <= 900){
+      text(ctx, name, 540, 1060, '900 ' + N + 'px Orbitron', '#f0f0ff', 4, nameShadow);
+    } else {
+      ctx.font = '900 44px Orbitron'; setLS(ctx, 4);
+      const words = name.split(' '); let line1 = name, line2 = '';
+      for (let k = words.length - 1; k > 0; k--){ const a = words.slice(0, k).join(' '); if (ctx.measureText(a).width <= 900){ line1 = a; line2 = words.slice(k).join(' '); break; } }
+      text(ctx, line1, 540, 1030, '900 44px Orbitron', '#f0f0ff', 4, nameShadow);
+      text(ctx, line2, 540, 1090, '900 44px Orbitron', '#f0f0ff', 4, nameShadow);
+    }
+    setLS(ctx, 0);
+    // 7 badge
+    const tierName = String(entry.codex_tier || t.color).toUpperCase();
+    const role = String(entry.codex_role || t.role).toUpperCase();
+    const badge = tierName + ' · ' + role;
+    ctx.font = '700 24px Orbitron'; setLS(ctx, 4);
+    const bw = ctx.measureText(badge).width + 72;
+    setLS(ctx, 0);
+    ctx.shadowColor = rgba(T,.7); ctx.shadowBlur = 24;
+    roundRectPath(ctx, 540 - bw/2, 1110, bw, 60, 30); ctx.fillStyle = T; ctx.fill();
+    ctx.shadowColor = 'transparent'; ctx.shadowBlur = 0;
+    text(ctx, badge, 540, 1149, '700 24px Orbitron', t.dark ? '#0b0b16' : '#ffffff', 4);
+    // 8 impossible code
+    text(ctx, 'IMPOSSIBLE CODE', 540, 1222, '400 20px "Space Mono"', 'rgba(224,231,255,.55)', 6);
+    const qd = entry.quantum_display || (q.slice(0,4) + '·' + q.slice(4,8) + '·' + q.slice(8,12));
+    text(ctx, qd, 540, 1290, '700 64px "Space Mono"', '#22d3ee', 6, {color:'rgba(34,211,238,.6)', blur:20});
+    // 9 core row
+    const cols = [156, 348, 540, 732, 924];
+    const labels = ['LIFE PATH','EXPRESSION','SOUL URGE','PERSONALITY','BIRTHDAY'];
+    const keys = ['life_path','expression','soul_urge','personality','birthday'];
+    cols.forEach((x, i) => {
+      text(ctx, labels[i], x, 1372, '400 17px "Space Mono"', 'rgba(224,231,255,.55)', 3);
+      const v = core[keys[i]];
+      const vs = (v === undefined || v === null || v === '') ? '—' : String(v);
+      if ([11,22,33].includes(Number(v))){ ctx.globalAlpha = .9; ctx.strokeStyle = '#fbbf24'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(x, 1420, 48, 0, Math.PI*2); ctx.stroke(); ctx.globalAlpha = 1; }
+      text(ctx, vs, x, 1440, '700 56px Orbitron', T, 0);
+    });
+    // 10 divider
+    ctx.strokeStyle = 'rgba(255,255,255,.12)'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(140, 1500); ctx.lineTo(940, 1500); ctx.stroke();
+    ctx.fillStyle = T; ctx.beginPath(); ctx.moveTo(540, 1494); ctx.lineTo(546, 1500); ctx.lineTo(540, 1506); ctx.lineTo(534, 1500); ctx.closePath(); ctx.fill();
+    // 11 resonance / activation
+    text(ctx, 'RESONANCE', 340, 1566, '400 17px "Space Mono"', 'rgba(224,231,255,.55)', 3);
+    const hz = Number(entry.resonance_hz);
+    text(ctx, (isFinite(hz) ? hz.toFixed(2) : '—') + ' Hz', 340, 1626, '700 44px "Space Mono"', '#fbbf24', 0);
+    text(ctx, 'ACTIVATION', 740, 1566, '400 17px "Space Mono"', 'rgba(224,231,255,.55)', 3);
+    const act = String(entry.activation || '—');
+    ctx.font = '700 34px "Space Mono"'; setLS(ctx, 0);
+    const actFont = ctx.measureText(act).width > 360 ? '700 28px "Space Mono"' : '700 34px "Space Mono"';
+    text(ctx, act, 740, 1626, actFont, '#ec4899', 0);
+    ctx.strokeStyle = 'rgba(255,255,255,.1)'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(540, 1550); ctx.lineTo(540, 1650); ctx.stroke();
+    // 12 minted
+    const minted = String(entry.minted_at || '').slice(0,10) || '—';
+    text(ctx, 'MINTED ' + minted + ' · FORMULA v' + (entry.formula_version || 1), 540, 1716, '400 20px "Space Mono"', 'rgba(224,231,255,.5)', 3);
+    // 13 footer
+    text(ctx, 'soul-maps.thefirstspark.shop/card.html?id=' + q, 540, 1798, '400 20px "Space Mono"', 'rgba(224,231,255,.45)', 0);
+    text(ctx, 'COLLIDE AT FREQUENCY.THEFIRSTSPARK.SHOP', 540, 1840, '400 17px "Space Mono"', 'rgba(34,211,238,.7)', 3);
+  }
+
+  async function waitFonts(){
+    try {
+      await Promise.race([ Promise.all([
+        document.fonts.load('900 64px Orbitron'), document.fonts.load('700 26px Orbitron'),
+        document.fonts.load('700 64px "Space Mono"'), document.fonts.load('400 20px "Space Mono"') ]),
+        new Promise(r => setTimeout(r, 3000)) ]);
+    } catch (e) { /* degrade to whatever font is available */ }
+  }
+
+  function pngBlob(canvas){ return new Promise(res => canvas.toBlob(b => res(b), 'image/png')); }
+  function copyText(str){
+    if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(str);
+    return new Promise((res, rej) => {
+      const ta = document.createElement('textarea'); ta.value = str; ta.setAttribute('readonly',''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      let ok = false; try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+      document.body.removeChild(ta); ok ? res() : rej(new Error('copy failed'));
+    });
+  }
+
+  function wire(canvas, data){
+    const { entry, q, n, t } = data;
+    const url = CANON + '?id=' + q;
+    const dlName = 'soul-card-' + pad3(n) + '-' + slug(entry.name) + '-' + q + '.png';
+    const role = entry.codex_role || t.role;
+    const qd = entry.quantum_display || q;
+
+    $('btn-download').addEventListener('click', async () => {
+      const b = await pngBlob(canvas); if (!b) { toast('Could not render PNG'); return; }
+      const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = dlName; document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 4000); toast('PNG saved');
+    });
+    $('btn-share').addEventListener('click', async () => {
+      const title = entry.name + ' — Soul Card ' + cardNo(n);
+      const textStr = role + ' · ' + qd;
+      try {
+        const b = await pngBlob(canvas);
+        const file = b ? new File([b], dlName, {type:'image/png'}) : null;
+        if (file && navigator.canShare && navigator.canShare({files:[file]}) && navigator.share){ await navigator.share({files:[file], title, text:textStr, url}); return; }
+        if (navigator.share){ await navigator.share({title, text:textStr, url}); return; }
+        await copyText(url); toast('Link copied');
+      } catch (e) {
+        if (e && e.name === 'AbortError') return;
+        try { await copyText(url); toast('Link copied'); } catch (e2) { toast('Could not share'); }
+      }
+    });
+    $('btn-copy').addEventListener('click', async () => {
+      try { await copyText(url); toast('Link copied'); } catch (e) { toast('Copy failed'); }
+    });
+    $('btn-collide').href = FREQ + '?p1=' + q;
+    $('btn-codex').href = 'color-codex.html#' + String(t.color).toLowerCase();
+  }
+
+  async function main(){
+    const params = new URLSearchParams(location.search);
+    const rawId = params.get('id') != null ? params.get('id') : params.get('q');
+    $('miss-form').addEventListener('submit', e => { e.preventDefault(); location.search = '?id=' + normId($('miss-input').value); });
+
+    let reg;
+    try { reg = await loadRegistry(); }
+    catch (e) {
+      console.warn('Soul Card: registry fetch failed', e && e.message);
+      showMissing('REGISTRY OFFLINE', 'The signature registry didn’t answer. Try again in a minute.', {hideForm:true});
+      return;
+    }
+    if (rawId == null || normId(rawId) === ''){
+      showMissing('WHICH CARD?', 'Enter a Soul Card ID — the 12-character Impossible Code printed on every Soul Map.');
+      return;
+    }
+    const hit = resolve(reg, rawId);
+    if (!hit){
+      showMissing('NO CARD AT THIS COORDINATE', 'Every Soul Card is minted from a Soul Map. <code>' + escapeHtml(rawId) + '</code> isn’t in the registry — it may be mistyped, or the map hasn’t been generated yet.', {prefill: rawId});
+      return;
+    }
+    const entry = hit.entry, n = hit.number, q = normId(rawId), t = tierFor(entry);
+    const data = { entry, q, n, t };
+
+    document.title = entry.name + ' — Soul Card ' + cardNo(n) + ' | The First Spark';
+    document.documentElement.style.setProperty('--tier', t.hex);
+    try { history.replaceState(null, '', '?id=' + q); } catch (e) { /* file:// etc. */ }
+
+    $('m-name').textContent = entry.name || '';
+    $('m-role').textContent = (entry.codex_tier || t.color) + ' · ' + (entry.codex_role || t.role) + ' · ' + cardNo(n);
+    $('m-quantum').textContent = entry.quantum_display || q;
+
+    const canvas = $('card');
+    wire(canvas, data);
+    show('state-card');
+    await waitFonts();
+    drawCard(canvas, data);
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', main); else main();
+})();
+</script>
+</body>
+</html>
