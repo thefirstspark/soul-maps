@@ -1793,5 +1793,27 @@
     "formula_version": 1,
     "birth_city": "youngstown, ohio",
     "birth_country": "US"
+  },
+  "waldo ralph shreve|1888-05-07": {
+    "name": "Waldo Ralph Shreve",
+    "dob": "1888-05-07",
+    "quantum": "A4961676983A",
+    "quantum_display": "A496·1676·983A",
+    "resonance_hz": 668.39,
+    "activation": "7C24C2F0[LP1]",
+    "codex_color": "rose",
+    "codex_role": "The Bond",
+    "codex_tier": "Rose",
+    "core": {
+      "life_path": 1,
+      "expression": 7,
+      "soul_urge": 9,
+      "personality": 7,
+      "birthday": 7
+    },
+    "minted_at": "2026-09-02T02:55:02Z",
+    "formula_version": 1,
+    "birth_city": "ohio",
+    "birth_country": "US"
   }
 }
