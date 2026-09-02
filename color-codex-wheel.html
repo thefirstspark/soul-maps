@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Color Codex Wheel — How Your Soul Color Is Chosen | The First Spark</title>
+<meta name="description" content="The eleven-slice wheel that assigns every Soul Map its color. Your Radiant Number (Life Path + Expression, reduced) lands on exactly one slice.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Color Codex Wheel | The First Spark">
+<meta property="og:description" content="Eleven numbers, eleven colours, one each. See the wheel that decides your soul color.">
+<meta property="og:url" content="https://soul-maps.thefirstspark.shop/color-codex-wheel.html">
+<meta name="twitter:card" content="summary">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://soul-maps.thefirstspark.shop/color-codex-wheel.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="codex-colors.css">
+<style>
+  :root { --bg:#050818; --ink:#e0e7ff; --muted:#9ca3af; --border:rgba(139,92,246,0.22); --amber:#f59e0b; }
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: radial-gradient(ellipse at 18% 8%, rgba(107,77,242,0.16), transparent 52%),
+                radial-gradient(ellipse at 82% 24%, rgba(255,106,61,0.1), transparent 48%), var(--bg);
+    color:var(--ink); font-family:'Space Mono', monospace; line-height:1.65; overflow-x:hidden;
+  }
+  .wrap { max-width:920px; margin:0 auto; padding:0 20px 80px; }
+  .topbar { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;
+    padding:22px 0; border-bottom:1px solid var(--border); margin-bottom:36px;
+    font-size:0.68rem; letter-spacing:0.16em; text-transform:uppercase; }
+  .topbar a { color:var(--muted); text-decoration:none; transition:color .2s; }
+  .topbar a:hover { color:var(--amber); }
+  .topbar .brand { font-family:'Orbitron', sans-serif; color:var(--ink); font-weight:700; }
+  .hero { text-align:center; padding:12px 0 24px; }
+  .kicker { display:inline-block; font-size:0.62rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--amber); margin-bottom:16px; }
+  h1 { font-family:'Orbitron', sans-serif; font-size:clamp(1.5rem,5vw,2.4rem); letter-spacing:0.06em; line-height:1.2; margin-bottom:14px; }
+  .hero-lead { max-width:640px; margin:0 auto; color:var(--muted); font-size:0.86rem; }
+  .hero-lead b { color:var(--ink); font-weight:400; }
+  .wheel { max-width:680px; margin:10px auto 0; }
+  .wheel svg { width:100%; height:auto; display:block; }
+  .wheel a.cw-slice path { transition:filter .2s; }
+  .wheel a.cw-slice:hover path { filter:brightness(1.18); }
+  .wheel-hint { text-align:center; font-size:0.66rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); margin-top:10px; }
+  .how { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:40px 0 10px; }
+  @media (max-width:640px) { .how { grid-template-columns:1fr; } }
+  .step { background:rgba(10,8,25,0.92); border:1px solid var(--border); border-radius:12px; padding:18px 18px 16px; }
+  .step .n { font-family:'Orbitron', sans-serif; color:var(--amber); font-size:0.7rem; letter-spacing:0.2em; margin-bottom:8px; }
+  .step strong { display:block; font-size:0.86rem; margin-bottom:6px; }
+  .step p { font-size:0.72rem; color:var(--muted); line-height:1.6; }
+  .section-label { font-family:'Orbitron', sans-serif; font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--amber); margin:44px 0 6px; }
+  .section-note { font-size:0.74rem; color:var(--muted); margin-bottom:18px; }
+  .tbl-wrap { overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; font-size:0.76rem; background:rgba(10,8,25,0.92); border:1px solid var(--border); border-radius:12px; overflow:hidden; }
+  th, td { padding:10px 12px; text-align:left; border-bottom:1px solid rgba(139,92,246,0.12); white-space:nowrap; }
+  th { font-size:0.6rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted); font-weight:400; }
+  tr:last-child td { border-bottom:none; }
+  td a { color:var(--ink); text-decoration:none; border-bottom:1px dotted var(--border); }
+  td a:hover { color:var(--amber); }
+  .sw { display:inline-block; width:12px; height:12px; border-radius:50%; vertical-align:-1px; margin-right:8px; }
+  .note { margin-top:26px; padding:16px 18px; border:1px solid var(--border); border-radius:12px; background:rgba(10,8,25,0.92); font-size:0.74rem; color:var(--muted); }
+  .note b { color:var(--ink); font-weight:400; }
+  .note a { color:#c4b5fd; }
+  .actions { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:34px; }
+  .btn { display:inline-block; padding:12px 22px; border-radius:8px; border:1px solid var(--amber); color:var(--amber);
+    text-decoration:none; font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; transition:all .2s; }
+  .btn:hover { background:var(--amber); color:var(--bg); }
+  .btn-ghost { border-color:var(--border); color:#c4b5fd; }
+  .btn-ghost:hover { background:rgba(139,92,246,0.15); color:#fff; border-color:#a78bfa; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="topbar">
+    <a href="index.html" class="brand">◈ Soul Maps</a>
+    <div style="display:flex;gap:18px;">
+      <a href="index.html">Archive</a>
+      <a href="color-codex.html">Color Codex</a>
+      <a href="codex-spectrum.html">Spectrum view</a>
+      <a href="tree-of-life.html">Tree of Life</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <span class="kicker">The Color Codex</span>
+    <h1>The wheel that picks your color</h1>
+    <p class="hero-lead">Every Soul Map lands on exactly one slice. Your <b>Radiant Number</b> is your Life Path plus your Expression, reduced. It has eleven possible values. The wheel has eleven slices. Eleven numbers, eleven colours, one each.</p>
+  </header>
+
+  <div class="wheel" id="codex-wheel"></div>
+  <p class="wheel-hint">Tap a slice to read that colour's soul journey</p>
+
+  <div class="how">
+    <div class="step"><div class="n">01</div><strong>Life Path</strong><p>Your birth date, digit by digit, reduced to a single number. Master numbers 11, 22 and 33 are kept whole.</p></div>
+    <div class="step"><div class="n">02</div><strong>Expression</strong><p>Your full birth name, letter by letter, reduced the same way. This is the vessel you arrived in.</p></div>
+    <div class="step"><div class="n">03</div><strong>Radiant</strong><p>Add the two and reduce once more. The result is the slice you land on. It is fixed at birth and does not change.</p></div>
+  </div>
+
+  <h2 class="section-label">The eleven slices</h2>
+  <p class="section-note">Slice order runs clockwise from the top. Radiant 22 and 33 share the last slice.</p>
+  <div class="tbl-wrap">
+  <table id="codex-wheel-table">
+    <thead><tr><th>Slice</th><th>Radiant</th><th>Wheel name</th><th>Colour</th><th>Role</th><th>Journey</th></tr></thead>
+    <tbody></tbody>
+  </table>
+  </div>
+
+  <div class="note"><b>Not the Archetype Wheel.</b> The <a href="sparkverse-archetype-wheel.html">Sparkverse Archetype Wheel</a> is a different instrument. Its twelve nodes and four quadrant glyphs sort archetypes, and its six colours name Core Codes and Realms, not soul colours. This wheel, and only this wheel, decides the colour on your map card.</div>
+
+  <div class="actions">
+    <a class="btn" href="https://whop.com/checkout/plan_anQKP3Pzf1cGm" target="_blank" rel="noopener noreferrer">Get My Soul Map — $22</a>
+    <a class="btn btn-ghost" href="https://thefirstspark.shop/soul-pattern-generator.html">Preview my slice free</a>
+    <a class="btn btn-ghost" href="color-codex.html">Read the Codex</a>
+  </div>
+</div>
+
+<script src="codex-wheel.js"></script>
+<script>
+  renderCodexWheel('#codex-wheel');
+  var tb = document.querySelector('#codex-wheel-table tbody');
+  CODEX_WHEEL_TIERS.forEach(function(t){
+    var s = t.color.toLowerCase();
+    tb.insertAdjacentHTML('beforeend',
+      '<tr><td>'+t.slice+'</td><td>'+t.radiant+'</td><td>'+t.name+'</td>'+
+      '<td><span class="sw" style="background:'+t.hex+'"></span><a href="color-codex.html#'+s+'">'+t.color+'</a></td>'+
+      '<td>'+t.role+'</td><td><a href="'+s+'-soul-journey.html">'+t.color+' journey &rarr;</a></td></tr>');
+  });
+</script>
+</body>
+</html>
