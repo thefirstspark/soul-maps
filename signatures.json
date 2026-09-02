@@ -1683,5 +1683,27 @@
     "formula_version": 1,
     "birth_city": "sinking spring farm hodgenville, kentucky",
     "birth_country": "US"
+  },
+  "michael joseph jackson|1958-08-29": {
+    "name": "Michael Joseph Jackson",
+    "dob": "1958-08-29",
+    "quantum": "E973DA6FF2B4",
+    "quantum_display": "E973·DA6F·F2B4",
+    "resonance_hz": 1313.28,
+    "activation": "C01C263D[LP6]",
+    "codex_color": "cyan",
+    "codex_role": "The Signal",
+    "codex_tier": "Cyan",
+    "core": {
+      "life_path": 6,
+      "expression": 8,
+      "soul_urge": 33,
+      "personality": 11,
+      "birthday": 11
+    },
+    "minted_at": "2026-09-02T02:26:20Z",
+    "formula_version": 1,
+    "birth_city": "gary, indiana",
+    "birth_country": "US"
   }
 }
