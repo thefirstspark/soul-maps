@@ -1771,5 +1771,27 @@
     "formula_version": 1,
     "birth_city": "akron, ohio",
     "birth_country": "US"
+  },
+  "sally jean mccullough|1941-05-07": {
+    "name": "Sally Jean McCullough",
+    "dob": "1941-05-07",
+    "quantum": "203669AA60F3",
+    "quantum_display": "2036·69AA·60F3",
+    "resonance_hz": 610.07,
+    "activation": "BDB9A026[LP9]",
+    "codex_color": "violet",
+    "codex_role": "The Transformer",
+    "codex_tier": "Purple",
+    "core": {
+      "life_path": 9,
+      "expression": 7,
+      "soul_urge": 1,
+      "personality": 6,
+      "birthday": 7
+    },
+    "minted_at": "2026-09-02T02:46:00Z",
+    "formula_version": 1,
+    "birth_city": "youngstown, ohio",
+    "birth_country": "US"
   }
 }
