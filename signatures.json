@@ -1727,5 +1727,27 @@
     "formula_version": 1,
     "birth_city": "los angeles, california",
     "birth_country": "US"
+  },
+  "julianna meska|1862-04-14": {
+    "name": "Julianna Meska",
+    "dob": "1862-04-14",
+    "quantum": "552E2687B7A3",
+    "quantum_display": "552E·2687·B7A3",
+    "resonance_hz": 756.09,
+    "activation": "DF5310E2[LP8]",
+    "codex_color": "green",
+    "codex_role": "The Field",
+    "codex_tier": "Green",
+    "core": {
+      "life_path": 8,
+      "expression": 5,
+      "soul_urge": 2,
+      "personality": 3,
+      "birthday": 5
+    },
+    "minted_at": "2026-09-02T02:39:21Z",
+    "formula_version": 1,
+    "birth_city": "Tur'i Remety, Zakarpats'ka, Ukraine,",
+    "birth_country": "US"
   }
 }
