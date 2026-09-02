@@ -1705,5 +1705,27 @@
     "formula_version": 1,
     "birth_city": "gary, indiana",
     "birth_country": "US"
+  },
+  "norma jeane mortenson (marilyn monroe)|1926-06-01": {
+    "name": "Norma Jeane Mortenson (Marilyn Monroe)",
+    "dob": "1926-06-01",
+    "quantum": "429D8FC34566",
+    "quantum_display": "429D·8FC3·4566",
+    "resonance_hz": 726.54,
+    "activation": "194BD68A[LP7]",
+    "codex_color": "gold",
+    "codex_role": "The Orchestrator",
+    "codex_tier": "Gold",
+    "core": {
+      "life_path": 7,
+      "expression": 5,
+      "soul_urge": 8,
+      "personality": 6,
+      "birthday": 1
+    },
+    "minted_at": "2026-09-02T02:27:16Z",
+    "formula_version": 1,
+    "birth_city": "los angeles, california",
+    "birth_country": "US"
   }
 }
