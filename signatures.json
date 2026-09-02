@@ -1639,5 +1639,27 @@
     "formula_version": 1,
     "birth_city": "akron",
     "birth_country": "US"
+  },
+  "mohandas karamchand gandhi|1869-10-02": {
+    "name": "Mohandas Karamchand Gandhi",
+    "dob": "1869-10-02",
+    "quantum": "F947529CE924",
+    "quantum_display": "F947·529C·E924",
+    "resonance_hz": 537.58,
+    "activation": "EE03BC44[LP9]",
+    "codex_color": "gold",
+    "codex_role": "The Orchestrator",
+    "codex_tier": "Gold",
+    "core": {
+      "life_path": 9,
+      "expression": 3,
+      "soul_urge": 3,
+      "personality": 9,
+      "birthday": 2
+    },
+    "minted_at": "2026-09-02T02:24:57Z",
+    "formula_version": 1,
+    "birth_city": "porbandar india",
+    "birth_country": "US"
   }
 }
