@@ -1815,5 +1815,28 @@
     "formula_version": 1,
     "birth_city": "ohio",
     "birth_country": "US"
+  },
+  "elizabeth anne o'donnell|1981-10-23": {
+    "name": "Elizabeth Anne O'Donnell",
+    "dob": "1981-10-23",
+    "quantum": "5CAC75995177",
+    "quantum_display": "5CAC·7599·5177",
+    "resonance_hz": 802.14,
+    "activation": "9698E23F[LP7]",
+    "codex_color": "green",
+    "codex_role": "The Field",
+    "codex_tier": "Green",
+    "core": {
+      "life_path": 7,
+      "expression": 6,
+      "soul_urge": 7,
+      "personality": 8,
+      "birthday": 5
+    },
+    "minted_at": "2026-09-03T00:03:36Z",
+    "formula_version": 1,
+    "birth_time": "18:24",
+    "birth_city": "Fairlawn",
+    "birth_country": "US"
   }
 }
