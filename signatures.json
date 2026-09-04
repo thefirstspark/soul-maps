@@ -21,7 +21,8 @@
     "note": "Canonical founder mint — real formula + Color Codex purple (EX 11 Transformer)",
     "birth_time": "13:31",
     "birth_city": "Akron",
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "helen puzakulics|1917-12-15": {
     "name": "Helen Puzakulics",
@@ -42,7 +43,8 @@
     },
     "minted_at": "2026-07-23T11:49:46Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "edward joseph puzakulics|1963-01-18": {
     "name": "edward joseph puzakulics",
@@ -63,7 +65,8 @@
     },
     "minted_at": "2026-07-23T11:59:35Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "maureen vivian mccaffrey|1923-12-11": {
     "name": "Maureen Vivian McCaffrey",
@@ -84,7 +87,8 @@
     },
     "minted_at": "2026-07-23T12:02:17Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "christine ann puzakulics|1952-09-13": {
     "name": "Christine Ann Puzakulics",
@@ -105,7 +109,8 @@
     },
     "minted_at": "2026-07-23T12:03:35Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "staci marie ferrell|1988-08-26": {
     "name": "Staci Marie Ferrell",
@@ -129,7 +134,8 @@
     "birth_country": "US",
     "memorial_date": "October 19, 2002",
     "memorial_photo": "media/kateandstaci.jpg",
-    "memorial_photo_caption": "Staci and Katelin"
+    "memorial_photo_caption": "Staci and Katelin",
+    "codex_version": "radiant-wheel-v1"
   },
   "blake harrison smith|2010-08-27": {
     "name": "blake harrison smith",
@@ -150,7 +156,8 @@
     },
     "minted_at": "2026-07-30T02:00:55Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "alexandria kaye muster|1993-12-15": {
     "name": "Alexandria Kaye Muster",
@@ -171,7 +178,8 @@
     },
     "minted_at": "2026-07-30T02:26:44Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "alexandria muster|1993-12-01": {
     "name": "Alexandria Muster",
@@ -192,7 +200,8 @@
     },
     "minted_at": "2026-07-30T02:26:44Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "alan michael kendle|1994-01-31": {
     "name": "ALAN MICHAEL KENDLE",
@@ -213,7 +222,8 @@
     },
     "minted_at": "2026-07-30T02:26:44Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "ann marie puzakulics|1956-08-25": {
     "name": "Ann Marie puzakulics",
@@ -234,7 +244,8 @@
     },
     "minted_at": "2026-07-30T02:26:44Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "ashton rebecca davis|1986-06-04": {
     "name": "Ashton Rebecca Davis",
@@ -255,7 +266,8 @@
     },
     "minted_at": "2026-07-30T02:26:44Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "brian mitchell dupert|1970-05-29": {
     "name": "Brian Mitchell dupert",
@@ -276,7 +288,8 @@
     },
     "minted_at": "2026-07-30T02:26:44Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "benjamin reed carlton|2023-05-23": {
     "name": "Benjamin Reed Carlton",
@@ -297,7 +310,8 @@
     },
     "minted_at": "2026-07-30T02:26:44Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "cody evan’s belford|1987-10-22": {
     "name": "Cody Evan’s belford",
@@ -318,7 +332,8 @@
     },
     "minted_at": "2026-07-30T02:26:44Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "candy sue slaughter|1956-01-25": {
     "name": "Candy sue slaughter",
@@ -339,7 +354,8 @@
     },
     "minted_at": "2026-07-30T02:26:44Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "donald john trump|1946-06-14": {
     "name": "Donald John Trump",
@@ -360,7 +376,8 @@
     },
     "minted_at": "2026-07-30T02:26:44Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "david ray lehman|1984-06-22": {
     "name": "David Ray Lehman",
@@ -381,7 +398,8 @@
     },
     "minted_at": "2026-07-30T02:26:44Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "heather lyn kammer|1987-02-23": {
     "name": "Heather Lyn Kammer",
@@ -402,7 +420,8 @@
     },
     "minted_at": "2026-07-30T02:26:44Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "isabella nicole weber|2007-06-28": {
     "name": "Isabella Nicole Weber",
@@ -423,7 +442,8 @@
     },
     "minted_at": "2026-07-30T02:26:44Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "john christopher depp|1963-06-09": {
     "name": "JOHN CHRISTOPHER DEPP",
@@ -444,7 +464,8 @@
     },
     "minted_at": "2026-07-30T02:26:44Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "joseph keith hobbs|1985-05-13": {
     "name": "Joseph Keith Hobbs",
@@ -465,7 +486,8 @@
     },
     "minted_at": "2026-07-30T02:26:44Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "joshua robert starcher|1986-09-12": {
     "name": "Joshua Robert Starcher",
@@ -486,7 +508,8 @@
     },
     "minted_at": "2026-07-30T02:26:44Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "joshua thomas puzakulics|2000-10-26": {
     "name": "Joshua Thomas Puzakulics",
@@ -507,7 +530,8 @@
     },
     "minted_at": "2026-07-30T02:26:44Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "joseph tyler stimpfel|1991-09-13": {
     "name": "Joseph Tyler stimpfel",
@@ -528,7 +552,8 @@
     },
     "minted_at": "2026-07-30T02:26:44Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "john vincent thurmer|1992-04-02": {
     "name": "John Vincent Thurmer",
@@ -549,7 +574,8 @@
     },
     "minted_at": "2026-07-30T02:26:44Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "jacob william puzakulics|2000-10-26": {
     "name": "Jacob William Puzakulics",
@@ -570,7 +596,8 @@
     },
     "minted_at": "2026-07-30T02:26:44Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "katie marie wunderle|1988-01-02": {
     "name": "Katie Marie Wunderle",
@@ -591,7 +618,8 @@
     },
     "minted_at": "2026-07-30T02:26:44Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "michael allen oke|1980-05-16": {
     "name": "Michael Allen oke",
@@ -612,7 +640,8 @@
     },
     "minted_at": "2026-07-30T02:26:44Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "michael andrew puzakulics|1923-09-19": {
     "name": "Michael Andrew Puzakulics",
@@ -633,7 +662,8 @@
     },
     "minted_at": "2026-07-30T02:26:44Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "malachi daniel moore|1984-01-17": {
     "name": "Malachi Daniel Moore",
@@ -654,7 +684,8 @@
     },
     "minted_at": "2026-07-30T02:26:44Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "matthew joseph kmiec|1977-01-18": {
     "name": "Matthew Joseph kmiec",
@@ -675,7 +706,8 @@
     },
     "minted_at": "2026-07-30T02:26:44Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "mark john puzakulics|1959-07-11": {
     "name": "Mark John Puzakulics",
@@ -696,7 +728,8 @@
     },
     "minted_at": "2026-07-30T02:26:44Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "matthew vincent jablonski|1994-10-09": {
     "name": "Matthew Vincent Jablonski",
@@ -717,7 +750,8 @@
     },
     "minted_at": "2026-07-30T02:26:45Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "michael wayne atha|1979-12-30": {
     "name": "Michael Wayne Atha",
@@ -738,7 +772,8 @@
     },
     "minted_at": "2026-07-30T02:26:45Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "nichole ann wisor higgins|1996-02-27": {
     "name": "Nichole Ann Wisor HIGGINS",
@@ -759,7 +794,8 @@
     },
     "minted_at": "2026-07-30T02:26:45Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "natalie jane carlton|2026-05-28": {
     "name": "NATALIE JANE CARLTON",
@@ -780,7 +816,8 @@
     },
     "minted_at": "2026-07-30T02:26:45Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "patrick allen roberts|1980-03-04": {
     "name": "Patrick Allen Roberts",
@@ -802,7 +839,8 @@
     "minted_at": "2026-07-30T02:26:45Z",
     "formula_version": 1,
     "birth_country": "US",
-    "birth_city": "akron, ohio"
+    "birth_city": "akron, ohio",
+    "codex_version": "radiant-wheel-v1"
   },
   "rachael maureen johnson|1967-08-30": {
     "name": "Rachael Maureen Johnson",
@@ -826,7 +864,8 @@
     "birth_country": "US",
     "memorial_date": "March 31, 1991",
     "memorial_photo": "media/rachael-maureen-johnson.jpg",
-    "memorial_photo_caption": "Rachael Maureen Johnson"
+    "memorial_photo_caption": "Rachael Maureen Johnson",
+    "codex_version": "radiant-wheel-v1"
   },
   "shawn micheal shutts|1987-09-07": {
     "name": "Shawn Micheal Shutts",
@@ -847,7 +886,8 @@
     },
     "minted_at": "2026-07-30T02:26:45Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "stephen small|1978-11-20": {
     "name": "Stephen small",
@@ -868,7 +908,8 @@
     },
     "minted_at": "2026-07-30T02:26:45Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "tammi kristine bartoletta|1973-04-08": {
     "name": "Tammi Kristine Bartoletta",
@@ -889,7 +930,8 @@
     },
     "minted_at": "2026-07-30T02:26:45Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "terry ricketson|1972-06-23": {
     "name": "Terry Ricketson",
@@ -910,7 +952,8 @@
     },
     "minted_at": "2026-07-30T02:26:45Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "taylor swift|1989-12-13": {
     "name": "Taylor Swift",
@@ -931,7 +974,8 @@
     },
     "minted_at": "2026-07-30T02:26:45Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "thomas william puzakulics|1966-02-28": {
     "name": "Thomas William Puzakulics",
@@ -952,7 +996,8 @@
     },
     "minted_at": "2026-07-30T02:26:45Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "valerie lynne labriola|1961-11-26": {
     "name": "Valerie Lynne labriola",
@@ -973,7 +1018,8 @@
     },
     "minted_at": "2026-07-30T02:26:45Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "adele|1988-05-05": {
     "name": "Adele",
@@ -994,7 +1040,8 @@
     },
     "minted_at": "2026-07-30T02:42:46Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "albert einstein|1879-03-14": {
     "name": "Albert Einstein",
@@ -1015,7 +1062,8 @@
     },
     "minted_at": "2026-07-30T02:42:46Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "david bowie|1947-01-08": {
     "name": "David Bowie",
@@ -1036,7 +1084,8 @@
     },
     "minted_at": "2026-07-30T02:42:46Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "elvis aaron presley|1935-01-08": {
     "name": "Elvis Aaron Presley",
@@ -1057,7 +1106,8 @@
     },
     "minted_at": "2026-07-30T02:42:46Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "nikola tesla|1856-07-10": {
     "name": "Nikola Tesla",
@@ -1078,7 +1128,8 @@
     },
     "minted_at": "2026-07-30T02:42:46Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "tupac amaru shakur|1971-06-16": {
     "name": "Tupac Amaru Shakur",
@@ -1099,7 +1150,8 @@
     },
     "minted_at": "2026-07-30T02:42:46Z",
     "formula_version": 1,
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "ellen johanning|1991-09-07": {
     "name": "Ellen johanning",
@@ -1122,7 +1174,8 @@
     "formula_version": 1,
     "birth_time": "23:45",
     "birth_city": "Barberton Ohio united states",
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "elizabeth zubaly|1896-03-16": {
     "name": "elizabeth zubaly",
@@ -1144,7 +1197,8 @@
     "minted_at": "2026-08-01T08:22:36Z",
     "formula_version": 1,
     "birth_city": "checklaslovakia",
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "gina marie sutton|1988-09-14": {
     "name": "Gina Marie sutton",
@@ -1166,7 +1220,8 @@
     "minted_at": "2026-08-01T18:56:06Z",
     "formula_version": 1,
     "birth_city": "Washington pa usa",
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "mason wade roberts|2011-04-22": {
     "name": "mason wade roberts",
@@ -1189,7 +1244,8 @@
     "formula_version": 1,
     "birth_time": "15:15",
     "birth_city": "Akron, ohio",
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "devon ray lehman|2005-12-27": {
     "name": "Devon ray lehman",
@@ -1212,7 +1268,8 @@
     "formula_version": 1,
     "birth_time": "15:28",
     "birth_city": "Akron ohio",
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "eric allen lamb|1990-01-15": {
     "name": "eric allen lamb",
@@ -1235,7 +1292,8 @@
     "formula_version": 1,
     "birth_time": "20:09",
     "birth_city": "akron",
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "jura puzakulics|1892-05-16": {
     "name": "jura puzakulics",
@@ -1257,7 +1315,8 @@
     "minted_at": "2026-08-10T00:40:02Z",
     "formula_version": 1,
     "birth_city": "oz semere carpethian, russia",
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "erzsa zubaly|1894-03-16": {
     "name": "erzsa zubaly",
@@ -1279,7 +1338,8 @@
     "minted_at": "2026-08-10T00:40:38Z",
     "formula_version": 1,
     "birth_city": "oz semere carpethian, russia",
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "david norton ferris|1988-09-07": {
     "name": "David Norton Ferris",
@@ -1302,7 +1362,8 @@
     "formula_version": 1,
     "birth_time": "11:37",
     "birth_city": "akron, ohio",
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "georgia ann puzakulics|1948-10-17": {
     "name": "Georgia Ann Puzakulics",
@@ -1327,7 +1388,8 @@
     "birth_country": "US",
     "memorial_date": "August 5, 2026",
     "memorial_photo": "media/georgia-ann-puzakulics.jpg",
-    "memorial_photo_caption": "Georgia Ann Puzakulics"
+    "memorial_photo_caption": "Georgia Ann Puzakulics",
+    "codex_version": "radiant-wheel-v1"
   },
   "alfie james catlow|2013-11-26": {
     "name": "Alfie James Catlow",
@@ -1349,7 +1411,8 @@
     "minted_at": "2026-08-12T07:08:19Z",
     "formula_version": 1,
     "birth_city": "United Kingdom",
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "kenneth earl wiber jr|1949-01-31": {
     "name": "kenneth earl wiber jr",
@@ -1372,7 +1435,8 @@
     "formula_version": 1,
     "birth_time": "12:00",
     "birth_city": "oklahoma city, oklahoma usa",
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "aaron gabriel golbin|2003-09-04": {
     "name": "Aaron Gabriel Golbin",
@@ -1394,7 +1458,8 @@
     "minted_at": "2026-08-18T00:20:16Z",
     "formula_version": 1,
     "birth_city": "ny, ny",
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "gerald ray lehman|1958-09-14": {
     "name": "Gerald Ray Lehman",
@@ -1417,7 +1482,8 @@
     "formula_version": 1,
     "birth_city": "akron ohio",
     "birth_country": "US",
-    "memorial_date": "April 21, 2003"
+    "memorial_date": "April 21, 2003",
+    "codex_version": "radiant-wheel-v1"
   },
   "peter jozsef lodri|1992-07-16": {
     "name": "PETER JOZSEF LODRI",
@@ -1440,7 +1506,8 @@
     "formula_version": 1,
     "birth_time": "12:31",
     "birth_city": "Tatabanya",
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "mackenzie leigh puzakulics|1997-05-28": {
     "name": "Mackenzie leigh puzakulics",
@@ -1462,7 +1529,8 @@
     "minted_at": "2026-09-01T00:19:49Z",
     "formula_version": 1,
     "birth_city": "akron, ohio",
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "della delphie dawson|1927-11-27": {
     "name": "Della Delphie Dawson",
@@ -1484,7 +1552,8 @@
     "minted_at": "2026-09-01T00:22:01Z",
     "formula_version": 1,
     "birth_city": "hallburg, west virgina",
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "lawrence wayne johnson|1947-08-08": {
     "name": "lawrence wayne johnson",
@@ -1506,7 +1575,8 @@
     "minted_at": "2026-09-01T00:24:26Z",
     "formula_version": 1,
     "birth_city": "akron ohio",
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "ralph james schreve|1925-09-27": {
     "name": "Ralph James Schreve",
@@ -1528,7 +1598,8 @@
     "minted_at": "2026-09-01T00:25:59Z",
     "formula_version": 1,
     "birth_city": "ashtabula county ohio",
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "gail maurene shreve|1949-03-14": {
     "name": "Gail Maurene Shreve",
@@ -1550,7 +1621,8 @@
     "minted_at": "2026-09-01T00:30:27Z",
     "formula_version": 1,
     "birth_city": "elyria, lorain ohio",
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "monica grace frost|1923-12-11": {
     "name": "Monica Grace Frost",
@@ -1572,7 +1644,8 @@
     "minted_at": "2026-09-01T00:36:10Z",
     "formula_version": 1,
     "birth_city": "cuyahoga, ohio , usa",
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "julia puzakulics|1921-06-22": {
     "name": "Julia Puzakulics",
@@ -1594,7 +1667,8 @@
     "minted_at": "2026-09-01T00:39:46Z",
     "formula_version": 1,
     "birth_city": "akron, ohio",
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "robert eugene mccullough|1919-05-19": {
     "name": "Robert Eugene McCullough",
@@ -1616,7 +1690,8 @@
     "minted_at": "2026-09-01T00:41:30Z",
     "formula_version": 1,
     "birth_city": "mahoning ohio usa",
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "walter edward mccullough|1945-11-01": {
     "name": "Walter Edward McCullough",
@@ -1638,7 +1713,8 @@
     "minted_at": "2026-09-01T00:45:37Z",
     "formula_version": 1,
     "birth_city": "akron",
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "mohandas karamchand gandhi|1869-10-02": {
     "name": "Mohandas Karamchand Gandhi",
@@ -1660,7 +1736,8 @@
     "minted_at": "2026-09-02T02:24:57Z",
     "formula_version": 1,
     "birth_city": "porbandar india",
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "abraham lincoln|1809-02-12": {
     "name": "Abraham Lincoln",
@@ -1682,7 +1759,8 @@
     "minted_at": "2026-09-02T02:25:42Z",
     "formula_version": 1,
     "birth_city": "sinking spring farm hodgenville, kentucky",
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "michael joseph jackson|1958-08-29": {
     "name": "Michael Joseph Jackson",
@@ -1704,7 +1782,8 @@
     "minted_at": "2026-09-02T02:26:20Z",
     "formula_version": 1,
     "birth_city": "gary, indiana",
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "norma jeane mortenson (marilyn monroe)|1926-06-01": {
     "name": "Norma Jeane Mortenson (Marilyn Monroe)",
@@ -1726,7 +1805,8 @@
     "minted_at": "2026-09-02T02:27:16Z",
     "formula_version": 1,
     "birth_city": "los angeles, california",
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "julianna meska|1862-04-14": {
     "name": "Julianna Meska",
@@ -1748,7 +1828,8 @@
     "minted_at": "2026-09-02T02:39:21Z",
     "formula_version": 1,
     "birth_city": "Tur'i Remety, Zakarpats'ka, Ukraine,",
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "james michael puzakulics|1950-02-04": {
     "name": "james michael puzakulics",
@@ -1770,7 +1851,8 @@
     "minted_at": "2026-09-02T02:40:37Z",
     "formula_version": 1,
     "birth_city": "akron, ohio",
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "sally jean mccullough|1941-05-07": {
     "name": "Sally Jean McCullough",
@@ -1792,7 +1874,8 @@
     "minted_at": "2026-09-02T02:46:00Z",
     "formula_version": 1,
     "birth_city": "youngstown, ohio",
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "waldo ralph shreve|1888-05-07": {
     "name": "Waldo Ralph Shreve",
@@ -1814,7 +1897,8 @@
     "minted_at": "2026-09-02T02:55:02Z",
     "formula_version": 1,
     "birth_city": "ohio",
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   },
   "elizabeth anne o'donnell|1981-10-23": {
     "name": "Elizabeth Anne O'Donnell",
@@ -1837,6 +1921,7 @@
     "formula_version": 1,
     "birth_time": "18:24",
     "birth_city": "Fairlawn",
-    "birth_country": "US"
+    "birth_country": "US",
+    "codex_version": "radiant-wheel-v1"
   }
 }
