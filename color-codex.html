@@ -149,6 +149,10 @@
     font-weight: 700;
     transition: transform 0.15s, filter 0.15s;
   }
+  .spectrum-pills a.pill-light {
+    color: #0b0b16;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.55);
+  }
   .spectrum-pills a:hover { transform: translateY(-2px); filter: brightness(1.1); }
   .spectrum-pills a:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 
@@ -311,7 +315,7 @@
   <header class="hero">
     <span class="kicker">The Color Codex</span>
     <h1>What your color means</h1>
-    <p class="hero-lead">Every Soul Map is tagged with a color — your core frequency from birth numerology. It does not change. Use this codex to read the archive and find souls on your wavelength.</p>
+    <p class="hero-lead">Every Soul Map is tagged with one color — the frequency this incarnation renders as, from your Radiant Number (Life Path + Expression). It does not change. It is not a rank, and it is not your Station.</p>
     <div class="hero-actions">
       <a class="btn" href="https://whop.com/checkout/plan_anQKP3Pzf1cGm" target="_blank" rel="noopener noreferrer">Get My Soul Map — $22</a>
       <a class="btn btn-ghost" href="index.html">Browse archive</a>
@@ -321,11 +325,11 @@
   <div class="quick-read">
     <div class="quick-card">
       <strong>Born color</strong>
-      <p>Assigned from your birth chart math. This is the tier on your map card — not your mood today.</p>
+      <p>Assigned from your Radiant Number. This is the tier on your map card — not your mood today, not a stage of evolution.</p>
     </div>
     <div class="quick-card">
-      <strong>Nine + two</strong>
-      <p>Nine spectrum colors from Red to White. Rose and Silver are structural — they map to relational and witness layers.</p>
+      <strong>Eleven slices</strong>
+      <p>One Radiant Number per color. Rose and Silver are two of the eleven, not a second system. No twelfth color.</p>
     </div>
     <div class="quick-card">
       <strong>Live vs open</strong>
@@ -336,67 +340,67 @@
   <nav class="spectrum-nav" aria-label="Jump to color">
     <div class="spectrum-nav-label">Jump to color</div>
     <div class="spectrum-pills">
-      <a href="#red" style="background:var(--red)" title="Red">Red</a>
-      <a href="#ember" style="background:var(--ember)" title="Ember">Ember</a>
-      <a href="#yellow" style="background:var(--yellow)" title="Yellow">Yel</a>
-      <a href="#green" style="background:var(--green)" title="Green">Grn</a>
-      <a href="#cyan" style="background:var(--cyan)" title="Cyan">Cyan</a>
-      <a href="#blue" style="background:var(--blue)" title="Blue">Blue</a>
-      <a href="#purple" style="background:var(--purple)" title="Purple">Pur</a>
-      <a href="#gold" style="background:var(--gold)" title="Gold">Gold</a>
-      <a href="#white" style="background:var(--white)" title="White">Wht</a>
-      <a href="#rose" style="background:var(--rose)" title="Rose">Rose</a>
-      <a href="#silver" style="background:var(--silver)" title="Silver">Slv</a>
+      <a href="#ember" style="background:var(--ember)" title="Ember · Radiant 1">Ember</a>
+      <a href="#red" style="background:var(--red)" title="Red · Radiant 2">Red</a>
+      <a href="#gold" style="background:var(--gold)" title="Gold · Radiant 3">Gold</a>
+      <a href="#green" style="background:var(--green)" title="Green · Radiant 4">Grn</a>
+      <a href="#cyan" style="background:var(--cyan)" title="Cyan · Radiant 5">Cyan</a>
+      <a href="#blue" style="background:var(--blue)" title="Blue · Radiant 6">Blue</a>
+      <a href="#purple" style="background:var(--purple)" title="Purple · Radiant 7">Pur</a>
+      <a href="#rose" style="background:var(--rose)" title="Rose · Radiant 8">Rose</a>
+      <a href="#white" class="pill-light" style="background:#f0f0ff" title="White · Radiant 9">Wht</a>
+      <a href="#silver" class="pill-light" style="background:var(--silver)" title="Silver · Radiant 11">Slv</a>
+      <a href="#yellow" style="background:var(--yellow)" title="Yellow · Radiant 22 / 33">Yel</a>
     </div>
   </nav>
 
   <h2 class="section-label">The wheel</h2>
-  <p class="section-note">Your Radiant Number (Life Path + Expression, reduced) lands on exactly one of eleven slices. Tap a slice to jump to its tier.</p>
+  <p class="section-note">Your Radiant Number (Life Path + Expression, reduced) lands on exactly one of eleven slices. No slice ranks above another. Color is not your Station — the twelve archetypes are a different axis.</p>
   <div class="codex-wheel" id="codex-wheel"></div>
   <p class="codex-wheel-more"><a href="color-codex-wheel.html">How the wheel works &rarr;</a></p>
 
-  <h2 class="section-label">The light spectrum</h2>
-  <p class="section-note">Root drive → integrated wholeness. Click a pill above or scroll the list.</p>
-
-  <article class="tier t-red" id="red">
-    <div class="accent"></div>
-    <div class="body">
-      <div class="tier-head">
-        <div><span class="tier-role">The Will</span><h2>Red</h2></div>
-        <span class="status open">Open tier</span>
-      </div>
-      <p class="tier-tagline">"Reds move."</p>
-      <p class="tier-desc">Raw will and momentum — acts before it reflects. The engine at the base of the spectrum.</p>
-      <div class="chips"><span class="chip">Drive · power</span><span class="chip">Numerology 1 · 8</span><span class="chip">Fire (root)</span></div>
-      <a class="tier-link" href="red-soul-journey.html">Red Soul Journey &rarr;</a>
-    </div>
-  </article>
+  <h2 class="section-label">The eleven frequencies</h2>
+  <p class="section-note">Wheel order — Radiant 1 through 9, then 11, then 22/33. Click a pill above or tap a slice.</p>
 
   <article class="tier t-ember" id="ember">
     <div class="accent"></div>
     <div class="body">
       <div class="tier-head">
         <div><span class="tier-role">The First Heat</span><h2>Ember</h2></div>
-        <span class="status live">Live · 8 souls</span>
+        <span class="status live">Live</span>
       </div>
       <p class="tier-tagline">"Embers begin."</p>
       <p class="tier-desc">Founders and catalysts — the spark before the structure. Action over maintenance.</p>
-      <div class="chips"><span class="chip">ignite · begin</span><span class="chip">Numerology 1 · 5</span><span class="chip">Fire</span></div>
+      <div class="chips"><span class="chip">Radiant 1</span><span class="chip">Ember</span><span class="chip">ignite · begin</span></div>
       <a class="tier-link" href="ember-soul-journey.html">Ember Soul Journey &rarr;</a>
     </div>
   </article>
 
-  <article class="tier t-yellow" id="yellow">
+  <article class="tier t-red" id="red">
     <div class="accent"></div>
     <div class="body">
       <div class="tier-head">
-        <div><span class="tier-role">The Joy</span><h2>Yellow</h2></div>
-        <span class="status open">Open tier</span>
+        <div><span class="tier-role">The Will</span><h2>Red</h2></div>
+        <span class="status live">Live</span>
       </div>
-      <p class="tier-tagline">"Yellows shine."</p>
-      <p class="tier-desc">Joy as a native frequency — warmth and play without effort. Rare as a primary color.</p>
-      <div class="chips"><span class="chip">Radiance · play</span><span class="chip">Numerology 3</span><span class="chip">Fire / Air</span></div>
-      <a class="tier-link" href="yellow-soul-journey.html">Yellow Soul Journey &rarr;</a>
+      <p class="tier-tagline">"Reds move."</p>
+      <p class="tier-desc">Raw will and momentum — acts before it reflects.</p>
+      <div class="chips"><span class="chip">Radiant 2</span><span class="chip">Dawn</span><span class="chip">Drive · power</span></div>
+      <a class="tier-link" href="red-soul-journey.html">Red Soul Journey &rarr;</a>
+    </div>
+  </article>
+
+  <article class="tier t-gold" id="gold">
+    <div class="accent"></div>
+    <div class="body">
+      <div class="tier-head">
+        <div><span class="tier-role">The Orchestrator</span><h2>Gold</h2></div>
+        <span class="status live">Live</span>
+      </div>
+      <p class="tier-tagline">"Golds orchestrate."</p>
+      <p class="tier-desc">Coherence and command — conducts the whole field instead of solo execution.</p>
+      <div class="chips"><span class="chip">Radiant 3</span><span class="chip">Gold Vein</span><span class="chip">Mastery · orchestrate</span></div>
+      <a class="tier-link" href="gold-soul-journey.html">Gold Soul Journey &rarr;</a>
     </div>
   </article>
 
@@ -408,8 +412,8 @@
         <span class="status live">Live</span>
       </div>
       <p class="tier-tagline">"Fields hold."</p>
-      <p class="tier-desc">Stabilizers and grounders — the container that keeps what others build from collapsing. Often the youngest souls and master-number carriers.</p>
-      <div class="chips"><span class="chip">Hold · stabilize</span><span class="chip">Master carriers</span><span class="chip">Earth</span></div>
+      <p class="tier-desc">Stabilizers and grounders — the container that keeps what others build from collapsing.</p>
+      <div class="chips"><span class="chip">Radiant 4</span><span class="chip">Verdant Gate</span><span class="chip">Hold · stabilize</span></div>
       <a class="tier-link" href="green-soul-journey.html">Green Soul Journey &rarr;</a>
     </div>
   </article>
@@ -419,11 +423,11 @@
     <div class="body">
       <div class="tier-head">
         <div><span class="tier-role">The Signal</span><h2>Cyan</h2></div>
-        <span class="status live">Live · 4 souls</span>
+        <span class="status live">Live</span>
       </div>
       <p class="tier-tagline">"Signals connect."</p>
       <p class="tier-desc">The network layer — translators who move information between worlds so the field can talk to itself.</p>
-      <div class="chips"><span class="chip">Interface · connect</span><span class="chip">Numerology 3 · 5</span><span class="chip">Water / Air</span></div>
+      <div class="chips"><span class="chip">Radiant 5</span><span class="chip">Tide Glass</span><span class="chip">Interface · connect</span></div>
       <a class="tier-link" href="cyan-soul-journey.html">Cyan Soul Journey &rarr;</a>
     </div>
   </article>
@@ -433,11 +437,11 @@
     <div class="body">
       <div class="tier-head">
         <div><span class="tier-role">The Mind</span><h2>Blue</h2></div>
-        <span class="status live">Live · 8 souls</span>
+        <span class="status live">Live</span>
       </div>
       <p class="tier-tagline">"Minds witness."</p>
       <p class="tier-desc">Clarity and strategy — sees the whole board before moving a piece. Stillness as power.</p>
-      <div class="chips"><span class="chip">Thought · observe</span><span class="chip">Numerology 4 · 7</span><span class="chip">Air</span></div>
+      <div class="chips"><span class="chip">Radiant 6</span><span class="chip">Still Water</span><span class="chip">Thought · observe</span></div>
       <a class="tier-link" href="blue-soul-journey.html">Blue Soul Journey &rarr;</a>
     </div>
   </article>
@@ -451,22 +455,22 @@
       </div>
       <p class="tier-tagline">"Purples transform."</p>
       <p class="tier-desc">Alchemists and lineage-holders — transmute one state into another. Deep pattern memory.</p>
-      <div class="chips"><span class="chip">Transform · transmute</span><span class="chip">Numerology 11</span><span class="chip">Spirit</span></div>
+      <div class="chips"><span class="chip">Radiant 7</span><span class="chip">Violet Hour</span><span class="chip">Transform · transmute</span></div>
       <a class="tier-link" href="purple-soul-journey.html">Purple Soul Journey →</a>
     </div>
   </article>
 
-  <article class="tier t-gold" id="gold">
+  <article class="tier t-rose" id="rose">
     <div class="accent"></div>
     <div class="body">
       <div class="tier-head">
-        <div><span class="tier-role">The Orchestrator</span><h2>Gold</h2></div>
+        <div><span class="tier-role">The Bond</span><h2>Rose</h2></div>
         <span class="status live">Live</span>
       </div>
-      <p class="tier-tagline">"Masters orchestrate."</p>
-      <p class="tier-desc">Coherence and command — conducts the whole field instead of solo execution. Master numbers 11, 22, 33.</p>
-      <div class="chips"><span class="chip">Mastery · orchestrate</span><span class="chip">11 · 22 · 33</span><span class="chip">Light</span></div>
-      <a class="tier-link" href="gold-soul-journey.html">Gold Soul Journey &rarr;</a>
+      <p class="tier-tagline">"Bonds connect."</p>
+      <p class="tier-desc">Relational frequency — devotion, loyalty, weaving people into belonging.</p>
+      <div class="chips"><span class="chip">Radiant 8</span><span class="chip">Rose Ash</span><span class="chip">Relate · bind</span></div>
+      <a class="tier-link" href="rose-soul-journey.html">Rose Soul Journey &rarr;</a>
     </div>
   </article>
 
@@ -475,29 +479,12 @@
     <div class="body">
       <div class="tier-head">
         <div><span class="tier-role">The All</span><h2>White</h2></div>
-        <span class="status open">Open tier</span>
+        <span class="status live">Live</span>
       </div>
       <p class="tier-tagline">"White holds it all."</p>
-      <p class="tier-desc">Integration endpoint — every frequency present at once. The arc the spectrum moves toward.</p>
-      <div class="chips"><span class="chip">Wholeness · unity</span><span class="chip">All colors integrated</span><span class="chip">Aether</span></div>
+      <p class="tier-desc">Pearl Gate — a birth frequency, not an evolved state and not every color at once.</p>
+      <div class="chips"><span class="chip">Radiant 9</span><span class="chip">Pearl Gate</span><span class="chip">Hold · include</span></div>
       <a class="tier-link" href="white-soul-journey.html">White Soul Journey &rarr;</a>
-    </div>
-  </article>
-
-  <h2 class="section-label">Structural frequencies</h2>
-  <p class="section-note">Beside the visible spectrum — mapped to Selector Model layers, not rainbow order.</p>
-
-  <article class="tier t-rose" id="rose">
-    <div class="accent"></div>
-    <div class="body">
-      <div class="tier-head">
-        <div><span class="tier-role">The Bond</span><h2>Rose</h2></div>
-        <span class="status open">Open tier</span>
-      </div>
-      <p class="tier-tagline">"Bonds connect."</p>
-      <p class="tier-desc">Relational frequency — devotion, loyalty, weaving people into belonging.</p>
-      <div class="chips"><span class="chip">Relate · bind</span><span class="chip">Numerology 2 · 6</span><span class="chip">Relational layer</span></div>
-      <a class="tier-link" href="rose-soul-journey.html">Rose Soul Journey &rarr;</a>
     </div>
   </article>
 
@@ -506,12 +493,26 @@
     <div class="body">
       <div class="tier-head">
         <div><span class="tier-role">The Reflector</span><h2>Silver</h2></div>
-        <span class="status open">Open tier</span>
+        <span class="status live">Live</span>
       </div>
       <p class="tier-tagline">"Silver reflects."</p>
       <p class="tier-desc">Witness frequency — holds space without filling it. Shows you yourself undistorted.</p>
-      <div class="chips"><span class="chip">Witness · reflect</span><span class="chip">Numerology 7 · 9</span><span class="chip">Core Code layer</span></div>
+      <div class="chips"><span class="chip">Radiant 11</span><span class="chip">Moonsilver</span><span class="chip">Witness · reflect</span></div>
       <a class="tier-link" href="silver-soul-journey.html">Silver Soul Journey &rarr;</a>
+    </div>
+  </article>
+
+  <article class="tier t-yellow" id="yellow">
+    <div class="accent"></div>
+    <div class="body">
+      <div class="tier-head">
+        <div><span class="tier-role">The Joy</span><h2>Yellow</h2></div>
+        <span class="status open">Open tier</span>
+      </div>
+      <p class="tier-tagline">"Yellows shine."</p>
+      <p class="tier-desc">Joy as a native frequency — warmth and play without effort. The 22/33 slice; not a higher rank.</p>
+      <div class="chips"><span class="chip">Radiant 22 / 33</span><span class="chip">First Light</span><span class="chip">Radiance · play</span></div>
+      <a class="tier-link" href="yellow-soul-journey.html">Yellow Soul Journey &rarr;</a>
     </div>
   </article>
 
