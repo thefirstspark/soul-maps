@@ -85,3 +85,18 @@
 .card.ember  { background-color: rgba(255, 106, 61, .04); }
 .card.red    { background-color: rgba(226, 75, 74, .04); }
 .card.rose   { background-color: rgba(244, 63, 94, .04); }
+
+/* DL-014 (2026-09-05): masters are a tint, not a tier. A master wears its reduced
+   light pulled 35% toward white (Moonsilver). Base class stays; add .master. */
+:root {
+  --codex-red-tint:   #ec8a89;
+  --codex-green-tint: #64d2ad;
+  --codex-blue-tint:  #80aef9;
+}
+.card.red.master   { border-color: var(--codex-red-tint); }
+.card.green.master { border-color: var(--codex-green-tint); }
+.card.blue.master  { border-color: var(--codex-blue-tint); }
+.card.red.master .card-name   { color: var(--codex-red-tint); }
+.card.green.master .card-name { color: var(--codex-green-tint); }
+.card.blue.master .card-name  { color: var(--codex-blue-tint); }
+.card.master:hover { box-shadow: 0 8px 30px rgba(255, 255, 255, .18); }

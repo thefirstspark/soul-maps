@@ -75,9 +75,9 @@
     "quantum_display": "1F1E·104D·DA64",
     "resonance_hz": 696.47,
     "activation": "7D5D4074[LP2]",
-    "codex_color": "silver",
-    "codex_role": "The Reflector",
-    "codex_tier": "Silver",
+    "codex_color": "red",
+    "codex_role": "The Will",
+    "codex_tier": "Red",
     "core": {
       "life_path": 2,
       "expression": 9,
@@ -88,7 +88,8 @@
     "minted_at": "2026-07-23T12:02:17Z",
     "formula_version": 1,
     "birth_country": "US",
-    "codex_version": "radiant-wheel-v1"
+    "codex_version": "radiant-wheel-v2",
+    "codex_master": 11
   },
   "christine ann puzakulics|1952-09-13": {
     "name": "Christine Ann Puzakulics",
@@ -298,9 +299,9 @@
     "quantum_display": "7BC4·3C39·5B83",
     "resonance_hz": 788.49,
     "activation": "AC91278B[LP8]",
-    "codex_color": "silver",
-    "codex_role": "The Reflector",
-    "codex_tier": "Silver",
+    "codex_color": "red",
+    "codex_role": "The Will",
+    "codex_tier": "Red",
     "core": {
       "life_path": 8,
       "expression": 3,
@@ -311,7 +312,8 @@
     "minted_at": "2026-07-30T02:26:44Z",
     "formula_version": 1,
     "birth_country": "US",
-    "codex_version": "radiant-wheel-v1"
+    "codex_version": "radiant-wheel-v2",
+    "codex_master": 11
   },
   "cody evan’s belford|1987-10-22": {
     "name": "Cody Evan’s belford",
@@ -320,9 +322,9 @@
     "quantum_display": "6E99·A928·BB69",
     "resonance_hz": 936.06,
     "activation": "F017BFBB[LP3]",
-    "codex_color": "silver",
-    "codex_role": "The Reflector",
-    "codex_tier": "Silver",
+    "codex_color": "red",
+    "codex_role": "The Will",
+    "codex_tier": "Red",
     "core": {
       "life_path": 3,
       "expression": 8,
@@ -333,7 +335,8 @@
     "minted_at": "2026-07-30T02:26:44Z",
     "formula_version": 1,
     "birth_country": "US",
-    "codex_version": "radiant-wheel-v1"
+    "codex_version": "radiant-wheel-v2",
+    "codex_master": 11
   },
   "candy sue slaughter|1956-01-25": {
     "name": "Candy sue slaughter",
@@ -408,9 +411,9 @@
     "quantum_display": "2D75·51E6·7545",
     "resonance_hz": 784.17,
     "activation": "F908B2E7[LP5]",
-    "codex_color": "silver",
-    "codex_role": "The Reflector",
-    "codex_tier": "Silver",
+    "codex_color": "red",
+    "codex_role": "The Will",
+    "codex_tier": "Red",
     "core": {
       "life_path": 5,
       "expression": 6,
@@ -421,7 +424,8 @@
     "minted_at": "2026-07-30T02:26:44Z",
     "formula_version": 1,
     "birth_country": "US",
-    "codex_version": "radiant-wheel-v1"
+    "codex_version": "radiant-wheel-v2",
+    "codex_master": 11
   },
   "isabella nicole weber|2007-06-28": {
     "name": "Isabella Nicole Weber",
@@ -804,9 +808,9 @@
     "quantum_display": "FB05·76D4·9005",
     "resonance_hz": 939.6,
     "activation": "3BC5BBB4[LP7]",
-    "codex_color": "silver",
-    "codex_role": "The Reflector",
-    "codex_tier": "Silver",
+    "codex_color": "red",
+    "codex_role": "The Will",
+    "codex_tier": "Red",
     "core": {
       "life_path": 7,
       "expression": 4,
@@ -817,7 +821,8 @@
     "minted_at": "2026-07-30T02:26:45Z",
     "formula_version": 1,
     "birth_country": "US",
-    "codex_version": "radiant-wheel-v1"
+    "codex_version": "radiant-wheel-v2",
+    "codex_master": 11
   },
   "patrick allen roberts|1980-03-04": {
     "name": "Patrick Allen Roberts",
@@ -849,9 +854,9 @@
     "quantum_display": "1D5A·857F·9CCC",
     "resonance_hz": 1065.57,
     "activation": "42D42096[LP7]",
-    "codex_color": "silver",
-    "codex_role": "The Reflector",
-    "codex_tier": "Silver",
+    "codex_color": "red",
+    "codex_role": "The Will",
+    "codex_tier": "Red",
     "core": {
       "life_path": 7,
       "expression": 4,
@@ -865,7 +870,8 @@
     "memorial_date": "March 31, 1991",
     "memorial_photo": "media/rachael-maureen-johnson.jpg",
     "memorial_photo_caption": "Rachael Maureen Johnson",
-    "codex_version": "radiant-wheel-v1"
+    "codex_version": "radiant-wheel-v2",
+    "codex_master": 11
   },
   "shawn micheal shutts|1987-09-07": {
     "name": "Shawn Micheal Shutts",
@@ -896,9 +902,9 @@
     "quantum_display": "1393·4472·5820",
     "resonance_hz": 776.39,
     "activation": "DA21F32E[LP2]",
-    "codex_color": "silver",
-    "codex_role": "The Reflector",
-    "codex_tier": "Silver",
+    "codex_color": "red",
+    "codex_role": "The Will",
+    "codex_tier": "Red",
     "core": {
       "life_path": 2,
       "expression": 9,
@@ -909,7 +915,8 @@
     "minted_at": "2026-07-30T02:26:45Z",
     "formula_version": 1,
     "birth_country": "US",
-    "codex_version": "radiant-wheel-v1"
+    "codex_version": "radiant-wheel-v2",
+    "codex_master": 11
   },
   "tammi kristine bartoletta|1973-04-08": {
     "name": "Tammi Kristine Bartoletta",
@@ -1184,9 +1191,9 @@
     "quantum_display": "FFB8·5367·8155",
     "resonance_hz": 762.48,
     "activation": "3A70CA28[LP7]",
-    "codex_color": "silver",
-    "codex_role": "The Reflector",
-    "codex_tier": "Silver",
+    "codex_color": "red",
+    "codex_role": "The Will",
+    "codex_tier": "Red",
     "core": {
       "life_path": 7,
       "expression": 4,
@@ -1198,7 +1205,8 @@
     "formula_version": 1,
     "birth_city": "checklaslovakia",
     "birth_country": "US",
-    "codex_version": "radiant-wheel-v1"
+    "codex_version": "radiant-wheel-v2",
+    "codex_master": 11
   },
   "gina marie sutton|1988-09-14": {
     "name": "Gina Marie sutton",
@@ -1516,9 +1524,9 @@
     "quantum_display": "7316·3566·1BB6",
     "resonance_hz": 564.54,
     "activation": "DA965C75[LP5]",
-    "codex_color": "silver",
-    "codex_role": "The Reflector",
-    "codex_tier": "Silver",
+    "codex_color": "red",
+    "codex_role": "The Will",
+    "codex_tier": "Red",
     "core": {
       "life_path": 5,
       "expression": 6,
@@ -1530,7 +1538,8 @@
     "formula_version": 1,
     "birth_city": "akron, ohio",
     "birth_country": "US",
-    "codex_version": "radiant-wheel-v1"
+    "codex_version": "radiant-wheel-v2",
+    "codex_master": 11
   },
   "della delphie dawson|1927-11-27": {
     "name": "Della Delphie Dawson",
@@ -1585,9 +1594,9 @@
     "quantum_display": "F2DC·BB02·303B",
     "resonance_hz": 837.65,
     "activation": "36C30535[LP8]",
-    "codex_color": "silver",
-    "codex_role": "The Reflector",
-    "codex_tier": "Silver",
+    "codex_color": "red",
+    "codex_role": "The Will",
+    "codex_tier": "Red",
     "core": {
       "life_path": 8,
       "expression": 3,
@@ -1599,7 +1608,8 @@
     "formula_version": 1,
     "birth_city": "ashtabula county ohio",
     "birth_country": "US",
-    "codex_version": "radiant-wheel-v1"
+    "codex_version": "radiant-wheel-v2",
+    "codex_master": 11
   },
   "gail maurene shreve|1949-03-14": {
     "name": "Gail Maurene Shreve",
@@ -1746,9 +1756,9 @@
     "quantum_display": "9DDE·1543·0334",
     "resonance_hz": 555.38,
     "activation": "846B8881[LP5]",
-    "codex_color": "silver",
-    "codex_role": "The Reflector",
-    "codex_tier": "Silver",
+    "codex_color": "red",
+    "codex_role": "The Will",
+    "codex_tier": "Red",
     "core": {
       "life_path": 5,
       "expression": 6,
@@ -1760,7 +1770,8 @@
     "formula_version": 1,
     "birth_city": "sinking spring farm hodgenville, kentucky",
     "birth_country": "US",
-    "codex_version": "radiant-wheel-v1"
+    "codex_version": "radiant-wheel-v2",
+    "codex_master": 11
   },
   "michael joseph jackson|1958-08-29": {
     "name": "Michael Joseph Jackson",

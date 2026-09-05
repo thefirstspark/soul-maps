@@ -1,4 +1,5 @@
-/* Color Codex Wheel — the eleven-slice wheel keyed on the Radiant Number.
+/* Color Codex Wheel — the nine-slice wheel keyed on the Radiant Number.
+   DL-014 (2026-09-05): masters 11/22/33 are a tint of their reduced light, not slices.
    Source of truth for the mapping: RADIANT_WHEEL in soul_map_generator.py and
    tierFromRadiant() in soul-pattern-generator.html. Keep all three in sync. */
 (function(){
@@ -11,11 +12,18 @@
     {slice:6,  radiant:'6',       name:'Still Water',  color:'Blue',   role:'The Mind',         hex:'#3b82f6', dark:false},
     {slice:7,  radiant:'7',       name:'Violet Hour',  color:'Purple', role:'The Transformer',  hex:'#8b5cf6', dark:false},
     {slice:8,  radiant:'8',       name:'Rose Ash',     color:'Rose',   role:'The Bond',         hex:'#f43f5e', dark:false},
-    {slice:9,  radiant:'9',       name:'Pearl Gate',   color:'White',  role:'The All',          hex:'#f0f0ff', dark:true},
-    {slice:10, radiant:'11',      name:'Moonsilver',   color:'Silver', role:'The Reflector',    hex:'#c4c8d4', dark:true},
-    {slice:11, radiant:'22 / 33', name:'First Light',  color:'Yellow', role:'The Joy',          hex:'#f5c842', dark:true}
+    {slice:9,  radiant:'9',       name:'Pearl Gate',   color:'White',  role:'The All',          hex:'#f0f0ff', dark:true}
   ];
   window.CODEX_WHEEL_TIERS = TIERS;
+  /* Masters reduce for colour and wear it Moonsilvered (35% toward white) with the master ring. */
+  function tint(h){ var n=parseInt(h.slice(1),16), t=function(c){return Math.round(c+(255-c)*0.35);};
+    return '#'+[(n>>16)&255,(n>>8)&255,n&255].map(function(c){return t(c).toString(16).padStart(2,'0');}).join(''); }
+  window.codexTint = tint;
+  window.CODEX_MASTERS = {
+    11: { reducesTo: 2, color: 'Red',   name: 'Dawn',         base: '#e24b4a',   hex: tint('#e24b4a') },
+    22: { reducesTo: 4, color: 'Green', name: 'Verdant Gate', base: '#10b981', hex: tint('#10b981') },
+    33: { reducesTo: 6, color: 'Blue',  name: 'Still Water',  base: '#3b82f6',  hex: tint('#3b82f6') }
+  };
 
   function slug(t){ return t.color.toLowerCase(); }
 
@@ -24,7 +32,7 @@
     var CX=400, CY=400, R0=opts.inner||118, R1=opts.outer||300, N=TIERS.length, step=2*Math.PI/N;
     var P=function(r,a){ a-=Math.PI/2; return [CX+r*Math.cos(a), CY+r*Math.sin(a)]; };
     var f=function(n){ return n.toFixed(1); };
-    var s='<svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Color Codex wheel: eleven slices, one per Radiant Number">';
+    var s='<svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Color Codex wheel: nine slices, one per Radiant Number; masters wear their reduced light tinted">';
     s+='<defs><filter id="cw-glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>';
     s+='<circle cx="'+CX+'" cy="'+CY+'" r="'+(R1+6)+'" fill="none" stroke="rgba(139,92,246,.25)" stroke-width="1"/>';
     TIERS.forEach(function(t,i){
@@ -44,7 +52,7 @@
     s+='<circle cx="'+CX+'" cy="'+CY+'" r="'+(R0-10)+'" fill="#0a0819" stroke="rgba(139,92,246,.35)" filter="url(#cw-glow)"/>';
     s+='<text x="'+CX+'" y="'+(CY-10)+'" text-anchor="middle" font-family="Orbitron,sans-serif" font-size="12" letter-spacing="3" fill="#f59e0b">RADIANT</text>';
     s+='<text x="'+CX+'" y="'+(CY+12)+'" text-anchor="middle" font-family="Space Mono,monospace" font-size="10.5" fill="#9ca3af">Life Path + Expression</text>';
-    s+='<text x="'+CX+'" y="'+(CY+28)+'" text-anchor="middle" font-family="Space Mono,monospace" font-size="10.5" fill="#9ca3af">reduced</text>';
+    s+='<text x="'+CX+'" y="'+(CY+28)+'" text-anchor="middle" font-family="Space Mono,monospace" font-size="10.5" fill="#9ca3af">reduced · masters tint</text>';
     s+='</svg>';
     (typeof mount==='string' ? document.querySelector(mount) : mount).innerHTML = s;
   };
