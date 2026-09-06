@@ -23,3 +23,8 @@ Thumbs.db
 .vscode/
 .idea/
 subscribers.json
+
+# Local scratch (never publish)
+_after.html
+_before.html
+_codex_backups/
