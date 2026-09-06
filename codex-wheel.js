@@ -32,7 +32,8 @@
     var CX=400, CY=400, R0=opts.inner||118, R1=opts.outer||300, N=TIERS.length, step=2*Math.PI/N;
     var P=function(r,a){ a-=Math.PI/2; return [CX+r*Math.cos(a), CY+r*Math.sin(a)]; };
     var f=function(n){ return n.toFixed(1); };
-    var s='<svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Color Codex wheel: nine slices, one per Radiant Number; masters wear their reduced light tinted">';
+    var legend = opts.legend !== false;
+    var s='<svg viewBox="0 0 800 '+(legend?880:800)+'" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Color Codex wheel: nine slices, one per Radiant Number; masters wear their reduced light tinted">';
     s+='<defs><filter id="cw-glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>';
     s+='<circle cx="'+CX+'" cy="'+CY+'" r="'+(R1+6)+'" fill="none" stroke="rgba(139,92,246,.25)" stroke-width="1"/>';
     TIERS.forEach(function(t,i){
@@ -53,6 +54,20 @@
     s+='<text x="'+CX+'" y="'+(CY-10)+'" text-anchor="middle" font-family="Orbitron,sans-serif" font-size="12" letter-spacing="3" fill="#f59e0b">RADIANT</text>';
     s+='<text x="'+CX+'" y="'+(CY+12)+'" text-anchor="middle" font-family="Space Mono,monospace" font-size="10.5" fill="#9ca3af">Life Path + Expression</text>';
     s+='<text x="'+CX+'" y="'+(CY+28)+'" text-anchor="middle" font-family="Space Mono,monospace" font-size="10.5" fill="#9ca3af">reduced · masters tint</text>';
+    if(legend){
+      /* DL-014: masters are a tint of their reduced light, shown below the wheel, never as slices. */
+      var y=772, keys=[11,22,33], gap=200, x0=CX-gap;
+      s+='<text x="'+CX+'" y="'+(y-4)+'" text-anchor="middle" font-family="Orbitron,sans-serif" font-size="11" letter-spacing="3" fill="#f59e0b">MASTERS · MOONSILVERED</text>';
+      keys.forEach(function(k,i){
+        var m=window.CODEX_MASTERS[k], x=x0+i*gap;
+        s+='<a href="'+m.color.toLowerCase()+'-soul-journey.html"><title>Radiant '+k+' → '+m.reducesTo+' '+m.name+' · '+m.color+', tinted toward white</title>';
+        s+='<circle cx="'+(x-58)+'" cy="'+(y+30)+'" r="14" fill="'+m.hex+'" stroke="'+m.base+'" stroke-width="3"/>';
+        s+='<text x="'+(x-36)+'" y="'+(y+26)+'" font-family="Orbitron,sans-serif" font-size="12" font-weight="700" fill="#e0e7ff">'+k+' → '+m.color+'</text>';
+        s+='<text x="'+(x-36)+'" y="'+(y+42)+'" font-family="Space Mono,monospace" font-size="9.5" fill="#9ca3af">'+m.name+' · tinted, master ring</text>';
+        s+='</a>';
+      });
+      s+='<text x="'+CX+'" y="'+(y+72)+'" text-anchor="middle" font-family="Space Mono,monospace" font-size="10" fill="rgba(224,231,255,.55)">A master is more light, not another colour. Amber is debt and never a slice.</text>';
+    }
     s+='</svg>';
     (typeof mount==='string' ? document.querySelector(mount) : mount).innerHTML = s;
   };
