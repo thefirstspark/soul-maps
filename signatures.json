@@ -22,7 +22,8 @@
     "birth_time": "13:31",
     "birth_city": "Akron",
     "birth_country": "US",
-    "codex_version": "radiant-wheel-v1"
+    "codex_version": "radiant-wheel-v1",
+    "founder": 1
   },
   "helen puzakulics|1917-12-15": {
     "name": "Helen Puzakulics",
@@ -1232,7 +1233,7 @@
     "codex_version": "radiant-wheel-v1"
   },
   "mason wade roberts|2011-04-22": {
-    "name": "mason wade roberts",
+    "name": "Mason Wade Roberts",
     "dob": "2011-04-22",
     "quantum": "EB1EBC3C789F",
     "quantum_display": "EB1E·BC3C·789F",
@@ -1253,10 +1254,11 @@
     "birth_time": "15:15",
     "birth_city": "Akron, ohio",
     "birth_country": "US",
-    "codex_version": "radiant-wheel-v1"
+    "codex_version": "radiant-wheel-v1",
+    "founder": 3
   },
   "devon ray lehman|2005-12-27": {
-    "name": "Devon ray lehman",
+    "name": "Devon Ray Lehman",
     "dob": "2005-12-27",
     "quantum": "AA9D32F1999F",
     "quantum_display": "AA9D·32F1·999F",
@@ -1277,7 +1279,8 @@
     "birth_time": "15:28",
     "birth_city": "Akron ohio",
     "birth_country": "US",
-    "codex_version": "radiant-wheel-v1"
+    "codex_version": "radiant-wheel-v1",
+    "founder": 2
   },
   "eric allen lamb|1990-01-15": {
     "name": "eric allen lamb",

@@ -116,8 +116,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   const DEFAULT_TIER = {color:'Purple', role:'The Transformer', hex:'#8b5cf6', dark:false};
 
   const $ = id => document.getElementById(id);
+  /* Cards are not numbered yet (Kate, 2026-09-05). Founders carry a rare star badge instead. */
+  const FOUNDER_LABEL = {1:'PLAYER ONE', 2:'PLAYER TWO', 3:'PLAYER THREE'};
+  const founderText = f => f ? ('\u2605 FOUNDER \u00b7 ' + (FOUNDER_LABEL[f] || ('PLAYER ' + f))) : '';
   const normId = raw => String(raw||'').replace(/[^0-9a-f]/gi,'').toUpperCase();
-  const cardNo = n => '№ ' + String(n).padStart(3,'0');
   const pad3 = n => String(n).padStart(3,'0');
   const slug = s => String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
   const escapeHtml = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -134,7 +136,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   function resolve(reg, id){
     const q = normId(id); if (q.length !== 12) return null;
     const keys = Object.keys(reg);
-    for (let i = 0; i < keys.length; i++){ const e = reg[keys[i]]; if (e && e.quantum && String(e.quantum).toUpperCase() === q) return { entry:e, key:keys[i], number:i+1 }; }
+    for (let i = 0; i < keys.length; i++){ const e = reg[keys[i]]; if (e && e.quantum && String(e.quantum).toUpperCase() === q) return { entry:e, key:keys[i], number:i+1, founder: Number(e.founder) || 0 }; }
     return null;
   }
   function tierFor(entry){
@@ -221,7 +223,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   function drawCard(canvas, data){
-    const { entry, q, n, t } = data;
+    const { entry, q, n, t, founder } = data;
     const T = t.hex;
     const ctx = canvas.getContext('2d');
     ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
@@ -248,7 +250,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     [[72,72,1,1],[1008,72,-1,1],[72,1848,1,-1],[1008,1848,-1,-1]].forEach(([x,y,sx,sy]) => { ctx.beginPath(); ctx.moveTo(x, y + sy*40); ctx.lineTo(x, y); ctx.lineTo(x + sx*40, y); ctx.stroke(); });
     // 4 header
     text(ctx, 'THE FIRST SPARK · SOUL CARD', 540, 150, '700 26px Orbitron', '#fbbf24', 8);
-    text(ctx, cardNo(n), 540, 198, '400 28px "Space Mono"', 'rgba(224,231,255,.62)', 6);
+    if (founder){
+      // rare star: gold foil frame + badge
+      roundRectPath(ctx, 40, 40, 1000, 1840, 40); ctx.strokeStyle = 'rgba(251,191,36,.9)'; ctx.lineWidth = 6; ctx.stroke();
+      roundRectPath(ctx, 58, 58, 964, 1804, 32); ctx.strokeStyle = 'rgba(251,191,36,.35)'; ctx.lineWidth = 2; ctx.stroke();
+      text(ctx, founderText(founder), 540, 200, '700 26px Orbitron', '#fbbf24', 6);
+      text(ctx, 'RARE \u2605 SECRET RARE', 540, 232, '400 18px "Space Mono"', 'rgba(251,191,36,.65)', 4);
+    }
     // 5 sigil
     const core = entry.core || {};
     drawSigil(ctx, q, core.life_path != null ? core.life_path : '—', T);
@@ -336,7 +344,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   function wire(canvas, data){
-    const { entry, q, n, t } = data;
+    const { entry, q, n, t, founder } = data;
     const url = CANON + '?id=' + q;
     const dlName = 'soul-card-' + pad3(n) + '-' + slug(entry.name) + '-' + q + '.png';
     const role = entry.codex_role || t.role;
@@ -348,7 +356,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       setTimeout(() => URL.revokeObjectURL(a.href), 4000); toast('PNG saved');
     });
     $('btn-share').addEventListener('click', async () => {
-      const title = entry.name + ' — Soul Card ' + cardNo(n);
+      const title = entry.name + ' — Soul Card' + (founder ? ' · ' + founderText(founder) : '');
       const textStr = role + ' · ' + qd;
       try {
         const b = await pngBlob(canvas);
@@ -389,15 +397,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       showMissing('NO CARD AT THIS COORDINATE', 'Every Soul Card is minted from a Soul Map. <code>' + escapeHtml(rawId) + '</code> isn’t in the registry — it may be mistyped, or the map hasn’t been generated yet.', {prefill: rawId});
       return;
     }
-    const entry = hit.entry, n = hit.number, q = normId(rawId), t = tierFor(entry);
-    const data = { entry, q, n, t };
+    const entry = hit.entry, n = hit.number, founder = hit.founder, q = normId(rawId), t = tierFor(entry);
+    const data = { entry, q, n, t, founder };
 
-    document.title = entry.name + ' — Soul Card ' + cardNo(n) + ' | The First Spark';
+    document.title = entry.name + ' — Soul Card | The First Spark';
     document.documentElement.style.setProperty('--tier', t.hex);
     try { history.replaceState(null, '', '?id=' + q); } catch (e) { /* file:// etc. */ }
 
     $('m-name').textContent = entry.name || '';
-    $('m-role').textContent = (entry.codex_tier || t.color) + ' · ' + (entry.codex_role || t.role) + ' · ' + cardNo(n);
+    $('m-role').textContent = (entry.codex_tier || t.color) + ' · ' + (entry.codex_role || t.role) + (founder ? ' · ' + founderText(founder) : '');
     $('m-quantum').textContent = entry.quantum_display || q;
 
     const canvas = $('card');
