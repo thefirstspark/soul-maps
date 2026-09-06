@@ -56,14 +56,14 @@
     s+='<text x="'+CX+'" y="'+(CY+28)+'" text-anchor="middle" font-family="Space Mono,monospace" font-size="10.5" fill="#9ca3af">reduced · masters tint</text>';
     if(legend){
       /* DL-014: masters are a tint of their reduced light, shown below the wheel, never as slices. */
-      var y=772, keys=[11,22,33], gap=200, x0=CX-gap;
+      var y=772, keys=[11,22,33], gap=230, x0=CX-gap;
       s+='<text x="'+CX+'" y="'+(y-4)+'" text-anchor="middle" font-family="Orbitron,sans-serif" font-size="11" letter-spacing="3" fill="#f59e0b">MASTERS · MOONSILVERED</text>';
       keys.forEach(function(k,i){
         var m=window.CODEX_MASTERS[k], x=x0+i*gap;
         s+='<a href="'+m.color.toLowerCase()+'-soul-journey.html"><title>Radiant '+k+' → '+m.reducesTo+' '+m.name+' · '+m.color+', tinted toward white</title>';
         s+='<circle cx="'+(x-58)+'" cy="'+(y+30)+'" r="14" fill="'+m.hex+'" stroke="'+m.base+'" stroke-width="3"/>';
         s+='<text x="'+(x-36)+'" y="'+(y+26)+'" font-family="Orbitron,sans-serif" font-size="12" font-weight="700" fill="#e0e7ff">'+k+' → '+m.color+'</text>';
-        s+='<text x="'+(x-36)+'" y="'+(y+42)+'" font-family="Space Mono,monospace" font-size="9.5" fill="#9ca3af">'+m.name+' · tinted, master ring</text>';
+        s+='<text x="'+(x-36)+'" y="'+(y+42)+'" font-family="Space Mono,monospace" font-size="9.5" fill="#9ca3af">'+m.name+' · tinted</text>';
         s+='</a>';
       });
       s+='<text x="'+CX+'" y="'+(y+72)+'" text-anchor="middle" font-family="Space Mono,monospace" font-size="10" fill="rgba(224,231,255,.55)">A master is more light, not another colour. Amber is debt and never a slice.</text>';
