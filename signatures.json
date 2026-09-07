@@ -1937,5 +1937,28 @@
     "birth_city": "Fairlawn",
     "birth_country": "US",
     "codex_version": "radiant-wheel-v1"
+  },
+  "dawn renee sheeler|1965-02-21": {
+    "name": "dawn renee sheeler",
+    "dob": "1965-02-21",
+    "quantum": "A0397193DA85",
+    "quantum_display": "A039·7193·DA85",
+    "resonance_hz": 914.46,
+    "activation": "A4773ACA[LP8]",
+    "codex_color": "violet",
+    "codex_role": "The Transformer",
+    "codex_tier": "Purple",
+    "core": {
+      "life_path": 8,
+      "expression": 8,
+      "soul_urge": 4,
+      "personality": 4,
+      "birthday": 3
+    },
+    "minted_at": "2026-09-07T21:10:39Z",
+    "formula_version": 1,
+    "codex_version": "radiant-wheel-v2",
+    "birth_city": "akron ohio",
+    "birth_country": "US"
   }
 }
