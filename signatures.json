@@ -1983,5 +1983,28 @@
     "codex_version": "radiant-wheel-v2",
     "birth_city": "akron, ohio",
     "birth_country": "US"
+  },
+  "robert nesta marley|1945-02-06": {
+    "name": "Robert Nesta Marley",
+    "dob": "1945-02-06",
+    "quantum": "700FA19C9272",
+    "quantum_display": "700F·A19C·9272",
+    "resonance_hz": 746.93,
+    "activation": "67F3B93E[LP9]",
+    "codex_color": "green",
+    "codex_role": "The Field",
+    "codex_tier": "Green",
+    "core": {
+      "life_path": 9,
+      "expression": 4,
+      "soul_urge": 5,
+      "personality": 8,
+      "birthday": 6
+    },
+    "minted_at": "2026-09-08T23:15:03Z",
+    "formula_version": 1,
+    "codex_version": "radiant-wheel-v2",
+    "birth_city": "nine mile, saint ann parish, jamaica",
+    "birth_country": "US"
   }
 }
