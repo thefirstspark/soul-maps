@@ -1960,5 +1960,28 @@
     "codex_version": "radiant-wheel-v2",
     "birth_city": "akron ohio",
     "birth_country": "US"
+  },
+  "nicholas paul crisp|1989-01-30": {
+    "name": "Nicholas Paul crisp",
+    "dob": "1989-01-30",
+    "quantum": "2137DB9EA46C",
+    "quantum_display": "2137·DB9E·A46C",
+    "resonance_hz": 846.03,
+    "activation": "26827D3A[LP4]",
+    "codex_color": "red",
+    "codex_role": "The Will",
+    "codex_tier": "Red",
+    "core": {
+      "life_path": 4,
+      "expression": 7,
+      "soul_urge": 11,
+      "personality": 5,
+      "birthday": 3
+    },
+    "minted_at": "2026-09-08T02:25:16Z",
+    "formula_version": 1,
+    "codex_version": "radiant-wheel-v2",
+    "birth_city": "akron, ohio",
+    "birth_country": "US"
   }
 }
