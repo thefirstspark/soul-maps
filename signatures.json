@@ -2006,5 +2006,28 @@
     "codex_version": "radiant-wheel-v2",
     "birth_city": "nine mile, saint ann parish, jamaica",
     "birth_country": "US"
+  },
+  "adam lee wright|1985-04-03": {
+    "name": "Adam Lee wright",
+    "dob": "1985-04-03",
+    "quantum": "E4AA4770E80F",
+    "quantum_display": "E4AA·4770·E80F",
+    "resonance_hz": 523.67,
+    "activation": "4A1CF495[LP3]",
+    "codex_color": "gold",
+    "codex_role": "The Orchestrator",
+    "codex_tier": "Gold",
+    "core": {
+      "life_path": 3,
+      "expression": 9,
+      "soul_urge": 3,
+      "personality": 6,
+      "birthday": 3
+    },
+    "minted_at": "2026-09-10T10:06:07Z",
+    "formula_version": 1,
+    "codex_version": "radiant-wheel-v2",
+    "birth_city": "Cambridge ohio",
+    "birth_country": "US"
   }
 }
