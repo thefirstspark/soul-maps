@@ -2029,5 +2029,28 @@
     "codex_version": "radiant-wheel-v2",
     "birth_city": "Cambridge ohio",
     "birth_country": "US"
+  },
+  "kristen ann puzakulics|1974-05-11": {
+    "name": "Kristen Ann Puzakulics",
+    "dob": "1974-05-11",
+    "quantum": "B251FD2E4348",
+    "quantum_display": "B251·FD2E·4348",
+    "resonance_hz": 856.83,
+    "activation": "515997AF[LP1]",
+    "codex_color": "green",
+    "codex_role": "The Field",
+    "codex_tier": "Green",
+    "core": {
+      "life_path": 1,
+      "expression": 3,
+      "soul_urge": 4,
+      "personality": 8,
+      "birthday": 11
+    },
+    "minted_at": "2026-09-12T19:22:27Z",
+    "formula_version": 1,
+    "codex_version": "radiant-wheel-v2",
+    "birth_city": "Akron, Ohio",
+    "birth_country": "US"
   }
 }
