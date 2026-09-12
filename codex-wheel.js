@@ -66,7 +66,7 @@
         s+='<text x="'+(x-36)+'" y="'+(y+42)+'" font-family="Space Mono,monospace" font-size="9.5" fill="#9ca3af">'+m.name+' · tinted</text>';
         s+='</a>';
       });
-      s+='<text x="'+CX+'" y="'+(y+72)+'" text-anchor="middle" font-family="Space Mono,monospace" font-size="10" fill="rgba(224,231,255,.55)">A master is more light, not another colour. Amber is debt and never a slice.</text>';
+      s+='<text x="'+CX+'" y="'+(y+72)+'" text-anchor="middle" font-family="Space Mono,monospace" font-size="10" fill="rgba(224,231,255,.55)">A master is more light, not another colour. Debt is shade, never a hue and never a slice.</text>';
     }
     s+='</svg>';
     (typeof mount==='string' ? document.querySelector(mount) : mount).innerHTML = s;
