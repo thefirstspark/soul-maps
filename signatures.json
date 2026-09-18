@@ -2052,5 +2052,28 @@
     "codex_version": "radiant-wheel-v2",
     "birth_city": "Akron, Ohio",
     "birth_country": "US"
+  },
+  "jacob lukas anderson|1984-04-29": {
+    "name": "Jacob Lukas Anderson",
+    "dob": "1984-04-29",
+    "quantum": "F43C9C83454D",
+    "quantum_display": "F43C·9C83·454D",
+    "resonance_hz": 729.65,
+    "activation": "EDFDFB1E[LP1]",
+    "codex_color": "blue",
+    "codex_role": "The Mind",
+    "codex_tier": "Blue",
+    "core": {
+      "life_path": 1,
+      "expression": 5,
+      "soul_urge": 5,
+      "personality": 9,
+      "birthday": 11
+    },
+    "minted_at": "2026-09-18T21:49:18Z",
+    "formula_version": 1,
+    "codex_version": "radiant-wheel-v2",
+    "birth_city": "minneapolis, MN",
+    "birth_country": "US"
   }
 }
