@@ -426,7 +426,9 @@
     "formula_version": 1,
     "birth_country": "US",
     "codex_version": "radiant-wheel-v2",
-    "codex_master": 11
+    "codex_master": 11,
+    "birth_time": "17:01",
+    "birth_city": "Akron Ohio"
   },
   "isabella nicole weber|2007-06-28": {
     "name": "Isabella Nicole Weber",
@@ -2120,6 +2122,29 @@
     "formula_version": 1,
     "codex_version": "radiant-wheel-v2",
     "birth_city": "Akron, ohio",
+    "birth_country": "US"
+  },
+  "carter luke roberts|2007-02-18": {
+    "name": "Carter luke roberts",
+    "dob": "2007-02-18",
+    "quantum": "BD56B9AE2997",
+    "quantum_display": "BD56·B9AE·2997",
+    "resonance_hz": 664.07,
+    "activation": "90C9791D[LP2]",
+    "codex_color": "blue",
+    "codex_role": "The Mind",
+    "codex_tier": "Blue",
+    "core": {
+      "life_path": 2,
+      "expression": 4,
+      "soul_urge": 7,
+      "personality": 6,
+      "birthday": 9
+    },
+    "minted_at": "2026-09-19T18:21:40Z",
+    "formula_version": 1,
+    "codex_version": "radiant-wheel-v2",
+    "birth_city": "Akron",
     "birth_country": "US"
   }
 }
