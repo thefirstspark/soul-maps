@@ -2075,5 +2075,28 @@
     "codex_version": "radiant-wheel-v2",
     "birth_city": "minneapolis, MN",
     "birth_country": "US"
+  },
+  "peter matthew puzakulics|2026-03-24": {
+    "name": "Peter Matthew Puzakulics",
+    "dob": "2026-03-24",
+    "quantum": "315B1EB59717",
+    "quantum_display": "315B·1EB5·9717",
+    "resonance_hz": 574.13,
+    "activation": "B3996ACB[LP1]",
+    "codex_color": "blue",
+    "codex_role": "The Mind",
+    "codex_tier": "Blue",
+    "core": {
+      "life_path": 1,
+      "expression": 5,
+      "soul_urge": 5,
+      "personality": 9,
+      "birthday": 6
+    },
+    "minted_at": "2026-09-19T06:07:33Z",
+    "formula_version": 1,
+    "codex_version": "radiant-wheel-v2",
+    "birth_city": "Akron, ohio",
+    "birth_country": "US"
   }
 }
