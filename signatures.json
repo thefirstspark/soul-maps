@@ -2098,5 +2098,28 @@
     "codex_version": "radiant-wheel-v2",
     "birth_city": "Akron, ohio",
     "birth_country": "US"
+  },
+  "peter matthew puzakulics|1964-03-24": {
+    "name": "Peter Matthew Puzakulics",
+    "dob": "1964-03-24",
+    "quantum": "F2ED808302FB",
+    "quantum_display": "F2ED·8083·02FB",
+    "resonance_hz": 746.93,
+    "activation": "BD02EE54[LP11]",
+    "codex_color": "violet",
+    "codex_role": "The Transformer",
+    "codex_tier": "Purple",
+    "core": {
+      "life_path": 11,
+      "expression": 5,
+      "soul_urge": 5,
+      "personality": 9,
+      "birthday": 6
+    },
+    "minted_at": "2026-09-19T06:10:07Z",
+    "formula_version": 1,
+    "codex_version": "radiant-wheel-v2",
+    "birth_city": "Akron, ohio",
+    "birth_country": "US"
   }
 }
