@@ -2123,5 +2123,28 @@
     "codex_version": "radiant-wheel-v2",
     "birth_city": "Akron",
     "birth_country": "US"
+  },
+  "zachary james gatesman|1984-08-17": {
+    "name": "Zachary James Gatesman",
+    "dob": "1984-08-17",
+    "quantum": "CF747B657FBE",
+    "quantum_display": "CF74·7B65·7FBE",
+    "resonance_hz": 804.99,
+    "activation": "7E6E5BBC[LP11]",
+    "codex_color": "cyan",
+    "codex_role": "The Signal",
+    "codex_tier": "Cyan",
+    "core": {
+      "life_path": 11,
+      "expression": 3,
+      "soul_urge": 6,
+      "personality": 6,
+      "birthday": 8
+    },
+    "minted_at": "2026-09-22T10:19:19Z",
+    "formula_version": 1,
+    "codex_version": "radiant-wheel-v2",
+    "birth_city": "Pennsylvania",
+    "birth_country": "US"
   }
 }
