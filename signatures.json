@@ -2146,5 +2146,29 @@
     "codex_version": "radiant-wheel-v2",
     "birth_city": "Pennsylvania",
     "birth_country": "US"
+  },
+  "charles glasgow iii|1986-05-14": {
+    "name": "Charles Glasgow III",
+    "dob": "1986-05-14",
+    "quantum": "34E7641F84A4",
+    "quantum_display": "34E7·641F·84A4",
+    "resonance_hz": 841.71,
+    "activation": "2B38B664[LP7]",
+    "codex_color": "green",
+    "codex_role": "The Field",
+    "codex_tier": "Green",
+    "core": {
+      "life_path": 7,
+      "expression": 6,
+      "soul_urge": 4,
+      "personality": 11,
+      "birthday": 5
+    },
+    "minted_at": "2026-09-23T21:10:09Z",
+    "formula_version": 1,
+    "codex_version": "radiant-wheel-v2",
+    "birth_time": "17:09",
+    "birth_city": "Akron ohio",
+    "birth_country": "US"
   }
 }
